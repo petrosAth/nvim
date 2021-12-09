@@ -1,0 +1,69 @@
+local M = {}
+
+-- Table containing variables --{{{
+M.variables = {
+    transparency = 5
+}--}}}
+
+-- Table containing icons --{{{
+M.icon = {
+    error    = { "", "", "", "", "", "" },
+    warn     = { "", "", "", "", "", "" },
+    hint     = { "", "", "", "", "", "" },
+    info     = { "", "", "", "", "", "" },
+    close    = { "", "" },
+    delete   = { "", "" },
+    pending  = { "", "", },
+    done     = { "", "", },
+    action   = { "", "", "", "", "ﴞ" },
+    def      = { "", "", "", "硫"},
+    edit     = { "", "", "" },
+    prompt   = { "❯", "", "", "❯" },
+    location = { "", "", "" },
+    misc     = { "", "", "", "", "" },
+    bug      = { "", "", "" },
+    folderop = { "", "", "" },
+    foldercl = { "", "", "" },
+    arrowl   = { "", "", "", "", "" },
+    arrowr   = { "", "", "", "", "" },
+    arrowu   = { "", "", "", "", "" },
+    arrowd   = { "", "", "", "", "" },
+    loading  = {
+        "", "", "", "", "", "", "",
+        "", "", "", "", "", "", "",
+        "", "", "", "", "", "", "",
+        "", "", "", "", "", "", "",
+    },
+    -- Fillchar and listchar icons
+    nvim_ui  = {
+        stl       = { " ", },          -- ' ' or '^' -- statusline of the current window
+        stlnc     = { " ", },          -- ' ' or '=' -- statusline of the non-current windows
+        vert      = { "▌", "▏", "▌", "│", "┃", "▕", "▐", "░", "▒", "▓", "█" }, -- '│' or '|' -- vertical separators |:vsplit|
+        fold      = { " ", },          -- '·' or '-' -- filling 'foldtext'
+        foldopen  = { "", "" },      -- '-'        -- mark the beginning of a fold
+        foldclose = { "", "", "" }, -- '+'        -- show a closed fold
+        foldsep   = { "", "" },      -- '│' or '|' -- open fold middle marker
+        diff      = { "-", },          -- '-'        -- deleted lines of the 'diff' option
+        msgsep    = { " ", },          -- ' '        -- message separator 'display'
+        eob       = { "-", },          -- '~'        -- empty lines at the end of a buffer
+        tab       = { "··", },         -- Two or three characters to be used to show a tab
+        lead      = { "·", },          -- Character to show for leading spaces
+        eol       = { "﬋", },          -- Character to show at the end of each line
+    }
+}--}}}
+
+-- Table containing borders --{{{
+M.border = {
+    table    = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
+    single   = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
+    round    = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤" },
+    double   = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢",      "╠",      "╣", },
+    box      = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌" }
+}--}}}
+
+function M.dracula() --{{{
+	-- Set theme
+	vim.cmd([[colorscheme dracula]])
+end --}}}
+
+return M
