@@ -32,10 +32,6 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | --- | --- |
-| [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) | VSCode 💡 for neovim's built-in LSP. |
-| [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview. |
-| [tele-tabby.nvim](https://github.com/TC72/telescope-tele-tabby.nvim) | A telescope extension to switch tabs. |
-| [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens) | Hlsearch Lens for Neovim. |
 | [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | ✅ Highlight, list and search todo comments in your projects. |
 | [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
 | [telescope-hop.nvim](https://github.com/nvim-telescope/telescope-hop.nvim) | (Teles-)Hopping to the moon. |

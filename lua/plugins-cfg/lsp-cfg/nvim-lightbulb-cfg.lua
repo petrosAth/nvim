@@ -2,7 +2,7 @@ vim.cmd([[
     augroup LIGHTBULB
         autocmd!
         autocmd ColorScheme * highlight LightBulbVirtualText ctermfg=84 guifg=#50fa7b
-        autocmd CursorHold,CursorHoldI,CursorMoved,CursorMovedI * lua require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg").checkCodeAction()
+        autocmd CursorMoved,CursorMovedI * lua require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg").checkCodeAction()
     augroup END
 ]])
 
@@ -22,7 +22,7 @@ M.checkCodeAction = function()
         float = {
             enabled = false,
             -- Text to show in the popup float
-            text = ci.action[2],
+            text = ci.action[1],
             -- Available keys for window options:
             -- - height     of floating window
             -- - width      of floating window
@@ -49,13 +49,13 @@ M.checkCodeAction = function()
         status_text = {
             enabled = false,
             -- Text to provide when code actions are available
-            text = ci.action[2],
+            text = ci.action[1],
             -- Text to provide when no actions are available
             text_unavailable = ""
         }
     })
 end
 
-vim.fn.sign_define('LightBulbSign', { text = ci.action[2], texthl = "DraculaGreen", linehl= "", numhl="DraculaGreen" })
+vim.fn.sign_define('LightBulbSign', { text = ci.action[1], texthl = "DraculaGreen", linehl= "", numhl="DraculaGreen" })
 
 return M

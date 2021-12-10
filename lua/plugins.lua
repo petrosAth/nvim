@@ -46,15 +46,14 @@ return packer.startup(function()
                 end
             },--}}}
             -- nvim-lightbulb - VSCode action for neovim's built-in LSP
-            {
+            {--{{{
                 "kosayoda/nvim-lightbulb", -- https://github.com/kosayoda/nvim-lightbulb
                 disable = false,
                 lock = false,
-                -- after = "nvim-lspconfig",
                 config = function()
                     require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg")
                 end
-            },
+            },--}}}
             -- lspkind.nvim - This tiny plugin adds vscode-like pictograms to neovim built-in lsp
             {--{{{
                 "onsails/lspkind-nvim", -- https://github.com/onsails/lspkind-nvim
@@ -332,6 +331,16 @@ return packer.startup(function()
             require("plugins-cfg.trouble-cfg")
         end
     }--}}}
+
+    -- nvim-hlslens - Hlsearch Lens for Neovim
+    use{
+        "kevinhwang91/nvim-hlslens", -- https://github.com/kevinhwang91/nvim-hlslens
+        disable = false,
+        lock = false,
+        config = function()
+            require("plugins-cfg.nvim-hlslens-cfg")
+        end
+    }
 --}}}
 
 -- Miscellaneous --{{{

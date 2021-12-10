@@ -41,12 +41,12 @@ g.nvim_tree_icons = {
     default =          "",
     symlink =          "",
     git = {
-        unstaged =     ci.pending[1],
-        staged =       ci.done[1],
+        unstaged =    ci.git[1], -- ci.pending[1],
+        staged =      ci.git[2], -- ci.done[1],
         unmerged =     "",
-        renamed =      ci.arrowr[1],
-        untracked =    ci.def[2],
-        deleted =      ci.delete[1],
+        renamed =     ci.arrowr[1],
+        untracked =   ci.git[3], -- ci.def[2],
+        deleted =     ci.git[4], -- ci.delete[1],
     },
         folder = {
         arrow_open =   ci.folderop[1],

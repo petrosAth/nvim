@@ -55,7 +55,7 @@ trouble.setup({
     auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
     auto_fold = false, -- automatically fold a file trouble list at creation
     auto_jump = {}, -- for the given modes, automatically jump if there is only a single result
-    use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
+    use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
 })
 
 
@@ -69,8 +69,8 @@ map("n", "<Space>qc",  "<cmd>TroubleClose<CR>",                      ns_opts)
 map("n", "<Space>qR",  "<cmd>TroubleRefresh<CR>",                    ns_opts)
 -- map("n", "<Space>ql",  "<cmd>Trouble loclist<CR>",                   ns_opts)
 -- map("n", "<Space>qq",  "<cmd>Trouble quickfix<CR>",                  ns_opts)
-map("n", "<Space>qdd", "<cmd>Trouble lsp_document_diagnostics<CR>",  ns_opts)
-map("n", "<Space>qdw", "<cmd>Trouble lsp_workspace_diagnostics<CR>", ns_opts)
+map("n", "<Space>qdd", "<cmd>Trouble document_diagnostics<CR>",  ns_opts)
+map("n", "<Space>qdw", "<cmd>Trouble workspace_diagnostics<CR>", ns_opts)
 map("n", "<Space>qr",  "<cmd>Trouble lsp_references<CR>",            ns_opts)
 map("n", "<Space>qd",  "<cmd>Trouble lsp_definitions<CR>",           ns_opts)
 map("n", "<Space>qt",  "<cmd>Trouble lsp_type_definitions<CR>",      ns_opts)

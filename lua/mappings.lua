@@ -101,10 +101,10 @@ map("n", "<F11>", "<cmd>set wrap!<CR>", ns_opts)
 map("t", "<Esc>", "<C-\\><C-n>", ns_opts)
 
 -- Resize splits by 5 lines/rows if no [count] is given, else resize by [count]
-map("n", "<A-J>", "v:count == 0 ? ':resize +5<CR>' : ':<C-u>resize +' . v:count1 . '<CR>'", nse_opts)
-map("n", "<A-K>", "v:count == 0 ? ':resize -5<CR>' : ':<C-u>resize -' . v:count1 . '<CR>'", nse_opts)
-map("n", "<A-H>", "v:count == 0 ? ':vertical resize +5<CR>' : ':<C-u>vertical resize +' . v:count1 . '<CR>'", nse_opts)
-map("n", "<A-L>", "v:count == 0 ? ':vertical resize -5<CR>' : ':<C-u>vertical resize -' . v:count1 . '<CR>'", nse_opts)
+map("n", "<A-j>", "v:count == 0 ? ':resize +5<CR>' : ':<C-u>resize +' . v:count1 . '<CR>'", nse_opts)
+map("n", "<A-k>", "v:count == 0 ? ':resize -5<CR>' : ':<C-u>resize -' . v:count1 . '<CR>'", nse_opts)
+map("n", "<A-h>", "v:count == 0 ? ':vertical resize +5<CR>' : ':<C-u>vertical resize +' . v:count1 . '<CR>'", nse_opts)
+map("n", "<A-l>", "v:count == 0 ? ':vertical resize -5<CR>' : ':<C-u>vertical resize -' . v:count1 . '<CR>'", nse_opts)
 -- Resize splits by [count] lines/rows
 -- map("n", "<A-j>", "':<C-u>resize +' . v:count1 . '<CR>'", nse_opts)
 -- map("n", "<A-k>", "':<C-u>resize -' . v:count1 . '<CR>'", nse_opts)
