@@ -233,7 +233,7 @@ end--}}}
 function M.diagnostics()--{{{
     local diagnostics_options = {
         "diagnostics",
-        sources = { "nvim_lsp" },
+        sources = { "nvim_diagnostic" },
         colored = true,
         symbols = {
             error = ci.error[1] .. " ",

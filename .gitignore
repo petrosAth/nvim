@@ -1,4 +1,4 @@
 .vscode
 .luarc.json
-./plugin/
+plugin/
 Thumbs.db

@@ -35,8 +35,8 @@ vim.diagnostic.config({
     },
     signs = true,
     underline = true,
-    update_in_insert = false,
-    severity_sort = false,
+    update_in_insert = true,
+    severity_sort = true,
 })
 
 -- Set diagnostic signs
@@ -46,7 +46,7 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl, })
 end
 
--- TODO: Delete when fixed
+-- HACK: Delete when fixed
 -- Set diagnostic signs for telescope
 local Tsigns = { Error = ci.error[1] .. " ", Warning = ci.warn[1] .. " ", Hint = ci.hint[1] .. " ", Information = ci.info[1] .. " ", }
 for type, icon in pairs(Tsigns) do

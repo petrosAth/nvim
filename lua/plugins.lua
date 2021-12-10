@@ -43,8 +43,18 @@ return packer.startup(function()
                 after = "nvim-lspconfig",
                 config = function()
                     require("plugins-cfg.lsp-cfg.lsp-signature-cfg")
-                end,
+                end
             },--}}}
+            -- nvim-lightbulb - VSCode action for neovim's built-in LSP
+            {
+                "kosayoda/nvim-lightbulb", -- https://github.com/kosayoda/nvim-lightbulb
+                disable = false,
+                lock = false,
+                -- after = "nvim-lspconfig",
+                config = function()
+                    require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg")
+                end
+            },
             -- lspkind.nvim - This tiny plugin adds vscode-like pictograms to neovim built-in lsp
             {--{{{
                 "onsails/lspkind-nvim", -- https://github.com/onsails/lspkind-nvim

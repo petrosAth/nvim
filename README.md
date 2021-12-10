@@ -2,6 +2,7 @@
 My ["personal"](#sources) Neovim configuration for Windows.
 Still a work in progress.
 
+
 ## TODO
 - [ ] Try treesitter folding - reddit [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
 - [ ] Migrate to WSL
@@ -15,9 +16,11 @@ Still a work in progress.
 - [ ] Add ftplugin/
 - [ ] Add Spell/
 
+
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
 - nvim-lspconfig Windows path bugs [1](https://github.com/neovim/nvim-lspconfig/issues/1168), [2](https://github.com/neovim/nvim-lspconfig/issues/1266)
+
 
 ## Plugins
 ### Plugins used
@@ -25,11 +28,10 @@ Still a work in progress.
 | --- | --- |
 *Big list that I will add at some point*
 
+
 ### Plugins for installation
 | Plugin | Description |
 | --- | --- |
-| [Glow.nvim](https://github.com/ellisonleao/glow.nvim) | A markdown preview directly in your neovim. |
-| [navigator.lua](https://github.com/ray-x/navigator.lua) | Navigate codes like a breeze🎐. Exploring LSP and 🌲Treesitter symbols a piece of 🍰. Control codes like a boss 🦍. |
 | [nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) | VSCode 💡 for neovim's built-in LSP. |
 | [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview. |
 | [tele-tabby.nvim](https://github.com/TC72/telescope-tele-tabby.nvim) | A telescope extension to switch tabs. |
@@ -47,24 +49,25 @@ Still a work in progress.
 | [nord.nvim](https://github.com/shaunsingh/nord.nvim) | Neovim theme based off of the Nord Color Palette, written in lua with tree sitter support. |
 | [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua) | solarized colorscheme in lua for nvim 0.5. |
 
+
 ### Plugins watch list
 | Plugin | Description |
 | --- | --- |
 | [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) |  Collections of awesome neovim plugins. |
 | --- | --- |
 | [Fern.vim](https://github.com/lambdalisue/fern.vim) | General purpose asynchronous tree viewer written in Pure Vim script. |
+| [lir.nvim](https://github.com/tamago324/lir.nvim) | 🚪 A simple file explorer. |
 | [formatter.nvim](https://github.com/mhartington/formatter.nvim) | A format runner for neovim, written in lua. |
 | <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim) | Simple session management for Neovim. |
 | <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager) | A simple wrapper around :mksession |
-| [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
 | [vim-choosewin](https://github.com/t9md/vim-choosewin) | Land on window you chose like tmux's 'display-pane'. |
 | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
 | Treesitter | --- |
 | [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
-| [tree-sitter-markdown](https://github.com/MDeiml/tree-sitter-markdown) | A markdown parser for tree-sitter |
 | Git | --- |
 | [Neogit](https://github.com/TimUntersberger/neogit) | magit for neovim. |
 | [Diffview.nvim](https://github.com/sindrets/diffview.nvim) | Single tabpage interface for easily cycling through diffs for all modified files for any git rev. |
+| [lazygit](https://github.com/jesseduffield/lazygit) | simple terminal UI for git commands. |
 | Debugging | --- |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol client implementation for Neovim. |
 | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | A UI for nvim-dap. |
