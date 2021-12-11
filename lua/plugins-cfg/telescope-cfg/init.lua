@@ -51,7 +51,7 @@ telescope.setup({
 		},
 		selection_strategy = "reset",
 		sorting_strategy = "descending",
-		file_ignore_patterns = { ".git", "tags" },
+		file_ignore_patterns = { "^.git", "tags" },
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
@@ -71,7 +71,7 @@ telescope.setup({
                 -- ["<C-k>"] = actions.toggle_selection + actions.move_selection_worse,
                 -- ["<C-j>"] = actions.toggle_selection + actions.move_selection_better,
                 ["<M-q>"] = trouble.smart_open_with_trouble,
-                ["<M-p>"] = actions_layout.toggle_preview
+                ["<M-p>"] = actions_layout.toggle_preview,
 			},
 			n = {
 				["<C-n>"] = actions.move_selection_next,
@@ -117,7 +117,7 @@ telescope.setup({
 })
 
 -- Load extensions
-local extensions = { "frecency", "fzf", "project" }
+local extensions = { "frecency", "fzf", "hop" }
 pcall(function()
 	for _, ext in ipairs(extensions) do
 		telescope.load_extension(ext)
@@ -128,6 +128,7 @@ end)
 local map = vim.api.nvim_set_keymap
 local ns_opts = { noremap = true, silent = true }
 local builtin = "<cmd> lua require('telescope.builtin')."
+local ext = "<cmd> lua require('telescope').extensions.hop"
 local custom = "<cmd> lua require('plugins-cfg.telescope-cfg.customPickers')."
 
 -- Searching -------------------------------------------------------------------
@@ -152,7 +153,7 @@ map("n", "<Space>tt",    custom  .. "lsp_type_definitions()<CR>",      ns_opts)
 map("n", "<Space>ti",    custom  .. "lsp_implementations()<CR>",       ns_opts)
 
 -- Git -------------------------------------------------------------------------
-map("n", "<Space>tg",    builtin .. "builtin<CR>^git",                 ns_opts)
+map("n", "<Space>tg",    builtin .. "builtin()<CR>^git",                 ns_opts)
 
 -- Miscellaneous ---------------------------------------------------------------
 map("n", "<Space>hi",    builtin .. "highlights()<CR>",                ns_opts)

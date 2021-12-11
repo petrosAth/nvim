@@ -394,6 +394,17 @@ return packer.startup(function()
         end
     }--}}}
 
+    -- gitsigns.nvim - Git integration for buffers
+    use{--{{{
+        "lewis6991/gitsigns.nvim", -- https://github.com/lewis6991/gitsigns.nvim
+        disable = false,
+        lock = false,
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("plugins-cfg.gitsigns-cfg")
+        end
+    }--}}}
+
 --}}}
 
     -- Automatic initial plugin installation

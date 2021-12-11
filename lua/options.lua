@@ -25,7 +25,7 @@ g.neovide_no_idle = true
 g.neovide_fullscreen = false
 
 -- Remember Previous Window Size
-g.neovide_remember_window_size = true
+g.neovide_remember_window_size = false
 
 -- Determines the time it takes for the cursor to complete it's animation in seconds
 g.neovide_cursor_animation_length = 0.15
@@ -34,7 +34,7 @@ g.neovide_cursor_animation_length = 0.15
 g.neovide_cursor_trail_length = 0.8
 
 -- Enables or disables antialiasing of the cursor quad. Disabling may fix some cursor visual issues
-g.neovide_cursor_antialiasing = fasle
+g.neovide_cursor_antialiasing = false
 
 -- Cursor Particles
 g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe

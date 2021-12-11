@@ -97,8 +97,8 @@ M.custom_on_attach = function(client, bufnr)
     local ns_opts = { noremap=true, silent=true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-	map("n", "<Space>[",  "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", ns_opts)
-	map("n", "<Space>]",  "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", ns_opts)
+	map("n", "[d",  "<cmd>lua vim.diagnostic.goto_prev()<CR>", ns_opts)
+	map("n", "]d",  "<cmd>lua vim.diagnostic.goto_next()<CR>", ns_opts)
 	map("n", "<Space>lh", "<cmd>lua require('plugins-cfg.lsp-cfg').show_line_diagnostics()<CR>", ns_opts)
 	map("n", "<Space>lR", "<cmd>lua vim.lsp.buf.rename()<CR>", ns_opts)
 	map("n", "<Space>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", ns_opts)

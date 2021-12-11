@@ -32,9 +32,6 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | --- | --- |
-| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | ✅ Highlight, list and search todo comments in your projects. |
-| [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
-| [telescope-hop.nvim](https://github.com/nvim-telescope/telescope-hop.nvim) | (Teles-)Hopping to the moon. |
 | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration for buffers. |
 | [vim-surround](https://github.com/tpope/vim-surround) | Delete/change/add parentheses/quotes/XML-tags/much more with ease. |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
@@ -59,6 +56,7 @@ Still a work in progress.
 | [vim-choosewin](https://github.com/t9md/vim-choosewin) | Land on window you chose like tmux's 'display-pane'. |
 | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
 | [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview |
+| [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
 | Treesitter | --- |
 | [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
 | Git | --- |

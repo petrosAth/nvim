@@ -61,7 +61,13 @@ local ns_opts = { noremap = true, silent = true }
 
 map("n", "n",  "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR><cmd>set relativenumber!<CR>", ns_opts)
 map("n", "N",  "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR><cmd>set relativenumber!<CR>", ns_opts)
+
 map("n", "*",  "*<Cmd>lua require('hlslens').start()<CR>", n_opts)
 map("n", "#",  "#<Cmd>lua require('hlslens').start()<CR>", n_opts)
 map("n", "g*", "g*<Cmd>lua require('hlslens').start()<CR>", n_opts)
 map("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>", n_opts)
+
+map("x", "*",  "*<Cmd>lua require('hlslens').start()<CR>", n_opts)
+map("x", "#",  "#<Cmd>lua require('hlslens').start()<CR>", n_opts)
+map("x", "g*", "g*<Cmd>lua require('hlslens').start()<CR>", n_opts)
+map("x", "g#", "g#<Cmd>lua require('hlslens').start()<CR>", n_opts)

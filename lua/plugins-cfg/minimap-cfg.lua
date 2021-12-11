@@ -37,8 +37,8 @@ function M.config()
     local map = vim.api.nvim_set_keymap
     local ns_opts = { noremap = true, silent = true }
 
-    map("n", "<M-m>", "<cmd>MinimapRefresh<CR>", ns_opts)
-    map("n", "<Leader>m", "<cmd>MinimapToggle<CR>", ns_opts)
+    map("n", "<M-m>",     "<cmd>MinimapRefresh<CR>", ns_opts)
+    map("n", "<Leader>m", "<cmd>MinimapToggle<CR>",  ns_opts)
 end
 
 return M
