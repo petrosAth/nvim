@@ -383,6 +383,17 @@ return packer.startup(function()
         end,
     }--}}}
 
+    -- todo-comments.nvim - Highlight, list and search todo comments in your projects
+    use{--{{{
+        "folke/todo-comments.nvim", -- https://github.com/folke/todo-comments.nvim
+        disable = false,
+        lock = false,
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("plugins-cfg.todo-comments-cfg")
+        end
+    }--}}}
+
 --}}}
 
     -- Automatic initial plugin installation

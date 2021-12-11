@@ -19,7 +19,7 @@ g.neovide_refresh_rate = 60
 g.neovide_transparency = 0.97
 
 -- Force neovide to redraw all the time. This can be a quick hack if animations appear to stop too early.
-g.neovide_no_idle = false
+g.neovide_no_idle = true
 
 -- Open neovide in windowed fullscreen mode
 g.neovide_fullscreen = false
@@ -28,13 +28,13 @@ g.neovide_fullscreen = false
 g.neovide_remember_window_size = true
 
 -- Determines the time it takes for the cursor to complete it's animation in seconds
-g.neovide_cursor_animation_length = 0.13
+g.neovide_cursor_animation_length = 0.15
 
 -- Determines how much the trail of the cursor lags behind the front edge
 g.neovide_cursor_trail_length = 0.8
 
 -- Enables or disables antialiasing of the cursor quad. Disabling may fix some cursor visual issues
-g.neovide_cursor_antialiasing = true
+g.neovide_cursor_antialiasing = fasle
 
 -- Cursor Particles
 g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe

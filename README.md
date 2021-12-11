@@ -58,6 +58,7 @@ Still a work in progress.
 | <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager) | A simple wrapper around :mksession |
 | [vim-choosewin](https://github.com/t9md/vim-choosewin) | Land on window you chose like tmux's 'display-pane'. |
 | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
+| [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview |
 | Treesitter | --- |
 | [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
 | Git | --- |

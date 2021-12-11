@@ -1,15 +1,6 @@
 vim.cmd([[
     augroup TROUBLE_AU
         autocmd!
-        autocmd FileType Trouble
-            \ nnoremap <buffer> q <cmd>Trouble quickfix<CR> |
-            \ nnoremap <buffer> l <cmd>Trouble loclist<CR> |
-            "\ nnoremap <buffer> dd <cmd>Trouble lsp_document_diagnostics<CR> |
-            "\ nnoremap <buffer> dw <cmd>Trouble lsp_workspace_diagnostics<CR> |
-            "\ nnoremap <buffer> r <cmd>Trouble lsp_references<CR> |
-            "\ nnoremap <buffer> d <cmd>Trouble lsp_definitions<CR> |
-            "\ nnoremap <buffer> t <cmd>Trouble lsp_type_definitions<CR> |
-            "\ nnoremap <buffer> i <cmd>Trouble lsp_implementations<CR>
         autocmd BufEnter Trouble lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
     augroup END
 ]])
@@ -67,10 +58,10 @@ map("n", "<Space>qq",  "<cmd>TroubleToggle<CR>",                     ns_opts)
 map("n", "<Space>qo",  "<cmd>TroubleOpen<CR>",                       ns_opts)
 map("n", "<Space>qc",  "<cmd>TroubleClose<CR>",                      ns_opts)
 map("n", "<Space>qR",  "<cmd>TroubleRefresh<CR>",                    ns_opts)
--- map("n", "<Space>ql",  "<cmd>Trouble loclist<CR>",                   ns_opts)
--- map("n", "<Space>qq",  "<cmd>Trouble quickfix<CR>",                  ns_opts)
-map("n", "<Space>qdd", "<cmd>Trouble document_diagnostics<CR>",  ns_opts)
-map("n", "<Space>qdw", "<cmd>Trouble workspace_diagnostics<CR>", ns_opts)
+map("n", "<Space>ql",  "<cmd>Trouble loclist<CR>",                   ns_opts)
+map("n", "<Space>qf",  "<cmd>Trouble quickfix<CR>",                  ns_opts)
+map("n", "<Space>qdd", "<cmd>Trouble document_diagnostics<CR>",      ns_opts)
+map("n", "<Space>qdw", "<cmd>Trouble workspace_diagnostics<CR>",     ns_opts)
 map("n", "<Space>qr",  "<cmd>Trouble lsp_references<CR>",            ns_opts)
 map("n", "<Space>qd",  "<cmd>Trouble lsp_definitions<CR>",           ns_opts)
 map("n", "<Space>qt",  "<cmd>Trouble lsp_type_definitions<CR>",      ns_opts)

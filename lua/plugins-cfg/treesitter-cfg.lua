@@ -1,6 +1,6 @@
-require "nvim-treesitter.configs".setup {
+require("nvim-treesitter.configs").setup({
     -- ensure_installed = { "c", "css", "c_sharp", "html", "lua", "python", },
-    ensure_installed = { "comment", "lua", "vim", "html" },
+    ensure_installed = { "lua", "vim", "html" },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -22,4 +22,4 @@ require "nvim-treesitter.configs".setup {
             "#f8f8f2",
         },
     },
-}
+})

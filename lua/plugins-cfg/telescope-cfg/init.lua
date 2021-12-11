@@ -143,7 +143,7 @@ map("n", "<Space>rs",    custom  .. "registers('small')<CR>",          ns_opts)
 map("n", "<Space>rl",    custom  .. "registers('large')<CR>",          ns_opts)
 
 -- LSP -------------------------------------------------------------------------
-map("n", "<Space>tdd",   builtin .. "lsp_document_diagnostics()<CR>",  ns_opts)
+map("n", "<Space>tdd",   builtin .. "diagnostics()<CR>",  ns_opts)
 map("n", "<Space>tdw",   builtin .. "lsp_workspace_diagnostics()<CR>", ns_opts)
 map("n", "<Space>ta",    custom  .. "lsp_code_actions()<CR>",          ns_opts)
 map("n", "<Space>tr",    custom  .. "lsp_references()<CR>",            ns_opts)
