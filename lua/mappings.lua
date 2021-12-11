@@ -45,8 +45,8 @@ map("n", "$", "g_", n_opts)
 map("v", "$", "g_", n_opts)
 
 -- Paste from system clipboard in insert/select mode
-map("i", "<C-v>", "<C-R>+", n_opts)
-map("s", "<C-v>", "<BS>i<C-R>+<Esc>", n_opts)
+-- map("i", "<C-v>", "<C-R>+", n_opts)
+-- map("s", "<C-v>", "<BS>i<C-R>+<Esc>", n_opts)
 
 -- Toggle paste mode and paste from system clipboard
 -- map("n", "<Leader>v", '<F12>"+P<F12>', n_opts)

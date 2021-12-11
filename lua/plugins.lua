@@ -267,6 +267,8 @@ return packer.startup(function()
             { "tami5/sqlite.lua", lock = false }, -- https://github.com/tami5/sqlite.lua
             -- An extension for telescope.nvim that allows you to switch between projects
             { "nvim-telescope/telescope-project.nvim", lock = false }, -- https://github.com/nvim-telescope/telescope-project.nvim
+            -- An extension for telescope.nvim. It helps you navigate, select, and perform actions on results buffer with motions inspired by hop.nvim.
+            { "nvim-telescope/telescope-hop.nvim", lock = false }, -- https://github.com/nvim-telescope/telescope-hop.nvim
         },--}}}
     }--}}}
 
@@ -404,7 +406,6 @@ return packer.startup(function()
             require("plugins-cfg.gitsigns-cfg")
         end
     }--}}}
-
 --}}}
 
     -- Automatic initial plugin installation

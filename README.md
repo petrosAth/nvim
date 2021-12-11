@@ -32,7 +32,6 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | --- | --- |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git integration for buffers. |
 | [vim-surround](https://github.com/tpope/vim-surround) | Delete/change/add parentheses/quotes/XML-tags/much more with ease. |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
 | Themes | --- |
