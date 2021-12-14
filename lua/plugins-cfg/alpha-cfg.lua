@@ -1,9 +1,10 @@
 vim.cmd([[
     augroup ALPHA
         autocmd!
-        autocmd FileType alpha
-            \ setlocal scrolloff=999 |
-            \ lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
+        autocmd FileType alpha setlocal
+                \ scrolloff=999
+                \ fillchars+=eob:\ "
+                " \ lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
     augroup END
 ]])
 
@@ -14,12 +15,20 @@ local custom = "<cmd> lua require('plugins-cfg.telescope-cfg.customPickers')."
 local header = {
     type = "text",
     val = {
-        [[ ███╗  ██╗███████╗ █████╗ ██╗   ██╗██╗███╗   ███╗]],
-        [[ ████╗ ██║██╔════╝██╔══██╗██║   ██║██║████╗ ████║]],
-        [[ ██╔██╗██║█████╗  ██║  ██║╚██╗ ██╔╝██║██╔████╔██║]],
-        [[ ██║╚████║██╔══╝  ██║  ██║ ╚████╔╝ ██║██║╚██╔╝██║]],
-        [[ ██║ ╚███║███████╗╚█████╔╝  ╚██╔╝  ██║██║ ╚═╝ ██║]],
-        [[ ╚═╝  ╚══╝╚══════╝ ╚════╝    ╚═╝   ╚═╝╚═╝     ╚═╝]],
+        -- [[ ███╗  ██╗███████╗ █████╗ ██╗   ██╗██╗███╗   ███╗]],
+        -- [[ ████╗ ██║██╔════╝██╔══██╗██║   ██║██║████╗ ████║]],
+        -- [[ ██╔██╗██║█████╗  ██║  ██║╚██╗ ██╔╝██║██╔████╔██║]],
+        -- [[ ██║╚████║██╔══╝  ██║  ██║ ╚████╔╝ ██║██║╚██╔╝██║]],
+        -- [[ ██║ ╚███║███████╗╚█████╔╝  ╚██╔╝  ██║██║ ╚═╝ ██║]],
+        -- [[ ╚═╝  ╚══╝╚══════╝ ╚════╝    ╚═╝   ╚═╝╚═╝     ╚═╝]],
+
+        [[   ____  ___  ___`7MMF'   `7MF'           ]],
+        [[  / __ \/ _ \/ __ \`MA     ,V             ]],
+        [[ / / / /  __/ /_/ / VM:   ,V _            ]],
+        [[/_/ /_/\___/\____/   MM.  M'(O) _ __ ___  ]],
+        [[                     `MM A' |M|| '_ ` _ \ ]],
+        [[                      :MM;  |M|| | | | | |]],
+        [[                       VF   |M||_| |_| |_|]],
     },
     opts = {
         position = "center",

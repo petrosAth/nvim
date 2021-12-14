@@ -4,13 +4,13 @@ local cb = require("cosmetics").border.table
 
 -- List of servers for installation
 M.servers = {
-    -- "cssls",
-    -- "clangd",
-    -- "html",
-    -- "omnisharp",
-    -- "powershell_es",
-    -- "pyright",
-    -- "sumneko_lua"
+    "cssls",
+    "clangd",
+    "html",
+    "omnisharp",
+    "powershell_es",
+    "pyright",
+    "sumneko_lua"
 }
 
 -- Configure lsp handlers

@@ -1,3 +1,4 @@
+
 local M = {}
 
 function M.setup()
@@ -7,11 +8,13 @@ function M.setup()
             autocmd ColorScheme *
                     \ highlight FocusedSymbol cterm=reverse ctermfg=84 gui=reverse guifg=#50fa7b |
                     \ highlight previewBg ctermbg=236 guibg=#282a36
-            autocmd FileType outline setlocal nonumber relativenumber colorcolumn=0 signcolumn=no foldcolumn=0 nolist
-            autocmd BufEnter outline lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
+            autocmd FileType Outline setlocal
+                    \ nolist
+                    \ foldcolumn=0 signcolumn=no colorcolumn=0
+                    \ nonumber relativenumber
+                    \ fillchars+=eob:\ "
         augroup END
     ]])
-
     vim.g.symbols_outline = {
         highlight_hovered_item = true,
         show_guides = true,

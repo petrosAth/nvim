@@ -7,17 +7,24 @@ local ci = require("cosmetics").icon
 vim.cmd([[
     augroup NVIMTREE
         autocmd!
-        autocmd BufEnter NvimTree lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
+        autocmd BufEnter NvimTree setlocal fillchars+=eob:\ "
         autocmd BufEnter,BufNewFile,BufReadPost,BufWinEnter,BufWinLeave * NvimTreeRefresh
     augroup END
 ]])
 
-g.nvim_tree_highlight_opened_files = 3  -- 0 by default, Highlight icons and/or names for opened files and directories
+g.nvim_tree_quit_on_open = 0            -- 0 by default, closes the tree when you open a file
 g.nvim_tree_indent_markers = 0          -- 0 by default, this option shows indent markers when folders are open
-g.nvim_tree_root_folder_modifier = ":t"
 g.nvim_tree_git_hl = 0                  -- 0 by default, will enable file highlight for git attributes (can be used without the icons)
+g.nvim_tree_highlight_opened_files = 3  -- 0 by default, Highlight icons and/or names for opened files and directories
+g.nvim_tree_root_folder_modifier = ":t"
 g.nvim_tree_add_trailing = 0            -- 0 by default, append a trailing slash to folder names
 g.nvim_tree_group_empty = 1             -- 0 by default, compact folders that only contain a single folder into one node in the file tree
+g.nvim_tree_disable_window_picker = 1   -- 0 by default, will disable the window picker.
+g.nvim_tree_icon_padding = " "          -- one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+g.nvim_tree_symlink_arrow = " >> "      -- defaults to ' ➛ '. used as a separator between symlinks' source and target.
+g.nvim_tree_respect_buf_cwd = 0         -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
+g.nvim_tree_create_in_closed_folder = 0 -- 1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
+g.nvim_tree_refresh_wait = 500          -- 1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
 g.nvim_tree_window_picker_chars = "asdghklqwertyuiopzxcvbnmfj'"
 g.nvim_tree_window_picker_exclude = {   -- Dictionary of buffer option names mapped to a list of option values that
     filetype = {                        -- indicates to the window picker that the buffer's window should not be
@@ -38,15 +45,15 @@ g.nvim_tree_show_icons = {
     folder_arrows = 1,  -- if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
 }                       -- but this will not work when you set indent_markers (because of UI conflict)
 g.nvim_tree_icons = {
-    default =          "",
+    default =          "",
     symlink =          "",
     git = {
-        unstaged =    ci.git[1] .. " ", -- ci.pending[1],
-        staged =      ci.git[2] .. " ", -- ci.done[1],
+        unstaged =    ci.git.unstaged[1], -- ci.pending[1],
+        staged =      ci.git.staged[1], -- ci.done[1],
         unmerged =     "",
-        renamed =     ci.arrowr[1] .. " ",
-        untracked =   ci.git[3] .. " ", -- ci.def[2],
-        deleted =     ci.git[4] .. " ", -- ci.delete[1],
+        renamed =     ci.git.renamed[1],
+        untracked =   ci.git.untracked[1], -- ci.def[2],
+        deleted =     ci.git.deleted[1], -- ci.delete[1],
     },
         folder = {
         arrow_open =   ci.folderop[1],
@@ -61,28 +68,22 @@ g.nvim_tree_icons = {
 }
 
 local tree = require("nvim-tree")
-local tree_vw = require("nvim-tree.view").View.winopts
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
-
--- Lead scroll by 3 lines
-tree_vw.scrolloff = 3
--- remove sign column
-tree_vw.signcolumn = "no"
 
 tree.setup({
 	disable_netrw = true, -- disables netrw completely
 	hijack_netrw = true, -- hijack netrw window on startup
 	open_on_setup = true, -- open the tree when running this setup function
-	ignore_ft_on_setup = {
-        "help",
-        "git",
-        ".cache",
-        -- python
-        "__pycache__",
-    }, -- will not open on setup if the filetype is in this list
+-- 	ignore_ft_on_setup = {
+--         "help",
+--         "git",
+--         ".cache",
+--         -- python
+--         "__pycache__",
+--     }, -- will not open on setup if the filetype is in this list
 	auto_close = true, -- closes neovim automatically when the tree is the last **WINDOW** in the view
 	open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-	hijack_cursor = false, -- hijack the cursor in the tree to put it at the start of the filename
+	hijack_cursor = true, -- hijack the cursor in the tree to put it at the start of the filename
 	update_cwd = false, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
 	update_to_buf_dir = { -- hijacks new directory buffers when they are opened.
 		enable = true, -- enable the feature
@@ -114,7 +115,7 @@ tree.setup({
     },
     git = {
         enable = true,
-        ignore = true,
+        ignore = false,
         timeout = 500,
     },
 	view = {
@@ -163,11 +164,12 @@ tree.setup({
 		},
         number = false,
         relativenumber = true,
-        trash = {
-            cmd = "trash",
-            require_confirm = true
-        }
+        signcolumn = "no"
 	},
+    trash = {
+        cmd = "trash",
+        require_confirm = true
+    }
 })
 
 -- Nvim-tree mappings

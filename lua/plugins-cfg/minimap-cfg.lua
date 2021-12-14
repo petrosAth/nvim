@@ -4,9 +4,10 @@ function M.setup()
     vim.cmd([[
         augroup MINIMAP
             autocmd!
-            autocmd FileType minimap
-                \ setlocal colorcolumn=0 |
-                \ lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
+            autocmd FileType minimap setlocal
+                    \ colorcolumn=0
+                    \ fillchars+=eob:\ "
+                " \ lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
             autocmd ColorScheme *
                 \ highlight mmCursor ctermbg=59  ctermfg=84 guibg=#424450 guifg=#50fa7b |
                 \ highlight mmRange  ctermbg=237  ctermfg=84 guibg=#343746 guifg=#50fa7b

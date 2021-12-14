@@ -1,7 +1,21 @@
+-- Reset fillchars that trouble.nvim defaulted
 vim.cmd([[
     augroup TROUBLE_AU
         autocmd!
-        autocmd BufEnter Trouble lua vim.opt_local.fillchars = { vert = require("cosmetics").icon.nvim_ui.vert[1], eob = " " }
+        autocmd FileType Trouble
+                \ setlocal nolist
+                \ colorcolumn=0
+                \ nonumber relativenumber |
+                \ lua local cui = require("cosmetics").icon.nvim_ui
+                \ vim.opt_local.fillchars = {
+                \     vert = cui.vert[1],
+                \     fold = cui.fold[1],
+                \     foldopen = cui.foldopen[1],
+                \     foldclose = cui.foldclose[1],
+                \     foldsep = cui.foldsep[1],
+                \     msgsep = cui.msgsep[1],
+                \     eob = ' '
+                \ }
     augroup END
 ]])
 
@@ -42,8 +56,8 @@ trouble.setup({
     },
     indent_lines = true, -- add an indent guide below the fold icons
     auto_open = false, -- automatically open the list when you have diagnostics
-    auto_close = false, -- automatically close the list when you have no diagnostics
-    auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    auto_close = true, -- automatically close the list when you have no diagnostics
+    auto_preview = false, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
     auto_fold = false, -- automatically fold a file trouble list at creation
     auto_jump = {}, -- for the given modes, automatically jump if there is only a single result
     use_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
