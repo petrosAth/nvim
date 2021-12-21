@@ -13,7 +13,7 @@ M.servers = {
     "sumneko_lua"
 }
 
--- Configure lsp handlers
+-- Borders for LSP popup windows{{{
 local borders = {
     { cb.tl, "FloatBorder" },
     { cb.t,  "FloatBorder" },
@@ -23,8 +23,9 @@ local borders = {
     { cb.b,  "FloatBorder" },
     { cb.bl, "FloatBorder" },
     { cb.l,  "FloatBorder" },
-}
+}--}}}
 
+-- Configure lsp handlers{{{
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = borders })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = borders })
 vim.diagnostic.config({
@@ -35,80 +36,74 @@ vim.diagnostic.config({
     },
     signs = true,
     underline = true,
-    update_in_insert = true,
+    update_in_insert = false,
     severity_sort = true,
-})
+})--}}}
 
--- Set diagnostic signs
+-- Set diagnostic signs{{{
 local signs = { Error = ci.error[1], Warn = ci.warn[1], Hint = ci.hint[1], Info = ci.info[1], }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl, })
-end
+end--}}}
 
--- HACK: Delete when fixed
--- Set diagnostic signs for telescope
-local Tsigns = { Error = ci.error[1] .. " ", Warning = ci.warn[1] .. " ", Hint = ci.hint[1] .. " ", Information = ci.info[1] .. " ", }
-for type, icon in pairs(Tsigns) do
-    local hl = "LspDiagnosticsSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl, })
-end
-
--- Configure line diagnostic popup
-function M.show_line_diagnostics()
-    local opts = {
-        focusable = false,
-        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-        border = borders,
-        source = "if_many",
-        prefix = "",
-    }
-    vim.diagnostic.open_float(nil, opts)
-end
-
--- if cmp_nvim_lsp is enabled, populate capabilities
+-- Configure lsp capabilities
 function M.custom_capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    -- Use lsp to populate cmp completions
+    -- Use lsp to populate cmp completions{{{
     local cmp_nvim_lsp_loaded, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     if cmp_nvim_lsp_loaded then
         capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
     else
 		print("lspconfig - capabilities: cmp-nvim-lsp missing")
-    end
+    end--}}}
 
-    -- Get window/workDoneProgress from lsp server
+    -- Get window/workDoneProgress from lsp server{{{
     local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
     if lsp_status_loaded then
         capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
     else
         print("lspconfig - capabilities: lsp-status missing")
-    end
+    end--}}}
 
     return capabilities
 end
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
+-- Configure lsp on_attach function
 M.custom_on_attach = function(client, bufnr)
-	-- Set mappings
-	local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local ns_opts = { noremap=true, silent=true }
-
+    -- LSP mappings{{{
+    -- Use an on_attach function to only map the following keys
+    -- after the language server attaches to the current buffer
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-	map("n", "[d",  "<cmd>lua vim.diagnostic.goto_prev()<CR>", ns_opts)
-	map("n", "]d",  "<cmd>lua vim.diagnostic.goto_next()<CR>", ns_opts)
-	map("n", "<Space>lh", "<cmd>lua require('plugins-cfg.lsp-cfg').show_line_diagnostics()<CR>", ns_opts)
-	map("n", "<Space>lR", "<cmd>lua vim.lsp.buf.rename()<CR>", ns_opts)
-	map("n", "<Space>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", ns_opts)
-    map("n", "<Space>lD", "<cmd>lua vim.lsp.buf.declaration()<CR>", ns_opts)
-	map("n", "<Space>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", ns_opts)
-    map("n", "<Space>lr", "<cmd>lua vim.lsp.buf.references()<CR>", ns_opts)
-	map("n", "<Space>ld", "<cmd>lua vim.lsp.buf.definition()<CR>", ns_opts)
-	map("n", "<Space>lt", "<cmd>lua vim.lsp.buf.type_definition()<CR>", ns_opts)
-	map("n", "<Space>li", "<cmd>lua vim.lsp.buf.implementation()<CR>", ns_opts)
+    -- local which_key_loaded, wk = pcall(require, "which-key")
+    -- if which_key_loaded then
+    --     wk.register({
+    --         ["]d"] = { "<CMD>lua vim.diagnostic.goto_next({ border = borders })<CR>", "Next LSP diagnostic" },
+    --         ["[d"] = { "<CMD>lua vim.diagnostic.goto_prev({ border = borders })<CR>", "Previous LSP diagnostic" },
+    --         ["<Space>l"] = {
+    --             name = "LSP",
+    --             h = { "<CMD>lua vim.lsp.diagnostic.show_line_diagnostics({ border = borders })<CR>", "Line diagnostics" },
+    --             R = { "<CMD>lua vim.lsp.buf.rename()<CR>",                                   "Rename symbol" },
+    --             s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",                           "Signagture help" },
+    --             a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",                              "Code actions" },
+    --             D = { "<CMD>lua vim.lsp.buf.declaration()<CR>",                              "Show declaration" },
+    --             r = { "<CMD>lua vim.lsp.buf.references()<CR>",                               "Show references" },
+    --             d = { "<CMD>lua vim.lsp.buf.definition()<CR>",                               "Show definition" },
+    --             t = { "<CMD>lua vim.lsp.buf.type_definition()<CR>",                          "Show type definition" },
+    --             i = { "<CMD>lua vim.lsp.buf.implementation()<CR>",                           "Show implementation" },
+    --             K = { "<CMD>lua vim.lsp.buf.hover()<CR>",                                    "Hover symbol" }
+    --         }
+    --     },{
+    --         mode    = "n",
+    --         buffer  = bufnr
+    --     })
+    -- else
+    --     return
+    -- end--}}}
 
+    -- LSP status{{{
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.
     local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
@@ -116,7 +111,7 @@ M.custom_on_attach = function(client, bufnr)
         lsp_status.on_attach(client)
     else
         print("lspconfig - on_attach: lsp-status missing")
-    end
+    end--}}}
 end
 
 return M

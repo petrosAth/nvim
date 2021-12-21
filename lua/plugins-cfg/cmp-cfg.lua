@@ -19,29 +19,19 @@ cmp.setup{
     mapping = {
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-        ['<C-y>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+        ['<C-y>'] = cmp.mapping({
+            i = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ select = true }),
         }),
-        ['<Esc>'] = cmp.mapping(function (fallback)
-            cmp.mapping.close()
-            fallback()
-        end, { "c" }
-        ),
         ["<Tab>"] = cmp.mapping(function(fallback)
-            if vim.api.nvim_get_mode().mode == "c" then
-                cmp.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true
-                })
-            elseif luasnip.expand_or_jumpable() then
+            if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             elseif has_words_before() then
                 cmp.complete()
             else
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
-        end, { "c", "i", "s" }),
+        end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable(-1) then
                 luasnip.jump(-1)

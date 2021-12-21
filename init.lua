@@ -7,5 +7,4 @@ PACKER_PATH = vim.fn.stdpath("data") .. "\\site\\pack\\packer"
 require("options")
 require("utilities")
 require("autocommands")
-require("mappings")
 require("plugins")

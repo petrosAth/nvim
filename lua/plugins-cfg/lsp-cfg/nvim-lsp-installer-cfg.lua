@@ -167,9 +167,3 @@ lsp_installer.on_server_ready(function(server)
 	server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
 	vim.cmd([[ do User LspAttachBuffers ]])
 end)
-
--- nvim-lsp-installer mappings
-local map = vim.api.nvim_set_keymap
-local ns_opts = { noremap = true, silent = true }
-
-map("n", "<Leader>us", "<cmd>LspInstallInfo<CR>", ns_opts)

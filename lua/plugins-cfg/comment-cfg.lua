@@ -1,4 +1,6 @@
-require("Comment").setup({
+local Comment = require("Comment")
+
+Comment.setup({
     ---Add a space b/w comment and the line
     ---@type boolean
     padding = true,
@@ -14,22 +16,33 @@ require("Comment").setup({
     ---@type string|function
     ignore = nil,
 
-    ---LHS of toggle mappings in NORMAL + VISUAL mode
+     ---LHS of toggle mappings in NORMAL + VISUAL mode
     ---@type table
     toggler = {
-        ---line-comment keymap
+        ---Line-comment toggle keymap
         line = 'gcc',
-        ---block-comment keymap
+        ---Block-comment toggle keymap
         block = 'gbc',
     },
 
     ---LHS of operator-pending mappings in NORMAL + VISUAL mode
     ---@type table
     opleader = {
-        ---line-comment keymap
+        ---Line-comment keymap
         line = 'gc',
-        ---block-comment keymap
+        ---Block-comment keymap
         block = 'gb',
+    },
+
+    ---LHS of extra mappings
+    ---@type table
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
     },
 
     ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode

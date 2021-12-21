@@ -53,10 +53,3 @@ require("todo-comments").setup({
         -- pattern = [[\b(KEYWORDS)\b]], -- match without the extra colon. You'll likely get false positives
     },
 })
-
--- TODO mappings
-local map = vim.api.nvim_set_keymap
-local ns_opts = { noremap = true, silent = true }
-
-map("n", "<Space>qT",  "<cmd>TodoTrouble<CR>",                     ns_opts)
-map("n", "<Space>tT",  "<cmd>TodoTelescope<CR>",                     ns_opts)

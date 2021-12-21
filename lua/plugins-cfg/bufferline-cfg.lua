@@ -40,7 +40,7 @@ bufferline.setup{
         offsets = {--{{{
             {
                 filetype = "NvimTree",
-                text = "File Explorer",
+                text = "File Tree",
                 highlight = "lualine_a_normal",
                 text_align = "center"
             },
@@ -163,10 +163,3 @@ bufferline.setup{
         }
     }--}}}
 }
-
--- bufferline mappings
-local map = vim.api.nvim_set_keymap
-local ns_opts = { noremap = true, silent = true }
-
-map("n", "<Tab><Tab>", "<cmd>BufferLinePick<CR>", ns_opts)
-map("n", "<Tab><Tab>", "<cmd>BufferLinePick<CR>", ns_opts)

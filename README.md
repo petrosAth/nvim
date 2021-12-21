@@ -5,7 +5,9 @@ Still a work in progress.
 
 ## TODO
 - [ ] Try treesitter folding - reddit [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
+- [ ] :h mark-motions
 - [ ] Revisit nvim-cmp menu
+- [ ] Add gitsigns in lualine
 - [ ] Migrate to WSL
 - [ ] Rethink/research the folder structure
 - [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
@@ -29,10 +31,14 @@ Still a work in progress.
 
 ### Plugins for installation
 | Plugin | Description |
+| ----------- | ----------- |
+| fixcursorhold |
 | [which-key.nvim](https://github.com/folke/which-key.nvim) | 💥 Create key bindings that stick. WhichKey is a lua plugin for Neovim 0.5 that displays a popup with possible keybindings of the command you started typing. |
+| [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
+| [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 | [vim-surround](https://github.com/tpope/vim-surround) | Delete/change/add parentheses/quotes/XML-tags/much more with ease. |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
-| Themes |
+| Themes | ----------- |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |
 | [nightfox.nvim](https://github.com/edeneast/nightfox.nvim) | 🦊A soft dark, fully customizable (Neo)Vim theme, with support for lsp, treesitter and a variety of plugins. |
@@ -42,6 +48,7 @@ Still a work in progress.
 
 ### Plugins watch list
 | Plugin | Description |
+| ----------- | ----------- |
 | [formatter.nvim](https://github.com/mhartington/formatter.nvim) | A format runner for neovim, written in lua. |
 | <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim) | Simple session management for Neovim. |
 | <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager) | A simple wrapper around :mksession |
@@ -51,21 +58,22 @@ Still a work in progress.
 | [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
 | Treesitter |
 | [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
-| Git |
+| Git | ----------- |
 | [Neogit](https://github.com/TimUntersberger/neogit) | magit for neovim. |
 | [Diffview.nvim](https://github.com/sindrets/diffview.nvim) | Single tabpage interface for easily cycling through diffs for all modified files for any git rev. |
 | [lazygit](https://github.com/jesseduffield/lazygit) | simple terminal UI for git commands. |
-| Debugging |
+| Debugging | ----------- |
 | [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol client implementation for Neovim. |
 | [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | A UI for nvim-dap. |
 | [DAPInstall](https://github.com/Pocco81/DAPInstall.nvim) | A NeoVim plugin for managing several debuggers for Nvim-dap. |
 | [calltree.nvim](https://github.com/ldelossa/calltree.nvim) | Neovim's missing call-hierarchy UI. |
 | [vimspector](https://github.com/puremourning/vimspector) | vimspector - A multi-language debugging system for Vim. |
-| ltex ls |
+| ltex ls | ----------- |
 | [LTeX Language Server](https://github.com/valentjn/ltex-ls) | LTeX Language Server: LSP language server for LanguageTool 🔍✔️ with support for LaTeX 🎓, Markdown 📝, and others |
 | [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim) | Grammar Guard is a Neovim plugin that checks your grammar as you write your LaTeX, Markdown or plain text document. |
 
 [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) - Collections of awesome neovim plugins.
+[neovimcraft.com](https://neovimcraft.com/)
 
 
 ## <a name="sources"></a>Sources
@@ -75,5 +83,6 @@ Still a work in progress.
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim)
 - [NvChad](https://github.com/NvChad/NvChad)
 - [williamboman](https://github.com/williamboman/nvim-config)
+- [folke](https://github.com/folke/dot/tree/master/config/nvim)
 - [LunarVim](https://github.com/LunarVim/LunarVim)
 - [doom-nvim](https://github.com/NTBBloodbath/doom-nvim)

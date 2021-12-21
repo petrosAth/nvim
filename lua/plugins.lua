@@ -166,17 +166,13 @@ return packer.startup(function()
     use{--{{{
         "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
         disable = false,
-		lock = false,
-        run = "mingw32-make",
-        keys = { { "n", "<Leader>c" } },
-        cmd = { "HexokinaseToggle", "HexokinaseTurnOn" },
-        ft = { "css", "html" },
-        setup = function ()
-            require("plugins-cfg.hexokinase-cfg").setup()
-        end,
-        config = function ()
-            require("plugins-cfg.hexokinase-cfg").config()
-        end,
+		lock    = false,
+        run     = "mingw32-make",
+        cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
+        ft      = { "css", "html" },
+        setup   = function()
+            require("plugins-cfg.hexokinase-cfg")
+        end
     }--}}}
 
     -- indent-blankline.nvim -- This plugin adds indentation guides to all lines
@@ -237,7 +233,7 @@ return packer.startup(function()
         "goolord/alpha-nvim", -- https://github.com/goolord/alpha-nvim
         disable = false,
 		lock = false,
-        after = "nvim-web-devicons",
+        requires = "nvim-web-devicons",
         config = function()
             require("plugins-cfg.alpha-cfg")
         end,
@@ -278,7 +274,8 @@ return packer.startup(function()
         -- commit = "b853e1083c67a79b4eb046a112a8e12b35e9cd19",
         disable = false,
 		lock = false,
-        after = "nvim-web-devicons",
+        cmd = { "NvimTreeOpen", "NvimTreeToggle" },
+        requires = "nvim-web-devicons",
         config = function()
             require("plugins-cfg.nvim-tree-cfg")
         end,
@@ -299,14 +296,10 @@ return packer.startup(function()
         "wfxr/minimap.vim", -- https://github.com/wfxr/minimap.vim
         disable = false,
 		lock = false,
-        keys = { { "n", "<Leader>m" }, { "n", "<M-m>" } },
         cmd = { "Minimap", "MinimapToggle" },
         setup = function()
-            require("plugins-cfg.minimap-cfg").setup()
+            require("plugins-cfg.minimap-cfg")
         end,
-        config = function()
-            require("plugins-cfg.minimap-cfg").config()
-        end
     }--}}}
 
     -- symbols-outline.nvim - A tree like view for symbols in Neovim using the Language Server Protocol
@@ -314,13 +307,9 @@ return packer.startup(function()
         "simrat39/symbols-outline.nvim", -- https://github.com/simrat39/symbols-outline.nvim
         disable = false,
 		lock = false,
-        keys = { { "n", "<Leader>s" } },
         cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
         setup = function()
-            require("plugins-cfg.symbols-outline-cfg").setup()
-        end,
-        config = function()
-            require("plugins-cfg.symbols-outline-cfg").config()
+            require("plugins-cfg.symbols-outline-cfg")
         end
     }--}}}
 
@@ -335,14 +324,14 @@ return packer.startup(function()
     }--}}}
 
     -- nvim-hlslens - Hlsearch Lens for Neovim
-    use{
+    use{--{{{
         "kevinhwang91/nvim-hlslens", -- https://github.com/kevinhwang91/nvim-hlslens
         disable = false,
         lock = false,
         config = function()
             require("plugins-cfg.nvim-hlslens-cfg")
         end
-    }
+    }--}}}
 --}}}
 
 -- Miscellaneous --{{{
@@ -351,7 +340,7 @@ return packer.startup(function()
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
         disable = false,
 		lock = false,
-        after = "nvim-web-devicons",
+        requires = "nvim-web-devicons",
         config = function()
             require("plugins-cfg.bufferline-cfg")
         end,
@@ -362,7 +351,8 @@ return packer.startup(function()
         "nvim-lualine/lualine.nvim", -- https://github.com/shadmansaleh/lualine.nvim
         disable = false,
 		lock = false,
-        after = { "nvim-web-devicons", "nvim-lspconfig" },
+        requires = "nvim-web-devicons",
+        after = "nvim-lspconfig",
         config = function()
             require("plugins-cfg.lualine-cfg")
         end,
@@ -372,17 +362,14 @@ return packer.startup(function()
     use{--{{{
         "famiu/bufdelete.nvim", -- https://github.com/famiu/bufdelete.nvim
         disable = false,
-		lock = false,
+		lock = false
     }--}}}
 
     -- FixCursorHold.nvim - Fix CursorHold performance
     use{--{{{
         "antoinemadec/FixCursorHold.nvim", -- https://github.com/antoinemadec/FixCursorHold.nvim
         disable = false,
-		lock = false,
-        run = function()
-            vim.g.curshold_updatime = 100
-        end,
+		lock = false
     }--}}}
 
     -- todo-comments.nvim - Highlight, list and search todo comments in your projects
@@ -404,6 +391,16 @@ return packer.startup(function()
         requires = "nvim-lua/plenary.nvim",
         config = function()
             require("plugins-cfg.gitsigns-cfg")
+        end
+    }--}}}
+
+    -- which-key.nvim - WhichKey displays a popup with possible key bindings of the command you started typing
+    use{--{{{
+        "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
+        disable = false,
+        lock = false,
+        config = function()
+            require("plugins-cfg.which-key")
         end
     }--}}}
 --}}}

@@ -235,34 +235,4 @@ function M.lsp_definitions()--{{{
     })
 end--}}}
 
-function M.lsp_type_definitions()--{{{
-    builtin.lsp_type_definitions({
-        results_title = "LSP Type Definitions",
-        prompt_title = false,
-        jump_type = 'never',
-        layout_strategy = "vertical",
-        layout_config = {
-            preview_height = 0.6,
-            prompt_position = "bottom",
-            width = 80,
-            height = 30
-        }
-    })
-end--}}}
-
-function M.lsp_implementations()--{{{
-    builtin.lsp_implementations({
-        results_title = "LSP Implementations",
-        prompt_title = false,
-        jump_type = 'never',
-        layout_strategy = "vertical",
-        layout_config = {
-            preview_height = 0.6,
-            prompt_position = "bottom",
-            width = 80,
-            height = 30
-        }
-    })
-end--}}}
-
 return M

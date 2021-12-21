@@ -1,3 +1,10 @@
+vim.cmd([[
+    augroup q_close
+        autocmd!
+        autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
+    augroup END
+]])
+
 -- Restore terminal cursor after quit
 vim.cmd([[
     augroup RESTORE_CURSOR
@@ -24,13 +31,13 @@ vim.cmd([[
 
 -- Activate search highlight after search initiation
 -- Deactivate search highlight after entering insert mode
-vim.cmd([[
-    augroup HL_SEARCH
-        autocmd!
-        autocmd CmdlineEnter /,\? set hlsearch
-        autocmd InsertEnter * set nohlsearch
-    augroup END
-]])
+-- vim.cmd([[
+--     augroup HL_SEARCH
+--         autocmd!
+--         autocmd CmdlineEnter /,\? set hlsearch
+--         autocmd InsertEnter * set nohlsearch
+--     augroup END
+-- ]])
 
 -- Toggle relativenumber after entering and leaving insert mode
 vim.cmd([[

@@ -1,6 +1,3 @@
-local g = vim.g
-local ci = require("cosmetics").icon
-
 -- Automatically refresh the tree after opening a new file
 -- Ensures that the file is highlighted correctly in the tree when
 -- opened using telescope or netrw
@@ -11,6 +8,9 @@ vim.cmd([[
         autocmd BufEnter,BufNewFile,BufReadPost,BufWinEnter,BufWinLeave * NvimTreeRefresh
     augroup END
 ]])
+
+local g = vim.g
+local ci = require("cosmetics").icon
 
 g.nvim_tree_quit_on_open = 0            -- 0 by default, closes the tree when you open a file
 g.nvim_tree_indent_markers = 0          -- 0 by default, this option shows indent markers when folders are open
@@ -142,11 +142,11 @@ tree.setup({
                 { key = "J",                       cb = tree_cb("last_sibling") },
                 { key = "I",                       cb = tree_cb("toggle_ignored") },
                 { key = "H",                       cb = tree_cb("toggle_dotfiles") },
-                { key = "R",                       cb = tree_cb("refresh") },
+                { key = "r",                       cb = tree_cb("refresh") },
                 { key = "a",                       cb = tree_cb("create") },
                 { key = "d",                       cb = tree_cb("trash") },
                 { key = "D",                       cb = tree_cb("remove") },
-                { key = "r",                       cb = tree_cb("rename") },
+                { key = "R",                       cb = tree_cb("rename") },
                 { key = "<C-r>",                   cb = tree_cb("full_rename") },
                 { key = "X",                       cb = tree_cb("cut") },
                 { key = "c",                       cb = tree_cb("copy") },
@@ -159,7 +159,7 @@ tree.setup({
                 { key = "-",                       cb = tree_cb("dir_up") },
                 { key = "s",                       cb = tree_cb("system_open") },
                 { key = "q",                       cb = tree_cb("close") },
-                { key = "g?",                      cb = tree_cb("toggle_help") },
+                { key = "?",                      cb = tree_cb("toggle_help") },
             },
 		},
         number = false,
@@ -171,9 +171,3 @@ tree.setup({
         require_confirm = true
     }
 })
-
--- Nvim-tree mappings
-local map = vim.api.nvim_set_keymap
-local ns_opts = { noremap = true, silent = true }
-
-map("n", "<Leader>e", "<cmd>NvimTreeToggle<CR>", ns_opts)

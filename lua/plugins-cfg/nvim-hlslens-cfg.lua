@@ -47,27 +47,9 @@ require('hlslens').setup({
             end
             chunks = {{' ', 'Ignore'}, {text, 'HlSearchLensNear'}}
         else
-            text = string.format('[%s %d]', indicator, idx)
+            text = string.format('[%s]', indicator)
             chunks = {{' ', 'Ignore'}, {text, 'HlSearchLens'}}
         end
         render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
     end
 })
-
--- minimap mappings
-local map = vim.api.nvim_set_keymap
-local n_opts = { noremap = true }
-local ns_opts = { noremap = true, silent = true }
-
-map("n", "n",  "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR><cmd>set relativenumber!<CR>", ns_opts)
-map("n", "N",  "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR><cmd>set relativenumber!<CR>", ns_opts)
-
-map("n", "*",  "*<Cmd>lua require('hlslens').start()<CR>", n_opts)
-map("n", "#",  "#<Cmd>lua require('hlslens').start()<CR>", n_opts)
-map("n", "g*", "g*<Cmd>lua require('hlslens').start()<CR>", n_opts)
-map("n", "g#", "g#<Cmd>lua require('hlslens').start()<CR>", n_opts)
-
-map("x", "*",  "*<Cmd>lua require('hlslens').start()<CR>", n_opts)
-map("x", "#",  "#<Cmd>lua require('hlslens').start()<CR>", n_opts)
-map("x", "g*", "g*<Cmd>lua require('hlslens').start()<CR>", n_opts)
-map("x", "g#", "g#<Cmd>lua require('hlslens').start()<CR>", n_opts)

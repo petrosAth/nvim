@@ -1,37 +1,37 @@
-local M = {}
 local g = vim.g
 
-function M.setup()
-    g.Hexokinase_highlighters = {
-        -- "virtual"
-        -- "sign_column"
-        -- "background"
-        "backgroundfull"
-        -- "foreground"
-        -- "foregroundfull"
-    }
-    g.Hexokinase_optInPatterns = {
-        "full_hex",
-        "triple_hex",
-        "rgb",
-        "rgba",
-        "hsl",
-        "hsla",
-        "colour_names"
-    }
-    g.Hexokinase_ftEnabled = {
-        "css",
-        "html",
-    }
--- g.Hexokinase_refreshEvents = { "BufRead", "BufWrite" }
-end
-
--- minimap mappings
-function M.config()
-    local map = vim.api.nvim_set_keymap
-    local ns_opts = { noremap = true, silent = true }
-
-    map("n", "<Leader>c", "<cmd>HexokinaseToggle<CR>", ns_opts)
-end
-
-return M
+g.Hexokinase_highlighters     = {
+    -- "virtual"
+    -- "sign_column"
+    "background"
+    -- "backgroundfull"
+    -- "foreground"
+    -- "foregroundfull"
+}
+g.Hexokinase_optInPatterns    = {
+    "full_hex",
+    "triple_hex",
+    "rgb",
+    "rgba",
+    "hsl",
+    "hsla",
+    "colour_names"
+}
+g.Hexokinase_optOutPatterns   = {}
+-- g.Hexokinase_ftOptInPatterns  = {}
+-- g.Hexokinase_ftOptOutPatterns = {}
+g.Hexokinase_virtualText      = "■"
+g.Hexokinase_signIcon         = "■"
+g.Hexokinase_refreshEvents    = {
+    "TextChanged",
+    "InsertLeave",
+    "BufRead"
+}
+g.Hexokinase_termDisabled     = 0
+g.Hexokinase_ftDisabled       = {}
+g.Hexokinase_ftEnabled        = {
+    "css",
+    "html",
+}
+g.Hexokinase_alpha_bg         = ""
+g.Hexokinase_checkBoundary    = 1

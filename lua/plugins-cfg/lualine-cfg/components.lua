@@ -194,10 +194,12 @@ end --}}}
 
 function M.lsp_status()--{{{
     local client_name = M.lsp_client_name()
-    local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
+    local lsp_status_loaded, lsp_status = pcall(function()
+        return require("lsp-status").status_progress()
+    end)
 
     if lsp_status_loaded then
-        if (lsp_status.status_progress() == "") then
+        if (lsp_status == "") then
             if fn.winwidth(0) > 105 then
                 return client_name == "" and "" or "LSP " .. "[" .. client_name .. "]"
             elseif fn.winwidth(0) > half_winwidth then
@@ -207,7 +209,7 @@ function M.lsp_status()--{{{
             end
         else
             if fn.winwidth(0) > 130 then
-                return "LSP " .. lsp_status.status_progress()
+                return "LSP " .. lsp_status
             elseif fn.winwidth(0) > half_winwidth then
                 return "LSP"
             else

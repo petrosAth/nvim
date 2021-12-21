@@ -2,7 +2,7 @@ vim.cmd([[
     augroup LIGHTBULB
         autocmd!
         autocmd ColorScheme * highlight LightBulbVirtualText ctermfg=84 guifg=#50fa7b
-        autocmd CursorMoved,CursorMovedI * lua require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg").checkCodeAction()
+        autocmd CursorHold,CursorHoldI * lua require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg").checkCodeAction()
     augroup END
 ]])
 
