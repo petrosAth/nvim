@@ -52,6 +52,10 @@ telescope.setup({
 		selection_strategy = "reset",
 		sorting_strategy = "descending",
 		file_ignore_patterns = { "^.git", "tags" },
+        history = {
+            path = DATA_PATH .. "\\databases\\telescope_history",
+            limit = 100
+        },
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
 		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
 		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
@@ -79,6 +83,8 @@ telescope.setup({
                     }
                     require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
                 end,
+                ["<S-Tab>"] = actions.cycle_history_next,
+                ["<Tab>"] = actions.cycle_history_prev,
 			},
 			n = {
 				["<C-n>"] = actions.move_selection_next,
@@ -103,20 +109,22 @@ telescope.setup({
                     }
                     require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
                 end,
+                ["<S-Tab>"] = actions.cycle_history_next,
+                ["<Tab>"] = actions.cycle_history_prev,
 			},
 		},
 	},
 	extensions = {
 		frecency = {
-            db_root = vim.fn.stdpath("data"),
+            db_root = DATA_PATH .. "\\databases",
             show_scores = true,
             show_unindexed = true,
             ignore_patterns = {"*.git/*", "*/tmp/*"},
             disable_devicons = false,
             workspaces = {
                 [".config"]     = "$HOME\\.config",
-                ["nvim config"] = vim.fn.stdpath("config"),
-                ["nvim data"]   = vim.fn.stdpath("data"),
+                ["nvim config"] = CONFIG_PATH,
+                ["nvim data"]   = DATA_PATH,
                 ["projects"]    = "H:\\Projects",
             }
 		},

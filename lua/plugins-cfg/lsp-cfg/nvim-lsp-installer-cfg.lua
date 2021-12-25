@@ -30,6 +30,7 @@ lsp_installer.settings {
             toggle_server_expand = "<CR>",
             install_server = "i",
             update_server = "u",
+            update_all_servers = "U",
             uninstall_server = "D",
         },
     },

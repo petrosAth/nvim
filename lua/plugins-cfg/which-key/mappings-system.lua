@@ -31,6 +31,7 @@ wk.register({
     ["<leader>"] = {
         n = { "<cmd>set relativenumber!<CR>", "Toggle relative number" },
         d = {
+            name = "Delete buffer/tab",
             b = { "<cmd>Bdelete<cr>",  "Delete buffer" },
             t = { "<cmd>tabclose<cr>", "Delete tab"    }
         },
@@ -47,8 +48,6 @@ wk.register({
 -- Insert mode mappings
 wk.register({
     ["<F1>"]  = { "<cmd>setlocal spell!<CR>", "Toggle spelling"  },
-    ["<m-a>"] = { "<c-o><s-a>",               "Move to line end" },
-    ["<m-e>"] = { "<c-o><s-e>",               "Move to line end" },
     ["<leader>"] = {
         n = { "<cmd>set relativenumber!<CR>", "Toggle relative number" },
     },
@@ -60,7 +59,7 @@ wk.register({
     ["<M-n>"] = { ":m '>+1<CR>gv-gv", "Move line up"                 },
     ["<M-p>"] = { ":m '<-2<CR>gv-gv", "Move line up"                 },
     ["<space>"] = {
-        p         = { '"_dP', "Keep yanked text after paste" }
+        p     = { '"_dP', "Keep yanked text after paste" }
     }
 }, { mode = "v" })
 
@@ -83,4 +82,7 @@ wk.register({
     ["<c-k>"] = { "<c-p>",       "Move up"    },
     ["<c-h>"] = { "<Left>",      "Move left"  },
     ["<c-l>"] = { "<Right>",     "Move right" },
-}, { mode = "c" })
+}, {
+    mode = "c",
+    silent = false
+})

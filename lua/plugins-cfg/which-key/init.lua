@@ -1,8 +1,4 @@
-local which_key_loaded, wk = pcall(require, "which-key")
-if not which_key_loaded then
-    return
-end
-
+local wk = require("which-key")
 local ct = require("cosmetics").variables.transparency
 local ci = require("cosmetics").icon
 local cb = require("cosmetics").border.table

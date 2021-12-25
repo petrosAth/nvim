@@ -4,8 +4,9 @@ local lualine = require("lualine")
 lualine.setup({
     options = {
         theme = "dracula",
-        section_separators = { left = "", right = "" },
         component_separators = { left = "│", right = "│" },
+        section_separators = { left = "", right = "" },
+        -- disabled_filetypes = { "alpha", "NvimTree", "Outline" }
     },
 	sections = {
 		lualine_a = {
@@ -14,19 +15,21 @@ lualine.setup({
             { components.paste }
         },
 		lualine_b = {
-            { components.file_name }
+            { components.is_readonly },
+            { components.file_name_active }
         },
 		lualine_c = {
-            { components.lsp_status }
+            { components.git_status },
+            { components.lsp_status },
         },
 		lualine_x = {
-            components.diagnostics(),
             { components.spell },
-            { components.file_encoding },
-            { components.file_format }
+            { components.file_type },
+            { components.treesitter_status },
+            { components.file_format },
+            { components.file_encoding }
         },
 		lualine_y = {
-            components.branch(),
 			{ components.line_info }
 		},
 		lualine_z = {
@@ -36,11 +39,14 @@ lualine.setup({
 	inactive_sections = {
 		lualine_a = { },
 		lualine_b = {
-            { components.file_name }
+            { components.is_readonly },
+            { components.file_name_inactive }
         },
 		lualine_c = { },
 		lualine_x = { },
-		lualine_y = { },
+		lualine_y = {
+            { components.window },
+        },
 		lualine_z = { }
 	},
 	tabline = { },

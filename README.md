@@ -4,20 +4,24 @@ Still a work in progress.
 
 
 ## TODO
+- [ ] lualine root folder (.)
+- [ ] Setup autosave
+- [ ] Add window number in lualine
+- [ ] Add gitsigns in lualine
 - [ ] Try treesitter folding - reddit [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
 - [ ] :h mark-motions
 - [ ] Revisit nvim-cmp menu
-- [ ] Add gitsigns in lualine
 - [ ] Migrate to WSL
+- [ ] Look into parameters comments
 - [ ] Rethink/research the folder structure
 - [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
 - [ ] Plugin reloading
 - [ ] Organize my custom highlight groups
 - [x] Revisit FileType and BufEnter autocommands
-- [ ] Setup autosave
 - [x] Add comment string snippets and telescope finder
 - [ ] Add ftplugin/
-
+- [ ] Add calltree
+- [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -32,12 +36,13 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | ----------- | ----------- |
-| fixcursorhold |
-| [which-key.nvim](https://github.com/folke/which-key.nvim) | 💥 Create key bindings that stick. WhichKey is a lua plugin for Neovim 0.5 that displays a popup with possible keybindings of the command you started typing. |
+| [nvim.notify](https://github.com/rcarriga/nvim-notify) | A fancy, configurable, notification manager for NeoVim |
 | [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
 | [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
-| [vim-surround](https://github.com/tpope/vim-surround) | Delete/change/add parentheses/quotes/XML-tags/much more with ease. |
+| [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
+| [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim) | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa! |
+| [undotree](https://github.com/mbbill/undotree) | The undo history visualizer for VIM |
 | Themes | ----------- |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |

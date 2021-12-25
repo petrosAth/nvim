@@ -1,75 +1,131 @@
-local excFiletypes = { "NvimTree", "packer", "alpha", "help", "lsp-installer", "Outline", "minimap", "Trouble" }
+-- References:
+-- https://elianiva.my.id/post/neovim-lua-statusline -- Great help for figuring out highlight groups
+-- https://github.com/Neelfrost/dotfiles
+
 local ci = require("cosmetics").icon
+local excFiletypes = { "NvimTree", "packer", "alpha", "help", "lsp-installer", "Outline", "minimap", "Trouble" }
+local fn = vim.fn
+local bo = vim.bo
+
 local M = {}
 
-local fn = vim.fn
-local half_winwidth = 85
+M.print_for_width = function(sizes)--{{{
+    local win = fn.winwidth(0)
 
-function M.buffer_is_plugin()--{{{
+    if sizes.autofill then
+        sizes._  = sizes._  ~= "" and sizes._  or ""
+        sizes.S  = sizes.S  ~= "" and sizes.S  or sizes._
+        sizes.M  = sizes.M  ~= "" and sizes.M  or sizes.S
+        sizes.L  = sizes.L  ~= "" and sizes.L  or sizes.M
+        sizes.XL = sizes.XL ~= "" and sizes.XL or sizes.L
+    end
+
+    if win > 170 then
+        return sizes.XL ~= "" and sizes.XL or ""
+    elseif win > 120 then
+        return sizes.L ~= "" and sizes.L or ""
+    elseif win > 90 then
+        return sizes.M ~= "" and sizes.M or ""
+    elseif win > 60 then
+        return sizes.S ~= "" and sizes.S or ""
+    else
+        return sizes._ ~= "" and sizes._ or ""
+    end
+end--}}}
+
+M.win_size = function ()--{{{
+    return M.print_for_width({
+        XL = "XL",
+        L  = "L",
+        M  = "M",
+        S  = "S",
+        _  = "_"
+    })
+end--}}}
+
+M.is_plugin = function()--{{{
 	local filename = fn.expand("%:t")
 	for _, v in pairs(excFiletypes) do
-		if filename == v or vim.bo.filetype == v then
+		if filename == v or bo.filetype == v then
 			return true, filename
 		end
 	end
-end --}}}
-
-function M.file_icon(file_name, file_type)--{{{
-	local icon = ""
-	if file_type ~= "" then
-		icon = require("nvim-web-devicons").get_icon(file_name, file_type)
-	end
-
-	-- Return file_name if icon does not exist
-	if icon == nil or icon == "" then
-		return file_name
-	end
-
-	-- Join icon and file_name if icon exists
-	return icon .. " " .. file_name
 end--}}}
 
-function M.file_name()--{{{
-	local file_name = fn.expand("%:r")
-	local file_type = fn.expand("%:e")
+M.file_type = function() --{{{
+    if M.is_plugin() then
+        return ""
+    else
+        local f_type = bo.filetype
+        local f_name, f_extension = fn.expand '%:t', fn.expand '%:e'
+        f_extension = f_extension ~= '' and f_extension or bo.filetype
+        local f_icon = require("nvim-web-devicons").get_icon(f_name, f_extension)
 
-	-- Truncate file_name if too big
-	-- Set file name to [No Name] on empty buffers
-	if #file_name > 30 then
-		file_name = string.sub(file_name, 1, 8) .. "⋯"
-	elseif file_name == "" then
-		file_name = "[No Name]"
-	end
+        -- Return file_name if icon does not exist
+        if f_icon == nil or f_icon == "" then
+        return M.print_for_width({
+            autofill = true,
+            M  = f_type,
+        })
+        end
 
-	-- Join file_name and file_type if file_type exists
-	local final_name = file_type ~= "" and file_name .. "." .. file_type or file_name
+        -- Join icon and file_name if icon exists
+        return M.print_for_width({
+            autofill = true,
+            XL = f_icon .. " " .. f_type,
+            M  = f_type,
+            S  = f_icon,
+        })
+    end
+end--}}}
 
-	-- Empty file_name for plugin releated buffers
-	for _, v in pairs(excFiletypes) do
-		if v == vim.bo.filetype then
-			-- final_name = "⋯"
-			final_name = "⋯"
-		end
-	end
+M.file_name_active = function() --{{{
+    if M.is_plugin() then
+        return ""
+    else
+        if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.15 and fn.expand("%:h") ~= "." then
+            return " " .. fn.expand("%:~:.:h")
+        else
+            return M.print_for_width({
+                autofill = true,
+                M  = " " .. fn.expand("%:h:t") .. "\\",
+                S  = fn.expand("%:h:t") .. "\\"
+            })
+        end
+    end
+end--}}}
 
-	return M.readonly() .. M.file_icon(final_name, file_type)
-end --}}}
+M.file_name_inactive = function() --{{{
+    if M.is_plugin() then
+        return ""
+    else
+        if #fn.expand("%:~:.") < fn.winwidth(0) * 0.85 and fn.expand("%:h") ~= "." then
+            return " " .. fn.expand("%:~:.")
+        elseif #fn.expand("%:t") < fn.winwidth(0) * 0.65 then
+            return " " .. fn.expand("%:t")
+        else
+            return ""
+        end
+    end
+end--}}}
 
-function M.readonly()--{{{
-	local readonly = vim.api.nvim_exec([[echo &readonly || !&modifiable ? ' ' : '']], true)
-	return readonly
-end --}}}
+M.is_readonly = function()--{{{
+    if bo.modifiable == false or bo.readonly == true then
+        return ""
+    end
+	return ""
+end--}}}
 
-function M.current_mode()--{{{
+M.current_mode = function()--{{{
 	local buffer_name = fn.expand("%:t")
     local mode = require("lualine.utils.mode").get_mode()
 	local mode_plugins = {
-		NvimTree = "NVIMTREE",
-		packer = "PACKER",
-		alpha = "ALPHA",
-        minimap = "MINIMAP",
-        Outline = "OUTLINE",
-        Trouble = "Trouble",
+		NvimTree = "NvimTree",
+		packer   = "Packer",
+		alpha    = "Alpha",
+        minimap  = "Minimap",
+        Outline  = "Outline",
+        Trouble  = "Trouble",
 	}
 
 	-- Return mode if in command mode
@@ -79,222 +135,352 @@ function M.current_mode()--{{{
 
 	-- Return plugin name
 	for k, v in pairs(mode_plugins) do
-		if vim.bo.filetype == k or buffer_name == k then
+		if bo.filetype == k or buffer_name == k then
 			return v
 		end
 	end
 
 	-- Return mode
 	return mode
-end --}}}
+end--}}}
 
-function M.git_branch()--{{{
-	local icon = " "
-	local git_branch = require("lualine.components.branch.git_branch")
-	git_branch.init()
-
-	local branch = git_branch.get_branch()
-
-	if branch ~= "" and not M.buffer_is_plugin() then
-		return icon .. branch
-	end
-	return ""
-end --}}}
-
-function M.paste()--{{{
+M.paste = function()--{{{
 	return vim.o.paste and "PASTE" or ""
-end --}}}
+end--}}}
 
-function M.wrap()--{{{
+M.wrap = function()--{{{
 	return vim.o.wrap and "WRAP" or ""
-end --}}}
+end--}}}
 
-function M.spell()--{{{
-	return vim.wo.spell and vim.bo.spelllang or ""
-end --}}}
-
-function M.file_format()--{{{
-	if not M.buffer_is_plugin() and fn.winwidth(0) > half_winwidth then
-        return vim.bo.fileformat
+M.spell = function()--{{{
+    if M.is_plugin() then
+        return ""
+    elseif vim.wo.spell then
+        return M.print_for_width({
+            XL = bo.spelllang,
+            L  = bo.spelllang,
+            M  = bo.spelllang
+        })
     else
         return ""
 	end
-end --}}}
+end--}}}
 
-function M.file_encoding()--{{{
-	if not M.buffer_is_plugin() and fn.winwidth(0) > half_winwidth then
-		return vim.bo.fileencoding
-	else
-		return ""
+M.file_format = function()--{{{
+	if M.is_plugin() then
+        return ""
+    else
+        local f_format = bo.fileformat
+        local f_eol, f_icon
+
+        if f_format == "dos" then
+            f_icon, f_eol = "", "CRLF"
+        elseif f_format == "unix" then
+            f_icon, f_eol = "", "LF"
+        elseif f_format == "mac" then
+            f_icon, f_eol = "", "CR"
+        end
+
+        return M.print_for_width({
+            XL = f_icon .. " " .. f_eol,
+            L  = f_eol
+        })
 	end
-end --}}}
+end--}}}
 
-function M.line_info()--{{{
-    local is_plugin, plugin_name = M.buffer_is_plugin()
+M.file_encoding = function()--{{{
+    if M.is_plugin() then
+        return ""
+    else
+        return M.print_for_width({
+            autofill = true,
+            L  = bo.fileencoding
+        })
+	end
+end--}}}
+
+M.line_info = function()--{{{
+    local is_plugin, plugin_name = M.is_plugin()
+
 	if not is_plugin then
-        if fn.winwidth(0) > half_winwidth then
-			return string.format("Ln %d, Col %-2d", fn.line("."), fn.col("."))
-		else
-			return string.format("%d : %-2d", fn.line("."), fn.col("."))
-		end
+        return M.print_for_width({
+            autofill = true,
+            L  = string.format(" %d :  %-2d", fn.line("."), fn.col(".")),
+            S  = string.format("%d:%-2d", fn.line("."), fn.col("."))
+        })
     elseif plugin_name == "Trouble" then
-        return string.format("Ln %d", fn.line("."))
-	else
-		return ""
-	end
-end --}}}
-
-function M.lines_total()--{{{
-    local is_plugin, plugin_name = M.buffer_is_plugin()
-
-    if not M.buffer_is_plugin() then
-        return string.format("%d ", fn.line("$"))
-    elseif (plugin_name == "Trouble") and (fn.line("$") > 1 ) then
-        return string.format("%d ", fn.line("$"))
+        return string.format(" %d", fn.line("."))
     else
         return ""
-    end
-end --}}}
-
-function M.lines_percent()--{{{
-    local is_plugin, plugin_name = M.buffer_is_plugin()
-    local lines_percent = (100 * fn.line(".") / fn.line("$"))
-
-    if not is_plugin then
-        return (string.format("%d", lines_percent) .. "%%")
-    elseif (plugin_name == "Trouble") and (fn.line("$") > 1 ) then
-        return (string.format("%d", lines_percent) .. "%%")
-    else
-        return ""
-    end
-end --}}}
-
-function M.lines_per_total()--{{{
-    local is_plugin, plugin_name = M.buffer_is_plugin()
-    if fn.winwidth(0) > half_winwidth and not is_plugin then
-        return (M.lines_percent() .. " of " .. M.lines_total())
-    elseif (plugin_name == "Trouble") and (fn.line("$") > 1 ) then
-        return (M.lines_percent() .. " of " .. M.lines_total())
-    else
-        return M.lines_percent()
     end
 end--}}}
 
-function M.lsp_client_name()--{{{
-	local clients = vim.lsp.get_active_clients()
-	for _, client in pairs(clients) do
-		local client_filetype = client.config.filetypes[1]
-		local client_name = client.name
-		if client_filetype == vim.bo.filetype then
-			return client_name
-		end
-	end
-	return ""
-end --}}}
+M.lines_total = function()--{{{
+    local is_plugin, plugin_name = M.is_plugin()
 
-function M.lsp_status()--{{{
-    local client_name = M.lsp_client_name()
-    local lsp_status_loaded, lsp_status = pcall(function()
-        return require("lsp-status").status_progress()
-    end)
+    if not is_plugin then
+        return string.format("%d ", fn.line("$"))
+    elseif plugin_name == "Trouble" and fn.line("$") > 1 then
+        return string.format("%d ", fn.line("$"))
+    else
+        return ""
+    end
+end--}}}
 
-    if lsp_status_loaded then
-        if (lsp_status == "") then
-            if fn.winwidth(0) > 105 then
-                return client_name == "" and "" or "LSP " .. "[" .. client_name .. "]"
-            elseif fn.winwidth(0) > half_winwidth then
-                return client_name == "" and "" or "LSP"
+M.lines_percent = function()--{{{
+    local is_plugin, plugin_name = M.is_plugin()
+    local lines_percent = (100 * fn.line(".") / fn.line("$"))
+
+    if not is_plugin then
+        return string.format("%d", lines_percent) .. "%%"
+    elseif plugin_name == "Trouble" and fn.line("$") > 1 then
+        return string.format("%d", lines_percent) .. "%%"
+    else
+        return ""
+    end
+end--}}}
+
+M.lines_per_total = function()--{{{
+    local is_plugin, plugin_name = M.is_plugin()
+
+    if not is_plugin then
+        return M.print_for_width({
+            autofill = true,
+            L  = M.lines_percent() .. " : " .. M.lines_total(),
+            _  = M.lines_percent()
+        })
+    elseif plugin_name == "Trouble" and fn.line("$") > 4 then
+        return (M.lines_percent() .. " : " .. M.lines_total())
+    else
+        return ""
+    end
+end--}}}
+
+M.treesitter_status = function()--{{{
+    if M.is_plugin() then
+        return ""
+    else
+    -- Reference:
+    -- LunarVim -- https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L74-L80
+        local bufnr = vim.api.nvim_get_current_buf()
+        if next(vim.treesitter.highlighter.active[bufnr]) then
+            return M.print_for_width({
+                autofill = true,
+                XL = " TS",
+                M  = "TS",
+                S  = " "
+            })
+        else
+            return ""
+        end
+    end
+end--}}}
+
+M.lsp_clients = function()--{{{
+    -- Reference:
+    -- LunarVim -- https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L85-L116
+    if M.is_plugin() then
+        return ""
+    else
+        local buf_clients = vim.lsp.buf_get_clients()
+        if not next(buf_clients) then
+            return ""
+        end
+        -- local buf_ft = vim.bo.filetype
+        local buf_client_names = {}
+
+        -- add client
+        for _, client in pairs(buf_clients) do
+            if client.name ~= "null-ls" then
+                table.insert(buf_client_names, client.name)
+            end
+        end
+
+        -- add formatter
+        -- local formatters = require "lvim.lsp.null-ls.formatters"
+        -- local supported_formatters = formatters.list_registered_providers(buf_ft)
+        -- vim.list_extend(buf_client_names, supported_formatters)
+
+        -- add linter
+        -- local linters = require "lvim.lsp.null-ls.linters"
+        -- local supported_linters = linters.list_registered_providers(buf_ft)
+        -- vim.list_extend(buf_client_names, supported_linters)
+
+        return buf_client_names
+    end
+end--}}}
+
+M.lsp_diagnostics = function()--{{{
+    if M.is_plugin() then
+        return ""
+    else
+        local lsp_clients = M.lsp_clients()
+        if not next(lsp_clients) then
+            return ""
+        else
+            local lsp_status_loaded = pcall(require, "lsp-status")
+            if lsp_status_loaded then
+                local lsp_diagnostics = require("lsp-status").diagnostics
+                local bufnr = vim.api.nvim_get_current_buf()
+
+                local d_color = {
+                    errors   = "%#DiagnosticError#",
+                    warnings = "%#DiagnosticWarn#",
+                    info     = "%#DiagnosticInfo#",
+                    hints    = "%#DiagnosticHint#"
+                }
+                local d_symbol = {
+                    errors   = ci.error[1] .. " ",
+                    warnings = ci.warn[1] .. " ",
+                    info     = ci.info[1] .. " ",
+                    hints    = ci.hint[1] .. " "
+                }
+                local d_info = {
+                    errors   = lsp_diagnostics(bufnr).errors,
+                    warnings = lsp_diagnostics(bufnr).warnings,
+                    info     = lsp_diagnostics(bufnr).info,
+                    hints    = lsp_diagnostics(bufnr).hints
+                }
+                local d_status = {
+                    signs        = {},
+                    only_symbols = {}
+                }
+                for _, name in ipairs{ "errors", "warnings", "info", "hints" } do
+                    if lsp_diagnostics(bufnr)[name] and lsp_diagnostics(bufnr)[name] > 0 then
+                        table.insert(d_status.signs, d_color[name] .. d_symbol[name] .. d_info[name])
+                        table.insert(d_status.only_symbols, d_color[name] .. d_symbol[name])
+                    end
+                end
+
+                return d_status
+            else
+                print("lualine - components: lsp-status missing")
+            end
+        end
+    end
+end--}}}
+
+M.lsp_status = function()--{{{
+    if M.is_plugin() then
+        return ""
+    else
+        local lsp_clients = M.lsp_clients()
+        if not next(lsp_clients) then
+            return ""
+        else
+            local lsp_status_loaded = pcall(require, "lsp-status")
+
+            if not lsp_status_loaded then
+                print("lualine - components: lsp-status missing")
+            else
+                local lsp_progress = require("lsp-status").status_progress()
+
+                if lsp_progress == "" then
+                    if not next(M.lsp_diagnostics().signs) then
+                        return M.print_for_width({
+                            autofill = true,
+                            XL = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                            L  = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                            M  = "LSP",
+                            S  = "",
+                            _  = ""
+                        })
+                    else
+                        return M.print_for_width({
+                            autofill = true,
+                            L  = " " .. table.concat(M.lsp_diagnostics().signs, " "),
+                            M  = table.concat(M.lsp_diagnostics().signs, " "),
+                            _  = table.concat(M.lsp_diagnostics().only_symbols, " "),
+                        })
+                    end
+                else
+                    return M.print_for_width({
+                        XL = " " .. lsp_progress,
+                    })
+                end
+            end
+        end
+    end
+end--}}}
+
+M.git_status = function()--{{{
+    if M.is_plugin() then
+        return ""
+    else
+        local gitsigns_loaded = pcall(require, "gitsigns")
+        if gitsigns_loaded then
+            local gitsigns = vim.b.gitsigns_status_dict or {head = "", added = 0, changed = 0, removed = 0}
+
+            if gitsigns.head ~= "" then
+                local gs_color = {
+                    head    = "",
+                    added   = "%#DiffAdd#",
+                    changed = "%#DiffChange#",
+                    removed = "%#DiffDelete#"
+                }
+                local gs_symbol = {
+                    head    = "",
+                    added   = "  ",
+                    changed = "  ",
+                    removed = "  "
+                }
+                local gs_info = {
+                    head    = gitsigns.head,
+                    added   = gitsigns.added,
+                    changed = gitsigns.changed,
+                    removed = gitsigns.removed
+                }
+                local gs_status = {
+                    head    = {},
+                    signs   = {},
+                    symbols = {}
+                }
+                for _, name in ipairs{ "head", "added", "changed", "removed" } do
+                    if name == "head" then
+                        table.insert(gs_status.head, gs_color[name] .. gs_symbol[name] .. gs_info[name])
+                    elseif gitsigns[name] and gitsigns[name] > 0 then
+                        table.insert(gs_status.signs, gs_color[name] .. gs_symbol[name] .. gs_info[name])
+                        table.insert(gs_status.symbols, gs_color[name] .. gs_symbol[name])
+                    end
+                end
+
+                return M.print_for_width({
+                    XL = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                    L  = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                    M  = gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                    S  = table.concat(gs_status.symbols, ""),
+                    _  = ""
+                })
             else
                 return ""
             end
         else
-            if fn.winwidth(0) > 130 then
-                return "LSP " .. lsp_status
-            elseif fn.winwidth(0) > half_winwidth then
-                return "LSP"
-            else
-                return ""
-            end
+            print("lualine - components: gitsigns missing")
         end
-    else
-        print("lualine - components: lsp-status missing")
     end
 end--}}}
 
-function M.branch()--{{{
-    local branch_options = {
-        "branch",
-        icon = "",
-        cond = function()
-            return not M.buffer_is_plugin()
-        end,
-    }
-    return branch_options
-end--}}}
-
-function M.diagnostics()--{{{
-    local diagnostics_options = {
+M.builtin_diagnostics = function()--{{{
+    local diagnostics = {
         "diagnostics",
         sources = { "nvim_diagnostic" },
         colored = true,
         symbols = {
             error = ci.error[1] .. " ",
-            warn = ci.warn[1] .. " ",
-            info = ci.info[1] .. " ",
-            hint = ci.hint[1] .. " "
+            warn  = ci.warn[1] .. " ",
+            info  = ci.info[1] .. " ",
+            hint  = ci.hint[1] .. " "
         },
         sections = { "error", "warn", "info", "hint" },
         always_visible = false,
         update_in_insert = false,
     }
 
-    return diagnostics_options
+    return diagnostics
 end--}}}
 
-function M.theme_transparent()--{{{
-	local colors = {
-		darkgray = "#1d1f21",
-		gray = "#3f4b59",
-		innerbg = "NONE",
-		outerbg = "NONE",
-		outerfg = "#14191f",
-		insert = "#99c794",
-		normal = "#6699cc",
-		replace = "#ec5f67",
-		visual = "#f99157",
-	}
-	return {
-		inactive = {
-			a = { fg = colors.gray, bg = colors.outerbg, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerfg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		visual = {
-			a = { fg = colors.darkgray, bg = colors.visual, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerfg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		replace = {
-			a = { fg = colors.darkgray, bg = colors.replace, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerfg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		normal = {
-			a = { fg = colors.darkgray, bg = colors.normal, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerfg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		insert = {
-			a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerfg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-		command = {
-			a = { fg = colors.darkgray, bg = colors.insert, gui = "bold" },
-			b = { fg = colors.gray, bg = colors.outerfg },
-			c = { fg = colors.gray, bg = colors.innerbg },
-		},
-	}
-end --}}}
+M.window = function()--{{{
+    return " " .. vim.api.nvim_win_get_number(0)
+end--}}}
 
 return M

@@ -2,11 +2,11 @@ local cb = require("cosmetics").border.table
 
 require("gitsigns").setup {
     signs = {
-        add          = { hl = "DraculaGreen",  text = "┃", numhl = "DraculaGreen",  linehl = "DraculaGreen"  },
-        change       = { hl = "DraculaOrange", text = "┃", numhl = "DraculaOrange", linehl = "DraculaOrange" },
-        delete       = { hl = "DraculaRed",    text = "▁", numhl = "DraculaRed",    linehl = "DraculaRed"    },
-        topdelete    = { hl = "DraculaRed",    text = "▔", numhl = "DraculaRed",    linehl = "DraculaRed"    },
-        changedelete = { hl = "DraculaRed",    text = "━", numhl = "DraculaRed",    linehl = "DraculaRed"    }
+        add          = { hl = "DiffAdd",    text = "▎", numhl = "DiffAdd",    linehl = "DiffAdd"    }, -- +
+        change       = { hl = "DiffChange", text = "▎", numhl = "DiffChange", linehl = "DiffChange" }, -- ~
+        delete       = { hl = "DiffDelete", text = "契", numhl = "DiffDelete", linehl = "DiffDelete" }, -- _
+        topdelete    = { hl = "DiffDelete", text = "契", numhl = "DiffDelete", linehl = "DiffDelete" }, -- ‾
+        changedelete = { hl = "DiffDelete", text = "▎", numhl = "DiffDelete", linehl = "DiffDelete" }  -- ~
     },
     signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`

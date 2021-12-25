@@ -7,11 +7,11 @@ M.variables = {
 
 -- Table containing icons --{{{
 M.icon = {
-    error    = { "", "", "", "", "", "" },
-    warn     = { "", "", "", "", "", "" },
-    hint     = { "", "", "", "", "", "" },
-    info     = { "", "", "", "", "", "" },
-    action   = { "", "", "", "", "", "" },
+    error    = { "", "", "", "", "", "" },
+    warn     = { "", "", "", "", "", "" },
+    hint     = { "", "", "", "", "", "" },
+    info     = { "", "", "", "", "", "" },
+    action   = { "", "", "", "", "", "" },
     close    = { "", "" },
     delete   = { "", "" },
     pending  = { "", "", },
@@ -67,6 +67,26 @@ M.border = {
     double   = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢",      "╠",      "╣", },
     box      = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌" }
 }--}}}
+
+vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=none]]
+vim.cmd [[autocmd ColorScheme * highlight FloatBorder guibg=none]]
+
+-- Borders for LSP popup windows{{{
+local borders = {
+    { M.border.table.tl, "FloatBorder" },
+    { M.border.table.t,  "FloatBorder" },
+    { M.border.table.tr, "FloatBorder" },
+    { M.border.table.r,  "FloatBorder" },
+    { M.border.table.br, "FloatBorder" },
+    { M.border.table.b,  "FloatBorder" },
+    { M.border.table.bl, "FloatBorder" },
+    { M.border.table.l,  "FloatBorder" },
+}--}}}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...) opts = opts or {}
+opts.border = opts.border or borders return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 function M.dracula() --{{{
 	-- Set theme

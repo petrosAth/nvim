@@ -17,8 +17,8 @@ cmp.setup{
         end,
     },
     mapping = {
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ['<C-y>'] = cmp.mapping({
             i = cmp.mapping.confirm({ select = true }),
             c = cmp.mapping.confirm({ select = true }),

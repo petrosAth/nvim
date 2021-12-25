@@ -58,14 +58,14 @@ wk.register({
         },
         l = {
             name = "LSP",
-            H = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Line diagnostics"     }, -- lspconfig
-            R = { "<cmd>lua vim.lsp.buf.rename()<cr>",                       "Rename symbol"        }, -- lspconfig
-            s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>",               "Signagture help"      }, -- lspconfig
-            a = { tele_custom .. "lsp_code_actions()<cr>",                   "Code actions"         }, -- lspconfig -- telescope
-            r = { tele_custom .. "lsp_references()<cr>",                     "References"           }, -- lspconfig -- telescope
-            D = { tele_custom .. "lsp_definitions()<cr>",                    "Definitions"          }, -- lspconfig -- telescope
-            h = { "<cmd>lua vim.lsp.buf.hover()<cr>",                        "Hover symbol"         }, -- lspconfig
-            d = { "<cmd>Trouble document_diagnostics<cr>",                   "Document diagnostics" }  -- lspconfig -- trouble
+            H = { "<cmd>lua vim.diagnostic.open_float()<cr>",  "Line diagnostics"     }, -- lspconfig
+            R = { "<cmd>lua vim.lsp.buf.rename()<cr>",         "Rename symbol"        }, -- lspconfig
+            s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signagture help"      }, -- lspconfig
+            a = { tele_custom .. "lsp_code_actions()<cr>",     "Code actions"         }, -- lspconfig -- telescope
+            r = { tele_custom .. "lsp_references()<cr>",       "References"           }, -- lspconfig -- telescope
+            D = { tele_custom .. "lsp_definitions()<cr>",      "Definitions"          }, -- lspconfig -- telescope
+            h = { "<cmd>lua vim.lsp.buf.hover()<cr>",          "Hover symbol"         }, -- lspconfig
+            d = { "<cmd>Trouble document_diagnostics<cr>",     "Document diagnostics" }  -- lspconfig -- trouble
         },
         m = {
             name = "Minimap",
@@ -104,11 +104,13 @@ wk.register({
         },
         u = {
             name = "Utilities",
-            u = { "<cmd>PackerSync<cr>",     "Packer sync"    }, -- packer
-            s = { "<cmd>PackerStatus<cr>",   "Packer status"  }, -- packer
-            c = { "<cmd>PackerCompile<cr>",  "Packer compile" }, -- packer
-            a = { "<cmd>Alpha<cr>",          "Open dashboard" }, -- alpha
-            i = { "<cmd>LspInstallInfo<cr>", "LSP installer"  }, -- lsp-installer
+            u = { "<cmd>PackerSync<cr>",     "Packer sync"              }, -- packer
+            s = { "<cmd>PackerStatus<cr>",   "Packer status"            }, -- packer
+            c = { "<cmd>PackerCompile<cr>",  "Packer compile"           }, -- packer
+            a = { "<cmd>Alpha<cr>",          "Open dashboard"           }, -- alpha
+            i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
+            I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }, -- lsp-installer
+            -- U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer
         },
     }
 })
