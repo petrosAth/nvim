@@ -48,24 +48,24 @@ g.nvim_tree_show_icons = {
     folder_arrows = 1,  -- if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
 }                       -- but this will not work when you set indent_markers (because of UI conflict)
 g.nvim_tree_icons = {
-    default =          "",
-    symlink =          "",
+    default = "",
+    symlink = "",
     git = {
-        unstaged =    ci.edit[1], -- ci.pending[1],
-        staged =      ci.done[1], -- ci.done[1],
-        unmerged =     "",
-        renamed =     ci.arrowr[1],
-        untracked =   ci.pending[1], -- ci.def[2],
-        deleted =     ci.delete[1], -- ci.delete[1],
+        unstaged  = ci.edit[1], -- ci.pending[1],
+        staged    = ci.done[1], -- ci.done[1],
+        unmerged  = "",
+        renamed   = ci.arrowr[1],
+        untracked = ci.pending[1], -- ci.def[2],
+        deleted   = ci.delete[1], -- ci.delete[1],
     },
         folder = {
-        arrow_open =   ci.folderop[1],
+        arrow_open   = ci.folderop[1],
         arrow_closed = ci.foldercl[1],
-        default =      "",
-        open =         "",
-        empty =        "",
-        empty_open =   "",
-        symlink =      "",
+        default      = "",
+        open         = "",
+        empty        = "",
+        empty_open   = "",
+        symlink      = "",
         symlink_open = "",
     }
 }

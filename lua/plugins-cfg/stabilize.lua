@@ -5,5 +5,5 @@ require("stabilize").setup({
 		filetype = { "help", "list", "Trouble" },
 		buftype = { "terminal", "quickfix", "loclist" }
 	},
-	nested = "QuickFixCmdPost,DiagnosticChanged *" -- comma-separated list of autocmds that wil trigger the plugins window restore function
+	-- nested = "QuickFixCmdPost,DiagnosticChanged *" -- comma-separated list of autocmds that wil trigger the plugins window restore function
 })

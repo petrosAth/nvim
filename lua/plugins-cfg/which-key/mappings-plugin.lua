@@ -41,7 +41,14 @@ wk.register({
         ["."] = { tele_builtin .. "resume()<cr>",  "Reopen Telescope"       }, -- telescope
         b     = { tele_custom  .. "buffers()<cr>", "Buffer list"            }, -- telescope
         c     = { "<cmd>HexokinaseToggle<cr>",     "Color codes preview"    }, -- hexokinase
-        e     = { "<cmd>NvimTreeToggle<cr>",       "Toggle file tree"       },
+        d     = {
+            name = "Diffview",
+            o = { "<cmd>DiffviewOpen<cr>",        "Open"                      }, -- diffview
+            c = { "<cmd>DiffviewClose<cr>",       "Close"                     }, -- diffview
+            e = { "<cmd>DiffviewToggleFiles<cr>", "Toggle file tree"          }, -- diffview
+            R = { "<cmd>DiffviewRefresh<cr>",     "Refresh stats and entries" }  -- diffview
+        },
+        e     = { "<cmd>NvimTreeToggle<cr>",       "Toggle file tree"       }, -- nvimtree
         -- NOTE: try quick-scope/hop combo
         f     = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to"          }, -- hop
         t     = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop till before" }, -- hop
@@ -83,10 +90,10 @@ wk.register({
         },
         m = {
             name = "Minimap",
-            m = { "<cmd>MinimapToggle<cr>",          "Toggle"           },
-            q = { "<cmd>MinimapClose<cr>",           "Close"            },
-            r = { "<cmd>MinimapRefresh<cr>",         "Refresh"          },
-            h = { "<cmd>MinimapUpdateHighlight<cr>", "Update highlight" }
+            m = { "<cmd>MinimapToggle<cr>",          "Toggle"           }, -- minimap
+            q = { "<cmd>MinimapClose<cr>",           "Close"            }, -- minimap
+            r = { "<cmd>MinimapRefresh<cr>",         "Refresh"          }, -- minimap
+            h = { "<cmd>MinimapUpdateHighlight<cr>", "Update highlight" }  -- minimap
         },
         q = {
             name = "Trouble",

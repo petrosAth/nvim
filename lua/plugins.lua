@@ -275,6 +275,15 @@ return packer.startup(function()
             require("plugins-cfg.nvim-hlslens-cfg")
         end
     }--}}}
+
+    -- diffview.nvim - Single tabpage interface for easily cycling through diffs for all modified files for any git rev
+    use{--{{{
+        "sindrets/diffview.nvim", -- https://github.com/sindrets/diffview.nvim
+        cmd = { "DiffviewOpen" },
+        config = function ()
+            require("plugins-cfg.diffview")
+        end
+    }--}}}
 --}}}
 
 -- Miscellaneous --{{{
@@ -351,12 +360,12 @@ return packer.startup(function()
     }--}}}
 
     -- stabilize.nvim - Neovim plugin to stabilize window open/close events
-    use{
+    use{--{{{
         "luukvbaal/stabilize.nvim", -- https://github.com/luukvbaal/stabilize.nvim
         config  = function()
             require("plugins-cfg.stabilize")
         end
-    }
+    }--}}}
 --}}}
 
     -- Automatic initial plugin installation
