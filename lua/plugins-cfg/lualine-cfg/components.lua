@@ -3,13 +3,25 @@
 -- https://github.com/Neelfrost/dotfiles
 
 local ci = require("cosmetics").icon
-local excFiletypes = { "NvimTree", "packer", "alpha", "help", "lsp-installer", "Outline", "minimap", "Trouble" }
+local excFiletypes = {
+    "alpha",
+    "diff",
+    "help",
+    "lsp-installer",
+    "minimap",
+    "NvimTree",
+    "Outline",
+    "packer",
+    "qf",
+    "Trouble",
+    "undotree"
+}
 local fn = vim.fn
 local bo = vim.bo
 
 local M = {}
 
-M.print_for_width = function(sizes)--{{{
+M.print_for_width = function(sizes)
     local win = fn.winwidth(0)
 
     if sizes.autofill then
@@ -31,9 +43,9 @@ M.print_for_width = function(sizes)--{{{
     else
         return sizes._ ~= "" and sizes._ or ""
     end
-end--}}}
+end
 
-M.win_size = function ()--{{{
+M.win_size = function ()
     return M.print_for_width({
         XL = "XL",
         L  = "L",
@@ -41,18 +53,18 @@ M.win_size = function ()--{{{
         S  = "S",
         _  = "_"
     })
-end--}}}
+end
 
-M.is_plugin = function()--{{{
+M.is_plugin = function()
 	local filename = fn.expand("%:t")
 	for _, v in pairs(excFiletypes) do
 		if filename == v or bo.filetype == v then
 			return true, filename
 		end
 	end
-end--}}}
+end
 
-M.file_type = function() --{{{
+M.file_type = function()
     if M.is_plugin() then
         return ""
     else
@@ -77,9 +89,9 @@ M.file_type = function() --{{{
             S  = f_icon,
         })
     end
-end--}}}
+end
 
-M.file_name_active = function() --{{{
+M.file_name_active = function()
     if M.is_plugin() then
         return ""
     else
@@ -93,9 +105,9 @@ M.file_name_active = function() --{{{
             })
         end
     end
-end--}}}
+end
 
-M.file_name_inactive = function() --{{{
+M.file_name_inactive = function()
     if M.is_plugin() then
         return ""
     else
@@ -107,16 +119,16 @@ M.file_name_inactive = function() --{{{
             return ""
         end
     end
-end--}}}
+end
 
-M.is_readonly = function()--{{{
+M.is_readonly = function()
     if bo.modifiable == false or bo.readonly == true then
         return ""
     end
 	return ""
-end--}}}
+end
 
-M.current_mode = function()--{{{
+M.current_mode = function()
 	local buffer_name = fn.expand("%:t")
     local mode = require("lualine.utils.mode").get_mode()
 	local mode_plugins = {
@@ -142,17 +154,17 @@ M.current_mode = function()--{{{
 
 	-- Return mode
 	return mode
-end--}}}
+end
 
-M.paste = function()--{{{
+M.paste = function()
 	return vim.o.paste and "PASTE" or ""
-end--}}}
+end
 
-M.wrap = function()--{{{
+M.wrap = function()
 	return vim.o.wrap and "WRAP" or ""
-end--}}}
+end
 
-M.spell = function()--{{{
+M.spell = function()
     if M.is_plugin() then
         return ""
     elseif vim.wo.spell then
@@ -167,9 +179,9 @@ M.spell = function()--{{{
     else
         return ""
 	end
-end--}}}
+end
 
-M.file_format = function()--{{{
+M.file_format = function()
 	if M.is_plugin() then
         return ""
     else
@@ -189,9 +201,9 @@ M.file_format = function()--{{{
             L  = f_eol
         })
 	end
-end--}}}
+end
 
-M.file_encoding = function()--{{{
+M.file_encoding = function()
     if M.is_plugin() then
         return ""
     else
@@ -200,15 +212,15 @@ M.file_encoding = function()--{{{
             L  = bo.fileencoding
         })
 	end
-end--}}}
+end
 
-M.line_info = function()--{{{
+M.line_info = function()
     local is_plugin, plugin_name = M.is_plugin()
 
 	if not is_plugin then
         return M.print_for_width({
             autofill = true,
-            L  = string.format(" %d/%d   %d", fn.line("."), fn.line("$"), fn.col(".")),
+            L  = string.format(" %d :  %d", fn.line("."), fn.col(".")),
             S  = string.format("%d:%d", fn.line("."), fn.col("."))
         })
     elseif plugin_name == "Trouble" then
@@ -216,21 +228,21 @@ M.line_info = function()--{{{
     else
         return ""
     end
-end--}}}
+end
 
-M.lines_total = function()--{{{
+M.lines_total = function()
     local is_plugin, plugin_name = M.is_plugin()
 
     if not is_plugin then
-        return string.format("%d ", fn.line("$"))
+        return string.format(" %d", fn.line("$"))
     elseif plugin_name == "Trouble" and fn.line("$") > 1 then
-        return string.format("%d ", fn.line("$"))
+        return string.format(" %d", fn.line("$"))
     else
         return ""
     end
-end--}}}
+end
 
-M.lines_percent = function()--{{{
+M.lines_percent = function()
     local is_plugin, plugin_name = M.is_plugin()
     local lines_percent = (100 * fn.line(".") / fn.line("$"))
 
@@ -241,15 +253,15 @@ M.lines_percent = function()--{{{
     else
         return ""
     end
-end--}}}
+end
 
-M.lines_per_total = function()--{{{
+M.lines_per_total = function()
     local is_plugin, plugin_name = M.is_plugin()
 
     if not is_plugin then
         return M.print_for_width({
             autofill = true,
-            L  = M.lines_percent() .. " : " .. M.lines_total(),
+            L  = M.lines_total() .. " : " .. M.lines_percent(),
             _  = M.lines_percent()
         })
     elseif plugin_name == "Trouble" and fn.line("$") > 4 then
@@ -257,9 +269,9 @@ M.lines_per_total = function()--{{{
     else
         return ""
     end
-end--}}}
+end
 
-M.treesitter_status = function()--{{{
+M.treesitter_status = function()
     if M.is_plugin() then
         return ""
     else
@@ -277,9 +289,9 @@ M.treesitter_status = function()--{{{
             return ""
         end
     end
-end--}}}
+end
 
-M.lsp_clients = function()--{{{
+M.lsp_clients = function()
     -- Reference:
     -- LunarVim -- https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L85-L116
     if M.is_plugin() then
@@ -311,9 +323,9 @@ M.lsp_clients = function()--{{{
 
         return buf_client_names
     end
-end--}}}
+end
 
-M.lsp_diagnostics = function()--{{{
+M.lsp_diagnostics = function()
     if M.is_plugin() then
         return ""
     else
@@ -321,7 +333,8 @@ M.lsp_diagnostics = function()--{{{
         if not next(lsp_clients) then
             return ""
         else
-            if packer_plugins["lsp-status.nvim"].loaded then
+            local lsp_status_loaded = pcall(require, "lsp-status")
+            if lsp_status_loaded then
                 local lsp_diagnostics = require("lsp-status").diagnostics
                 local bufnr = vim.api.nvim_get_current_buf()
 
@@ -357,12 +370,13 @@ M.lsp_diagnostics = function()--{{{
                 return d_status
             else
                 print("lualine - components: lsp-status missing")
+                return
             end
         end
     end
-end--}}}
+end
 
-M.lsp_status = function()--{{{
+M.lsp_status = function()
     if M.is_plugin() then
         return ""
     else
@@ -370,9 +384,8 @@ M.lsp_status = function()--{{{
         if not next(lsp_clients) then
             return ""
         else
-            if not packer_plugins["lsp-status.nvim"].loaded then
-                print("lualine - components: lsp-status missing")
-            else
+            local lsp_status_loaded = pcall(require, "lsp-status")
+            if lsp_status_loaded then
                 local lsp_progress = require("lsp-status").status_progress()
 
                 if lsp_progress == "" then
@@ -398,18 +411,21 @@ M.lsp_status = function()--{{{
                         XL = " " .. lsp_progress,
                     })
                 end
+            else
+                print("lualine - components: lsp-status missing")
+                return
             end
         end
     end
-end--}}}
+end
 
-M.git_status = function()--{{{
+M.git_status = function()
     if M.is_plugin() then
         return ""
     else
-        if packer_plugins["gitsigns.nvim"].loaded then
+        local gitsigns_loaded = pcall(require, "gitsigns")
+        if gitsigns_loaded then
             local gitsigns = vim.b.gitsigns_status_dict or {head = "", added = 0, changed = 0, removed = 0}
-
             if gitsigns.head ~= "" then
                 local gs_color = {
                     head    = "",
@@ -455,11 +471,12 @@ M.git_status = function()--{{{
             end
         else
             print("lualine - components: gitsigns missing")
+            return
         end
     end
-end--}}}
+end
 
-M.builtin_diagnostics = function()--{{{
+M.builtin_diagnostics = function()
     local diagnostics = {
         "diagnostics",
         sources = { "nvim_diagnostic" },
@@ -476,10 +493,10 @@ M.builtin_diagnostics = function()--{{{
     }
 
     return diagnostics
-end--}}}
+end
 
-M.window = function()--{{{
+M.window = function()
     return " " .. vim.api.nvim_win_get_number(0)
-end--}}}
+end
 
 return M

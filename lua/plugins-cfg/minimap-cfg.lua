@@ -19,7 +19,18 @@ vim.cmd([[
     augroup END
 ]])
 
-local block_files = { "NvimTree", "packer", "alpha", "lsp-installer", "Outline", "Trouble" }
+local block_files = {
+    "alpha",
+    "diff",
+    "help",
+    "lsp-installer",
+    "NvimTree",
+    "Outline",
+    "packer",
+    "qf",
+    "Trouble",
+    "undotree"
+}
 local block_buffers = { "nofile", "nowrite", "quickfix", "terminal", "prompt", }
 local g = vim.g
 

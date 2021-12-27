@@ -28,13 +28,16 @@ g.nvim_tree_refresh_wait = 500          -- 1000 by default, control how often th
 g.nvim_tree_window_picker_chars = "asdghklqwertyuiopzxcvbnmfj'"
 g.nvim_tree_window_picker_exclude = {   -- Dictionary of buffer option names mapped to a list of option values that
     filetype = {                        -- indicates to the window picker that the buffer's window should not be
-        "packer",                       -- selectable.
-        "qf",
         "alpha",
+        "diff",
+        "help",
+        "lsp-installer",
         "minimap",
         "Outline",
-        "help",
-        "Trouble"
+        "packer",
+        "qf",
+        "Trouble",
+        "undotree"
     },
     buftype = { "terminal" },
 }

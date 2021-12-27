@@ -56,6 +56,6 @@ M.checkCodeAction = function()
     })
 end
 
-vim.fn.sign_define('LightBulbSign', { text = ci.action[1], texthl = "DraculaGreen", linehl= "", numhl="DraculaGreen" })
+vim.fn.sign_define('LightBulbSign', { text = ci.action[1], texthl = "DiffAdd", linehl= "", numhl="DiffAdd" })
 
 return M

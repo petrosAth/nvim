@@ -8,12 +8,15 @@ g.qs_buftype_blacklist = {
     "nofile"
 }
 g.qs_filetype_blacklist = {
-    "packer",
-    "lsp-installer",
-    "qf",
     "alpha",
-    "minimap",
-    "Outline",
+    "diff",
     "help",
-    "Trouble"
+    "lsp-installer",
+    "minimap",
+    "NvimTree",
+    "Outline",
+    "packer",
+    "qf",
+    "Trouble",
+    "undotree"
 }
