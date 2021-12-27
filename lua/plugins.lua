@@ -66,7 +66,7 @@ return packer.startup(function()
         },
     }--}}}
 
-    -- A completion engine plugin for neovim written in Lua
+    -- nvim-cmp - A completion engine plugin for neovim written in Lua
     use{--{{{
         "hrsh7th/nvim-cmp", -- https://github.com/hrsh7th/nvim-cmp
         disable = false,
@@ -94,7 +94,7 @@ return packer.startup(function()
         },
     }--}}}
 
-    -- Snippet Engine for Neovim written in Lua
+    -- LuaSnip - Snippet Engine for Neovim written in Lua
     use{--{{{
         "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
         disable = false,
@@ -190,7 +190,6 @@ return packer.startup(function()
         "RRethy/vim-illuminate", -- https://github.com/RRethy/vim-illuminate
         disable = false,
         lock = false,
-        event = "BufAdd",
         setup = function()
             require("plugins-cfg.illuminate-cfg")
         end
@@ -403,6 +402,27 @@ return packer.startup(function()
             require("plugins-cfg.which-key")
         end
     }--}}}
+
+    -- undotree - The undo history visualizer for VIM
+    use{--{{{
+        "mbbill/undotree", -- https://github.com/mbbill/undotree
+        disable = false,
+        lock    = false,
+        cmd     = { "UndotreeToggle", "UndotreeShow" },
+        config  = function()
+            require("plugins-cfg.undotree")
+        end
+    }--}}}
+
+    -- quick-scope - Lightning fast left-right movement in Vim
+    use{
+        "unblevable/quick-scope", -- https://github.com/unblevable/quick-scope
+        disable = false,
+        lock    = false,
+        config  = function ()
+            require("plugins-cfg.quick-scope")
+        end
+    }
 --}}}
 
     -- Automatic initial plugin installation

@@ -53,17 +53,15 @@ function M.custom_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     -- Use lsp to populate cmp completions{{{
-    local cmp_nvim_lsp_loaded, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if cmp_nvim_lsp_loaded then
-        capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+    if packer_plugins["cmp-nvim-lsp"].loaded then
+        capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
     else
 		print("lspconfig - capabilities: cmp-nvim-lsp missing")
     end--}}}
 
     -- Get window/workDoneProgress from lsp server{{{
-    local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
-    if lsp_status_loaded then
-        capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
+    if packer_plugins["lsp-status.nvim"].loaded then
+        capabilities = vim.tbl_extend('keep', capabilities, require("lsp-status").capabilities)
     else
         print("lspconfig - capabilities: lsp-status missing")
     end--}}}
@@ -106,9 +104,13 @@ M.custom_on_attach = function(client, bufnr)
     -- LSP status{{{
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.
-    local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
-    if lsp_status_loaded then
-        lsp_status.on_attach(client)
+    if packer_plugins["vim-illuminate"].loaded then
+        require("illuminate").on_attach(client)
+    else
+        print("lspconfig - on_attach: illuminate missing")
+    end
+    if packer_plugins["lsp-status.nvim"].loaded then
+        require("lsp-status").on_attach(client)
     else
         print("lspconfig - on_attach: lsp-status missing")
     end--}}}

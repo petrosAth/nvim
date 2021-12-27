@@ -156,10 +156,13 @@ M.spell = function()--{{{
     if M.is_plugin() then
         return ""
     elseif vim.wo.spell then
+        local spell = bo.spelllang
+        local icon = "暈"
         return M.print_for_width({
-            XL = bo.spelllang,
-            L  = bo.spelllang,
-            M  = bo.spelllang
+            autofill = true,
+            XL = icon .. " " .. spell,
+            M  = spell,
+            S  = icon
         })
     else
         return ""
@@ -205,8 +208,8 @@ M.line_info = function()--{{{
 	if not is_plugin then
         return M.print_for_width({
             autofill = true,
-            L  = string.format(" %d :  %-2d", fn.line("."), fn.col(".")),
-            S  = string.format("%d:%-2d", fn.line("."), fn.col("."))
+            L  = string.format(" %d/%d   %d", fn.line("."), fn.line("$"), fn.col(".")),
+            S  = string.format("%d:%d", fn.line("."), fn.col("."))
         })
     elseif plugin_name == "Trouble" then
         return string.format(" %d", fn.line("."))
@@ -318,8 +321,7 @@ M.lsp_diagnostics = function()--{{{
         if not next(lsp_clients) then
             return ""
         else
-            local lsp_status_loaded = pcall(require, "lsp-status")
-            if lsp_status_loaded then
+            if packer_plugins["lsp-status.nvim"].loaded then
                 local lsp_diagnostics = require("lsp-status").diagnostics
                 local bufnr = vim.api.nvim_get_current_buf()
 
@@ -368,9 +370,7 @@ M.lsp_status = function()--{{{
         if not next(lsp_clients) then
             return ""
         else
-            local lsp_status_loaded = pcall(require, "lsp-status")
-
-            if not lsp_status_loaded then
+            if not packer_plugins["lsp-status.nvim"].loaded then
                 print("lualine - components: lsp-status missing")
             else
                 local lsp_progress = require("lsp-status").status_progress()
@@ -407,8 +407,7 @@ M.git_status = function()--{{{
     if M.is_plugin() then
         return ""
     else
-        local gitsigns_loaded = pcall(require, "gitsigns")
-        if gitsigns_loaded then
+        if packer_plugins["gitsigns.nvim"].loaded then
             local gitsigns = vim.b.gitsigns_status_dict or {head = "", added = 0, changed = 0, removed = 0}
 
             if gitsigns.head ~= "" then

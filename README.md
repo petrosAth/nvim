@@ -4,14 +4,14 @@ Still a work in progress.
 
 
 ## TODO
-- [ ] lualine root folder (.)
 - [ ] Setup autosave
-- [ ] Add window number in lualine
-- [ ] Add gitsigns in lualine
+- [x] lualine root folder (.)
+- [x] Add window number in lualine
+- [x] Add gitsigns in lualine
 - [ ] Try treesitter folding - reddit [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
 - [ ] :h mark-motions
 - [ ] Revisit nvim-cmp menu
-- [ ] Migrate to WSL
+- [ ] Migrate to WSL / maybe WSL2g
 - [ ] Look into parameters comments
 - [ ] Rethink/research the folder structure
 - [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
@@ -22,6 +22,8 @@ Still a work in progress.
 - [ ] Add ftplugin/
 - [ ] Add calltree
 - [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
+- [ ] lazyload everything possible
+- [ ] add pcall when plugins are called
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -40,9 +42,7 @@ Still a work in progress.
 | [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
 | [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 | [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
-| [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
 | [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim) | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa! |
-| [undotree](https://github.com/mbbill/undotree) | The undo history visualizer for VIM |
 | Themes | ----------- |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |
@@ -61,6 +61,7 @@ Still a work in progress.
 | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
 | [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview |
 | [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
+| [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
 | Treesitter |
 | [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
 | Git | ----------- |

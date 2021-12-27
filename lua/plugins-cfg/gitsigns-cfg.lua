@@ -4,8 +4,8 @@ require("gitsigns").setup {
     signs = {
         add          = { hl = "DiffAdd",    text = "▎", numhl = "DiffAdd",    linehl = "DiffAdd"    }, -- +
         change       = { hl = "DiffChange", text = "▎", numhl = "DiffChange", linehl = "DiffChange" }, -- ~
-        delete       = { hl = "DiffDelete", text = "契", numhl = "DiffDelete", linehl = "DiffDelete" }, -- _
-        topdelete    = { hl = "DiffDelete", text = "契", numhl = "DiffDelete", linehl = "DiffDelete" }, -- ‾
+        delete       = { hl = "DiffDelete", text = "▁", numhl = "DiffDelete", linehl = "DiffDelete" }, -- _
+        topdelete    = { hl = "DiffDelete", text = "▔", numhl = "DiffDelete", linehl = "DiffDelete" }, -- ‾
         changedelete = { hl = "DiffDelete", text = "▎", numhl = "DiffDelete", linehl = "DiffDelete" }  -- ~
     },
     signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`

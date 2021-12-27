@@ -26,8 +26,6 @@ wk.register({
     ["<m-l>"] = { "v:count == 0 ? ':vertical resize -5<CR>' : ':<C-u>vertical resize -' . v:count1 . '<CR>'", "Contract vertically",   expr = true },
     j         = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines",   expr = true },
     k         = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines",   expr = true },
-    n         = { "nzz",                       "Keep cursor centerd on search"             },
-    N         = { "Nzz",                       "Keep cursor centerd on search"             },
     ["<leader>"] = {
         n = { "<cmd>set relativenumber!<CR>", "Toggle relative number" },
         d = {

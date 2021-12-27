@@ -33,7 +33,7 @@ lualine.setup({
 			{ components.line_info }
 		},
 		lualine_z = {
-            { components.lines_per_total }
+            { components.lines_percent }
         },
 	},
 	inactive_sections = {

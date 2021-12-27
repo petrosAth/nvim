@@ -18,23 +18,37 @@ wk.register({
         O      = { "Comment prev line then insert"   }, -- comment
         A      = { "Comment end of line then insert" }  -- comment
     },
-    n      = { "<cmd>execute('normal! ' . v:count1 . 'n')<cr><cmd>lua require('hlslens').start()<cr><cmd>set relativenumber!<cr>", "Repeat the latest '/' or '?'"          }, -- hlslens
-    N      = { "<cmd>execute('normal! ' . v:count1 . 'N')<cr><cmd>lua require('hlslens').start()<cr><cmd>set relativenumber!<cr>", "Repeat the latest '/' or '?' backward" }, -- hlslens
+    n      = { "<cmd>execute('normal! ' . v:count1 . 'nzzzv')<cr><cmd>lua require('hlslens').start()<cr><cmd>set relativenumber!<cr>", "Repeat the latest '/' or '?'",          }, -- hlslens
+    N      = { "<cmd>execute('normal! ' . v:count1 . 'Nzzzv')<cr><cmd>lua require('hlslens').start()<cr><cmd>set relativenumber!<cr>", "Repeat the latest '/' or '?' backward", }, -- hlslens
     ["*"]  = { "*<cmd>lua require('hlslens').start()<cr>",  "Search word under cursor"            }, -- hlslens
     ["#"]  = { "#<cmd>lua require('hlslens').start()<cr>",  "Search word under cursor backward"   }, -- hlslens
     ["g*"] = { "g*<cmd>lua require('hlslens').start()<cr>", "Search string under cursor"          }, -- hlslens
     ["g#"] = { "g#<cmd>lua require('hlslens').start()<cr>", "Search string under cursor backward" }, -- hlslens
-    -- ["<leader>"] = {},
+    ["<leader>"] = {
+        u = {
+            name = "Utilities",
+            u = { "<cmd>PackerSync<cr>",     "Packer sync"              }, -- packer
+            s = { "<cmd>PackerStatus<cr>",   "Packer status"            }, -- packer
+            c = { "<cmd>PackerCompile<cr>",  "Packer compile"           }, -- packer
+            a = { "<cmd>Alpha<cr>",          "Open dashboard"           }, -- alpha
+            i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
+            I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }, -- lsp-installer
+            -- U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer
+        }
+    },
     ["<space>"] = {
         ["?"] = { "<cmd>WhichKey<cr>",             "Show available hotkeys" }, -- which-key
         ["."] = { tele_builtin .. "resume()<cr>",  "Reopen Telescope"       }, -- telescope
         b     = { tele_custom  .. "buffers()<cr>", "Buffer list"            }, -- telescope
         c     = { "<cmd>HexokinaseToggle<cr>",     "Color codes preview"    }, -- hexokinase
         e     = { "<cmd>NvimTreeToggle<cr>",       "Toggle file tree"       },
-        f     = { hop .. "AFTER_CURSOR })<cr>",    "Hop right to"           }, -- hop
-        F     = { hop .. "BEFORE_CURSOR })<cr>",   "Hop left to"            }, -- hop
-        t     = { hop .. "AFTER_CURSOR })<cr>",    "Hop right till before"  }, -- hop
-        T     = { hop .. "BEFORE_CURSOR })<cr>",   "Hop left till before"   }, -- hop
+        -- NOTE: try quick-scope/hop combo
+        f     = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to"          }, -- hop
+        t     = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop till before" }, -- hop
+        -- f     = { hop .. "AFTER_CURSOR })<cr>",    "Hop right to"           }, -- hop
+        -- F     = { hop .. "BEFORE_CURSOR })<cr>",   "Hop left to"            }, -- hop
+        -- t     = { hop .. "AFTER_CURSOR })<cr>",    "Hop right till before"  }, -- hop
+        -- T     = { hop .. "BEFORE_CURSOR })<cr>",   "Hop left till before"   }, -- hop
         S     = { "<cmd>SymbolsOutline<cr>",       "Toggle Symbols Outline" },
         g = {
             name = "Git",
@@ -102,26 +116,20 @@ wk.register({
             c = { tele_builtin .. "command_history()<cr>", "Command history"    }, -- telescope
             T = { "<cmd>TodoTelescope<cr>",                "Show TODO comments" }  -- todo-comments
         },
-        u = {
-            name = "Utilities",
-            u = { "<cmd>PackerSync<cr>",     "Packer sync"              }, -- packer
-            s = { "<cmd>PackerStatus<cr>",   "Packer status"            }, -- packer
-            c = { "<cmd>PackerCompile<cr>",  "Packer compile"           }, -- packer
-            a = { "<cmd>Alpha<cr>",          "Open dashboard"           }, -- alpha
-            i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
-            I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }, -- lsp-installer
-            -- U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer
-        },
+        u     = { "<cmd>UndotreeToggle<cr>", "Toggle undo tree" } -- undotree
     }
 })
 
 -- Visual and select mode mappings
 wk.register({
     ["<space>"] = {
-        f = { hop .. "AFTER_CURSOR })<cr>",  "Hop right to"          }, -- hop
-        F = { hop .. "BEFORE_CURSOR })<cr>", "Hop left to"           }, -- hop
-        t = { hop .. "AFTER_CURSOR })<cr>",  "Hop right till before" }, -- hop
-        T = { hop .. "BEFORE_CURSOR })<cr>", "Hop left till before"  }, -- hop
+        -- NOTE: try quick-scope/hop combo
+        f = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to"          }, -- hop
+        t = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop till before" }, -- hop
+        -- f = { hop .. "AFTER_CURSOR })<cr>",  "Hop right to"          }, -- hop
+        -- F = { hop .. "BEFORE_CURSOR })<cr>", "Hop left to"           }, -- hop
+        -- t = { hop .. "AFTER_CURSOR })<cr>",  "Hop right till before" }, -- hop
+        -- T = { hop .. "BEFORE_CURSOR })<cr>", "Hop left till before"  }, -- hop
         g = {
             name = "Git",
             s = { ":Gitsigns stage_hunk<cr>", "Stage hunk" }, -- gitsigns
@@ -136,10 +144,13 @@ wk.register({
         h  = { ":<C-U>Gitsigns select_hunk<cr>", "Select git hunk" }, -- gitsigns
     },
     ["<space>"] = {
-        f = { hop .. "AFTER_CURSOR, inclusive_jump = true })<cr>",  "Hop right to"          }, -- hop
-        F = { hop .. "BEFORE_CURSOR, inclusive_jump = true })<cr>", "Hop left to"           }, -- hop
-        t = { hop .. "AFTER_CURSOR })<cr>",                         "Hop right till before" }, -- hop
-        T = { hop .. "BEFORE_CURSOR })<cr>",                        "Hop left till before"  }  -- hop
+        -- NOTE: try quick-scope/hop combo
+        f = { "<cmd>lua require'hop'.hint_char1({ inclusive_jump = true })<cr>", "Hop to"          }, -- hop
+        t = { "<cmd>lua require'hop'.hint_char1()<cr>",                          "Hop till before" }, -- hop
+        -- f = { hop .. "AFTER_CURSOR, inclusive_jump = true })<cr>",  "Hop right to"          }, -- hop
+        -- F = { hop .. "BEFORE_CURSOR, inclusive_jump = true })<cr>", "Hop left to"           }, -- hop
+        -- t = { hop .. "AFTER_CURSOR })<cr>",                         "Hop right till before" }, -- hop
+        -- T = { hop .. "BEFORE_CURSOR })<cr>",                        "Hop left till before"  }  -- hop
     }
 }, { mode = "o" })
 

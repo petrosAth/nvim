@@ -55,8 +55,8 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        set_button("LDR u u", " " .. ci.arrowr[1] .. " Update plugins",  "<cmd>PackerSync<CR>"),
-        set_button("LDR u i", " " .. ci.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>"),
+        set_button("SPC u u", " " .. ci.arrowr[1] .. " Update plugins",  "<cmd>PackerSync<CR>"),
+        set_button("SPC u I", " " .. ci.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>"),
     },
     opts = {
         spacing = 0,
