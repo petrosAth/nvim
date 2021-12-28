@@ -195,6 +195,14 @@ return packer.startup(function()
             require("plugins-cfg.alpha-cfg")
         end,
     }
+
+    -- nvim-notify -- A fancy, configurable, notification manager for NeoVim
+    use{
+        "rcarriga/nvim-notify", -- https://github.com/rcarriga/nvim-notify
+        config = function ()
+            require("plugins-cfg.notify")
+        end
+    }
 --------------------------------------------------------------------------------
 
 -- Project and file navigation -------------------------------------------------
@@ -296,7 +304,7 @@ return packer.startup(function()
         end,
     }
 
-    -- lualine.nvim - A blazing fast and easy to configure Neovim statusline written in Lua
+    -- lualine - A blazing fast and easy to configure Neovim statusline written in Lua
     use{
         "nvim-lualine/lualine.nvim", -- https://github.com/shadmansaleh/lualine.nvim
         requires = "nvim-web-devicons",

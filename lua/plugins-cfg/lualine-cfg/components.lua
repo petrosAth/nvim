@@ -369,7 +369,7 @@ M.lsp_diagnostics = function()
 
                 return d_status
             else
-                print("lualine - components: lsp-status missing")
+                require("notify")("'plugins.lualine.components' - lsp-status not loaded", "error", { title = "Lualine" })
                 return
             end
         end
@@ -412,7 +412,7 @@ M.lsp_status = function()
                     })
                 end
             else
-                print("lualine - components: lsp-status missing")
+                require("notify")("'plugins.lualine.components' - lsp-status not loaded", "error", { title = "Lualine" })
                 return
             end
         end
@@ -470,7 +470,7 @@ M.git_status = function()
                 return ""
             end
         else
-            print("lualine - components: gitsigns missing")
+            require("notify")("'plugins.lualine.components' - gitsigns not loaded", "error", { title = "Lualine" })
             return
         end
     end

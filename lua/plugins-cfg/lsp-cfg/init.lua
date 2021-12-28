@@ -58,6 +58,7 @@ function M.custom_capabilities()
         capabilities = cmp_lsp.update_capabilities(capabilities)
     else
 		print("lspconfig - capabilities: cmp-nvim-lsp missing")
+        require("notify")("'plugins.lsp.init' - cmp_nvim_lsp not loaded", "error", { title = "Lspconfig" })
         return
     end
 
@@ -66,7 +67,7 @@ function M.custom_capabilities()
     if lsp_status_loaded then
         capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
     else
-        print("lspconfig - capabilities: lsp-status missing")
+        require("notify")("'plugins.lsp.init' - lsp-status not loaded", "error", { title = "Lspconfig" })
         return
     end
 
@@ -102,6 +103,7 @@ M.custom_on_attach = function(client, bufnr)
     --         buffer  = bufnr
     --     })
     -- else
+    -- require("notify")("'plugins.lsp.init' - which-key not loaded", "error", { title = "Lspconfig" })
     --     return
     -- end
 
@@ -112,14 +114,14 @@ M.custom_on_attach = function(client, bufnr)
     if illuminate_loaded then
         illuminate.on_attach(client)
     else
-        print("lspconfig - on_attach: illuminate missing")
+        require("notify")("'plugins.lsp.init' - illuminate not loaded", "error", { title = "Lspconfig" })
         return
     end
     local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
     if lsp_status_loaded then
         lsp_status.on_attach(client)
     else
-        print("lspconfig - on_attach: lsp-status missing")
+        require("notify")("'plugins.lsp.init' - lsp-status not loaded", "error", { title = "Lspconfig" })
         return
     end
 end

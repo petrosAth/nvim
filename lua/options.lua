@@ -53,11 +53,10 @@ opt.fileformat = "dos"
 
 -- Enable dark background colorschemes
 opt.background = "dark"
+
 -- Enable 24bit colors in terminal
 opt.termguicolors = true
 
--- Set terminal to powershell
--- opt.shell = "pwsh"
 -- Give more space for displaying messages
 opt.cmdheight = 2
 

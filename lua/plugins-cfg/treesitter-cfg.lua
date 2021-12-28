@@ -1,6 +1,8 @@
 require("nvim-treesitter.configs").setup({
-    -- ensure_installed = { "c", "css", "c_sharp", "html", "lua", "python", },
-    ensure_installed = { "lua", "vim", "html", "markdown" },
+    -- TODO: change to maintained when heavy config editing is done
+    -- ensure_installed = "maintained"
+    -- ensure_installed = { "c", "css", "c_sharp", "html", "lua", "markdown" "python", },
+    ensure_installed = { "lua", "vim", "markdown" },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
@@ -13,6 +15,7 @@ require("nvim-treesitter.configs").setup({
         enable = true,
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
+        -- TODO: make colors change based on theme
         colors = { -- table of hex strings
             "#50fa7b",
             "#bd93f9",

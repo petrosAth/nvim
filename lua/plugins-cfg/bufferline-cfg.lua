@@ -59,6 +59,7 @@ bufferline.setup{
         },
         always_show_bufferline = true,
     },
+    -- TODO: make colors change based on theme
     highlights = {
         fill = {
             guifg = "#f8f8f2",

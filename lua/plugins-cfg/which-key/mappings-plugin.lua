@@ -30,7 +30,7 @@ wk.register({
             u = { "<cmd>PackerSync<cr>",     "Packer sync"              }, -- packer
             s = { "<cmd>PackerStatus<cr>",   "Packer status"            }, -- packer
             c = { "<cmd>PackerCompile<cr>",  "Packer compile"           }, -- packer
-            a = { "<cmd>Alpha<cr>",          "Open dashboard"           }, -- alpha
+            d = { "<cmd>Alpha<cr>",          "Show dashboard"           }, -- alpha
             i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
             I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }, -- lsp-installer
             -- U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer

@@ -3,7 +3,6 @@ My ["personal"](#sources) Neovim configuration for Windows.
 Still a work in progress.
 
 ## TODO
-- [ ] Setup autosave
 - [x] lualine root folder (.)
 - [x] Add window number in lualine
 - [x] Add gitsigns in lualine
@@ -34,11 +33,9 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | ----------- | ----------- |
-| [nvim.notify](https://github.com/rcarriga/nvim-notify) | A fancy, configurable, notification manager for NeoVim |
 | [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
 | [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 | [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
-| [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim) | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa! |
 | [aerial.nvim](https://github.com/stevearc/aerial.nvim) | Neovim plugin for a code outline window |
 | Themes |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
@@ -53,6 +50,7 @@ Still a work in progress.
 | [formatter.nvim](https://github.com/mhartington/formatter.nvim) | A format runner for neovim, written in lua. |
 | <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim) | Simple session management for Neovim. |
 | <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager) | A simple wrapper around :mksession |
+| [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim) | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa! |
 | [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview |
 | [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
 | [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
