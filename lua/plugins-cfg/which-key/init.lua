@@ -3,7 +3,7 @@ local ct = require("cosmetics").variables.transparency
 local ci = require("cosmetics").icon
 local cb = require("cosmetics").border.table
 
-wk.setup({--{{{
+wk.setup({
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -68,12 +68,12 @@ wk.setup({--{{{
         i = { "j", "k" },
         v = { "j", "k" },
     },
-})--}}}
+})
 
 require("plugins-cfg.which-key.mappings-plugin")
 require("plugins-cfg.which-key.mappings-system")
 
--- Code snippets{{{
+-- Code snippets
 -- For future reference - https://github.com/folke/which-key.nvim/issues/165#issuecomment-921332940
 -- require('which-key').register({
 --     ['key'] = {
@@ -92,4 +92,4 @@ require("plugins-cfg.which-key.mappings-system")
 --             ["<key>"] = { "text" }
 --         }, opts )
 --     end
--- end}}}
+-- end

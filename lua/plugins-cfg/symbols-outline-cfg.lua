@@ -23,7 +23,7 @@ vim.g.symbols_outline = {
     show_relative_numbers = false,
     show_symbol_details = true,
     preview_bg_highlight = "previewBg",
-    keymaps = { --{{{
+    keymaps = {
         close = "q",
         goto_location = "<Cr>",
         focus_location = "l",
@@ -31,10 +31,10 @@ vim.g.symbols_outline = {
         toggle_preview = "P",
         rename_symbol = "R",
         code_actions = "a",
-    },--}}}
+    },
     lsp_blacklist = {},
     symbol_blacklist = {},
-    symbols = {--{{{
+    symbols = {
         File = {icon = "", hl = "TSURI"},
         Module = {icon = "", hl = "TSNamespace"},
         Namespace = {icon = "", hl = "TSNamespace"},
@@ -61,5 +61,5 @@ vim.g.symbols_outline = {
         Event = {icon = "", hl = "TSType"},
         Operator = {icon = "", hl = "TSOperator"},
         TypeParameter = {icon = "", hl = "TSParameter"},
-    }--}}}
+    }
 }

@@ -5,7 +5,7 @@ local ci = require("cosmetics").icon
 
 bufferline.setup{
     options = {
-        numbers = function(opts)--{{{
+        numbers = function(opts)
                 if opts.id == vim.fn.bufnr("%") then
                     selbufOrdinal = opts.ordinal
                     if opts.ordinal > 1 then
@@ -18,7 +18,7 @@ bufferline.setup{
                 else
                     return string.format("▏%s:", opts.id)
                 end
-            end,--}}}
+            end,
         close_command = "Bdelete %d",
         right_mouse_command = "Bdelete %d",
         buffer_close_icon= ci.close[1],
@@ -37,7 +37,7 @@ bufferline.setup{
             -- left aligned   => "▏","▍","▌"
             -- center aligned => "│","┃"," ","█"
         separator_style = { "", "" },
-        offsets = {--{{{
+        offsets = {
             {
                 filetype = "NvimTree",
                 text = "File Tree",
@@ -56,10 +56,10 @@ bufferline.setup{
                 highlight = "lualine_a_normal",
                 text_align = "center"
             }
-        },--}}}
+        },
         always_show_bufferline = true,
     },
-    highlights = {--{{{
+    highlights = {
         fill = {
             guifg = "#f8f8f2",
             guibg = "#44475a"
@@ -72,10 +72,10 @@ bufferline.setup{
             guifg = "#f8f8f2",
             guibg = "#5f6a8e",
         },
-        tab_selected = {--{{{
+        tab_selected = {
             guifg = "#44475a",
             guibg = "#BD93F9",
-        },--}}}
+        },
         tab_close = {
             guifg = "#f8f8f2",
             guibg = "#5f6a8e",
@@ -88,20 +88,20 @@ bufferline.setup{
             guifg = "#f8f8f2",
             guibg = "#5f6a8e",
         },
-        close_button_selected = {--{{{
+        close_button_selected = {
             guifg = "#44475a",
             guibg = "#BD93F9",
             gui = ""
-        },--}}}
+        },
         buffer_visible = {
             guifg = "#f8f8f2",
             guibg = "#5f6a8e",
         },
-        buffer_selected = {--{{{
+        buffer_selected = {
             guifg = "#44475a",
             guibg = "#BD93F9",
             gui = ""
-        },--}}}
+        },
         modified = {
             guifg = "#FFB86C",
             guibg = "#5f6a8e",
@@ -110,11 +110,10 @@ bufferline.setup{
             guifg = "#FFB86C",
             guibg = "#5f6a8e",
         },
-        modified_selected = {--{{{
+        modified_selected = {
             guifg = "#FFB86C",
-            -- guifg = "#44475a",
             guibg = "#BD93F9",
-        },--}}}
+        },
         duplicate_selected = {
             guifg = "#816daa",
             guibg = "#BD93F9",
@@ -130,10 +129,10 @@ bufferline.setup{
             guibg = "#5f6a8e",
             gui = "",
         },
-        separator_selected = {--{{{
+        separator_selected = {
             guifg = "#BD93F9",
             guibg = "#BD93F9",
-        },--}}}
+        },
         separator_visible = {
             guifg = "#5f6a8e",
             guibg = "#5f6a8e",
@@ -161,5 +160,5 @@ bufferline.setup{
             guibg = "#282a36",
             gui = ""
         }
-    }--}}}
+    }
 }

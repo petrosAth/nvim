@@ -13,7 +13,7 @@ M.servers = {
     "sumneko_lua"
 }
 
--- Borders for LSP popup windows{{{
+-- Borders for LSP popup windows
 local borders = {
     { cb.tl, "FloatBorder" },
     { cb.t,  "FloatBorder" },
@@ -23,9 +23,9 @@ local borders = {
     { cb.b,  "FloatBorder" },
     { cb.bl, "FloatBorder" },
     { cb.l,  "FloatBorder" },
-}--}}}
+}
 
--- Configure lsp handlers{{{
+-- Configure lsp handlers
 -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = borders })
 -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = borders })
 vim.diagnostic.config({
@@ -38,44 +38,44 @@ vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
     severity_sort = true,
-})--}}}
+})
 
--- Set diagnostic signs{{{
+-- Set diagnostic signs
 local signs = { Error = ci.error[1], Warn = ci.warn[1], Hint = ci.hint[1], Info = ci.info[1], }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl, })
-end--}}}
+end
 
 -- Configure lsp capabilities
 function M.custom_capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    -- Use lsp to populate cmp completions{{{
+    -- Use lsp to populate cmp completions
     local cmp_nvim_lsp_loaded, cmp_lsp = pcall(require, "cmp_nvim_lsp")
     if cmp_nvim_lsp_loaded then
         capabilities = cmp_lsp.update_capabilities(capabilities)
     else
 		print("lspconfig - capabilities: cmp-nvim-lsp missing")
         return
-    end--}}}
+    end
 
-    -- Get window/workDoneProgress from lsp server{{{
+    -- Get window/workDoneProgress from lsp server
     local lsp_status_loaded, lsp_status = pcall(require, "lsp-status")
     if lsp_status_loaded then
         capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
     else
         print("lspconfig - capabilities: lsp-status missing")
         return
-    end--}}}
+    end
 
     return capabilities
 end
 
 -- Configure lsp on_attach function
 M.custom_on_attach = function(client, bufnr)
-    -- LSP mappings{{{
+    -- LSP mappings
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -103,9 +103,9 @@ M.custom_on_attach = function(client, bufnr)
     --     })
     -- else
     --     return
-    -- end--}}}
+    -- end
 
-    -- LSP status{{{
+    -- LSP status
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.
     local illuminate_loaded, illuminate = pcall(require, "illuminate")
@@ -121,7 +121,7 @@ M.custom_on_attach = function(client, bufnr)
     else
         print("lspconfig - on_attach: lsp-status missing")
         return
-    end--}}}
+    end
 end
 
 return M

@@ -69,7 +69,7 @@ lsp_installer.on_server_ready(function(server)
 	-- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
 	local server_opts = {
         --[[
-        ["omnisharp"] = function()--{{{
+        ["omnisharp"] = function()
             local pid = vim.fn.getpid()
 			local omnisharp_bin = vim.fn.trim(vim.fn.system("which omnisharp"))
 
@@ -84,12 +84,12 @@ lsp_installer.on_server_ready(function(server)
             default_opts.capabilities = custom_capabilities
 
             return default_opts
-        end,--}}}
+        end,
         ]]
-        ["sumneko_lua"] = function()--{{{
+        ["sumneko_lua"] = function()
 
             if edit_mode then
-                --{{{ add nvim and nvim-data folders in workspace library
+                -- add nvim and nvim-data folders in workspace library
                 local nvim_library = {}
                 local runtime_path = vim.split(package.path, ";")
 
@@ -142,9 +142,9 @@ lsp_installer.on_server_ready(function(server)
                             enable = false,
                         },
                     },
-                }--}}}
+                }
             else
-                --{{{ add only project root folder in workspace library
+                -- add only project root folder in workspace library
                 default_opts.settings = {
                     Lua = {
                         runtime = {
@@ -154,14 +154,14 @@ lsp_installer.on_server_ready(function(server)
                             enable = false,
                         },
                     },
-                }--}}}
+                }
             end
 
             default_opts.on_attach = custom_on_attach
             default_opts.capabilities = custom_capabilities
 
             return default_opts
-        end--}}}
+        end
 	}
 
 	-- We check to see if any custom server_opts exist for the LSP server, if so, load them, if not, use our default_opts

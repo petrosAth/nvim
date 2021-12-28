@@ -10,23 +10,23 @@ local custom_on_attach = lsp_cfg.custom_on_attach
 
 -- Setup language servers
 for _, name in ipairs(servers) do
-    if name == "omnisharp" then--{{{
+    if name == "omnisharp" then
         local pid = vim.fn.getpid()
         local omnisharp_bin = vim.fn.trim(vim.fn.system("which omnisharp"))
         lspconfig[name].setup({
             on_attach = custom_on_attach,
             capabilities = custom_capabilities,
             cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
-        })--}}}
-    elseif name == "powershell_es" then--{{{
+        })
+    elseif name == "powershell_es" then
         lspconfig[name].setup({
             on_attach = custom_on_attach,
             capabilities = custom_capabilities,
             bundle_path = "C:\\Users\\petrosAth\\.vscode\\extensions\\ms-vscode.powershell-2021.10.2\\modules",
-        })--}}}
-    elseif name == "sumneko_lua" then--{{{
+        })
+    elseif name == "sumneko_lua" then
         if edit_mode then
-            --{{{ add nvim and nvim-data folders in workspace library
+            -- add nvim and nvim-data folders in workspace library
             local nvim_library = {}
             local runtime_path = vim.split(package.path, ";")
 
@@ -80,9 +80,9 @@ for _, name in ipairs(servers) do
                         },
                     },
                 }
-            })--}}}
+            })
         else
-            --{{{ add only project root folder in workspace library
+            -- add only project root folder in workspace library
             lspconfig[name].setup({
                 on_attach = custom_on_attach,
                 capabilities = custom_capabilities,
@@ -96,8 +96,8 @@ for _, name in ipairs(servers) do
                         },
                     },
                 }
-            })--}}}
-        end--}}}
+            })
+        end
     else
         lspconfig[name].setup({
             on_attach = custom_on_attach,

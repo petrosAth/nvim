@@ -3,18 +3,18 @@ local cb = require("cosmetics").border.table
 
 local M = {}
 
-M.borderchars = {--{{{
+M.borderchars = {
  -- prompt  = {   "─",   "│",   " ",   "│",   "╭",   "╮",   "│",   "│"  },
     prompt  = {  cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
  -- results = {   "─",   "│",   "─",   "│",   "├",   "┤",  "╯",  "╰"  },
     results = {  cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
  -- preview = {   "─",   "│",   "─",   "│",   "╭",   "╮",  "╯",  "╰"  },
     preview = {  cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
-}--}}}
+}
 
 -- Customize buffers display to look like LeaderF
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
-function M.custom_buffers(opts)--{{{
+function M.custom_buffers(opts)
     local devicons = require"nvim-web-devicons"
     local entry_display = require("telescope.pickers.entry_display")
 
@@ -90,51 +90,51 @@ function M.custom_buffers(opts)--{{{
             dir_name = dir_name,
         }
     end
-end--}}}
+end
 
 -- Custom telescope pickers
 -- Return lsp workspace root dir if exists, else return cwd
--- local function custom_cwd()--{{{
+-- local function custom_cwd()
 --     local exists, lsp_cwd = pcall(vim.lsp.buf.list_workspace_folders)
 --     if (exists) then
 --         return lsp_cwd[1]
 --     else
 --         return vim.fn.getcwd()
 --     end
--- end--}}}
+-- end
 
-function M.find_files()--{{{
+function M.find_files()
     builtin.find_files {
         -- cwd = custom_cwd(),
         results_title = "File search",
 		prompt_title = false
     }
-end--}}}
+end
 
-function M.find_recent()--{{{
+function M.find_recent()
     require("telescope").extensions.frecency.frecency {
         results_title = "Recent",
 		prompt_title = false
     }
-end--}}}
+end
 
-function M.live_grep()--{{{
+function M.live_grep()
     builtin.live_grep {
         -- cwd = custom_cwd(),
         results_title = "ripGREP search",
         prompt_title = false
     }
-end--}}}
+end
 
-function M.file_browser()--{{{
+function M.file_browser()
     builtin.file_browser {
         -- cwd = custom_cwd(),
         results_title = "File explorer",
         prompt_title = false,
     }
-end--}}}
+end
 
-function M.project()--{{{
+function M.project()
     require('telescope').extensions.project.project{
         display_type = 'full',
         prompt_title = false,
@@ -143,9 +143,9 @@ function M.project()--{{{
             height = 0.6
         }
     }
-end--}}}
+end
 
-function M.buffers()--{{{
+function M.buffers()
     builtin.buffers {
         entry_maker = M.custom_buffers(),
         previewer = false,
@@ -155,10 +155,10 @@ function M.buffers()--{{{
             height = 0.6
         }
     }
-end--}}}
+end
 
-function M.registers(opts)--{{{
-    if opts == "small" then--{{{
+function M.registers(opts)
+    if opts == "small" then
         builtin.registers {
             results_title = "Registers",
             prompt_title = false,
@@ -173,8 +173,8 @@ function M.registers(opts)--{{{
                 results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl },
                 preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
             }
-            }--}}}
-    elseif opts == "large" then--{{{
+            }
+    elseif opts == "large" then
         builtin.registers {
             results_title = "Registers",
             prompt_title = false,
@@ -183,10 +183,10 @@ function M.registers(opts)--{{{
                 height = 0.99
             },
         }
-    end--}}}
-end--}}}
+    end
+end
 
-function M.lsp_code_actions()--{{{
+function M.lsp_code_actions()
     builtin.lsp_code_actions({
         results_title = "LSP Code actions",
         prompt_title = false,
@@ -203,9 +203,9 @@ function M.lsp_code_actions()--{{{
             preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
         }
     })
-end--}}}
+end
 
-function M.lsp_references()--{{{
+function M.lsp_references()
     builtin.lsp_references({
         results_title = "LSP References",
         prompt_title = false,
@@ -218,9 +218,9 @@ function M.lsp_references()--{{{
             height = 30
         }
     })
-end--}}}
+end
 
-function M.lsp_definitions()--{{{
+function M.lsp_definitions()
     builtin.lsp_definitions({
         results_title = "LSP Definitions",
         prompt_title = false,
@@ -233,6 +233,6 @@ function M.lsp_definitions()--{{{
             height = 30
         }
     })
-end--}}}
+end
 
 return M
