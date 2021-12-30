@@ -19,4 +19,4 @@ npairs.setup{
     },
 }
 
-require("plugins-cfg.autopairs-cfg.rules").add_rules()
+require("config.autopairs.rules").add_rules()

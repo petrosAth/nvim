@@ -1,17 +1,7 @@
-local lsp_cfg = require("plugins-cfg.lsp-cfg")
+local lsp_cfg = require("config.lsp")
 local lsp_installer = require("nvim-lsp-installer")
 local edit_mode = require("options").nvim_edit_mode
 local ci = require("cosmetics").icon
-
--- Disables the self-closing behavior of the window
--- vim.cmd([[
---     augroup LSP_INSTALLER_WIN
---         function! s:deregister_autocmd() abort
---             autocmd TextChanged <buffer> ++once autocmd! LspInstallerWindow
---         endfunction
---         autocmd FileType lsp-installer wincmd L | call s:deregister_autocmd()
---     augroup END
--- ]])
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers
@@ -50,7 +40,7 @@ for _, name in pairs(servers) do
 	-- Check that the server is supported in nvim-lsp-installer
 	if ok then
 		if not server:is_installed() then
-			print("Installing " .. name)
+            require("notify")("Installing " .. name .. " language server.", "info", { title = "LSP Installer" })
 			server:install()
 		end
 	end

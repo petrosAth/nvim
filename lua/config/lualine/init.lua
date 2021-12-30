@@ -1,4 +1,4 @@
-local components = require("plugins-cfg.lualine-cfg.components")
+local components = require("config.lualine.components")
 local lualine = require("lualine")
 
 lualine.setup({

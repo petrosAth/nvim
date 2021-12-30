@@ -7,21 +7,18 @@ Still a work in progress.
 - [x] Add window number in lualine
 - [x] Add gitsigns in lualine
 - [x] Try treesitter folding - reddit [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
-- [ ] :h mark-motions
-- [ ] Revisit nvim-cmp menu
-- [ ] Migrate to WSL / maybe WSL2g
-- [ ] Look into parameters comments
-- [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
-- [ ] Plugin reloading
-- [ ] Organize my custom highlight groups
 - [x] Revisit FileType and BufEnter autocommands
 - [x] Add comment string snippets and telescope finder
-- [ ] Rethink/research the folder structure
-- [ ] Add ftplugin/
-- [ ] Add calltree
-- [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
+- [x] :h mark-motions
+- [ ] Research the folder structure
+- [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
+- [ ] Plugin reloading
+- [ ] Revisit nvim-cmp menu
 - [ ] lazyload everything possible
-- [ ] add pcall when plugins are called
+- [ ] Organize my custom highlight groups
+- [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
+- [ ] Migrate to WSL / maybe WSL2g
+- [ ] Add debugger
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -33,10 +30,9 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | ----------- | ----------- |
-| [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
-| [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 | [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
-| [aerial.nvim](https://github.com/stevearc/aerial.nvim) | Neovim plugin for a code outline window |
+| [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+| [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
 | Themes |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |
@@ -59,6 +55,7 @@ Still a work in progress.
 | [dressing](https://github.com/stevearc/dressing.nvim) | Neovim plugin to improve the default vim.ui interfaces |
 | [cosmic-ui](https://github.com/CosmicNvim/cosmic-ui) | Cosmic-UI is a simple wrapper around specific vim functionality. Built in order to provide a quick and easy way to create a Cosmic UI experience with Neovim! |
 | Treesitter |
+| [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs) | Code documentation built with treesitter |
 | [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
 | Git |
 | [Neogit](https://github.com/TimUntersberger/neogit) | magit for neovim. |
@@ -79,7 +76,7 @@ Still a work in progress.
 
 ## <a name="sources"></a>Sources
 - Heavily inspired from [Neelfrost](https://github.com/Neelfrost/dotfiles), a lot of times mercilessly copy pasting especially at the beggining.
-- [Neil Sabde](https://github.com/VapourNvim/VapourNvim) was extremely helpful when I first dove in Vim/Neovim customization world especially with his [Neovim Lua From Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V) Youtube series.
+- [Neil Sabde](https://github.com/VapourNvim/VapourNvim) was extremely helpful when I first dove in Vim/Neovim customization world with his [Neovim Lua From Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V) Youtube series.
 - [Getting started using Lua in Neovim](https://github.com/nanotee/nvim-lua-guide)
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim)
 - [NvChad](https://github.com/NvChad/NvChad)

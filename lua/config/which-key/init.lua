@@ -70,8 +70,8 @@ wk.setup({
     },
 })
 
-require("plugins-cfg.which-key.mappings-plugin")
-require("plugins-cfg.which-key.mappings-system")
+require("config.which-key.mappings-plugin")
+require("config.which-key.mappings-system")
 
 -- Code snippets
 -- For future reference - https://github.com/folke/which-key.nvim/issues/165#issuecomment-921332940

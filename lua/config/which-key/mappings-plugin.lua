@@ -1,5 +1,5 @@
 local wk = require("which-key")
-local tele_custom = "<cmd>lua require('plugins-cfg.telescope-cfg.customPickers')."
+local tele_custom = "<cmd>lua require('config.telescope.customPickers')."
 local tele_builtin = "<cmd>lua require('telescope.builtin')."
 local hop = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection."
 
@@ -33,7 +33,7 @@ wk.register({
             d = { "<cmd>Alpha<cr>",          "Show dashboard"           }, -- alpha
             i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
             I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }, -- lsp-installer
-            -- U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer
+            U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer
         }
     },
     ["<space>"] = {
@@ -79,14 +79,15 @@ wk.register({
         },
         l = {
             name = "LSP",
-            H = { "<cmd>lua vim.diagnostic.open_float()<cr>",  "Line diagnostics"     }, -- lspconfig
-            R = { "<cmd>lua vim.lsp.buf.rename()<cr>",         "Rename symbol"        }, -- lspconfig
-            s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signagture help"      }, -- lspconfig
-            a = { tele_custom .. "lsp_code_actions()<cr>",     "Code actions"         }, -- lspconfig -- telescope
-            r = { tele_custom .. "lsp_references()<cr>",       "References"           }, -- lspconfig -- telescope
-            D = { tele_custom .. "lsp_definitions()<cr>",      "Definitions"          }, -- lspconfig -- telescope
-            h = { "<cmd>lua vim.lsp.buf.hover()<cr>",          "Hover symbol"         }, -- lspconfig
-            d = { "<cmd>Trouble document_diagnostics<cr>",     "Document diagnostics" }  -- lspconfig -- trouble
+            H = { "<cmd>lua vim.diagnostic.open_float()<cr>",  "Line diagnostics"      }, -- lspconfig
+            R = { "<cmd>lua vim.lsp.buf.rename()<cr>",         "Rename symbol"         }, -- lspconfig
+            s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signagture help"       }, -- lspconfig
+            a = { tele_custom .. "lsp_code_actions()<cr>",     "Code actions"          }, -- lspconfig -- telescope
+            r = { tele_custom .. "lsp_references()<cr>",       "References"            }, -- lspconfig -- telescope
+            K = { tele_custom .. "lsp_definitions()<cr>",      "Definitions"           }, -- lspconfig -- telescope
+            h = { "<cmd>lua vim.lsp.buf.hover()<cr>",          "Hover symbol"          }, -- lspconfig
+            d = { "<cmd>Trouble document_diagnostics<cr>",     "Document diagnostics"  }, -- lspconfig -- trouble
+            D = { "<cmd>Trouble workspace_diagnostics<cr>",    "Workspace diagnostics" }  -- lspconfig -- trouble
         },
         m = {
             name = "Minimap",
@@ -111,17 +112,21 @@ wk.register({
         },
         s = {
             name = "Search",
-            f = { tele_builtin .. "find_files()<cr>",      "File search"        }, -- telescope
             e = { tele_custom  .. "file_browser()<cr>",    "File browser"       }, -- telescope
-            r = { tele_custom  .. "find_recent()<cr>",     "Find recent"        }, -- telescope
+            f = { tele_builtin .. "find_files()<cr>",      "File search"        }, -- telescope
             g = { tele_custom  .. "live_grep()<cr>",       "ripGREP"            }, -- telescope
-            p = { tele_custom  .. "project()<cr>",         "Projects"           }, -- telescope
-            o = { tele_builtin .. "vim_options()<cr>",     "Vim options"        }, -- telescope
             H = { tele_builtin .. "highlights()<cr>",      "Highlight groups"   }, -- telescope
             h = { tele_builtin .. "help_tags()<cr>",       "Vim help"           }, -- telescope
-            t = { tele_builtin .. "builtin()<cr>",         "Telescope builtin"  }, -- telescope
-            c = { tele_builtin .. "command_history()<cr>", "Command history"    }, -- telescope
-            T = { "<cmd>TodoTelescope<cr>",                "Show TODO comments" }  -- todo-comments
+            n = { tele_custom  .. "notify()<cr>",          "Notify history"     }, -- telescope -- notify
+            o = { tele_builtin .. "vim_options()<cr>",     "Vim options"        }, -- telescope
+            p = { tele_custom  .. "project()<cr>",         "Projects"           }, -- telescope
+            r = { tele_custom  .. "find_recent()<cr>",     "Find recent"        }, -- telescope
+            T = { "<cmd>TodoTelescope<cr>",                "Show TODO comments" },  -- todo-comments
+            t = {
+                name = "Telescope",
+                b = { tele_builtin .. "builtin()<cr>",         "Telescope builtin"  }, -- telescope
+                c = { tele_builtin .. "command_history()<cr>", "Command history"    }  -- telescope
+            }
         },
         u     = { "<cmd>UndotreeToggle<cr>", "Toggle undo tree" } -- undotree
     }

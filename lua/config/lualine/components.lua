@@ -132,12 +132,12 @@ M.current_mode = function()
 	local buffer_name = fn.expand("%:t")
     local mode = require("lualine.utils.mode").get_mode()
 	local mode_plugins = {
-		NvimTree = "NvimTree",
-		packer   = "Packer",
-		alpha    = "Alpha",
+        alpha    = "Alpha",
         minimap  = "Minimap",
+		NvimTree = "NvimTree",
         Outline  = "Outline",
-        Trouble  = "Trouble",
+		packer   = "Packer",
+        Trouble  = "Trouble"
 	}
 
 	-- Return mode if in command mode
@@ -147,6 +147,7 @@ M.current_mode = function()
 
 	-- Return plugin name
 	for k, v in pairs(mode_plugins) do
+
 		if bo.filetype == k or buffer_name == k then
 			return v
 		end
@@ -271,6 +272,7 @@ M.lines_per_total = function()
     end
 end
 
+-- nvim-treesitter
 M.treesitter_status = function()
     if M.is_plugin() then
         return ""
@@ -325,6 +327,7 @@ M.lsp_clients = function()
     end
 end
 
+-- lsp-status.nvim
 M.lsp_diagnostics = function()
     if M.is_plugin() then
         return ""
@@ -333,49 +336,44 @@ M.lsp_diagnostics = function()
         if not next(lsp_clients) then
             return ""
         else
-            local lsp_status_loaded = pcall(require, "lsp-status")
-            if lsp_status_loaded then
-                local lsp_diagnostics = require("lsp-status").diagnostics
-                local bufnr = vim.api.nvim_get_current_buf()
+            local lsp_diagnostics = require("lsp-status").diagnostics
+            local bufnr = vim.api.nvim_get_current_buf()
 
-                local d_color = {
-                    errors   = "%#DiagnosticError#",
-                    warnings = "%#DiagnosticWarn#",
-                    info     = "%#DiagnosticInfo#",
-                    hints    = "%#DiagnosticHint#"
-                }
-                local d_symbol = {
-                    errors   = ci.error[1] .. " ",
-                    warnings = ci.warn[1] .. " ",
-                    info     = ci.info[1] .. " ",
-                    hints    = ci.hint[1] .. " "
-                }
-                local d_info = {
-                    errors   = lsp_diagnostics(bufnr).errors,
-                    warnings = lsp_diagnostics(bufnr).warnings,
-                    info     = lsp_diagnostics(bufnr).info,
-                    hints    = lsp_diagnostics(bufnr).hints
-                }
-                local d_status = {
-                    signs        = {},
-                    only_symbols = {}
-                }
-                for _, name in ipairs{ "errors", "warnings", "info", "hints" } do
-                    if lsp_diagnostics(bufnr)[name] and lsp_diagnostics(bufnr)[name] > 0 then
-                        table.insert(d_status.signs, d_color[name] .. d_symbol[name] .. d_info[name])
-                        table.insert(d_status.only_symbols, d_color[name] .. d_symbol[name])
-                    end
+            local d_color = {
+                errors   = "%#DiagnosticError#",
+                warnings = "%#DiagnosticWarn#",
+                info     = "%#DiagnosticInfo#",
+                hints    = "%#DiagnosticHint#"
+            }
+            local d_symbol = {
+                errors   = ci.error[1] .. " ",
+                warnings = ci.warn[1] .. " ",
+                info     = ci.info[1] .. " ",
+                hints    = ci.hint[1] .. " "
+            }
+            local d_count = {
+                errors   = lsp_diagnostics(bufnr).errors,
+                warnings = lsp_diagnostics(bufnr).warnings,
+                info     = lsp_diagnostics(bufnr).info,
+                hints    = lsp_diagnostics(bufnr).hints
+            }
+            local d_status = {
+                signs      = {},
+                count_only = {}
+            }
+            for _, name in ipairs{ "errors", "warnings", "info", "hints" } do
+                if lsp_diagnostics(bufnr)[name] and lsp_diagnostics(bufnr)[name] > 0 then
+                    table.insert(d_status.signs, d_color[name] .. d_symbol[name] .. d_count[name])
+                    table.insert(d_status.count_only, d_color[name] .. d_count[name])
                 end
-
-                return d_status
-            else
-                require("notify")("'plugins.lualine.components' - lsp-status not loaded", "error", { title = "Lualine" })
-                return
             end
+
+            return d_status
         end
     end
 end
 
+-- lsp-status.nvim
 M.lsp_status = function()
     if M.is_plugin() then
         return ""
@@ -384,94 +382,83 @@ M.lsp_status = function()
         if not next(lsp_clients) then
             return ""
         else
-            local lsp_status_loaded = pcall(require, "lsp-status")
-            if lsp_status_loaded then
-                local lsp_progress = require("lsp-status").status_progress()
+            local lsp_progress = require("lsp-status").status_progress()
 
-                if lsp_progress == "" then
-                    if not next(M.lsp_diagnostics().signs) then
-                        return M.print_for_width({
-                            autofill = true,
-                            XL = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
-                            L  = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
-                            M  = "LSP",
-                            S  = "",
-                            _  = ""
-                        })
-                    else
-                        return M.print_for_width({
-                            autofill = true,
-                            L  = " " .. table.concat(M.lsp_diagnostics().signs, " "),
-                            M  = table.concat(M.lsp_diagnostics().signs, " "),
-                            _  = table.concat(M.lsp_diagnostics().only_symbols, " "),
-                        })
-                    end
+            if lsp_progress == "" then
+                if not next(M.lsp_diagnostics().signs) then
+                    return M.print_for_width({
+                        autofill = true,
+                        XL = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                        L  = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                        M  = "LSP",
+                        S  = "",
+                        _  = ""
+                    })
                 else
                     return M.print_for_width({
-                        XL = " " .. lsp_progress,
+                        autofill = true,
+                        L  = " " .. table.concat(M.lsp_diagnostics().signs, " "),
+                        M  = table.concat(M.lsp_diagnostics().signs, " "),
+                        _  = table.concat(M.lsp_diagnostics().count_only, " "),
                     })
                 end
             else
-                require("notify")("'plugins.lualine.components' - lsp-status not loaded", "error", { title = "Lualine" })
-                return
+                return M.print_for_width({
+                    XL = " " .. lsp_progress,
+                })
             end
         end
     end
 end
 
+-- gitsigns.nvim
 M.git_status = function()
     if M.is_plugin() then
         return ""
     else
-        local gitsigns_loaded = pcall(require, "gitsigns")
-        if gitsigns_loaded then
-            local gitsigns = vim.b.gitsigns_status_dict or {head = "", added = 0, changed = 0, removed = 0}
-            if gitsigns.head ~= "" then
-                local gs_color = {
-                    head    = "",
-                    added   = "%#DiffAdd#",
-                    changed = "%#DiffChange#",
-                    removed = "%#DiffDelete#"
-                }
-                local gs_symbol = {
-                    head    = "",
-                    added   = "  ",
-                    changed = "  ",
-                    removed = "  "
-                }
-                local gs_info = {
-                    head    = gitsigns.head,
-                    added   = gitsigns.added,
-                    changed = gitsigns.changed,
-                    removed = gitsigns.removed
-                }
-                local gs_status = {
-                    head    = {},
-                    signs   = {},
-                    symbols = {}
-                }
-                for _, name in ipairs{ "head", "added", "changed", "removed" } do
-                    if name == "head" then
-                        table.insert(gs_status.head, gs_color[name] .. gs_symbol[name] .. gs_info[name])
-                    elseif gitsigns[name] and gitsigns[name] > 0 then
-                        table.insert(gs_status.signs, gs_color[name] .. gs_symbol[name] .. gs_info[name])
-                        table.insert(gs_status.symbols, gs_color[name] .. gs_symbol[name])
-                    end
+        local gitsigns = vim.b.gitsigns_status_dict or {head = "", added = 0, changed = 0, removed = 0}
+        if gitsigns.head ~= "" then
+            local gs_color = {
+                head    = "",
+                added   = "%#DiffAdd#",
+                changed = "%#DiffChange#",
+                removed = "%#DiffDelete#"
+            }
+            local gs_symbol = {
+                head    = "",
+                added   = "  ",
+                changed = "  ",
+                removed = "  "
+            }
+            local gs_count = {
+                head    = gitsigns.head,
+                added   = gitsigns.added,
+                changed = gitsigns.changed,
+                removed = gitsigns.removed
+            }
+            local gs_status = {
+                head        = {},
+                signs       = {},
+                count_only  = {}
+            }
+            for _, name in ipairs{ "head", "added", "changed", "removed" } do
+                if name == "head" then
+                    table.insert(gs_status.head, gs_color[name] .. gs_symbol[name] .. gs_count[name])
+                elseif gitsigns[name] and gitsigns[name] > 0 then
+                    table.insert(gs_status.signs, gs_color[name] .. gs_symbol[name] .. gs_count[name])
+                    table.insert(gs_status.count_only, gs_color[name] .. gs_count[name])
                 end
-
-                return M.print_for_width({
-                    XL = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                    L  = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                    M  = gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                    S  = table.concat(gs_status.symbols, ""),
-                    _  = ""
-                })
-            else
-                return ""
             end
+
+            return M.print_for_width({
+                XL = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                L  = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                M  = gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                S  = table.concat(gs_status.count_only, " "),
+                _  = ""
+            })
         else
-            require("notify")("'plugins.lualine.components' - gitsigns not loaded", "error", { title = "Lualine" })
-            return
+            return ""
         end
     end
 end

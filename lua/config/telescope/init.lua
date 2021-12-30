@@ -1,7 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
-local custom_pickers = require("plugins-cfg.telescope-cfg.customPickers")
+local custom_pickers = require("config.telescope.customPickers")
 local trouble = require("trouble.providers.telescope")
 local ct = require("cosmetics").variables.transparency
 local ci = require("cosmetics").icon
@@ -53,7 +53,8 @@ telescope.setup({
 		sorting_strategy = "descending",
 		file_ignore_patterns = { "^.git", "tags" },
         history = {
-            path = DATA_PATH .. "\\databases\\telescope_history",
+            -- TODO: LINUX - set telescope history file path
+            -- path = DATA_PATH .. "\\databases\\telescope_history",
             limit = 100
         },
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -63,69 +64,86 @@ telescope.setup({
 		gflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 		mappings = {
 			i = {
-				["<C-x>"] = false,
-				["<C-s>"] = actions.select_horizontal,
-                ["<C-c>"] = false,
-                ["<C-y>"] = actions.select_default,
-				["<C-q>"] = actions.close,
-                ["<M-q>"] = trouble.smart_open_with_trouble,
-                ["<M-p>"] = actions_layout.toggle_preview,
-                ["<Leader>f"] = function(prompt_bufnr)
+                ["<c-n>"]     = actions.move_selection_next,
+                ["<c-p>"]     = actions.move_selection_previous,
+                ["<c-q>"]     = actions.close,
+                ["<c-y>"]     = actions.select_default,
+                ["<cr>"]      = actions.select_default,
+				["<c-s>"]     = actions.select_horizontal,
+                ["<c-v>"]     = actions.select_vertical,
+                ["<c-t>"]     = actions.select_tab,
+                ["<c-u>"]     = actions.preview_scrolling_up,
+                ["<c-d>"]     = actions.preview_scrolling_down,
+                ["<c-l>"]     = actions.complete_tag,
+                ["<c-_>"]     = actions.which_key, -- keys from pressing <C-/>
+                ["<m-q>"]     = trouble.smart_open_with_trouble,
+                ["<m-p>"]     = actions_layout.toggle_preview,
+                ["<s-tab>"]   = actions.cycle_history_next,
+                ["<tab>"]     = actions.cycle_history_prev,
+                ["<leader>f"] = function(prompt_bufnr)
                     local opts = {
                         callback = actions.toggle_selection,
                     }
                     require("telescope").extensions.hop._hop(prompt_bufnr, opts)
                 end,
-                ["<Leader>F"] = function(prompt_bufnr)
+                ["<leader>F"] = function(prompt_bufnr)
                     local opts = {
                         callback = actions.toggle_selection,
                         loop_callback = trouble.smart_open_with_trouble,
                     }
                     require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
                 end,
-                ["<S-Tab>"] = actions.cycle_history_next,
-                ["<Tab>"] = actions.cycle_history_prev,
 			},
 			n = {
-				["<C-n>"] = actions.move_selection_next,
-				["<C-p>"] = actions.move_selection_previous,
-				["<C-x>"] = false,
-				["<C-s>"] = actions.select_horizontal,
-                ["l"]     = actions.toggle_selection,
-                ["<C-k>"] = actions.toggle_selection + actions.move_selection_worse,
-                ["<C-j>"] = actions.toggle_selection + actions.move_selection_better,
-                ["<M-q>"] = trouble.smart_open_with_trouble,
-                ["<M-p>"] = actions_layout.toggle_preview,
-                ["<Leader>f"] = function(prompt_bufnr)
+				["<c-q>"]     = actions.close,
+                ["<cr>"]      = actions.select_default,
+                ["<c-s>"]     = actions.select_horizontal,
+                ["<c-v>"]     = actions.select_vertical,
+                ["<c-t>"]     = actions.select_tab,
+                ["<c-k>"]     = actions.toggle_selection + actions.move_selection_worse,
+                ["<c-j>"]     = actions.toggle_selection + actions.move_selection_better,
+				["<c-n>"]     = actions.move_selection_next,
+				["<c-p>"]     = actions.move_selection_previous,
+                ["gg"]        = actions.move_to_top,
+                ["G"]         = actions.move_to_bottom,
+                ["l"]         = actions.toggle_selection,
+                ["<c-u>"]     = actions.preview_scrolling_up,
+                ["<c-d>"]     = actions.preview_scrolling_down,
+                ["?"]         = actions.which_key,
+                ["<m-q>"]     = trouble.smart_open_with_trouble,
+                ["<m-p>"]     = actions_layout.toggle_preview,
+                ["<s-tab>"]   = actions.cycle_history_next,
+                ["<tab>"]     = actions.cycle_history_prev,
+                ["<leader>f"] = function(prompt_bufnr)
                     local opts = {
                         callback = actions.toggle_selection,
                     }
                     require("telescope").extensions.hop._hop(prompt_bufnr, opts)
                 end,
-                ["<Leader>F"] = function(prompt_bufnr)
+                ["<leader>F"] = function(prompt_bufnr)
                     local opts = {
                         callback = actions.toggle_selection,
                         loop_callback = trouble.smart_open_with_trouble,
                     }
                     require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
                 end,
-                ["<S-Tab>"] = actions.cycle_history_next,
-                ["<Tab>"] = actions.cycle_history_prev,
 			},
 		},
 	},
 	extensions = {
 		frecency = {
-            db_root = DATA_PATH .. "\\databases",
+            -- TODO: LINUX - set frecency database file path
+            -- db_root = DATA_PATH .. "\\databases",
             show_scores = true,
             show_unindexed = true,
             ignore_patterns = {"*.git/*", "*/tmp/*"},
             disable_devicons = false,
             workspaces = {
-                [".config"]     = "$HOME\\.config",
+                -- TODO: linux - set workspaces' paths
+                -- [".config"]     = "$HOME\\.config",
                 ["nvim config"] = CONFIG_PATH,
                 ["nvim data"]   = DATA_PATH,
-                ["projects"]    = "H:\\Projects",
+                -- ["projects"]    = "H:\\Projects",
             }
 		},
 		fzf = {
@@ -157,6 +175,7 @@ telescope.setup({
             reset_selection = true,
         },
         project = {
+            -- TODO: LINUX - set telescope project dirs' paths
             -- base_dirs = {
             --     {path = "H:\\Projects", max_depth = 2},
             --     {path = "H:\\Projects\\Learning", max_depth = 5},

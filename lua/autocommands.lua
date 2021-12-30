@@ -1,9 +1,10 @@
-vim.cmd([[
-    augroup q_close
-        autocmd!
-        autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
-    augroup END
-]])
+-- NOTE: try alt-q
+-- vim.cmd([[
+--     augroup q_close
+--         autocmd!
+--         autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
+--     augroup END
+-- ]])
 
 -- Restore terminal cursor after quit
 vim.cmd([[

@@ -38,6 +38,7 @@ M.icon = {
     loading  = {
         circle = {
             "◝", "◞", "◟", "◜"
+            -- 
         },
         braille = {
             "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾"
@@ -96,7 +97,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...) opts = 
 opts.border = opts.border or borders return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-function M.dracula()
+function M.colorscheme()
 	-- Set theme
 	vim.cmd([[colorscheme dracula]])
 end

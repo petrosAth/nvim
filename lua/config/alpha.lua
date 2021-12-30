@@ -10,7 +10,7 @@ vim.cmd([[
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 local ci = require("cosmetics").icon
-local tele_custom = "<cmd> lua require('plugins-cfg.telescope-cfg.customPickers')."
+local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
 local function set_button(sc, txt, keybind, keybind_opts)
     local button = dashboard.button(sc, txt, keybind, keybind_opts)

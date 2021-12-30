@@ -15,5 +15,6 @@ g.Illuminate_ftblacklist = {
     "minimap",
     "NvimTree",
     "Outline",
-    "TelescopePrompt"
+    "TelescopePrompt",
+    "Trouble"
 }

@@ -1,5 +1,5 @@
 local lsp_status = require("lsp-status")
-local lspkind_symbols = require("plugins-cfg.lsp-cfg.lspkind-cfg").symbols
+local lspkind_symbols = require("config.lsp.lspkind").symbols
 local ci = require("cosmetics").icon
 local M = {}
 

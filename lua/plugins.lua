@@ -1,24 +1,104 @@
-local packer = require("plugins-cfg.packer-cfg")
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- vim.cmd([[
+--     augroup packer_user_config
+--         autocmd!
+--         autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--     augroup end
+-- ]])
+
+local fn = vim.fn
+local install_path = nil
+
+if fn.has("unix") == 1 then
+    install_path = PACKER_PATH .. "/start/packer.nvim"
+elseif fn.has('win32') == 1 then
+    install_path = PACKER_PATH .. "\\start\\packer.nvim"
+else
+    print("OS not found, plugin folder could not be deleted!")
+end
+
+-- Automatically install packer
+if fn.empty(fn.glob(install_path)) > 0 then
+    PACKER_BOOTSTRAP = fn.system({
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    })
+    print("Installing packer close and reopen Neovim...")
+    vim.cmd([[packadd packer.nvim]])
+end
+
+-- Use a protected call so we don't error out on first use
+local packer_loaded = pcall(require, "packer")
+if not packer_loaded then
+    return
+end
+
+local packer = require("config.packer")
 local use = packer.use
 
 return packer.startup(function()
 -- Packer
     use{ "wbthomason/packer.nvim" } -- https://github.com/wbthomason/packer.nvim
 
+-- Cosmetics -------------------------------------------------------------------
+    -- dracula -- color theme
+    use{
+        "dracula/vim", -- https://github.com/dracula/vim
+        as = "dracula",
+        config = function()
+            require("cosmetics").colorscheme()
+        end,
+    }
+
+    -- nvim-web-devicons - lua `fork` of vim-web-devicons for neovim
+    use{
+		"kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
+		config = function()
+            require("nvim-web-devicons").setup()
+		end,
+	}
+
+    -- neoscroll.nvim - Smooth scrolling neovim plugin written in lua
+    use{
+        "karb94/neoscroll.nvim", -- https://github.com/karb94/neoscroll.nvim
+        config = function()
+            require("config.neoscroll")
+        end,
+    }
+
+    -- alpha-nvim - A fast and highly customizable greeter for neovim
+    use{
+        "goolord/alpha-nvim", -- https://github.com/goolord/alpha-nvim
+        requires = "nvim-web-devicons",
+        config = function()
+            require("config.alpha")
+        end,
+    }
+
+    -- nvim-notify -- A fancy, configurable, notification manager for NeoVim
+    use{
+        "rcarriga/nvim-notify", -- https://github.com/rcarriga/nvim-notify
+        config = function ()
+            require("config.notify")
+        end
+    }
+--------------------------------------------------------------------------------
+
 -- Autocompletion and Syntax highlighting --------------------------------------
     -- nvim-lspconfig - Neovim's built-in language server client.
     use{
         "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
         after = "cmp-nvim-lsp",
-        -- config = function()
-        --     require("plugins-cfg.lsp-cfg.lspconfig-languageServers")
-        -- end,
         requires = {
             -- lsp-status.nvim - Utility functions for getting diagnostic status and progress messages from LSP servers
             {
                 "nvim-lua/lsp-status.nvim", -- https://github.com/nvim-lua/lsp-status.nvim
                 config = function()
-                    require("plugins-cfg.lsp-cfg.lsp-status-cfg").config()
+                    require("config.lsp.lsp-status").config()
                 end
             },
             -- nvim-lsp-installer - Seamlessly manage LSP servers locally with :LspInstall
@@ -26,29 +106,29 @@ return packer.startup(function()
                 "williamboman/nvim-lsp-installer", -- https://github.com/williamboman/nvim-lsp-installer
                 after = { "lsp-status.nvim", "cmp-nvim-lsp" },
                 config = function()
-                    require("plugins-cfg.lsp-cfg.nvim-lsp-installer-cfg")
+                    require("config.lsp.nvim-lsp-installer")
                 end
             },
-            -- lsp_signature - LSP signature hint as you type
+           -- lsp_signature - LSP signature hint as you type
             {
                 "ray-x/lsp_signature.nvim", -- https://github.com/ray-x/lsp_signature.nvim
                 after = "nvim-lspconfig",
                 config = function()
-                    require("plugins-cfg.lsp-cfg.lsp-signature-cfg")
+                    require("config.lsp.lsp-signature")
                 end
             },
             -- nvim-lightbulb - VSCode action for neovim's built-in LSP
             {
                 "kosayoda/nvim-lightbulb", -- https://github.com/kosayoda/nvim-lightbulb
                 config = function()
-                    require("plugins-cfg.lsp-cfg.nvim-lightbulb-cfg")
+                    require("config.lsp.nvim-lightbulb")
                 end
             },
             -- lspkind.nvim - This tiny plugin adds vscode-like pictograms to neovim built-in lsp
             {
                 "onsails/lspkind-nvim", -- https://github.com/onsails/lspkind-nvim
                 config = function()
-                    require("plugins-cfg.lsp-cfg.lspkind-cfg").config()
+                    require("config.lsp.lspkind").config()
                 end,
             },
         },
@@ -58,7 +138,7 @@ return packer.startup(function()
     use{
         "hrsh7th/nvim-cmp", -- https://github.com/hrsh7th/nvim-cmp
         config = function()
-            require("plugins-cfg.cmp-cfg")
+            require("config.cmp")
         end,
         requires = {
             -- nvim-cmp source for neovim Lua API
@@ -84,7 +164,13 @@ return packer.startup(function()
     use{
         "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
         config = function()
-            require("luasnip\\loaders\\from_vscode").lazy_load()
+            if vim.fn.has("unix") == 1 then
+                require("luasnip/loaders/from_vscode").lazy_load()
+            elseif vim.fn.has('win32') == 1 then
+                require("luasnip\\loaders\\from_vscode").lazy_load()
+            else
+                print("OS not found, Luasnip snippets could not be loaded!")
+            end
         end,
         requires = {
             -- friendly-snippets - Set of preconfigured snippets for different languages
@@ -99,7 +185,7 @@ return packer.startup(function()
         "numToStr/Comment.nvim", -- https://github.com/numToStr/Comment.nvim
         keys = {{ "n", "gc" }, { "v", "gc" }, { "n", "gb" }, { "v", "gb" }},
         config = function()
-            require("plugins-cfg.comment-cfg")
+            require("config.comment")
         end,
     }
 
@@ -109,7 +195,7 @@ return packer.startup(function()
         -- event = "InsertEnter",
         after = { "nvim-treesitter", "nvim-cmp" },
         config = function()
-            require("plugins-cfg.autopairs-cfg")
+            require("config.autopairs")
         end,
     }
 
@@ -130,7 +216,7 @@ return packer.startup(function()
             },
         },
         config = function()
-            require("plugins-cfg.treesitter-cfg")
+            require("config.treesitter")
         end,
     }
 
@@ -141,7 +227,7 @@ return packer.startup(function()
         cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
         ft      = { "css", "html" },
         setup   = function()
-            require("plugins-cfg.hexokinase-cfg")
+            require("config.hexokinase")
         end
     }
 
@@ -149,7 +235,7 @@ return packer.startup(function()
     use{
         "lukas-reineke/indent-blankline.nvim", -- https://github.com/lukas-reineke/indent-blankline.nvim
         config = function()
-            require("plugins-cfg.indent-blankline-cfg")
+            require("config.indent-blankline")
         end,
     }
 
@@ -157,50 +243,7 @@ return packer.startup(function()
     use{
         "RRethy/vim-illuminate", -- https://github.com/RRethy/vim-illuminate
         setup = function()
-            require("plugins-cfg.illuminate-cfg")
-        end
-    }
---------------------------------------------------------------------------------
-
--- Cosmetics -------------------------------------------------------------------
-    -- dracula -- color theme
-    use{
-        "dracula/vim", as = "dracula", -- https://github.com/dracula/vim
-        config = function()
-            require("cosmetics").dracula()
-        end,
-    }
-
-    -- nvim-web-devicons - lua `fork` of vim-web-devicons for neovim
-    use{
-		"kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
-		config = function()
-            require("nvim-web-devicons").setup()
-		end,
-	}
-
-    -- neoscroll.nvim - Smooth scrolling neovim plugin written in lua
-    use{
-        "karb94/neoscroll.nvim", -- https://github.com/karb94/neoscroll.nvim
-        config = function()
-            require("plugins-cfg.neoscroll-cfg")
-        end,
-    }
-
-    -- alpha-nvim - A fast and highly customizable greeter for neovim
-    use{
-        "goolord/alpha-nvim", -- https://github.com/goolord/alpha-nvim
-        requires = "nvim-web-devicons",
-        config = function()
-            require("plugins-cfg.alpha-cfg")
-        end,
-    }
-
-    -- nvim-notify -- A fancy, configurable, notification manager for NeoVim
-    use{
-        "rcarriga/nvim-notify", -- https://github.com/rcarriga/nvim-notify
-        config = function ()
-            require("plugins-cfg.notify")
+            require("config.illuminate")
         end
     }
 --------------------------------------------------------------------------------
@@ -210,16 +253,20 @@ return packer.startup(function()
     use{
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
         setup = function()
-            vim.g.sqlite_clib_path = "C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools\\sqlite3.dll"
+            -- TODO: LINUX - set sqlite path
+            if vim.fn.has('win32') == 1 then
+                vim.g.sqlite_clib_path = "C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools\\sqlite3.dll"
+            end
 		end,
         config = function()
-			require("plugins-cfg.telescope-cfg")
+			require("config.telescope")
         end,
         requires = {
             -- All the lua functions I don't want to write twice
             { "nvim-lua/plenary.nvim" }, -- https://github.com/nvim-lua/plenary.nvim
             -- fzf-native is a c port of fzf, a general-purpose command-line fuzzy finder
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "mingw32-make" }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+            -- TODO: LINUX - change fzf run command
+            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
             -- A telescope.nvim extension that offers intelligent prioritization when selecting files from your editing history
             { "nvim-telescope/telescope-frecency.nvim" }, -- https://github.com/nvim-telescope/telescope-frecency.nvim
             -- SQLite/LuaJIT binding for lua and neovim
@@ -238,7 +285,7 @@ return packer.startup(function()
         cmd = { "NvimTreeOpen", "NvimTreeToggle" },
         requires = "nvim-web-devicons",
         config = function()
-            require("plugins-cfg.nvim-tree-cfg")
+            require("config.nvim-tree")
         end,
     }
 
@@ -246,16 +293,17 @@ return packer.startup(function()
     use{
         "phaazon/hop.nvim", -- https://github.com/phaazon/hop.nvim
         config = function()
-            require("plugins-cfg.hop-cfg")
+            require("config.hop")
         end,
     }
 
     -- minimap.vim - Blazing fast minimap / scrollbar for vim, powered by code-minimap written in Rust
     use{
+        -- TODO: LINUX - install minimap
         "wfxr/minimap.vim", -- https://github.com/wfxr/minimap.vim
         cmd = { "Minimap", "MinimapToggle" },
         setup = function()
-            require("plugins-cfg.minimap-cfg")
+            require("config.minimap")
         end,
     }
 
@@ -264,7 +312,7 @@ return packer.startup(function()
         "simrat39/symbols-outline.nvim", -- https://github.com/simrat39/symbols-outline.nvim
         cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
         setup = function()
-            require("plugins-cfg.symbols-outline-cfg")
+            require("config.symbols-outline")
         end
     }
 
@@ -272,7 +320,7 @@ return packer.startup(function()
     use{
         "folke/trouble.nvim", -- https://github.com/folke/trouble.nvim
         config = function()
-            require("plugins-cfg.trouble-cfg")
+            require("config.trouble")
         end
     }
 
@@ -280,7 +328,7 @@ return packer.startup(function()
     use{
         "kevinhwang91/nvim-hlslens", -- https://github.com/kevinhwang91/nvim-hlslens
         config = function()
-            require("plugins-cfg.nvim-hlslens-cfg")
+            require("config.hlslens")
         end
     }
 
@@ -289,7 +337,7 @@ return packer.startup(function()
         "sindrets/diffview.nvim", -- https://github.com/sindrets/diffview.nvim
         cmd = { "DiffviewOpen" },
         config = function ()
-            require("plugins-cfg.diffview")
+            require("config.diffview")
         end
     }
 --------------------------------------------------------------------------------
@@ -300,7 +348,7 @@ return packer.startup(function()
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
         requires = "nvim-web-devicons",
         config = function()
-            require("plugins-cfg.bufferline-cfg")
+            require("config.bufferline")
         end,
     }
 
@@ -310,7 +358,7 @@ return packer.startup(function()
         requires = "nvim-web-devicons",
         after = "nvim-lspconfig",
         config = function()
-            require("plugins-cfg.lualine-cfg")
+            require("config.lualine")
         end,
     }
 
@@ -329,7 +377,7 @@ return packer.startup(function()
         "folke/todo-comments.nvim", -- https://github.com/folke/todo-comments.nvim
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("plugins-cfg.todo-comments-cfg")
+            require("config.todo-comments")
         end
     }
 
@@ -338,7 +386,7 @@ return packer.startup(function()
         "lewis6991/gitsigns.nvim", -- https://github.com/lewis6991/gitsigns.nvim
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("plugins-cfg.gitsigns-cfg")
+            require("config.gitsigns")
         end
     }
 
@@ -346,7 +394,7 @@ return packer.startup(function()
     use{
         "folke/which-key.nvim", -- https://github.com/folke/which-key.nvim
         config = function()
-            require("plugins-cfg.which-key")
+            require("config.which-key")
         end
     }
 
@@ -355,7 +403,7 @@ return packer.startup(function()
         "mbbill/undotree", -- https://github.com/mbbill/undotree
         cmd     = { "UndotreeToggle", "UndotreeShow" },
         config  = function()
-            require("plugins-cfg.undotree")
+            require("config.undotree")
         end
     }
 
@@ -363,7 +411,7 @@ return packer.startup(function()
     use{
         "unblevable/quick-scope", -- https://github.com/unblevable/quick-scope
         config  = function ()
-            require("plugins-cfg.quick-scope")
+            require("config.quick-scope")
         end
     }
 
@@ -371,13 +419,14 @@ return packer.startup(function()
     use{
         "luukvbaal/stabilize.nvim", -- https://github.com/luukvbaal/stabilize.nvim
         config  = function()
-            require("plugins-cfg.stabilize")
+            require("config.stabilize")
         end
     }
 --------------------------------------------------------------------------------
 
-    -- Automatic initial plugin installation
-    if vim.fn.len(vim.fn.globpath(PACKER_PATH .. "\\start", "*", 0, 1)) == 1 then
-        vim.cmd([[PackerSync]])
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if PACKER_BOOTSTRAP then
+        require('packer').sync()
     end
 end)

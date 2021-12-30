@@ -28,7 +28,7 @@ vim.g.symbols_outline = {
         goto_location = "<Cr>",
         focus_location = "l",
         hover_symbol = "h",
-        toggle_preview = "P",
+        toggle_preview = "<m-p>",
         rename_symbol = "R",
         code_actions = "a",
     },

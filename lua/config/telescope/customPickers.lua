@@ -1,3 +1,4 @@
+local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local cb = require("cosmetics").border.table
 
@@ -112,17 +113,17 @@ function M.find_files()
 end
 
 function M.find_recent()
-    require("telescope").extensions.frecency.frecency {
+    telescope.extensions.frecency.frecency{
         results_title = "Recent",
-		prompt_title = false
+		prompt_title = "Filter files"
     }
 end
 
 function M.live_grep()
     builtin.live_grep {
         -- cwd = custom_cwd(),
-        results_title = "ripGREP search",
-        prompt_title = false
+        results_title = "ripGREP",
+        prompt_title = "Filter results"
     }
 end
 
@@ -130,14 +131,14 @@ function M.file_browser()
     builtin.file_browser {
         -- cwd = custom_cwd(),
         results_title = "File explorer",
-        prompt_title = false,
+        prompt_title = "Filter files",
     }
 end
 
 function M.project()
-    require('telescope').extensions.project.project{
-        display_type = 'full',
-        prompt_title = false,
+    telescope.extensions.project.project{
+        display_type = "full",
+        prompt_title = "Filter projects",
         layout_config = {
             width = 0.5,
             height = 0.6
@@ -148,6 +149,8 @@ end
 function M.buffers()
     builtin.buffers {
         entry_maker = M.custom_buffers(),
+        results_title = "Buffers",
+        prompt_title = "Filter buffers",
         previewer = false,
         layout_strategy = "vertical",
         layout_config = {
@@ -177,7 +180,7 @@ function M.registers(opts)
     elseif opts == "large" then
         builtin.registers {
             results_title = "Registers",
-            prompt_title = false,
+            prompt_title = "Filter registers",
             layout_config = {
                 width = 0.99,
                 height = 0.99
@@ -208,7 +211,7 @@ end
 function M.lsp_references()
     builtin.lsp_references({
         results_title = "LSP References",
-        prompt_title = false,
+        prompt_title = "Filter references",
         jump_type = 'never',
         layout_strategy = "vertical",
         layout_config = {
@@ -223,7 +226,7 @@ end
 function M.lsp_definitions()
     builtin.lsp_definitions({
         results_title = "LSP Definitions",
-        prompt_title = false,
+        prompt_title = "Filter definitions",
         jump_type = 'never',
         layout_strategy = "vertical",
         layout_config = {
@@ -233,6 +236,18 @@ function M.lsp_definitions()
             height = 30
         }
     })
+end
+
+function M.notify()
+    telescope.extensions.notify.notify{
+        layout_strategy = "vertical",
+        layout_config = {
+            preview_height = 0.2,
+            prompt_position = "bottom",
+            width = 80,
+            height = 40
+        }
+    }
 end
 
 return M

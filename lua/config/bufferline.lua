@@ -55,6 +55,12 @@ bufferline.setup{
                 text = "Symbols",
                 highlight = "lualine_a_normal",
                 text_align = "center"
+            },
+            {
+                filetype = "undotree",
+                text = "Undotree",
+                highlight = "lualine_a_normal",
+                text_align = "center"
             }
         },
         always_show_bufferline = true,

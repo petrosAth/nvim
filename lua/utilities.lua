@@ -43,18 +43,6 @@ function _G.auto_restore_win_view()
 	end
 end
 
--- Quickfix toggle
--- https://vim.fandom.com/wiki/Toggle_to_open_or_close_the_quickfix_window
--- function _G.qfix_toggle(forced)
--- 	if vim.g.qfix_win and forced then
--- 		vim.cmd([[cclose]])
--- 		vim.api.nvim_del_var("qfix_win")
--- 	else
--- 		vim.cmd([[copen 10]])
--- 		vim.g.qfix_win = vim.fn.bufnr("$")
--- 	end
--- end
--- vim.cmd([[command! -bang -nargs=? QFix lua qfix_toggle(<bang>0)]])
 
 -- Launch external program
 function _G.launch_ext_prog(prog, args)
