@@ -1,32 +1,16 @@
--- NOTE: try alt-q
--- vim.cmd([[
---     augroup q_close
---         autocmd!
---         autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR>
---     augroup END
--- ]])
-
--- Restore terminal cursor after quit
-vim.cmd([[
-    augroup RESTORE_CURSOR
-        autocmd!
-        autocmd VimLeave * set guicursor=n:ver25,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-    augroup END
-]])
-
--- Set current file's dir to cwd
--- vim.cmd([[
---     augroup SET_CWD
---         autocmd!
---         autocmd BufEnter *.* silent! lcd %:p:h
---     augroup END
--- ]])
-
 -- Remove trailing whitespace and newlines
 vim.cmd([[
     augroup CLEANUP
         autocmd!
         autocmd BufWritePre * silent! lua perform_cleanup()
+    augroup END
+]])
+
+-- Restore terminal cursor after quit
+vim.cmd([[
+    augroup RESTORE_CURSOR
+        autocmd!
+        autocmd VimLeave * set guicursor=n:ver25,a:blinkwait750-blinkoff750-blinkon750-Cursor/lCursor
     augroup END
 ]])
 
@@ -72,7 +56,7 @@ vim.cmd([[
     augroup SAVE_VIEW
         autocmd!
         autocmd BufWinLeave *.* if expand('%') != '' | mkview | endif
-        autocmd BufWinEnter *.* if expand('%') != '' | silent! loadview | endif
+        autocmd BufWinEnter *.* if expand('%') != '' | silent! loadview | :execute "normal zxzR" | endif
     augroup END
 ]])
 

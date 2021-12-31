@@ -7,15 +7,7 @@
 -- ]])
 
 local fn = vim.fn
-local install_path = nil
-
-if fn.has("unix") == 1 then
-    install_path = PACKER_PATH .. "/start/packer.nvim"
-elseif fn.has('win32') == 1 then
-    install_path = PACKER_PATH .. "\\start\\packer.nvim"
-else
-    print("OS not found, plugin folder could not be deleted!")
-end
+local install_path = PACKER_PATH .. "/start/packer.nvim"
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -164,13 +156,7 @@ return packer.startup(function()
     use{
         "L3MON4D3/LuaSnip", -- https://github.com/L3MON4D3/LuaSnip
         config = function()
-            if vim.fn.has("unix") == 1 then
-                require("luasnip/loaders/from_vscode").lazy_load()
-            elseif vim.fn.has('win32') == 1 then
-                require("luasnip\\loaders\\from_vscode").lazy_load()
-            else
-                print("OS not found, Luasnip snippets could not be loaded!")
-            end
+            require("luasnip/loaders/from_vscode").lazy_load()
         end,
         requires = {
             -- friendly-snippets - Set of preconfigured snippets for different languages
@@ -223,7 +209,7 @@ return packer.startup(function()
     -- vim-hexokinase - (Neo)Vim plugin for asynchronously displaying the colours in the file
     use{
         "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
-        run     = "mingw32-make",
+        run     = "make",
         cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
         ft      = { "css", "html" },
         setup   = function()
@@ -246,26 +232,19 @@ return packer.startup(function()
             require("config.illuminate")
         end
     }
---------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
 
--- Project and file navigation -------------------------------------------------
+    -- Project and file navigation -------------------------------------------------
     -- telescope.nvim - Gaze deeply into unknown regions using the power of the moon
     use{
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
-        setup = function()
-            -- TODO: LINUX - set sqlite path
-            if vim.fn.has('win32') == 1 then
-                vim.g.sqlite_clib_path = "C:\\ProgramData\\chocolatey\\lib\\SQLite\\tools\\sqlite3.dll"
-            end
-		end,
         config = function()
-			require("config.telescope")
+            require("config.telescope")
         end,
         requires = {
             -- All the lua functions I don't want to write twice
             { "nvim-lua/plenary.nvim" }, -- https://github.com/nvim-lua/plenary.nvim
             -- fzf-native is a c port of fzf, a general-purpose command-line fuzzy finder
-            -- TODO: LINUX - change fzf run command
             { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- https://github.com/nvim-telescope/telescope-fzf-native.nvim
             -- A telescope.nvim extension that offers intelligent prioritization when selecting files from your editing history
             { "nvim-telescope/telescope-frecency.nvim" }, -- https://github.com/nvim-telescope/telescope-frecency.nvim
@@ -299,7 +278,6 @@ return packer.startup(function()
 
     -- minimap.vim - Blazing fast minimap / scrollbar for vim, powered by code-minimap written in Rust
     use{
-        -- TODO: LINUX - install minimap
         "wfxr/minimap.vim", -- https://github.com/wfxr/minimap.vim
         cmd = { "Minimap", "MinimapToggle" },
         setup = function()
@@ -340,9 +318,9 @@ return packer.startup(function()
             require("config.diffview")
         end
     }
---------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
 
--- Miscellaneous ---------------------------------------------------------------
+    -- Miscellaneous ---------------------------------------------------------------
     -- bufferline.nvim - This plugin shamelessly attempts to emulate the aesthetics of GUI text editors/Doom Emacs
     use{
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
@@ -422,7 +400,7 @@ return packer.startup(function()
             require("config.stabilize")
         end
     }
---------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

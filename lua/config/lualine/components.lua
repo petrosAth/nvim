@@ -92,7 +92,7 @@ M.file_type = function()
 end
 
 M.file_name_active = function()
-    if M.is_plugin() then
+    if M.is_plugin() or bo.filetype == "checkhealth" then
         return ""
     else
         if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.15 and fn.expand("%:h") ~= "." then
@@ -388,8 +388,8 @@ M.lsp_status = function()
                 if not next(M.lsp_diagnostics().signs) then
                     return M.print_for_width({
                         autofill = true,
-                        XL = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
-                        L  = " " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                        XL = "  " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                        L  = "  " .. "[" .. table.concat(lsp_clients, " ") .. "]",
                         M  = "LSP",
                         S  = "",
                         _  = ""
@@ -397,14 +397,14 @@ M.lsp_status = function()
                 else
                     return M.print_for_width({
                         autofill = true,
-                        L  = " " .. table.concat(M.lsp_diagnostics().signs, " "),
+                        L  = "  " .. table.concat(M.lsp_diagnostics().signs, " "),
                         M  = table.concat(M.lsp_diagnostics().signs, " "),
                         _  = table.concat(M.lsp_diagnostics().count_only, " "),
                     })
                 end
             else
                 return M.print_for_width({
-                    XL = " " .. lsp_progress,
+                    XL = "  " .. lsp_progress,
                 })
             end
         end

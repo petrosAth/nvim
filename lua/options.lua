@@ -5,7 +5,7 @@ local cui = ci.nvim_ui
 local M = {}
 
 -- Used from sumneko_lua to populate workspace library accordingly
-M.nvim_edit_mode = false
+M.nvim_edit_mode = true
 
 -- GUI general options ---------------------------------------------------------
 -- Set gui font for nvim-qt, neovide etc

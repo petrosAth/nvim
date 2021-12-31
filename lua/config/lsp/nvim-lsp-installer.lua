@@ -97,12 +97,12 @@ lsp_installer.on_server_ready(function(server)
                 add("$VIMRUNTIME")
 
                 -- add your config
-                add(CONFIG_PATH .. "\\*")
+                add(CONFIG_PATH .. "/*")
 
                 -- add plugins
                 -- if you're not using packer, then you might need to change the paths below
-                add(PACKER_PATH .. "\\opt\\*")
-                add(PACKER_PATH .. "\\start\\*")
+                add(PACKER_PATH .. "/opt/*")
+                add(PACKER_PATH .. "/start/*")
 
                 default_opts.on_new_config = function(config, root)
                     local libs = vim.tbl_deep_extend("force", {}, nvim_library)

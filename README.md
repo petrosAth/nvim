@@ -10,6 +10,7 @@ Still a work in progress.
 - [x] Revisit FileType and BufEnter autocommands
 - [x] Add comment string snippets and telescope finder
 - [x] :h mark-motions
+- [x] Migrate to WSL
 - [ ] Research the folder structure
 - [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
 - [ ] Plugin reloading
@@ -17,7 +18,6 @@ Still a work in progress.
 - [ ] lazyload everything possible
 - [ ] Organize my custom highlight groups
 - [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
-- [ ] Migrate to WSL / maybe WSL2g
 - [ ] Add debugger
 
 ## Reminders
@@ -33,6 +33,7 @@ Still a work in progress.
 | [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
 | [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 | [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
+| [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim) | Telescope extension to preview media files using Ueberzug. |
 | Themes |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |

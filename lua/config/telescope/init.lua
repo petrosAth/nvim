@@ -53,8 +53,7 @@ telescope.setup({
 		sorting_strategy = "descending",
 		file_ignore_patterns = { "^.git", "tags" },
         history = {
-            -- TODO: LINUX - set telescope history file path
-            -- path = DATA_PATH .. "\\databases\\telescope_history",
+            path = DATA_PATH .. "/databases/telescope_history",
             limit = 100
         },
 		file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -132,18 +131,15 @@ telescope.setup({
 	},
 	extensions = {
 		frecency = {
-            -- TODO: LINUX - set frecency database file path
-            -- db_root = DATA_PATH .. "\\databases",
+            db_root = DATA_PATH .. "/databases",
             show_scores = true,
             show_unindexed = true,
             ignore_patterns = {"*.git/*", "*/tmp/*"},
             disable_devicons = false,
             workspaces = {
-                -- TODO: linux - set workspaces' paths
-                -- [".config"]     = "$HOME\\.config",
-                ["nvim config"] = CONFIG_PATH,
-                ["nvim data"]   = DATA_PATH,
-                -- ["projects"]    = "H:\\Projects",
+                ["Win petrosAth"] = "/mnt/c/Users/petrosAth",
+                [".config"]       = "$HOME/.config",
+                ["Projects"]      = "$HOME/dev"
             }
 		},
 		fzf = {
@@ -175,11 +171,10 @@ telescope.setup({
             reset_selection = true,
         },
         project = {
-            -- TODO: LINUX - set telescope project dirs' paths
-            -- base_dirs = {
-            --     {path = "H:\\Projects", max_depth = 2},
-            --     {path = "H:\\Projects\\Learning", max_depth = 5},
-            -- },
+            base_dirs = {
+                { path = "$HOME/dev",     max_depth = 2 },
+                { path = "$HOME/.config", max_depth = 2 }
+            },
             hidden_files = false,
         }
 	},
