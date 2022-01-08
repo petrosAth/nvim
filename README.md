@@ -19,6 +19,12 @@ Still a work in progress.
 - [ ] Organize my custom highlight groups
 - [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
 - [ ] Add debugger
+- [ ] Revisit Cokeline
+- [ ] Change to filetype.lua
+- [ ] Use LSP document highlight instead of illuminate if possible
+- [ ] Use pcalls in LSP configs
+- [ ] Check neo-tree.nvim
+- [ ] Enable treesitter in autopairs
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -30,6 +36,7 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin | Description |
 | ----------- | ----------- |
+| [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar) | Extensible Neovim Scrollbar |
 | [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
 | [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 | [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |

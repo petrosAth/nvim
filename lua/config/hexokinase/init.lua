@@ -35,3 +35,9 @@ g.Hexokinase_ftEnabled        = {
 }
 g.Hexokinase_alpha_bg         = ""
 g.Hexokinase_checkBoundary    = 1
+
+-- Custom pallets
+vim.g.Hexokinase_palettes = {
+    -- "/mnt/c/Users/petrosAth/.config/ohmyposh/themes/draculaPalette.json",
+    "/home/petrosath/.config/nvim/lua/config/hexokinase/palette-dracula.json",
+}

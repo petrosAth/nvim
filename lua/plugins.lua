@@ -209,7 +209,7 @@ return packer.startup(function()
     -- vim-hexokinase - (Neo)Vim plugin for asynchronously displaying the colours in the file
     use{
         "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
-        run     = "make",
+        run     = "cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make",
         cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
         ft      = { "css", "html" },
         setup   = function()

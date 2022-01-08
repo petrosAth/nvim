@@ -1,8 +1,6 @@
 require("nvim-treesitter.configs").setup({
     -- TODO: change to maintained when heavy config editing is done
-    ensure_installed = "maintained",
-    -- ensure_installed = { "c", "css", "c_sharp", "html", "lua", "markdown" "python", },
-    -- ensure_installed = { "lua", "vim", "markdown" },
+    ensure_installed = { "bash", "c", "css", "c_sharp", "html", "json", "lua", "markdown", "python" },
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
