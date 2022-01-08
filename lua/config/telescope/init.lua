@@ -36,7 +36,8 @@ telescope.setup({
 			"--line-number",
 			"--column",
 			"--smart-case",
-            "--trim" -- Remove indentation
+            "--trim", -- Remove indentation
+            "--hidden"
 		},
         layout_strategy = "horizontal",
 		layout_config = {
@@ -129,6 +130,11 @@ telescope.setup({
 			},
 		},
 	},
+    pickers = {
+        find_files = {
+            find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--hidden" },
+        },
+    },
 	extensions = {
 		frecency = {
             db_root = DATA_PATH .. "/databases",
@@ -175,7 +181,7 @@ telescope.setup({
                 { path = "$HOME/dev",     max_depth = 2 },
                 { path = "$HOME/.config", max_depth = 2 }
             },
-            hidden_files = false,
+            hidden_files = true,
         }
 	},
 })
