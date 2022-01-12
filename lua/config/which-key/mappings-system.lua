@@ -44,10 +44,7 @@ wk.register({
 
 -- Insert mode mappings
 wk.register({
-    ["<F1>"]  = { "<cmd>setlocal spell!<CR>", "Toggle spelling"  },
-    ["<leader>"] = {
-        n = { "<cmd>set relativenumber!<CR>", "Toggle relative number" },
-    },
+    ["<F1>"]  = { "<cmd>setlocal spell!<CR>", "Toggle spelling"  }
 }, { mode = "i" })
 
 -- Visual and select mode mappings

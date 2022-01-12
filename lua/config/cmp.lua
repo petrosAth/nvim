@@ -82,11 +82,14 @@ cmp.setup.cmdline('/', {
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
     sources = {
-        { name = 'path' },
+        {
+            name = 'path',
+            max_item_count = 20,
+            keyword_length = 3
+        },
         {
             name = 'cmdline',
-            max_item_count = 20,
-            keyword_length = 3,
+            max_item_count = 20
         },
     }
 })
