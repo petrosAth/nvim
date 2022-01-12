@@ -69,9 +69,9 @@ wk.register({
 }, { mode = "x" })
 
 -- Terminal mode mappings
-wk.register({
-    ["<esc>"] = { "<C-\\><C-n>", "Enter normal mode" }
-}, { mode = "t" })
+-- wk.register({
+--     ["<esc>"] = { "<c-\\><c-n>", "Escape insert mode" }
+-- }, { mode = "t" })
 
 -- Command mode mappings
 wk.register({
