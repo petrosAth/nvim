@@ -145,6 +145,7 @@ telescope.setup({
             workspaces = {
                 ["Win petrosAth"] = "/mnt/c/Users/petrosAth",
                 [".config"]       = "$HOME/.config",
+                ["dotfiles"]      = "$HOME/dotfiles",
                 ["Projects"]      = "$HOME/dev"
             }
 		},
