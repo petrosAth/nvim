@@ -54,9 +54,6 @@ opt.fileformat = "dos"
 -- Enable dark background colorschemes
 opt.background = "dark"
 
--- Set default terminal
-opt.shell = "/bin/zsh"
-
 -- Enable 24bit colors in terminal
 opt.termguicolors = true
 

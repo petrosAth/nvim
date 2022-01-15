@@ -209,7 +209,7 @@ return packer.startup(function()
     -- vim-hexokinase - (Neo)Vim plugin for asynchronously displaying the colours in the file
     use{
         "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
-        run     = "cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make",
+        run     = "cd ~/.local/share/nvim/site/pack/packer/opt/vim-hexokinase && make hexokinase",
         cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
         ft      = { "css", "html" },
         setup   = function()
@@ -260,7 +260,6 @@ return packer.startup(function()
     -- nvim-tree.lua - A File Explorer For Neovim Written In Lua
     use{
         "kyazdani42/nvim-tree.lua", -- https://github.com/kyazdani42/nvim-tree.lua
-        -- commit = "b853e1083c67a79b4eb046a112a8e12b35e9cd19",
         cmd = { "NvimTreeOpen", "NvimTreeToggle" },
         requires = "nvim-web-devicons",
         config = function()
