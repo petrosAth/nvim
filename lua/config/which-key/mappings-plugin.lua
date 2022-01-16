@@ -32,8 +32,7 @@ wk.register({
             c = { "<cmd>PackerCompile<cr>",  "Packer compile"           }, -- packer
             d = { "<cmd>Alpha<cr>",          "Show dashboard"           }, -- alpha
             i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
-            I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }, -- lsp-installer
-            U = { "<cmd>LspUpdateAll<cr>",   "Update language servers"  }, -- lsp-installer
+            I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }  -- lsp-installer
         }
     },
     ["<space>"] = {
