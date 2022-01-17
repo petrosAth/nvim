@@ -4,6 +4,7 @@ local cb = require("cosmetics").border.table
 
 -- List of servers for installation
 M.servers = {
+    "bashls",
     "cssls",
     "clangd",
     "html",
