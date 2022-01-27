@@ -146,7 +146,7 @@ telescope.setup({
                 ["Win petrosAth"] = "/mnt/c/Users/petrosAth",
                 [".config"]       = "$HOME/.config",
                 ["dotfiles"]      = "$HOME/dotfiles",
-                ["Projects"]      = "$HOME/projects"
+                ["Projects"]      = "$HOME/Develop"
             }
 		},
 		fzf = {
@@ -179,7 +179,7 @@ telescope.setup({
         },
         project = {
             base_dirs = {
-                { path = "$HOME/projects", max_depth = 2 },
+                { path = "$HOME/Develop",  max_depth = 2 },
                 { path = "$HOME/dotfiles", max_depth = 2 },
                 { path = "$HOME/.config",  max_depth = 2 }
             },
