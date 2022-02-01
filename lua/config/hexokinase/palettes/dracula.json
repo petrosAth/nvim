@@ -1,0 +1,15 @@
+{
+    "colour_table": {
+        "draculaBlackRock":               "#282A36",
+        "draculaBlueZodiac":              "#44475A",
+        "draculaAlabaster":               "#F8F8F2",
+        "draculaElectricBlue":            "#8BE9FD",
+        "draculaWaikawaGrey":             "#6272A4",
+        "draculaMauve":                   "#BD93F9",
+        "draculaNeonPink":                "#FF79C6",
+        "draculaTomato":                  "#FF5555",
+        "draculaMacaroniAndCheese":       "#FFB86C",
+        "draculaPalePrim":                "#F1FA8C",
+        "draculaVeryLightMalachiteGreen": "#50FA7B"
+    }
+}

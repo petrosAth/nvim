@@ -1,0 +1,20 @@
+{
+    "colour_table": {
+        "nordOuterSpace":     "#2e3440",
+        "nordCharcoal":       "#3b4252",
+        "nordPoliceBlue":     "#434c5e",
+        "nordIndependence":   "#4c566a",
+        "nordCultured":       "#d8dee9",
+        "nordBrightGray":     "#e5e9f0",
+        "nordIsabelline":     "#eceff4",
+        "nordPewterBlue":     "#8fbcbb",
+        "nordDarkSkyBlue":    "#88c0d0",
+        "nordDarkPastelBlue": "#81a1c1",
+        "nordRackley":        "#5e81ac",
+        "nordFuzzyWuzzy":     "#bf616a",
+        "nordCopper":         "#d08770",
+        "nordGold":           "#ebcb8b",
+        "nordLaurelGreen":    "#a3be8c",
+        "nordGlossyGrape":    "#b48ead"
+    }
+}

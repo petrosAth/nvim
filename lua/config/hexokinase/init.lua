@@ -1,4 +1,5 @@
 local g = vim.g
+local palette = CONFIG_PATH .. "/lua/config/hexokinase/palettes"
 
 g.Hexokinase_highlighters     = {
     -- "virtual"
@@ -37,7 +38,7 @@ g.Hexokinase_alpha_bg         = ""
 g.Hexokinase_checkBoundary    = 1
 
 -- Custom pallets
-vim.g.Hexokinase_palettes = {
-    -- "/mnt/c/Users/petrosAth/.config/ohmyposh/themes/draculaPalette.json",
-    "/home/petrosath/.config/nvim/lua/config/hexokinase/palette-dracula.json",
+g.Hexokinase_palettes = {
+    palette .. "/dracula.json",
+    palette .. "/nord.json"
 }
