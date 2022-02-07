@@ -25,6 +25,8 @@ Still a work in progress.
 - [ ] Use pcalls in LSP configs
 - [ ] Check neo-tree.nvim
 - [ ] Enable treesitter in autopairs
+- [ ] Revisit Cokeline
+- [ ] Revisit filetype.nvim
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
