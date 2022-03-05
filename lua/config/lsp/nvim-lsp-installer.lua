@@ -12,9 +12,9 @@ local custom_on_attach = lsp_cfg.custom_on_attach
 lsp_installer.settings {
     ui = {
         icons = {
-            server_installed = ci.done[1] .. " ",
-            server_pending = ci.pending[1] .. " ",
-            server_uninstalled = ci.delete[1] .. " ",
+            server_installed = ci.done[1],
+            server_pending = ci.pending[1],
+            server_uninstalled = ci.delete[1],
         },
         keymaps = {
             toggle_server_expand = "<CR>",

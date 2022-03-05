@@ -1,14 +1,14 @@
 local wk = require("which-key")
-local tele_custom = "<cmd>lua require('config.telescope.customPickers')."
-local tele_builtin = "<cmd>lua require('telescope.builtin')."
-local hop = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection."
+local tele_custom = "<CMD>lua require('config.telescope.customPickers')."
+local tele_builtin = "<CMD>lua require('telescope.builtin')."
+local hop = "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection."
 
 -- Normal mode mappings
 wk.register({
-    ["]c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<cr>'", "Next git hunk",       expr = true }, -- gitsigns
-    ["[c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<cr>'", "Previous git hunk",   expr = true }, -- gitsigns
-    ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>",      "Next diagnostic"                  }, -- lspconfig
-    ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>",      "Previous diagnostic"              }, -- lspconfig
+    ["]c"] = { "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", "Next git hunk",       expr = true }, -- gitsigns
+    ["[c"] = { "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", "Previous git hunk",   expr = true }, -- gitsigns
+    ["]d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next diagnostic"                  }, -- lspconfig
+    ["[d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous diagnostic"              }, -- lspconfig
     g = {
         ["cc"] = { "Toggle line comment"             }, -- comment
         ["bc"] = { "Toggle block comment"            }, -- comment
@@ -18,133 +18,129 @@ wk.register({
         O      = { "Comment prev line then insert"   }, -- comment
         A      = { "Comment end of line then insert" }  -- comment
     },
-    n      = { "<cmd>execute('normal! ' . v:count1 . 'nzzzv')<cr><cmd>lua require('hlslens').start()<cr><cmd>set relativenumber!<cr>", "Repeat the latest '/' or '?'",          }, -- hlslens
-    N      = { "<cmd>execute('normal! ' . v:count1 . 'Nzzzv')<cr><cmd>lua require('hlslens').start()<cr><cmd>set relativenumber!<cr>", "Repeat the latest '/' or '?' backward", }, -- hlslens
-    ["*"]  = { "*<cmd>lua require('hlslens').start()<cr>",  "Search word under cursor"            }, -- hlslens
-    ["#"]  = { "#<cmd>lua require('hlslens').start()<cr>",  "Search word under cursor backward"   }, -- hlslens
-    ["g*"] = { "g*<cmd>lua require('hlslens').start()<cr>", "Search string under cursor"          }, -- hlslens
-    ["g#"] = { "g#<cmd>lua require('hlslens').start()<cr>", "Search string under cursor backward" }, -- hlslens
-    ["<leader>"] = {
+    n      = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>set relativenumber!<CR>", "Repeat the latest '/' or '?'",          }, -- hlslens
+    N      = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>set relativenumber!<CR>", "Repeat the latest '/' or '?' backward", }, -- hlslens
+    ["*"]  = { "*<CMD>lua require('hlslens').start()<CR>",  "Search word under cursor"            }, -- hlslens
+    ["#"]  = { "#<CMD>lua require('hlslens').start()<CR>",  "Search word under cursor backward"   }, -- hlslens
+    ["g*"] = { "g*<CMD>lua require('hlslens').start()<CR>", "Search string under cursor"          }, -- hlslens
+    ["g#"] = { "g#<CMD>lua require('hlslens').start()<CR>", "Search string under cursor backward" }, -- hlslens
+    ["<Leader>"] = {
         u = {
             name = "Utilities",
-            u = { "<cmd>PackerSync<cr>",     "Packer sync"              }, -- packer
-            s = { "<cmd>PackerStatus<cr>",   "Packer status"            }, -- packer
-            c = { "<cmd>PackerCompile<cr>",  "Packer compile"           }, -- packer
-            d = { "<cmd>Alpha<cr>",          "Show dashboard"           }, -- alpha
-            i = { "<cmd>LspInfo<cr>",        "LSP info",                }, -- lsp-config
-            I = { "<cmd>LspInstallInfo<cr>", "LSP installer info"       }  -- lsp-installer
+            u = { "<CMD>PackerSync<CR>",     "Packer sync"              }, -- packer
+            s = { "<CMD>PackerStatus<CR>",   "Packer status"            }, -- packer
+            c = { "<CMD>PackerCompile<CR>",  "Packer compile"           }, -- packer
+            d = { "<CMD>Alpha<CR>",          "Show dashboard"           }, -- alpha
+            i = { "<CMD>LspInfo<CR>",        "LSP info",                }, -- lsp-config
+            I = { "<CMD>LspInstallInfo<CR>", "LSP installer info"       }  -- lsp-installer
         }
     },
-    ["<space>"] = {
-        ["?"] = { "<cmd>WhichKey<cr>",             "Show available hotkeys" }, -- which-key
-        ["."] = { tele_builtin .. "resume()<cr>",  "Reopen Telescope"       }, -- telescope
-        b     = { tele_custom  .. "buffers()<cr>", "Buffer list"            }, -- telescope
-        c     = { "<cmd>HexokinaseToggle<cr>",     "Color codes preview"    }, -- hexokinase
+    ["<Space>"] = {
+        ["?"] = { "<CMD>WhichKey<CR>",             "Show available hotkeys" }, -- which-key
+        ["."] = { tele_builtin .. "resume()<CR>",  "Reopen Telescope"       }, -- telescope
+        b     = { tele_custom  .. "buffers()<CR>", "Buffer list"            }, -- telescope
+        c     = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
         d     = {
             name = "Diffview",
-            o = { "<cmd>DiffviewOpen<cr>",        "Open"                      }, -- diffview
-            c = { "<cmd>DiffviewClose<cr>",       "Close"                     }, -- diffview
-            e = { "<cmd>DiffviewToggleFiles<cr>", "Toggle file tree"          }, -- diffview
-            R = { "<cmd>DiffviewRefresh<cr>",     "Refresh stats and entries" }  -- diffview
+            o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
+            c = { "<CMD>DiffviewClose<CR>",       "Close"                     }, -- diffview
+            e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
+            R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }  -- diffview
         },
-        e     = { "<cmd>NvimTreeToggle<cr>",       "Toggle file tree"       }, -- nvimtree
+        e     = { "<CMD>NvimTreeToggle<CR>",       "Toggle file tree"       }, -- nvimtree
+        E     = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree
         -- NOTE: try quick-scope/hop combo
-        f     = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to"          }, -- hop
-        t     = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop till before" }, -- hop
-        -- f     = { hop .. "AFTER_CURSOR })<cr>",    "Hop right to"           }, -- hop
-        -- F     = { hop .. "BEFORE_CURSOR })<cr>",   "Hop left to"            }, -- hop
-        -- t     = { hop .. "AFTER_CURSOR })<cr>",    "Hop right till before"  }, -- hop
-        -- T     = { hop .. "BEFORE_CURSOR })<cr>",   "Hop left till before"   }, -- hop
-        S     = { "<cmd>SymbolsOutline<cr>",       "Toggle Symbols Outline" },
+        f     = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"          }, -- hop
+        -- f     = { hop .. "AFTER_CURSOR })<CR>",    "Hop right to"           }, -- hop
+        -- F     = { hop .. "BEFORE_CURSOR })<CR>",   "Hop left to"            }, -- hop
+        -- t     = { hop .. "AFTER_CURSOR })<CR>",    "Hop right till before"  }, -- hop
+        -- T     = { hop .. "BEFORE_CURSOR })<CR>",   "Hop left till before"   }, -- hop
+        S     = { "<CMD>SymbolsOutline<CR>",       "Toggle Symbols Outline" },
         g = {
             name = "Git",
-            f = { tele_builtin .. "git_files()<cr>",    "Git files" }, -- telescope
-            c = { tele_builtin .. "git_commits()<cr>",  "Commits"   }, -- telescope
-            b = { tele_builtin .. "git_branches()<cr>", "Branches"  }, -- telescope
-            s = { tele_builtin .. "git_status()<cr>",   "Status"    }, -- telescope
-            a = { tele_builtin .. "git_stash()<cr>",    "Stash"     }, -- telescope
-            -- b = { "<cmd>lua require('gitsigns').blame_line{full=true}<cr>", "Blame" }, -- gitsigns
+            f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
+            c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
+            b = { tele_builtin .. "git_branches()<CR>", "Branches"  }, -- telescope
+            s = { tele_builtin .. "git_status()<CR>",   "Status"    }, -- telescope
+            a = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
+            -- b = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Blame" }, -- gitsigns
             -- B = {
-            --     S = { "<cmd>Gitsigns stage_buffer<cr>",       "Stage buffer"     }, -- gitsigns
-            --     R = { "<cmd>Gitsigns reset_buffer<cr>",       "Reset buffer"     }, -- gitsigns
-            --     U = { "<cmd>Gitsigns reset_buffer_index<cr>", "Git reset buffer" }  -- gitsigns
+            --     S = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
+            --     R = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
+            --     U = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
             -- },
             h = {
-                s = { "<cmd>Gitsigns stage_hunk<cr>",      "Stage hunk"      }, -- gitsigns
-                u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Undo stage hunk" }, -- gitsigns
-                r = { "<cmd>Gitsigns reset_hunk<cr>",      "Reset hunk"      }, -- gitsigns
-                p = { "<cmd>Gitsigns preview_hunk<cr>",    "Preview hunk"    }, -- gitsigns
+                s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
+                u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
+                r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
+                p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
             }
         },
         l = {
             name = "LSP",
-            H = { "<cmd>lua vim.diagnostic.open_float()<cr>",  "Line diagnostics"      }, -- lspconfig
-            R = { "<cmd>lua vim.lsp.buf.rename()<cr>",         "Rename symbol"         }, -- lspconfig
-            s = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signagture help"       }, -- lspconfig
-            a = { tele_custom .. "lsp_code_actions()<cr>",     "Code actions"          }, -- lspconfig -- telescope
-            r = { tele_custom .. "lsp_references()<cr>",       "References"            }, -- lspconfig -- telescope
-            K = { tele_custom .. "lsp_definitions()<cr>",      "Definitions"           }, -- lspconfig -- telescope
-            h = { "<cmd>lua vim.lsp.buf.hover()<cr>",          "Hover symbol"          }, -- lspconfig
-            d = { "<cmd>Trouble document_diagnostics<cr>",     "Document diagnostics"  }, -- lspconfig -- trouble
-            D = { "<cmd>Trouble workspace_diagnostics<cr>",    "Workspace diagnostics" }  -- lspconfig -- trouble
+            H = { "<CMD>lua vim.diagnostic.open_float()<CR>",  "Line diagnostics"      }, -- lspconfig
+            R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
+            s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
+            a = { tele_custom .. "lsp_code_actions()<CR>",     "Code actions"          }, -- lspconfig -- telescope
+            r = { tele_custom .. "lsp_references()<CR>",       "References"            }, -- lspconfig -- telescope
+            K = { tele_custom .. "lsp_definitions()<CR>",      "Definitions"           }, -- lspconfig -- telescope
+            h = { "<CMD>lua vim.lsp.buf.hover()<CR>",          "Hover symbol"          }, -- lspconfig
+            d = { "<CMD>Trouble document_diagnostics<CR>",     "Document diagnostics"  }, -- lspconfig -- trouble
+            D = { "<CMD>Trouble workspace_diagnostics<CR>",    "Workspace diagnostics" }  -- lspconfig -- trouble
         },
         m = {
             name = "Minimap",
-            m = { "<cmd>MinimapToggle<cr>",          "Toggle"           }, -- minimap
-            q = { "<cmd>MinimapClose<cr>",           "Close"            }, -- minimap
-            r = { "<cmd>MinimapRefresh<cr>",         "Refresh"          }, -- minimap
-            h = { "<cmd>MinimapUpdateHighlight<cr>", "Update highlight" }  -- minimap
+            m = { "<CMD>MinimapToggle<CR>",          "Toggle"           }, -- minimap
+            q = { "<CMD>MinimapClose<CR>",           "Close"            }, -- minimap
+            r = { "<CMD>MinimapRefresh<CR>",         "Refresh"          }, -- minimap
+            h = { "<CMD>MinimapUpdateHighlight<CR>", "Update highlight" }  -- minimap
         },
         q = {
             name = "Trouble",
-            q = { "<cmd>TroubleToggle<cr>",    "Toggle"   }, -- trouble
-            o = { "<cmd>Trouble<cr>",          "Open"     }, -- trouble
-            c = { "<cmd>TroubleClose<cr>",     "Close"    }, -- trouble
-            R = { "<cmd>TroubleRefresh<cr>",   "Refresh"  }, -- trouble
-            l = { "<cmd>Trouble loclist<cr>",  "Loclist"  }, -- trouble
-            f = { "<cmd>Trouble quickfix<cr>", "Quickfix" }  -- trouble
+            q = { "<CMD>TroubleToggle<CR>",    "Toggle"   }, -- trouble
+            o = { "<CMD>Trouble<CR>",          "Open"     }, -- trouble
+            c = { "<CMD>TroubleClose<CR>",     "Close"    }, -- trouble
+            R = { "<CMD>TroubleRefresh<CR>",   "Refresh"  }, -- trouble
+            l = { "<CMD>Trouble loclist<CR>",  "Loclist"  }, -- trouble
+            f = { "<CMD>Trouble quickfix<CR>", "Quickfix" }  -- trouble
         },
         r = {
             name = "Registers",
-            r = { tele_custom .. "registers('small')<cr>", "Compact window"  }, -- telescope
-            R = { tele_custom .. "registers('large')<cr>", "Extended window" }  -- telescope
+            r = { tele_custom .. "registers('small')<CR>", "Compact window"  }, -- telescope
+            R = { tele_custom .. "registers('large')<CR>", "Extended window" }  -- telescope
         },
         s = {
             name = "Search",
-            e = { tele_custom  .. "file_browser()<cr>",    "File browser"       }, -- telescope
-            f = { tele_builtin .. "find_files()<cr>",      "File search"        }, -- telescope
-            g = { tele_custom  .. "live_grep()<cr>",       "ripGREP"            }, -- telescope
-            H = { tele_builtin .. "highlights()<cr>",      "Highlight groups"   }, -- telescope
-            h = { tele_builtin .. "help_tags()<cr>",       "Vim help"           }, -- telescope
-            n = { tele_custom  .. "notify()<cr>",          "Notify history"     }, -- telescope -- notify
-            o = { tele_builtin .. "vim_options()<cr>",     "Vim options"        }, -- telescope
-            p = { tele_custom  .. "project()<cr>",         "Projects"           }, -- telescope
-            r = { tele_custom  .. "find_recent()<cr>",     "Find recent"        }, -- telescope
-            T = { "<cmd>TodoTelescope<cr>",                "Show TODO comments" },  -- todo-comments
+            f = { tele_builtin .. "find_files()<CR>",      "File search"        }, -- telescope
+            g = { tele_custom  .. "live_grep()<CR>",       "ripGREP"            }, -- telescope
+            H = { tele_builtin .. "highlights()<CR>",      "Highlight groups"   }, -- telescope
+            h = { tele_builtin .. "help_tags()<CR>",       "Vim help"           }, -- telescope
+            n = { tele_custom  .. "notify()<CR>",          "Notify history"     }, -- telescope -- notify
+            o = { tele_builtin .. "vim_options()<CR>",     "Vim options"        }, -- telescope
+            p = { tele_custom  .. "project()<CR>",         "Projects"           }, -- telescope
+            r = { tele_custom  .. "find_recent()<CR>",     "Find recent"        }, -- telescope
+            T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" },  -- todo-comments
             t = {
                 name = "Telescope",
-                b = { tele_builtin .. "builtin()<cr>",         "Telescope builtin"  }, -- telescope
-                c = { tele_builtin .. "command_history()<cr>", "Command history"    }  -- telescope
+                b = { tele_builtin .. "builtin()<CR>",         "Telescope builtin"  }, -- telescope
+                c = { tele_builtin .. "command_history()<CR>", "Command history"    }  -- telescope
             }
         },
-        u     = { "<cmd>UndotreeToggle<cr>", "Toggle undo tree" } -- undotree
+        u = { "<CMD>UndotreeToggle<CR>", "Toggle undo tree" } -- undotree
     }
 })
 
 -- Visual and select mode mappings
 wk.register({
-    ["<space>"] = {
+    ["<Space>"] = {
         -- NOTE: try quick-scope/hop combo
-        f = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop to"          }, -- hop
-        t = { "<cmd>lua require'hop'.hint_char1()<cr>", "Hop till before" }, -- hop
-        -- f = { hop .. "AFTER_CURSOR })<cr>",  "Hop right to"          }, -- hop
-        -- F = { hop .. "BEFORE_CURSOR })<cr>", "Hop left to"           }, -- hop
-        -- t = { hop .. "AFTER_CURSOR })<cr>",  "Hop right till before" }, -- hop
-        -- T = { hop .. "BEFORE_CURSOR })<cr>", "Hop left till before"  }, -- hop
+        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"          }, -- hop
+        -- f = { hop .. "AFTER_CURSOR })<CR>",  "Hop right to"          }, -- hop
+        -- F = { hop .. "BEFORE_CURSOR })<CR>", "Hop left to"           }, -- hop
         g = {
             name = "Git",
-            s = { ":Gitsigns stage_hunk<cr>", "Stage hunk" }, -- gitsigns
-            r = { ":Gitsigns reset_hunk<cr>", "Reset hunk" }, -- gitsigns
+            s = { ":Gitsigns stage_hunk<CR>", "Stage hunk" }, -- gitsigns
+            r = { ":Gitsigns reset_hunk<CR>", "Reset hunk" }, -- gitsigns
         }
     },
 }, { mode = "v" })
@@ -152,16 +148,16 @@ wk.register({
 -- Operator mode mappings
 wk.register({
     i = {
-        h  = { ":<C-U>Gitsigns select_hunk<cr>", "Select git hunk" }, -- gitsigns
+        h  = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
     },
-    ["<space>"] = {
+    ["<Space>"] = {
         -- NOTE: try quick-scope/hop combo
-        f = { "<cmd>lua require'hop'.hint_char1({ inclusive_jump = true })<cr>", "Hop to"          }, -- hop
-        t = { "<cmd>lua require'hop'.hint_char1()<cr>",                          "Hop till before" }, -- hop
-        -- f = { hop .. "AFTER_CURSOR, inclusive_jump = true })<cr>",  "Hop right to"          }, -- hop
-        -- F = { hop .. "BEFORE_CURSOR, inclusive_jump = true })<cr>", "Hop left to"           }, -- hop
-        -- t = { hop .. "AFTER_CURSOR })<cr>",                         "Hop right till before" }, -- hop
-        -- T = { hop .. "BEFORE_CURSOR })<cr>",                        "Hop left till before"  }  -- hop
+        f = { "<CMD>lua require'hop'.hint_char1({ inclusive_jump = true })<CR>", "Hop to"          }, -- hop
+        t = { "<CMD>lua require'hop'.hint_char1()<CR>",                          "Hop till before" }, -- hop
+        -- f = { hop .. "AFTER_CURSOR, inclusive_jump = true })<CR>",  "Hop right to"          }, -- hop
+        -- F = { hop .. "BEFORE_CURSOR, inclusive_jump = true })<CR>", "Hop left to"           }, -- hop
+        -- t = { hop .. "AFTER_CURSOR })<CR>",                         "Hop right till before" }, -- hop
+        -- T = { hop .. "BEFORE_CURSOR })<CR>",                        "Hop left till before"  }  -- hop
     }
 }, { mode = "o" })
 
@@ -173,6 +169,6 @@ wk.register({
         b = { "Block comment" }  -- comment
     },
     i = {
-        h = { ":<C-U>Gitsigns select_hunk<cr>", "Select git hunk" } -- gitsigns
+        h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" } -- gitsigns
     }
 }, { mode = "x" })

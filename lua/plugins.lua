@@ -260,7 +260,6 @@ return packer.startup(function()
     -- nvim-tree.lua - A File Explorer For Neovim Written In Lua
     use{
         "kyazdani42/nvim-tree.lua", -- https://github.com/kyazdani42/nvim-tree.lua
-        cmd = { "NvimTreeOpen", "NvimTreeToggle" },
         requires = "nvim-web-devicons",
         config = function()
             require("config.nvim-tree")

@@ -127,14 +127,6 @@ function M.live_grep()
     }
 end
 
-function M.file_browser()
-    builtin.file_browser {
-        -- cwd = custom_cwd(),
-        results_title = "File explorer",
-        prompt_title = "Filter files",
-    }
-end
-
 function M.project()
     telescope.extensions.project.project{
         display_type = "full",

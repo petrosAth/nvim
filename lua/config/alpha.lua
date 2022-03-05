@@ -44,8 +44,7 @@ local buttons_navigation = {
         set_button("SPC s r", " " .. ci.arrowr[1] .. " Recent files",   tele_custom .. "find_recent()<CR>"),
         set_button("SPC s p", " " .. ci.arrowr[1] .. " Projects",       tele_custom .. "project()<CR>"),
         set_button("SPC s f", " " .. ci.arrowr[1] .. " File search",    tele_custom .. "find_files()<CR>"),
-        set_button("SPC s g", " " .. ci.arrowr[1] .. " ripGREP search", tele_custom .. "live_grep()<CR>"),
-        set_button("SPC s b", " " .. ci.arrowr[1] .. " File browser",   tele_custom .. "file_browser()<CR>"),
+        set_button("SPC s g", " " .. ci.arrowr[1] .. " ripGREP search", tele_custom .. "live_grep()<CR>")
     },
     opts = {
         spacing = 0,
@@ -55,8 +54,8 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        set_button("SPC u u", " " .. ci.arrowr[1] .. " Update plugins",  "<cmd>PackerSync<CR>"),
-        set_button("SPC u I", " " .. ci.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>"),
+        set_button("LDR u u", " " .. ci.arrowr[1] .. " Update plugins",   "<cmd>PackerSync<CR>"),
+        set_button("LDR u I", " " .. ci.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>")
     },
     opts = {
         spacing = 0,

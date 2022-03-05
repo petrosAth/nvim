@@ -4,8 +4,8 @@ local palette = CONFIG_PATH .. "/lua/config/hexokinase/palettes"
 g.Hexokinase_highlighters     = {
     -- "virtual"
     -- "sign_column"
-    "background"
-    -- "backgroundfull"
+    -- "background"
+    "backgroundfull"
     -- "foreground"
     -- "foregroundfull"
 }

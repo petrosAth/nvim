@@ -28,13 +28,6 @@ M.icon = {
     arrowr   = { "", "", "", "", "" },
     arrowu   = { "", "", "", "", "" },
     arrowd   = { "", "", "", "", "" },
-    git      = {
-        staged    = { "", "" },
-        unstaged  = { "", "" },
-        untracked = { "", "ﮛ" },
-        deleted   = { "", "" },
-        renamed   = { "" }
-    },
     loading  = {
         circle = {
             -- "◝", "◞", "◟", "◜"
@@ -70,7 +63,7 @@ M.icon = {
 
 -- Table containing borders
 M.border = {
-    table    = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤" },
+    table    = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
     single   = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
     round    = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤" },
     double   = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢",      "╠",      "╣", },

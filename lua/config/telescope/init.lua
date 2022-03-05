@@ -145,7 +145,6 @@ telescope.setup({
             workspaces = {
                 ["Win petrosAth"] = "/mnt/c/Users/petrosAth",
                 [".config"]       = "$HOME/.config",
-                ["dotfiles"]      = "$HOME/dotfiles",
                 ["Projects"]      = "$HOME/Develop"
             }
 		},
@@ -180,7 +179,6 @@ telescope.setup({
         project = {
             base_dirs = {
                 { path = "$HOME/Develop",  max_depth = 2 },
-                { path = "$HOME/dotfiles", max_depth = 2 },
                 { path = "$HOME/.config",  max_depth = 2 }
             },
             hidden_files = true,
