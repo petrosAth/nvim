@@ -36,49 +36,51 @@ Still a work in progress.
 *Big list that I will add at some point*
 
 ### Plugins for installation
-| Plugin | Description |
-| ----------- | ----------- |
-| [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar) | Extensible Neovim Scrollbar |
-| [surround.nvim](https://github.com/blackCauldron7/surround.nvim) | A surround text object plugin for neovim written in lua. |
-| [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
-| [impatient.nvim](https://github.com/lewis6991/impatient.nvim) | Improve startup time for Neovim |
-| [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim) | Telescope extension to preview media files using Ueberzug. |
-| Themes |
-| [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) | Dracula colorscheme for neovim written in Lua. |
-| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim) | 🏙 A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |
-| [nightfox.nvim](https://github.com/edeneast/nightfox.nvim) | 🦊A soft dark, fully customizable (Neo)Vim theme, with support for lsp, treesitter and a variety of plugins. |
-| [nord.nvim](https://github.com/shaunsingh/nord.nvim) | Neovim theme based off of the Nord Color Palette, written in lua with tree sitter support. |
-| [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua) | solarized colorscheme in lua for nvim 0.5. |
+| Plugin                                                                                          | Description |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)                                  | Extensible Neovim Scrollbar                                                                                                                                       |
+| [surround.nvim](https://github.com/blackCauldron7/surround.nvim)                                | A surround text object plugin for neovim written in lua.                                                                                                          |
+| [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)                              | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.                                                                        |
+| [impatient.nvim](https://github.com/lewis6991/impatient.nvim)                                   | Improve startup time for Neovim                                                                                                                                   |
+| Themes                                                                                          |
+| [dracula.nvim](https://github.com/Mofiqul/dracula.nvim)                                         | Dracula colorscheme for neovim written in Lua.                                                                                                                    |
+| [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)                                     | A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |
+| [nightfox.nvim](https://github.com/edeneast/nightfox.nvim)                                      | A soft dark, fully customizable (Neo)Vim theme, with support for lsp, treesitter and a variety of plugins.                                                        |
+| [nord.nvim](https://github.com/shaunsingh/nord.nvim)                                            | Neovim theme based off of the Nord Color Palette, written in lua with tree sitter support.                                                                        |
+| [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)                           | solarized colorscheme in lua for nvim 0.5.                                                                                                                        |
 
 ### Plugins watch list
-| Plugin | Description |
-| ----------- | ----------- |
-| [formatter.nvim](https://github.com/mhartington/formatter.nvim) | A format runner for neovim, written in lua. |
-| <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim) | Simple session management for Neovim. |
-| <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager) | A simple wrapper around :mksession |
-| [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim) | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa! |
-| [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu) | Pop-up menu for code actions to show meta-information and diff preview |
-| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) | A neovim lua plugin to help easily manage multiple terminal windows. |
-| [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua) | Clipboard manager neovim plugin with telescope integration. |
-| [vim-easy-align](https://github.com/junegunn/vim-easy-align) | 🌻 A Vim alignment plugin. |
-| Aesthetics |
-| [dressing](https://github.com/stevearc/dressing.nvim) | Neovim plugin to improve the default vim.ui interfaces |
-| [cosmic-ui](https://github.com/CosmicNvim/cosmic-ui) | Cosmic-UI is a simple wrapper around specific vim functionality. Built in order to provide a quick and easy way to create a Cosmic UI experience with Neovim! |
-| Treesitter |
-| [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs) | Code documentation built with treesitter |
-| [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file. |
-| Git |
-| [Neogit](https://github.com/TimUntersberger/neogit) | magit for neovim. |
-| [lazygit](https://github.com/jesseduffield/lazygit) | simple terminal UI for git commands. |
-| Debugging |
-| [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debug Adapter Protocol client implementation for Neovim. |
-| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | A UI for nvim-dap. |
-| [DAPInstall](https://github.com/Pocco81/DAPInstall.nvim) | A NeoVim plugin for managing several debuggers for Nvim-dap. |
-| [calltree.nvim](https://github.com/ldelossa/calltree.nvim) | Neovim's missing call-hierarchy UI. |
-| [vimspector](https://github.com/puremourning/vimspector) | vimspector - A multi-language debugging system for Vim. |
-| ltex ls |
-| [LTeX Language Server](https://github.com/valentjn/ltex-ls) | LTeX Language Server: LSP language server for LanguageTool 🔍✔️ with support for LaTeX 🎓, Markdown 📝, and others |
-| [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim) | Grammar Guard is a Neovim plugin that checks your grammar as you write your LaTeX, Markdown or plain text document. |
+| Plugin                                                                                          | Description                                                                                                                                                       |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [formatter.nvim](https://github.com/mhartington/formatter.nvim)                                 | A format runner for neovim, written in lua.                                                                                                                       |
+| <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim)                   | Simple session management for Neovim.                                                                                                                             |
+| <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager)      | A simple wrapper around :mksession                                                                                                                                |
+| [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim)                                       | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa!                                                                               |
+| [nvim-code-action-menu](https://github.com/weilbith/nvim-code-action-menu)                      | Pop-up menu for code actions to show meta-information and diff preview                                                                                            |
+| [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)                                   | A neovim lua plugin to help easily manage multiple terminal windows.                                                                                              |
+| [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua)                                  | Clipboard manager neovim plugin with telescope integration.                                                                                                       |
+| [vim-easy-align](https://github.com/junegunn/vim-easy-align)                                    | A Vim alignment plugin.                                                                                                                                           |
+| [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)           | Telescope extension to preview media files using Ueberzug.                                                                                                        |
+| [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                                            | Better quickfix window in Neovim, polish old quickfix window.                                                                                                     |
+| [diaglist.nvim](https://github.com/onsails/diaglist.nvim)                                       | Live render workspace diagnostics in quickfix with current buf errors on top, buffer diagnostics in loclist                                                       |
+| Aesthetics                                                                                      |
+| [dressing](https://github.com/stevearc/dressing.nvim)                                           | Neovim plugin to improve the default vim.ui interfaces                                                                                                            |
+| [cosmic-ui](https://github.com/CosmicNvim/cosmic-ui)                                            | Cosmic-UI is a simple wrapper around specific vim functionality. Built in order to provide a quick and easy way to create a Cosmic UI experience with Neovim!     |
+| Treesitter                                                                                      |
+| [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs)                             | Code documentation built with treesitter                                                                                                                          |
+| [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.                                                                    |
+| Git                                                                                             |
+| [Neogit](https://github.com/TimUntersberger/neogit)                                             | magit for neovim.                                                                                                                                                 |
+| [lazygit](https://github.com/jesseduffield/lazygit)                                             | simple terminal UI for git commands.                                                                                                                              |
+| Debugging                                                                                       |
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap)                                            | Debug Adapter Protocol client implementation for Neovim.                                                                                                          |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)                                          | A UI for nvim-dap.                                                                                                                                                |
+| [DAPInstall](https://github.com/Pocco81/DAPInstall.nvim)                                        | A NeoVim plugin for managing several debuggers for Nvim-dap.                                                                                                      |
+| [calltree.nvim](https://github.com/ldelossa/calltree.nvim)                                      | Neovim's missing call-hierarchy UI.                                                                                                                               |
+| [vimspector](https://github.com/puremourning/vimspector)                                        | vimspector - A multi-language debugging system for Vim.                                                                                                           |
+| ltex ls                                                                                         |
+| [LTeX Language Server](https://github.com/valentjn/ltex-ls)                                     | LTeX Language Server: LSP language server for LanguageTool with support for LaTeX , Markdown, and others.                                                         |
+| [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim)                      | Grammar Guard is a Neovim plugin that checks your grammar as you write your LaTeX, Markdown or plain text document.                                               |
 
 ## Plugin collections
 [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) - Collections of awesome neovim plugins.

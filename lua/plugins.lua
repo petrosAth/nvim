@@ -279,8 +279,11 @@ return packer.startup(function()
         "wfxr/minimap.vim", -- https://github.com/wfxr/minimap.vim
         cmd = { "Minimap", "MinimapToggle" },
         setup = function()
-            require("config.minimap")
+            require("config.minimap").setup()
         end,
+        config =function ()
+            require("config.minimap").config()
+        end
     }
 
     -- symbols-outline.nvim - A tree like view for symbols in Neovim using the Language Server Protocol

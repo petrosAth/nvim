@@ -1,6 +1,8 @@
--- Automatically refresh the tree after opening a new file
--- Ensures that the file is highlighted correctly in the tree when
--- opened using telescope or netrw
+local g = vim.g
+local ci = require("cosmetics").icon
+local tree = require("nvim-tree")
+local tree_cb = require("nvim-tree.config").nvim_tree_callback
+
 vim.cmd([[
     augroup NVIMTREE
         autocmd!
@@ -8,9 +10,6 @@ vim.cmd([[
         autocmd FileType NvimTree setlocal fillchars+=eob:\ "
     augroup END
 ]])
-
-local g = vim.g
-local ci = require("cosmetics").icon
 
 g.nvim_tree_show_icons = {
     git = 1,            -- If 0, do not show the icons for one of 'git' 'folder' and 'files'
@@ -52,9 +51,6 @@ g.nvim_tree_symlink_arrow = " " .. ci.arrowr[1] .. " " -- defaults to ' ➛ '. u
 -- g.nvim_tree_respect_buf_cwd = 0          -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 -- g.nvim_tree_create_in_closed_folder = 1  -- 1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 -- g.nvim_tree_refresh_wait = 500           -- 1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
-
-local tree = require("nvim-tree")
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 tree.setup({
 	disable_netrw = true, -- disables netrw completely
@@ -112,44 +108,44 @@ tree.setup({
 			custom_only = true, -- custom only false will merge the list with the default mappings
                                 -- if true, it will only use your list to set the mappings
 			list = { -- list of mappings to set on the tree manually
-                { key = {"l", "<2-LeftMouse>"},     action = "edit" },
-                { key = "<C-y>",                    action = "edit_in_place" },
-                -- { key = "<C-Y>",                    action = "edit_no_picker" },
-                { key = {"<CR>", "<2-RightMouse>"}, action = "cd" },
-                { key = "<C-v>",                    action = "vsplit" },
-                { key = "<C-s>",                    action = "split" },
-                { key = "<C-t>",                    action = "tabnew" },
-                { key = "<",                        action = "prev_sibling" },
-                { key = ">",                        action = "next_sibling" },
-                { key = "P",                        action = "parent_node" },
-                { key = "h",                        action = "close_node" },
-                { key = "L",                        action = "preview" },
-                { key = "K",                        action = "first_sibling" },
-                { key = "J",                        action = "last_sibling" },
-                { key = "I",                        action = "toggle_ignored" },
-                { key = "<C-h>",                    action = "toggle_dotfiles" },
-                { key = "r",                        action = "refresh" },
-                { key = "a",                        action = "create" },
-                { key = "D",                        action = "remove" },
-                { key = "d",                        action = "trash" },
-                { key = "R",                        action = "rename" },
-                { key = "<C-r>",                    action = "full_rename" },
-                { key = "X",                        action = "cut" },
-                { key = "c",                        action = "copy" },
-                { key = "p",                        action = "paste" },
-                { key = "y",                        action = "copy_name" },
-                { key = "Y",                        action = "copy_path" },
-                { key = "gy",                       action = "copy_absolute_path" },
-                { key = "[c",                       action = "prev_git_item" },
-                { key = "]c",                       action = "next_git_item" },
-                { key = "-",                        action = "dir_up" },
-                { key = "s",                        action = "system_open" },
-                { key = "q",                        action = "close" },
-                { key = "?",                        action = "toggle_help" },
-                { key = 'H',                        action = "collapse_all" },
-                { key = "<C-f>",                    action = "search_node" },
-                { key = ".",                        action = "run_file_command" },
-                { key = "<C-k>",                    action = "show_file_info" }
+                { key = {"l", "<CR>", "<2-LeftMouse>"}, action = "edit" },
+                { key = "<C-y>",                        action = "edit_in_place" },
+                -- { key = "<C-Y>",                        action = "edit_no_picker" },
+                { key = {"L", "<2-RightMouse>"},        action = "cd" },
+                { key = "<C-v>",                        action = "vsplit" },
+                { key = "<C-s>",                        action = "split" },
+                { key = "<C-t>",                        action = "tabnew" },
+                { key = "<",                            action = "prev_sibling" },
+                { key = ">",                            action = "next_sibling" },
+                { key = "P",                            action = "parent_node" },
+                { key = "h",                            action = "close_node" },
+                { key = "<C-l>",                        action = "preview" },
+                { key = "K",                            action = "first_sibling" },
+                { key = "J",                            action = "last_sibling" },
+                { key = "I",                            action = "toggle_ignored" },
+                { key = "<C-h>",                        action = "toggle_dotfiles" },
+                { key = "r",                            action = "refresh" },
+                { key = "a",                            action = "create" },
+                { key = "D",                            action = "remove" },
+                { key = "d",                            action = "trash" },
+                { key = "R",                            action = "rename" },
+                { key = "<C-r>",                        action = "full_rename" },
+                { key = "X",                            action = "cut" },
+                { key = "c",                            action = "copy" },
+                { key = "p",                            action = "paste" },
+                { key = "y",                            action = "copy_name" },
+                { key = "Y",                            action = "copy_path" },
+                { key = "gy",                           action = "copy_absolute_path" },
+                { key = "[c",                           action = "prev_git_item" },
+                { key = "]c",                           action = "next_git_item" },
+                { key = "-",                            action = "dir_up" },
+                { key = "s",                            action = "system_open" },
+                { key = "q",                            action = "close" },
+                { key = "?",                            action = "toggle_help" },
+                { key = 'H',                            action = "collapse_all" },
+                { key = "<C-f>",                        action = "search_node" },
+                { key = ".",                            action = "run_file_command" },
+                { key = "<C-k>",                        action = "show_file_info" }
             },
 		},
 	},
