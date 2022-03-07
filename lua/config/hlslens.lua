@@ -51,5 +51,10 @@ require('hlslens').setup({
             chunks = {{' ', 'Ignore'}, {text, 'HlSearchLens'}}
         end
         render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
-    end
+    end,
+
+    -- needed for scrollbar plugin
+    build_position_cb = function(plist, _, _, _)
+        require("scrollbar.handlers.search").handler.show(plist.start_pos)
+    end,
 })

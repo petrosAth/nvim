@@ -1,7 +1,5 @@
 local g = vim.g
 local ci = require("cosmetics").icon
-local tree = require("nvim-tree")
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 vim.cmd([[
     augroup NVIMTREE
@@ -51,6 +49,8 @@ g.nvim_tree_symlink_arrow = " " .. ci.arrowr[1] .. " " -- defaults to ' ➛ '. u
 -- g.nvim_tree_respect_buf_cwd = 0          -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 -- g.nvim_tree_create_in_closed_folder = 1  -- 1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 -- g.nvim_tree_refresh_wait = 500           -- 1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
+
+local tree = require("nvim-tree")
 
 tree.setup({
 	disable_netrw = true, -- disables netrw completely

@@ -426,9 +426,9 @@ M.git_status = function()
             }
             local gs_symbol = {
                 head    = "",
-                added   = "  ",
-                changed = "  ",
-                removed = "  "
+                added   = " +", --
+                changed = " ~", --
+                removed = " -"  --
             }
             local gs_count = {
                 head    = gitsigns.head,
@@ -455,7 +455,7 @@ M.git_status = function()
                 L  = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
                 M  = gs_status.head[1] .. table.concat(gs_status.signs, ""),
                 S  = table.concat(gs_status.count_only, " "),
-                _  = ""
+                _  = " "
             })
         else
             return ""

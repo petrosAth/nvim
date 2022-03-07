@@ -36,7 +36,7 @@ return packer.startup(function()
 -- Packer
     use{ "wbthomason/packer.nvim" } -- https://github.com/wbthomason/packer.nvim
 
--- Cosmetics -------------------------------------------------------------------
+--<=< Cosmetics >============================================================>--
     -- dracula -- color theme
     use{
         "dracula/vim", -- https://github.com/dracula/vim
@@ -78,9 +78,9 @@ return packer.startup(function()
             require("config.notify")
         end
     }
---------------------------------------------------------------------------------
+--<==========================================================================>--
 
--- Autocompletion and Syntax highlighting --------------------------------------
+--<=< Autocompletion and Syntax highlighting >===============================>--
     -- nvim-lspconfig - Neovim's built-in language server client.
     use{
         "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
@@ -107,13 +107,6 @@ return packer.startup(function()
                 after = "nvim-lspconfig",
                 config = function()
                     require("config.lsp.lsp-signature")
-                end
-            },
-            -- nvim-lightbulb - VSCode action for neovim's built-in LSP
-            {
-                "kosayoda/nvim-lightbulb", -- https://github.com/kosayoda/nvim-lightbulb
-                config = function()
-                    require("config.lsp.nvim-lightbulb")
                 end
             },
             -- lspkind.nvim - This tiny plugin adds vscode-like pictograms to neovim built-in lsp
@@ -232,9 +225,9 @@ return packer.startup(function()
             require("config.illuminate")
         end
     }
-    --------------------------------------------------------------------------------
+--<==========================================================================>--
 
-    -- Project and file navigation -------------------------------------------------
+--<=< Project and file navigation >==========================================>--
     -- telescope.nvim - Gaze deeply into unknown regions using the power of the moon
     use{
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
@@ -274,18 +267,6 @@ return packer.startup(function()
         end,
     }
 
-    -- minimap.vim - Blazing fast minimap / scrollbar for vim, powered by code-minimap written in Rust
-    use{
-        "wfxr/minimap.vim", -- https://github.com/wfxr/minimap.vim
-        cmd = { "Minimap", "MinimapToggle" },
-        setup = function()
-            require("config.minimap").setup()
-        end,
-        config =function ()
-            require("config.minimap").config()
-        end
-    }
-
     -- symbols-outline.nvim - A tree like view for symbols in Neovim using the Language Server Protocol
     use{
         "simrat39/symbols-outline.nvim", -- https://github.com/simrat39/symbols-outline.nvim
@@ -319,9 +300,17 @@ return packer.startup(function()
             require("config.diffview")
         end
     }
-    --------------------------------------------------------------------------------
 
-    -- Miscellaneous ---------------------------------------------------------------
+    -- nvim-scrollbar - Extensible Neovim Scrollbar
+    use{
+        "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
+        config = function ()
+            require("config.scrollbar")
+        end
+    }
+--<==========================================================================>--
+
+--<=< Miscellaneous >========================================================>--
     -- bufferline.nvim - This plugin shamelessly attempts to emulate the aesthetics of GUI text editors/Doom Emacs
     use{
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
@@ -401,7 +390,7 @@ return packer.startup(function()
             require("config.stabilize")
         end
     }
-    --------------------------------------------------------------------------------
+--<==========================================================================>--
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
