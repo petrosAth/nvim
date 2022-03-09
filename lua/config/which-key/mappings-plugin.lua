@@ -81,7 +81,7 @@ wk.register({
             H = { "<CMD>lua vim.diagnostic.open_float()<CR>",  "Line diagnostics"      }, -- lspconfig
             R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
             s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
-            a = { tele_custom .. "lsp_code_actions()<CR>",     "Code actions"          }, -- lspconfig -- telescope
+            a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",    "Code actions"          }, -- lspconfig -- telescope
             r = { tele_custom .. "lsp_references()<CR>",       "References"            }, -- lspconfig -- telescope
             K = { tele_custom .. "lsp_definitions()<CR>",      "Definitions"           }, -- lspconfig -- telescope
             h = { "<CMD>lua vim.lsp.buf.hover()<CR>",          "Hover symbol"          }, -- lspconfig

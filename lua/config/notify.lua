@@ -6,7 +6,9 @@ notify.setup({
     stages = "fade_in_slide_out",
 
     -- Function called when a new window is opened, use for changing win settings/config
-    on_open = nil,
+    on_open = function (win)
+        vim.api.nvim_win_set_config(win, { border = "single" })
+    end,
 
     -- Function called when a window is closed
     on_close = nil,

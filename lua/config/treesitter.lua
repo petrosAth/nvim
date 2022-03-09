@@ -1,13 +1,16 @@
 require("nvim-treesitter.configs").setup({
     -- TODO: change to maintained when heavy config editing is done
     ensure_installed = { "bash", "c", "css", "c_sharp", "html", "json", "lua", "markdown", "python" },
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
     autotag = {
         enable = true,
         filetypes = { "html" , "xml" },
+    },
+    context_commentstring = {
+        enable = true
+    },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
     },
     rainbow = {
         enable = true,
@@ -22,5 +25,5 @@ require("nvim-treesitter.configs").setup({
             "#ff79c6",
             "#f8f8f2",
         },
-    },
+    }
 })

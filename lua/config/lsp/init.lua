@@ -96,11 +96,6 @@ M.custom_on_attach = function(client, bufnr)
     --     buffer  = bufnr
     -- })
 
-    -- vim-illuminate
-    -- Use LSP to smart highlight instances of the word under the cursor
-    local illuminate = require("illuminate")
-    illuminate.on_attach(client)
-
     -- lsp-status.nvim
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.

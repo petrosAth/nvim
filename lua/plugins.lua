@@ -218,11 +218,11 @@ return packer.startup(function()
         end,
     }
 
-    -- vim-illuminate - Vim plugin for automatically highlighting other uses of the current word under the cursor
+    -- mini.nvim - Neovim plugin with collection of minimal, independent, and fast Lua modules
     use{
-        "RRethy/vim-illuminate", -- https://github.com/RRethy/vim-illuminate
-        setup = function()
-            require("config.illuminate")
+        "echasnovski/mini.nvim", -- https://github.com/echasnovski/mini.nvim
+        config = function()
+            require("config.mini-cursorword")
         end
     }
 --<==========================================================================>--
@@ -247,6 +247,8 @@ return packer.startup(function()
             { "nvim-telescope/telescope-project.nvim" }, -- https://github.com/nvim-telescope/telescope-project.nvim
             -- An extension for telescope.nvim. It helps you navigate, select, and perform actions on results buffer with motions inspired by hop.nvim.
             { "nvim-telescope/telescope-hop.nvim" }, -- https://github.com/nvim-telescope/telescope-hop.nvim
+            -- It sets vim.ui.select to telescope.
+            { "nvim-telescope/telescope-ui-select.nvim" }, -- https://github.com/nvim-telescope/telescope-ui-select.nvim
         },
     }
 

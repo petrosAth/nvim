@@ -5,6 +5,7 @@ local custom_pickers = require("config.telescope.customPickers")
 local trouble = require("trouble.providers.telescope")
 local ct = require("cosmetics").variables.transparency
 local ci = require("cosmetics").icon
+local cb = require("cosmetics").border.table
 
 telescope.setup({
 	defaults = {
@@ -182,12 +183,20 @@ telescope.setup({
                 { path = "$HOME/.config",  max_depth = 2 }
             },
             hidden_files = true,
+        },
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+                borderchars = {
+                    prompt  = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
+                    results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl }
+                }
+            }
         }
 	},
 })
 
 -- Load extensions
-local extensions = { "frecency", "fzf", "hop", "project" }
+local extensions = { "frecency", "fzf", "hop", "project", "ui-select" }
 pcall(function()
 	for _, ext in ipairs(extensions) do
 		telescope.load_extension(ext)
