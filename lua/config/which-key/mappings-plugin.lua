@@ -77,7 +77,7 @@ wk.register({
         },
         l = {
             name = "LSP",
-            f = { "<CMD>vim.lsp.buf.formatting()<CR>",         "Code formatting"       }, -- lspconfig
+            f = { "<CMD>lua vim.lsp.buf.formatting()<CR>",     "Code formatting"       }, -- lspconfig
             H = { "<CMD>lua vim.diagnostic.open_float()<CR>",  "Line diagnostics"      }, -- lspconfig
             R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
             s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
