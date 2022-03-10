@@ -269,12 +269,10 @@ return packer.startup(function()
         end,
     }
 
-    -- symbols-outline.nvim - A tree like view for symbols in Neovim using the Language Server Protocol
     use{
-        "simrat39/symbols-outline.nvim", -- https://github.com/simrat39/symbols-outline.nvim
-        cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
-        setup = function()
-            require("config.symbols-outline")
+        "stevearc/aerial.nvim", -- https://github.com/stevearc/aerial.nvim
+        config = function()
+            require("config.aerial")
         end
     }
 

@@ -1,4 +1,5 @@
-vim.cmd([[au FileType alpha let b:minicursorword_disable=v:true]])
+vim.cmd([[au FileType aerial   let b:minicursorword_disable=v:true]])
+vim.cmd([[au FileType alpha    let b:minicursorword_disable=v:true]])
 vim.cmd([[au FileType NvimTree let b:minicursorword_disable=v:true]])
 
 require("mini.cursorword").setup({

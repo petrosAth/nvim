@@ -25,7 +25,7 @@ wk.register({
     ["g*"] = { "g*<CMD>lua require('hlslens').start()<CR>", "Search string under cursor"          }, -- hlslens
     ["g#"] = { "g#<CMD>lua require('hlslens').start()<CR>", "Search string under cursor backward" }, -- hlslens
     ["<Leader>"] = {
-        u = {
+        u     = {
             name = "Utilities",
             u = { "<CMD>PackerSync<CR>",     "Packer sync"              }, -- packer
             s = { "<CMD>PackerStatus<CR>",   "Packer status"            }, -- packer
@@ -47,33 +47,32 @@ wk.register({
             e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
             R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }  -- diffview
         },
-        e     = { "<CMD>NvimTreeToggle<CR>",       "Toggle file tree"       }, -- nvimtree
+        e     = { "<CMD>NvimTreeToggle<CR>",                "Toggle file tree" }, -- nvimtree
         E     = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree
-        -- NOTE: try quick-scope/hop combo
-        f     = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"          }, -- hop
-        -- f     = { hop .. "AFTER_CURSOR })<CR>",    "Hop right to"           }, -- hop
-        -- F     = { hop .. "BEFORE_CURSOR })<CR>",   "Hop left to"            }, -- hop
-        -- t     = { hop .. "AFTER_CURSOR })<CR>",    "Hop right till before"  }, -- hop
-        -- T     = { hop .. "BEFORE_CURSOR })<CR>",   "Hop left till before"   }, -- hop
-        S     = { "<CMD>SymbolsOutline<CR>",       "Toggle Symbols Outline" },
-        g = {
+        f     = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"           }, -- hop
+        g     = {
             name = "Git",
             f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
             c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
             b = { tele_builtin .. "git_branches()<CR>", "Branches"  }, -- telescope
             s = { tele_builtin .. "git_status()<CR>",   "Status"    }, -- telescope
-            a = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
-            -- b = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Blame" }, -- gitsigns
-            -- B = {
-            --     S = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
-            --     R = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
-            --     U = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
-            -- },
-            h = {
-                s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
-                u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
-                r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
-                p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
+            S = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
+            B = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Blame" }, -- gitsigns
+            g = {
+                name = "Gitsigns",
+                b = {
+                    name = "Buffer actions",
+                    s = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
+                    r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
+                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
+                },
+                h = {
+                    name = "Hunk actions",
+                    s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
+                    u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
+                    r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
+                    p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
+                }
             }
         },
         l = {
@@ -88,13 +87,7 @@ wk.register({
             d = { "<CMD>Trouble document_diagnostics<CR>",     "Document diagnostics"  }, -- lspconfig -- trouble
             D = { "<CMD>Trouble workspace_diagnostics<CR>",    "Workspace diagnostics" }  -- lspconfig -- trouble
         },
-        m = {
-            name = "Minimap",
-            m = { "<CMD>MinimapToggle<CR>",          "Toggle"           }, -- minimap
-            q = { "<CMD>MinimapClose<CR>",           "Close"            }, -- minimap
-            r = { "<CMD>MinimapRefresh<CR>",         "Refresh"          }, -- minimap
-            h = { "<CMD>MinimapUpdateHighlight<CR>", "Update highlight" }  -- minimap
-        },
+        o = { "<CMD>AerialToggle<CR>", "Toggle Code outline" }, -- aerial
         q = {
             name = "Trouble",
             q = { "<CMD>TroubleToggle<CR>",    "Toggle"   }, -- trouble
@@ -133,10 +126,7 @@ wk.register({
 -- Visual and select mode mappings
 wk.register({
     ["<Space>"] = {
-        -- NOTE: try quick-scope/hop combo
         f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"          }, -- hop
-        -- f = { hop .. "AFTER_CURSOR })<CR>",  "Hop right to"          }, -- hop
-        -- F = { hop .. "BEFORE_CURSOR })<CR>", "Hop left to"           }, -- hop
         g = {
             name = "Git",
             s = { ":Gitsigns stage_hunk<CR>", "Stage hunk" }, -- gitsigns
@@ -151,13 +141,8 @@ wk.register({
         h  = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
     },
     ["<Space>"] = {
-        -- NOTE: try quick-scope/hop combo
         f = { "<CMD>lua require'hop'.hint_char1({ inclusive_jump = true })<CR>", "Hop to"          }, -- hop
         t = { "<CMD>lua require'hop'.hint_char1()<CR>",                          "Hop till before" }, -- hop
-        -- f = { hop .. "AFTER_CURSOR, inclusive_jump = true })<CR>",  "Hop right to"          }, -- hop
-        -- F = { hop .. "BEFORE_CURSOR, inclusive_jump = true })<CR>", "Hop left to"           }, -- hop
-        -- t = { hop .. "AFTER_CURSOR })<CR>",                         "Hop right till before" }, -- hop
-        -- T = { hop .. "BEFORE_CURSOR })<CR>",                        "Hop left till before"  }  -- hop
     }
 }, { mode = "o" })
 

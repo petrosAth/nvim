@@ -96,11 +96,13 @@ M.custom_on_attach = function(client, bufnr)
     --     buffer  = bufnr
     -- })
 
+    -- aerial.nvim
+    require("aerial").on_attach(client, bufnr)
+
     -- lsp-status.nvim
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.
-    local lsp_status = require("lsp-status")
-    lsp_status.on_attach(client)
+    require("lsp-status").on_attach(client)
 end
 
 return M
