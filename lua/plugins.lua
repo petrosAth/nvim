@@ -116,6 +116,17 @@ return packer.startup(function()
                     require("config.lsp.lspkind").config()
                 end,
             },
+            -- null-ls.nvim - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+            {
+                "jose-elias-alvarez/null-ls.nvim", -- https://github.com/jose-elias-alvarez/null-ls.nvim
+                config = function()
+                    require("null-ls").setup({
+                        sources = {
+                            require("null-ls").builtins.formatting.stylua
+                        },
+                    })
+                end
+            }
         },
     }
 
@@ -265,7 +276,9 @@ return packer.startup(function()
     use{
         "phaazon/hop.nvim", -- https://github.com/phaazon/hop.nvim
         config = function()
-            require("config.hop")
+            require("hop").setup({
+                jump_on_sole_occurrence = true
+            })
         end,
     }
 
