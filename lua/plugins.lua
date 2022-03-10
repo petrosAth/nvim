@@ -338,6 +338,9 @@ return packer.startup(function()
     -- FixCursorHold.nvim - Fix CursorHold performance
     use{
         "antoinemadec/FixCursorHold.nvim", -- https://github.com/antoinemadec/FixCursorHold.nvim
+        config = function()
+            vim.g.cursorhold_updatetime = 100
+        end
     }
 
     -- todo-comments.nvim - Highlight, list and search todo comments in your projects

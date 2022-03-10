@@ -17,8 +17,7 @@ Still a work in progress.
 - [ ] Organize my custom highlight groups
 - [ ] Play with [LunarVim transparent window config](https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/config/settings.lua#L62-L78)
 - [ ] Add debugger
-- [ ] Revisit Cokeline
-- [ ] Use LSP document highlight instead of illuminate if possible
+- [ ] Revisit Cokeline when side offset gets introduced
 - [ ] Use pcalls in LSP configs
 - [ ] Enable treesitter in autopairs
 - [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
