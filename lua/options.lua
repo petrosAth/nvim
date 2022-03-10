@@ -7,11 +7,12 @@ local M = {}
 -- Used from sumneko_lua to populate workspace library accordingly
 M.nvim_edit_mode = false
 
--- GUI general options ---------------------------------------------------------
+--<=< GUI general options >==========================================================================================>--
 -- Set gui font for nvim-qt, neovide etc
 opt.guifont = "FiraCode NF:h12"
+--<==================================================================================================================>--
 
--- Neovide specific options ----------------------------------------------------
+--<=< Neovide specific options  >====================================================================================>--
 -- Setting refresh rate to a positive integer will set the refresh rate of the app.
 g.neovide_refresh_rate = 60
 
@@ -38,8 +39,7 @@ g.neovide_cursor_antialiasing = false
 
 -- Cursor Particles
 g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+--<==================================================================================================================>--
 
 -- Syntax highlighting
 opt.syntax = "on"
@@ -123,10 +123,13 @@ opt.splitright = true
 opt.splitbelow = true
 
 -- Folding configuration
+opt.foldmethod = "indent"
+
+-- Expr folding using treesitter
 -- reddit comment: https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 
 -- Manual folding using custom fold text from file
 -- opt.foldmethod = "marker"

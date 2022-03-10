@@ -4,6 +4,7 @@
 
 local ci = require("cosmetics").icon
 local excFiletypes = {
+    "aerial",
     "alpha",
     "diff",
     "help",

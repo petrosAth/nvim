@@ -11,7 +11,6 @@ Still a work in progress.
 - [x] Add comment string snippets and telescope finder
 - [x] :h mark-motions
 - [x] Migrate to WSL
-- [ ] Research the folder structure
 - [ ] Revisit nvim-cmp menu
 - [ ] lazyload everything possible
 - [ ] Organize my custom highlight groups
@@ -21,6 +20,7 @@ Still a work in progress.
 - [ ] Use pcalls in LSP configs
 - [ ] Enable treesitter in autopairs
 - [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
+- [ ] Research the folder structure
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -32,7 +32,6 @@ Still a work in progress.
 ### Plugins for installation
 | Plugin                                                                                          | Description |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)                              | Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.                                                                        |
 | Themes                                                                                          |
 | [dracula.nvim](https://github.com/Mofiqul/dracula.nvim)                                         | Dracula colorscheme for neovim written in Lua.                                                                                                                    |
 | [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)                                     | A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins. Includes additional themes for Kitty, Alacritty, iTerm and Fish. |
@@ -43,7 +42,6 @@ Still a work in progress.
 ### Plugins watch list
 | Plugin                                                                                          | Description                                                                                                                                                       |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [formatter.nvim](https://github.com/mhartington/formatter.nvim)                                 | A format runner for neovim, written in lua.                                                                                                                       |
 | [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)                                 | Neovim plugin to manage the file system and other tree like structures.                                                                                           |
 | <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim)                   | Simple session management for Neovim.                                                                                                                             |
 | <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager)      | A simple wrapper around :mksession                                                                                                                                |

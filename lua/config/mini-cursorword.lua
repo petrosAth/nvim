@@ -1,6 +1,10 @@
-vim.cmd([[au FileType aerial   let b:minicursorword_disable=v:true]])
-vim.cmd([[au FileType alpha    let b:minicursorword_disable=v:true]])
-vim.cmd([[au FileType NvimTree let b:minicursorword_disable=v:true]])
+vim.cmd([[
+    augroup MINICURSORWORD
+        autocmd!
+        autocmd FileType aerial,alpha,lsp-installer,minimap,NvimTree,Outline,packer,qf,Trouble,undotree
+                \ let b:minicursorword_disable=v:true
+    augroup END
+]])
 
 require("mini.cursorword").setup({
     -- Delay (in ms) between when cursor moved and when highlighting appeared

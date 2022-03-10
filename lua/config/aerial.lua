@@ -111,7 +111,7 @@ require("aerial").setup({
 
   -- When you fold code with za, zo, or zc, update the aerial tree as well.
   -- Only works when manage_folds = true
-  link_folds_to_tree = true,
+  link_folds_to_tree = false,
 
   -- Fold code when you open/collapse symbols in the tree.
   -- Only works when manage_folds = true
@@ -119,7 +119,7 @@ require("aerial").setup({
 
   -- Use symbol tree for folding. Set to true or false to enable/disable
   -- 'auto' will manage folds if your previous foldmethod was 'manual'
-  manage_folds = true,
+  manage_folds = false,
 
   -- These control the width of the aerial window.
   -- They can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)

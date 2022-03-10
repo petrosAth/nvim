@@ -55,7 +55,16 @@ require("scrollbar").setup({
         },
     },
     excluded_buftypes = {
+        "aerial",
+        "alpha",
+        "minimap",
+        "NvimTree",
+        "Outline",
+        "packer",
+        "qf",
         "terminal",
+        "Trouble",
+        "undotree"
     },
     excluded_filetypes = {
         "prompt",

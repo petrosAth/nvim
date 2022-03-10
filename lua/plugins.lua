@@ -36,7 +36,7 @@ return packer.startup(function()
 -- Packer
     use{ "wbthomason/packer.nvim" } -- https://github.com/wbthomason/packer.nvim
 
---<=< Cosmetics >============================================================>--
+--<=< Cosmetics >====================================================================================================>--
     -- dracula -- color theme
     use{
         "dracula/vim", -- https://github.com/dracula/vim
@@ -78,9 +78,10 @@ return packer.startup(function()
             require("config.notify")
         end
     }
---<==========================================================================>--
+--<==================================================================================================================>--
 
---<=< Autocompletion and Syntax highlighting >===============================>--
+
+--<=< Autocompletion and Syntax highlighting >=======================================================================>--
     -- nvim-lspconfig - Neovim's built-in language server client.
     use{
         "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
@@ -236,9 +237,10 @@ return packer.startup(function()
             require("config.mini-cursorword")
         end
     }
---<==========================================================================>--
+--<==================================================================================================================>--
 
---<=< Project and file navigation >==========================================>--
+
+--<=< Project and file navigation >==================================================================================>--
     -- telescope.nvim - Gaze deeply into unknown regions using the power of the moon
     use{
         "nvim-telescope/telescope.nvim", -- https://github.com/nvim-telescope/telescope.nvim
@@ -321,9 +323,18 @@ return packer.startup(function()
             require("config.scrollbar")
         end
     }
---<==========================================================================>--
 
---<=< Miscellaneous >========================================================>--
+    -- pretty-fold.nvim - Foldtext customization and folded region preview in Neovim
+    use{
+        "anuvyklack/pretty-fold.nvim", -- https://github.com/anuvyklack/pretty-fold.nvim
+        config = function()
+            require("config.pretty-fold")
+        end
+    }
+--<==================================================================================================================>--
+
+
+--<=< Miscellaneous >================================================================================================>--
     -- bufferline.nvim - This plugin shamelessly attempts to emulate the aesthetics of GUI text editors/Doom Emacs
     use{
         "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
@@ -406,7 +417,7 @@ return packer.startup(function()
             require("config.stabilize")
         end
     }
---<==========================================================================>--
+--<==================================================================================================================>--
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

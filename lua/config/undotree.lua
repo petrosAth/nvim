@@ -1,5 +1,5 @@
 vim.cmd([[
-    augroup custom_minimap
+    augroup UNDOTREE
         autocmd!
         autocmd FileType undotree setlocal
                 \ colorcolumn=0
