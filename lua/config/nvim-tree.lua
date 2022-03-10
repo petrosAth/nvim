@@ -32,12 +32,12 @@ g.nvim_tree_icons = {
         folder = {
         arrow_open   = ci.folderop[1],
         arrow_closed = ci.foldercl[1],
-        default      = "",
-        open         = "",
-        empty        = "",
-        empty_open   = "",
-        symlink      = "",
-        symlink_open = "",
+        default      = " ",
+        open         = " ",
+        empty        = " ",
+        empty_open   = " ",
+        symlink      = " ",
+        symlink_open = " ",
     }
 }
 -- g.nvim_tree_git_hl = 0                   -- 0 by default, will enable file highlight for git attributes (can be used without the icons)

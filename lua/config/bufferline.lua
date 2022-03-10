@@ -1,71 +1,6 @@
 local bufferline = require("bufferline")
--- Selected buffer ordenal number
-local selbufOrdinal = 0
 local ci = require("cosmetics").icon
-
-bufferline.setup{
-    options = {
-        numbers = function(opts)
-                if opts.id == vim.fn.bufnr("%") then
-                    selbufOrdinal = opts.ordinal
-                    if opts.ordinal > 1 then
-                        return string.format(" %s:", opts.id)
-                    else
-                        return string.format("▏%s:", opts.id)
-                    end
-                elseif (opts.ordinal == 1) or (opts.ordinal == selbufOrdinal + 1) then
-                    return string.format("%s:", opts.id)
-                else
-                    return string.format("▏%s:", opts.id)
-                end
-            end,
-        close_command = "Bdelete %d",
-        right_mouse_command = "Bdelete %d",
-        buffer_close_icon= ci.close[1],
-        modified_icon = ci.edit[1],
-        close_icon = ci.close[1],
-        left_trunc_marker = ci.arrowl[1],
-        right_trunc_marker = ci.arrowr[1],
-        diagnostics = false,
-        show_buffer_icons = false,
-        show_buffer_close_icons = true,
-        indicator_icon = "",
-        -- U+2590 ▐ Right half block, this character is right aligned so the
-        -- background highlight doesn't appear in th middle
-        -- alternatives:
-            -- right aligned  => "▕"," ","▐"
-            -- left aligned   => "▏","▍","▌"
-            -- center aligned => "│","┃"," ","█"
-        separator_style = { "", "" },
-        offsets = {
-            {
-                filetype = "NvimTree",
-                text = "File Tree",
-                highlight = "lualine_a_normal",
-                text_align = "center"
-            },
-            {
-                filetype = "minimap",
-                text = "Minimap",
-                highlight = "lualine_a_normal",
-                text_align = "center"
-            },
-            {
-                filetype = "Outline",
-                text = "Symbols",
-                highlight = "lualine_a_normal",
-                text_align = "center"
-            },
-            {
-                filetype = "undotree",
-                text = "Undotree",
-                highlight = "lualine_a_normal",
-                text_align = "center"
-            }
-        },
-        always_show_bufferline = true,
-    },
-    -- TODO: make colors change based on theme
+local dracula_theme = {
     highlights = {
         fill = {
             guifg = "#f8f8f2",
@@ -137,20 +72,20 @@ bufferline.setup{
             gui = "",
         },
         separator_selected = {
-            guifg = "#BD93F9",
+            guifg = "#44475A",
             guibg = "#BD93F9",
         },
         separator_visible = {
-            guifg = "#5f6a8e",
+            guifg = "#44475A",
             guibg = "#5f6a8e",
         },
         separator = {
-            guifg = "#5f6a8e",
+            guifg = "#44475A",
             guibg = "#5f6a8e",
         },
         indicator_selected = {
-            guifg = "#f8f8f2",
-            guibg = "#5f6a8e",
+            guifg = "#44475A",
+            guibg = "#BD93F9",
         },
         pick_selected = {
             guifg = "#F1FA8C",
@@ -167,5 +102,60 @@ bufferline.setup{
             guibg = "#282a36",
             gui = ""
         }
-    }
+    },
+    offsets = {
+        {
+            filetype = "NvimTree",
+            text = "File Tree",
+            highlight = "lualine_a_normal",
+            text_align = "center"
+        },
+        {
+            filetype = "minimap",
+            text = "Minimap",
+            highlight = "lualine_a_normal",
+            text_align = "center"
+        },
+        {
+            filetype = "Outline",
+            text = "Symbols",
+            highlight = "lualine_a_normal",
+            text_align = "center"
+        },
+        {
+            filetype = "undotree",
+            text = "Undotree",
+            highlight = "lualine_a_normal",
+            text_align = "center"
+        }
+    },
+}
+
+bufferline.setup{
+    options = {
+        numbers = function(opts)
+            return string.format("  %s :", opts.id)
+        end,
+        close_command = "Bdelete %d",
+        right_mouse_command = "Bdelete %d",
+        buffer_close_icon= ci.close[1] .. " ",
+        modified_icon = ci.edit[1] .. " ",
+        close_icon = ci.close[1],
+        left_trunc_marker = ci.arrowl[1],
+        right_trunc_marker = ci.arrowr[1],
+        diagnostics = false,
+        show_buffer_icons = false,
+        show_buffer_close_icons = true,
+        indicator_icon = "",
+        -- U+2590 ▐ Right half block, this character is right aligned so the
+        -- background highlight doesn't appear in th middle
+        -- alternatives:
+            -- right aligned  => "▕"," ","▐"
+            -- left aligned   => "▏","▍","▌"
+            -- center aligned => "│","┃"," ","█"
+        separator_style = { "▏", "▕" },
+        offsets = dracula_theme.offsets,
+        always_show_bufferline = true,
+    },
+    highlights = dracula_theme.highlights,
 }

@@ -56,7 +56,7 @@ M.icon = {
         msgsep    = { " " },           -- ' '        -- message separator 'display'
         eob       = { "-" },           -- '~'        -- empty lines at the end of a buffer
         tab       = { "··" },          -- Two or three characters to be used to show a tab
-        lead      = { "·" },           -- Character to show for leading spaces
+        lead      = { " " },           -- Character to show for leading spaces
         eol       = { "﬋" }            -- Character to show at the end of each line
     }
 }
