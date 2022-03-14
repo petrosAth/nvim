@@ -1,13 +1,7 @@
--- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd([[
---     augroup packer_user_config
---         autocmd!
---         autocmd BufWritePost plugins.lua source <afile> | PackerSync
---     augroup end
--- ]])
-
 local fn = vim.fn
 local install_path = PACKER_PATH .. "/start/packer.nvim"
+local ci = require("aesthetics").icon
+local cb = require("aesthetics").border.table
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -24,24 +18,41 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Use a protected call so we don't error out on first use
-local packer_loaded = pcall(require, "packer")
+local packer_loaded, packer = pcall(require, "packer")
 if not packer_loaded then
     return
 end
 
-local packer = require("config.packer")
-local use = packer.use
+-- Initialize packer
+packer.init({
+    -- max_jobs = 10, -- Limit the number of simultaneous jobs. nil means no limit
+    transitive_disable = true, -- Automatically disable dependencies of disabled plugins
+    display = {
+        non_interactive = false, -- If true, disable display windows for all operations
+        open_fn = function() -- An optional function to open a window for packer's display
+            return require("packer.util").float { border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l } }
+        end,
+        working_sym   = ci.pending[1] .. " ", -- The symbol for a plugin being installed/updated
+        error_sym     = ci.error[1] .. " ", -- The symbol for a plugin with an error in installation/updating
+        done_sym      = ci.done[1] .. " ", -- The symbol for a plugin which has completed installation/updating
+        removed_sym   = ci.delete[1] .. " ", -- The symbol for an unused plugin which was removed
+        moved_sym     = ci.arrowr[1] .. " ", -- The symbol for a plugin which was moved (e.g. from opt to start)
+        header_sym    = cb.t, -- The symbol for the header line in packer's display
+        prompt_border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l }, -- Border style of prompt popups.
+    },
+    -- log = { level = "debug" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal"
+})
 
 return packer.startup(function()
 -- Packer
     use{ "wbthomason/packer.nvim" } -- https://github.com/wbthomason/packer.nvim
 
---<=< Cosmetics >====================================================================================================>--
+--<=< Aesthetics >===================================================================================================>--
     -- Themer - A simple, minimal highlighter plugin for neovim
     use{
         "ThemerCorp/themer.lua", -- https://github.com/ThemerCorp/themer.lua
         config = function()
-            require("cosmetics")
+            require("config.themer")
         end,
     }
 
@@ -49,7 +60,7 @@ return packer.startup(function()
     use{
         "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
         config = function()
-            require("nvim-web-devicons").setup()
+            require("config.nvim-web-devicons")
         end,
     }
 
@@ -105,6 +116,7 @@ return packer.startup(function()
             {
                 "ray-x/lsp_signature.nvim", -- https://github.com/ray-x/lsp_signature.nvim
                 after = "nvim-lspconfig",
+                event = 'InsertEnter *',
                 config = function()
                     require("config.lsp.lsp-signature")
                 end
@@ -182,7 +194,7 @@ return packer.startup(function()
     -- nvim-autopairs - A super powerful autopair for Neovim. It supports multiple characters
     use{
         "windwp/nvim-autopairs", -- https://github.com/windwp/nvim-autopairs
-        -- event = "InsertEnter",
+        event = "InsertEnter",
         after = { "nvim-treesitter", "nvim-cmp" },
         config = function()
             require("config.autopairs")
@@ -421,6 +433,6 @@ return packer.startup(function()
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
-        require('packer').sync()
+        packer.sync()
     end
 end)

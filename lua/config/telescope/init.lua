@@ -3,9 +3,9 @@ local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local custom_pickers = require("config.telescope.customPickers")
 local trouble = require("trouble.providers.telescope")
-local ct = require("cosmetics").variables.transparency
-local ci = require("cosmetics").icon
-local cb = require("cosmetics").border.table
+local ct = require("aesthetics").variables.transparency
+local ci = require("aesthetics").icon
+local cb = require("aesthetics").border.table
 
 telescope.setup({
 	defaults = {
@@ -180,6 +180,7 @@ telescope.setup({
         project = {
             base_dirs = {
                 { path = "$HOME/Develop",  max_depth = 2 },
+                { path = "$HOME/Notes",    max_depth = 2 },
                 { path = "$HOME/.config",  max_depth = 2 }
             },
             hidden_files = true,

@@ -1,4 +1,4 @@
-local cb = require("cosmetics").border.table
+local cb = require("aesthetics").border.table
 
 require("gitsigns").setup {
     signs = {

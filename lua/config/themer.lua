@@ -1,75 +1,3 @@
-local M = {}
-
--- Table containing variables
-M.variables = {
-    transparency = 5
-}
-
--- Table containing icons
-M.icon = {
-    error    = { "", "", "", "", "", "" },
-    warn     = { "", "", "", "", "", "" },
-    hint     = { "", "", "", "", "", "" },
-    info     = { "", "", "", "", "", "" },
-    action   = { "", "", "", "", "", "" },
-    close    = { "", "" },
-    delete   = { "", "" },
-    pending  = { "", "", },
-    done     = { "", "", "" },
-    def      = { "", "", "", "硫"},
-    edit     = { "", "", "" },
-    prompt   = { "❯", "", "", "❯" },
-    location = { "", "", "", "" },
-    misc     = { "", "", "", "", "", "" },
-    bug      = { "", "", "" },
-    folderop = { "", "", "" },
-    foldercl = { "", "", "" },
-    arrowl   = { "", "", "", "", "" },
-    arrowr   = { "", "", "", "", "" },
-    arrowu   = { "", "", "", "", "" },
-    arrowd   = { "", "", "", "", "" },
-    loading  = {
-        circle = {
-            -- "◝", "◞", "◟", "◜"
-            "", "", "", "", "", ""
-        },
-        braille = {
-            "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾"
-        },
-        sphere = {
-            "", "", "", "", "", "", "",
-            "", "", "", "", "", "", "",
-            "", "", "", "", "", "", "",
-            "", "", "", "", "", "", "",
-        }
-    },
-    -- Fillchar and listchar icons
-    nvim_ui  = {
-        stl       = { " " },           -- ' ' or '^' -- statusline of the current window
-        stlnc     = { " " },           -- ' ' or '=' -- statusline of the non-current windows
-        vert      = { "▌", "▏", "▌", "│", "┃", "▕", "▐", "░", "▒", "▓", "█" }, -- '│' or '|' -- vertical separators |:vsplit|
-        fold      = { " " },           -- '·' or '-' -- filling 'foldtext'
-        foldopen  = { "", "" },      -- '-'        -- mark the beginning of a fold
-        foldclose = { "", "", "" }, -- '+'        -- show a closed fold
-        foldsep   = { "", "" },      -- '│' or '|' -- open fold middle marker
-        diff      = { "-" },           -- '-'        -- deleted lines of the 'diff' option
-        msgsep    = { " " },           -- ' '        -- message separator 'display'
-        eob       = { "-" },           -- '~'        -- empty lines at the end of a buffer
-        tab       = { "──" },          -- Two or three characters to be used to show a tab
-        lead      = { " " },           -- Character to show for leading spaces
-        eol       = { "﬋" }            -- Character to show at the end of each line
-    }
-}
-
--- Table containing borders
-M.border = {
-    table    = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
-    single   = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
-    round    = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤" },
-    double   = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢",      "╠",      "╣", },
-    box      = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌" }
-}
-
 require("themer").setup({
     colorscheme = "nord", -- default colorscheme
     transparent = false,
@@ -118,7 +46,7 @@ require("themer").setup({
                     -- Gutter
                     CursorColumn     = { fg = "NONE",    bg = "#3B4252" },
                     CursorLineNr     = { fg = "#D8DEE9", bg = "#3B4252", style = "NONE" },
-                    Folded           = { fg = "#2E3440", bg = "#434C5E", style = "bold" },
+                    Folded           = { fg = "#4C566A", bg = "#3B4252", style = "bold" },
                     FoldColumn       = { fg = "#4C566A", bg = "NONE"    },
                     SignColumn       = { fg = "#3B4252", bg = "NONE"    },
                     -- Navigation
@@ -129,10 +57,10 @@ require("themer").setup({
                     ModeMsg          = { fg = "#D8DEE9", bg = "NONE"    },
                     MoreMsg          = { fg = "#88C0D0", bg = "NONE"    },
                     Question         = { fg = "#D8DEE9", bg = "NONE",    style = "NONE" },
-                    StatusLine       = { fg = "#88C0D0", bg = "#2a303c", style = "NONE" },
-                    StatusLineNC     = { fg = "#D8DEE9", bg = "#2a303c", style = "NONE" },
-                    StatusLineTerm   = { fg = "#88C0D0", bg = "#2a303c", style = "NONE" },
-                    StatusLineTermNC = { fg = "#D8DEE9", bg = "#2a303c", style = "NONE" },
+                    StatusLine       = { fg = "#88C0D0", bg = "#3B4252", style = "NONE" },
+                    StatusLineNC     = { fg = "#D8DEE9", bg = "#3B4252", style = "NONE" },
+                    StatusLineTerm   = { fg = "#88C0D0", bg = "#3B4252", style = "NONE" },
+                    StatusLineTermNC = { fg = "#D8DEE9", bg = "#3B4252", style = "NONE" },
                     WarningMsg       = { fg = "#2E3440", bg = "#EBCB8B" },
                     WildMenu         = { fg = "#3B4252", bg = "#88C0D0" },
                     -- Search
@@ -144,10 +72,33 @@ require("themer").setup({
                     TabLineSel       = { fg = "#88C0D0", bg = "#3B4252", style = "NONE" },
                     -- Window
                     Title            = { fg = "#D8DEE9", bg = "NONE",    style = "NONE" },
-                    VertSplit        = { fg = "#2a303c", bg = "#2a303c" },
+                    VertSplit        = { fg = "#3b4252", bg = "#3b4252" },
                     -- Plugins
                     -- bufferline
-                    offsetTitleBar            = { fg = "#ECEFF4", bg = "#4C566A" },
+                    BufferLineOffsetTitleBar        = { fg = "#ECEFF4", bg = "#4C566A" },
+                    BufferLineFill                  = { fg = "#E5E9F0", bg = "#3B4252" },
+                    BufferLineBackground            = { fg = "#E5E9F0", bg = "#4C566A" },
+                    BufferLineTab                   = { fg = "#E5E9F0", bg = "#4C566A" },
+                    BufferLineTab_selected          = { fg = "#3B4252", bg = "#81A1C1" },
+                    BufferLineTab_close             = { fg = "#E5E9F0", bg = "#4C566A" },
+                    BufferLineClose_button          = { fg = "#E5E9F0", bg = "#4C566A" },
+                    BufferLineClose_button_visible  = { fg = "#E5E9F0", bg = "#4C566A" },
+                    BufferLineClose_button_selected = { fg = "#3B4252", bg = "#81A1C1", gui = "" },
+                    BufferLineBuffer_visible        = { fg = "#E5E9F0", bg = "#4C566A" },
+                    BufferLineBuffer_selected       = { fg = "#3B4252", bg = "#81A1C1", gui = "" },
+                    BufferLineModified              = { fg = "#EBCB8B", bg = "#4C566A" },
+                    BufferLineModified_visible      = { fg = "#EBCB8B", bg = "#4C566A" },
+                    BufferLineModified_selected     = { fg = "#EBCB8B", bg = "#81A1C1" },
+                    BufferLineDuplicate_selected    = { fg = "#D8DEE9", bg = "#81A1C1", gui = "bold" },
+                    BufferLineDuplicate_visible     = { fg = "#D8DEE9", bg = "#4C566A", gui = "bold" },
+                    BufferLineDuplicate             = { fg = "#D8DEE9", bg = "#4C566A", gui = "bold" },
+                    BufferLineSeparator_selected    = { fg = "#3B4252", bg = "#81A1C1" },
+                    BufferLineSeparator_visible     = { fg = "#3B4252", bg = "#4C566A" },
+                    BufferLineSeparator             = { fg = "#3B4252", bg = "#4C566A" },
+                    BufferLineIndicator_selected    = { fg = "#3B4252", bg = "#81A1C1" },
+                    BufferLinePick_selected         = { fg = "#D08770", bg = "#2E3440", gui = "" },
+                    BufferLinePick_visible          = { fg = "#D08770", bg = "#2E3440", gui = "" },
+                    BufferLinePick                  = { fg = "#D08770", bg = "#2E3440", gui = "" },
                     -- gitsigns
                     GitSignsCurrentLineBlame  = { fg = "#4C566A", bg = "NONE"    },
                     GitSignsAdd               = { fg = "#A3BE8C", bg = "NONE"    },
@@ -172,6 +123,27 @@ require("themer").setup({
                     -- mini cursorword
                     MiniCursorword            = { link = "Visual" },
                     MiniCursorwordCurrent     = { fg = "NONE",    bg = "NONE",     style = "nocombine" },
+                    -- notify
+                    NotifyERRORBorder = { link = "DiagnosticError" },
+                    NotifyWARNBorder  = { link = "DiagnosticWarn" },
+                    NotifyINFOBorder  = { link = "DiagnosticInfo" },
+                    NotifyDEBUGBorder = { link = "DiagnosticError" },
+                    NotifyTRACEBorder = { link = "DiagnosticHint" },
+                    NotifyERRORIcon   = { link = "DiagnosticError" },
+                    NotifyWARNIcon    = { link = "DiagnosticWarn" },
+                    NotifyINFOIcon    = { link = "DiagnosticInfo" },
+                    NotifyDEBUGIcon   = { link = "DiagnosticError" },
+                    NotifyTRACEIcon   = { link = "DiagnosticHint" },
+                    NotifyERRORTitle  = { link = "DiagnosticError" },
+                    NotifyWARNTitle   = { link = "DiagnosticWarn" },
+                    NotifyINFOTitle   = { link = "DiagnosticInfo" },
+                    NotifyDEBUGTitle  = { link = "DiagnosticError" },
+                    NotifyTRACETitle  = { link = "DiagnosticHint" },
+                    NotifyERRORBody   = { link = "Normal" },
+                    NotifyWARNBody    = { link = "Normal" },
+                    NotifyINFOBody    = { link = "Normal" },
+                    NotifyDEBUGBody   = { link = "Normal" },
+                    NotifyTRACEBody   = { link = "Normal" },
                     -- nvim-tree
                     NvimTreeNormalNC          = { link = "NormalNC"              },
                     NvimTreeSignColumn        = { fg = "#3B4252", bg = "NONE"    },
@@ -303,5 +275,3 @@ require("themer").setup({
     },
     enable_installer = false, -- enable installer module
 })
-
-return M

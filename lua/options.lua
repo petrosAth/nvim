@@ -1,11 +1,8 @@
 local opt, g = vim.opt, vim.g
-local ct = require("cosmetics").variables.transparency
-local ci = require("cosmetics").icon
+local ct = require("aesthetics").variables.transparency
+local ci = require("aesthetics").icon
 local cui = ci.nvim_ui
 local M = {}
-
--- Used from sumneko_lua to populate workspace library accordingly
-M.nvim_edit_mode = false
 
 --<=< GUI general options >==========================================================================================>--
 -- Set gui font for nvim-qt, neovide etc

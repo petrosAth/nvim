@@ -1,7 +1,7 @@
 local wk = require("which-key")
-local ct = require("cosmetics").variables.transparency
-local ci = require("cosmetics").icon
-local cb = require("cosmetics").border.table
+local ct = require("aesthetics").variables.transparency
+local ci = require("aesthetics").icon
+local cb = require("aesthetics").border.table
 
 wk.setup({
     plugins = {

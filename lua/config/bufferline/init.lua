@@ -1,5 +1,5 @@
 local bufferline = require("bufferline")
-local ci = require("cosmetics").icon
+local ci = require("aesthetics").icon
 local dracula_theme = {
     highlights = {
         fill                  = { guifg = "#f8f8f2", guibg = "#44475a" },
@@ -77,19 +77,19 @@ local nord_theme = {
         {
             filetype = "NvimTree",
             text = "File Tree",
-            highlight = "offsetTitleBar",
+            highlight = "BufferLineOffsetTitleBar",
             text_align = "center",
         },
         {
             filetype = "aerial",
             text = "Symbols",
-            highlight = "offsetTitleBar",
+            highlight = "BufferLineOffsetTitleBar",
             text_align = "center",
         },
         {
             filetype = "undotree",
             text = "Undotree",
-            highlight = "offsetTitleBar",
+            highlight = "BufferLineOffsetTitleBar",
             text_align = "center",
         }
     },
@@ -98,7 +98,7 @@ local nord_theme = {
 bufferline.setup{
     options = {
         numbers = function(opts)
-            return string.format("  %s :", opts.id)
+            return string.format(" %s :", opts.id)
         end,
         close_command = "Bdelete %d",
         right_mouse_command = "Bdelete %d",
@@ -117,7 +117,7 @@ bufferline.setup{
             -- right aligned  => "▕"," ","▐"
             -- left aligned   => "▏","▍","▌"
             -- center aligned => "│","┃"," ","█"
-        separator_style = { "▏", "▕" },
+        separator_style = "slant", -- { "█", "█" },
         offsets = nord_theme.offsets,
         always_show_bufferline = true,
     },

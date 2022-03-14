@@ -1,13 +1,14 @@
 local notify = require("notify")
-local ci = require("cosmetics").icon
+local ci = require("aesthetics").icon
+local cb = require("aesthetics").border.table
 
 notify.setup({
     -- Animation style (see below for details)
-    stages = "fade_in_slide_out",
+    stages = "slide",
 
     -- Function called when a new window is opened, use for changing win settings/config
     on_open = function (win)
-        vim.api.nvim_win_set_config(win, { border = "single" })
+        vim.api.nvim_win_set_config(win, { border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l } })
     end,
 
     -- Function called when a window is closed
@@ -21,7 +22,7 @@ notify.setup({
 
     -- For stages that change opacity this is treated as the highlight behind the window
     -- Set this to either a highlight group or an RGB hex value e.g. "#000000"
-    background_colour = "#000000",
+    background_colour = "Normal",
 
     -- Minimum width for notification windows
     minimum_width = 50,
@@ -36,4 +37,4 @@ notify.setup({
     }
 })
 
-vim.notify = require("notify")
+vim.notify = notify

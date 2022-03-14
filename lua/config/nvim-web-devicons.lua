@@ -1,11 +1,4 @@
-local nvim_web_devicons_loaded, nvim_web_devicons = pcall(require, "nvim-web-devicons")
-
-if not nvim_web_devicons_loaded then
-    require("notify")("nvim-web-devicons plugin is missing", "error", { title = "nvim-web-devicons" })
-    return
-end
-
-nvim_web_devicons.setup({
+require("nvim-web-devicons").setup({
     -- your personnal icons can go here (to override)
     -- you can specify color or cterm_color instead of specifying both of them
     -- DevIcon will be appended to `name`

@@ -1,7 +1,7 @@
 local lsp_cfg = require("config.lsp")
 local lsp_installer = require("nvim-lsp-installer")
-local edit_mode = require("options").nvim_edit_mode
-local ci = require("cosmetics").icon
+local edit_mode = NVIM_GLOBAL.edit_mode
+local ci = require("aesthetics").icon
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers

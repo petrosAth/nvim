@@ -13,10 +13,9 @@ Still a work in progress.
 - [x] Migrate to WSL
 - [x] Organize my custom highlight groups
 - [x] Revisit nvim-cmp menu
-- [ ] lazyload everything possible
-- [ ] Use pcalls in LSP configs
+- [x] lazyload everything possible
 - [ ] Revisit Cokeline when side offset gets introduced
-- [ ] Session management [persistence.nvim](#sm1) [neovim-session-manager](#sm2)
+- [ ] Session management
 - [ ] Add debugger
 
 ## Reminders
@@ -37,8 +36,8 @@ Still a work in progress.
 | Plugin                                                                                          | Description                                                                                                                                                       |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)                                 | Neovim plugin to manage the file system and other tree like structures.                                                                                           |
-| <a name=sm1></a>[persistence.nvim](https://github.com/folke/persistence.nvim)                   | Simple session management for Neovim.                                                                                                                             |
-| <a name=sm2></a>[neovim-session-manager](https://github.com/Shatur/neovim-session-manager)      | A simple wrapper around :mksession                                                                                                                                |
+| [persistence.nvim](https://github.com/folke/persistence.nvim)                                   | Simple session management for Neovim.                                                                                                                             |
+| [neovim-session-manager](https://github.com/Shatur/neovim-session-manager)                      | A simple wrapper around :mksession                                                                                                                                |
 | [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim)                                       | 🦴 A NeoVim plugin for saving your work before the world collapses or you type :qa!                                                                               |
 | [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua)                                  | Clipboard manager neovim plugin with telescope integration.                                                                                                       |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                                    | A Vim alignment plugin.                                                                                                                                           |

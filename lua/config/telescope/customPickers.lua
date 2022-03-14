@@ -1,6 +1,6 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
-local cb = require("cosmetics").border.table
+local cb = require("aesthetics").border.table
 
 local M = {}
 
@@ -92,17 +92,6 @@ function M.custom_buffers(opts)
         }
     end
 end
-
--- Custom telescope pickers
--- Return lsp workspace root dir if exists, else return cwd
--- local function custom_cwd()
---     local exists, lsp_cwd = pcall(vim.lsp.buf.list_workspace_folders)
---     if (exists) then
---         return lsp_cwd[1]
---     else
---         return vim.fn.getcwd()
---     end
--- end
 
 function M.find_files()
     builtin.find_files {

@@ -6,7 +6,7 @@ vim.cmd([[
                 \ setlocal nolist
                 \ colorcolumn=0
                 \ nonumber relativenumber |
-                \ lua local cui = require("cosmetics").icon.nvim_ui
+                \ lua local cui = require("aesthetics").icon.nvim_ui
                 \ vim.opt_local.fillchars = {
                 \     vert = cui.vert[1],
                 \     fold = cui.fold[1],
@@ -20,7 +20,7 @@ vim.cmd([[
 ]])
 
 local trouble = require("trouble")
-local ci = require("cosmetics").icon
+local ci = require("aesthetics").icon
 local cui = ci.nvim_ui
 
 trouble.setup({
