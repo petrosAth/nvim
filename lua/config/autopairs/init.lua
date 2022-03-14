@@ -6,17 +6,7 @@ cmp.event:on( "confirm_done", cmp_autopairs.on_confirm_done({  map_char = { tex 
 
 npairs.setup{
     disable_filetype = { "TelescopePrompt", },
-    fast_wrap = {
-        map = "<Leader>e",
-        chars = { "{", "[", "(", "<", '"', "'" },
-        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-        offset = 1, -- Offset from pattern match
-        end_key = "$",
-        keys = "asdghklqwertyuiopzxcvbnmfj'",
-        check_comma = true,
-        highlight = "Search",
-        highlight_grey="Comment"
-    },
+    map_c_h = true
 }
 
 require("config.autopairs.rules").add_rules()

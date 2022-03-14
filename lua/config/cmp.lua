@@ -11,6 +11,9 @@ end
 -- Setup nvim-cmp
 cmp.setup{
     completion = { completeopt = "menu,menuone,noinsert" },
+    view = {
+        entries = "custom" -- can be "custom", "wildmenu" or "native"
+    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -65,12 +68,11 @@ cmp.setup{
         }),
     },
     experimental = {
-        native_menu = false,
         ghost_text = true,
     },
-	documentation = {
-        border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l }
-	},
+	-- documentation = {
+ --        border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l }
+	-- },
 }
 
 -- Use buffer source for `/`.

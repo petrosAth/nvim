@@ -14,8 +14,8 @@ local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
 local function set_button(sc, txt, keybind, keybind_opts)
     local button = dashboard.button(sc, txt, keybind, keybind_opts)
-    button.opts.hl          = "DraculaPink"
-    button.opts.hl_shortcut = "DraculaFg"
+    button.opts.hl          = "Directory"
+    button.opts.hl_shortcut = "Comment"
     button.opts.cursor      = 4
 
     return button
@@ -34,7 +34,7 @@ local header = {
     },
     opts = {
         position = "center",
-        hl = "DraculaPurple"
+        hl = "Include"
     }
 }
 
@@ -67,7 +67,7 @@ local footer = {
     val = require'alpha.fortune'(),
     opts = {
         position = "center",
-        hl = "DraculaGreen"
+        -- hl = "Directory"
     },
 }
 

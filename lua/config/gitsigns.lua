@@ -2,11 +2,11 @@ local cb = require("cosmetics").border.table
 
 require("gitsigns").setup {
     signs = {
-        add          = { hl = "DiffAdd",    text = "▎", numhl = "DiffAdd",    linehl = "DiffAdd"    }, -- +
-        change       = { hl = "DiffChange", text = "▎", numhl = "DiffChange", linehl = "DiffChange" }, -- ~
-        delete       = { hl = "DiffDelete", text = "▁", numhl = "DiffDelete", linehl = "DiffDelete" }, -- _
-        topdelete    = { hl = "DiffDelete", text = "▔", numhl = "DiffDelete", linehl = "DiffDelete" }, -- ‾
-        changedelete = { hl = "DiffDelete", text = "▎", numhl = "DiffDelete", linehl = "DiffDelete" }  -- ~
+        add          = {hl = 'GitSignsAdd'   , text = '▎', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+        change       = {hl = 'GitSignsChange', text = '▎', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+        delete       = {hl = 'GitSignsDelete', text = '▁', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+        topdelete    = {hl = 'GitSignsDelete', text = '▔', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+        changedelete = {hl = 'GitSignsChange', text = '▎', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
     },
     signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -21,8 +21,8 @@ require("gitsigns").setup {
     current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
     current_line_blame_opts = {
         virt_text = true,
-        virt_text_pos = "eol", -- "eol" | "overlay" | "right_align"
-        delay = 1000,
+        virt_text_pos = "right_align", -- "eol" | "overlay" | "right_align"
+        delay = 200,
         ignore_whitespace = false,
     },
     current_line_blame_formatter_opts = {

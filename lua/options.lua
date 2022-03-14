@@ -58,7 +58,7 @@ opt.background = "dark"
 opt.termguicolors = true
 
 -- Give more space for displaying messages
-opt.cmdheight = 2
+opt.cmdheight = 1
 
 -- Auto-indent new lines
 opt.autoindent = true
@@ -112,15 +112,11 @@ opt.relativenumber = true
 -- Keep the sign column always visible
 opt.signcolumn = "yes"
 
--- Fold column
-opt.foldcolumn = "auto:9"
-
 -- Show vertical line for text alignment
 opt.colorcolumn = "80"
 
--- Splits
-opt.splitright = true
-opt.splitbelow = true
+-- Fold column
+opt.foldcolumn = "auto:9"
 
 -- Folding configuration
 opt.foldmethod = "indent"
@@ -135,7 +131,8 @@ opt.foldmethod = "indent"
 -- opt.foldmethod = "marker"
 -- opt.foldtext = "v:lua.custom_fold_text()"
 
-opt.foldnestmax = 4
+opt.foldlevelstart = 3
+
 opt.foldminlines = 1
 
 opt.viewoptions:remove("options")
@@ -165,6 +162,10 @@ opt.spelllang = "en_us"
 
 -- Statusline
 opt.laststatus = 2
+
+-- Splits
+opt.splitright = true
+opt.splitbelow = true
 
 -- No redraw during macro, regex execution
 opt.lazyredraw = true

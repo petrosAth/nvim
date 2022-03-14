@@ -37,22 +37,21 @@ return packer.startup(function()
     use{ "wbthomason/packer.nvim" } -- https://github.com/wbthomason/packer.nvim
 
 --<=< Cosmetics >====================================================================================================>--
-    -- dracula -- color theme
+    -- Themer - A simple, minimal highlighter plugin for neovim
     use{
-        "dracula/vim", -- https://github.com/dracula/vim
-        as = "dracula",
+        "ThemerCorp/themer.lua", -- https://github.com/ThemerCorp/themer.lua
         config = function()
-            require("cosmetics").colorscheme()
+            require("cosmetics")
         end,
     }
 
     -- nvim-web-devicons - lua `fork` of vim-web-devicons for neovim
     use{
-		"kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
-		config = function()
+        "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
+        config = function()
             require("nvim-web-devicons").setup()
-		end,
-	}
+        end,
+    }
 
     -- neoscroll.nvim - Smooth scrolling neovim plugin written in lua
     use{

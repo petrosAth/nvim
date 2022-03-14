@@ -2,8 +2,8 @@ require("pretty-fold").setup({
     fill_char = " ",
     sections = {
         left = {
-            " |-< ", "number_of_folded_lines", " >-< ", "percentage"
-        },
+            function() return string.rep("----", vim.v.foldlevel) end, "< ", "number_of_folded_lines", " >-< ", "percentage"
+        }
     },
 
     remove_fold_markers = true,

@@ -341,10 +341,10 @@ M.lsp_diagnostics = function()
             local bufnr = vim.api.nvim_get_current_buf()
 
             local d_color = {
-                errors   = "%#DiagnosticError#",
-                warnings = "%#DiagnosticWarn#",
-                info     = "%#DiagnosticInfo#",
-                hints    = "%#DiagnosticHint#"
+                errors   = "%#lualineDiagnosticError#",
+                warnings = "%#lualineDiagnosticWarn#",
+                info     = "%#lualineDiagnosticInfo#",
+                hints    = "%#lualineDiagnosticHint#"
             }
             local d_symbol = {
                 errors   = ci.error[1] .. " ",
@@ -421,9 +421,9 @@ M.git_status = function()
         if gitsigns.head ~= "" then
             local gs_color = {
                 head    = "",
-                added   = "%#DiffAdd#",
-                changed = "%#DiffChange#",
-                removed = "%#DiffDelete#"
+                added   = "%#GitSignsAddNr#",
+                changed = "%#GitSignsChangeNr#",
+                removed = "%#GitSignsDeleteNr#"
             }
             local gs_symbol = {
                 head    = "",
@@ -485,6 +485,41 @@ end
 
 M.window = function()
     return " " .. vim.api.nvim_win_get_number(0)
+end
+
+M.myNord = function()
+    return {
+        inactive = {
+            a = { fg = "#3B4252", bg = "#88C0D0" },
+            b = { fg = "#E5E9F0", bg = "#4C566A" },
+            c = { fg = "#E5E9F0", bg = "#3B4252" },
+        },
+        visual = {
+            a = { fg = "#3B4252", bg = "#EBCB8B" },
+            b = { fg = "#E5E9F0", bg = "#4C566A" },
+            c = { fg = "#E5E9F0", bg = "#3B4252" },
+        },
+        replace = {
+            a = { fg = "#3B4252", bg = "#BF616A" },
+            b = { fg = "#E5E9F0", bg = "#4C566A" },
+            c = { fg = "#E5E9F0", bg = "#3B4252" },
+        },
+        normal = {
+            a = { fg = "#3B4252", bg = "#88C0D0" },
+            b = { fg = "#E5E9F0", bg = "#4C566A" },
+            c = { fg = "#E5E9F0", bg = "#3B4252" },
+        },
+        insert = {
+            a = { fg = "#3B4252", bg = "#ECEFF4" },
+            b = { fg = "#E5E9F0", bg = "#4C566A" },
+            c = { fg = "#E5E9F0", bg = "#3B4252" },
+        },
+        command = {
+            a = { fg = "#3B4252", bg = "#8FBCBB" },
+            b = { fg = "#E5E9F0", bg = "#4C566A" },
+            c = { fg = "#E5E9F0", bg = "#3B4252" },
+        },
+    }
 end
 
 return M

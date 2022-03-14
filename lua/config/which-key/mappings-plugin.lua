@@ -55,25 +55,23 @@ wk.register({
             f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
             c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
             b = { tele_builtin .. "git_branches()<CR>", "Branches"  }, -- telescope
-            s = { tele_builtin .. "git_status()<CR>",   "Status"    }, -- telescope
-            S = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
-            B = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Blame" }, -- gitsigns
-            g = {
-                name = "Gitsigns",
-                b = {
-                    name = "Buffer actions",
-                    s = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
-                    r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
-                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
-                },
-                h = {
-                    name = "Hunk actions",
-                    s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
-                    u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
-                    r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
-                    p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
-                }
-            }
+            B = {
+                name = "Buffer actions",
+                s = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
+                r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
+                u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
+            },
+            H = {
+                name = "Hunk actions",
+                s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
+                u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
+                r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
+                p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
+            },
+            l = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>",       "Show blame"        }, -- gitsigns
+            L = { "<CMD>lua require('gitsigns').toggle_current_line_blame()<CR>", "Toggle line blame" }, -- gitsigns
+            s = { tele_builtin .. "git_status()<CR>",                             "Status"            }, -- telescope
+            S = { tele_builtin .. "git_stash()<CR>",                              "Stash"             }, -- telescope
         },
         l = {
             name = "LSP",

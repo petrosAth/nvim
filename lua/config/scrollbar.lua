@@ -55,20 +55,23 @@ require("scrollbar").setup({
         },
     },
     excluded_buftypes = {
+        "nofile",
+        "prompt",
+        "terminal",
+        "quickfix",
+    },
+    excluded_filetypes = {
         "aerial",
         "alpha",
+        "lsp-installer",
         "minimap",
         "NvimTree",
         "Outline",
         "packer",
         "qf",
-        "terminal",
-        "Trouble",
-        "undotree"
-    },
-    excluded_filetypes = {
-        "prompt",
         "TelescopePrompt",
+        "Trouble",
+        "undotree",
     },
     autocmd = {
         render = {

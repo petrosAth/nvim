@@ -37,7 +37,7 @@ vim.cmd([[
 vim.cmd([[
     augroup HL_ON_YANK
         autocmd!
-        autocmd TextYankPost * lua vim.highlight.on_yank { higroup = 'DraculaOrangeInverse', timeout = 500, on_visual = true, on_macro = true }
+        autocmd TextYankPost * lua vim.highlight.on_yank { higroup = 'Visual', timeout = 500, on_visual = true, on_macro = true }
     augroup END
 ]])
 
@@ -56,7 +56,7 @@ vim.cmd([[
     augroup SAVE_VIEW
         autocmd!
         autocmd BufWinLeave *.* if expand('%') != '' | mkview | endif
-        autocmd BufWinEnter *.* if expand('%') != '' | silent! loadview | :execute "normal zxzR" | endif
+        autocmd BufWinEnter *.* if expand('%') != '' | silent! loadview | endif
     augroup END
 ]])
 

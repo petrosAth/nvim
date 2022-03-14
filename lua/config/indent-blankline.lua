@@ -1,13 +1,38 @@
-local excFiletypes = { "NvimTree", "packer", "dashboard", "alpha", "help", "lsp-installer", "Outline", "minimap" }
-local excBuftypes = { "nofile", "nowrite", "quickfix", "terminal", "prompt", }
+local excFiletypes = {
+    "aerial",
+    "alpha",
+    "diff",
+    "help",
+    "lsp-installer",
+    "minimap",
+    "NvimTree",
+    "Outline",
+    "packer",
+    "qf",
+    "Trouble",
+    "undotree",
+}
 
-require("indent_blankline").setup {
+local excBuftypes = {
+    "nofile",
+    "nowrite",
+    "quickfix",
+    "terminal",
+    "prompt",
+}
+
+require("indent_blankline").setup({
+    char_list = { "│", "┆" }, -- '¦', '┆', '┊', "│", '|',
+    space_char_blankline = " ",
     filetype_exclude = excFiletypes,
     buftype_exclude = excBuftypes,
-    char_list = { "│", '┆', }, -- '¦', '┆', '┊', "│", '|',
-    space_char_blankline = " ",
-    indent_blankline_use_treesitter = true, -- Need treesitter
+    show_first_indent_level = true,
+    show_trailing_blankline_indent = true,
+    show_end_of_line = false,
     show_current_context = true, -- Need treesitter
     show_current_context_start = true, -- Need treesitter
-    indent_blankline_show_foldtext = false,
-}
+    show_current_context_start_on_current_line = false,
+    use_treesitter = true, -- Need treesitter
+    indent_level = 20,
+    show_foldtext = true,
+})

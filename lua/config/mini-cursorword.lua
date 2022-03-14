@@ -8,8 +8,5 @@ vim.cmd([[
 
 require("mini.cursorword").setup({
     -- Delay (in ms) between when cursor moved and when highlighting appeared
-    delay = 100,
+    delay = 200,
 })
-
-vim.cmd("hi! link MiniCursorword Visual")
-vim.cmd("hi! MiniCursorwordCurrent gui=nocombine guifg=NONE guibg=NONE")
