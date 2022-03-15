@@ -1,7 +1,6 @@
 local wk = require("which-key")
 local tele_custom = "<CMD>lua require('config.telescope.customPickers')."
 local tele_builtin = "<CMD>lua require('telescope.builtin')."
-local hop = "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection."
 
 -- Normal mode mappings
 wk.register({

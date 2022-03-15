@@ -1,7 +1,8 @@
 local bufferline = require("bufferline")
 local ci = require("aesthetics").icon
-local dracula_theme = {
-    highlights = {
+
+local theme = {
+    dracula = {
         fill                  = { guifg = "#f8f8f2", guibg = "#44475a" },
         background            = { guifg = "#f8f8f2", guibg = "#5f6a8e" },
         tab                   = { guifg = "#f8f8f2", guibg = "#5f6a8e" },
@@ -26,29 +27,7 @@ local dracula_theme = {
         pick_visible          = { guifg = "#F1FA8C", guibg = "#282a36", gui = "" },
         pick                  = { guifg = "#F1FA8C", guibg = "#282a36", gui = "" }
     },
-    offsets = {
-        {
-            filetype = "NvimTree",
-            text = "File Tree",
-            highlight = "lualine_a_normal",
-            text_align = "center",
-        },
-        {
-            filetype = "aerial",
-            text = "Symbols",
-            highlight = "lualine_a_normal",
-            text_align = "center",
-        },
-        {
-            filetype = "undotree",
-            text = "Undotree",
-            highlight = "lualine_a_normal",
-            text_align = "center",
-        }
-    },
-}
-local nord_theme = {
-    highlights = {
+    nord = {
         fill                  = { guifg = "#E5E9F0", guibg = "#3B4252" },
         background            = { guifg = "#E5E9F0", guibg = "#4C566A" },
         tab                   = { guifg = "#E5E9F0", guibg = "#4C566A" },
@@ -72,26 +51,6 @@ local nord_theme = {
         pick_selected         = { guifg = "#D08770", guibg = "#2E3440", gui = "" },
         pick_visible          = { guifg = "#D08770", guibg = "#2E3440", gui = "" },
         pick                  = { guifg = "#D08770", guibg = "#2E3440", gui = "" }
-    },
-    offsets = {
-        {
-            filetype = "NvimTree",
-            text = "File Tree",
-            highlight = "BufferLineOffsetTitleBar",
-            text_align = "center",
-        },
-        {
-            filetype = "aerial",
-            text = "Symbols",
-            highlight = "BufferLineOffsetTitleBar",
-            text_align = "center",
-        },
-        {
-            filetype = "undotree",
-            text = "Undotree",
-            highlight = "BufferLineOffsetTitleBar",
-            text_align = "center",
-        }
     },
 }
 
@@ -118,8 +77,30 @@ bufferline.setup{
             -- left aligned   => "▏","▍","▌"
             -- center aligned => "│","┃"," ","█"
         separator_style = "slant", -- { "█", "█" },
-        offsets = nord_theme.offsets,
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Tree",
+                highlight = "BufferLineOffsetTitleBar",
+                text_align = "center",
+                padding = 1,
+            },
+            {
+                filetype = "aerial",
+                text = "Symbols",
+                highlight = "BufferLineOffsetTitleBar",
+                text_align = "center",
+                padding = 1,
+            },
+            {
+                filetype = "undotree",
+                text = "Undotree",
+                highlight = "BufferLineOffsetTitleBar",
+                text_align = "center",
+                padding = 1,
+            },
+        },
         always_show_bufferline = true,
     },
-    highlights = nord_theme.highlights,
+    highlights = theme.nord,
 }

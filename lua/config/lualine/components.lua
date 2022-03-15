@@ -97,12 +97,12 @@ M.file_name_active = function()
         return ""
     else
         if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.15 and fn.expand("%:h") ~= "." then
-            return " " .. fn.expand("%:~:.:h")
+            return " " .. fn.expand("%:~:.:h") .. "/"
         else
             return M.print_for_width({
                 autofill = true,
-                M  = " " .. fn.expand("%:h:t") .. "\\",
-                S  = fn.expand("%:h:t") .. "\\"
+                M  = " " .. fn.expand("%:h:t") .. "/",
+                S  = fn.expand("%:h:t") .. "/"
             })
         end
     end
@@ -124,7 +124,7 @@ end
 
 M.is_readonly = function()
     if bo.modifiable == false or bo.readonly == true then
-        return ""
+        return " "
     end
 	return ""
 end

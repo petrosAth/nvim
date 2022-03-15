@@ -14,8 +14,9 @@ Still a work in progress.
 - [x] Organize my custom highlight groups
 - [x] Revisit nvim-cmp menu
 - [x] lazyload everything possible
-- [ ] Revisit Cokeline when side offset gets introduced
-- [ ] Session management
+- [ ] Polish themer's dracula theme
+- [ ] Add Solarized theme
+- [ ] Add Session management
 - [ ] Add debugger
 
 ## Reminders

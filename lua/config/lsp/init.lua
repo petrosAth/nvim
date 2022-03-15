@@ -63,23 +63,4 @@ function M.custom_on_attach(client, bufnr)
     require("lsp-status").on_attach(client)
 end
 
--- Add borders on LspInfo window
-local lspconfig_window = require("lspconfig.ui.windows")
-local old_defaults = lspconfig_window.default_opts
-
-function lspconfig_window.default_opts(opts)
-    local win_opts = old_defaults(opts)
-    win_opts.border = {
-        { cb.tl, "FloatBorder" },
-        { cb.t,  "FloatBorder" },
-        { cb.tr, "FloatBorder" },
-        { cb.r,  "FloatBorder" },
-        { cb.br, "FloatBorder" },
-        { cb.b,  "FloatBorder" },
-        { cb.bl, "FloatBorder" },
-        { cb.l,  "FloatBorder" },
-    }
-    return win_opts
-end
-
 return M

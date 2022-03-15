@@ -5,7 +5,7 @@ require("scrollbar").setup({
         text = " ",
         color = nil,
         cterm = nil,
-        highlight = "CursorColumn",
+        highlight = "ScrollBarHandle",
         hide_if_all_visible = true, -- Hides handle if all lines are visible
     },
     marks = {
