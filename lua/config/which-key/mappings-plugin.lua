@@ -24,7 +24,13 @@ wk.register({
     ["g*"] = { "g*<CMD>lua require('hlslens').start()<CR>", "Search string under cursor"          }, -- hlslens
     ["g#"] = { "g#<CMD>lua require('hlslens').start()<CR>", "Search string under cursor backward" }, -- hlslens
     ["<Leader>"] = {
-        u     = {
+        s      = {
+            name = "Auto Session",
+            d = { "<CMD>DeleteSession<CR>",  "Delete cwd session"       }, -- session-lens
+            r = { "<CMD>RestoreSession<CR>", "Restore session"          }, -- session-lens
+            s = { "<CMD>SaveSession<CR>",    "Save session"             }, -- session-lens
+        },
+        u      = {
             name = "Utilities",
             u = { "<CMD>PackerSync<CR>",     "Packer sync"              }, -- packer
             s = { "<CMD>PackerStatus<CR>",   "Packer status"            }, -- packer
@@ -110,6 +116,7 @@ wk.register({
             o = { tele_builtin .. "vim_options()<CR>",     "Vim options"        }, -- telescope
             p = { tele_custom  .. "project()<CR>",         "Projects"           }, -- telescope
             r = { tele_custom  .. "find_recent()<CR>",     "Find recent"        }, -- telescope
+            s = { "<CMD>SearchSession<CR>",                "Search sessions"    }, -- session-lens
             T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" },  -- todo-comments
             t = {
                 name = "Telescope",
@@ -117,7 +124,7 @@ wk.register({
                 c = { tele_builtin .. "command_history()<CR>", "Command history"    }  -- telescope
             }
         },
-        u = { "<CMD>UndotreeToggle<CR>", "Toggle undo tree" } -- undotree
+        u = { "<CMD>NvimTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" } -- undotree
     }
 })
 

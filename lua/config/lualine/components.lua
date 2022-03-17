@@ -236,9 +236,9 @@ M.lines_total = function()
     local is_plugin, plugin_name = M.is_plugin()
 
     if not is_plugin then
-        return string.format(" %d", fn.line("$"))
+        return string.format(" %d", fn.line("$"))
     elseif plugin_name == "Trouble" and fn.line("$") > 1 then
-        return string.format(" %d", fn.line("$"))
+        return string.format(" %d", fn.line("$"))
     else
         return ""
     end
@@ -484,7 +484,7 @@ M.builtin_diagnostics = function()
 end
 
 M.window = function()
-    return " " .. vim.api.nvim_win_get_number(0)
+    return " " .. vim.api.nvim_win_get_number(0)
 end
 
 M.myNord = function()

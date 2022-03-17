@@ -61,17 +61,11 @@ require("scrollbar").setup({
         "quickfix",
     },
     excluded_filetypes = {
-        "aerial",
         "alpha",
-        "lsp-installer",
-        "minimap",
         "NvimTree",
-        "Outline",
         "packer",
         "qf",
         "TelescopePrompt",
-        "Trouble",
-        "undotree",
     },
     autocmd = {
         render = {

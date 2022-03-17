@@ -14,8 +14,8 @@ local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
 local function set_button(sc, txt, keybind, keybind_opts)
     local button = dashboard.button(sc, txt, keybind, keybind_opts)
-    button.opts.hl          = "Directory"
-    button.opts.hl_shortcut = "Comment"
+    button.opts.hl          = "AlphaButtons"
+    button.opts.hl_shortcut = "AlphaButtonShortcuts"
     button.opts.cursor      = 4
 
     return button
@@ -34,17 +34,18 @@ local header = {
     },
     opts = {
         position = "center",
-        hl = "Include"
+        hl = "AlphaHeader"
     }
 }
 
 local buttons_navigation = {
     type = "group",
     val = {
-        set_button("SPC s r", " " .. ci.arrowr[1] .. " Recent files",   tele_custom .. "find_recent()<CR>"),
-        set_button("SPC s p", " " .. ci.arrowr[1] .. " Projects",       tele_custom .. "project()<CR>"),
-        set_button("SPC s f", " " .. ci.arrowr[1] .. " File search",    tele_custom .. "find_files()<CR>"),
-        set_button("SPC s g", " " .. ci.arrowr[1] .. " ripGREP search", tele_custom .. "live_grep()<CR>")
+        set_button("SPC s r", " " .. ci.arrowr[1] .. " Recent files",    tele_custom .. "find_recent()<CR>"),
+        set_button("SPC s s", " " .. ci.arrowr[1] .. " Search sessions", "<CMD>SearchSession<CR>"),
+        set_button("SPC s p", " " .. ci.arrowr[1] .. " Projects",        tele_custom .. "project()<CR>"),
+        set_button("SPC s f", " " .. ci.arrowr[1] .. " File search",     tele_custom .. "find_files()<CR>"),
+        set_button("SPC s g", " " .. ci.arrowr[1] .. " ripGREP search",  tele_custom .. "live_grep()<CR>")
     },
     opts = {
         spacing = 0,
@@ -67,7 +68,7 @@ local footer = {
     val = require'alpha.fortune'(),
     opts = {
         position = "center",
-        -- hl = "Directory"
+        hl = "AlphaFooter"
     },
 }
 

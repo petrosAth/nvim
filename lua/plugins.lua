@@ -88,6 +88,22 @@ return packer.startup(function()
             require("config.notify")
         end
     }
+
+    -- nvim-scrollbar - Extensible Neovim Scrollbar
+    use{
+        "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
+        config = function ()
+            require("config.scrollbar")
+        end
+    }
+
+    -- pretty-fold.nvim - Foldtext customization and folded region preview in Neovim
+    use{
+        "anuvyklack/pretty-fold.nvim", -- https://github.com/anuvyklack/pretty-fold.nvim
+        config = function()
+            require("config.pretty-fold")
+        end
+    }
 --<==================================================================================================================>--
 
 
@@ -227,7 +243,7 @@ return packer.startup(function()
         "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
         run     = "make hexokinase",
         cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
-        ft      = { "css", "html" },
+        ft      = { "css", "html", "json" },
         setup   = function()
             require("config.hexokinase")
         end
@@ -327,20 +343,23 @@ return packer.startup(function()
         end
     }
 
-    -- nvim-scrollbar - Extensible Neovim Scrollbar
+    -- auto-session - A small automated session manager for Neovim
     use{
-        "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
+        "rmagatti/auto-session", -- https://github.com/rmagatti/auto-session
+        requires = {
+            -- session-lens - A session-switcher extension for rmagatti/auto-session using Telescope.nvim
+            {
+                "rmagatti/session-lens", -- https://github.com/rmagatti/session-lens
+                after = "auto-session",
+                config = function ()
+                    require("config.auto-session.session-lens")
+                end
+            },
+        },
+        after = "nvim-tree.lua",
         config = function ()
-            require("config.scrollbar")
-        end
-    }
-
-    -- pretty-fold.nvim - Foldtext customization and folded region preview in Neovim
-    use{
-        "anuvyklack/pretty-fold.nvim", -- https://github.com/anuvyklack/pretty-fold.nvim
-        config = function()
-            require("config.pretty-fold")
-        end
+            require("config.auto-session")
+        end,
     }
 --<==================================================================================================================>--
 

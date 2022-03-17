@@ -19,8 +19,8 @@ telescope.setup({
         initial_mode = "insert",
         path_display = {
             -- truncate = 3
-            -- "smart"
-            shorten = { len = 1, exclude = { -1, -2, -3, -4 } }
+            "smart"
+            -- shorten = { len = 1, exclude = { -1, -2, -3, -4 } }
             -- "absolute",
         },
         dynamic_preview_title = true,
@@ -189,7 +189,8 @@ telescope.setup({
             require("telescope.themes").get_dropdown {
                 borderchars = {
                     prompt  = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
-                    results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl }
+                    results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl },
+                    preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
                 }
             }
         }
@@ -197,7 +198,7 @@ telescope.setup({
 })
 
 -- Load extensions
-local extensions = { "frecency", "fzf", "hop", "project", "ui-select" }
+local extensions = { "frecency", "fzf", "hop", "project", "session-lens", "ui-select" }
 pcall(function()
 	for _, ext in ipairs(extensions) do
 		telescope.load_extension(ext)

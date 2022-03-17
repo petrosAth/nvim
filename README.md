@@ -14,9 +14,10 @@ Still a work in progress.
 - [x] Organize my custom highlight groups
 - [x] Revisit nvim-cmp menu
 - [x] lazyload everything possible
+- [ ] Add [dictionaries](https://github.com/echasnovski/nvim/blob/0e185055d4a45f079795a6836a821dc8dbbfcee9/lua/ec/settings.lua#L73-L77)
 - [ ] Polish themer's dracula theme
 - [ ] Add Solarized theme
-- [ ] Add Session management
+- [x] Add Session management
 - [ ] Add debugger
 
 ## Reminders

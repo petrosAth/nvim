@@ -1,44 +1,36 @@
 local g = vim.g
 local palette = CONFIG_PATH .. "/lua/config/hexokinase/palettes"
 
-g.Hexokinase_highlighters     = {
+g.Hexokinase_highlighters = {
     -- "virtual"
     -- "sign_column"
     -- "background"
-    "backgroundfull"
+    "backgroundfull",
     -- "foreground"
     -- "foregroundfull"
 }
-g.Hexokinase_optInPatterns    = {
+g.Hexokinase_optInPatterns = {
     "full_hex",
     "triple_hex",
     "rgb",
     "rgba",
     "hsl",
     "hsla",
-    "colour_names"
+    "colour_names",
 }
-g.Hexokinase_optOutPatterns   = {}
--- g.Hexokinase_ftOptInPatterns  = {}
--- g.Hexokinase_ftOptOutPatterns = {}
-g.Hexokinase_virtualText      = "■"
-g.Hexokinase_signIcon         = "■"
-g.Hexokinase_refreshEvents    = {
+g.Hexokinase_refreshEvents = {
+    "BufRead",
+    "BufEnter",
     "TextChanged",
     "InsertLeave",
-    "BufRead"
 }
-g.Hexokinase_termDisabled     = 0
-g.Hexokinase_ftDisabled       = {}
-g.Hexokinase_ftEnabled        = {
+g.Hexokinase_ftEnabled = {
     "css",
     "html",
+    "json",
 }
-g.Hexokinase_alpha_bg         = ""
-g.Hexokinase_checkBoundary    = 1
-
 -- Custom pallets
 g.Hexokinase_palettes = {
     palette .. "/dracula.json",
-    palette .. "/nord.json"
+    palette .. "/nord.json",
 }

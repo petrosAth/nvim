@@ -1,4 +1,4 @@
-local opt, g = vim.opt, vim.g
+local opt, o, g = vim.opt, vim.o, vim.g
 local ct = require("aesthetics").variables.transparency
 local ci = require("aesthetics").icon
 local cui = ci.nvim_ui
@@ -112,6 +112,9 @@ opt.signcolumn = "yes"
 -- Show vertical line for text alignment
 opt.colorcolumn = "80"
 
+-- Draw colored column one step to the right of desired maximum width
+vim.opt.colorcolumn = "+1"
+
 -- Fold column
 opt.foldcolumn = "auto:9"
 
@@ -128,7 +131,7 @@ opt.foldmethod = "indent"
 -- opt.foldmethod = "marker"
 -- opt.foldtext = "v:lua.custom_fold_text()"
 
-opt.foldlevelstart = 3
+opt.foldlevelstart = 99
 
 opt.foldminlines = 1
 
@@ -160,9 +163,15 @@ opt.spelllang = "en_us"
 -- Statusline
 opt.laststatus = 2
 
+-- Don't show mode in command line
+vim.opt.showmode = false
+
 -- Splits
 opt.splitright = true
 opt.splitbelow = true
+
+-- Don't hide (conceal) special symbols (like `` in markdown)
+opt.conceallevel  = 0
 
 -- No redraw during macro, regex execution
 opt.lazyredraw = true
@@ -188,6 +197,9 @@ opt.pumblend = ct
 
 -- Program to use for the K command
 opt.keywordprg = ":help"
+
+-- What to save with mksession command
+o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 -- No swap file
 opt.swapfile = false

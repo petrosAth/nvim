@@ -27,7 +27,7 @@ g.nvim_tree_icons = {
         renamed   = ci.arrowr[1],
         untracked = ci.pending[1], -- ci.def[2],
         deleted   = ci.delete[1], -- ci.delete[1],
-        ignored   = ci.def[1]
+        ignored   = ""
     },
         folder = {
         arrow_open   = ci.folderop[1],

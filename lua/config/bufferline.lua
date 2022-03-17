@@ -69,13 +69,10 @@ bufferline.setup{
         diagnostics = false,
         show_buffer_icons = false,
         show_buffer_close_icons = true,
+        -- right aligned  => "▕"," ","▐"
+        -- left aligned   => "▏","▍","▌"
+        -- center aligned => "│","┃"," ","█"
         indicator_icon = "",
-        -- U+2590 ▐ Right half block, this character is right aligned so the
-        -- background highlight doesn't appear in th middle
-        -- alternatives:
-            -- right aligned  => "▕"," ","▐"
-            -- left aligned   => "▏","▍","▌"
-            -- center aligned => "│","┃"," ","█"
         separator_style = "slant", -- { "█", "█" },
         offsets = {
             {
