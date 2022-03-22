@@ -6,6 +6,6 @@
 
 require("auto-session").setup({
     auto_session_suppress_dirs = { "~/", "~/.config/", "~/Develop" },
-    pre_save_cmds = { "NvimTreeClose", "AerialClose", "UndotreeHide" },
+    pre_save_cmds = { "NvimTreeClose", "AerialClose", "UndotreeShow", "UndotreeHide" },
     -- post_restore_cmds = { restore_nvim_tree },
 })

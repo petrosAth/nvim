@@ -47,7 +47,7 @@ M.icon = {
     nvim_ui  = {
         stl       = { " " },           -- ' ' or '^' -- statusline of the current window
         stlnc     = { " " },           -- ' ' or '=' -- statusline of the non-current windows
-        vert      = { "█", "▏", "▌", "│", "┃", "▕", "▐", "░", "▒", "▓", "█" }, -- '│' or '|' -- vertical separators |:vsplit|
+        vert      = { "▏", "▏", "▌", "│", "┃", "▕", "▐", "░", "▒", "▓", "█" }, -- '│' or '|' -- vertical separators |:vsplit|
         fold      = { " " },           -- '·' or '-' -- filling 'foldtext'
         foldopen  = { "", "" },      -- '-'        -- mark the beginning of a fold
         foldclose = { "", "", "" }, -- '+'        -- show a closed fold

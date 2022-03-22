@@ -1,6 +1,6 @@
 local M = {}
 local ci = require("aesthetics").icon
-local cb = require("aesthetics").border.table
+local cb = require("aesthetics").border.box
 
 -- List of servers for installation
 M.servers = {
@@ -13,6 +13,24 @@ M.servers = {
     "pyright",
     "sumneko_lua"
 }
+
+-- Borders for LSP floating windows
+local border = {
+    { "",                 },
+    { "",                 },
+    { "",                 },
+    { cb.r, "FloatBorder" },
+    { "",                 },
+    { "",                 },
+    { "",                 },
+    { cb.l, "FloatBorder" },
+}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 -- Configure lsp handlers
 vim.diagnostic.config({

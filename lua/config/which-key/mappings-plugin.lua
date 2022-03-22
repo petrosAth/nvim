@@ -24,13 +24,13 @@ wk.register({
     ["g*"] = { "g*<CMD>lua require('hlslens').start()<CR>", "Search string under cursor"          }, -- hlslens
     ["g#"] = { "g#<CMD>lua require('hlslens').start()<CR>", "Search string under cursor backward" }, -- hlslens
     ["<Leader>"] = {
-        s      = {
+        s = {
             name = "Auto Session",
             d = { "<CMD>DeleteSession<CR>",  "Delete cwd session"       }, -- session-lens
             r = { "<CMD>RestoreSession<CR>", "Restore session"          }, -- session-lens
             s = { "<CMD>SaveSession<CR>",    "Save session"             }, -- session-lens
         },
-        u      = {
+        u = {
             name = "Utilities",
             u = { "<CMD>PackerSync<CR>",     "Packer sync"              }, -- packer
             s = { "<CMD>PackerStatus<CR>",   "Packer status"            }, -- packer
@@ -43,19 +43,19 @@ wk.register({
     ["<Space>"] = {
         ["?"] = { "<CMD>WhichKey<CR>",             "Show available hotkeys" }, -- which-key
         ["."] = { tele_builtin .. "resume()<CR>",  "Reopen Telescope"       }, -- telescope
-        b     = { tele_custom  .. "buffers()<CR>", "Buffer list"            }, -- telescope
-        c     = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
-        d     = {
+        b = { tele_custom  .. "buffers()<CR>", "Buffer list"            }, -- telescope
+        c = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
+        d = {
             name = "Diffview",
             o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
             c = { "<CMD>DiffviewClose<CR>",       "Close"                     }, -- diffview
             e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
             R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }  -- diffview
         },
-        e     = { "<CMD>NvimTreeToggle<CR>",                "Toggle file tree" }, -- nvimtree
-        E     = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree
-        f     = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"           }, -- hop
-        g     = {
+        e = { "<CMD>NvimTreeToggle<CR>",                "Toggle file tree" }, -- nvimtree
+        E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree
+        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"           }, -- hop
+        g = {
             name = "Git",
             f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
             c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
@@ -73,8 +73,8 @@ wk.register({
                 r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
                 p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
             },
-            l = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>",       "Show blame"        }, -- gitsigns
-            L = { "<CMD>lua require('gitsigns').toggle_current_line_blame()<CR>", "Toggle line blame" }, -- gitsigns
+            l = { "<CMD>lua require('gitsigns').toggle_current_line_blame()<CR>", "Toggle line blame" }, -- gitsigns
+            L = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>",       "Show blame"        }, -- gitsigns
             s = { tele_builtin .. "git_status()<CR>",                             "Status"            }, -- telescope
             S = { tele_builtin .. "git_stash()<CR>",                              "Stash"             }, -- telescope
         },

@@ -63,6 +63,8 @@ require("themer").setup({
                     StatusLineTermNC = { fg = "#D8DEE9", bg = "#3B4252", style = "NONE" },
                     WarningMsg       = { fg = "#2E3440", bg = "#EBCB8B" },
                     WildMenu         = { fg = "#3B4252", bg = "#88C0D0" },
+                    NormalFloat      = { fg = "#D8DEE9", bg = "#2E3440" },
+                    FloatBorder      = { fg = "#4c566a", bg = "#2E3440" },
                     -- Search
                     Search           = { fg = "#88C0D0", bg = "#3B4252", style = "reverse" },
                     IncSearch        = { fg = "#ECEFF4", bg = "#5E81AC", style = "underline" },
@@ -105,7 +107,7 @@ require("themer").setup({
                     -- BufferLinePick_visible          = { fg = "#D08770", bg = "#2E3440", gui = "" },
                     -- BufferLinePick                  = { fg = "#D08770", bg = "#2E3440", gui = "" },
                     -- gitsigns
-                    GitSignsCurrentLineBlame  = { fg = "#4C566A", bg = "NONE"    },
+                    GitSignsCurrentLineBlame  = { fg = "#5e81ac", bg = "NONE"    },
                     GitSignsAdd               = { fg = "#A3BE8C", bg = "NONE"    },
                     GitSignsAddNr             = { fg = "#A3BE8C", bg = "#3B4252" },
                     GitSignsAddLn             = { fg = "#A3BE8C", bg = "NONE"    },
@@ -116,10 +118,10 @@ require("themer").setup({
                     GitSignsDeleteNr          = { fg = "#BF616A", bg = "#3B4252" },
                     GitSignsDeleteLn          = { fg = "#BF616A", bg = "NONE"    },
                     -- hop
-                    HopNextKey                = { fg = "#D8DEE9", bg = "NONE",    style = "bold" },
-                    HopNextKey1               = { fg = "#88C0D0", bg = "NONE",    style = "bold" },
-                    HopNextKey2               = { fg = "#D8DEE9", bg = "NONE" },
-                    HopUnmatched              = { fg = "#4C566A", bg = "NONE" },
+                    HopNextKey                = { fg = "#88C0D0", bg = "NONE",    style = "bold" },
+                    HopNextKey1               = { fg = "#88C0D0", bg = "NONE"    },
+                    HopNextKey2               = { fg = "#D8DEE9", bg = "NONE"    },
+                    HopUnmatched              = { fg = "#4C566A", bg = "NONE"    },
                     -- lualine
                     lualineDiagnosticError    = { fg = "#BF616A", bg = "#3B4252" },
                     lualineDiagnosticWarn     = { fg = "#EBCB8B", bg = "#3B4252" },

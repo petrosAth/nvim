@@ -1,7 +1,7 @@
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local cb = require("aesthetics").border.table
+local cb = require("aesthetics").border.box
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -70,9 +70,18 @@ cmp.setup{
     experimental = {
         ghost_text = true,
     },
-	-- documentation = {
- --        border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l }
-	-- },
+	documentation = {
+        border = {
+            { "",                 },
+            { "",                 },
+            { "",                 },
+            { cb.r, "FloatBorder" },
+            { "",                 },
+            { "",                 },
+            { "",                 },
+            { cb.l, "FloatBorder" },
+        }
+	},
 }
 
 -- Use buffer source for `/`.

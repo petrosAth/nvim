@@ -188,7 +188,7 @@ opt.pastetoggle = "<F12>"
 -- Minimal number of screen lines to keep above and below the cursor
 opt.scrolloff = 3
 -- The minimal number of columns to scroll horizontally
-opt.sidescrolloff = 5
+opt.sidescrolloff = 20
 
 -- Transparency for floating windows
 opt.winblend = ct
