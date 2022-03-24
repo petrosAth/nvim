@@ -49,9 +49,9 @@ M.icon = {
         stlnc     = { " " },           -- ' ' or '=' -- statusline of the non-current windows
         vert      = { "▏", "▏", "▌", "│", "┃", "▕", "▐", "░", "▒", "▓", "█" }, -- '│' or '|' -- vertical separators |:vsplit|
         fold      = { " " },           -- '·' or '-' -- filling 'foldtext'
-        foldopen  = { "┯", "", "┯" },      -- '-'        -- mark the beginning of a fold
+        foldopen  = { "", "", "┯" },      -- '-'        -- mark the beginning of a fold
         foldclose = { "", "", "" }, -- '+'        -- show a closed fold
-        foldsep   = { "│", "", "│" }, -- '│' or '|' -- open fold middle marker
+        foldsep   = { "", "", "│" }, -- '│' or '|' -- open fold middle marker
         diff      = { "-" },           -- '-'        -- deleted lines of the 'diff' option
         msgsep    = { " " },           -- ' '        -- message separator 'display'
         eob       = { "-" },           -- '~'        -- empty lines at the end of a buffer
