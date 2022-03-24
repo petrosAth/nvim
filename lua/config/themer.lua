@@ -46,7 +46,7 @@ require("themer").setup({
                     -- Gutter
                     CursorColumn     = { fg = "NONE",    bg = "#3B4252" },
                     CursorLineNr     = { fg = "#D8DEE9", bg = "#3B4252", style = "NONE" },
-                    Folded           = { fg = "#2E3440", bg = "#3B4252", style = "bold" },
+                    Folded           = { fg = "#2E3440", bg = "#434c5e", style = "bold" },
                     FoldColumn       = { fg = "#4C566A", bg = "NONE"    },
                     SignColumn       = { fg = "#3B4252", bg = "NONE"    },
                     -- Navigation

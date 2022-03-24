@@ -74,7 +74,7 @@ opt.tabstop = 4
 -- Highlights matching brackets
 opt.showmatch = true
 -- Highlights the current line
-opt.cursorline = false
+opt.cursorline = true
 
 -- Keep cursor at place if possible
 opt.startofline = true
