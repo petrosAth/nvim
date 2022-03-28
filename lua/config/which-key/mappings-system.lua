@@ -22,8 +22,8 @@ wk.register({
     ["<M-k>"] = { "v:count == 0 ? ':resize +5<CR>' : ':<C-u>resize +' . v:count1 . '<CR>'",                   "Expand horizontally",   expr = true },
     ["<M-h>"] = { "v:count == 0 ? ':vertical resize +5<CR>' : ':<C-u>vertical resize +' . v:count1 . '<CR>'", "Expand vertically",     expr = true },
     ["<M-l>"] = { "v:count == 0 ? ':vertical resize -5<CR>' : ':<C-u>vertical resize -' . v:count1 . '<CR>'", "Contract vertically",   expr = true },
-    ["<M-n>"] = { ":m .+1<CR>==",                 "Move line up"                            },
-    ["<M-p>"] = { ":m .-2<CR>==",                 "Move line down"                          },
+    ["<M-J>"] = { ":m .+1<CR>==",                 "Move line up"                            },
+    ["<M-K>"] = { ":m .-2<CR>==",                 "Move line down"                          },
     j         = { "v:count == 0 ? 'gj' : 'j'",    "Move using displayed lines", expr = true },
     k         = { "v:count == 0 ? 'gk' : 'k'",    "Move using displayed lines", expr = true },
     ["<Esc>"] = { ":noh<CR><Esc>",                "Clear search highlight",                 },
@@ -53,8 +53,8 @@ wk.register({
 wk.register({
     ["<F2>"]  = { [[y:%s/\V<C-r>"/]], "Replace word under cursor"          },
     ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number" },
-    ["<M-n>"] = { ":m '>+1<CR>gv-gv", "Move line up"                       },
-    ["<M-p>"] = { ":m '<-2<CR>gv-gv", "Move line up"                       },
+    ["<M-J>"] = { ":m '>+1<CR>gv-gv", "Move line up"                       },
+    ["<M-K>"] = { ":m '<-2<CR>gv-gv", "Move line up"                       },
     ["<Space>"] = {
         p     = { '"_dP', "Keep yanked text after paste" }
     }
@@ -75,10 +75,10 @@ wk.register({
 
 -- Command mode mappings
 wk.register({
-    ["<M-h>"] = { "<Left>",    "Cursor left"           },
-    ["<M-l>"] = { "<Right>",   "Cursor right"          },
-    ["<M-H>"] = { "<S-Left>",  "Cursor one word left"  },
-    ["<M-L>"] = { "<S-Right>", "Cursor one word right" },
+    ["<M-H>"] = { "<Left>",    "Cursor left"           },
+    ["<M-L>"] = { "<Right>",   "Cursor right"          },
+    ["<M-h>"] = { "<S-Left>",  "Cursor one word left"  },
+    ["<M-l>"] = { "<S-Right>", "Cursor one word right" },
 }, {
     mode = "c",
     silent = false
