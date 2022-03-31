@@ -73,8 +73,10 @@ opt.tabstop = 4
 
 -- Highlights matching brackets
 opt.showmatch = true
--- Highlights the current line
+-- Highlight the text line of the cursor
 opt.cursorline = true
+-- Highlight the screen column of the cursor
+opt.cursorcolumn = true
 
 -- Keep cursor at place if possible
 opt.startofline = true
