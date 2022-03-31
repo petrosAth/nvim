@@ -1,6 +1,6 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
-local cb = require("aesthetics").border.table
+local cb = require("styling").border.table
 
 local M = {}
 

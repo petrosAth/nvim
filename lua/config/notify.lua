@@ -1,6 +1,6 @@
 local notify = require("notify")
-local ci = require("aesthetics").icon
-local cb = require("aesthetics").border.table
+local ci = require("styling").icon
+local cb = require("styling").border.table
 
 notify.setup({
     -- Animation style (see below for details)

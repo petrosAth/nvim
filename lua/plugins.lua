@@ -1,7 +1,7 @@
 local fn = vim.fn
 local install_path = PACKER_PATH .. "/start/packer.nvim"
-local ci = require("aesthetics").icon
-local cb = require("aesthetics").border.table
+local ci = require("styling").icon
+local cb = require("styling").border.table
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -47,7 +47,7 @@ return packer.startup(function()
 -- Packer
     use{ "wbthomason/packer.nvim" } -- https://github.com/wbthomason/packer.nvim
 
---<=< Aesthetics >===================================================================================================>--
+--<=< Styling >======================================================================================================>--
     -- Themer - A simple, minimal highlighter plugin for neovim
     use{
         "ThemerCorp/themer.lua", -- https://github.com/ThemerCorp/themer.lua

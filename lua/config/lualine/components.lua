@@ -2,7 +2,7 @@
 -- https://elianiva.my.id/post/neovim-lua-statusline -- Great help for figuring out highlight groups
 -- https://github.com/Neelfrost/dotfiles
 
-local ci = require("aesthetics").icon
+local ci = require("styling").icon
 local excFiletypes = {
     "aerial",
     "alpha",

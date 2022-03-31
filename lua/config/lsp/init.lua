@@ -1,6 +1,6 @@
 local M = {}
-local ci = require("aesthetics").icon
-local cb = require("aesthetics").border.box
+local ci = require("styling").icon
+local cb = require("styling").border.box
 
 -- List of servers for installation
 M.servers = {

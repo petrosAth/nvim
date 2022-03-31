@@ -1,4 +1,4 @@
-local ci = require("aesthetics").icon
+local ci = require("styling").icon
 
 require("hlslens").setup({
     -- Enable nvim-hlslens automatically

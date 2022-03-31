@@ -3,9 +3,9 @@ local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local custom_pickers = require("config.telescope.customPickers")
 local trouble = require("trouble.providers.telescope")
-local ct = require("aesthetics").variables.transparency
-local ci = require("aesthetics").icon
-local cb = require("aesthetics").border.table
+local ct = require("styling").variables.transparency
+local ci = require("styling").icon
+local cb = require("styling").border.table
 
 telescope.setup({
 	defaults = {

@@ -19,6 +19,8 @@ Still a work in progress.
 - [ ] Add Solarized theme
 - [x] Add Session management
 - [ ] Add debugger
+- [ ] Replace bufferline with lualine [indicators](https://github.com/nvim-lualine/lualine.nvim/issues/414)
+
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -46,7 +48,7 @@ Still a work in progress.
 | [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)           | Telescope extension to preview media files using Ueberzug.                                                                                                        |
 | [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                                            | Better quickfix window in Neovim, polish old quickfix window.                                                                                                     |
 | [diaglist.nvim](https://github.com/onsails/diaglist.nvim)                                       | Live render workspace diagnostics in quickfix with current buf errors on top, buffer diagnostics in loclist                                                       |
-| Aesthetics                                                                                      |                                                                                                                                                                   |
+| Styling                                                                                         |                                                                                                                                                                   |
 | [dressing](https://github.com/stevearc/dressing.nvim)                                           | Neovim plugin to improve the default vim.ui interfaces                                                                                                            |
 | Treesitter                                                                                      |                                                                                                                                                                   |
 | [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs)                             | Code documentation built with treesitter                                                                                                                          |

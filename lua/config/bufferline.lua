@@ -1,5 +1,5 @@
 local bufferline = require("bufferline")
-local ci = require("aesthetics").icon
+local ci = require("styling").icon
 
 local theme = {
     dracula = {

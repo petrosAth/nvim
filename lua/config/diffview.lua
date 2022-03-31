@@ -1,5 +1,5 @@
 local cb = require'diffview.config'.diffview_callback
-local ci = require("aesthetics").icon
+local ci = require("styling").icon
 
 require'diffview'.setup {
     diff_binaries = false,    -- Show diffs for binaries

@@ -1,4 +1,4 @@
-local cb = require("aesthetics").border.table
+local cb = require("styling").border.table
 
 require("session-lens").setup({
     theme_conf = {

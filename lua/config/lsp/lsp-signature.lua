@@ -1,7 +1,7 @@
 local lsp_signature = require("lsp_signature")
-local ct = require("aesthetics").transparency
-local ci = require("aesthetics").icon
-local cb = require("aesthetics").border.table
+local ct = require("styling").transparency
+local ci = require("styling").icon
+local cb = require("styling").border.table
 
 lsp_signature.setup({
     bind = true, -- This is mandatory, otherwise border config won't get registered.

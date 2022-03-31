@@ -1,5 +1,5 @@
 local g = vim.g
-local ci = require("aesthetics").icon
+local ci = require("styling").icon
 
 vim.cmd([[
     augroup NVIMTREE

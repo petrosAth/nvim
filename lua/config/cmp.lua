@@ -1,7 +1,7 @@
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local cb = require("aesthetics").border.box
+local cb = require("styling").border.box
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
