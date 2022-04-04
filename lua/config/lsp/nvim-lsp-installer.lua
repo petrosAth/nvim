@@ -36,13 +36,11 @@ lsp_installer.settings {
 
 -- Auto install list of servers
 for _, name in pairs(servers) do
-	local ok, server = lsp_installer.get_server(name)
+    local server_is_found, server = lsp_installer.get_server(name)
 	-- Check that the server is supported in nvim-lsp-installer
-	if ok then
-		if not server:is_installed() then
-            require("notify")("Installing " .. name .. " language server.", "info", { title = "LSP Installer" })
-			server:install()
-		end
+    if server_is_found and not server:is_installed() then
+        require("notify")("Installing " .. name .. " language server.", "info", { title = "LSP Installer" })
+        server:install()
 	end
 end
 

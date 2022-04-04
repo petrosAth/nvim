@@ -97,7 +97,7 @@ bufferline.setup{
                 padding = 1,
             },
         },
-        always_show_bufferline = true,
+        always_show_bufferline = false,
     },
     highlights = theme.nord,
 }

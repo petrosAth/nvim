@@ -14,9 +14,14 @@ local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
 local function set_button(sc, txt, keybind, keybind_opts)
     local button = dashboard.button(sc, txt, keybind, keybind_opts)
+    local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
     button.opts.hl          = "AlphaButtons"
     button.opts.hl_shortcut = "AlphaButtonShortcuts"
     button.opts.cursor      = 4
+    button.on_press = function()
+        local key = vim.api.nvim_replace_termcodes(sc_ .. "<Ignore>", true, false, true)
+        vim.api.nvim_feedkeys(key, "normal", false)
+    end
 
     return button
 end

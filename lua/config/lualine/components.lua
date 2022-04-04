@@ -96,11 +96,12 @@ M.file_name_active = function()
     if M.is_plugin() or bo.filetype == "checkhealth" then
         return ""
     else
-        if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.15 and fn.expand("%:h") ~= "." then
-            return " " .. fn.expand("%:~:.:h") .. "/"
+        if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.12 and fn.expand("%:h") ~= "." then
+            return " " .. fn.expand("%:~:.")
         else
             return M.print_for_width({
                 autofill = true,
+                L  = " " .. fn.expand("%:~:."),
                 M  = " " .. fn.expand("%:h:t") .. "/",
                 S  = fn.expand("%:h:t") .. "/"
             })
