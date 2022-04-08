@@ -179,26 +179,15 @@ telescope.setup({
         },
         project = {
             base_dirs = {
-                { path = "$HOME/Develop",  max_depth = 2 },
-                { path = "$HOME/Notes",    max_depth = 2 },
-                { path = "$HOME/.config",  max_depth = 2 }
+                { path = "$HOME/Develop",  max_depth = 3 },
             },
             hidden_files = true,
         },
-        ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-                borderchars = {
-                    prompt  = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
-                    results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl },
-                    preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
-                }
-            }
-        }
 	},
 })
 
 -- Load extensions
-local extensions = { "frecency", "fzf", "hop", "project", "session-lens", "ui-select" }
+local extensions = { "frecency", "fzf", "hop", "project", "session-lens" }
 pcall(function()
 	for _, ext in ipairs(extensions) do
 		telescope.load_extension(ext)

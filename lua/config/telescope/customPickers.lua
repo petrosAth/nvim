@@ -170,25 +170,6 @@ function M.registers(opts)
     end
 end
 
-function M.lsp_code_actions()
-    builtin.lsp_code_actions({
-        results_title = "LSP Code actions",
-        prompt_title = false,
-        previewer = false,
-		sorting_strategy = "ascending",
-        layout_strategy = "cursor",
-        layout_config = {
-            width = 0.4,
-            height = 0.2
-        },
-        borderchars = {
-            prompt  = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
-            results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl },
-            preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
-        }
-    })
-end
-
 function M.lsp_references()
     builtin.lsp_references({
         results_title = "LSP References",

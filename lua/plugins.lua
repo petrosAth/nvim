@@ -56,6 +56,14 @@ return packer.startup(function()
         end,
     }
 
+    -- Dressing.nvim - Neovim plugin to improve the default vim.ui interfaces
+    use{
+        "stevearc/dressing.nvim", -- https://github.com/stevearc/dressing.nvim
+        config = function()
+            require("config.dressing")
+        end,
+    }
+
     -- nvim-web-devicons - lua `fork` of vim-web-devicons for neovim
     use{
         "kyazdani42/nvim-web-devicons", -- https://github.com/kyazdani42/nvim-web-devicons
@@ -287,8 +295,6 @@ return packer.startup(function()
             { "nvim-telescope/telescope-project.nvim" }, -- https://github.com/nvim-telescope/telescope-project.nvim
             -- An extension for telescope.nvim. It helps you navigate, select, and perform actions on results buffer with motions inspired by hop.nvim.
             { "nvim-telescope/telescope-hop.nvim" }, -- https://github.com/nvim-telescope/telescope-hop.nvim
-            -- It sets vim.ui.select to telescope.
-            { "nvim-telescope/telescope-ui-select.nvim" }, -- https://github.com/nvim-telescope/telescope-ui-select.nvim
         },
     }
 

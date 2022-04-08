@@ -64,7 +64,7 @@ require("themer").setup({
                     WarningMsg       = { fg = "#2E3440", bg = "#EBCB8B" },
                     WildMenu         = { fg = "#3B4252", bg = "#88C0D0" },
                     NormalFloat      = { fg = "#D8DEE9", bg = "#2E3440" },
-                    FloatBorder      = { fg = "#4c566a", bg = "#2E3440" },
+                    FloatBorder      = { link = "Float" },
                     -- Search
                     Search           = { fg = "#88C0D0", bg = "#3B4252", style = "reverse" },
                     IncSearch        = { fg = "#ECEFF4", bg = "#5E81AC", style = "underline" },
@@ -74,7 +74,7 @@ require("themer").setup({
                     TabLineSel       = { fg = "#88C0D0", bg = "#3B4252", style = "NONE" },
                     -- Window
                     Title            = { fg = "#D8DEE9", bg = "NONE",    style = "NONE" },
-                    VertSplit        = { fg = "#3b4252", bg = "#3b4252" },
+                    VertSplit        = { fg = "#3b4252", bg = "NONE" },
                     -- Plugins
                     -- alpha
                     AlphaButtons                    = { fg = "#d8dee9", bg = "NONE" },
@@ -210,6 +210,8 @@ require("themer").setup({
                     WhichKeySeperator         = { fg = "#88C0D0", bg = "NONE"    },
                     WhichKeyValue             = { link = "Comment" },
                     WhichKeyFloat             = { link = "Float" },
+                    -- dressing
+                    FloatTitle                = { link = "Float" },
                 },
                 plugins = {
                     cmp = {
