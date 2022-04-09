@@ -136,6 +136,12 @@ require("themer").setup({
                         IndentBlanklineSpaceChar          = { fg = "#3B4252", bg = "NONE"    },
                         IndentBlanklineChar               = { fg = "#3B4252", bg = "NONE"    },
                     },
+                    hlslens = {
+                        HlSearchNear     = { link = "IncSearch" },
+                        HlSearchLens     = { fg = "#2e3440", bg = "#d8dee9" },
+                        HlSearchLensNear = { link = "IncSearch" },
+                        HlSearchFloat    = { link = "IncSearch" },
+                    },
                     hop = {
                         HopNextKey                = { fg = "#88C0D0", bg = "NONE",    style = "bold" },
                         HopNextKey1               = { fg = "#88C0D0", bg = "NONE"    },

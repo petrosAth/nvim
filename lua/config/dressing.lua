@@ -4,6 +4,9 @@ local cb = require("styling").border.table
 
 require("dressing").setup({
     input = {
+        -- Set to false to disable the vim.ui.input implementation
+        enabled = false,
+
         -- These are passed to nvim_open_win
         anchor = "SW",
         border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l },
