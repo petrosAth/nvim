@@ -70,18 +70,20 @@ cmp.setup{
     experimental = {
         ghost_text = true,
     },
-	documentation = {
-        border = {
-            { "",                 },
-            { "",                 },
-            { "",                 },
-            { cb.r, "FloatBorder" },
-            { "",                 },
-            { "",                 },
-            { "",                 },
-            { cb.l, "FloatBorder" },
-        }
-	},
+    window = {
+        documentation = {
+            border = {
+                { "",                 },
+                { "",                 },
+                { "",                 },
+                { cb.r, "FloatBorder" },
+                { "",                 },
+                { "",                 },
+                { "",                 },
+                { cb.l, "FloatBorder" },
+            }
+        },
+    },
 }
 
 -- Use buffer source for `/`.

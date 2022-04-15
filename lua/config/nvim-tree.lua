@@ -15,7 +15,6 @@ g.nvim_tree_show_icons = {
     files = 1,          -- if nvim-web-devicons is installed and on your runtimepath.
     folder_arrows = 1,  -- if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
 }                       -- but this will not work when you set indent_markers (because of UI conflict)
-g.nvim_tree_indent_markers = 0          -- 0 by default, this option shows indent markers when folders are open
 g.nvim_tree_highlight_opened_files = 3  -- 0 by default, Highlight icons and/or names for opened files and directories
 g.nvim_tree_icons = {
     default = "",
@@ -55,6 +54,7 @@ local tree = require("nvim-tree")
 tree.setup({
 	disable_netrw = true, -- disables netrw completely
 	hijack_netrw = true, -- hijack netrw window on startup
+    hijack_unnamed_buffer_when_opening = false, -- opens in place of the unnamed buffer if it's empty
 	open_on_setup = true, -- open the tree when running this setup function
     -- ignore_buffer_on_setup = false, -- will ignore the buffer, when deciding to open the tree on setup
 	-- ignore_ft_on_setup = {
@@ -66,7 +66,16 @@ tree.setup({
     -- }, -- will not open on setup if the filetype is in this list
 	-- auto_close = false, -- closes neovim automatically when the tree is the last **WINDOW** in the view
 	-- open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-    hijack_unnamed_buffer_when_opening = false, -- opens in place of the unnamed buffer if it's empty
+    renderer = {
+        indent_markers = {
+            enable = false,
+            icons = {
+                corner = "└ ",
+                edge = "│ ",
+                none = "  ",
+            },
+        },
+    },
     hijack_directories = { -- hijacks new directory buffers when they are opened (`:e dir`)
 		enable = true, -- enable the feature
 		auto_open = false, -- allow to open the tree if it was previously closed
