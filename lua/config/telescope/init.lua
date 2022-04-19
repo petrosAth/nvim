@@ -11,6 +11,7 @@ telescope.setup({
 	defaults = {
         prompt_prefix = ci.prompt[1] .. " ",
 		selection_caret = ci.arrowr[1] .. " ",
+        multi_icon = ci.arrowr[3],
         entry_prefix = "  ",
         winblend = ct,
         color_devicons = true,
@@ -73,14 +74,14 @@ telescope.setup({
 				["<c-s>"]     = actions.select_horizontal,
                 ["<c-v>"]     = actions.select_vertical,
                 ["<c-t>"]     = actions.select_tab,
+                ["<s-tab>"]   = actions.toggle_selection + actions.move_selection_worse,
+                ["<tab>"]     = actions.toggle_selection + actions.move_selection_better,
                 ["<c-u>"]     = actions.preview_scrolling_up,
                 ["<c-d>"]     = actions.preview_scrolling_down,
                 ["<c-l>"]     = actions.complete_tag,
                 ["<c-_>"]     = actions.which_key, -- keys from pressing <C-/>
                 ["<m-q>"]     = trouble.smart_open_with_trouble,
                 ["<m-p>"]     = actions_layout.toggle_preview,
-                ["<s-tab>"]   = actions.cycle_history_next,
-                ["<tab>"]     = actions.cycle_history_prev,
                 ["<leader>f"] = function(prompt_bufnr)
                     local opts = {
                         callback = actions.toggle_selection,
@@ -101,8 +102,8 @@ telescope.setup({
                 ["<c-s>"]     = actions.select_horizontal,
                 ["<c-v>"]     = actions.select_vertical,
                 ["<c-t>"]     = actions.select_tab,
-                ["<c-k>"]     = actions.toggle_selection + actions.move_selection_worse,
-                ["<c-j>"]     = actions.toggle_selection + actions.move_selection_better,
+                ["<s-tab>"]   = actions.toggle_selection + actions.move_selection_worse,
+                ["<tab>"]     = actions.toggle_selection + actions.move_selection_better,
 				["<c-n>"]     = actions.move_selection_next,
 				["<c-p>"]     = actions.move_selection_previous,
                 ["gg"]        = actions.move_to_top,
@@ -113,8 +114,6 @@ telescope.setup({
                 ["?"]         = actions.which_key,
                 ["<m-q>"]     = trouble.smart_open_with_trouble,
                 ["<m-p>"]     = actions_layout.toggle_preview,
-                ["<s-tab>"]   = actions.cycle_history_next,
-                ["<tab>"]     = actions.cycle_history_prev,
                 ["<leader>f"] = function(prompt_bufnr)
                     local opts = {
                         callback = actions.toggle_selection,

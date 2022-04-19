@@ -25,13 +25,14 @@ vim.cmd([[
 -- ]])
 
 -- Toggle relativenumber after entering and leaving insert mode
-vim.cmd([[
-    augroup NUMBER_TOGGLE
+-- Source: https://jeffkreeftmeijer.com/vim-number/
+vim.cmd [[
+    augroup numbertoggle
         autocmd!
-        autocmd InsertEnter * set norelativenumber
-        autocmd InsertLeave * set relativenumber
+        autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+        autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
     augroup END
-]])
+]]
 
 -- Highlight on yank
 vim.cmd([[

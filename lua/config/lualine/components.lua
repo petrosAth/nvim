@@ -9,6 +9,7 @@ local excFiletypes = {
     "diff",
     "help",
     "lsp-installer",
+    "man",
     "minimap",
     "NvimTree",
     "Outline",

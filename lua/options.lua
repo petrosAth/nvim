@@ -38,48 +38,32 @@ g.neovide_cursor_antialiasing = false
 g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe
 --<==================================================================================================================>--
 
--- Syntax highlighting
-opt.syntax = "on"
 
--- File encoding
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8 "
+opt.syntax = "on" -- Syntax highlighting
 
--- DOS fileformat
-opt.fileformat = "dos"
+opt.encoding = "utf-8" -- File encoding
+opt.fileencoding = "utf-8 " -- File encoding
+opt.fileformat = "dos" -- DOS fileformat
 
--- Enable dark background colorschemes
-opt.background = "dark"
+opt.background = "dark" -- Enable dark background colorschemes
 
--- Enable 24bit colors in terminal
-opt.termguicolors = true
+opt.termguicolors = true -- Enable 24bit colors in terminal
 
--- Give more space for displaying messages
-opt.cmdheight = 1
+opt.cmdheight = 1 -- Give more space for displaying messages
 
--- Auto-indent new lines
-opt.autoindent = true
--- Enable smart-indent
-opt.smartindent = true
+opt.autoindent = true -- Auto-indent new lines
+opt.smartindent = true -- Enable smart-indent
 
--- Use spaces instead of tabs
-opt.expandtab = true
--- Number of auto-indent spaces
-opt.shiftwidth = 4
--- Number of spaces per Tab
-opt.softtabstop = 4
--- Number of columns per tab
-opt.tabstop = 4
+opt.expandtab = true -- Use spaces instead of tabs
+opt.shiftwidth = 4 -- Number of auto-indent spaces
+opt.softtabstop = 4 -- Number of spaces per Tab
+opt.tabstop = 4 -- Number of columns per tab
 
--- Highlights matching brackets
-opt.showmatch = true
--- Highlight the text line of the cursor
-opt.cursorline = true
--- Highlight the screen column of the cursor
-opt.cursorcolumn = true
+opt.showmatch = true -- Highlights matching brackets
+opt.cursorline = true -- Highlight the text line of the cursor
+opt.cursorcolumn = true -- Highlight the screen column of the cursor
 
--- Keep cursor at place if possible
-opt.startofline = true
+opt.startofline = true -- Keep cursor at place if possible
 
 -- Make the cursor blink
 --opt.guicursor = {
@@ -91,37 +75,24 @@ opt.startofline = true
 --    "sm:block-blinkwait175-blinkoff150-blinkon175"
 --}
 
--- No wrap
-opt.wrap = false
+opt.wrap = false -- No wrap
 
--- Always case-insensitive
-opt.ignorecase = true
--- Enable smart-case search
-opt.smartcase = true
--- Searches for strings incrementally
-opt.incsearch = true
+opt.ignorecase = true -- Always case-insensitive
+opt.smartcase = true -- Enable smart-case search
+opt.incsearch = true -- Searches for strings incrementally
 
--- Create a split for items offscreen for search and replace
-opt.inccommand = "split"
+opt.inccommand = "split" -- Create a split for items offscreen for search and replace
 
--- Show line numbers
-opt.number = true
--- Enable relative line numbers
-opt.relativenumber = true
--- Keep the sign column always visible
-opt.signcolumn = "yes"
+opt.number = true -- Show line numbers
+opt.relativenumber = true -- Enable relative line numbers
+opt.signcolumn = "yes" -- Keep the sign column always visible
 
--- Show vertical line for text alignment
-opt.colorcolumn = "80"
+opt.colorcolumn = "80" -- Show vertical line for text alignment
 
--- Draw colored column one step to the right of desired maximum width
-vim.opt.colorcolumn = "+1"
+vim.opt.colorcolumn = "+1" -- Draw colored column one step to the right of desired maximum width
 
--- Fold column
-opt.foldcolumn = "auto:9"
-
--- Folding configuration
-opt.foldmethod = "indent"
+opt.foldcolumn = "auto:9" -- Fold column
+opt.foldmethod = "indent" -- Folding configuration
 
 -- Expr folding using treesitter
 -- reddit comment: https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
@@ -134,16 +105,13 @@ opt.foldmethod = "indent"
 -- opt.foldtext = "v:lua.custom_fold_text()"
 
 opt.foldlevelstart = 99
-
 opt.foldminlines = 1
 
 opt.viewoptions:remove("options")
 
--- Display eol characters
-opt.list = true
+opt.list = true -- Display eol characters
 
--- Display chars
-opt.fillchars = {
+opt.fillchars = { -- Display chars
     vert = cui.vert[1],
     fold = cui.fold[1],
     foldopen = cui.foldopen[1],
@@ -158,62 +126,43 @@ opt.listchars:append({
     eol = cui.eol[1]
 })
 
--- Use en_us to spellcheck
 opt.spell = false
-opt.spelllang = "en_us"
+opt.spelllang = "en_us" -- Use en_us to spellcheck
 
--- Statusline
-opt.laststatus = 2
+opt.laststatus = 2 -- Statusline
 
--- Don't show mode in command line
-vim.opt.showmode = false
+vim.opt.showmode = false -- Don't show mode in command line
 
--- Splits
 opt.splitright = true
 opt.splitbelow = true
+opt.equalalways = false -- When on, all the windows are automatically made the same size after splitting or closing a window
 
--- Don't hide (conceal) special symbols (like `` in markdown)
-opt.conceallevel  = 0
+opt.conceallevel  = 0 -- Don't hide (conceal) special symbols (like `` in markdown)
 
--- No redraw during macro, regex execution
-opt.lazyredraw = true
+opt.lazyredraw = true -- No redraw during macro, regex execution
 
--- Enable mouse for normal and visual modes
-opt.mouse = "a"
+opt.mouse = "a" -- Enable mouse for normal and visual modes
 
--- Use system clipboard for copy/paste
-opt.clipboard = "unnamedplus"
+opt.clipboard = "unnamedplus" -- Use system clipboard for copy/paste
+opt.pastetoggle = "<F12>" -- Toggle paste mode
 
--- Toggle paste mode
-opt.pastetoggle = "<F12>"
+opt.scrolloff = 3 -- Minimal number of screen lines to keep above and below the cursor
+opt.sidescrolloff = 20 -- The minimal number of columns to scroll horizontally
 
--- Minimal number of screen lines to keep above and below the cursor
-opt.scrolloff = 3
--- The minimal number of columns to scroll horizontally
-opt.sidescrolloff = 20
+opt.winblend = ct -- Transparency for floating windows
+opt.pumblend = ct -- Transparency for the popup-menu
 
--- Transparency for floating windows
-opt.winblend = ct
--- Transparency for the popup-menu
-opt.pumblend = ct
+opt.keywordprg = ":help" -- Program to use for the K command
 
--- Program to use for the K command
-opt.keywordprg = ":help"
+o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
 
--- What to save with mksession command
-o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+opt.swapfile = false -- No swap file
 
--- No swap file
-opt.swapfile = false
+opt.undofile = true -- Maintain undo history between sessions
 
--- Maintain undo history between sessions
-opt.undofile = true
+g.python3_host_prog = vim.fn.trim(vim.fn.system("which python")) -- Python3 path
 
--- Python3 path
-g.python3_host_prog = vim.fn.trim(vim.fn.system("which python"))
-
--- Disable builtin vim plugins
-local disabled_built_ins = {
+local disabled_built_ins = { -- Disable builtin vim plugins
     "netrw",
     "netrwPlugin",
     "netrwSettings",
@@ -232,21 +181,13 @@ local disabled_built_ins = {
 	"rrhelper",
 	"matchit",
 }
-
 for _, plugin in pairs(disabled_built_ins) do
 	g["loaded_" .. plugin] = 1
 end
 
--- Disable Python2 support
-g.loaded_python_provider = 0
-
--- Disable perl provider
-g.loaded_perl_provider = 0
-
--- Disable ruby provider
-g.loaded_ruby_provider = 0
-
--- Disable node provider
-g.loaded_node_provider = 0
+g.loaded_python_provider = 0 -- Disable Python2 support
+g.loaded_perl_provider = 0 -- Disable perl provider
+g.loaded_ruby_provider = 0 -- Disable ruby provider
+g.loaded_node_provider = 0 -- Disable node provider
 
 return M
