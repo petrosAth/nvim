@@ -56,6 +56,7 @@ local theme = {
 
 bufferline.setup{
     options = {
+        themable = true,
         numbers = function(opts)
             return string.format(" %s :", opts.id)
         end,
@@ -99,5 +100,5 @@ bufferline.setup{
         },
         always_show_bufferline = false,
     },
-    highlights = theme.nord,
+    -- highlights = theme.nord,
 }
