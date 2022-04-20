@@ -183,8 +183,6 @@ return packer.startup(function()
             { "hrsh7th/cmp-buffer", after = "nvim-cmp" }, -- https://github.com/hrsh7th/cmp-buffer
             -- spell source for nvim-cmp based on vim's spellsuggest
             { "f3fora/cmp-spell", after = "nvim-cmp" }, -- https://github.com/f3fora/cmp-spell
-            -- nvim-cmp source for math calculation
-            { "hrsh7th/cmp-calc", after = "nvim-cmp" }, -- https://github.com/hrsh7th/cmp-calc
             -- nvim-cmp source for filesystem paths
             { "hrsh7th/cmp-path", after = "nvim-cmp" }, -- https://github.com/hrsh7th/cmp-path
             -- nvim-cmp source for vim's cmdline

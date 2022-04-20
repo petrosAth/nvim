@@ -41,6 +41,8 @@ g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom r
 
 opt.syntax = "on" -- Syntax highlighting
 
+opt.completeopt = { 'menu', 'menuone', 'noinsert' } -- A comma-separated list of options for Insert mode completion
+
 opt.encoding = "utf-8" -- File encoding
 opt.fileencoding = "utf-8 " -- File encoding
 opt.fileformat = "dos" -- DOS fileformat

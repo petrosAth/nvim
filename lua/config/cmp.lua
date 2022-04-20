@@ -10,18 +10,32 @@ end
 
 -- Setup nvim-cmp
 cmp.setup{
-    completion = { completeopt = "menu,menuone,noinsert" },
     view = {
-        entries = "custom" -- can be "custom", "wildmenu" or "native"
+        entries = {name = 'custom', selection_order = 'near_cursor' } -- can be "custom", "wildmenu" or "native"
     },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
-    mapping = {
+    window = {
+        documentation = cmp.config.window.bordered({
+            border = {
+                { "",                 },
+                { "",                 },
+                { "",                 },
+                { cb.r, "FloatBorder" },
+                { "",                 },
+                { "",                 },
+                { "",                 },
+                { cb.l, "FloatBorder" },
+            }
+        }),
+    },
+    mapping = cmp.mapping.preset.insert({
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ['<C-Space>'] = cmp.mapping.complete(),
         ["<C-y>"] = cmp.mapping({
             i = cmp.mapping.confirm({ select = true }),
             c = cmp.mapping.confirm({ select = true }),
@@ -42,8 +56,8 @@ cmp.setup{
                 fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
             end
         end, { "i", "s" }),
-    },
-    sources = {
+    }),
+    sources = cmp.config.sources({
         { name = "buffer" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
@@ -51,7 +65,7 @@ cmp.setup{
         { name = "path" },
         { name = "calc" },
         { name = "spell" },
-    },
+    }),
     formatting = {
         format = lspkind.cmp_format({
             mode = 'symbol_text',
@@ -62,7 +76,6 @@ cmp.setup{
                 nvim_lua = "[LUA]",
                 luasnip = "[SNP]",
                 path = "[PTH]",
-                calc = "[CLC]",
                 spell = "[SPL]",
             }
         }),
@@ -70,40 +83,28 @@ cmp.setup{
     experimental = {
         ghost_text = true,
     },
-    window = {
-        documentation = {
-            border = {
-                { "",                 },
-                { "",                 },
-                { "",                 },
-                { cb.r, "FloatBorder" },
-                { "",                 },
-                { "",                 },
-                { "",                 },
-                { cb.l, "FloatBorder" },
-            }
-        },
-    },
 }
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
-    sources = {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
         { name = 'buffer' }
-    }
+    })
 })
 
 -- Use cmdline & path source for ':'.
--- cmp.setup.cmdline(':', {
---     sources = {
---         {
---             name = 'path',
---             max_item_count = 20,
---             keyword_length = 2
---         },
---         {
---             name = 'cmdline',
---             max_item_count = 20
---         },
---     }
--- })
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        {
+            name = 'path',
+            -- max_item_count = 20,
+            -- keyword_length = 2
+        },
+        {
+            name = 'cmdline',
+            -- max_item_count = 20
+        },
+    })
+})
