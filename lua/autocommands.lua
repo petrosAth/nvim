@@ -27,7 +27,7 @@ vim.cmd([[
 -- Toggle relativenumber after entering and leaving insert mode
 -- Source: https://jeffkreeftmeijer.com/vim-number/
 vim.cmd [[
-    augroup numbertoggle
+    augroup NUMBER_TOGGLE
         autocmd!
         autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
         autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
