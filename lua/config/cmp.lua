@@ -10,9 +10,6 @@ end
 
 -- Setup nvim-cmp
 cmp.setup{
-    view = {
-        entries = {name = 'custom', selection_order = 'near_cursor' } -- can be "custom", "wildmenu" or "native"
-    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
@@ -40,22 +37,28 @@ cmp.setup{
             i = cmp.mapping.confirm({ select = true }),
             c = cmp.mapping.confirm({ select = true }),
         }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-            end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-            end
-        end, { "i", "s" }),
+        ["<Tab>"] = cmp.mapping(
+            function(fallback)
+                if luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                end
+            end,
+            { "i", "s" }
+        ),
+        ["<S-Tab>"] = cmp.mapping(
+            function(fallback)
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                end
+            end,
+            { "i", "s" }
+        ),
     }),
     sources = cmp.config.sources({
         { name = "buffer" },
@@ -94,17 +97,17 @@ cmp.setup.cmdline('/', {
 })
 
 -- Use cmdline & path source for ':'.
-cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-        {
-            name = 'path',
-            -- max_item_count = 20,
-            -- keyword_length = 2
-        },
-        {
-            name = 'cmdline',
-            -- max_item_count = 20
-        },
-    })
-})
+-- cmp.setup.cmdline(':', {
+--     mapping = cmp.mapping.preset.cmdline(),
+--     sources = cmp.config.sources({
+--         {
+--             name = 'path',
+--             -- max_item_count = 20,
+--             -- keyword_length = 2
+--         },
+--         {
+--             name = 'cmdline',
+--             -- max_item_count = 20
+--         },
+--     })
+-- })
