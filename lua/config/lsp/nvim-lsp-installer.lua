@@ -1,3 +1,12 @@
+vim.cmd([[
+    augroup LSP_INSTALLER_BORDERS
+        autocmd!
+        autocmd FileType lsp-installer
+                \ lua local cb = require("styling").border.table
+                \ vim.api.nvim_win_set_config(0, { border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l } })
+    augroup END
+]])
+
 local lsp_cfg = require("config.lsp")
 local lsp_installer = require("nvim-lsp-installer")
 local edit_mode = NVIM_GLOBAL.edit_mode
@@ -56,24 +65,32 @@ lsp_installer.on_server_ready(function(server)
 
 	-- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
 	local server_opts = {
-        --[[
+
         ["omnisharp"] = function()
-            local pid = vim.fn.getpid()
-			local omnisharp_bin = vim.fn.trim(vim.fn.system("which omnisharp"))
+			local omnisharp_bin = "/home/petrosath/.local/share/nvim/lsp_servers/omnisharp-mono/OmniSharp.exe"
 
             default_opts.cmd = {
+                "mono",
                 omnisharp_bin,
                 "--languageserver",
                 "--hostPID",
-                tostring(pid)
+                tostring(vim.fn.getpid())
             }
+            -- default_opts.filetypes = { "cs", "vb" }
+            -- default_opts.init_options = {}
+            -- default_opts.on_new_config = function(new_config, new_root_dir)
+            --       if new_root_dir then
+            --         table.insert(new_config.cmd, '-s')
+            --         table.insert(new_config.cmd, new_root_dir)
+            --       end
+            --     end
+            -- default_opts.root_dir = require("lspconfig").util.root_pattern("*.csproj","*.sln")
 
             default_opts.on_attach = custom_on_attach
             default_opts.capabilities = custom_capabilities
 
             return default_opts
         end,
-        ]]
         ["sumneko_lua"] = function()
 
             if edit_mode then
