@@ -9,16 +9,13 @@ vim.cmd([[
 
 local lsp_cfg = require("config.lsp")
 local lsp_installer = require("nvim-lsp-installer")
-local edit_mode = NVIM_GLOBAL.edit_mode
 local ci = require("styling").icon
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers
 
-local custom_capabilities = lsp_cfg.custom_capabilities()
-local custom_on_attach = lsp_cfg.custom_on_attach
-
-lsp_installer.settings {
+lsp_installer.setup({
+    ensure_installed = servers,
     ui = {
         icons = {
             server_installed = ci.done[1],
@@ -41,135 +38,4 @@ lsp_installer.settings {
     -- Limit for the maximum amount of servers to be installed at the same time. Once this limit is reached, any further
     -- servers that are requested to be installed will be put in a queue.
     max_concurrent_installers = 4,
-}
-
--- Auto install list of servers
-for _, name in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-	-- Check that the server is supported in nvim-lsp-installer
-    if server_is_found and not server:is_installed() then
-        require("notify")("Installing " .. name .. " language server.", "info", { title = "LSP Installer" })
-        server:install()
-	end
-end
-
--- Set default server options
-lsp_installer.on_server_ready(function(server)
-	-- Specify the default options which we'll use for pyright and solargraph
-	-- Note: These are automatically setup from nvim-lspconfig.
-        -- See https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	local default_opts = {
-		on_attach = custom_on_attach,
-		capabilities = custom_capabilities,
-	}
-
-	-- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
-	local server_opts = {
-
-        ["omnisharp"] = function()
-			local omnisharp_bin = "/home/petrosath/.local/share/nvim/lsp_servers/omnisharp-mono/OmniSharp.exe"
-
-            default_opts.cmd = {
-                "mono",
-                omnisharp_bin,
-                "--languageserver",
-                "--hostPID",
-                tostring(vim.fn.getpid())
-            }
-            -- default_opts.filetypes = { "cs", "vb" }
-            -- default_opts.init_options = {}
-            -- default_opts.on_new_config = function(new_config, new_root_dir)
-            --       if new_root_dir then
-            --         table.insert(new_config.cmd, '-s')
-            --         table.insert(new_config.cmd, new_root_dir)
-            --       end
-            --     end
-            -- default_opts.root_dir = require("lspconfig").util.root_pattern("*.csproj","*.sln")
-
-            default_opts.on_attach = custom_on_attach
-            default_opts.capabilities = custom_capabilities
-
-            return default_opts
-        end,
-        ["sumneko_lua"] = function()
-
-            if edit_mode then
-                -- add nvim and nvim-data folders in workspace library
-                local nvim_library = {}
-                local runtime_path = vim.split(package.path, ";")
-
-                table.insert(runtime_path, "lua/?.lua")
-                table.insert(runtime_path, "lua/?/init.lua")
-
-                local function add(lib)
-                    for _, p in pairs(vim.fn.expand(lib, false, true)) do
-                        p = vim.loop.fs_realpath(p)
-                        nvim_library[p] = true
-                    end
-                end
-
-                -- add runtime
-                add("$VIMRUNTIME")
-
-                -- add your config
-                add(CONFIG_PATH .. "/*")
-
-                -- add plugins
-                -- if you're not using packer, then you might need to change the paths below
-                add(PACKER_PATH .. "/opt/*")
-                add(PACKER_PATH .. "/start/*")
-
-                default_opts.on_new_config = function(config, root)
-                    local libs = vim.tbl_deep_extend("force", {}, nvim_library)
-                    libs[root] = nil
-                    config.settings.Lua.workspace.library = libs
-                    return config
-                end
-
-                default_opts.settings = {
-                    Lua = {
-                        runtime = {
-                            -- version = "Lua 5.4",
-                            version = "LuaJIT",
-                            path = runtime_path,
-                        },
-                        diagnostics = {
-                            globals = { "vim", "use" },
-                        },
-                        workspace = {
-                            -- library = vim.api.nvim_get_runtime_file("", true),
-                            library = nvim_library,
-                            maxPreload = 10000,
-                            preloadFileSize = 10000,
-                            checkThirdParty = false,
-                        },
-                        telemetry = {
-                            enable = false,
-                        },
-                    },
-                }
-            else
-                -- add only project root folder in workspace library
-                default_opts.settings = {
-                    Lua = {
-                        runtime = {
-                            version = "Lua 5.4",
-                        },
-                        telemetry = {
-                            enable = false,
-                        },
-                    },
-                }
-            end
-
-            default_opts.on_attach = custom_on_attach
-            default_opts.capabilities = custom_capabilities
-
-            return default_opts
-        end
-	}
-
-	-- We check to see if any custom server_opts exist for the LSP server, if so, load them, if not, use our default_opts
-	server:setup(server_opts[server.name] and server_opts[server.name]() or default_opts)
-	vim.cmd([[ do User LspAttachBuffers ]])
-end)
+})

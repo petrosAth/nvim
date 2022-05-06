@@ -119,7 +119,7 @@ return packer.startup(function()
     -- nvim-lspconfig - Neovim's built-in language server client.
     use{
         "neovim/nvim-lspconfig", -- https://github.com/neovim/nvim-lspconfig
-        after = "cmp-nvim-lsp",
+        after = { "cmp-nvim-lsp", "nvim-lsp-installer" },
         requires = {
             -- lsp-status.nvim - Utility functions for getting diagnostic status and progress messages from LSP servers
             {
@@ -132,9 +132,6 @@ return packer.startup(function()
             {
                 "williamboman/nvim-lsp-installer", -- https://github.com/williamboman/nvim-lsp-installer
                 after = { "lsp-status.nvim", "cmp-nvim-lsp" },
-                config = function()
-                    require("config.lsp.nvim-lsp-installer")
-                end
             },
            -- lsp_signature - LSP signature hint as you type
             {
@@ -164,6 +161,9 @@ return packer.startup(function()
                 end
             }
         },
+        config = function()
+            require("config.lsp.install")
+        end
     }
 
     -- nvim-cmp - A completion engine plugin for neovim written in Lua
