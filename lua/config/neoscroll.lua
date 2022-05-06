@@ -14,7 +14,7 @@ t['<C-e>'] = { 'scroll', { '0.10',                           'false', '100'}}
 t['zt']    = { 'zt', { '100' }}
 t['zz']    = { 'zz', { '100' }}
 t['zb']    = { 'zb', { '100' }}
-t['G']     = { 'G',  { '1' }}
+t['G']     = {'scroll', { 'vim.fn.line("$")', 'true', '1' }}
 t['gg']    = { 'gg', { '1' }}
 
 require('neoscroll.config').set_mappings(t)
