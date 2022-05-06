@@ -172,25 +172,33 @@ tree.setup({
         require_confirm = true
     },
     actions = {
-        enable = true, -- change the working directory when changing directories in the tree
-        -- global = false, -- use `:cd` instead of `:lcd` when changing directories
-        quit_on_open = false, -- closes the explorer when opening a file. It will also disable preventing a buffer overriding the tree
-        window_picker = {
-            enable = true,
-            nvim_tree_window_picker_chars = "asdghklqwertyuiopzxcvbnmfj'",
-            filetype = { -- indicates to the window picker that the buffer's window should not be
-                "alpha",
-                "diff",
-                "help",
-                "lsp-installer",
-                "minimap",
-                "Outline",
-                "packer",
-                "qf",
-                "Trouble",
-                "undotree"
-            },
-			buftype  = { "nofile", "terminal", "help", }
+        change_dir = {
+            enable = true, -- change the working directory when changing directories in the tree
+            global = false, -- use `:cd` instead of `:lcd` when changing directories
+            restrict_above_cwd = false -- restrict changing to a directory above the global current working directory
+        },
+        open_file = {
+            quit_on_open = false, -- closes the explorer when opening a file. It will also disable preventing a buffer overriding the tree
+            resize_window = false, -- resizes the tree when opening a file
+            window_picker = {
+                enable = true,
+                chars = "asdghklqwertyuiopzxcvbnmfj'",
+                exclude = {
+                    filetype = { -- indicates to the window picker that the buffer's window should not be
+                        "alpha",
+                        "diff",
+                        "help",
+                        "lsp-installer",
+                        "minimap",
+                        "Outline",
+                        "packer",
+                        "qf",
+                        "Trouble",
+                        "undotree"
+                    },
+                    buftype  = { "nofile", "terminal", "help", }
+                }
+            }
         }
     }
 })
