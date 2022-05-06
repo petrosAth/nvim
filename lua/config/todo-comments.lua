@@ -31,7 +31,6 @@ require("todo-comments").setup({
     },
     -- list of named colors where we try to extract the guifg from the
     -- list of hilight groups or use the hex color if hl not found as a fallback
-    -- TODO: make colors change based on theme
     colors = {
         error    = { "LspDiagnosticsDefaultError",       "ErrorMsg",   "#DC2626" }, -- FIX:
         warning  = { "LspDiagnosticsDefaultWarning",     "WarningMsg", "#FBBF24" }, -- WARN:

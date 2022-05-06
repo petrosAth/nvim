@@ -139,7 +139,7 @@ require("themer").setup({
                         BufferLinePickSelected              = { fg = "#D08770", bg = "#2E3440" },
                         BufferLineIndicatorSelected         = { fg = "#3B4252", bg = "#81A1C1" },
                         BufferLineBackground                = { fg = "#D8DEE9", bg = "#4C566A" },
-                        BufferLineFill                      = { fg = "#ECEFF4", bg = "#3B4252" },
+                        BufferLineFill                      = { fg = "#ECEFF4", bg = "#3B4252", style = "bold" },
                     },
                     cmp = {
                         CmpItemAbbr           = { fg = "#81A1C1", bg = "NONE"    },
@@ -330,13 +330,51 @@ require("themer").setup({
                     },
                 },
             },
+            dracula = {
+                plugins = {
+                    mini_cursorword = {
+                        MiniCursorword        = { link = "Visual" },
+                        MiniCursorwordCurrent = { fg = "NONE",    bg = "NONE",    style = "nocombine" },
+                    },
+                    notify = {
+                        NotifyERRORBorder = { link = "DiagnosticError" },
+                        NotifyWARNBorder  = { link = "DiagnosticWarn" },
+                        NotifyINFOBorder  = { link = "DiagnosticInfo" },
+                        NotifyDEBUGBorder = { link = "DiagnosticError" },
+                        NotifyTRACEBorder = { link = "DiagnosticHint" },
+                        NotifyERRORIcon   = { link = "DiagnosticError" },
+                        NotifyWARNIcon    = { link = "DiagnosticWarn" },
+                        NotifyINFOIcon    = { link = "DiagnosticInfo" },
+                        NotifyDEBUGIcon   = { link = "DiagnosticError" },
+                        NotifyTRACEIcon   = { link = "DiagnosticHint" },
+                        NotifyERRORTitle  = { link = "DiagnosticError" },
+                        NotifyWARNTitle   = { link = "DiagnosticWarn" },
+                        NotifyINFOTitle   = { link = "DiagnosticInfo" },
+                        NotifyDEBUGTitle  = { link = "DiagnosticError" },
+                        NotifyTRACETitle  = { link = "DiagnosticHint" },
+                        NotifyERRORBody   = { link = "Normal" },
+                        NotifyWARNBody    = { link = "Normal" },
+                        NotifyINFOBody    = { link = "Normal" },
+                        NotifyDEBUGBody   = { link = "Normal" },
+                        NotifyTRACEBody   = { link = "Normal" },
+                    },
+                    ts_rainbow = {
+                        rainbowcol1 = { fg = "#6272A4", bg = "NONE"    },
+                        rainbowcol2 = { fg = "#f8f8f2", bg = "NONE"    },
+                        rainbowcol3 = { fg = "#ff79c6", bg = "NONE"    },
+                        rainbowcol4 = { fg = "#8be9fd", bg = "NONE"    },
+                        rainbowcol5 = { fg = "#f1fa8c", bg = "NONE"    },
+                        rainbowcol6 = { fg = "#bd93f9", bg = "NONE"    },
+                        rainbowcol7 = { fg = "#50fa7b", bg = "NONE"    },
+                    },
+                }
+            }
         },
     },
     langs = {
         html = true,
         md   = true,
     },
-
     plugins = {
         treesitter = true,
         indentline = true,
