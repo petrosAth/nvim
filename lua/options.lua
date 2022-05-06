@@ -6,7 +6,7 @@ local M = {}
 
 --<=< GUI general options >==========================================================================================>--
 -- Set gui font for nvim-qt, neovide etc
-opt.guifont = "FiraCode NF:h12"
+opt.guifont = "Fira Code, Regular:h12"
 --<==================================================================================================================>--
 
 --<=< Neovide specific options  >====================================================================================>--
@@ -14,25 +14,7 @@ opt.guifont = "FiraCode NF:h12"
 g.neovide_refresh_rate = 60
 
 -- Setting the value between 0.0 and 1.0 will set the opacity of the window to that value.
-g.neovide_transparency = 0.97
-
--- Force neovide to redraw all the time. This can be a quick hack if animations appear to stop too early.
-g.neovide_no_idle = true
-
--- Open neovide in windowed fullscreen mode
-g.neovide_fullscreen = false
-
--- Remember Previous Window Size
-g.neovide_remember_window_size = false
-
--- Determines the time it takes for the cursor to complete it's animation in seconds
-g.neovide_cursor_animation_length = 0.15
-
--- Determines how much the trail of the cursor lags behind the front edge
-g.neovide_cursor_trail_length = 0.8
-
--- Enables or disables antialiasing of the cursor quad. Disabling may fix some cursor visual issues
-g.neovide_cursor_antialiasing = false
+g.neovide_transparency = 0.90
 
 -- Cursor Particles
 g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe
