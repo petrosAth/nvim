@@ -74,7 +74,12 @@ require("themer").setup({
                     TabLineSel       = { fg = "#88C0D0", bg = "#3B4252", style = "NONE" },
                     -- Window
                     Title            = { fg = "#D8DEE9", bg = "NONE",    style = "NONE" },
-                    VertSplit        = { fg = "#3b4252", bg = "NONE" },
+                    VertSplit        = { fg = "#3b4252", bg = "NONE"    },
+                    -- diff
+                    DiffDelete       = { fg = "#2E3440", bg = "#BF616A" },
+                    DiffChange       = { fg = "#2E3440", bg = "#EBCB8B" },
+                    DiffText         = { fg = "#2E3440", bg = "#81A1C1", style = "NONE" },
+                    DiffAdd          = { fg = "#2E3440", bg = "#A3BE8C" },
                 },
                 plugins = {
                     alpha = {
