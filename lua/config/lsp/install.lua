@@ -10,7 +10,11 @@ local custom_on_attach = lsp_cfg.custom_on_attach
 
 -- Setup language servers
 for _, name in ipairs(servers) do
-    if name == "sumneko_lua" then
+    if name == "bashls" then
+        lspconfig[name].setup({
+            filetypes = { "sh", "zsh", "makefile" }
+        })
+    elseif name == "sumneko_lua" then
         if edit_mode then
             -- add nvim and nvim-data folders in workspace library
             local nvim_library = {}
