@@ -282,8 +282,8 @@ require("themer").setup({
                         LspDiagnosticsInformation = { link = "DiagnosticHint" },
                     },
                     quick_scope = {
-                        QuickScopeSecondary = { fg = "#EBCB8B", bg = "NONE"    },
-                        QuickScopePrimary   = { fg = "#B48EAD", bg = "NONE"    },
+                        QuickScopePrimary   = { fg = "#EBCB8B", bg = "#2E3440", style = "underline" },
+                        QuickScopeSecondary = { fg = "#B48EAD", bg = "#2E3440", style = "bold" },
                     },
                     scrollbar = {
                         ScrollBarHandle = { fg = "NONE",    bg = "#4C566A" },

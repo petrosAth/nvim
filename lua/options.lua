@@ -73,7 +73,7 @@ opt.signcolumn = "yes" -- Keep the sign column always visible
 
 opt.colorcolumn = "80" -- Show vertical line for text alignment
 
-vim.opt.colorcolumn = "+1" -- Draw colored column one step to the right of desired maximum width
+opt.colorcolumn = "+1" -- Draw colored column one step to the right of desired maximum width
 
 opt.foldcolumn = "auto:9" -- Fold column
 opt.foldmethod = "indent" -- Folding configuration
@@ -115,7 +115,7 @@ opt.spelllang = "en_us" -- Use en_us to spellcheck
 
 opt.laststatus = 2 -- Statusline
 
-vim.opt.showmode = false -- Don't show mode in command line
+opt.showmode = false -- Don't show mode in command line
 
 opt.splitright = true
 opt.splitbelow = true
