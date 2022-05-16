@@ -1,3 +1,10 @@
+vim.cmd([[
+    augroup PACKER_CURSORLINE
+        autocmd!
+        autocmd FileType packer lua vim.opt.cursorline = true
+    augroup END
+]])
+
 local fn = vim.fn
 local install_path = PACKER_PATH .. "/start/packer.nvim"
 local ci = require("styling").icon
