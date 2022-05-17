@@ -14,6 +14,10 @@ for _, name in ipairs(servers) do
         lspconfig[name].setup({
             filetypes = { "sh", "zsh", "makefile" }
         })
+    elseif name == "omnisharp" then
+        lspconfig[name].setup({
+            use_mono = true
+        })
     elseif name == "sumneko_lua" then
         if edit_mode then
             -- add nvim and nvim-data folders in workspace library
