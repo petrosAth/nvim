@@ -2,7 +2,7 @@ local M = {}
 
 -- Table containing variables
 M.variables = {
-    transparency = 5
+    transparency = 0
 }
 
 -- Table containing icons

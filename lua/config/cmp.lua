@@ -17,16 +17,8 @@ cmp.setup{
     },
     window = {
         documentation = cmp.config.window.bordered({
-            border = {
-                { "",                 },
-                { "",                 },
-                { "",                 },
-                { cb.r, "FloatBorder" },
-                { "",                 },
-                { "",                 },
-                { "",                 },
-                { cb.l, "FloatBorder" },
-            }
+            border = { "", "", "", cb.r, "", "", "", cb.l },
+            winhighlight = "Normal:Pmenu,FloatBorder:PmenuThumb,CursorLine:Visual,Search:None"
         }),
     },
     mapping = cmp.mapping.preset.insert({

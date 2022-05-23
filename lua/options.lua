@@ -121,7 +121,7 @@ opt.splitright = true
 opt.splitbelow = true
 opt.equalalways = false -- When on, all the windows are automatically made the same size after splitting or closing a window
 
-opt.conceallevel  = 0 -- Don't hide (conceal) special symbols (like `` in markdown)
+opt.conceallevel = 0 -- Don't hide (conceal) special symbols (like `` in markdown)
 
 opt.lazyredraw = true -- No redraw during macro, regex execution
 
@@ -138,7 +138,7 @@ opt.pumblend = ct -- Transparency for the popup-menu
 
 opt.keywordprg = ":help" -- Program to use for the K command
 
-o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
+o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
 
 opt.swapfile = false -- No swap file
 
@@ -151,22 +151,22 @@ local disabled_built_ins = { -- Disable builtin vim plugins
     "netrwPlugin",
     "netrwSettings",
     "netrwFileHandlers",
-	"gzip",
-	"zip",
-	"zipPlugin",
-	"tar",
-	"tarPlugin",
-	"getscript",
-	"getscriptPlugin",
-	"vimball",
-	"vimballPlugin",
-	"2html_plugin",
-	"logipat",
-	"rrhelper",
-	"matchit",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "matchit",
 }
 for _, plugin in pairs(disabled_built_ins) do
-	g["loaded_" .. plugin] = 1
+    g["loaded_" .. plugin] = 1
 end
 
 g.loaded_python_provider = 0 -- Disable Python2 support
