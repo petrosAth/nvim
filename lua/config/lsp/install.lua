@@ -2,6 +2,7 @@ require("config.lsp.nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 local lsp_cfg = require("config.lsp")
 local edit_mode = NVIM_GLOBAL.edit_mode
+local mono = NVIM_GLOBAL.mono
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers
@@ -16,7 +17,7 @@ for _, name in ipairs(servers) do
         })
     elseif name == "omnisharp" then
         lspconfig[name].setup({
-            use_mono = true
+            use_mono = mono
         })
     elseif name == "sumneko_lua" then
         if edit_mode then

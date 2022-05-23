@@ -20,6 +20,7 @@ Still a work in progress.
 - [x] Add Session management
 - [ ] Add debugger
 - [ ] Replace bufferline with lualine [indicators](https://github.com/nvim-lualine/lualine.nvim/issues/414)
+- [ ] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -51,11 +52,13 @@ buffer diagnostics in loclist
 Buffer, mark, tabpage, colorscheme switcher for Neovim
 - [cinnamon.nvim](https://github.com/declancm/cinnamon.nvim)
 Smooth scrolling for ANY movement command. A Neovim plugin written in Lua.
+
 ### Themes
 - [dracula.nvim](https://github.com/Mofiqul/dracula.nvim)
 Dracula colorscheme for neovim written in Lua.
 - [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)
 Solarized colorscheme in lua for nvim 0.5.
+
 ### Treesitter
 - [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs)
 Code documentation built with treesitter
@@ -66,6 +69,7 @@ location in a file. ### Git
 magit for neovim.
 - [lazygit](https://github.com/jesseduffield/lazygit)
 simple terminal UI for git commands.
+
 ### Debugging
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 Debug Adapter Protocol client implementation for Neovim.
@@ -79,6 +83,7 @@ A NeoVim plugin for managing several debuggers for Nvim-dap.
 Neovim's missing call-hierarchy UI.
 - [vimspector](https://github.com/puremourning/vimspector)
 vimspector - A multi-language debugging system for Vim.
+
 ### ltex language server
 - [LTeX Language Server](https://github.com/valentjn/ltex-ls)
 LTeX Language Server for LanguageTool with support for LaTeX , Markdown, and
@@ -97,7 +102,8 @@ Website that makes it easy to find neovim plugins
 - Heavily inspired from [Neelfrost](https://github.com/Neelfrost/dotfiles), a
   lot of times mercilessly copy pasting especially at the beggining.
 - [Neil Sabde](https://github.com/VapourNvim/VapourNvim) was extremely helpful
-  when I first dove in Vim/Neovim customization world with his [Neovim Lua From Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
+  when I first dove in Vim/Neovim customization world with his [Neovim Lua From
+  Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
   Youtube series.
 - [Getting started using Lua in Neovim](https://github.com/nanotee/nvim-lua-guide)
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim)

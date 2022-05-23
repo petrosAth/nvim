@@ -12,5 +12,5 @@ require("plugins")
 
 -- Global variables
 NVIM_GLOBAL = {}
--- Used from sumneko_lua to populate workspace library accordingly
-NVIM_GLOBAL.edit_mode = false
+NVIM_GLOBAL.edit_mode = false -- Used from sumneko_lua to populate workspace library accordingly
+NVIM_GLOBAL.mono      = false -- Make omnisharp change cmd between mono/dotnet
