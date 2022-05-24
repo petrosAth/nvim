@@ -101,6 +101,7 @@ opt.fillchars = { -- Display chars
     foldopen = cui.foldopen[1],
     foldclose = cui.foldclose[1],
     foldsep = cui.foldsep[1],
+    diff = cui.diff[1],
     msgsep = cui.msgsep[1],
     eob = cui.eob[1],
 }

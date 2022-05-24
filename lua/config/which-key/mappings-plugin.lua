@@ -47,9 +47,10 @@ wk.register({
         c = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
-            o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
             c = { "<CMD>DiffviewClose<CR>",       "Close"                     }, -- diffview
             e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
+            h = { "<CMD>DiffviewFileHistory<CR>", "Open file history view"    }, -- diffview
+            o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
             R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }  -- diffview
         },
         e = { "<CMD>NvimTreeToggle<CR>",                "Toggle file tree" }, -- nvimtree

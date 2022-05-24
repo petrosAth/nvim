@@ -348,7 +348,7 @@ return packer.startup(function()
     -- diffview.nvim - Single tabpage interface for easily cycling through diffs for all modified files for any git rev
     use{
         "sindrets/diffview.nvim", -- https://github.com/sindrets/diffview.nvim
-        cmd = { "DiffviewOpen" },
+        cmd = { "DiffviewOpen", "DiffviewFileHistory" },
         config = function ()
             require("config.diffview")
         end
