@@ -486,7 +486,7 @@ M.builtin_diagnostics = function()
 end
 
 M.window = function()
-    return " " .. vim.api.nvim_win_get_number(0)
+    return " " .. vim.api.nvim_win_get_number(0)
 end
 
 M.myNord = function()

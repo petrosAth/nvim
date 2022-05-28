@@ -291,13 +291,19 @@ require("themer").setup({
                     telescope = {
                         TelescopeNormal         = { fg = "#D8DEE9", bg = "#2E3440" },
                         TelescopePromptPrefix   = { fg = "#8FBCBB", bg = "NONE"    },
-                        TelescopePromptBorder   = { fg = "#81A1C1", bg = "#2E3440" },
+
+                        TelescopeResultsTitle   = { fg = "#81A1C1", bg = "#2E3440", style = "bold" },
+                        TelescopePreviewTitle   = { fg = "#8FBCBB", bg = "#2E3440", style = "bold" },
+                        TelescopePromptTitle    = { link = "TelescopeResultsTitle" },
+
                         TelescopeResultsBorder  = { fg = "#81A1C1", bg = "#2E3440" },
-                        TelescopePreviewBorder  = { link = "FloatBorder" },
-                        TelescopeMultiSelection = { link = "TelescopeResultsNormal" },
+                        TelescopePreviewBorder  = { fg = "#8FBCBB", bg = "#2E3440" },
+                        TelescopePromptBorder   = { link = "TelescopeResultsBorder" },
+
+                        TelescopeMultiSelection = { fg = "#ECEFF4", bg = "#434c5e" },
                         TelescopeMultiIcon      = { fg = "#ECEFF4", bg = "#434c5e" },
-                        TelescopeSelectionCaret = { link = "TelescopeSelection" },
-                        TelescopeSelection      = { fg = "#88C0D0", bg = "#434c5e", style = "bold" },
+                        TelescopeSelectionCaret = { fg = "#88C0D0", bg = "#3B4252" },
+                        TelescopeSelection      = { link = "TelescopeSelectionCaret" },
                         TelescopeMatching       = { fg = "#ECEFF4", bg = "NONE"    },
                     },
                     todo = {

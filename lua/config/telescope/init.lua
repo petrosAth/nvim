@@ -10,8 +10,8 @@ local cb = require("styling").border.table
 telescope.setup({
 	defaults = {
         prompt_prefix = " " .. ci.prompt[1] .. " ",
-		selection_caret = ci.prompt[6] .. " ",
-        multi_icon = " " .. ci.prompt[6],
+		selection_caret = ci.point[1] .. " ",
+        multi_icon = " " .. ci.select[1],
         entry_prefix = "  ",
         winblend = ct,
         color_devicons = true,
