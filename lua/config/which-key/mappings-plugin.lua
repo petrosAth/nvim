@@ -47,11 +47,20 @@ wk.register({
         c = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
-            c = { "<CMD>DiffviewClose<CR>",       "Close"                     }, -- diffview
+            q = { "<CMD>DiffviewClose<CR>",       "Quit"                     }, -- diffview
             e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
             h = { "<CMD>DiffviewFileHistory<CR>", "Open file history view"    }, -- diffview
             o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
             R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }  -- diffview
+        },
+        D = {
+            name = "Diff mode",
+            p = { ":diffpatch ",             "Patch the buffer with the requested file on a new buffer", silent = false },
+            q = { "<CMD>diffoff<CR>",        "Revert and quit"                                                          },
+            R = { "<CMD>diffupdate<CR>",     "Updated the differences"                                                  },
+            t = { "<CMD>diffthis<CR>",       "Make the current window part of the diff windows"                         },
+            v = { ":vertical diffsplit ",    "Open the requested file in a split",                       silent = false },
+            w = { "<CMD>windo diffthis<CR>", "Compare the visible files"                                                },
         },
         e = { "<CMD>NvimTreeToggle<CR>",                "Toggle file tree" }, -- nvimtree
         E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree

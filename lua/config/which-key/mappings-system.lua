@@ -10,14 +10,14 @@ end
 
 -- Normal mode mappings
 wk.register({
-    ["]b"]    = { "<CMD>bn<CR>",                  "Next buffer"                             },
-    ["[b"]    = { "<CMD>bp<CR>",                  "Previous buffer"                         },
-    ["]t"]    = { "<CMD>tabnext<CR>",             "Next tab"                                },
-    ["[t"]    = { "<CMD>tabprevious<CR>",         "Previous tab"                            },
-    ["<F1>"]  = { "<CMD>setlocal spell!<CR>",     "Toggle spelling"                         },
-    ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor"               },
-    ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number"                  },
-    ["<F11>"] = { "<CMD>set wrap!<CR>",           "Toggle wrap"                             },
+    ["]b"]    = { "<CMD>bn<CR>",                  "Next buffer"                               },
+    ["[b"]    = { "<CMD>bp<CR>",                  "Previous buffer"                           },
+    ["]t"]    = { "<CMD>tabnext<CR>",             "Next tab"                                  },
+    ["[t"]    = { "<CMD>tabprevious<CR>",         "Previous tab"                              },
+    ["<F1>"]  = { "<CMD>setlocal spell!<CR>",     "Toggle spelling"                           },
+    ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor", silent = false },
+    ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number"                    },
+    ["<F11>"] = { "<CMD>set wrap!<CR>",           "Toggle wrap"                               },
     ["<M-j>"] = { "v:count == 0 ? ':resize -5<CR>' : ':<C-u>resize -' . v:count1 . '<CR>'",                   "Contract horizontally", expr = true },
     ["<M-k>"] = { "v:count == 0 ? ':resize +5<CR>' : ':<C-u>resize +' . v:count1 . '<CR>'",                   "Expand horizontally",   expr = true },
     ["<M-h>"] = { "v:count == 0 ? ':vertical resize +5<CR>' : ':<C-u>vertical resize +' . v:count1 . '<CR>'", "Expand vertically",     expr = true },
@@ -48,16 +48,16 @@ wk.register({
 
 -- Insert mode mappings
 wk.register({
-    ["<F1>"]  = { "<CMD>setlocal spell!<CR>", "Toggle spelling"            },
+    ["<F1>"]  = { "<CMD>setlocal spell!<CR>",     "Toggle spelling"        },
     ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number" },
 }, { mode = "i" })
 
 -- Visual and select mode mappings
 wk.register({
-    ["<F2>"]  = { [[y:%s/\V<C-r>"/]], "Replace word under cursor"          },
-    ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number" },
-    ["<M-J>"] = { ":m '>+1<CR>gv-gv", "Move line up"                       },
-    ["<M-K>"] = { ":m '<-2<CR>gv-gv", "Move line up"                       },
+    ["<F2>"]  = { [[y:%s/\V<C-r>"/]], "Replace word under cursor", silent = false },
+    ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number"        },
+    ["<M-J>"] = { ":m '>+1<CR>gv-gv", "Move line up"                              },
+    ["<M-K>"] = { ":m '<-2<CR>gv-gv", "Move line up"                              },
     ["<Space>"] = {
         p     = { '"_dP', "Keep yanked text after paste" }
     }
