@@ -1,4 +1,4 @@
-local g = vim.g
+local tree = require("nvim-tree")
 local ci = require("styling").icon
 
 vim.cmd([[
@@ -9,50 +9,11 @@ vim.cmd([[
     augroup END
 ]])
 
-g.nvim_tree_show_icons = {
-    git = 1,            -- If 0, do not show the icons for one of 'git' 'folder' and 'files'
-    folders = 1,        -- 1 by default, notice that if 'files' is 1, it will only display
-    files = 1,          -- if nvim-web-devicons is installed and on your runtimepath.
-    folder_arrows = 1,  -- if folder is 1, you can also tell folder_arrows 1 to show small arrows next to the folder icons.
-}                       -- but this will not work when you set indent_markers (because of UI conflict)
-g.nvim_tree_highlight_opened_files = 3  -- 0 by default, Highlight icons and/or names for opened files and directories
-g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-        unstaged  = ci.edit[1], -- ci.pending[1],
-        staged    = ci.done[1], -- ci.done[1],
-        unmerged  = "",
-        renamed   = ci.arrowr[1],
-        untracked = ci.pending[1], -- ci.def[2],
-        deleted   = ci.delete[1], -- ci.delete[1],
-        ignored   = ""
-    },
-        folder = {
-        arrow_open   = ci.folderop[1],
-        arrow_closed = ci.foldercl[1],
-        default      = "",
-        open         = "",
-        empty        = "",
-        empty_open   = "",
-        symlink      = "",
-        symlink_open = "",
-    }
-}
--- g.nvim_tree_git_hl = 0                   -- 0 by default, will enable file highlight for git attributes (can be used without the icons)
-g.nvim_tree_root_folder_modifier = ":t"     -- In what format to show root folder. See `:help filename-modifiers` for available options. Default is `:~`
--- g.nvim_tree_add_trailing = 0             -- 0 by default, append a trailing slash to folder names
-g.nvim_tree_group_empty = 1              -- 0 by default, compact folders that only contain a single folder into one node in the file tree
-g.nvim_tree_icon_padding = " "           -- one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
-g.nvim_tree_symlink_arrow = " " .. ci.arrowr[4] .. " " -- defaults to ' ➛ '. used as a separator between symlinks' source and target.
--- g.nvim_tree_respect_buf_cwd = 1          -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
--- g.nvim_tree_create_in_closed_folder = 1  -- 1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
--- g.nvim_tree_refresh_wait = 500           -- 1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
-
-local tree = require("nvim-tree")
-
 tree.setup({
+    auto_reload_on_write = true,
+    create_in_closed_folder = true, -- 1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 	disable_netrw = true, -- disables netrw completely
+	hijack_cursor = true, -- hijack the cursor in the tree to put it at the start of the filename
 	hijack_netrw = true, -- hijack netrw window on startup
     hijack_unnamed_buffer_when_opening = false, -- opens in place of the unnamed buffer if it's empty
 	open_on_setup = true, -- open the tree when running this setup function
@@ -66,22 +27,13 @@ tree.setup({
     -- }, -- will not open on setup if the filetype is in this list
 	-- auto_close = false, -- closes neovim automatically when the tree is the last **WINDOW** in the view
 	-- open_on_tab = false, -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-    renderer = {
-        indent_markers = {
-            enable = false,
-            icons = {
-                corner = "└ ",
-                edge = "│ ",
-                none = "  ",
-            },
-        },
-    },
     hijack_directories = { -- hijacks new directory buffers when they are opened (`:e dir`)
 		enable = true, -- enable the feature
 		auto_open = false, -- allow to open the tree if it was previously closed
     },
-	hijack_cursor = true, -- hijack the cursor in the tree to put it at the start of the filename
 	update_cwd = true, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
+    reload_on_bufenter = false,
+    respect_buf_cwd = false, -- 0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 	update_focused_file = { -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
 		enable = true, -- enables the feature
 		update_cwd = false, -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
@@ -105,9 +57,9 @@ tree.setup({
         timeout = 500,
     },
 	view = {
-        -- hide_root_folder = false,
 		width = 40, -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
 		height = 15, -- height of the window, can be either a number (columns) or a string in `%`, for top or bottom side placement
+        hide_root_folder = false,
 		side = "left", -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
 		preserve_window_proportions = true, -- preserve window proportions when opening a file
         -- number = false, -- print the line number in front of each line
@@ -134,15 +86,14 @@ tree.setup({
                 { key = "I",                            action = "toggle_ignored" },
                 { key = "<C-h>",                        action = "toggle_dotfiles" },
                 { key = "r",                            action = "refresh" },
-                { key = "a",                            action = "create" },
+                { key = "c",                            action = "create" },
                 { key = "D",                            action = "remove" },
                 { key = "d",                            action = "trash" },
                 { key = "R",                            action = "rename" },
                 { key = "<C-r>",                        action = "full_rename" },
                 { key = "X",                            action = "cut" },
-                { key = "c",                            action = "copy" },
+                { key = "y",                            action = "copy" },
                 { key = "p",                            action = "paste" },
-                { key = "y",                            action = "copy_name" },
                 { key = "Y",                            action = "copy_path" },
                 { key = "gy",                           action = "copy_absolute_path" },
                 { key = "[c",                           action = "prev_git_item" },
@@ -158,6 +109,56 @@ tree.setup({
             },
 		},
 	},
+    renderer = {
+        add_trailing = false, -- false by default, append a trailing slash to folder names
+        group_empty = false, -- false by default, compact folders that only contain a single folder into one node in the file tree
+        highlight_git = false, -- 0 by default, will enable file highlight for git attributes (can be used without the icons)
+        highlight_opened_files = "all", -- "none" by default, Highlight icons and/or names for opened files. Value can be `"none"`, `"icon"`, `"name"` or `"all"`.
+        root_folder_modifier = ":t",    -- In what format to show root folder. See `:help filename-modifiers` for available options. Default is `:~`
+        indent_markers = {
+            enable = false,
+            icons = {
+                corner = "└ ",
+                edge = "│ ",
+                none = "  ",
+            },
+        },
+        icons = {
+            webdev_colors = true,
+            git_placement = "before",
+            padding = " ", -- one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
+            symlink_arrow  = " " .. ci.arrowr[4] .. " ", -- defaults to ' ➛ '. used as a separator between symlinks' source and target.
+            show = {
+                file = true,
+                folder = true,
+                folder_arrow = true,
+                git = true,
+            },
+            glyphs = {
+                default = "",
+                symlink = "",
+                folder = {
+                    arrow_closed = ci.foldercl[1],
+                    arrow_open   = ci.folderop[1],
+                    default      = "",
+                    open         = "",
+                    empty        = "",
+                    empty_open   = "",
+                    symlink      = "",
+                    symlink_open = "",
+                },
+                git = {
+                    unstaged  = ci.edit[1],
+                    staged    = ci.done[1],
+                    unmerged  = "",
+                    renamed   = ci.arrowr[1],
+                    untracked = ci.pending[1],
+                    deleted   = ci.delete[1],
+                    ignored   = ""
+                },
+            },
+        },
+    },
 	-- system_open = { -- configuration options for the system open command (`s` in the tree by default)
 	-- 	cmd = nil, -- the command to run this, leaving nil should work in most cases
 	-- 	args = {}, -- the command arguments as a list
