@@ -1,6 +1,6 @@
 local M = {}
 local ci = require("styling").icon
-local cb = require("styling").border.box
+local cb = require("styling").border.outline
 
 -- List of servers for installation
 M.servers = {
@@ -16,19 +16,22 @@ M.servers = {
 
 -- Borders for LSP floating windows
 local border = {
-    { "",                 },
-    { "",                 },
-    { "",                 },
-    { cb.r, "FloatBorder" },
-    { "",                 },
-    { "",                 },
-    { "",                 },
-    { cb.l, "FloatBorder" },
+    { cb.tl, "FloatBorder" },
+    { cb.t,  "FloatBorder" },
+    { cb.tr, "FloatBorder" },
+    { cb.r,  "FloatBorder" },
+    { cb.br, "FloatBorder" },
+    { cb.b,  "FloatBorder" },
+    { cb.bl, "FloatBorder" },
+    { cb.l,  "FloatBorder" },
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
-    opts.border = opts.border or border
+    opts = {
+        border = opts.border or border,
+        max_width = 80
+    }
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
@@ -72,6 +75,25 @@ end
 
 -- Configure lsp on_attach function
 function M.custom_on_attach(client, bufnr)
+    -- Server capabilities spec:
+    -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
+    if client.server_capabilities.documentHighlightProvider then
+        vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+        vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+        vim.api.nvim_create_autocmd("CursorHold", {
+            callback = vim.lsp.buf.document_highlight,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Document Highlight",
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            callback = vim.lsp.buf.clear_references,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Clear All the References",
+        })
+    end
+
     -- aerial.nvim
     require("aerial").on_attach(client, bufnr)
 

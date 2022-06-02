@@ -1,7 +1,7 @@
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local cb = require("styling").border.box
+local cb = require("styling").border.outline
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -17,7 +17,16 @@ cmp.setup{
     },
     window = {
         documentation = cmp.config.window.bordered({
-            border = { "", "", "", cb.r, "", "", "", cb.l },
+            border = {
+                { cb.tl, },
+                { cb.t,  },
+                { cb.tr, },
+                { cb.r,  },
+                { cb.br, },
+                { cb.b,  },
+                { cb.bl, },
+                { cb.l,  },
+            },
             winhighlight = "Normal:Pmenu,FloatBorder:PmenuThumb,CursorLine:Visual,Search:None"
         }),
     },

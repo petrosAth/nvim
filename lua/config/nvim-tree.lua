@@ -86,7 +86,7 @@ tree.setup({
                 { key = "I",                            action = "toggle_ignored" },
                 { key = "<C-h>",                        action = "toggle_dotfiles" },
                 { key = "r",                            action = "refresh" },
-                { key = "c",                            action = "create" },
+                { key = "a",                            action = "create" },
                 { key = "D",                            action = "remove" },
                 { key = "d",                            action = "trash" },
                 { key = "R",                            action = "rename" },

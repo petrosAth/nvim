@@ -16,6 +16,7 @@ require("themer").setup({
                 base = {
                     -- Editor
                     ColorColumn      = { fg = "NONE",    bg = "#434C5E" },
+                    Comment          = { fg = "#616E88", bg = "NONE"    },
                     Cursor           = { fg = "#2E3440", bg = "#D8DEE9" },
                     CursorLine       = { fg = "NONE",    bg = "#3B4252" },
                     CursorColumn     = { fg = "NONE",    bg = "#3B4252" },
