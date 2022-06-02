@@ -22,14 +22,11 @@ cmp.setup{
         }),
     },
     mapping = cmp.mapping.preset.insert({
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ["<C-y>"] = cmp.mapping({
-            i = cmp.mapping.confirm({ select = true }),
-            c = cmp.mapping.confirm({ select = true }),
-        }),
-        ["<Tab>"] = cmp.mapping(
+        ["<C-d>"]     = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-u>"]     = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-y>"]     = cmp.mapping(cmp.mapping.confirm({ select = true })),
+        ["<Tab>"]     = cmp.mapping(
             function(fallback)
                 if luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
@@ -41,7 +38,7 @@ cmp.setup{
             end,
             { "i", "s" }
         ),
-        ["<S-Tab>"] = cmp.mapping(
+        ["<S-Tab>"]   = cmp.mapping(
             function(fallback)
                 if luasnip.jumpable(-1) then
                     luasnip.jump(-1)
@@ -53,25 +50,25 @@ cmp.setup{
         ),
     }),
     sources = cmp.config.sources({
-        { name = "buffer" },
+        { name = "buffer"   },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
-        { name = "luasnip" },
-        { name = "path" },
-        { name = "calc" },
-        { name = "spell" },
+        { name = "luasnip"  },
+        { name = "path"     },
+        { name = "calc"     },
+        { name = "spell"    },
     }),
     formatting = {
         format = lspkind.cmp_format({
             mode = 'symbol_text',
             maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
             menu = {
-                buffer = "[BFR]",
+                buffer   = "[BFR]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[LUA]",
-                luasnip = "[SNP]",
-                path = "[PTH]",
-                spell = "[SPL]",
+                luasnip  = "[SNP]",
+                path     = "[PTH]",
+                spell    = "[SPL]",
             }
         }),
     },
