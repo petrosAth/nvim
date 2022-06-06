@@ -76,6 +76,7 @@ wk.register({
                 r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
                 u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
             },
+            d = { "<CMD>Gitsigns toggle_deleted<CR>", "Toggle deleted lines" }, -- gitsigns
             H = {
                 name = "Hunk actions",
                 s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
@@ -83,10 +84,11 @@ wk.register({
                 r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
                 p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
             },
-            l = { "<CMD>lua require('gitsigns').toggle_current_line_blame()<CR>", "Toggle line blame" }, -- gitsigns
-            L = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>",       "Show blame"        }, -- gitsigns
-            s = { tele_builtin .. "git_status()<CR>",                             "Status"            }, -- telescope
-            S = { tele_builtin .. "git_stash()<CR>",                              "Stash"             }, -- telescope
+            l = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
+            L = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame"        }, -- gitsigns
+            s = { tele_builtin .. "git_status()<CR>",                       "Status"            }, -- telescope
+            S = { tele_builtin .. "git_stash()<CR>",                        "Stash"             }, -- telescope
+            w = { "<CMD>Gitsigns toggle_word_diff<CR>",                     "Toggle word diff"  }, -- gitsigns
         },
         l = {
             name = "LSP",

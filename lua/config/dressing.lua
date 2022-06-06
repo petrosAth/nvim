@@ -1,5 +1,4 @@
 local ct = require("styling").variables.transparency
-local ci = require("styling").icon
 local cb = require("styling").border.table
 
 require("dressing").setup({

@@ -126,7 +126,7 @@ end
 
 M.is_readonly = function()
     if bo.modifiable == false or bo.readonly == true then
-        return " "
+        return ""
     end
 	return ""
 end

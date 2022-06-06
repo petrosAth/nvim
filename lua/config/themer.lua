@@ -148,7 +148,8 @@ require("themer").setup({
                         BufferLineFill                      = { fg = "#ECEFF4", bg = "#3B4252", style = "bold" },
                     },
                     cmp = {
-                        CmpItemAbbr           = { fg = "#81A1C1", bg = "NONE"    },
+                        CmpGhostText          = { fg = "#616E88", bg = "NONE",    style = "bold" },
+                        CmpItemAbbr           = { fg = "#81A1C1", bg = "NONE",    style = "bold" },
                         CmpItemKind           = { fg = "#ECEFF4", bg = "NONE"    },
                         CmpItemMenu           = { fg = "#ECEFF4", bg = "NONE"    },
                         CmpItemAbbrDeprecated = { fg = "#D08770", bg = "NONE",    style = "strikethrough" },
@@ -168,7 +169,7 @@ require("themer").setup({
                         FloatTitle = { link = "Float" },
                     },
                     gitsigns = {
-                        GitSignsCurrentLineBlame = { fg = "#5e81ac", bg = "NONE"    },
+                        GitSignsCurrentLineBlame = { fg = "#B48EAD", bg = "NONE"    },
                         GitSignsAdd              = { fg = "#A3BE8C", bg = "NONE"    },
                         GitSignsAddNr            = { fg = "#A3BE8C", bg = "#3B4252" },
                         GitSignsAddLn            = { fg = "#A3BE8C", bg = "NONE"    },
@@ -178,6 +179,9 @@ require("themer").setup({
                         GitSignsDelete           = { fg = "#BF616A", bg = "NONE"    },
                         GitSignsDeleteNr         = { fg = "#BF616A", bg = "#3B4252" },
                         GitSignsDeleteLn         = { fg = "#BF616A", bg = "NONE"    },
+                        GitSignsDeleteInline     = { fg = "#2E3440", bg = "#BF616A" },
+                        GitSignsChangeInline     = { fg = "#2E3440", bg = "#EBCB8B" },
+                        GitSignsAddInline        = { fg = "#2E3440", bg = "#A3BE8C" },
                     },
                     indentline = {
                         IndentBlanklineContextChar        = { fg = "#8FBCBB", bg = "NONE"    },
