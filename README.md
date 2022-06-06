@@ -10,7 +10,7 @@ Still a work in progress.
 - [x] Revisit FileType and BufEnter autocommands
 - [x] Add comment string snippets and telescope finder
 - [x] :h mark-motions
-- [x] Migrate to WSL
+- [x] Migrate to WSL under windows
 - [x] Organize my custom highlight groups
 - [x] Revisit nvim-cmp menu
 - [x] lazyload everything possible
@@ -21,6 +21,7 @@ Still a work in progress.
 - [ ] Add debugger
 - [ ] Replace bufferline with lualine [indicators](https://github.com/nvim-lualine/lualine.nvim/issues/414)
 - [ ] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
+- [ ] Command preview for lsp rename [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)

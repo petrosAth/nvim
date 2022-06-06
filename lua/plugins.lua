@@ -166,7 +166,15 @@ return packer.startup(function()
                         },
                     })
                 end
-            }
+            },
+            -- inc-rename.nvim - Incremental LSP rename command based on Neovim's command-preview feature
+            {
+                "smjonas/inc-rename.nvim", -- https://github.com/smjonas/inc-rename.nvim
+                disable = true,
+                config = function()
+                    require("inc_rename").setup()
+                end,
+            },
         },
         config = function()
             require("config.lsp.install")
