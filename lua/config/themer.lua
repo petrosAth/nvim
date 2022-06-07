@@ -108,10 +108,11 @@ require("themer").setup({
                     StatusLineTermNC = { fg = p.nord4,       bg = p.nord1,       style = "none" },
                     WarningMsg       = { fg = p.nord0,       bg = p.nord13       },
                     WildMenu         = { fg = p.nord1,       bg = p.nord8        },
+                    Float            = { fg = p.nord4,       bg = p.nord0darker  },
                     NormalFloat      = { fg = p.nord4,       bg = p.nord0darker  },
                     FloatBorder      = { fg = p.nord8,       bg = p.nord0darker  },
                     -- Search
-                    Search           = { fg = p.nord1,       bg = p.nord8        },
+                    Search           = { fg = p.nord8,       bg = p.nord1,       style = "reverse" },
                     IncSearch        = { fg = p.nord6,       bg = p.nord10,      style = "underline" },
                     -- Tabs
                     TabLine          = { fg = p.nord6,       bg = p.nord3,       style = "none" },
@@ -358,7 +359,7 @@ require("themer").setup({
                         QuickScopeSecondary = { fg = p.nord15,      bg = p.nord0,       style = "bold" },
                     },
                     scrollbar = {
-                        ScrollBarHandle = { fg = "none",        bg = p.nord3        },
+                        ScrollBarHandle = { fg = "none",        bg = p.nord3light   },
                     },
                     telescope = {
                         TelescopeNormal         = { fg = p.nord4,       bg = p.nord0        },

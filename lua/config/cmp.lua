@@ -8,6 +8,10 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 local kinds = {
     Text = "",
     Method = "",
@@ -45,11 +49,20 @@ cmp.setup{
     mapping = cmp.mapping.preset.insert({
         ["<C-d>"]     = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-u>"]     = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         ["<C-y>"]     = cmp.mapping(cmp.mapping.confirm({ select = true })),
-        ["<Tab>"]     = cmp.mapping(
-            function(fallback)
-                if luasnip.expand_or_jumpable() then
+        ["<Tab>"]     = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    cmp.complete()
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                elseif luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
                 elseif has_words_before() then
                     cmp.complete()
@@ -57,18 +70,71 @@ cmp.setup{
                     fallback()
                 end
             end,
-            { "i", "s" }
-        ),
-        ["<S-Tab>"]   = cmp.mapping(
-            function(fallback)
-                if luasnip.jumpable(-1) then
+            s = function(fallback)
+                if luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                else
+                    fallback()
+                end
+            end
+        }),
+        ["<S-Tab>"]   = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    cmp.complete()
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                elseif luasnip.jumpable(-1) then
                     luasnip.jump(-1)
                 else
                     fallback()
                 end
             end,
-            { "i", "s" }
-        ),
+            s = function(fallback)
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end
+        }),
+        ["<C-n>"]     = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    fallback()
+                end
+            end
+        }),
+        ["<C-p>"]     = cmp.mapping({
+            c = function()
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                end
+            end,
+            i = function(fallback)
+                if cmp.visible() then
+                    cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                else
+                    fallback()
+                end
+            end
+        }),
     }),
     sources = cmp.config.sources({
         { name = "buffer"   },
@@ -102,7 +168,7 @@ cmp.setup{
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
-    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
     sources = cmp.config.sources({
         { name = 'buffer' }
     })
@@ -110,16 +176,17 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
     sources = cmp.config.sources({
         {
             name = 'path',
             -- max_item_count = 20,
-            -- keyword_length = 2
+            -- keyword_length = 1
         },
         {
             name = 'cmdline',
             -- max_item_count = 20
+            -- keyword_length = 1
         },
     })
 })

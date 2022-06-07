@@ -5,12 +5,11 @@ local custom_pickers = require("config.telescope.customPickers")
 local trouble = require("trouble.providers.telescope")
 local ct = require("styling").variables.transparency
 local ci = require("styling").icon
-local cb = require("styling").border.table
 
 telescope.setup({
-	defaults = {
+    defaults = {
         prompt_prefix = " " .. ci.prompt[1] .. " ",
-		selection_caret = ci.point[1] .. " ",
+        selection_caret = ci.point[1] .. " ",
         multi_icon = " " .. ci.select[1],
         entry_prefix = "  ",
         winblend = ct,
@@ -30,48 +29,48 @@ telescope.setup({
             timeout = 3000,
             msg_bg_fillchar = "╱" -- "╱" "╲" "╳"
         },
-		vimgrep_arguments = {
-			"rg",
-			"--color=never",
-			"--no-heading",
-			"--with-filename",
-			"--line-number",
-			"--column",
-			"--smart-case",
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
             "--trim", -- Remove indentation
             "--hidden"
-		},
+        },
         layout_strategy = "horizontal",
-		layout_config = {
+        layout_config = {
             width = 0.9,
             height = 0.9,
-			horizontal = {
-				mirror = false,
-			},
-			vertical = {
-				mirror = false,
-			},
-		},
-		selection_strategy = "reset",
-		sorting_strategy = "descending",
-		file_ignore_patterns = { "^.git", "tags" },
+            horizontal = {
+                mirror = false,
+            },
+            vertical = {
+                mirror = false,
+            },
+        },
+        selection_strategy = "reset",
+        sorting_strategy = "descending",
+        file_ignore_patterns = { "^.git", "tags" },
         history = {
             path = DATA_PATH .. "/databases/telescope_history",
             limit = 100
         },
-		file_sorter = require("telescope.sorters").get_fuzzy_file,
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		gflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-		mappings = {
-			i = {
+        file_sorter = require("telescope.sorters").get_fuzzy_file,
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        gflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        mappings = {
+            i = {
                 ["<c-n>"]     = actions.move_selection_next,
                 ["<c-p>"]     = actions.move_selection_previous,
                 ["<c-q>"]     = actions.close,
                 ["<c-y>"]     = actions.select_default,
                 ["<cr>"]      = actions.select_default,
-				["<c-s>"]     = actions.select_horizontal,
+                ["<c-s>"]     = actions.select_horizontal,
                 ["<c-v>"]     = actions.select_vertical,
                 ["<c-t>"]     = actions.select_tab,
                 ["<s-tab>"]   = actions.toggle_selection + actions.move_selection_worse,
@@ -95,17 +94,17 @@ telescope.setup({
                     }
                     require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
                 end,
-			},
-			n = {
-				["<c-q>"]     = actions.close,
+            },
+            n = {
+                ["<c-q>"]     = actions.close,
                 ["<cr>"]      = actions.select_default,
                 ["<c-s>"]     = actions.select_horizontal,
                 ["<c-v>"]     = actions.select_vertical,
                 ["<c-t>"]     = actions.select_tab,
                 ["<s-tab>"]   = actions.toggle_selection + actions.move_selection_worse,
                 ["<tab>"]     = actions.toggle_selection + actions.move_selection_better,
-				["<c-n>"]     = actions.move_selection_next,
-				["<c-p>"]     = actions.move_selection_previous,
+                ["<c-n>"]     = actions.move_selection_next,
+                ["<c-p>"]     = actions.move_selection_previous,
                 ["gg"]        = actions.move_to_top,
                 ["G"]         = actions.move_to_bottom,
                 ["l"]         = actions.toggle_selection,
@@ -127,16 +126,16 @@ telescope.setup({
                     }
                     require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
                 end,
-			},
-		},
-	},
+            },
+        },
+    },
     pickers = {
         find_files = {
             find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--hidden" },
         },
     },
-	extensions = {
-		frecency = {
+    extensions = {
+        frecency = {
             db_root = DATA_PATH .. "/databases",
             show_scores = true,
             show_unindexed = true,
@@ -147,13 +146,13 @@ telescope.setup({
                 [".config"]       = "$HOME/.config",
                 ["Projects"]      = "$HOME/Develop"
             }
-		},
-		fzf = {
-			fuzzy = true,
-			override_generic_sorter = true,
-			override_file_sorter = true,
-			case_mode = "ignore_case",
-		},
+        },
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "ignore_case",
+        },
         hop = {
             -- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
             keys = {
@@ -182,13 +181,13 @@ telescope.setup({
             },
             hidden_files = true,
         },
-	},
+    },
 })
 
 -- Load extensions
 local extensions = { "frecency", "fzf", "hop", "project", "session-lens" }
 pcall(function()
-	for _, ext in ipairs(extensions) do
-		telescope.load_extension(ext)
-	end
+    for _, ext in ipairs(extensions) do
+        telescope.load_extension(ext)
+    end
 end)

@@ -1,3 +1,12 @@
+vim.cmd([[
+    augroup LSPINFO_BORDERS
+        autocmd!
+        autocmd FileType lspinfo lua
+                \ vim.api.nvim_win_set_config(0, { border = { " ", " ", " ", " ", " ", " ", " ", " " } })
+                \ vim.opt.cursorline = true
+    augroup END
+]])
+
 local M = {}
 local ci = require("styling").icon
 local cb = require("styling").border.outline
