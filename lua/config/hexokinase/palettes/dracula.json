@@ -1,15 +1,20 @@
 {
     "colour_table": {
-        "draculaBlackRock":               "#282A36",
-        "draculaBlueZodiac":              "#44475A",
-        "draculaAlabaster":               "#F8F8F2",
-        "draculaElectricBlue":            "#8BE9FD",
-        "draculaWaikawaGrey":             "#6272A4",
-        "draculaMauve":                   "#BD93F9",
-        "draculaNeonPink":                "#FF79C6",
-        "draculaTomato":                  "#FF5555",
-        "draculaMacaroniAndCheese":       "#FFB86C",
-        "draculaPalePrim":                "#F1FA8C",
-        "draculaVeryLightMalachiteGreen": "#50FA7B"
+        "draculaFg"        : "#F8F8F2",
+        "draculaBglighter" : "#424450",
+        "draculaBglight"   : "#343746",
+        "draculaBg"        : "#282A36",
+        "draculaBgdark"    : "#21222C",
+        "draculaBgdarker"  : "#191A21",
+        "draculaComment"   : "#6272A4",
+        "draculaSelection" : "#44475A",
+        "draculaSubtle"    : "#424450",
+        "draculaCyan"      : "#8BE9FD",
+        "draculaGreen"     : "#50FA7B",
+        "draculaOrange"    : "#FFB86C",
+        "draculaPink"      : "#FF79C6",
+        "draculaPurple"    : "#BD93F9",
+        "draculaRed"       : "#FF5555",
+        "draculaYellow"    : "#F1FA8C"
     }
 }
