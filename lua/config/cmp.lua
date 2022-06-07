@@ -8,27 +8,39 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
--- Setup nvim-cmp
+local kinds = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "ﰕ",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = "",
+}
+
 cmp.setup{
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
-    },
-    window = {
-        documentation = cmp.config.window.bordered({
-            border = {
-                { cb.tl, },
-                { cb.t,  },
-                { cb.tr, },
-                { cb.r,  },
-                { cb.br, },
-                { cb.b,  },
-                { cb.bl, },
-                { cb.l,  },
-            },
-            winhighlight = "Normal:Pmenu,FloatBorder:PmenuThumb,CursorLine:Visual,Search:None"
-        }),
     },
     mapping = cmp.mapping.preset.insert({
         ["<C-d>"]     = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
@@ -42,7 +54,7 @@ cmp.setup{
                 elseif has_words_before() then
                     cmp.complete()
                 else
-                    fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                    fallback()
                 end
             end,
             { "i", "s" }
@@ -52,7 +64,7 @@ cmp.setup{
                 if luasnip.jumpable(-1) then
                     luasnip.jump(-1)
                 else
-                    fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                    fallback()
                 end
             end,
             { "i", "s" }
@@ -68,18 +80,18 @@ cmp.setup{
         { name = "spell"    },
     }),
     formatting = {
-        format = lspkind.cmp_format({
-            mode = 'symbol_text',
-            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            menu = {
+        format = function(entry, vim_item)
+            vim_item.kind = string.format('%s %s', kinds[vim_item.kind], vim_item.kind)
+            vim_item.menu = ({
                 buffer   = "[BFR]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[LUA]",
                 luasnip  = "[SNP]",
                 path     = "[PTH]",
                 spell    = "[SPL]",
-            }
-        }),
+            })[entry.source.name]
+            return vim_item
+        end
     },
     experimental = {
         ghost_text = {
@@ -97,17 +109,17 @@ cmp.setup.cmdline('/', {
 })
 
 -- Use cmdline & path source for ':'.
--- cmp.setup.cmdline(':', {
---     mapping = cmp.mapping.preset.cmdline(),
---     sources = cmp.config.sources({
---         {
---             name = 'path',
---             -- max_item_count = 20,
---             -- keyword_length = 2
---         },
---         {
---             name = 'cmdline',
---             -- max_item_count = 20
---         },
---     })
--- })
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        {
+            name = 'path',
+            -- max_item_count = 20,
+            -- keyword_length = 2
+        },
+        {
+            name = 'cmdline',
+            -- max_item_count = 20
+        },
+    })
+})

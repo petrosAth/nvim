@@ -16,14 +16,14 @@ M.servers = {
 
 -- Borders for LSP floating windows
 local border = {
-    { cb.tl, "FloatBorder" },
-    { cb.t,  "FloatBorder" },
-    { cb.tr, "FloatBorder" },
-    { cb.r,  "FloatBorder" },
-    { cb.br, "FloatBorder" },
-    { cb.b,  "FloatBorder" },
-    { cb.bl, "FloatBorder" },
-    { cb.l,  "FloatBorder" },
+    { "",                 },
+    { "",                 },
+    { "",                 },
+    { cb.r, "FloatBorder" },
+    { "",                 },
+    { "",                 },
+    { "",                 },
+    { cb.l, "FloatBorder" },
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
