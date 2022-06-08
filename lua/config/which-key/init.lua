@@ -1,7 +1,7 @@
 local wk = require("which-key")
-local ct = require("styling").variables.transparency
-local ci = require("styling").icon
-local cb = require("styling").border.table
+local t = require("styling").variables.transparency
+local i = require("styling").icon
+local sb = require("styling").border.default
 
 wk.setup({
     plugins = {
@@ -35,8 +35,8 @@ wk.setup({
         ["<Leader>"] = "LDR"
     },
     icons = {
-        breadcrumb = ci.arrowr[1], -- symbol used in the command line area that shows your active key combo
-        separator = ci.arrowr[1], -- symbol used between a key and it's label
+        breadcrumb = i.arrowr[1], -- symbol used in the command line area that shows your active key combo
+        separator = i.arrowr[1], -- symbol used between a key and it's label
         group = " ", -- symbol prepended to a group
     },
     popup_mappings = {
@@ -44,11 +44,11 @@ wk.setup({
         scroll_up = '<c-u>', -- binding to scroll up inside the popup
     },
     window = {
-        border = "none", -- none, single, double, shadow
+        border = { sb.tl, sb.t, sb.tr, sb.r, sb.br, sb.b, sb.bl, sb.l }, -- none, single, double, shadow
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = ct
+        winblend = t
     },
     layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns

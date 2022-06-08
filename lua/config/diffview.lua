@@ -1,5 +1,5 @@
 local actions = require("diffview.config").actions
-local ci = require("styling").icon
+local i = require("styling").icon
 
 require("diffview").setup({
     diff_binaries = false,    -- Show diffs for binaries
@@ -10,8 +10,8 @@ require("diffview").setup({
         folder_open   = " ",
     },
     signs = {
-        fold_closed = ci.foldercl[1],
-        fold_open = ci.folderop[1],
+        fold_closed = i.foldercl[1],
+        fold_open = i.folderop[1],
     },
     file_panel = {
         listing_style = "tree",              -- One of 'list' or 'tree'

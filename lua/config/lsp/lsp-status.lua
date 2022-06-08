@@ -1,6 +1,6 @@
 local lsp_status = require("lsp-status")
 local lspkind_symbols = require("config.lsp.lspkind").symbols
-local ci = require("styling").icon
+local i = require("styling").icon
 local M = {}
 
 M.select_symbol = function(cursor_pos, symbol)
@@ -28,12 +28,12 @@ M.config = function()
         diagnostics = true,
         indicator_separator = " ",
         component_separator = " ",
-        indicator_errors = ci.error[1],
-        indicator_warnings = ci.warn[1],
-        indicator_info = ci.info[1],
-        indicator_hint = ci.hint[1],
-        indicator_ok = ci.misc[5],
-        spinner_frames = ci.loading.circle,
+        indicator_errors = i.error[1],
+        indicator_warnings = i.warn[1],
+        indicator_info = i.info[1],
+        indicator_hint = i.hint[1],
+        indicator_ok = i.misc[5],
+        spinner_frames = i.loading.circle,
         status_symbol = "LSP",
         select_symbol = M.select_symbol,
         update_interval = 100

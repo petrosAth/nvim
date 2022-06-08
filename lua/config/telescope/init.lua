@@ -1,21 +1,29 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
-local custom_pickers = require("config.telescope.customPickers")
 local trouble = require("trouble.providers.telescope")
-local ct = require("styling").variables.transparency
-local ci = require("styling").icon
+local t = require("styling").variables.transparency
+local i = require("styling").icon
+local b = require("styling").border.default
+local bn = require("styling").border.none
 
 telescope.setup({
     defaults = {
-        prompt_prefix = " " .. ci.prompt[1] .. " ",
-        selection_caret = ci.point[1] .. " ",
-        multi_icon = " " .. ci.select[1],
+        prompt_prefix = " " .. i.prompt[1] .. " ",
+        selection_caret = i.point[1] .. " ",
+        multi_icon = " " .. i.select[1],
         entry_prefix = "  ",
-        winblend = ct,
+        winblend = t,
         color_devicons = true,
         border = true,
-        borderchars = custom_pickers.borderchars,
+        borderchars = {
+        --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   }
+            prompt  = { bn.t,  b.r,   b.b,   b.l,   b.l,   b.r,   b.br,  b.bl  },
+        --  results = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+            results = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+        --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+            preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+        },
         initial_mode = "insert",
         path_display = {
             -- truncate = 3

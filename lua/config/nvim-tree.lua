@@ -1,5 +1,5 @@
 local tree = require("nvim-tree")
-local ci = require("styling").icon
+local i = require("styling").icon
 
 vim.cmd([[
     augroup NVIMTREE
@@ -45,10 +45,10 @@ tree.setup({
 		enable = true,
         show_on_dirs = true, -- if the node with diagnostic is not visible, then show diagnostic in the parent directory
 		icons = {
-			hint = ci.hint[1],
-			info = ci.info[1],
-			warning = ci.warn[1],
-			error = ci.error[1],
+			hint = i.hint[1],
+			info = i.info[1],
+			warning = i.warn[1],
+			error = i.error[1],
 		},
 	},
     git = {
@@ -127,7 +127,7 @@ tree.setup({
             webdev_colors = true,
             git_placement = "before",
             padding = " ", -- one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
-            symlink_arrow  = " " .. ci.arrowr[4] .. " ", -- defaults to ' ➛ '. used as a separator between symlinks' source and target.
+            symlink_arrow  = " " .. i.arrowr[4] .. " ", -- defaults to ' ➛ '. used as a separator between symlinks' source and target.
             show = {
                 file = true,
                 folder = true,
@@ -138,8 +138,8 @@ tree.setup({
                 default = "",
                 symlink = "",
                 folder = {
-                    arrow_closed = ci.foldercl[1],
-                    arrow_open   = ci.folderop[1],
+                    arrow_closed = i.foldercl[1],
+                    arrow_open   = i.folderop[1],
                     default      = "",
                     open         = "",
                     empty        = "",
@@ -148,12 +148,12 @@ tree.setup({
                     symlink_open = "",
                 },
                 git = {
-                    unstaged  = ci.edit[1],
-                    staged    = ci.done[1],
+                    unstaged  = i.edit[1],
+                    staged    = i.done[1],
                     unmerged  = "",
-                    renamed   = ci.arrowr[1],
-                    untracked = ci.pending[1],
-                    deleted   = ci.delete[1],
+                    renamed   = i.arrowr[1],
+                    untracked = i.pending[1],
+                    deleted   = i.delete[1],
                     ignored   = ""
                 },
             },

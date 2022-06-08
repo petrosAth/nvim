@@ -6,22 +6,22 @@ vim.cmd([[
                 \ setlocal nolist
                 \ colorcolumn=0
                 \ nonumber relativenumber |
-                \ lua local cui = require("styling").icon.nvim_ui
+                \ lua local iUI = require("styling").icon.nvim_ui
                 \ vim.opt_local.fillchars = {
-                \     vert = cui.vert[1],
-                \     fold = cui.fold[1],
-                \     foldopen = cui.foldopen[1],
-                \     foldclose = cui.foldclose[1],
-                \     foldsep = cui.foldsep[1],
-                \     msgsep = cui.msgsep[1],
+                \     vert = iUI.vert[1],
+                \     fold = iUI.fold[1],
+                \     foldopen = iUI.foldopen[1],
+                \     foldclose = iUI.foldclose[1],
+                \     foldsep = iUI.foldsep[1],
+                \     msgsep = iUI.msgsep[1],
                 \     eob = ' '
                 \ }
     augroup END
 ]])
 
 local trouble = require("trouble")
-local ci = require("styling").icon
-local cui = ci.nvim_ui
+local i = require("styling").icon
+local iUI = i.nvim_ui
 
 trouble.setup({
     position = "bottom", -- position of the list can be: bottom, top, left, right
@@ -29,8 +29,8 @@ trouble.setup({
     width = 50, -- width of the list when position is left or right
     icons = true, -- use devicons for filenames
     mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-    fold_open = cui.foldopen[1], -- icon used for open folds
-    fold_closed = cui.foldclose[1], -- icon used for closed folds
+    fold_open = iUI.foldopen[1], -- icon used for open folds
+    fold_closed = iUI.foldclose[1], -- icon used for closed folds
     group = true, -- group results by file
     padding = false, -- add an extra new line on top of the list
     action_keys = { -- key mappings for actions in the trouble list

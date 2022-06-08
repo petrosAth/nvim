@@ -2,7 +2,7 @@
 -- https://elianiva.my.id/post/neovim-lua-statusline -- Great help for figuring out highlight groups
 -- https://github.com/Neelfrost/dotfiles
 
-local ci = require("styling").icon
+local i = require("styling").icon
 local excFiletypes = {
     "aerial",
     "alpha",
@@ -349,10 +349,10 @@ M.lsp_diagnostics = function()
                 hints    = "%#lualineDiagnosticHint#"
             }
             local d_symbol = {
-                errors   = ci.error[1] .. " ",
-                warnings = ci.warn[1] .. " ",
-                info     = ci.info[1] .. " ",
-                hints    = ci.hint[1] .. " "
+                errors   = i.error[1] .. " ",
+                warnings = i.warn[1] .. " ",
+                info     = i.info[1] .. " ",
+                hints    = i.hint[1] .. " "
             }
             local d_count = {
                 errors   = lsp_diagnostics(bufnr).errors,
@@ -472,10 +472,10 @@ M.builtin_diagnostics = function()
         sources = { "nvim_diagnostic" },
         colored = true,
         symbols = {
-            error = ci.error[1] .. " ",
-            warn  = ci.warn[1] .. " ",
-            info  = ci.info[1] .. " ",
-            hint  = ci.hint[1] .. " "
+            error = i.error[1] .. " ",
+            warn  = i.warn[1] .. " ",
+            info  = i.info[1] .. " ",
+            hint  = i.hint[1] .. " "
         },
         sections = { "error", "warn", "info", "hint" },
         always_visible = false,

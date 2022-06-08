@@ -1,7 +1,7 @@
 local opt, o, g = vim.opt, vim.o, vim.g
-local ct = require("styling").variables.transparency
-local ci = require("styling").icon
-local cui = ci.nvim_ui
+local t = require("styling").variables.transparency
+local i = require("styling").icon
+local iUI = i.nvim_ui
 local M = {}
 
 --<=< GUI general options >==========================================================================================>--
@@ -96,19 +96,19 @@ opt.viewoptions:remove("options")
 opt.list = true -- Display eol characters
 
 opt.fillchars = { -- Display chars
-    vert = cui.vert[1],
-    fold = cui.fold[1],
-    foldopen = cui.foldopen[1],
-    foldclose = cui.foldclose[1],
-    foldsep = cui.foldsep[1],
-    diff = cui.diff[1],
-    msgsep = cui.msgsep[1],
-    eob = cui.eob[1],
+    vert = iUI.vert[1],
+    fold = iUI.fold[1],
+    foldopen = iUI.foldopen[1],
+    foldclose = iUI.foldclose[1],
+    foldsep = iUI.foldsep[1],
+    diff = iUI.diff[1],
+    msgsep = iUI.msgsep[1],
+    eob = iUI.eob[1],
 }
 opt.listchars:append({
-    tab = cui.tab[1],
-    lead = cui.lead[1],
-    eol = cui.eol[1]
+    tab = iUI.tab[1],
+    lead = iUI.lead[1],
+    eol = iUI.eol[1]
 })
 
 opt.spell = false
@@ -134,8 +134,8 @@ opt.pastetoggle = "<F12>" -- Toggle paste mode
 opt.scrolloff = 3 -- Minimal number of screen lines to keep above and below the cursor
 opt.sidescrolloff = 20 -- The minimal number of columns to scroll horizontally
 
-opt.winblend = ct -- Transparency for floating windows
-opt.pumblend = ct -- Transparency for the popup-menu
+opt.winblend = t -- Transparency for floating windows
+opt.pumblend = t -- Transparency for the popup-menu
 
 opt.keywordprg = ":help" -- Program to use for the K command
 

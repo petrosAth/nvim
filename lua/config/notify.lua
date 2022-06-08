@@ -1,6 +1,6 @@
 local notify = require("notify")
-local ci = require("styling").icon
-local cb = require("styling").border.table
+local i = require("styling").icon
+local b = require("styling").border.default
 
 notify.setup({
     -- Animation style (see below for details)
@@ -8,7 +8,17 @@ notify.setup({
 
     -- Function called when a new window is opened, use for changing win settings/config
     on_open = function (win)
-        vim.api.nvim_win_set_config(win, { border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l } })
+        vim.api.nvim_win_set_config(win, { border = {
+                { b.tl, "FloatBorder" },
+                { b.t,  "FloatBorder" },
+                { b.tr, "FloatBorder" },
+                { b.r,  "FloatBorder" },
+                { b.br, "FloatBorder" },
+                { b.b,  "FloatBorder" },
+                { b.bl, "FloatBorder" },
+                { b.l,  "FloatBorder" },
+            }
+        })
     end,
 
     -- Function called when a window is closed
@@ -29,11 +39,11 @@ notify.setup({
 
     -- Icons for the different levels
     icons = {
-        ERROR = ci.error[1],
-        WARN  = ci.warn[1],
-        INFO  = ci.info[1],
-        DEBUG = ci.bug[1],
-        TRACE = ci.location[1]
+        ERROR = i.error[1],
+        WARN  = i.warn[1],
+        INFO  = i.info[1],
+        DEBUG = i.bug[1],
+        TRACE = i.location[1]
     }
 })
 

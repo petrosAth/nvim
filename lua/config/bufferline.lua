@@ -1,5 +1,5 @@
 local bufferline = require("bufferline")
-local ci = require("styling").icon
+local i = require("styling").icon
 
 local theme = {
     dracula = {
@@ -62,11 +62,11 @@ bufferline.setup{
         end,
         close_command = "Bdelete %d",
         right_mouse_command = "Bdelete %d",
-        buffer_close_icon= ci.close[1] .. " ",
-        modified_icon = ci.edit[1] .. " ",
-        close_icon = ci.close[1],
-        left_trunc_marker = ci.arrowl[1],
-        right_trunc_marker = ci.arrowr[1],
+        buffer_close_icon= i.close[1] .. " ",
+        modified_icon = i.edit[1] .. " ",
+        close_icon = i.close[1],
+        left_trunc_marker = i.arrowl[1],
+        right_trunc_marker = i.arrowr[1],
         diagnostics = false,
         show_buffer_icons = false,
         show_buffer_close_icons = true,

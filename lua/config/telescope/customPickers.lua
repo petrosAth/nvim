@@ -1,17 +1,18 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
-local cb = require("styling").border.table
+local b = require("styling").border.default
+local bn = require("styling").border.none
 
 local M = {}
 
 M.borderchars = {
- -- prompt  = {   "─",   "│",   " ",   "│",   "╭",   "╮",   "│",   "│"  },
-    prompt  = {  cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
- -- results = {   "─",   "│",   "─",   "│",   "├",   "┤",  "╯",  "╰"  },
-    results = {  cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
- -- preview = {   "─",   "│",   "─",   "│",   "╭",   "╮",  "╯",  "╰"  },
-    preview = {  cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
-}
+--  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
+    prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+--  results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
+    results = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+--  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+    preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
+        }
 
 -- Customize buffers display to look like LeaderF
 -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes
@@ -144,8 +145,8 @@ end
 function M.registers(opts)
     if opts == "small" then
         builtin.registers {
-            results_title = "Registers",
-            prompt_title = false,
+            results_title = false,
+            prompt_title = "Registers",
             sorting_strategy = "ascending",
             layout_strategy = "cursor",
             layout_config = {
@@ -153,11 +154,14 @@ function M.registers(opts)
                 height = 0.4
             },
             borderchars = {
-                prompt  = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
-                results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl },
-                preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl }
+--              prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
+                prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+--              results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
+                results = { "▀",   b.r,   b.b,   b.l,   "▀",   "▀",   b.br,  b.bl  },
+--              preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+                preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
             }
-            }
+        }
     elseif opts == "large" then
         builtin.registers {
             results_title = "Registers",
@@ -181,7 +185,8 @@ function M.lsp_references()
             prompt_position = "bottom",
             width = 80,
             height = 30
-        }
+        },
+        borderchars = M.borderchars
     })
 end
 
@@ -196,7 +201,8 @@ function M.lsp_definitions()
             prompt_position = "bottom",
             width = 80,
             height = 30
-        }
+        },
+        borderchars = M.borderchars
     })
 end
 
@@ -208,7 +214,8 @@ function M.notify()
             prompt_position = "bottom",
             width = 80,
             height = 40
-        }
+        },
+        borderchars = M.borderchars
     }
 end
 

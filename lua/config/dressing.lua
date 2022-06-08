@@ -1,5 +1,5 @@
-local ct = require("styling").variables.transparency
-local cb = require("styling").border.table
+local t = require("styling").variables.transparency
+local b = require("styling").border.default
 
 require("dressing").setup({
     input = {
@@ -8,7 +8,7 @@ require("dressing").setup({
 
         -- These are passed to nvim_open_win
         anchor = "SW",
-        border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l },
+        border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l },
         -- 'editor' and 'win' will default to being centered
         relative = "cursor",
 
@@ -21,7 +21,7 @@ require("dressing").setup({
         min_width = { 20, 0.2 },
 
         -- Window transparency (0-100)
-        winblend = ct,
+        winblend = t,
     },
     select = {
         -- Set to false to disable the vim.ui.select implementation
@@ -35,9 +35,12 @@ require("dressing").setup({
         -- telescope = require('telescope.themes').get_ivy({...})
         telescope = require("telescope.themes").get_dropdown({
             borderchars = {
-                prompt  = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
-                results = { cb.t,  cb.r,  cb.b,  cb.l, cb.ml, cb.mr, cb.br,  cb.bl },
-                preview = { cb.t,  cb.r,  cb.b,  cb.l, cb.tl, cb.tr, cb.br,  cb.bl },
+--              prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
+                prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+--              results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
+                results = { "▀",   b.r,   b.b,   b.l,   "▀",   "▀",   b.br,  b.bl  },
+--              preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+                preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
             }
         }),
     },

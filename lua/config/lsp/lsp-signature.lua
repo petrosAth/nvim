@@ -1,7 +1,7 @@
 local lsp_signature = require("lsp_signature")
-local ct = require("styling").transparency
-local ci = require("styling").icon
-local cb = require("styling").border.table
+local t = require("styling").variables.transparency
+local i = require("styling").icon
+local b = require("styling").border.default
 
 lsp_signature.setup({
     bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -18,7 +18,7 @@ lsp_signature.setup({
     -- this setting will be helpful if you do not want the PUM and floating win overlap
     fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
     hint_enable = false, -- virtual hint enable
-    hint_prefix = ci.hint[1] .. " ",  -- Panda for parameter
+    hint_prefix = i.hint[1] .. " ",  -- Panda for parameter
     hint_scheme = "String",
     use_lspsaga = false,  -- set to true if you want to use lspsaga popup
     hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
@@ -27,7 +27,7 @@ lsp_signature.setup({
     max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
     handler_opts = {
         -- border = "single",   -- double, rounded, single, shadow, none
-        border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l },
+        border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l },
     },
 
     always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
@@ -38,7 +38,7 @@ lsp_signature.setup({
 
     padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
 
-    transpancy = ct, -- disabled by default, allow floating win transparent value 1~100
+    transpancy = t, -- disabled by default, allow floating win transparent value 1~100
     shadow_blend = 36, -- if you using shadow as border use this set the opacity
     shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
     timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency

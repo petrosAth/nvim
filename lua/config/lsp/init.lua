@@ -2,14 +2,15 @@ vim.cmd([[
     augroup LSPINFO_BORDERS
         autocmd!
         autocmd FileType lspinfo lua
-                \ vim.api.nvim_win_set_config(0, { border = { " ", " ", " ", " ", " ", " ", " ", " " } })
+                \ local b = require("styling").border.default
+                \ vim.api.nvim_win_set_config(0, { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
                 \ vim.opt.cursorline = true
     augroup END
 ]])
 
 local M = {}
-local ci = require("styling").icon
-local cb = require("styling").border.outline
+local i = require("styling").icon
+local b = require("styling").border.default
 
 -- List of servers for installation
 M.servers = {
@@ -25,14 +26,14 @@ M.servers = {
 
 -- Borders for LSP floating windows
 local border = {
-    { "",                 },
-    { "",                 },
-    { "",                 },
-    { cb.r, "FloatBorder" },
-    { "",                 },
-    { "",                 },
-    { "",                 },
-    { cb.l, "FloatBorder" },
+    { b.tl, "FloatBorder" },
+    { b.t,  "FloatBorder" },
+    { b.tr, "FloatBorder" },
+    { b.r,  "FloatBorder" },
+    { b.br, "FloatBorder" },
+    { b.b,  "FloatBorder" },
+    { b.bl, "FloatBorder" },
+    { b.l,  "FloatBorder" },
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)

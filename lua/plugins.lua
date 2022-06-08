@@ -7,8 +7,9 @@ vim.cmd([[
 
 local fn = vim.fn
 local install_path = PACKER_PATH .. "/start/packer.nvim"
-local ci = require("styling").icon
-local cb = require("styling").border.table
+local i = require("styling").icon
+local b = require("styling").border.default
+local bs = require("styling").border.single
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -37,15 +38,15 @@ packer.init({
     display = {
         non_interactive = false, -- If true, disable display windows for all operations
         open_fn = function() -- An optional function to open a window for packer's display
-            return require("packer.util").float { border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l } }
+            return require("packer.util").float { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } }
         end,
-        working_sym   = ci.pending[1] .. " ", -- The symbol for a plugin being installed/updated
-        error_sym     = ci.error[1] .. " ", -- The symbol for a plugin with an error in installation/updating
-        done_sym      = ci.done[1] .. " ", -- The symbol for a plugin which has completed installation/updating
-        removed_sym   = ci.delete[1] .. " ", -- The symbol for an unused plugin which was removed
-        moved_sym     = ci.arrowr[1] .. " ", -- The symbol for a plugin which was moved (e.g. from opt to start)
-        header_sym    = cb.t, -- The symbol for the header line in packer's display
-        prompt_border = { cb.tl, cb.t, cb.tr, cb.r, cb.br, cb.b, cb.bl, cb.l }, -- Border style of prompt popups.
+        working_sym   = i.pending[1] .. " ", -- The symbol for a plugin being installed/updated
+        error_sym     = i.error[1] .. " ", -- The symbol for a plugin with an error in installation/updating
+        done_sym      = i.done[1] .. " ", -- The symbol for a plugin which has completed installation/updating
+        removed_sym   = i.delete[1] .. " ", -- The symbol for an unused plugin which was removed
+        moved_sym     = i.arrowr[1] .. " ", -- The symbol for a plugin which was moved (e.g. from opt to start)
+        header_sym    = bs.t, -- The symbol for the header line in packer's display
+        prompt_border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }, -- Border style of prompt popups.
     },
     -- log = { level = "debug" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal"
 })
@@ -144,7 +145,6 @@ return packer.startup(function()
             {
                 "ray-x/lsp_signature.nvim", -- https://github.com/ray-x/lsp_signature.nvim
                 after = "nvim-lspconfig",
-                event = 'InsertEnter *',
                 config = function()
                     require("config.lsp.lsp-signature")
                 end

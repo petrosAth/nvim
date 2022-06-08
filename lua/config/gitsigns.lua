@@ -1,4 +1,4 @@
-local cb = require("styling").border.outline
+local b = require("styling").border.outline
 
 require("gitsigns").setup {
     signs = {
@@ -33,7 +33,7 @@ require("gitsigns").setup {
     max_file_length = 40000,
     preview_config = {
         -- Options passed to nvim_open_win
-        border = { cb.tl,  cb.t, cb.tr,  cb.r, cb.br,  cb.b, cb.bl, cb.l },
+        border = { b.tl,  b.t, b.tr,  b.r, b.br,  b.b, b.bl, b.l },
         style = "minimal",
         relative = "cursor",
         row = 1,

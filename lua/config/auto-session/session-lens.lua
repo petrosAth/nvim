@@ -1,11 +1,14 @@
-local cb = require("styling").border.table
+local b = require("styling").border.default
 
 require("session-lens").setup({
     theme_conf = {
         borderchars = {
-            prompt  = { cb.t, cb.r, cb.b, cb.l, cb.tl, cb.tr, cb.br, cb.bl },
-            results = { cb.t, cb.r, cb.b, cb.l, cb.ml, cb.mr, cb.br, cb.bl },
-            preview = { cb.t, cb.r, cb.b, cb.l, cb.tl, cb.tr, cb.br, cb.bl },
+--          prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
+            prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+--          results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
+            results = { "▀",   b.r,   b.b,   b.l,   "▀",   "▀",   b.br,  b.bl  },
+--          preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+            preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
         },
     },
 })

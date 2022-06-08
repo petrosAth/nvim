@@ -9,7 +9,7 @@ vim.cmd([[
 
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
-local ci = require("styling").icon
+local i = require("styling").icon
 local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
 local function set_button(sc, txt, keybind, keybind_opts)
@@ -46,11 +46,11 @@ local header = {
 local buttons_navigation = {
     type = "group",
     val = {
-        set_button("SPC s r", " " .. ci.arrowr[1] .. " Recent files",    tele_custom .. "find_recent()<CR>"),
-        set_button("SPC s s", "舘" .. ci.arrowr[1] .. " Search sessions", "<CMD>SearchSession<CR>"),
-        set_button("SPC s p", " " .. ci.arrowr[1] .. " Projects",        tele_custom .. "project()<CR>"),
-        set_button("SPC s f", " " .. ci.arrowr[1] .. " File search",     tele_custom .. "find_files()<CR>"),
-        set_button("SPC s g", " " .. ci.arrowr[1] .. " ripGREP search",  tele_custom .. "live_grep()<CR>")
+        set_button("SPC s r", " " .. i.arrowr[1] .. " Recent files",    tele_custom .. "find_recent()<CR>"),
+        set_button("SPC s s", "舘" .. i.arrowr[1] .. " Search sessions", "<CMD>SearchSession<CR>"),
+        set_button("SPC s p", " " .. i.arrowr[1] .. " Projects",        tele_custom .. "project()<CR>"),
+        set_button("SPC s f", " " .. i.arrowr[1] .. " File search",     tele_custom .. "find_files()<CR>"),
+        set_button("SPC s g", " " .. i.arrowr[1] .. " ripGREP search",  tele_custom .. "live_grep()<CR>")
     },
     opts = {
         spacing = 0,
@@ -60,8 +60,8 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        set_button("LDR u u", " " .. ci.arrowr[1] .. " Update plugins",   "<cmd>PackerSync<CR>"),
-        set_button("LDR u I", " " .. ci.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>")
+        set_button("LDR u u", " " .. i.arrowr[1] .. " Update plugins",   "<cmd>PackerSync<CR>"),
+        set_button("LDR u I", " " .. i.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>")
     },
     opts = {
         spacing = 0,

@@ -1,4 +1,4 @@
-local ci = require("styling").icon
+local i = require("styling").icon
 
 require("hlslens").setup({
     -- Enable nvim-hlslens automatically
@@ -30,9 +30,9 @@ require("hlslens").setup({
         local indicator, text, chunks
         local abs_r_idx = math.abs(r_idx)
         if abs_r_idx > 1 then
-            indicator = string.format("%d%s", abs_r_idx, sfw ~= (r_idx > 1) and ci.arrowu[1] or ci.arrowb[1])
+            indicator = string.format("%d%s", abs_r_idx, sfw ~= (r_idx > 1) and i.arrowu[1] or i.arrowb[1])
         elseif abs_r_idx == 1 then
-            indicator = sfw ~= (r_idx == 1) and ci.arrowu[1] or ci.arrowb[1]
+            indicator = sfw ~= (r_idx == 1) and i.arrowu[1] or i.arrowb[1]
         else
             indicator = ""
         end

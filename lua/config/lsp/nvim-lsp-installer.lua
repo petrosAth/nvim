@@ -2,14 +2,15 @@ vim.cmd([[
     augroup LSP_INSTALLER_BORDERS
         autocmd!
         autocmd FileType lsp-installer lua
-                \ vim.api.nvim_win_set_config(0, { border = { " ", " ", " ", " ", " ", " ", " ", " " } })
+                \ local b = require("styling").border.default
+                \ vim.api.nvim_win_set_config(0, { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
                 \ vim.opt.cursorline = true
     augroup END
 ]])
 
 local lsp_cfg = require("config.lsp")
 local lsp_installer = require("nvim-lsp-installer")
-local ci = require("styling").icon
+local i = require("styling").icon
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers
@@ -18,9 +19,9 @@ lsp_installer.setup({
     ensure_installed = servers,
     ui = {
         icons = {
-            server_installed = ci.done[1],
-            server_pending = ci.pending[1],
-            server_uninstalled = ci.delete[1],
+            server_installed = i.done[1],
+            server_pending = i.pending[1],
+            server_uninstalled = i.delete[1],
         },
         keymaps = {
             toggle_server_expand = "<CR>",
