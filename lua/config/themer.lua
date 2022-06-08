@@ -21,6 +21,7 @@ local p = {
     nord0darker      = "#242a35",
     nord0dark        = "#2A303C",
     nord0            = "#2E3441", -- Change from #2E3440 to avoid transparency
+    nord1dark        = "#343b49",
     nord1            = "#3B4252",
     nord2            = "#434C5E",
     nord3            = "#4C566A",
@@ -62,8 +63,8 @@ require("themer").setup({
                     ColorColumn      = { fg = "none",        bg = p.nord2        },
                     Comment          = { fg = p.nord3light,  bg = "none"         },
                     Cursor           = { fg = p.nord0,       bg = p.nord4        },
-                    CursorLine       = { fg = "none",        bg = p.nord1        },
-                    CursorColumn     = { fg = "none",        bg = p.nord1        },
+                    CursorLine       = { fg = "none",        bg = p.nord1dark    },
+                    CursorColumn     = { fg = "none",        bg = p.nord1dark    },
                     Error            = { fg = p.nord4,       bg = p.nord11       },
                     iCursor          = { fg = p.nord0,       bg = p.nord4        },
                     LineNrAbove      = { fg = p.nord3,       bg = "none"         },
@@ -90,7 +91,7 @@ require("themer").setup({
                     healthWarning    = { fg = p.nord13,      bg = p.nord1        },
                     TermCursorNC     = { fg = "none",        bg = p.nord1        },
                     -- Gutter
-                    CursorLineNr     = { fg = p.nord4,       bg = p.nord1,       style = "none" },
+                    CursorLineNr     = { fg = p.nord4,       bg = p.nord1dark,   style = "none" },
                     Folded           = { fg = p.nord0,       bg = p.nord2,       style = "bold" },
                     FoldColumn       = { fg = p.nord3,       bg = "none"         },
                     SignColumn       = { fg = p.nord1,       bg = "none"         },
