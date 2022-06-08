@@ -61,7 +61,7 @@ require("themer").setup({
                 base = {
                     -- Editor
                     ColorColumn      = { fg = "none",        bg = p.nord2        },
-                    Comment          = { fg = p.nord3light,  bg = "none"         },
+                    Comment          = { fg = p.nord3light,  bg = "none",        style = "italic" },
                     Cursor           = { fg = p.nord0,       bg = p.nord4        },
                     CursorLine       = { fg = "none",        bg = p.nord1dark    },
                     CursorColumn     = { fg = "none",        bg = p.nord1dark    },
@@ -74,7 +74,7 @@ require("themer").setup({
                     NonText          = { fg = p.nord2,       bg = "none",        style = "none" },
                     Normal           = { fg = p.nord4,       bg = p.nord0        },
                     NormalNC         = { fg = p.nord4,       bg = p.nord0dark    },
-                    Pmenu            = { fg = p.nord4,       bg = p.nord0darker,   style = "none" },
+                    Pmenu            = { fg = p.nord4,       bg = p.nord0darker, style = "none" },
                     PmenuSel         = { fg = p.nord8,       bg = p.nord3        },
                     PmenuSbar        = { fg = p.nord4,       bg = p.nord1        },
                     PmenuThumb       = { fg = p.nord8,       bg = p.nord3light   },
@@ -109,7 +109,6 @@ require("themer").setup({
                     StatusLineTermNC = { fg = p.nord4,       bg = p.nord1,       style = "none" },
                     WarningMsg       = { fg = p.nord0,       bg = p.nord13       },
                     WildMenu         = { fg = p.nord1,       bg = p.nord8        },
-                    Float            = { fg = p.nord4,       bg = p.nord0darker  },
                     NormalFloat      = { fg = p.nord4,       bg = p.nord0darker  },
                     FloatBorder      = { fg = p.nord0,       bg = p.nord0darker  },
                     -- Search
@@ -203,39 +202,13 @@ require("themer").setup({
                         CmpItemAbbrMatch      = { fg = p.nord10,      bg = "none",        style = "bold" },
                         CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch " },
 
-                        CmpItemKindSnippet       = { fg = p.nord14,      bg = "none"         },
+                        CmpItemKindSnippet    = { fg = p.nord14,      bg = "none"         },
 
-                        CmpItemKindText          = { fg = p.nord4,       bg = "none"         },
-
-                        CmpItemKindVariable      = { fg = p.nord9,      bg = "none"         },
-                        CmpItemKindClass         = { link = 'CmpItemKindVariable' },
-                        CmpItemKindEnum          = { link = 'CmpItemKindVariable' },
-                        CmpItemKindInterface     = { link = 'CmpItemKindVariable' },
-
-                        CmpItemKindKeyword       = { fg = p.nord8,       bg = "none"         },
-                        CmpItemKindField         = { link = 'CmpItemKindKeyword' },
-                        CmpItemKindUnit          = { link = 'CmpItemKindKeyword' },
-                        CmpItemKindValue         = { link = 'CmpItemKindKeyword' },
-
-                        CmpItemKindFile          = { fg = p.nord13,      bg = "none"         },
-                        CmpItemKindFolder        = { link = 'CmpItemKindFile' },
-
-                        CmpItemKindFunction      = { fg = p.nord15,      bg = "none"         },
-                        CmpItemKindConstructor   = { link = 'CmpItemKindFunction' },
-                        CmpItemKindEvent         = { link = 'CmpItemKindFunction' },
-                        CmpItemKindMethod        = { link = 'CmpItemKindFunction' },
-
-                        CmpItemKindOperator      = { fg = p.nord10,       bg = "none"         },
-                        CmpItemKindEnumMember    = { link = 'CmpItemKindOperator' },
-                        CmpItemKindReference     = { link = 'CmpItemKindOperator' },
-
-                        CmpItemKindConstant      = { fg = p.nord7,       bg = "none"         },
-                        CmpItemKindModule        = { link = 'CmpItemKindConstant' },
-                        CmpItemKindStruct        = { link = 'CmpItemKindConstant' },
-                        CmpItemKindTypeParameter = { link = 'CmpItemKindConstant' },
+                        CmpItemKindFile       = { fg = p.nord13,      bg = "none"         },
+                        CmpItemKindFolder     = { link = "CmpItemKindFile" },
                     },
                     dressing = {
-                        FloatTitle = { link = "Float" },
+                        FloatTitle = { link = "NormalFloat" },
                     },
                     gitsigns = {
                         GitSignsCurrentLineBlame = { fg = p.nord15,      bg = "none"         },
@@ -363,7 +336,7 @@ require("themer").setup({
                         ScrollBarHandle = { fg = "none",        bg = p.nord3light   },
                     },
                     telescope = {
-                        TelescopePromptPrefix   = { fg = p.nord7,       bg = "none"         },
+                        TelescopePromptPrefix   = { fg = p.nord4,       bg = "none",        style = "bold" },
                         TelescopePromptCounter  = { fg = p.nord0,       bg = "none",        style = "bold" },
 
                         TelescopeNormal         = { fg = p.nord4,       bg = p.nord0darker  },
@@ -371,9 +344,9 @@ require("themer").setup({
                         TelescopePreviewNormal  = { fg = p.nord4,       bg = p.nord0        },
                         TelescopePromptNormal   = { fg = p.nord6,       bg = p.nord2        },
 
-                        TelescopeResultsTitle   = { fg = p.nord9,       bg = p.nord0,       style = "bold" },
-                        TelescopePreviewTitle   = { fg = p.nord7,       bg = p.nord0,       style = "bold" },
-                        TelescopePromptTitle    = { fg = p.nord8,       bg = p.nord2,       style = "bold" },
+                        TelescopeResultsTitle   = { fg = p.nord8,       bg = p.nord2,       style = "bold" },
+                        TelescopePreviewTitle   = { fg = p.nord9,       bg = p.nord2,       style = "bold" },
+                        TelescopePromptTitle    = { fg = p.nord4,       bg = p.nord2,       style = "bold" },
 
                         TelescopeResultsBorder  = { fg = p.nord2,       bg = p.nord0        },
                         TelescopePreviewBorder  = { fg = p.nord2,       bg = p.nord0        },
@@ -420,7 +393,7 @@ require("themer").setup({
                         WhichKeyDesc      = { fg = p.nord4,       bg = "none",        style = "italic" },
                         WhichKeySeperator = { fg = p.nord8,       bg = "none"         },
                         WhichKeyValue     = { link = "Comment" },
-                        WhichKeyFloat     = { link = "Float" },
+                        WhichKeyFloat     = { link = "NormalFloat" },
                     },
                 },
             },

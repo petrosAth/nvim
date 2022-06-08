@@ -297,8 +297,8 @@ M.treesitter_status = function()
 end
 
 M.lsp_clients = function()
-    -- Reference:
-    -- LunarVim -- https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L85-L116
+    -- Source
+    -- LunarVim - https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L85-L116
     if M.is_plugin() then
         return ""
     else
@@ -306,25 +306,12 @@ M.lsp_clients = function()
         if not next(buf_clients) then
             return ""
         end
-        -- local buf_ft = vim.bo.filetype
+
         local buf_client_names = {}
 
-        -- add client
         for _, client in pairs(buf_clients) do
-            if client.name ~= "null-ls" then
-                table.insert(buf_client_names, client.name)
-            end
+            table.insert(buf_client_names, client.name)
         end
-
-        -- add formatter
-        -- local formatters = require "lvim.lsp.null-ls.formatters"
-        -- local supported_formatters = formatters.list_registered_providers(buf_ft)
-        -- vim.list_extend(buf_client_names, supported_formatters)
-
-        -- add linter
-        -- local linters = require "lvim.lsp.null-ls.linters"
-        -- local supported_linters = linters.list_registered_providers(buf_ft)
-        -- vim.list_extend(buf_client_names, supported_linters)
 
         return buf_client_names
     end
