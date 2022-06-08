@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
+local i = require("styling").icon
 local b = require("styling").border.default
 local bn = require("styling").border.none
 
@@ -94,33 +95,16 @@ function M.custom_buffers(opts)
     end
 end
 
-function M.find_files()
-    builtin.find_files {
-        -- cwd = custom_cwd(),
-        results_title = "File search",
-		prompt_title = false
-    }
-end
-
 function M.find_recent()
     telescope.extensions.frecency.frecency{
-        results_title = "Recent",
-		prompt_title = "Filter files"
-    }
-end
-
-function M.live_grep()
-    builtin.live_grep {
-        -- cwd = custom_cwd(),
-        results_title = "ripGREP",
-        prompt_title = "Filter results"
+        prompt_title = "Recent Files",
     }
 end
 
 function M.project()
     telescope.extensions.project.project{
         display_type = "full",
-        prompt_title = "Filter projects",
+        results_title = "Results",
         layout_config = {
             width = 0.5,
             height = 0.6
@@ -131,8 +115,6 @@ end
 function M.buffers()
     builtin.buffers {
         entry_maker = M.custom_buffers(),
-        results_title = "Buffers",
-        prompt_title = "Filter buffers",
         previewer = false,
         layout_strategy = "vertical",
         layout_config = {
@@ -146,7 +128,6 @@ function M.registers(opts)
     if opts == "small" then
         builtin.registers {
             results_title = false,
-            prompt_title = "Registers",
             sorting_strategy = "ascending",
             layout_strategy = "cursor",
             layout_config = {
@@ -164,11 +145,9 @@ function M.registers(opts)
         }
     elseif opts == "large" then
         builtin.registers {
-            results_title = "Registers",
-            prompt_title = "Filter registers",
             layout_config = {
-                width = 0.99,
-                height = 0.99
+                width = 0.95,
+                height = 0.95
             },
         }
     end
@@ -176,15 +155,13 @@ end
 
 function M.lsp_references()
     builtin.lsp_references({
-        results_title = "LSP References",
-        prompt_title = "Filter references",
         jump_type = 'never',
         layout_strategy = "vertical",
         layout_config = {
-            preview_height = 0.6,
+            preview_height = 0.5,
             prompt_position = "bottom",
-            width = 80,
-            height = 30
+            width = 0.4,
+            height = 0.8
         },
         borderchars = M.borderchars
     })
@@ -192,15 +169,13 @@ end
 
 function M.lsp_definitions()
     builtin.lsp_definitions({
-        results_title = "LSP Definitions",
-        prompt_title = "Filter definitions",
         jump_type = 'never',
         layout_strategy = "vertical",
         layout_config = {
-            preview_height = 0.6,
+            preview_height = 0.5,
             prompt_position = "bottom",
-            width = 80,
-            height = 30
+            width = 0.4,
+            height = 0.8
         },
         borderchars = M.borderchars
     })
@@ -208,12 +183,14 @@ end
 
 function M.notify()
     telescope.extensions.notify.notify{
+        results_title = "Results",
+        prompt_title = "Notifications",
         layout_strategy = "vertical",
         layout_config = {
-            preview_height = 0.2,
+            preview_height = 0.3,
             prompt_position = "bottom",
-            width = 80,
-            height = 40
+            width = 0.4,
+            height = 0.5
         },
         borderchars = M.borderchars
     }

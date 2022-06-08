@@ -122,7 +122,7 @@ wk.register({
         s = {
             name = "Search",
             f = { tele_builtin .. "find_files()<CR>",      "File search"        }, -- telescope
-            g = { tele_custom  .. "live_grep()<CR>",       "ripGREP"            }, -- telescope
+            g = { tele_builtin .. "live_grep()<CR>",       "ripGREP"            }, -- telescope
             H = { tele_builtin .. "highlights()<CR>",      "Highlight groups"   }, -- telescope
             h = { tele_builtin .. "help_tags()<CR>",       "Vim help"           }, -- telescope
             n = { tele_custom  .. "notify()<CR>",          "Notify history"     }, -- telescope -- notify

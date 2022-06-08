@@ -17,6 +17,7 @@ g.qs_filetype_blacklist = {
     "Outline",
     "packer",
     "qf",
+    "TelescopePrompt",
     "Trouble",
     "undotree"
 }
