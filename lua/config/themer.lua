@@ -61,7 +61,7 @@ require("themer").setup({
                 base = {
                     -- Editor
                     ColorColumn      = { fg = "none",        bg = p.nord2        },
-                    Comment          = { fg = p.nord3light,  bg = "none",        style = "italic" },
+                    Comment          = { fg = p.nord3light,  bg = "none"         },
                     Cursor           = { fg = p.nord0,       bg = p.nord4        },
                     CursorLine       = { fg = "none",        bg = p.nord1dark    },
                     CursorColumn     = { fg = "none",        bg = p.nord1dark    },
