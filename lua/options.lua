@@ -71,7 +71,7 @@ opt.number = true -- Show line numbers
 opt.relativenumber = true -- Enable relative line numbers
 opt.signcolumn = "yes" -- Keep the sign column always visible
 
-opt.colorcolumn = "80" -- Show vertical line for text alignment
+opt.colorcolumn = "120" -- Show vertical line for text alignment
 
 opt.foldcolumn = "auto:9" -- Fold column
 opt.foldmethod = "indent" -- Folding configuration
