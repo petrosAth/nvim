@@ -2,11 +2,11 @@ local b = require("styling").border.outline
 
 require("gitsigns").setup {
     signs = {
-        add          = { hl = 'GitSignsAdd'   , text = '▐', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
-        change       = { hl = 'GitSignsChange', text = '▐', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
-        delete       = { hl = 'GitSignsDelete', text = '▂', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
-        topdelete    = { hl = 'GitSignsDelete', text = '🮂', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
-        changedelete = { hl = 'GitSignsChange', text = '▐', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
+        add          = { hl = "GitSignsAdd"   , text = "▐", numhl="GitSignsAddNr"   , linehl="GitSignsAddLn"    },
+        change       = { hl = "GitSignsChange", text = "▐", numhl="GitSignsChangeNr", linehl="GitSignsChangeLn" },
+        delete       = { hl = "GitSignsDelete", text = "🭨", numhl="GitSignsDeleteNr", linehl="GitSignsDeleteLn" },
+        topdelete    = { hl = "GitSignsDelete", text = "🭨", numhl="GitSignsDeleteNr", linehl="GitSignsDeleteLn" },
+        changedelete = { hl = "GitSignsChange", text = "🭨", numhl="GitSignsChangeNr", linehl="GitSignsChangeLn" },
     },
     signcolumn   = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl        = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -26,7 +26,7 @@ require("gitsigns").setup {
         delay = 500,
         ignore_whitespace = false,
     },
-    current_line_blame_formatter = ' <author>, <author_time:%Y-%m-%d> - <summary>',
+    current_line_blame_formatter = " <author>, <author_time:%Y-%m-%d> - <summary>",
     sign_priority = 6,
     update_debounce = 100,
     status_formatter = nil, -- Use default
