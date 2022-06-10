@@ -1,5 +1,6 @@
 -- Palettes
 local p = {
+    -- Color palettes
     -- Dracula
     draculaFg        = "#F8F8F2",
     draculaBglighter = "#424450",
@@ -95,8 +96,8 @@ require("themer").setup({
                     TermCursorNC     = { fg = "none",        bg = p.nord1        },
                     -- Gutter
                     CursorLineNr     = { fg = p.nord4,       bg = p.nord1dark,   style = "none" },
-                    Folded           = { fg = p.nord0,       bg = p.nord2,       style = "bold" },
-                    FoldColumn       = { fg = p.nord3,       bg = "none"         },
+                    Folded           = { fg = p.nord3light,  bg = "none",        style = "bold" },
+                    FoldColumn       = { fg = p.nord3light,  bg = "none"         },
                     SignColumn       = { fg = p.nord1,       bg = "none"         },
                     -- Navigation
                     Directory        = { fg = p.nord8,       bg = "none"         },
@@ -115,7 +116,7 @@ require("themer").setup({
                     NormalFloat      = { fg = p.nord4,       bg = p.nord0darker  },
                     FloatBorder      = { fg = p.nord0,       bg = p.nord0darker  },
                     -- Search
-                    Search           = { fg = p.nord8,       bg = p.nord1,       style = "reverse" },
+                    Search           = { fg = p.nord8,       bg = p.nord0,       style = "reverse" },
                     IncSearch        = { fg = p.nord6,       bg = p.nord10,      style = "underline" },
                     -- Tabs
                     TabLine          = { fg = p.nord6,       bg = p.nord3,       style = "none" },
@@ -214,16 +215,16 @@ require("themer").setup({
                         FloatTitle = { link = "NormalFloat" },
                     },
                     gitsigns = {
-                        GitSignsCurrentLineBlame = { fg = p.nord15,      bg = "none"         },
+                        GitSignsCurrentLineBlame = { fg = p.nord15,      bg = "none",        style = "italic,bold" },
                         GitSignsAdd              = { fg = p.nord14,      bg = "none"         },
                         GitSignsAddNr            = { fg = p.nord14,      bg = p.nord1        },
-                        GitSignsAddLn            = { fg = p.nord14,      bg = "none"         },
+                        GitSignsAddLn            = { fg = "none",        bg = "#3e4748"      },
                         GitSignsChange           = { fg = p.nord13,      bg = "none"         },
                         GitSignsChangeNr         = { fg = p.nord13,      bg = p.nord1        },
-                        GitSignsChangeLn         = { fg = p.nord13,      bg = "none"         },
+                        GitSignsChangeLn         = { fg = "none",        bg = "#4d4a48"      },
                         GitSignsDelete           = { fg = p.nord11,      bg = "none"         },
                         GitSignsDeleteNr         = { fg = p.nord11,      bg = p.nord1        },
-                        GitSignsDeleteLn         = { fg = p.nord11,      bg = "none"         },
+                        GitSignsDeleteLn         = { fg = "none",        bg = "#443844"      },
                         GitSignsAddInline        = { fg = "none",        bg = p.nord14dark   },
                         GitSignsChangeInline     = { fg = "none",        bg = p.nord13dark   },
                         GitSignsDeleteInline     = { fg = "none",        bg = p.nord11dark   },
@@ -237,8 +238,8 @@ require("themer").setup({
                     },
                     hlslens = {
                         HlSearchNear     = { link = "IncSearch" },
-                        HlSearchLens     = { fg = p.nord0,       bg = p.nord4        },
-                        HlSearchLensNear = { link = "IncSearch" },
+                        HlSearchLens     = { link = "Search" },
+                        HlSearchLensNear = { fg = p.nord10,       bg = p.nord0,       style = "reverse" },
                         HlSearchFloat    = { link = "IncSearch" },
                     },
                     hop = {
@@ -271,10 +272,10 @@ require("themer").setup({
                         DiagnosticUnderlineWarn     = { fg = p.nord13,      bg = "none",    style = "undercurl" },
                         DiagnosticUnderlineInfo     = { fg = p.nord8,       bg = "none",    style = "undercurl" },
                         DiagnosticUnderlineHint     = { fg = p.nord10,      bg = "none",    style = "undercurl" },
-                        DiagnosticVirtualTextError  = { fg = p.nord11,      bg = "none",    style = "italic" },
-                        DiagnosticVirtualTextWarn   = { fg = p.nord13,      bg = "none",    style = "italic" },
-                        DiagnosticVirtualTextInfo   = { fg = p.nord8,       bg = "none",    style = "italic" },
-                        DiagnosticVirtualTextHint   = { fg = p.nord10,      bg = "none",    style = "italic" },
+                        DiagnosticVirtualTextError  = { fg = p.nord11,      bg = "none",    style = "italic,bold" },
+                        DiagnosticVirtualTextWarn   = { fg = p.nord13,      bg = "none",    style = "italic,bold" },
+                        DiagnosticVirtualTextInfo   = { fg = p.nord8,       bg = "none",    style = "italic,bold" },
+                        DiagnosticVirtualTextHint   = { fg = p.nord10,      bg = "none",    style = "italic,bold" },
                         -- Neovim LspSignatureHelp
                         LspSignatureActiveParameter = { fg = p.nord8,       bg = "none"         },
                     },
