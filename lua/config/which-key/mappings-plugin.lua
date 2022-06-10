@@ -9,13 +9,17 @@ wk.register({
     ["]d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next diagnostic"                  }, -- lspconfig
     ["[d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous diagnostic"              }, -- lspconfig
     g = {
-        ["cc"] = { "Toggle line comment"             }, -- comment
-        ["bc"] = { "Toggle block comment"            }, -- comment
-        c      = { "Line comment"                    }, -- comment
-        b      = { "Block comment"                   }, -- comment
-        o      = { "Comment next line then insert"   }, -- comment
-        O      = { "Comment prev line then insert"   }, -- comment
-        A      = { "Comment end of line then insert" }  -- comment
+        A = { "Add comment at the end of line" }, -- comment.nvim
+        c = {
+            name = "Line comment",
+            c = { "Comment out" }, -- comment.nvim
+        }, -- comment.nvim
+        b = {
+            name = "Block comment",
+            c = { "Comment out" }, -- comment.nvim
+        }, -- comment.nvim
+        o = { "Add comment on the line below"  }, -- comment.nvim
+        O = { "Add comment on the line above"  }, -- comment.nvim
     },
     n      = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'",          }, -- hlslens
     N      = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backward", }, -- hlslens
@@ -47,7 +51,7 @@ wk.register({
         c = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
-            q = { "<CMD>DiffviewClose<CR>",       "Quit"                     }, -- diffview
+            q = { "<CMD>DiffviewClose<CR>",       "Quit"                      }, -- diffview
             e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
             h = { "<CMD>DiffviewFileHistory<CR>", "Open file history view"    }, -- diffview
             o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
@@ -66,29 +70,32 @@ wk.register({
         E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree
         f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"           }, -- hop
         g = {
-            name = "Git",
-            f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
-            c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
-            b = { tele_builtin .. "git_branches()<CR>", "Branches"  }, -- telescope
-            B = {
-                name = "Buffer actions",
-                s = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
-                r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
-                u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
+            name = "Git & gitsigns",
+            b = {
+                name = "Blame",
+                l = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
+                b = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns
             },
-            d = { "<CMD>Gitsigns toggle_deleted<CR>", "Toggle deleted lines" }, -- gitsigns
-            H = {
-                name = "Hunk actions",
-                s = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
-                u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
-                r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
-                p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
+            d = { "<CMD>Gitsigns toggle_deleted<CR>",   "Toggle deleted lines highlighting" }, -- gitsigns
+            g = {
+                name = "Git actions",
+                b = {
+                    name = "Buffer actions",
+                    a = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
+                    r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
+                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
+                },
+                h = {
+                    name = "Hunk actions",
+                    a = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
+                    p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
+                    r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
+                    u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
+                },
             },
-            l = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
-            L = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame"        }, -- gitsigns
-            s = { tele_builtin .. "git_status()<CR>",                       "Status"            }, -- telescope
-            S = { tele_builtin .. "git_stash()<CR>",                        "Stash"             }, -- telescope
-            w = { "<CMD>Gitsigns toggle_word_diff<CR>",                     "Toggle word diff"  }, -- gitsigns
+            l = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"     }, -- gitsigns
+            n = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting"   }, -- gitsigns
+            w = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"     }, -- gitsigns
         },
         l = {
             name = "LSP",
@@ -123,6 +130,14 @@ wk.register({
             name = "Search",
             f = { tele_builtin .. "find_files()<CR>",      "File search"        }, -- telescope
             g = { tele_builtin .. "live_grep()<CR>",       "ripGREP"            }, -- telescope
+            G = {
+                name = "Git",
+                f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
+                c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
+                b = { tele_builtin .. "git_branches()<CR>", "Branches"  }, -- telescope
+                s = { tele_builtin .. "git_status()<CR>",   "Status"    }, -- telescope
+                S = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
+            },
             H = { tele_builtin .. "highlights()<CR>",      "Highlight groups"   }, -- telescope
             h = { tele_builtin .. "help_tags()<CR>",       "Vim help"           }, -- telescope
             n = { tele_custom  .. "notify()<CR>",          "Notify history"     }, -- telescope -- notify
@@ -168,8 +183,8 @@ wk.register({
 wk.register({
     -- comment
     g = {
-        c = { "Line comment"  }, -- comment
-        b = { "Block comment" }  -- comment
+        c      = { "Line comment"  }, -- comment.nvim
+        b      = { "Block comment" }, -- comment.nvim
     },
     i = {
         h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" } -- gitsigns
