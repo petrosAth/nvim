@@ -238,11 +238,6 @@ return packer.startup(function()
         end,
     }
 
-    -- surround.vim - Delete/change/add parentheses/quotes/XML-tags/much more with ease
-    use{
-        "tpope/vim-surround",
-    }
-
     -- nvim-treesitter - The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it
     use{
         "nvim-treesitter/nvim-treesitter", -- https://github.com/nvim-treesitter/nvim-treesitter
@@ -264,17 +259,6 @@ return packer.startup(function()
         end,
     }
 
-    -- vim-hexokinase - (Neo)Vim plugin for asynchronously displaying the colours in the file
-    use{
-        "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
-        run     = "make hexokinase",
-        cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
-        ft      = { "css", "html", "json" },
-        setup   = function()
-            require("config.hexokinase")
-        end
-    }
-
     -- indent-blankline.nvim -- This plugin adds indentation guides to all lines
     use{
         "lukas-reineke/indent-blankline.nvim", -- https://github.com/lukas-reineke/indent-blankline.nvim
@@ -289,6 +273,27 @@ return packer.startup(function()
         config = function()
             require("config.mini-cursorword")
         end
+    }
+
+    -- vim-hexokinase - (Neo)Vim plugin for asynchronously displaying the colours in the file
+    use{
+        "RRethy/vim-hexokinase", -- https://github.com/RRethy/vim-hexokinase
+        run     = "make hexokinase",
+        cmd     = { "HexokinaseToggle", "HexokinaseTurnOn" },
+        ft      = { "css", "html", "json" },
+        setup   = function()
+            require("config.hexokinase")
+        end
+    }
+
+    -- surround.vim - Delete/change/add parentheses/quotes/XML-tags/much more with ease
+    use{
+        "tpope/vim-surround",
+    }
+
+    -- Tabular - Vim script for text filtering and alignment
+    use{
+        "godlygeek/tabular", -- https://github.com/godlygeek/tabular
     }
 --<==================================================================================================================>--
 

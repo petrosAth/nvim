@@ -4,25 +4,31 @@ local tele_builtin = "<CMD>lua require('telescope.builtin')."
 
 -- Normal mode mappings
 wk.register({
-    ["]c"] = { "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", "Next git hunk",       expr = true }, -- gitsigns
-    ["[c"] = { "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", "Previous git hunk",   expr = true }, -- gitsigns
-    ["]d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next diagnostic"                  }, -- lspconfig
-    ["[d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous diagnostic"              }, -- lspconfig
+    ["]c"] = { "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", "Next git hunk",       expr = true  }, -- gitsigns
+    ["[c"] = { "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", "Previous git hunk",   expr = true  }, -- gitsigns
+    ["]d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next diagnostic",     expr = false }, -- lspconfig
+    ["[d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous diagnostic", expr = false }, -- lspconfig
     g = {
+        a = {
+            name = "Align",
+            t = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},<CR>]], "Lua tables", }, -- Tabularize
+        },
         A = { "Add comment at the end of line" }, -- comment.nvim
         c = {
             name = "Line comment",
             c = { "Comment out" }, -- comment.nvim
-        }, -- comment.nvim
+        },
         b = {
             name = "Block comment",
             c = { "Comment out" }, -- comment.nvim
-        }, -- comment.nvim
-        o = { "Add comment on the line below"  }, -- comment.nvim
-        O = { "Add comment on the line above"  }, -- comment.nvim
+        },
+        o = { "Add comment on the line below" }, -- comment.nvim
+        O = { "Add comment on the line above" }, -- comment.nvim
     },
-    n      = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'",          }, -- hlslens
-    N      = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backward", }, -- hlslens
+    n = {
+        "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'", }, -- hlslens
+    N = {
+        "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backward", }, -- hlslens
     ["*"]  = { "*<CMD>lua require('hlslens').start()<CR>",  "Search word under cursor"            }, -- hlslens
     ["#"]  = { "#<CMD>lua require('hlslens').start()<CR>",  "Search word under cursor backward"   }, -- hlslens
     ["g*"] = { "g*<CMD>lua require('hlslens').start()<CR>", "Search string under cursor"          }, -- hlslens
@@ -30,45 +36,45 @@ wk.register({
     ["<Leader>"] = {
         s = {
             name = "Auto Session",
-            d = { "<CMD>DeleteSession<CR>",  "Delete cwd session"       }, -- session-lens
-            r = { "<CMD>RestoreSession<CR>", "Restore session"          }, -- session-lens
-            s = { "<CMD>SaveSession<CR>",    "Save session"             }, -- session-lens
+            d = { "<CMD>DeleteSession<CR>",  "Delete cwd session" }, -- session-lens
+            r = { "<CMD>RestoreSession<CR>", "Restore session"    }, -- session-lens
+            s = { "<CMD>SaveSession<CR>",    "Save session"       }, -- session-lens
         },
         u = {
             name = "Utilities",
-            u = { "<CMD>PackerSync<CR>",     "Packer sync"              }, -- packer
-            s = { "<CMD>PackerStatus<CR>",   "Packer status"            }, -- packer
-            c = { "<CMD>PackerCompile<CR>",  "Packer compile"           }, -- packer
-            d = { "<CMD>Alpha<CR>",          "Show dashboard"           }, -- alpha
-            i = { "<CMD>LspInfo<CR>",        "LSP info",                }, -- lsp-config
-            I = { "<CMD>LspInstallInfo<CR>", "LSP installer info"       }  -- lsp-installer
-        }
+            u = { "<CMD>PackerSync<CR>",     "Packer sync"        }, -- packer
+            s = { "<CMD>PackerStatus<CR>",   "Packer status"      }, -- packer
+            c = { "<CMD>PackerCompile<CR>",  "Packer compile"     }, -- packer
+            d = { "<CMD>Alpha<CR>",          "Show dashboard"     }, -- alpha
+            i = { "<CMD>LspInfo<CR>",        "LSP info"           }, -- lsp-config
+            I = { "<CMD>LspInstallInfo<CR>", "LSP installer info" }, -- lsp-installer
+        },
     },
     ["<Space>"] = {
-        ["?"] = { "<CMD>WhichKey<CR>",             "Show available hotkeys" }, -- which-key
-        ["."] = { tele_builtin .. "resume()<CR>",  "Reopen Telescope"       }, -- telescope
-        b = { tele_custom  .. "buffers()<CR>", "Buffer list"            }, -- telescope
-        c = { "<CMD>HexokinaseToggle<CR>",     "Color codes preview"    }, -- hexokinase
+        ["?"] = { "<CMD>WhichKey<CR>",            "Show available hotkeys" }, -- which-key
+        ["."] = { tele_builtin .. "resume()<CR>", "Reopen Telescope"       }, -- telescope
+        b     = { tele_custom .. "buffers()<CR>", "Buffer list"            }, -- telescope
+        c     = { "<CMD>HexokinaseToggle<CR>",    "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
             q = { "<CMD>DiffviewClose<CR>",       "Quit"                      }, -- diffview
             e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
             h = { "<CMD>DiffviewFileHistory<CR>", "Open file history view"    }, -- diffview
             o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
-            R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }  -- diffview
+            R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }, -- diffview
         },
         D = {
             name = "Diff mode",
-            p = { ":diffpatch ",             "Patch the buffer with the requested file on a new buffer", silent = false },
-            q = { "<CMD>diffoff<CR>",        "Revert and quit"                                                          },
-            R = { "<CMD>diffupdate<CR>",     "Updated the differences"                                                  },
-            t = { "<CMD>diffthis<CR>",       "Make the current window part of the diff windows"                         },
-            v = { ":vertical diffsplit ",    "Open the requested file in a split",                       silent = false },
-            w = { "<CMD>windo diffthis<CR>", "Compare the visible files"                                                },
+            p = { ":diffpatch ",             "Patch the buffer with the requested file on a new buffer", silent = false, },
+            q = { "<CMD>diffoff<CR>",        "Revert and quit",                                                          },
+            R = { "<CMD>diffupdate<CR>",     "Updated the differences",                                                  },
+            t = { "<CMD>diffthis<CR>",       "Make the current window part of the diff windows",                         },
+            v = { ":vertical diffsplit ",    "Open the requested file in a split",                       silent = false, },
+            w = { "<CMD>windo diffthis<CR>", "Compare the visible files",                                                },
         },
-        e = { "<CMD>NvimTreeToggle<CR>",                "Toggle file tree" }, -- nvimtree
-        E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer" }, -- nvimtree
-        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"           }, -- hop
+        e = { "<CMD>NvimTreeToggle<CR>",                                                               "Toggle file tree"          }, -- nvimtree
+        E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer", }, -- nvimtree
+        f = { "<CMD>lua require'hop'.hint_char1()<CR>",                                                "Hop to"                    }, -- hop
         g = {
             name = "Git & gitsigns",
             b = {
@@ -76,14 +82,14 @@ wk.register({
                 l = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
                 b = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns
             },
-            d = { "<CMD>Gitsigns toggle_deleted<CR>",   "Toggle deleted lines highlighting" }, -- gitsigns
+            d = { "<CMD>Gitsigns toggle_deleted<CR>", "Toggle deleted lines highlighting" }, -- gitsigns
             g = {
                 name = "Git actions",
                 b = {
                     name = "Buffer actions",
                     a = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
                     r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
-                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }  -- gitsigns
+                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }, -- gitsigns
                 },
                 h = {
                     name = "Hunk actions",
@@ -93,23 +99,23 @@ wk.register({
                     u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
                 },
             },
-            l = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"     }, -- gitsigns
-            n = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting"   }, -- gitsigns
-            w = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"     }, -- gitsigns
+            l = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"   }, -- gitsigns
+            n = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting" }, -- gitsigns
+            w = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"   }, -- gitsigns
         },
         l = {
             name = "LSP",
             f = { "<CMD>lua vim.lsp.buf.formatting()<CR>",     "Code formatting"       }, -- lspconfig
             H = { "<CMD>lua vim.diagnostic.open_float()<CR>",  "Line diagnostics"      }, -- lspconfig
             R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
-            -- R = { ":IncRename ",                                "Rename symbol"         }, -- lspconfig -- inc-rename
+            -- R = { ":IncRename ",                            "Rename symbol"         }, -- lspconfig -- inc-rename
             s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
             a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",    "Code actions"          }, -- lspconfig -- telescope
             r = { tele_custom .. "lsp_references()<CR>",       "References"            }, -- lspconfig -- telescope
             K = { tele_custom .. "lsp_definitions()<CR>",      "Definitions"           }, -- lspconfig -- telescope
             h = { "<CMD>lua vim.lsp.buf.hover()<CR>",          "Hover symbol"          }, -- lspconfig
             d = { "<CMD>Trouble document_diagnostics<CR>",     "Document diagnostics"  }, -- lspconfig -- trouble
-            D = { "<CMD>Trouble workspace_diagnostics<CR>",    "Workspace diagnostics" }  -- lspconfig -- trouble
+            D = { "<CMD>Trouble workspace_diagnostics<CR>",    "Workspace diagnostics" }, -- lspconfig -- trouble
         },
         o = { "<CMD>AerialToggle<CR>", "Toggle Code outline" }, -- aerial
         q = {
@@ -119,17 +125,17 @@ wk.register({
             c = { "<CMD>TroubleClose<CR>",     "Close"    }, -- trouble
             R = { "<CMD>TroubleRefresh<CR>",   "Refresh"  }, -- trouble
             l = { "<CMD>Trouble loclist<CR>",  "Loclist"  }, -- trouble
-            f = { "<CMD>Trouble quickfix<CR>", "Quickfix" }  -- trouble
+            f = { "<CMD>Trouble quickfix<CR>", "Quickfix" }, -- trouble
         },
         r = {
             name = "Registers",
             r = { tele_custom .. "registers('small')<CR>", "Compact window"  }, -- telescope
-            R = { tele_custom .. "registers('large')<CR>", "Extended window" }  -- telescope
+            R = { tele_custom .. "registers('large')<CR>", "Extended window" }, -- telescope
         },
         s = {
             name = "Search",
-            f = { tele_builtin .. "find_files()<CR>",      "File search"        }, -- telescope
-            g = { tele_builtin .. "live_grep()<CR>",       "ripGREP"            }, -- telescope
+            f = { tele_builtin .. "find_files()<CR>", "File search" }, -- telescope
+            g = { tele_builtin .. "live_grep()<CR>",  "ripGREP"     }, -- telescope
             G = {
                 name = "Git",
                 f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
@@ -138,55 +144,58 @@ wk.register({
                 s = { tele_builtin .. "git_status()<CR>",   "Status"    }, -- telescope
                 S = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
             },
-            H = { tele_builtin .. "highlights()<CR>",      "Highlight groups"   }, -- telescope
-            h = { tele_builtin .. "help_tags()<CR>",       "Vim help"           }, -- telescope
-            n = { tele_custom  .. "notify()<CR>",          "Notify history"     }, -- telescope -- notify
-            o = { tele_builtin .. "vim_options()<CR>",     "Vim options"        }, -- telescope
-            p = { tele_custom  .. "project()<CR>",         "Projects"           }, -- telescope
-            r = { tele_custom  .. "find_recent()<CR>",     "Find recent"        }, -- telescope
-            s = { "<CMD>SearchSession<CR>",                "Search sessions"    }, -- session-lens
-            T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" },  -- todo-comments
+            H = { tele_builtin .. "highlights()<CR>",  "Highlight groups"   }, -- telescope
+            h = { tele_builtin .. "help_tags()<CR>",   "Vim help"           }, -- telescope
+            n = { tele_custom  .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
+            o = { tele_builtin .. "vim_options()<CR>", "Vim options"        }, -- telescope
+            p = { tele_custom  .. "project()<CR>",     "Projects"           }, -- telescope
+            r = { tele_custom  .. "find_recent()<CR>", "Find recent"        }, -- telescope
+            s = { "<CMD>SearchSession<CR>",            "Search sessions"    }, -- session-lens
+            T = { "<CMD>TodoTelescope<CR>",            "Show TODO comments" }, -- todo-comments
             t = {
                 name = "Telescope",
-                b = { tele_builtin .. "builtin()<CR>",         "Telescope builtin"  }, -- telescope
-                c = { tele_builtin .. "command_history()<CR>", "Command history"    }  -- telescope
-            }
+                b = { tele_builtin .. "builtin()<CR>",         "Telescope builtin" }, -- telescope
+                c = { tele_builtin .. "command_history()<CR>", "Command history"   }, -- telescope
+            },
         },
-        u = { "<CMD>NvimTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" } -- undotree
-    }
+        u = { "<CMD>NvimTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
+    },
 })
 
 -- Visual and select mode mappings
 wk.register({
     ["<Space>"] = {
-        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to"          }, -- hop
+        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to" }, -- hop
         g = {
             name = "Git",
             s = { ":Gitsigns stage_hunk<CR>", "Stage hunk" }, -- gitsigns
             r = { ":Gitsigns reset_hunk<CR>", "Reset hunk" }, -- gitsigns
-        }
+        },
     },
 }, { mode = "v" })
 
 -- Operator mode mappings
 wk.register({
     i = {
-        h  = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
+        h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
     },
     ["<Space>"] = {
         f = { "<CMD>lua require'hop'.hint_char1({ inclusive_jump = true })<CR>", "Hop to"          }, -- hop
         t = { "<CMD>lua require'hop'.hint_char1()<CR>",                          "Hop till before" }, -- hop
-    }
+    },
 }, { mode = "o" })
 
 -- Visual mode mappings
 wk.register({
-    -- comment
     g = {
-        c      = { "Line comment"  }, -- comment.nvim
-        b      = { "Block comment" }, -- comment.nvim
+        a = {
+            name = "Align",
+            t = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},<CR>]], "Lua tables", }, -- Tabularize
+        },
+        c = { "Line comment"  }, -- comment.nvim
+        b = { "Block comment" }, -- comment.nvim
     },
     i = {
-        h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" } -- gitsigns
-    }
+        h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
+    },
 }, { mode = "x" })
