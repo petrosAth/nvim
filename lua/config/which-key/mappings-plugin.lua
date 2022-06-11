@@ -11,7 +11,8 @@ wk.register({
     g = {
         a = {
             name = "Align",
-            t = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},<CR>]], "Lua tables", }, -- Tabularize
+            T = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]], "Lua tables", }, --  Tabularize
+            t = { ":Tabularize ", "Tabularize", silent = false } -- Tabularize
         },
         A = { "Add comment at the end of line" }, -- comment.nvim
         c = {
@@ -190,7 +191,8 @@ wk.register({
     g = {
         a = {
             name = "Align",
-            t = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},<CR>]], "Lua tables", }, -- Tabularize
+            T = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]], "Lua tables", }, --  Tabularize
+            t = { ":'<,'>Tabularize ", "Tabularize", silent = false } -- Tabularize
         },
         c = { "Line comment"  }, -- comment.nvim
         b = { "Block comment" }, -- comment.nvim
