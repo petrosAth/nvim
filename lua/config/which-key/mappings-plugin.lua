@@ -11,20 +11,20 @@ wk.register({
     g = {
         a = {
             name = "Align",
-            T = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]], "Lua tables", }, --  Tabularize
+            T = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]], "Lua tables", }, -- Tabularize
             t = { ":Tabularize ", "Tabularize", silent = false } -- Tabularize
         },
-        A = { "Add comment at the end of line" }, -- comment.nvim
         c = {
             name = "Line comment",
-            c = { "Comment out" }, -- comment.nvim
+            A = { "Add comment at the end of line" }, -- comment.nvim
+            c = { "Comment out"                    }, -- comment.nvim
+            o = { "Add comment on the line below"  }, -- comment.nvim
+            O = { "Add comment on the line above"  }, -- comment.nvim
         },
         b = {
             name = "Block comment",
             c = { "Comment out" }, -- comment.nvim
         },
-        o = { "Add comment on the line below" }, -- comment.nvim
-        O = { "Add comment on the line above" }, -- comment.nvim
     },
     n = {
         "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'", }, -- hlslens
@@ -165,17 +165,9 @@ wk.register({
 
 -- Visual and select mode mappings
 wk.register({
-    ["<Space>"] = {
-        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to" }, -- hop
-        g = {
-            name = "Git",
-            s = { ":Gitsigns stage_hunk<CR>", "Stage hunk" }, -- gitsigns
-            r = { ":Gitsigns reset_hunk<CR>", "Reset hunk" }, -- gitsigns
-        },
-    },
 }, { mode = "v" })
 
--- Operator mode mappings
+-- Operator pending mode mappings
 wk.register({
     i = {
         h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
@@ -191,13 +183,19 @@ wk.register({
     g = {
         a = {
             name = "Align",
-            T = { [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]], "Lua tables", }, --  Tabularize
-            t = { ":'<,'>Tabularize ", "Tabularize", silent = false } -- Tabularize
+            T = { [[:Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|}\?$\|},\s--\s\S\+\|}\s--\s\S\+<CR>]], "Lua tables", }, -- Tabularize
+            t = { ":Tabularize ", "Tabularize", silent = false } -- Tabularize
         },
         c = { "Line comment"  }, -- comment.nvim
         b = { "Block comment" }, -- comment.nvim
     },
-    i = {
-        h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
+    ["<Space>"] = {
+        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to" }, -- hop
+        g = {
+            name = "Git",
+            s = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
+            r = { ":Gitsigns reset_hunk<CR>",       "Reset hunk"      }, -- gitsigns
+            v = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
+        },
     },
 }, { mode = "x" })
