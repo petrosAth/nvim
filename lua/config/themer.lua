@@ -249,6 +249,9 @@ require("themer").setup({
                     dressing = {
                         FloatTitle = { link = "NormalFloat" },
                     },
+                    diffview = {
+                        DiffviewWinSeparator = {  fg = p.nord1, bg = p.nord13 },
+                    },
                     gitsigns = {
                         GitSignsCurrentLineBlame = { fg = p.nord15, bg = "none",      style = "italic,bold" },
                         GitSignsAdd              = { fg = p.nord14, bg = "none"                             },

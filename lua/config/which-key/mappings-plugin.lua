@@ -58,11 +58,12 @@ wk.register({
         c     = { "<CMD>HexokinaseToggle<CR>",    "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
-            q = { "<CMD>DiffviewClose<CR>",       "Quit"                      }, -- diffview
-            e = { "<CMD>DiffviewToggleFiles<CR>", "Toggle file tree"          }, -- diffview
-            h = { "<CMD>DiffviewFileHistory<CR>", "Open file history view"    }, -- diffview
-            o = { "<CMD>DiffviewOpen<CR>",        "Open"                      }, -- diffview
-            R = { "<CMD>DiffviewRefresh<CR>",     "Refresh stats and entries" }, -- diffview
+            q = { "<CMD>DiffviewClose<CR>",         "Quit"                              }, -- diffview
+            e = { "<CMD>DiffviewToggleFiles<CR>",   "Toggle file tree"                  }, -- diffview
+            h = { "<CMD>DiffviewFileHistory %<CR>", "Show history log for current file" }, -- diffview
+            H = { "<CMD>DiffviewFileHistory<CR>",   "Show history log"                  }, -- diffview
+            o = { "<CMD>DiffviewOpen<CR>",          "Open"                              }, -- diffview
+            R = { "<CMD>DiffviewRefresh<CR>",       "Refresh stats and entries"         }, -- diffview
         },
         D = {
             name = "Diff mode",

@@ -6,8 +6,8 @@ require("diffview").setup({
     enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
     use_icons = true,         -- Requires nvim-web-devicons
     icons = {                 -- Only applies when use_icons is true.
-        folder_closed = " ",
-        folder_open   = " ",
+        folder_closed = "",
+        folder_open   = "",
     },
     signs = {
         fold_closed = i.foldercl[1],
@@ -26,14 +26,15 @@ require("diffview").setup({
     },
     file_history_panel = {
         log_options = {
-            max_count = 256,     -- Limit the number of commits
-            follow = false,      -- Follow renames (only for single file)
-            all = false,         -- Include all refs under 'refs/' including HEAD
-            merges = false,      -- List only merge commits
-            no_merges = false,   -- List no merge commits
-            reverse = false,     -- List commits in reverse order
+            single_file = {
+                max_count = 512,  -- Limit the number of commits
+                follow    = true, -- Follow renames (only for single file)
+            },
+            multi_file = {
+                max_count = 512, -- Limit the number of commits
+            }
         },
-        win_config = {           -- See ':h diffview-config-win_config'
+        win_config = {         -- See ':h diffview-config-win_config'
             position = "bottom",
             height = 16,
         },
@@ -54,11 +55,11 @@ require("diffview").setup({
             -- ["<tab>"]         = actions.select_next_entry,   -- Open the diff for the next file
             -- ["<s-tab>"]       = actions.select_prev_entry,   -- Open the diff for the previous file
             -- ["gf"]            = actions.goto_file,           -- Open the file in a new split in previous tabpage
-            ["<C-w><C-y>"]         = actions.goto_file,           -- Open the file in a new split in previous tabpage
+            ["<C-w><C-y>"]    = actions.goto_file,           -- Open the file in a new split in previous tabpage
             -- ["<C-w><C-f>"]    = actions.goto_file_split,     -- Open the file in a new split
-            ["<C-w><C-v>"]         = actions.goto_file_split,     -- Open the file in a new split
+            ["<C-w><C-v>"]    = actions.goto_file_split,     -- Open the file in a new split
             -- ["<C-w>gf"]       = actions.goto_file_tab,       -- Open the file in a new tabpage
-            ["<C-w><C-t>"]         = actions.goto_file_tab,       -- Open the file in a new tabpage
+            ["<C-w><C-t>"]    = actions.goto_file_tab,       -- Open the file in a new tabpage
             -- ["<leader>e"]     = actions.focus_files,         -- Bring focus to the files panel
             -- ["<leader>b"]     = actions.toggle_files,        -- Toggle the files panel.
         },
