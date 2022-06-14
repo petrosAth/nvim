@@ -118,6 +118,8 @@ opt.laststatus = 2 -- Statusline
 
 opt.showmode = false -- Don't show mode in command line
 
+opt.autoread = false -- Ask before reloading a file changed outside of neovim
+
 opt.splitright = true
 opt.splitbelow = true
 opt.equalalways = false -- When on, all the windows are automatically made the same size after splitting or closing a window
