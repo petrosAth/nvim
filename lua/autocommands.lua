@@ -1,87 +1,66 @@
--- Remove trailing whitespace and newlines
-vim.cmd([[
-    augroup CLEANUP
-        autocmd!
-        autocmd BufWritePre * silent! lua perform_cleanup()
-    augroup END
-]])
+-- Source:
+-- https://gitlab.com/Groctel/dotfiles/-/blob/c94a6b68cddffee5df42e7d46f48c4abf1ddd67d/files-common/.config/nvim/lua/user/autocmd.lua
+-- https://github.com/Allaman/nvim/blob/2e07f43d992f3858bd0527b00289a51ea00099f6/lua/autocmd.lua
+local api = vim.api
 
--- Restore terminal cursor after quit
-vim.cmd([[
-    augroup RESTORE_CURSOR
-        autocmd!
-        autocmd VimLeave * set guicursor=n:ver25,a:blinkwait750-blinkoff750-blinkon750-Cursor/lCursor
-    augroup END
-]])
+local TrimExtraSpacesAndNewLines = api.nvim_create_augroup("TrimExtraSpacesAndNewLines", { clear = true })
+api.nvim_create_autocmd("BufWritePre", {
+    command = [[
+        let current_pos = getpos(".")
+        silent! %s/\v\s+$|\n+%$//e
+        silent! call setpos(".", current_pos)
+    ]],
+    group = TrimExtraSpacesAndNewLines,
+})
 
--- Activate search highlight after search initiation
--- Deactivate search highlight after entering insert mode
--- vim.cmd([[
---     augroup HL_SEARCH
---         autocmd!
---         autocmd CmdlineEnter /,\? set hlsearch
---         autocmd InsertEnter * set nohlsearch
---     augroup END
--- ]])
+local YankHighlightGroup = api.nvim_create_augroup("YankHighlightGroup", { clear = true })
+api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank({ timeout = 300, on_visual = true, on_macro = true })
+    end,
+    group = YankHighlightGroup,
+})
 
--- Toggle relativenumber after entering and leaving insert mode
--- Source: https://jeffkreeftmeijer.com/vim-number/
-vim.cmd [[
-    augroup NUMBER_TOGGLE
-        autocmd!
-        autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-        autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-    augroup END
-]]
+api.nvim_create_autocmd("FileType", {
+    pattern = {
+        "checkhealth",
+        "help",
+        "lspinfo",
+        "lsp-installer",
+        "man",
+        "packer",
+    },
+    callback = function()
+        vim.api.nvim_buf_set_keymap(0, "n", "q", "<CMD>close!<CR>", { noremap = true, silent = true })
+    end,
+})
 
--- Highlight on yank
-vim.cmd([[
-    augroup HL_ON_YANK
-        autocmd!
-        autocmd TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 300, on_visual = true, on_macro = true })
-    augroup END
-]])
+local ToggleRelativeNumberInInsertMode = api.nvim_create_augroup("ToggleRelativeNumberInInsertMode", { clear = true })
+api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+    command = [[ if &nu && mode() != "i" | set rnu   | endif ]],
+    group = ToggleRelativeNumberInInsertMode,
+})
+api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+    command = [[if &nu | set nornu | endif]],
+    group = ToggleRelativeNumberInInsertMode,
+})
 
--- Automatically reload the file if it is changed outside of nvim
-vim.cmd([[
-    augroup AUTO_READ
-        autocmd!
-        autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
-        autocmd FileChangedShellPost * echohl WarningMsg | redraw | echo 'File changed on disk. Buffer reloaded!' | echohl None
-    augroup END
-]])
+local SaveAndRestoreFolds = api.nvim_create_augroup("SaveAndRestoreFolds", { clear = true })
+api.nvim_create_autocmd("BufWinLeave", {
+    command = [[
+        if expand('%') != '' | mkview | endif
+    ]],
+    group = SaveAndRestoreFolds,
+})
+api.nvim_create_autocmd("BufWinEnter", {
+    command = [[
+        if expand('%') != '' | silent! loadview | endif
+    ]],
+    group = SaveAndRestoreFolds,
+})
 
--- Save and restore folds
--- Also resumes edit position
-vim.cmd([[
-    augroup SAVE_VIEW
-        autocmd!
-        autocmd BufWinLeave *.* if expand('%') != '' | mkview | endif
-        autocmd BufWinEnter *.* if expand('%') != '' | silent! loadview | endif
-    augroup END
-]])
-
-vim.cmd([[
-    augroup RESTORE_WIN_VIEW
-        autocmd!
-        autocmd BufLeave * lua auto_save_win_view()
-        autocmd BufEnter * lua auto_restore_win_view()
-    augroup END
-]])
-
--- Force disable inserting comment leader after hitting o or O
--- Force disable inserting comment leader after hitting <Enter> in insert mode
-vim.cmd([[
-    augroup FORCE_FORMAT_OPTIONS
-        autocmd!
-        autocmd BufEnter * setlocal formatoptions-=r formatoptions-=o
-    augroup END
-]])
-
--- Setup neovim-remote
--- vim.cmd([[
---     augroup SETUP_NVR
---         autocmd!
---         autocmd VimEnter * lua set_servername()
---     augroup END
--- ]])
+-- r - Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+-- o - Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+api.nvim_create_autocmd("BufEnter", {
+    command = [[set formatoptions-=ro]],
+})
