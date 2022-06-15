@@ -34,13 +34,6 @@ wk.register({
             t = { "<CMD>tabclose<CR>", "Delete tab"    }
         },
     },
-    ["<Space>"] = {
-        ["<Space>"] = {
-            t = { "<CMD>lua launch_ext_prog('wt.exe -d', string.format('\"%s\"', vim.fn.expand('%:p:h')))<CR>", "Launch Windows terminal at cwd" },
-            e = { "<CMD>lua launch_ext_prog('explorer.exe', vim.fn.expand('%:p:h'))<CR>",                       "Launch Windows explorer at cwd" },
-            c = { "<CMD>lua launch_ext_prog('code', '%')<CR>",                                                  "Open current file in VSCode"    }
-        }
-    }
 })
 
 -- Insert mode mappings
