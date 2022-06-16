@@ -1,8 +1,6 @@
 require("config.lsp.nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 local lsp_cfg = require("config.lsp")
-local edit_mode = NVIM_GLOBAL.edit_mode
-local mono = NVIM_GLOBAL.mono
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers
@@ -17,10 +15,10 @@ for _, name in ipairs(servers) do
         })
     elseif name == "omnisharp" then
         lspconfig[name].setup({
-            use_mono = mono
+            use_mono = _G.lsp_omnisharp_mono
         })
     elseif name == "sumneko_lua" then
-        if edit_mode then
+        if _G.nvim_dev_mode then
             -- add nvim and nvim-data folders in workspace library
             local nvim_library = {}
             local runtime_path = vim.split(package.path, ";")
