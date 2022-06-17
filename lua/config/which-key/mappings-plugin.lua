@@ -162,6 +162,7 @@ wk.register({
         },
         u = { "<CMD>NvimTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
         ["<Space>"] = {
+            name = "Launch",
             e = { "<CMD>lua launch_ext_prog('dolphin ', vim.fn.expand('%:p:h'))<CR>", "Open cwd in system file browser"  },
             l = { "<CMD>lua open_url(vim.fn.expand('<cWORD>'))<CR>",                  "Open URL under cursor in browser", silent = true }
         }

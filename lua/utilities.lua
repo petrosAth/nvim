@@ -10,6 +10,7 @@ end
 -- Open link in browser
 function _G.open_url(url)
     if url ~= nil then
+        url = string.gsub(url:gsub("^.+%(", ""), "%)$", "")
         url = string.gsub(string.gsub(url:gsub(",$", ""), "^['\"]", ""), "['\",]$", "")
 
         if string.match(url, "^%w[%w-]*/[%w-_.]+$") then
