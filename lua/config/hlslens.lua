@@ -1,16 +1,11 @@
 local i = require("styling").icons
 
 require("hlslens").setup({
-    -- Enable nvim-hlslens automatically
     auto_enable = true,
-    -- When `incsearch` option is on and enable_incsearch is true, add lens
-    -- for the current matched instance
     enable_incsearch = true,
     -- When the cursor is out of the position range of the matched instance
     -- and calm_down is true, clear all lens,
     calm_down = true,
-    -- Only add lens for the nearest matched instance and ignore others,
-    -- nearest_only = false,
     -- When to open the floating window for the nearest lens.
     -- 'auto': floating window will be opened if room isn't enough for virtual text;
     -- 'always': always use floating window instead of virtual text;
@@ -25,32 +20,30 @@ require("hlslens").setup({
     --     should search `override_lens` and inspect the corresponding source code.
     --     There's no guarantee that this function will not be changed in the future. If it is
     --     changed, it will be listed in the CHANGES file.,
-    override_lens = function(render, plist, nearest, idx, r_idx)
+    override_lens = function(render, posList, nearest, idx, relIdx)
         local sfw = vim.v.searchforward == 1
         local indicator, text, chunks
-        local abs_r_idx = math.abs(r_idx)
-        if abs_r_idx > 1 then
-            indicator = string.format("%d%s", abs_r_idx, sfw ~= (r_idx > 1) and i.arrowu[1] or i.arrowb[1])
-        elseif abs_r_idx == 1 then
-            indicator = sfw ~= (r_idx == 1) and i.arrowu[1] or i.arrowb[1]
+        local absRelIdx = math.abs(relIdx)
+        if absRelIdx > 0 then
+            indicator = ('%d%s'):format(absRelIdx, sfw ~= (relIdx > 1) and i.arrowu[1] or i.arrowb[1])
         else
-            indicator = ""
+            indicator = i.arrowr[1]
         end
 
-        local lnum, col = unpack(plist[idx])
+        local lnum, col = unpack(posList[idx])
         if nearest then
-            local cnt = #plist
-            if indicator ~= "" then
-                text = string.format("[%s %d/%d]", indicator, idx, cnt)
+            local cnt = #posList
+            if indicator ~= '' then
+                text = (' %s▕ %d/%d '):format(indicator, idx, cnt)
             else
-                text = string.format("[%d/%d]", idx, cnt)
+                text = (' %d/%d '):format(idx, cnt)
             end
-            chunks = { { " ", "Ignore" }, { text, "HlSearchLensNear" } }
+            chunks = {{' ', 'Ignore'}, {text, 'HlSearchLensNear'}}
         else
-            text = string.format("[%s]", indicator)
-            chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
+            text = (' %s▕ %d '):format(indicator, idx)
+            chunks = {{' ', 'Ignore'}, {text, 'HlSearchLens'}}
         end
-        render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
+        render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
     end,
 
     -- needed for scrollbar plugin
