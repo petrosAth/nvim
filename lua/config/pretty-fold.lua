@@ -5,7 +5,7 @@ require("pretty-fold").setup({
             "content"
         },
         right = {
-            " ", "number_of_folded_lines", " | ", "percentage", " ----"
+            " ", "number_of_folded_lines", " │ ", "percentage", " ────"
         }
     },
 
