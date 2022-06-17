@@ -56,14 +56,6 @@ return packer.startup(function()
     use({ "wbthomason/packer.nvim" }) -- https://github.com/wbthomason/packer.nvim
 
 --<=< Styling >======================================================================================================>--
-    -- Themer - A simple, minimal highlighter plugin for neovim
-    use({
-        "ThemerCorp/themer.lua", -- https://github.com/ThemerCorp/themer.lua
-        config = function()
-            require("config.themer")
-        end,
-    })
-
     -- Dressing.nvim - Neovim plugin to improve the default vim.ui interfaces
     use({
         "stevearc/dressing.nvim", -- https://github.com/stevearc/dressing.nvim

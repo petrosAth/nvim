@@ -89,9 +89,9 @@ wk.register({
                 name = "Git actions",
                 b = {
                     name = "Buffer actions",
-                    a = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"     }, -- gitsigns
-                    r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"     }, -- gitsigns
-                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Git reset buffer" }, -- gitsigns
+                    a = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"   }, -- gitsigns
+                    r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"   }, -- gitsigns
+                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Unstage buffer" }, -- gitsigns
                 },
                 h = {
                     name = "Hunk actions",
