@@ -379,7 +379,7 @@ M.lsp_status = function()
                     return M.print_for_width({
                         autofill = true,
                         XL = "  " .. "[" .. table.concat(lsp_clients, " ") .. "]",
-                        L  = "  " .. "[" .. table.concat(lsp_clients, " ") .. "]",
+                        L  = "  LSP",
                         M  = "LSP",
                         S  = "",
                         _  = ""

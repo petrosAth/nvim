@@ -26,8 +26,8 @@ telescope.setup({
         },
         initial_mode = "insert",
         path_display = {
-            -- truncate = 3
-            "smart"
+            truncate = 3
+            -- "smart"
             -- shorten = { len = 1, exclude = { -1, -2, -3, -4 } }
             -- "absolute",
         },

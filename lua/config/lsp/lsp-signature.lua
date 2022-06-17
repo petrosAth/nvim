@@ -11,20 +11,20 @@ lsp_signature.setup({
                  -- This setting only take effect in insert mode, it does not affect signature help in normal
                  -- mode, 10 by default
 
-    -- floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+    floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
 
     floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
     -- will set to true when fully tested, set to false will use whichever side has more space
     -- this setting will be helpful if you do not want the PUM and floating win overlap
     fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
     hint_enable = false, -- virtual hint enable
-    hint_prefix = i.hint[1] .. " ",  -- Panda for parameter
+    hint_prefix = i.hint[1] .. " ",
     hint_scheme = "String",
     use_lspsaga = false,  -- set to true if you want to use lspsaga popup
     hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
     max_height = 20, -- max height of signature floating_window, if content is more than max_height, you can scroll down
                    -- to view the hiding contents
-    max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+    max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
     handler_opts = {
         -- border = "single",   -- double, rounded, single, shadow, none
         border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l },
