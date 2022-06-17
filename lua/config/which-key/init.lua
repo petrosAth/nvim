@@ -1,7 +1,7 @@
 local wk = require("which-key")
 local t = require("styling").variables.transparency
-local i = require("styling").icon
-local sb = require("styling").border.default
+local i = require("styling").icons
+local sb = require("styling").borders.default
 
 wk.setup({
     plugins = {

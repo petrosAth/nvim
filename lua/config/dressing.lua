@@ -1,5 +1,5 @@
 local t = require("styling").variables.transparency
-local b = require("styling").border.default
+local b = require("styling").borders.default
 
 require("dressing").setup({
     input = {

@@ -20,7 +20,7 @@ vim.cmd([[
 ]])
 
 local trouble = require("trouble")
-local i = require("styling").icon
+local i = require("styling").icons
 local iUI = i.nvim_ui
 
 trouble.setup({

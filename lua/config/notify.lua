@@ -1,6 +1,6 @@
 local notify = require("notify")
-local i = require("styling").icon
-local b = require("styling").border.default
+local i = require("styling").icons
+local b = require("styling").borders.default
 
 notify.setup({
     -- Animation style (see below for details)

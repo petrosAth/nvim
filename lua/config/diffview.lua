@@ -1,5 +1,5 @@
 local actions = require("diffview.config").actions
-local i = require("styling").icon
+local i = require("styling").icons
 
 require("diffview").setup({
     diff_binaries = false,    -- Show diffs for binaries

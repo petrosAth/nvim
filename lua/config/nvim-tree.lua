@@ -1,5 +1,5 @@
 local tree = require("nvim-tree")
-local i = require("styling").icon
+local i = require("styling").icons
 
 vim.cmd([[
     augroup NVIMTREE

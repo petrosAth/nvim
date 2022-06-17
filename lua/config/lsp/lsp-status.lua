@@ -1,6 +1,6 @@
 local lsp_status = require("lsp-status")
 local lspkind_symbols = require("config.lsp.lspkind").symbols
-local i = require("styling").icon
+local i = require("styling").icons
 local M = {}
 
 M.select_symbol = function(cursor_pos, symbol)

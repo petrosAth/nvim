@@ -1,4 +1,4 @@
-local b = require("styling").border.outline
+local b = require("styling").borders.outline
 
 require("gitsigns").setup {
     signs = {

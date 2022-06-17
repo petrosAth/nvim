@@ -1,4 +1,4 @@
-local b = require("styling").border.default
+local b = require("styling").borders.default
 
 require("session-lens").setup({
     theme_conf = {

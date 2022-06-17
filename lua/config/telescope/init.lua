@@ -3,9 +3,9 @@ local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local trouble = require("trouble.providers.telescope")
 local t = require("styling").variables.transparency
-local i = require("styling").icon
-local b = require("styling").border.default
-local bn = require("styling").border.none
+local i = require("styling").icons
+local b = require("styling").borders.default
+local bn = require("styling").borders.none
 
 telescope.setup({
     defaults = {

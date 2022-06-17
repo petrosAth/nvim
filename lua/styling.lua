@@ -1,12 +1,15 @@
-local M = {}
+local styling = {}
+
+-- Set colorscheme
+vim.cmd("colorscheme " .. themeName)
 
 -- Table containing variables
-M.variables = {
+styling.variables = {
     transparency = 0
 }
 
 -- Table containing icons
-M.icon = {
+styling.icons = {
     error    = { "", "", "", "", "", "" },
     warn     = { "", "", "", "", "", "" },
     hint     = { "", "", "", "", "", "" },
@@ -70,7 +73,7 @@ M.icon = {
 }
 
 -- Table containing borders
-M.border = {
+styling.borders = {
     default  = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕" },
     outline  = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕" },
     single   = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
@@ -81,4 +84,4 @@ M.border = {
     none     = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " " },
 }
 
-return M
+return styling

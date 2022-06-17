@@ -10,7 +10,7 @@ vim.cmd([[
 
 local lsp_cfg = require("config.lsp")
 local lsp_installer = require("nvim-lsp-installer")
-local i = require("styling").icon
+local i = require("styling").icons
 
 -- Get language server list for installation
 local servers = lsp_cfg.servers

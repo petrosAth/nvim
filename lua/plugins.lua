@@ -7,9 +7,9 @@ vim.cmd([[
 
 local fn = vim.fn
 local install_path = PACKER_PATH .. "/start/packer.nvim"
-local i = require("styling").icon
-local b = require("styling").border.default
-local bs = require("styling").border.single
+local i = require("styling").icons
+local b = require("styling").borders.default
+local bs = require("styling").borders.single
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then

@@ -9,8 +9,8 @@ vim.cmd([[
 ]])
 
 local M = {}
-local i = require("styling").icon
-local b = require("styling").border.default
+local i = require("styling").icons
+local b = require("styling").borders.default
 
 -- List of servers for installation
 M.servers = {

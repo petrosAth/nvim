@@ -1,6 +1,6 @@
 local opt, o, g = vim.opt, vim.o, vim.g
 local t = require("styling").variables.transparency
-local i = require("styling").icon
+local i = require("styling").icons
 local iUI = i.nvim_ui
 local M = {}
 

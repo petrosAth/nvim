@@ -1,8 +1,8 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
-local i = require("styling").icon
-local b = require("styling").border.default
-local bn = require("styling").border.none
+local i = require("styling").icons
+local b = require("styling").borders.default
+local bn = require("styling").borders.none
 
 local M = {}
 
