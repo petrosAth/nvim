@@ -6,7 +6,7 @@ vim.cmd([[
                 \ setlocal nolist
                 \ colorcolumn=0
                 \ nonumber relativenumber |
-                \ lua local iUI = require("styling").icon.nvim_ui
+                \ lua local iUI = require("styling").icons.nvim_ui
                 \ vim.opt_local.fillchars = {
                 \     vert = iUI.vert[1],
                 \     fold = iUI.fold[1],

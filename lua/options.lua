@@ -2,7 +2,6 @@ local opt, o, g = vim.opt, vim.o, vim.g
 local t = require("styling").variables.transparency
 local i = require("styling").icons
 local iUI = i.nvim_ui
-local M = {}
 
 --<=< GUI general options >==========================================================================================>--
 -- Set gui font for nvim-qt, neovide etc
@@ -173,5 +172,3 @@ g.loaded_python_provider = 0 -- Disable Python2 support
 g.loaded_perl_provider = 0 -- Disable perl provider
 g.loaded_ruby_provider = 0 -- Disable ruby provider
 g.loaded_node_provider = 0 -- Disable node provider
-
-return M

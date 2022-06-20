@@ -1,6 +1,5 @@
--- Sources:
+-- Source:
 -- https://github.com/Neelfrost/nvim-config/blob/bdffbc3c74fc5ee8b5789c8d9e3e68c0f1163e34/lua/user/utils.lua
-
 -- Launch external program
 function _G.launch_ext_prog(prog, args)
     vim.api.nvim_command("!" .. prog .. " " .. args)
