@@ -80,6 +80,7 @@ wk.register({
 
 -- Command mode mappings
 wk.register({
+    ["<C-y>"] = { "<CR>",      "Enter"                 },
     ["<M-H>"] = { "<Left>",    "Cursor left"           },
     ["<M-L>"] = { "<Right>",   "Cursor right"          },
     ["<M-h>"] = { "<S-Left>",  "Cursor one word left"  },
