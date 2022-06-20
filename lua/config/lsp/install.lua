@@ -15,10 +15,10 @@ for _, name in ipairs(servers) do
         })
     elseif name == "omnisharp" then
         lspconfig[name].setup({
-            use_mono = _G.lsp_omnisharp_mono
+            use_mono = OMNI_MONO
         })
     elseif name == "sumneko_lua" then
-        if _G.nvim_dev_mode then
+        if DEV_MODE then
             -- add nvim and nvim-data folders in workspace library
             local nvim_library = {}
             local runtime_path = vim.split(package.path, ";")

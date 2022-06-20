@@ -1,7 +1,7 @@
 local styling = {}
 
 -- Set colorscheme
-vim.cmd("colorscheme " .. _G.themeName)
+vim.cmd("colorscheme " .. THEME)
 
 -- Table containing variables
 styling.variables = {
