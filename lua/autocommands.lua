@@ -10,7 +10,7 @@ autocmd("TextYankPost", {
     group = YankHighlight,
     desc  = "Configure Yank Highlight.",
     callback = function()
-        vim.highlight.on_yank({ timeout = 300, on_visual = true, on_macro = true })
+        vim.highlight.on_yank({ higroup='Yank', timeout = 300, on_visual = true, on_macro = true })
     end,
 })
 

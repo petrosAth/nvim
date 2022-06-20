@@ -77,6 +77,8 @@ highlightGroups.editor = {
     DiffAdd = { fg = p.none, bg = p.nord14dark },
     DiffChange = { fg = p.none, bg = p.nord13dark },
     DiffDelete = { fg = p.none, bg = p.nord11dark },
+    -- Yank
+    Yank = { fg = p.nord6, bg = p.nord10 },
 }
 
 highlightGroups.syntax = {
@@ -307,7 +309,7 @@ highlightGroups.plugins = {
 
     -- mini.nvim
     MiniCursorword = { link = "Visual" },
-    MiniCursorwordCurrent = { fg = p.none, bg = p.none },
+    MiniCursorwordCurrent = { style = "bold" },
 
     -- nvim-notify
     NotifyERRORTitle = { link = "DiagnosticError" },
