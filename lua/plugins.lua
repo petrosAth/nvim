@@ -244,6 +244,14 @@ return packer.startup(function()
                 "windwp/nvim-ts-autotag", -- https://github.com/windwp/nvim-ts-autotag
                 ft = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue" },
             },
+            -- spellsitter.nvim - Treesitter powered spellchecker
+            {
+                "lewis6991/spellsitter.nvim", -- https://github.com/lewis6991/spellsitter.nvim
+                after = { "nvim-treesitter" },
+                config = function()
+                    require('spellsitter').setup()
+                end
+            },
         },
         config = function()
             require("config.treesitter")
