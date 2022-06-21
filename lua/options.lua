@@ -71,17 +71,6 @@ opt.colorcolumn = "120" -- Show vertical line for text alignment
 
 opt.foldcolumn = "auto:9" -- Fold column
 opt.foldmethod = "indent" -- Folding configuration
-
--- Expr folding using treesitter
--- reddit comment: https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
--- opt.foldtext = [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
-
--- Manual folding using custom fold text from file
--- opt.foldmethod = "marker"
--- opt.foldtext = "v:lua.custom_fold_text()"
-
 opt.foldlevelstart = 99
 opt.foldminlines = 1
 

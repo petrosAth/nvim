@@ -140,12 +140,12 @@ tree.setup({
                 folder = {
                     arrow_closed = i.foldercl[1],
                     arrow_open   = i.folderop[1],
-                    default      = "",
-                    open         = "",
-                    empty        = "",
-                    empty_open   = "",
-                    symlink      = "",
-                    symlink_open = "",
+                    default      = "",
+                    open         = "",
+                    empty        = "",
+                    empty_open   = "",
+                    symlink      = "",
+                    symlink_open = "",
                 },
                 git = {
                     unstaged  = i.edit[1],
