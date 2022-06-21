@@ -360,12 +360,12 @@ highlightGroups.plugins = {
 
     -- nvim-scrollbar
     ScrollBarHandle = { fg = p.none, bg = p.nord2 },
-    ScrollbarError = { link = "DiagnosticError" },
-    ScrollbarWarn = { link = "DiagnosticWarn" },
-    ScrollbarInfo = { link = "DiagnosticInfo" },
-    ScrollbarHint = { link = "DiagnosticHint" },
-    ScrollbarMisc = { fg = p.nord4, bg = p.none },
-    ScrollbarSearch = { link = "Search" },
+    ScrollBarError = { link = "DiagnosticError" },
+    ScrollBarWarn = { link = "DiagnosticWarn" },
+    ScrollBarInfo = { link = "DiagnosticInfo" },
+    ScrollBarHint = { link = "DiagnosticHint" },
+    ScrollBarMisc = { fg = p.nord4, bg = p.none },
+    ScrollBarSearch = { link = "Search" },
 
     -- telescope.nvim
     TelescopePromptPrefix = { fg = p.nord4, bg = p.none, style = "bold" },
