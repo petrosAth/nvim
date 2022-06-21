@@ -38,10 +38,6 @@ Simple session management for Neovim.
 A simple wrapper around :mksession.
 - [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim)
 A NeoVim plugin for saving your work before the world collapses or you type :qa!
-- [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua)
-Clipboard manager neovim plugin with telescope integration.
-- [vim-easy-align](https://github.com/junegunn/vim-easy-align)
-A Vim alignment plugin.
 - [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
 Telescope extension to preview media files using Ueberzug.
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)

@@ -1,5 +1,5 @@
 require("pretty-fold").setup({
-    fill_char = "-",
+    fill_char = "─",
     sections = {
         left = {
             "content"
