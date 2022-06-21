@@ -367,6 +367,10 @@ highlightGroups.plugins = {
     ScrollBarMisc = { fg = p.nord4, bg = p.none },
     ScrollBarSearch = { link = "Search" },
 
+    -- satellite.nvim
+    ScrollView = { link = "Visual" },
+    SearchSV = { fg = p.nord8, bg = p.none },
+
     -- telescope.nvim
     TelescopePromptPrefix = { fg = p.nord4, bg = p.none, style = "bold" },
     TelescopePromptCounter = { fg = p.nord0, bg = p.none, style = "bold" },

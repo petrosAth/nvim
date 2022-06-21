@@ -97,12 +97,12 @@ return packer.startup(function()
         end,
     })
 
-    -- nvim-scrollbar - Extensible Neovim Scrollbar
+    -- satellite.nvim - Decorate scrollbar for Neovim
     use({
-        "petertriho/nvim-scrollbar", -- https://github.com/petertriho/nvim-scrollbar
-        config = function()
-            require("config.scrollbar")
-        end,
+        "lewis6991/satellite.nvim", -- https://github.com/lewis6991/satellite.nvim
+        config = function ()
+            require("config.satellite")
+        end
     })
 
     -- pretty-fold.nvim - Foldtext customization and folded region preview in Neovim

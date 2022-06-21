@@ -15,5 +15,6 @@ require("auto-session").setup({
         "UndotreeShow",
         "UndotreeHide",
         "TroubleClose",
+        "SatelliteDisable"
     },
 })
