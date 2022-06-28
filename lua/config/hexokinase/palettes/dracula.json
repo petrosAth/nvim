@@ -1,20 +1,21 @@
 {
     "colour_table": {
-        "draculaFg"        : "#F8F8F2",
-        "draculaBglighter" : "#424450",
-        "draculaBglight"   : "#343746",
-        "draculaBg"        : "#282A36",
-        "draculaBgdark"    : "#21222C",
-        "draculaBgdarker"  : "#191A21",
-        "draculaComment"   : "#6272A4",
-        "draculaSelection" : "#44475A",
-        "draculaSubtle"    : "#424450",
-        "draculaCyan"      : "#8BE9FD",
-        "draculaGreen"     : "#50FA7B",
-        "draculaOrange"    : "#FFB86C",
-        "draculaPink"      : "#FF79C6",
-        "draculaPurple"    : "#BD93F9",
-        "draculaRed"       : "#FF5555",
-        "draculaYellow"    : "#F1FA8C"
+        "draculaFg"        : "#f8f8f2",
+        "draculaFgDark"    : "#d8d8d3",
+        "draculaFgDarker"  : "#8f98b7",
+        "draculaComment"   : "#6272a4",
+        "draculaSelection" : "#44475a",
+        "draculaBgLighter" : "#3c3f50",
+        "draculaBgLight"   : "#333544",
+        "draculaBg"        : "#282a36",
+        "draculaBgDark"    : "#232531",
+        "draculaBgDarker"  : "#1e202b",
+        "draculaCyan"      : "#8be9fd",
+        "draculaGreen"     : "#50fa7b",
+        "draculaOrange"    : "#ffb86c",
+        "draculaPink"      : "#ff79c6",
+        "draculaPurple"    : "#bd93f9",
+        "draculaRed"       : "#ff5555",
+        "draculaYellow"    : "#f1fa8c"
     }
 }
