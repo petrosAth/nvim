@@ -14,9 +14,6 @@ bufferline.setup{
         close_icon = i.close[1],
         left_trunc_marker = i.arrowl[1],
         right_trunc_marker = i.arrowr[1],
-        name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-            return string.format(" %s", buf.name)
-        end,
         max_name_length = 30,
         tab_size = 1,
         diagnostics = false,
@@ -26,7 +23,7 @@ bufferline.setup{
         -- left aligned   => "▏","▍","▌"
         -- center aligned => "│","┃"," ","█"
         indicator_icon = "█",
-        separator_style = "█", -- { "█", "█" },
+        separator_style = { "█", "█" }, -- { "▕", "▕" },
         offsets = {
             {
                 filetype = "NvimTree",
