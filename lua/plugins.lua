@@ -332,6 +332,7 @@ return packer.startup(function()
     -- hop.nvim - Hop allows you to jump anywhere in a document with as few keystrokes as possible
     use({
         "phaazon/hop.nvim", -- https://github.com/phaazon/hop.nvim
+        branch = "v2",
         config = function()
             require("hop").setup({
                 jump_on_sole_occurrence = true,

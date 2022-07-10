@@ -77,6 +77,8 @@ wk.register({
         e = { "<CMD>NvimTreeToggle<CR>",                                                               "Toggle file tree"          }, -- nvimtree
         E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer", }, -- nvimtree
         f = { "<CMD>lua require'hop'.hint_char1()<CR>",                                                "Hop to"                    }, -- hop
+        f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",  "Hop to" }, -- hop
+        F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to" }, -- hop
         g = {
             name = "Git & gitsigns",
             b = {
@@ -160,6 +162,8 @@ wk.register({
                 c = { tele_builtin .. "command_history()<CR>", "Command history"   }, -- telescope
             },
         },
+        t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before" }, -- hop
+        T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before" }, -- hop
         u = { "<CMD>NvimTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
         ["<Space>"] = {
             name = "Launch",
@@ -179,8 +183,10 @@ wk.register({
         h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
     },
     ["<Space>"] = {
-        f = { "<CMD>lua require'hop'.hint_char1({ inclusive_jump = true })<CR>", "Hop to"          }, -- hop
-        t = { "<CMD>lua require'hop'.hint_char1()<CR>",                          "Hop till before" }, -- hop
+        f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to"     }, -- hop
+        F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to"     }, -- hop
+        t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -2 })<CR>", "Hop before" }, -- hop
+        T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before" }, -- hop
     },
 }, { mode = "o" })
 
@@ -196,7 +202,10 @@ wk.register({
         b = { "Block comment" }, -- comment.nvim
     },
     ["<Space>"] = {
-        f = { "<CMD>lua require'hop'.hint_char1()<CR>", "Hop to" }, -- hop
+        f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to"     }, -- hop
+        F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to"     }, -- hop
+        t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before" }, -- hop
+        T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before" }, -- hop
         g = {
             name = "Git",
             s = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
