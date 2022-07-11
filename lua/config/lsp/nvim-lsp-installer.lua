@@ -2,7 +2,7 @@ vim.cmd([[
     augroup LSP_INSTALLER_BORDERS
         autocmd!
         autocmd FileType lsp-installer lua
-                \ local b = require("styling").border.default
+                \ local b = require("styling").borders.default
                 \ vim.api.nvim_win_set_config(0, { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
                 \ vim.opt.cursorline = true
     augroup END

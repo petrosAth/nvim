@@ -2,7 +2,7 @@ vim.cmd([[
     augroup LSPINFO_BORDERS
         autocmd!
         autocmd FileType lspinfo lua
-                \ local b = require("styling").border.default
+                \ local b = require("styling").borders.default
                 \ vim.api.nvim_win_set_config(0, { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
                 \ vim.opt.cursorline = true
     augroup END
@@ -21,7 +21,7 @@ M.servers = {
     "omnisharp",
     "powershell_es",
     "pyright",
-    "sumneko_lua"
+    "sumneko_lua",
 }
 
 -- Borders for LSP floating windows
@@ -37,7 +37,6 @@ local border = {
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
     opts = {
         border = opts.border or border,
     }
@@ -47,7 +46,7 @@ end
 -- Configure lsp handlers
 vim.diagnostic.config({
     virtual_text = {
-        source = "if_many",  --"always" "if_many"
+        source = "if_many", --"always" "if_many"
         spacing = 4,
         prefix = "●", --"●" "▎" ""
     },
@@ -58,10 +57,10 @@ vim.diagnostic.config({
 })
 
 -- Set diagnostic signs
-local signs = { Error = i.error[1], Warn = i.warn[1], Hint = i.hint[1], Info = i.info[1], }
+local signs = { Error = i.error[1], Warn = i.warn[1], Hint = i.hint[1], Info = i.info[1] }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl, })
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- Configure lsp capabilities
@@ -77,7 +76,7 @@ function M.custom_capabilities()
     -- lsp-status.nvim
     -- Get window/workDoneProgress from lsp server
     local lsp_status = require("lsp-status")
-    capabilities = vim.tbl_extend('keep', capabilities, lsp_status.capabilities)
+    capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
 
     return capabilities
 end

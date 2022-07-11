@@ -71,6 +71,9 @@ for _, name in ipairs(servers) do
                         telemetry = {
                             enable = false,
                         },
+                        format = {
+                            enable = false,
+                        },
                     },
                 },
                 on_attach = custom_on_attach,
@@ -85,6 +88,9 @@ for _, name in ipairs(servers) do
                             version = "Lua 5.4",
                         },
                         telemetry = {
+                            enable = false,
+                        },
+                        format = {
                             enable = false,
                         },
                     },
