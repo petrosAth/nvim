@@ -451,6 +451,14 @@ return packer.startup(function()
         end,
     })
 
+    -- Hydra.nvim - Bind a bunch of key bindings together
+    use({
+        "anuvyklack/hydra.nvim",
+        config = function ()
+            require("config.hydra")
+        end
+    })
+
     -- undotree - The undo history visualizer for VIM
     use({
         "mbbill/undotree", -- https://github.com/mbbill/undotree
