@@ -79,27 +79,33 @@ opt.viewoptions:remove("options")
 opt.list = true -- Display eol characters
 
 opt.fillchars = { -- Display chars
-    vert = iUI.vert[1],
-    fold = iUI.fold[1],
-    foldopen = iUI.foldopen[1],
+    horiz     = iUI.horiz[1],
+    horizup   = iUI.horizup[1],
+    horizdown = iUI.horizdown[1],
+    vert      = iUI.vert[1],
+    vertleft  = iUI.vertleft[1],
+    vertright = iUI.vertright[1],
+    verthoriz = iUI.verthoriz[1],
+    fold      = iUI.fold[1],
+    foldopen  = iUI.foldopen[1],
     foldclose = iUI.foldclose[1],
-    foldsep = iUI.foldsep[1],
-    diff = iUI.diff[1],
-    msgsep = iUI.msgsep[1],
-    eob = iUI.eob[1],
+    foldsep   = iUI.foldsep[1],
+    diff      = iUI.diff[1],
+    msgsep    = iUI.msgsep[1],
+    eob       = iUI.eob[1],
 }
 opt.listchars:append({
-    tab = iUI.tab[1],
-    lead = iUI.lead[1],
-    eol = iUI.eol[1],
-    extends = iUI.extends[1],
+    tab      = iUI.tab[1],
+    lead     = iUI.lead[1],
+    eol      = iUI.eol[1],
+    extends  = iUI.extends[1],
     precedes = iUI.precedes[1],
 })
 
 opt.spell = false
 opt.spelllang = "en_us" -- Use en_us to spellcheck
 
-opt.laststatus = 2 -- Statusline
+opt.laststatus = 3 -- Statusline
 
 opt.showmode = false -- Don't show mode in command line
 

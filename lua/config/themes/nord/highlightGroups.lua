@@ -283,6 +283,10 @@ highlightGroups.plugins = {
     GitSignsChangeInline     = { fg = p.none,   bg = p.nord13dark                         },
     GitSignsDeleteInline     = { fg = p.none,   bg = p.nord11dark                         },
 
+    -- incline.nvim
+    InclineNormal   = { fg = p.nord5, bg = p.nord3 },
+    InclineNormalNC = { link = "InclineNormal"     },
+
     -- indent-blankline.nvim
     IndentBlanklineContextChar        = { fg = p.nord7, bg = p.none                                    },
     IndentBlanklineContextStart       = { fg = p.none,  bg = p.none, style = "underline", sp = p.nord7 },

@@ -112,6 +112,14 @@ return packer.startup(function()
             require("config.pretty-fold")
         end,
     })
+
+    -- incline.nvim - Floating winbar statuslines for Neovim
+    use({
+        "b0o/incline.nvim",
+        config = function ()
+            require("config.incline")
+        end,
+    })
 --<==================================================================================================================>--
 
 --<=< Autocompletion and Syntax highlighting >=======================================================================>--

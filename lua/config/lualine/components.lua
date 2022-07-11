@@ -24,7 +24,11 @@ local bo = vim.bo
 local M = {}
 
 M.print_for_width = function(sizes)
-    local win = fn.winwidth(0)
+-- if global status bar is enabled, get terminal window columns, else get nvim current window columns
+    local win = vim.api.nvim_get_option('columns')
+    if vim.api.nvim_get_option('laststatus') ~= 3 then
+        win = fn.winwidth(0)
+    end
 
     if sizes.autofill then
         sizes._  = sizes._  ~= "" and sizes._  or ""
@@ -126,7 +130,7 @@ end
 
 M.is_readonly = function()
     if bo.modifiable == false or bo.readonly == true then
-        return ""
+        return " "
     end
 	return ""
 end
