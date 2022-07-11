@@ -15,10 +15,14 @@ end
 
 -- Normal mode mappings
 wk.register({
-    ["]b"]    = { "<CMD>bn<CR>",                                                                              "Next buffer",                                },
-    ["[b"]    = { "<CMD>bp<CR>",                                                                              "Previous buffer",                            },
-    ["]t"]    = { "<CMD>tabnext<CR>",                                                                         "Next tab",                                   },
-    ["[t"]    = { "<CMD>tabprevious<CR>",                                                                     "Previous tab",                               },
+    ["]"]    = {
+        b = { nil, "Next buffer" }, -- Assigned using Hydra.nvim
+        t = { nil, "Next tab"    }  -- Assigned using Hydra.nvim
+    },
+    ["["]    = {
+        b = { nil, "Previous buffer" }, -- Assigned using Hydra.nvim
+        t = { nil, "Previous tab"    }  -- Assigned using Hydra.nvim
+    },
     ["<F1>"]  = { "<CMD>setlocal spell!<CR>",                                                                 "Toggle spelling",                            },
     ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],                                                                    "Replace word under cursor",  silent = false, },
     ["<F3>"]  = { "<CMD>set relativenumber!<CR>",                                                             "Toggle relative number",                     },

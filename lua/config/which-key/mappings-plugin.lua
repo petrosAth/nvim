@@ -3,10 +3,14 @@ local telescope_custom = "<CMD>lua require('config.telescope.customPickers')."
 
 -- Normal mode mappings
 wk.register({
-    ["]c"] = { "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", "Next git hunk",       expr = true  }, -- gitsigns
-    ["[c"] = { "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", "Previous git hunk",   expr = true  }, -- gitsigns
-    ["]d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next diagnostic",     expr = false }, -- lspconfig
-    ["[d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous diagnostic", expr = false }, -- lspconfig
+    ["]"] = {
+        c = { nil, "Next git hunk",  expr = true }, -- Assigned using Hydra.nvim
+        d = { nil, "Next diagnostic"             }  -- Assigned using Hydra.nvim
+    },
+    ["["] = {
+        c = { nil, "Previous git hunk",  expr = true }, -- Assigned using Hydra.nvim
+        d = { nil, "Previous diagnostic"             }  -- Assigned using Hydra.nvim
+    },
     g = {
         a = {
             name = "Align",
