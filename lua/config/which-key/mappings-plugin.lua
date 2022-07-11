@@ -108,17 +108,17 @@ wk.register({
         },
         l = {
             name = "LSP",
-            f = { "<CMD>lua vim.lsp.buf.formatting()<CR>",     "Code formatting"       }, -- lspconfig
-            H = { "<CMD>lua vim.diagnostic.open_float()<CR>",  "Line diagnostics"      }, -- lspconfig
-            -- R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
-            R = { ":IncRename ",                            "Rename symbol"         }, -- lspconfig -- inc-rename
-            s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
-            a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",    "Code actions"          }, -- lspconfig -- telescope
-            r = { telescope_custom .. "lsp_references()<CR>",  "References"            }, -- lspconfig -- telescope
-            K = { telescope_custom .. "lsp_definitions()<CR>", "Definitions"           }, -- lspconfig -- telescope
-            h = { "<CMD>lua vim.lsp.buf.hover()<CR>",          "Hover symbol"          }, -- lspconfig
-            d = { "<CMD>Trouble document_diagnostics<CR>",     "Document diagnostics"  }, -- lspconfig -- trouble
-            D = { "<CMD>Trouble workspace_diagnostics<CR>",    "Workspace diagnostics" }, -- lspconfig -- trouble
+            f = { "<CMD>lua vim.lsp.buf.format { async = true }<CR>", "Code formatting"                       }, -- lspconfig
+            H = { "<CMD>lua vim.diagnostic.open_float()<CR>",         "Line diagnostics"                      }, -- lspconfig
+            -- R = { "<CMD>lua vim.lsp.buf.rename()<CR>",                "Rename symbol"                         }, -- lspconfig
+            R = { ":IncRename ",                                      "Rename symbol",        silent = false, }, -- lspconfig -- inc-rename
+            s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",        "Signagture help"                       }, -- lspconfig
+            a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",           "Code actions"                          }, -- lspconfig -- telescope
+            r = { telescope_custom .. "lsp_references()<CR>",         "References"                            }, -- lspconfig -- telescope
+            K = { telescope_custom .. "lsp_definitions()<CR>",        "Definitions"                           }, -- lspconfig -- telescope
+            h = { "<CMD>lua vim.lsp.buf.hover()<CR>",                 "Hover symbol"                          }, -- lspconfig
+            d = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                  }, -- lspconfig -- trouble
+            D = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                 }, -- lspconfig -- trouble
         },
         o = { "<CMD>AerialToggle<CR>", "Toggle Code outline" }, -- aerial
         q = {
