@@ -70,6 +70,16 @@ M.is_plugin = function()
 	end
 end
 
+M.is_modified = function ()
+    local bufid = vim.api.nvim_win_get_buf(0)
+    local is_modified = vim.bo[bufid].modified
+    local modified_icon = i.edit[1]
+    local modified_flag = "%#lualineModifiedFile# " .. modified_icon
+    -- return is_modified, modified_flag
+    modified_flag = is_modified and modified_flag or ""
+    return modified_flag
+end
+
 M.file_type = function()
     if M.is_plugin() then
         return ""
@@ -98,30 +108,36 @@ M.file_type = function()
 end
 
 M.file_name_active = function()
+    local file_icon = i.file[1] .. " "
+    local dir_icon = i.dir[1] .. " "
+    local modified_flag = M.is_modified()
     if M.is_plugin() or bo.filetype == "checkhealth" then
         return ""
     else
         if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.12 and fn.expand("%:h") ~= "." then
-            return " " .. fn.expand("%:~:.")
+            return file_icon .. fn.expand("%:~:.") .. modified_flag
         else
             return M.print_for_width({
                 autofill = true,
-                L  = " " .. fn.expand("%:~:."),
-                M  = " " .. fn.expand("%:h:t") .. "/",
-                S  = fn.expand("%:h:t") .. "/"
+                L  = file_icon .. fn.expand("%:~:.") .. modified_flag,
+                M  = dir_icon .. fn.expand("%:h:t") .. "/" .. modified_flag,
+                S  = fn.expand("%:h:t") .. "/" .. modified_flag
             })
         end
     end
 end
 
 M.file_name_inactive = function()
+    local file_icon = i.file[1] .. " "
+    local dir_icon = i.dir[1] .. " "
+    local modified_flag = M.is_modified()
     if M.is_plugin() then
         return ""
     else
         if #fn.expand("%:~:.") < fn.winwidth(0) * 0.85 and fn.expand("%:h") ~= "." then
-            return " " .. fn.expand("%:~:.")
+            return dir_icon .. fn.expand("%:~:.") .. modified_flag
         elseif #fn.expand("%:t") < fn.winwidth(0) * 0.65 then
-            return " " .. fn.expand("%:t")
+            return file_icon .. fn.expand("%:t") .. modified_flag
         else
             return ""
         end
