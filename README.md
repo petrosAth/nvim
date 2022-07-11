@@ -19,9 +19,9 @@ Still a work in progress.
 - [ ] Add Solarized theme
 - [x] Add Session management
 - [ ] Add debugger
-- [ ] Replace bufferline with lualine [indicators](https://github.com/nvim-lualine/lualine.nvim/issues/414)
-- [ ] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
-- [ ] Command preview for lsp rename [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
+- [x] Replace [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) with [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
+- [x] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
+- [x] Command preview for lsp rename [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
@@ -30,25 +30,20 @@ Still a work in progress.
 *Big list that I will add at some point*
 
 ## Plugins watch list
-- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
-Neovim plugin to manage the file system and other tree like structures.
-- [persistence.nvim](https://github.com/folke/persistence.nvim)
-Simple session management for Neovim.
-- [neovim-session-manager](https://github.com/Shatur/neovim-session-manager)
-A simple wrapper around :mksession.
-- [AutoSave.nvim](https://github.com/Pocco81/AutoSave.nvim)
-A NeoVim plugin for saving your work before the world collapses or you type :qa!
-- [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
-Telescope extension to preview media files using Ueberzug.
+- [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
+Not UFO in the sky, but an ultra fold in Neovim.
 - [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)
 Better quickfix window in Neovim, polish old quickfix window.
-- [diaglist.nvim](https://github.com/onsails/diaglist.nvim)
-Live render workspace diagnostics in quickfix with current buf errors on top,
-buffer diagnostics in loclist
-- [reach.nvim](https://github.com/toppair/reach.nvim)
-Buffer, mark, tabpage, colorscheme switcher for Neovim
-- [cinnamon.nvim](https://github.com/declancm/cinnamon.nvim)
-Smooth scrolling for ANY movement command. A Neovim plugin written in Lua.
+- [possession.nvim](https://github.com/jedrzejboczar/possession.nvim)
+Flexible session management for Neovim.
+- [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
+Telescope extension to preview media files using Ueberzug.
+- [nvim-gomove](https://github.com/booperlv/nvim-gomove)
+A complete plugin for moving and duplicating blocks and lines, with complete
+fold handling, reindenting, and undoing in one go.
+- [pantran.nvim](https://github.com/potamides/pantran.nvim)
+Use your favorite machine translation engines without having to leave your
+favorite editor.
 
 ### Themes
 - [dracula.nvim](https://github.com/Mofiqul/dracula.nvim)
