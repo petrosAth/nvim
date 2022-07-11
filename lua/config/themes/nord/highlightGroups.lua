@@ -307,10 +307,11 @@ highlightGroups.plugins = {
     HopUnmatched = { fg = p.nord3, bg = p.none                 },
 
     -- lualine.nvim
-    lualineDiagnosticError = { fg = p.nord11, bg = p.nord1 },
-    lualineDiagnosticWarn  = { fg = p.nord13, bg = p.nord1 },
-    lualineDiagnosticInfo  = { fg = p.nord8,  bg = p.nord1 },
-    lualineDiagnosticHint  = { fg = p.nord10, bg = p.nord1 },
+    lualineDiagnosticError = { fg = p.nord11, bg = p.nord1  },
+    lualineDiagnosticWarn  = { fg = p.nord13, bg = p.nord1  },
+    lualineDiagnosticInfo  = { fg = p.nord8,  bg = p.nord1  },
+    lualineDiagnosticHint  = { fg = p.nord10, bg = p.nord1  },
+    lualineModifiedFile    = { fg = p.nord13, bg = p.nord3  },
 
     -- mini.nvim
     MiniCursorword        = { link = "Visual" },

@@ -1,9 +1,9 @@
-local components = require("config.lualine.components")
 local lualine = require("lualine")
+local components = require("config.lualine.components")
 
 lualine.setup({
     options = {
-        theme = components.myNord(),
+        theme = components.theme,
         component_separators = { left = "│", right = "│" },
         section_separators = { left = "", right = "" },
         -- disabled_filetypes = { "alpha", "NvimTree", "Outline" }

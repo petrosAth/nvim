@@ -2,6 +2,8 @@
 -- https://elianiva.my.id/post/neovim-lua-statusline -- Great help for figuring out highlight groups
 -- https://github.com/Neelfrost/dotfiles
 
+local fn = vim.fn
+local bo = vim.bo
 local i = require("styling").icons
 local excFiletypes = {
     "aerial",
@@ -18,10 +20,10 @@ local excFiletypes = {
     "Trouble",
     "undotree"
 }
-local fn = vim.fn
-local bo = vim.bo
 
 local M = {}
+
+M.theme = require("config.themes." .. THEME .. ".lualine")
 
 M.print_for_width = function(sizes)
 -- if global status bar is enabled, get terminal window columns, else get nvim current window columns
@@ -494,41 +496,6 @@ end
 
 M.window = function()
     return " " .. vim.api.nvim_win_get_number(0)
-end
-
-M.myNord = function()
-    return {
-        inactive = {
-            a = { fg = "#3B4252", bg = "#88C0D0" },
-            b = { fg = "#E5E9F0", bg = "#4C566A" },
-            c = { fg = "#E5E9F0", bg = "#3B4252" },
-        },
-        visual = {
-            a = { fg = "#3B4252", bg = "#EBCB8B" },
-            b = { fg = "#E5E9F0", bg = "#4C566A" },
-            c = { fg = "#E5E9F0", bg = "#3B4252" },
-        },
-        replace = {
-            a = { fg = "#3B4252", bg = "#BF616A" },
-            b = { fg = "#E5E9F0", bg = "#4C566A" },
-            c = { fg = "#E5E9F0", bg = "#3B4252" },
-        },
-        normal = {
-            a = { fg = "#3B4252", bg = "#88C0D0" },
-            b = { fg = "#E5E9F0", bg = "#4C566A" },
-            c = { fg = "#E5E9F0", bg = "#3B4252" },
-        },
-        insert = {
-            a = { fg = "#3B4252", bg = "#ECEFF4" },
-            b = { fg = "#E5E9F0", bg = "#4C566A" },
-            c = { fg = "#E5E9F0", bg = "#3B4252" },
-        },
-        command = {
-            a = { fg = "#3B4252", bg = "#8FBCBB" },
-            b = { fg = "#E5E9F0", bg = "#4C566A" },
-            c = { fg = "#E5E9F0", bg = "#3B4252" },
-        },
-    }
 end
 
 return M
