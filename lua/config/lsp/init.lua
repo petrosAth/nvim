@@ -90,6 +90,10 @@ function M.custom_on_attach(client, bufnr)
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.
     require("lsp-status").on_attach(client)
+
+    -- lsp_signature.nvim
+    local lsp_signature_config = require("config.lsp.lsp-signature").config
+    require("lsp_signature").on_attach(lsp_signature_config, bufnr)
 end
 
 return M
