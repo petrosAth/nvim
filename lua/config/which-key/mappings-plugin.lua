@@ -110,8 +110,8 @@ wk.register({
             name = "LSP",
             f = { "<CMD>lua vim.lsp.buf.formatting()<CR>",     "Code formatting"       }, -- lspconfig
             H = { "<CMD>lua vim.diagnostic.open_float()<CR>",  "Line diagnostics"      }, -- lspconfig
-            R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
-            -- R = { ":IncRename ",                            "Rename symbol"         }, -- lspconfig -- inc-rename
+            -- R = { "<CMD>lua vim.lsp.buf.rename()<CR>",         "Rename symbol"         }, -- lspconfig
+            R = { ":IncRename ",                            "Rename symbol"         }, -- lspconfig -- inc-rename
             s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
             a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",    "Code actions"          }, -- lspconfig -- telescope
             r = { telescope_custom .. "lsp_references()<CR>",  "References"            }, -- lspconfig -- telescope
