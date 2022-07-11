@@ -12,7 +12,7 @@ styling.icons = {
     hint     = { "", "", "", "", "", "" },
     info     = { "", "", "", "", "", "" },
     action   = { "", "", "", "", "", "" },
-    close    = { "", "" },
+    close    = { "", "", "", "" },
     delete   = { "", "" },
     pending  = { "", "",      "" },
     done     = { "", "", "", "" },
@@ -36,7 +36,7 @@ styling.icons = {
     arrowb   = { "", "", "", "", "", "⯆", "▼", "▽", "", "" },
     arrowbl  = {                                         "", "" },
     arrowl   = { "", "", "", "", "", "⯇", "◀", "◁", "", "" },
-    arrowul  = {                                    "", "" },
+    arrowul  = {                                         "", "" },
     loading  = {
         circle = {
             -- "◝", "◞", "◟", "◜"
@@ -54,16 +54,23 @@ styling.icons = {
     },
     -- Fillchar and listchar icons
     nvim_ui  = {
-        stl       = { " " }, -- ' ' or '^' -- statusline of the current window
-        stlnc     = { " " }, -- ' ' or '=' -- statusline of the non-current windows
-        vert      = { "▏" }, -- '│' or '|' -- vertical separators |:vsplit|
-        fold      = { " " }, -- '·' or '-' -- filling 'foldtext'
-        foldopen  = { "" }, -- '-'        -- mark the beginning of a fold
-        foldclose = { "" }, -- '+'        -- show a closed fold
-        foldsep   = { "│" }, -- '│' or '|' -- open fold middle marker
-        diff      = { "╱" }, -- '-'        -- deleted lines of the 'diff' option
-        msgsep    = { " " }, -- ' '        -- message separator 'display'
-        eob       = { "-" }, -- '~'        -- empty lines at the end of a buffer
+        wbr       = { " " }, -- ' '     window bar
+        horiz     = { "█" }, -- '─' or '-'  horizontal separators |:split|
+        horizup   = { "█" }, -- '┴' or '-'  upwards facing horizontal separator
+        horizdown = { "█" }, -- '┬' or '-'  downwards facing horizontal separator
+        vert      = { "█" }, -- '│' or '|'  vertical separators |:vsplit|
+        vertleft  = { "█" }, -- '┤' or '|'  left facing vertical separator
+        vertright = { "█" }, -- '├' or '|'  right facing vertical separator
+        verthoriz = { "█" }, -- '┼' or '+'  overlapping vertical and horizontal
+        stl       = { " " }, -- ' ' or '^'  statusline of the current window
+        stlnc     = { " " }, -- ' ' or '='  statusline of the non-current windows
+        fold      = { " " }, -- '·' or '-'  filling 'foldtext'
+        foldopen  = { "🞃" }, -- '-'         mark the beginning of a fold
+        foldclose = { "🞂" }, -- '+'         show a closed fold
+        foldsep   = { "│" }, -- '│' or '|'  open fold middle marker
+        diff      = { "╱" }, -- '-'         deleted lines of the 'diff' option
+        msgsep    = { " " }, -- ' '         message separator 'display'
+        eob       = { "-" }, -- '~'         empty lines at the end of a buffer
         tab       = { "──" },          -- Two or three characters to be used to show a tab
         lead      = { " " },           -- Character to show for leading spaces
         eol       = { "" },           -- Character to show at the end of each line
@@ -72,7 +79,6 @@ styling.icons = {
     }
 }
 
--- Table containing borders
 styling.borders = {
     default  = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕" },
     outline  = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕" },
@@ -82,6 +88,21 @@ styling.borders = {
     box      = { tl = "🬕",  t = "🬂", tr = "🬨",  r = "▐", br = "🬷",  b = "🬭", bl = "🬲",  l = "▌", ml = "🬛", mr = "🬫" },
     fatbox   = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌" },
     none     = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " " },
+}
+
+styling.separators = {
+    default       = { "█",  "█",  "▏",  "▕"  },
+    block         = { "█",  "█",  "▏",  "▕"  },
+    half_block    = { "▐",  "▌",  "▏",  "▕"  },
+    arrow         = { "",  "",  "",  ""  },
+    round         = { "",  "",  "",  ""  },
+    flame         = { " ", " ", " ", " " },
+    triangle_top  = { "",  "",  "",  ""  },
+    triangle_bot  = { "",  "",  "",  ""  },
+    waveform      = { " ", " "             },
+    squares_big   = { " ", " "             },
+    squares_small = { " ", " "             },
+    trapezoid     = { "",  ""              },
 }
 
 return styling

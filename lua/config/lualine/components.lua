@@ -13,6 +13,7 @@ local excFiletypes = {
     "lsp-installer",
     "man",
     "minimap",
+    "neo-tree",
     "NvimTree",
     "Outline",
     "packer",
@@ -156,13 +157,14 @@ end
 M.current_mode = function()
 	local buffer_name = fn.expand("%:t")
     local mode = require("lualine.utils.mode").get_mode()
-	local mode_plugins = {
-        alpha    = "Alpha",
-        minimap  = "Minimap",
-		NvimTree = "NvimTree",
-        Outline  = "Outline",
-		packer   = "Packer",
-        Trouble  = "Trouble"
+	local plugin_list = {
+        { filetype = "alpha",    mode_title = "Alpha"    },
+        { filetype = "minimap",  mode_title = "Minimap"  },
+        { filetype = "neo-tree", mode_title = "NeoTree"  },
+		{ filetype = "NvimTree", mode_title = "NvimTree" },
+        { filetype = "Outline",  mode_title = "Outline"  },
+		{ filetype = "packer",   mode_title = "Packer"   },
+        { filetype = "Trouble",  mode_title = "Trouble"  },
 	}
 
 	-- Return mode if in command mode
@@ -177,10 +179,12 @@ M.current_mode = function()
         vim.api.nvim_set_hl(0, 'lualine_a_normal', M.theme.normal.a )
     end
 
-		if bo.filetype == k or buffer_name == k then
-			return v
-		end
-	end
+	-- Return plugin name
+    for _, plugin in pairs(plugin_list) do
+        if bo.filetype == plugin.filetype or buffer_name == plugin.filetype then
+            return plugin.mode_title
+        end
+    end
 
 	-- Return mode
 	return mode

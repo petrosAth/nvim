@@ -29,10 +29,16 @@ wk.register({
     k         = { "v:count == 0 ? 'gk' : 'k'",                                                                "Move using displayed lines", expr   = true,  },
     ["<Esc>"] = { ":noh<CR><Esc>",                                                                            "Clear search highlight",                     },
     ["<Leader>"] = {
-        d = {
-            name = "Delete buffer/tab",
-            b = { "<CMD>Bdelete<CR>",  "Delete buffer" },
-            t = { "<CMD>tabclose<CR>", "Delete tab"    },
+        b = {
+            name = "Buffer",
+            d = { "<CMD>Bdelete<CR>", "Delete buffer" },
+        },
+        t = {
+            name = "Tab",
+            ["}"] = { ":+tabmove<CR>",     "Move Tab right" },
+            ["{"] = { ":-tabmove<CR>",     "Move Tab left"  },
+            a     = { "<CMD>tabnew<CR>",   "Create new Tab" },
+            c     = { "<CMD>tabclose<CR>", "Close Tab"      },
         },
     },
 })

@@ -40,6 +40,10 @@ wk.register({
             r = { "<CMD>RestoreSession<CR>", "Restore session"    }, -- session-lens
             s = { "<CMD>SaveSession<CR>",    "Save session"       }, -- session-lens
         },
+        t = {
+            name = "Tab",
+            R = { ":TabRename ", "Rename Tab", silent = false }, -- tabby.nvim
+        },
         u = {
             name = "Utilities",
             u = { "<CMD>PackerSync<CR>",     "Packer sync"        }, -- packer

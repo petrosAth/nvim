@@ -398,7 +398,6 @@ return packer.startup(function()
                 end,
             },
         },
-        after = "nvim-tree.lua",
         config = function()
             require("config.auto-session")
         end,
@@ -406,12 +405,13 @@ return packer.startup(function()
 --<==================================================================================================================>--
 
 --<=< Miscellaneous >================================================================================================>--
-    -- bufferline.nvim - This plugin shamelessly attempts to emulate the aesthetics of GUI text editors/Doom Emacs
+    -- tabby.nvim - A minimal, configurable, neovim style tabline. Use your nvim tabs as workspace multiplexer.
     use({
-        "akinsho/bufferline.nvim", -- https://github.com/akinsho/bufferline.nvim
+        "nanozuki/tabby.nvim",
         requires = "nvim-web-devicons",
+        after = "lualine.nvim",
         config = function()
-            require("config.bufferline")
+            require("config.tabby")
         end,
     })
 
