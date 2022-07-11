@@ -1,6 +1,5 @@
 local wk = require("which-key")
-local tele_custom = "<CMD>lua require('config.telescope.customPickers')."
-local tele_builtin = "<CMD>lua require('telescope.builtin')."
+local telescope_custom = "<CMD>lua require('config.telescope.customPickers')."
 
 -- Normal mode mappings
 wk.register({
@@ -52,10 +51,10 @@ wk.register({
         },
     },
     ["<Space>"] = {
-        ["?"] = { "<CMD>WhichKey<CR>",            "Show available hotkeys" }, -- which-key
-        ["."] = { tele_builtin .. "resume()<CR>", "Reopen Telescope"       }, -- telescope
-        b     = { tele_custom .. "buffers()<CR>", "Buffer list"            }, -- telescope
-        c     = { "<CMD>HexokinaseToggle<CR>",    "Color codes preview"    }, -- hexokinase
+        ["?"] = { "<CMD>WhichKey<CR>",                 "Show available hotkeys" }, -- which-key
+        ["."] = { "<CMD>Telescope resume<CR>",         "Reopen Telescope"       }, -- telescope
+        b     = { telescope_custom .. "buffers()<CR>", "Buffer list"            }, -- telescope
+        c     = { "<CMD>HexokinaseToggle<CR>",         "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
             q = { "<CMD>DiffviewClose<CR>",         "Quit"                              }, -- diffview
@@ -115,8 +114,8 @@ wk.register({
             -- R = { ":IncRename ",                            "Rename symbol"         }, -- lspconfig -- inc-rename
             s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", "Signagture help"       }, -- lspconfig
             a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",    "Code actions"          }, -- lspconfig -- telescope
-            r = { tele_custom .. "lsp_references()<CR>",       "References"            }, -- lspconfig -- telescope
-            K = { tele_custom .. "lsp_definitions()<CR>",      "Definitions"           }, -- lspconfig -- telescope
+            r = { telescope_custom .. "lsp_references()<CR>",  "References"            }, -- lspconfig -- telescope
+            K = { telescope_custom .. "lsp_definitions()<CR>", "Definitions"           }, -- lspconfig -- telescope
             h = { "<CMD>lua vim.lsp.buf.hover()<CR>",          "Hover symbol"          }, -- lspconfig
             d = { "<CMD>Trouble document_diagnostics<CR>",     "Document diagnostics"  }, -- lspconfig -- trouble
             D = { "<CMD>Trouble workspace_diagnostics<CR>",    "Workspace diagnostics" }, -- lspconfig -- trouble
@@ -133,33 +132,33 @@ wk.register({
         },
         r = {
             name = "Registers",
-            r = { tele_custom .. "registers('small')<CR>", "Compact window"  }, -- telescope
-            R = { tele_custom .. "registers('large')<CR>", "Extended window" }, -- telescope
+            r = { telescope_custom .. "registers('small')<CR>", "Compact window"  }, -- telescope
+            R = { telescope_custom .. "registers('large')<CR>", "Extended window" }, -- telescope
         },
         s = {
             name = "Search",
-            f = { tele_builtin .. "find_files()<CR>", "File search" }, -- telescope
-            g = { tele_builtin .. "live_grep()<CR>",  "ripGREP"     }, -- telescope
+            f = { "<CMD>Telescope find_files<CR>", "File search" }, -- telescope
+            g = { "<CMD>Telescope live_grep<CR>",  "ripGREP"     }, -- telescope
             G = {
                 name = "Git",
-                f = { tele_builtin .. "git_files()<CR>",    "Git files" }, -- telescope
-                c = { tele_builtin .. "git_commits()<CR>",  "Commits"   }, -- telescope
-                b = { tele_builtin .. "git_branches()<CR>", "Branches"  }, -- telescope
-                s = { tele_builtin .. "git_status()<CR>",   "Status"    }, -- telescope
-                S = { tele_builtin .. "git_stash()<CR>",    "Stash"     }, -- telescope
+                f = { "<CMD>Telescope git_files<CR>",    "Git files" }, -- telescope
+                c = { "<CMD>Telescope git_commits<CR>",  "Commits"   }, -- telescope
+                b = { "<CMD>Telescope git_branches<CR>", "Branches"  }, -- telescope
+                s = { "<CMD>Telescope git_status<CR>",   "Status"    }, -- telescope
+                S = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope
             },
-            H = { tele_builtin .. "highlights()<CR>",  "Highlight groups"   }, -- telescope
-            h = { tele_builtin .. "help_tags()<CR>",   "Vim help"           }, -- telescope
-            n = { tele_custom  .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
-            o = { tele_builtin .. "vim_options()<CR>", "Vim options"        }, -- telescope
-            p = { tele_custom  .. "project()<CR>",     "Projects"           }, -- telescope
-            r = { tele_custom  .. "find_recent()<CR>", "Find recent"        }, -- telescope
-            s = { "<CMD>SearchSession<CR>",            "Search sessions"    }, -- session-lens
-            T = { "<CMD>TodoTelescope<CR>",            "Show TODO comments" }, -- todo-comments
+            H = { "<CMD>Telescope highlights<CR>",         "Highlight groups"   }, -- telescope
+            h = { "<CMD>Telescope help_tags<CR>",          "Vim help"           }, -- telescope
+            n = { telescope_custom .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
+            o = { "<CMD>Telescope vim_options<CR>",        "Vim options"        }, -- telescope
+            p = { telescope_custom .. "project()<CR>",     "Projects"           }, -- telescope
+            r = { telescope_custom .. "find_recent()<CR>", "Find recent"        }, -- telescope
+            s = { "<CMD>SearchSession<CR>",                "Search sessions"    }, -- session-lens
+            T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" }, -- todo-comments
             t = {
                 name = "Telescope",
-                b = { tele_builtin .. "builtin()<CR>",         "Telescope builtin" }, -- telescope
-                c = { tele_builtin .. "command_history()<CR>", "Command history"   }, -- telescope
+                b = { "<CMD>Telescope builtin<CR>",         "Telescope builtin" }, -- telescope
+                c = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope
             },
         },
         t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before" }, -- hop
