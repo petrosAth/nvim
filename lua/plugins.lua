@@ -327,13 +327,18 @@ return packer.startup(function()
         },
     })
 
-    -- nvim-tree.lua - A File Explorer For Neovim Written In Lua
-    use({
-        "kyazdani42/nvim-tree.lua", -- https://github.com/kyazdani42/nvim-tree.lua
-        requires = "nvim-web-devicons",
+    -- neo-tree.nvim - Neovim plugin to manage the file system and other tree like structures
+    use ({
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
         config = function()
-            require("config.nvim-tree")
-        end,
+            require("config.neo-tree")
+        end
     })
 
     -- hop.nvim - Hop allows you to jump anywhere in a document with as few keystrokes as possible

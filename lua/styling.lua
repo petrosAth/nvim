@@ -1,14 +1,11 @@
 local styling = {}
 
--- Set colorscheme
 vim.cmd("colorscheme " .. THEME)
 
--- Table containing variables
 styling.variables = {
     transparency = 0
 }
 
--- Table containing icons
 styling.icons = {
     error    = { "", "", "", "", "", "" },
     warn     = { "", "", "", "", "", "" },
@@ -17,16 +14,19 @@ styling.icons = {
     action   = { "", "", "", "", "", "" },
     close    = { "", "" },
     delete   = { "", "" },
-    pending  = { "", "", },
-    done     = { "", "", "" },
+    pending  = { "", "",      "" },
+    done     = { "", "", "", "" },
     def      = { "", "", "", "硫"},
-    edit     = { "", "", "" },
+    edit     = { "", "", "", "" },
     prompt   = { "❯", "", "", "", "❯", "›", "" },
     select   = { "", "", "›" },
     point    = { "", "", "›" },
     location = { "", "", "", "" },
     misc     = { "", "", "", "", "", "" },
     bug      = { "", "", "" },
+    dir      = { "" },
+    diropen  = { "" },
+    file     = { "", "" },
     folderop = { "", "", "" },
     foldercl = { "", "", "" },
     arrowu   = { "", "", "", "", "", "⯅", "▲", "△", "", "" },

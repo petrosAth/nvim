@@ -361,6 +361,34 @@ highlightGroups.plugins = {
     LspDiagnosticsHint        = { link = "DiagnosticHint"                         },
     LspDiagnosticsInformation = { link = "DiagnosticInfo"                         },
 
+    -- neo-tree.nvim
+    NeoTreeNormal             = { link = "Normal"                                        },
+    NeoTreeNormalNC           = { link = "NormalNC"                                      },
+    NeoTreeFloatBorder        = { fg = p.nord2,      bg = p.nord0                        },
+    NeoTreeFloatTitle         = { fg = p.nord8,      bg = p.nord2, style = "bold"        },
+
+    NeoTreeRootName           = { fg = p.nord6,      bg = p.none,  style = "bold,italic" },
+    NeoTreeIndentMarker       = { link = "FoldColumn"                                    },
+    NeoTreeBufferNumber       = { fg = p.nord6,      bg = p.none                         },
+    NeoTreeDotfile            = { fg = p.nord3light, bg = p.none                         },
+    NeoTreeSymbolicLinkTarget = { fg = p.nord7,      bg = p.none,  style = "bold"        },
+
+    NeoTreeMessage            = { fg = p.nord15,     bg = p.none                         },
+    NeoTreeDimText            = { fg = p.nord3,      bg = p.none                         },
+    NeoTreeFadeText1          = { link = "NeoTreeDotfile"                                },
+    NeoTreeFadeText2          = { link = "NeoTreeDimText"                                },
+
+    NeoTreeModified           = { link = "GitSignsChange"                                },
+    NeoTreeGitAdded           = { link = "GitSignsAdd"                                   },
+    NeoTreeGitModified        = { link = "GitSignsChange"                                },
+    NeoTreeGitDeleted         = { link = "GitSignsDelete"                                },
+    NeoTreeGitRenamed         = { link = "NeoTreeGitModified"                            },
+    NeoTreeGitUntracked       = { fg = p.nord10,     bg = p.none                         },
+    NeoTreeGitIgnored         = { link = "NeoTreeDotfile"                                },
+    NeoTreeGitUnstaged        = { link = "NeoTreeGitModified"                            },
+    NeoTreeGitStaged          = { link = "NeoTreeGitAdded"                               },
+    NeoTreeGitConflict        = { fg = p.nord12,     bg = p.none                         },
+
     -- quickscope.lua
     QuickScopePrimary   = { fg = p.nord13, bg = p.nord0, style = "underline,nocombine" },
     QuickScopeSecondary = { fg = p.nord15, bg = p.nord0, style = "bold,nocombine"      },
@@ -380,12 +408,12 @@ highlightGroups.plugins = {
 
     -- telescope.nvim
     TelescopePromptPrefix   = { fg = p.nord4, bg = p.none,       style = "bold" },
-    TelescopePromptCounter  = { fg = p.nord0, bg = p.none,       style = "bold" },
+    TelescopePromptCounter  = { fg = p.nord7, bg = p.none,       style = "bold" },
 
     TelescopeNormal         = { fg = p.nord4, bg = p.nord0darker                },
     TelescopeResultsNormal  = { fg = p.nord4, bg = p.none                       },
     TelescopePreviewNormal  = { fg = p.nord4, bg = p.none                       },
-    TelescopePromptNormal   = { fg = p.nord6, bg = p.nord2                      },
+    TelescopePromptNormal   = { fg = p.nord6, bg = p.nord0                      },
 
     TelescopeResultsTitle   = { fg = p.nord8, bg = p.nord2,      style = "bold" },
     TelescopePreviewTitle   = { fg = p.nord9, bg = p.nord2,      style = "bold" },
@@ -393,7 +421,7 @@ highlightGroups.plugins = {
 
     TelescopeResultsBorder  = { fg = p.nord2, bg = p.none                       },
     TelescopePreviewBorder  = { fg = p.nord2, bg = p.none                       },
-    TelescopePromptBorder   = { fg = p.nord2, bg = p.nord2                      },
+    TelescopePromptBorder   = { fg = p.nord2, bg = p.nord0                      },
 
     TelescopeMultiSelection = { fg = p.nord6, bg = p.nord2                      },
     TelescopeMultiIcon      = { fg = p.nord6, bg = p.nord2                      },

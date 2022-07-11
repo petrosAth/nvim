@@ -6,6 +6,7 @@ local excFiletypes = {
     "lsp-installer",
     "man",
     "minimap",
+    "neo-tree",
     "NvimTree",
     "Outline",
     "packer",

@@ -73,9 +73,14 @@ wk.register({
             v = { ":vertical diffsplit ",    "Open the requested file in a split",                       silent = false, },
             w = { "<CMD>windo diffthis<CR>", "Compare the visible files",                                                },
         },
-        e = { "<CMD>NvimTreeToggle<CR>",                                                               "Toggle file tree"          }, -- nvimtree
-        E = { "<CMD>NvimTreeClose<CR><CMD>lua require'nvim-tree'.open_replacing_current_buffer()<CR>", "Open file tree in buffer", }, -- nvimtree
-        f = { "<CMD>lua require'hop'.hint_char1()<CR>",                                                "Hop to"                    }, -- hop
+        e = {
+            name = "File buffer and git explorer",
+            b = { "<CMD>Neotree buffers reveal toggle<CR>",               "Toggle a list of currently open buffers"                            }, -- neo-tree.nvim
+            B = { "<CMD>Neotree buffers current<CR>",                     "Toggle a list of currently open buffers within the current window", }, -- neo-tree.nvim
+            e = { "<CMD>Neotree filesystem left focus reveal toggle<CR>", "Toggle file explorer"                                               }, -- neo-tree.nvim
+            E = { "<CMD>Neotree filesystem current<CR>",                  "Open file explorer within the current window",                      }, -- neo-tree.nvim
+            g = { "<CMD>Neotree git_status<CR>",                          "Toggle git status in a floating window"                             }, -- neo-tree.nvim
+        },
         f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",  "Hop to" }, -- hop
         F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to" }, -- hop
         g = {
@@ -163,7 +168,7 @@ wk.register({
         },
         t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before" }, -- hop
         T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before" }, -- hop
-        u = { "<CMD>NvimTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
+        u = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
         ["<Space>"] = {
             name = "Launch",
             e = { "<CMD>lua launch_ext_prog('dolphin ', vim.fn.expand('%:p:h'))<CR>", "Open cwd in system file browser"  },
