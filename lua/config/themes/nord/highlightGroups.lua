@@ -312,6 +312,7 @@ highlightGroups.plugins = {
     lualineDiagnosticInfo  = { fg = p.nord8,  bg = p.nord1  },
     lualineDiagnosticHint  = { fg = p.nord10, bg = p.nord1  },
     lualineModifiedFile    = { fg = p.nord13, bg = p.nord3  },
+    lualineHydraMode       = { fg = p.nord1,  bg = p.nord15 },
 
     -- mini.nvim
     MiniCursorword        = { link = "Visual" },

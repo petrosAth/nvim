@@ -170,8 +170,12 @@ M.current_mode = function()
         return mode
 	end
 
-	-- Return plugin name
-	for k, v in pairs(mode_plugins) do
+    if require('hydra.statusline').is_active() then
+        vim.api.nvim_set_hl(0, 'lualine_a_normal', { link = "lualineHydraMode" })
+        return "HYDRA"
+    else
+        vim.api.nvim_set_hl(0, 'lualine_a_normal', M.theme.normal.a )
+    end
 
 		if bo.filetype == k or buffer_name == k then
 			return v
