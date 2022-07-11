@@ -80,31 +80,31 @@ wk.register({
         F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to" }, -- hop
         g = {
             name = "Git & gitsigns",
-            b = {
-                name = "Blame",
+            B = {
+                name = "Git blame",
                 l = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
                 b = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns
             },
-            d = { "<CMD>Gitsigns toggle_deleted<CR>", "Toggle deleted lines highlighting" }, -- gitsigns
-            g = {
-                name = "Git actions",
-                b = {
-                    name = "Buffer actions",
-                    a = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"   }, -- gitsigns
-                    r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"   }, -- gitsigns
-                    u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Unstage buffer" }, -- gitsigns
-                },
-                h = {
-                    name = "Hunk actions",
-                    a = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
-                    p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
-                    r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
-                    u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
-                },
+            b = {
+                name = "Buffer actions",
+                a = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"   }, -- gitsigns
+                r = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"   }, -- gitsigns
+                u = { "<CMD>Gitsigns reset_buffer_index<CR>", "Unstage buffer" }, -- gitsigns
             },
-            l = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"   }, -- gitsigns
-            n = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting" }, -- gitsigns
-            w = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"   }, -- gitsigns
+            h = {
+                name = "Hunk actions",
+                a = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
+                p = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
+                r = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
+                u = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
+            },
+            v = {
+                name = "Diff highlighting",
+                l = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"   }, -- gitsigns
+                n = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting" }, -- gitsigns
+                w = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"   }, -- gitsigns
+                d = { "<CMD>Gitsigns toggle_deleted<CR>", "Toggle deleted lines highlighting" }, -- gitsigns
+            }
         },
         l = {
             name = "LSP",
@@ -179,7 +179,7 @@ wk.register({
 -- Operator pending mode mappings
 wk.register({
     i = {
-        h = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
+        gh = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
     },
     ["<Space>"] = {
         f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to"     }, -- hop
@@ -205,9 +205,9 @@ wk.register({
         F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to"     }, -- hop
         t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before" }, -- hop
         T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before" }, -- hop
-        g = {
-            name = "Git",
-            s = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
+        gh = {
+            name = "Git & gitsigns",
+            a = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
             r = { ":Gitsigns reset_hunk<CR>",       "Reset hunk"      }, -- gitsigns
             v = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
         },
