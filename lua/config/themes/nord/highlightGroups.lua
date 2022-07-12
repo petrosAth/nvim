@@ -44,7 +44,7 @@ highlightGroups.editor = {
     EndOfBuffer      = { fg = p.nord1,       bg = p.none                                           },
     ErrorMsg         = { fg = p.nord4,       bg = p.nord11                                         },
     ModeMsg          = { fg = p.nord4,       bg = p.none                                           },
-    MoreMsg          = { fg = p.nord8,       bg = p.none                                           },
+    MoreMsg          = { fg = p.nord6,       bg = p.none                                           },
     MsgArea          = { link = "Normal"                                                           },
     MsgSeparator     = { link = "StatusLine"                                                       },
     Question         = { fg = p.nord4,       bg = p.none                                           },

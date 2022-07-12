@@ -1,33 +1,35 @@
+local p = require("config.themes.nord.palette")
+
 local theme = {
     inactive = {
-        a = { fg = "#3B4252", bg = "#88C0D0" },
-        b = { fg = "#D8DEE9", bg = "#4C566A" },
-        c = { fg = "#D8DEE9", bg = "#3B4252" },
+        a = { fg = p.nord1, bg = p.nord8 },
+        b = { fg = p.nord4, bg = p.nord3 },
+        c = { fg = p.nord4, bg = p.nord1 },
     },
     visual = {
-        a = { fg = "#3B4252", bg = "#EBCB8B" },
-        b = { fg = "#D8DEE9", bg = "#4C566A" },
-        c = { fg = "#D8DEE9", bg = "#3B4252" },
+        a = { fg = p.nord1, bg = p.nord13 },
+        b = { fg = p.nord4, bg = p.nord3  },
+        c = { fg = p.nord4, bg = p.nord1  },
     },
     replace = {
-        a = { fg = "#3B4252", bg = "#BF616A" },
-        b = { fg = "#D8DEE9", bg = "#4C566A" },
-        c = { fg = "#D8DEE9", bg = "#3B4252" },
+        a = { fg = p.nord1, bg = p.nord11 },
+        b = { fg = p.nord4, bg = p.nord3  },
+        c = { fg = p.nord4, bg = p.nord1  },
     },
     normal = {
-        a = { fg = "#3B4252", bg = "#88C0D0" },
-        b = { fg = "#D8DEE9", bg = "#4C566A" },
-        c = { fg = "#D8DEE9", bg = "#3B4252" },
+        a = { fg = p.nord1, bg = p.nord8 },
+        b = { fg = p.nord4, bg = p.nord3 },
+        c = { fg = p.nord4, bg = p.nord1 },
     },
     insert = {
-        a = { fg = "#3B4252", bg = "#ECEFF4" },
-        b = { fg = "#D8DEE9", bg = "#4C566A" },
-        c = { fg = "#D8DEE9", bg = "#3B4252" },
+        a = { fg = p.nord1, bg = p.nord6 },
+        b = { fg = p.nord4, bg = p.nord3 },
+        c = { fg = p.nord4, bg = p.nord1 },
     },
     command = {
-        a = { fg = "#3B4252", bg = "#8FBCBB" },
-        b = { fg = "#D8DEE9", bg = "#4C566A" },
-        c = { fg = "#D8DEE9", bg = "#3B4252" },
+        a = { fg = p.nord1, bg = p.nord7 },
+        b = { fg = p.nord4, bg = p.nord3 },
+        c = { fg = p.nord4, bg = p.nord1 },
     },
 }
 
