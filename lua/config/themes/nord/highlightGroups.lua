@@ -408,9 +408,12 @@ highlightGroups.plugins = {
 
     -- tabby.nvim
     TabLine                    = { fg = p.nord4,     bg = p.nord1      },
-    TabLineFill                = { fg = p.nord4dark, bg = p.nord2      },
-    TabLineSeparator           = { fg = p.nord4dark, bg = p.nord2      },
     TabLineSel                 = { fg = p.nord4,     bg = p.nord3light },
+    TabLineFill                = { fg = p.nord4dark, bg = p.nord2      },
+    TabLineHeader              = { fg = p.nord1,     bg = p.nord8      },
+    TabLineBody                = { fg = p.nord4,     bg = p.nord1      },
+    TabLineEdges               = { fg = p.nord1,     bg = p.nord8      },
+    TabLineSeparator           = { fg = p.nord4dark, bg = p.nord2      },
     TabLineTabCurrent          = { fg = p.nord1,     bg = p.nord8      },
     TabLineTabInactive         = { fg = p.nord4,     bg = p.nord3      },
     TabLineTabTopWin           = { fg = p.nord4dark, bg = p.nord2      },
@@ -420,7 +423,6 @@ highlightGroups.plugins = {
     TabLineWinModifiedInactive = { fg = p.nord13,    bg = p.nord2      },
     TabLineWinFillCurrent      = { fg = p.nord1,     bg = p.nord3light },
     TabLineWinFillInactive     = { fg = p.nord1,     bg = p.nord2      },
-    TabLineHeader              = { fg = p.nord1,     bg = p.nord8      },
 
     -- telescope.nvim
     TelescopePromptPrefix   = { fg = p.nord4, bg = p.none,       style = "bold" },

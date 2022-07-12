@@ -10,19 +10,19 @@ require("tabby").setup({
                 type = "text",
                 text = {
                     " Neo ",
-                    hl = "TabLineHeader",
+                    hl = "TabLineEdges",
                     -- hl = string.format("%s", hl_mode)
                 },
             },
             {
                 type = "text",
-                text = text.separator(c.right_separator_icon, "TabLineHeader", "TabLine"),
+                text = text.separator(c.right_separator_icon, "TabLineEdges", "TabLineBody"),
             },
             {
                 type = "text",
                 text = {
                     " ",
-                    hl = "TabLine",
+                    hl = "TabLineBody",
                 },
             },
         }
@@ -34,7 +34,7 @@ require("tabby").setup({
                     type = "tab",
                     tabid = tabid,
                     label = c.tab_label(tabid, true),
-                    left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLine"),
+                    left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLineBody"),
                 })
                 local wins = tab.all_wins(current_tab)
                 local top_win = vim.api.nvim_tabpage_get_win(current_tab)
@@ -69,19 +69,27 @@ require("tabby").setup({
                 -- Add Tab close button
                 table.insert(coms, {
                     type = "text",
-                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent"),
+                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
                 })
                 -- Add right tab separator
                 table.insert(coms, {
                     type = "text",
-                    text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLine"),
+                    text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
                 })
                 -- empty space in line
                 table.insert(coms, {
                     type = "text",
                     text = {
                         " ",
-                        hl = "TabLine",
+                        hl = "TabLineBody",
+                    },
+                })
+                -- empty space in line
+                table.insert(coms, {
+                    type = "text",
+                    text = {
+                        " ",
+                        hl = "TabLineBody",
                     },
                 })
                 table.insert(coms, {
@@ -96,7 +104,7 @@ require("tabby").setup({
                     type = "tab",
                     tabid = tabid,
                     label = c.tab_label(tabid, true),
-                    left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLine"),
+                    left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLineBody"),
                 })
                 -- Add active tab top window
                 table.insert(coms, {
@@ -109,19 +117,19 @@ require("tabby").setup({
                 -- Add Tab close button
                 table.insert(coms, {
                     type = "text",
-                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent"),
+                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
                 })
                 -- Add right tab separator
                 table.insert(coms, {
                     type = "text",
-                    text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLine"),
+                    text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
                 })
                 -- empty space in line
                 table.insert(coms, {
                     type = "text",
                     text = {
                         " ",
-                        hl = "TabLine",
+                        hl = "TabLineBody",
                     },
                 })
             else
@@ -130,7 +138,7 @@ require("tabby").setup({
                     type = "tab",
                     tabid = tabid,
                     label = c.tab_label(tabid),
-                    left_sep = text.separator(c.left_separator_icon, "TabLineTabInactive", "TabLine"),
+                    left_sep = text.separator(c.left_separator_icon, "TabLineTabInactive", "TabLineBody"),
                 })
                 -- Add inactive tab top window
                 table.insert(coms, {
@@ -143,32 +151,32 @@ require("tabby").setup({
                 -- Add inactive tab close button
                 table.insert(coms, {
                     type = "text",
-                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabInactive"),
+                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabInactive", "TabLineTabInactive"),
                 })
                 -- Add right tab separator
                 table.insert(coms, {
                     type = "text",
-                    text = text.separator(c.right_separator_icon, "TabLineTabInactive", "TabLine"),
+                    text = text.separator(c.right_separator_icon, "TabLineTabInactive", "TabLineBody"),
                 })
                 -- empty space in line
                 table.insert(coms, {
                     type = "text",
                     text = {
                         " ",
-                        hl = "TabLine",
+                        hl = "TabLineBody",
                     },
                 })
             end
         end
         table.insert(coms, {
             type = "text",
-            text = text.separator(c.left_separator_icon, "TabLineHeader", "TabLine"),
+            text = text.separator(c.left_separator_icon, "TabLineEdges", "TabLineBody"),
         })
         table.insert(coms, {
             type = "text",
             text = {
                 "裡",
-                hl = "TabLineHeader",
+                hl = "TabLineEdges",
             },
         })
 
