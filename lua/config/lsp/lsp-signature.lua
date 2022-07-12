@@ -12,10 +12,9 @@ lsp_signature.config = ({
     },
 
     transpancy = t, -- disabled by default, allow floating win transparent value 1~100
-    toggle_key = "<M-q>", -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
+    toggle_key = "<M-s>", -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 
-    select_signature_key = "<M-s>", -- cycle to next signature, e.g. '<M-n>' function overloading
-    move_cursor_key = "<M-S>", -- imap, use nvim_set_current_win to move cursor between current win and floating
+    select_signature_key = "<M-S>", -- cycle to next signature, e.g. '<M-n>' function overloading
 })
 
 return lsp_signature
