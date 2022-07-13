@@ -11,7 +11,7 @@ highlightGroups.editor = {
     CursorIM         = {                                        style = "reverse"                  },
     TermCursor       = {                                        style = "reverse"                  },
     TermCursorNC     = {                                        style = "reverse"                  },
-    CursorLine       = { fg = p.none,        bg = p.nord1                                          },
+    CursorLine       = { fg = p.none,        bg = p.nord2                                          },
     CursorColumn     = { link = "CursorLine"                                                       },
     CursorLineSign   = { link = "SignColumn"                                                       },
     CursorLineFold   = { link = "FoldColumn"                                                       },
@@ -34,7 +34,7 @@ highlightGroups.editor = {
     Visual           = { fg = p.none,        bg = p.nord2                                          },
     VisualNOS        = { fg = p.none,        bg = p.nord2                                          },
     -- Gutter
-    CursorLineNr     = { fg = p.nord4,       bg = p.nord1                                          },
+    CursorLineNr     = { fg = p.nord4,       bg = p.nord2                                          },
     Folded           = { fg = p.nord3,       bg = p.none                                           },
     FoldColumn       = { fg = p.nord3,       bg = p.none                                           },
     SignColumn       = { fg = p.nord1,       bg = p.none                                           },
