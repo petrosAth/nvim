@@ -18,7 +18,7 @@ highlightGroups.editor = {
     LineNrAbove      = { fg = p.nord3,       bg = p.none                                           },
     LineNr           = { fg = p.nord4,       bg = p.none                                           },
     LineNrBelow      = { fg = p.nord3,       bg = p.none                                           },
-    MatchParen       = {                                        style = "reverse"                  },
+    MatchParen       = { fg = p.nord7,       bg = p.nord3light                                     },
     NonText          = { fg = p.nord2,       bg = p.none                                           },
     Conceal          = { fg = p.none,        bg = p.none                                           },
     Whitespace       = { fg = p.nord2,       bg = p.none                                           },
