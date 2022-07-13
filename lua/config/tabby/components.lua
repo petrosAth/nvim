@@ -1,4 +1,4 @@
-local filename = require("tabby.filename")
+local filename = require("tabby.module.filename")
 local text = require("tabby.text")
 local tab = require("tabby.tab")
 local i = require("styling").icons
@@ -16,15 +16,16 @@ c.right_separator_icon_thin = s[4]
 c.tab_close_icon = i.close[1]
 
 local plugin_list = {
-    { filetype = "aerial",        window_title = "Code Outline"  },
-    { filetype = "alpha",         window_title = "Dashboard"     },
-    { filetype = "DiffviewFiles", window_title = "Diffview"      },
-    { filetype = "minimap",       window_title = "Minimap"       },
-    { filetype = "neo-tree",      window_title = "File Explorer" },
-    { filetype = "NvimTree",      window_title = "File Explorer" },
-    { filetype = "Outline",       window_title = "Code Outline"  },
-    { filetype = "Trouble",       window_title = "List"          },
-    { filetype = "undotree",      window_title = "Undo tree"     },
+    { filetype = "aerial",          window_title = "Code Outline"  },
+    { filetype = "alpha",           window_title = "Dashboard"     },
+    { filetype = "DiffviewFiles",   window_title = "Diffview"      },
+    { filetype = "minimap",         window_title = "Minimap"       },
+    { filetype = "neo-tree",        window_title = "File Explorer" },
+    { filetype = "NvimTree",        window_title = "File Explorer" },
+    { filetype = "Outline",         window_title = "Code Outline"  },
+    { filetype = "Trouble",         window_title = "List"          },
+    { filetype = "TelescopePrompt", window_title = "Telescope"     },
+    { filetype = "undotree",        window_title = "Undo tree"     },
 }
 
 c.is_plugin = function(bufid)
@@ -93,34 +94,41 @@ c.modified_flag = function(current_window, modified)
 end
 
 c.separators = function(first_window, last_window, current_window)
+    local tabs = vim.api.nvim_list_tabpages()
+    local fg = "TabLineWinInactive"
+    local bg = "TabLineWinInactive"
     local separator = {
-        left = text.separator(c.left_separator_icon, "TabLineWinInactive", "TabLineWinInactive"),
-        right = text.separator(c.right_separator_icon, "TabLineWinInactive", "TabLineWinInactive"),
+        left = text.separator(c.left_separator_icon, fg, bg),
+        right = text.separator(c.right_separator_icon, fg, bg),
     }
-    -- Also use thin separators if true
+    -- If enabled, use thin separators between windows
     if also_use_thin_separators then
-        separator.left = text.separator(c.left_separator_icon_thin, "TabLineWinCurrent", "TabLineWinInactive")
-        separator.right = text.separator(c.right_separator_icon_thin, "TabLineWinCurrent", "TabLineWinInactive")
+        fg = "TabLineWinCurrent"
+        separator.left = text.separator(c.left_separator_icon_thin, fg, bg)
+        separator.right = text.separator(c.right_separator_icon_thin, fg, bg)
     end
     -- Active window separators
     if current_window then
-        separator.left = text.separator(c.left_separator_icon, "TabLineWinCurrent", "TabLineWinInactive")
-        separator.right = text.separator(c.right_separator_icon, "TabLineWinCurrent", "TabLineWinInactive")
+        fg = "TabLineWinCurrent"
+        separator.left = text.separator(c.left_separator_icon, fg, bg)
+        separator.right = text.separator(c.right_separator_icon, fg, bg)
     end
     -- Active tab right separator based on the backgrond of the first window(current/inactive)
     if first_window then
-        if current_window then
-            separator.left = text.separator("█ ", "TabLineTabCurrent", "TabLineWinCurrent")
-        else
-            separator.left = text.separator("█ ", "TabLineTabCurrent", "TabLineWinInactive")
-        end
+        fg = "TabLineTabCurrent"
+        bg = current_window and "TabLineWinCurrent" or "TabLineWinInactive"
+        separator.left = text.separator("█ ", fg, bg)
     end
-    -- Last window's separator
+    -- Last window separator
     if last_window then
-        if current_window then
-            separator.right = text.separator(" █", "TabLineTabCurrent", "TabLineWinCurrent")
-        else
-            separator.right = text.separator(" █", "TabLineTabCurrent", "TabLineWinInactive")
+        fg = current_window and "TabLineWinCurrent" or "TabLineWinInactive"
+        bg = "TabLineBody"
+        separator.right = text.separator(c.right_separator_icon, fg, bg)
+        -- When there are more than one tabs add a rectangular separator before close button
+        if #tabs > 1 then
+            fg = "TabLineTabCurrent"
+            bg = current_window and "TabLineWinCurrent" or "TabLineWinInactive"
+            separator.right = text.separator(" █", fg, bg)
         end
     end
     return separator

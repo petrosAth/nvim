@@ -66,24 +66,18 @@ require("tabby").setup({
                         text = right_separator,
                     })
                 end
-                -- Add Tab close button
-                table.insert(coms, {
-                    type = "text",
-                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
-                })
-                -- Add right tab separator
-                table.insert(coms, {
-                    type = "text",
-                    text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
-                })
-                -- empty space in line
-                table.insert(coms, {
-                    type = "text",
-                    text = {
-                        " ",
-                        hl = "TabLineBody",
-                    },
-                })
+                if #tabs > 1 then
+                    -- Add Tab close button
+                    table.insert(coms, {
+                        type = "text",
+                        text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
+                    })
+                    -- Add right tab separator
+                    table.insert(coms, {
+                        type = "text",
+                        text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
+                    })
+                end
                 -- empty space in line
                 table.insert(coms, {
                     type = "text",
@@ -97,75 +91,77 @@ require("tabby").setup({
                 })
             end
         end
-        for _, tabid in ipairs(tabs) do
-            if tabid == current_tab then
-                -- Add active tab number
-                table.insert(coms, {
-                    type = "tab",
-                    tabid = tabid,
-                    label = c.tab_label(tabid, true),
-                    left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLineBody"),
-                })
-                -- Add active tab top window
-                table.insert(coms, {
-                    type = "tab",
-                    tabid = tabid,
-                    label = c.tab_top_window(tabid, true),
-                    left_sep = text.separator("█ ", "TabLineTabCurrent", "TabLineWinCurrent"),
-                    right_sep = text.separator(" █", "TabLineTabCurrent", "TabLineWinCurrent"),
-                })
-                -- Add Tab close button
-                table.insert(coms, {
-                    type = "text",
-                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
-                })
-                -- Add right tab separator
-                table.insert(coms, {
-                    type = "text",
-                    text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
-                })
-                -- empty space in line
-                table.insert(coms, {
-                    type = "text",
-                    text = {
-                        " ",
-                        hl = "TabLineBody",
-                    },
-                })
-            else
-                -- Add inactive tab number
-                table.insert(coms, {
-                    type = "tab",
-                    tabid = tabid,
-                    label = c.tab_label(tabid),
-                    left_sep = text.separator(c.left_separator_icon, "TabLineTabInactive", "TabLineBody"),
-                })
-                -- Add inactive tab top window
-                table.insert(coms, {
-                    type = "tab",
-                    tabid = tabid,
-                    label = c.tab_top_window(tabid),
-                    left_sep = text.separator("█ ", "TabLineTabInactive", "TabLineTabTopWin"),
-                    right_sep = text.separator(" █", "TabLineTabInactive", "TabLineTabTopWin"),
-                })
-                -- Add inactive tab close button
-                table.insert(coms, {
-                    type = "text",
-                    text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabInactive", "TabLineTabInactive"),
-                })
-                -- Add right tab separator
-                table.insert(coms, {
-                    type = "text",
-                    text = text.separator(c.right_separator_icon, "TabLineTabInactive", "TabLineBody"),
-                })
-                -- empty space in line
-                table.insert(coms, {
-                    type = "text",
-                    text = {
-                        " ",
-                        hl = "TabLineBody",
-                    },
-                })
+        if #tabs > 1 then
+            for _, tabid in ipairs(tabs) do
+                if tabid == current_tab then
+                    -- Add active tab number
+                    table.insert(coms, {
+                        type = "tab",
+                        tabid = tabid,
+                        label = c.tab_label(tabid, true),
+                        left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLineBody"),
+                    })
+                    -- Add active tab top window
+                    table.insert(coms, {
+                        type = "tab",
+                        tabid = tabid,
+                        label = c.tab_top_window(tabid, true),
+                        left_sep = text.separator("█ ", "TabLineTabCurrent", "TabLineWinCurrent"),
+                        right_sep = text.separator(" █", "TabLineTabCurrent", "TabLineWinCurrent"),
+                    })
+                    -- Add Tab close button
+                    table.insert(coms, {
+                        type = "text",
+                        text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
+                    })
+                    -- Add right tab separator
+                    table.insert(coms, {
+                        type = "text",
+                        text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
+                    })
+                    -- empty space in line
+                    table.insert(coms, {
+                        type = "text",
+                        text = {
+                            " ",
+                            hl = "TabLineBody",
+                        },
+                    })
+                else
+                    -- Add inactive tab number
+                    table.insert(coms, {
+                        type = "tab",
+                        tabid = tabid,
+                        label = c.tab_label(tabid),
+                        left_sep = text.separator(c.left_separator_icon, "TabLineTabInactive", "TabLineBody"),
+                    })
+                    -- Add inactive tab top window
+                    table.insert(coms, {
+                        type = "tab",
+                        tabid = tabid,
+                        label = c.tab_top_window(tabid),
+                        left_sep = text.separator("█ ", "TabLineTabInactive", "TabLineTabTopWin"),
+                        right_sep = text.separator(" █", "TabLineTabInactive", "TabLineTabTopWin"),
+                    })
+                    -- Add inactive tab close button
+                    table.insert(coms, {
+                        type = "text",
+                        text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabInactive", "TabLineTabInactive"),
+                    })
+                    -- Add right tab separator
+                    table.insert(coms, {
+                        type = "text",
+                        text = text.separator(c.right_separator_icon, "TabLineTabInactive", "TabLineBody"),
+                    })
+                    -- empty space in line
+                    table.insert(coms, {
+                        type = "text",
+                        text = {
+                            " ",
+                            hl = "TabLineBody",
+                        },
+                    })
+                end
             end
         end
         table.insert(coms, {
