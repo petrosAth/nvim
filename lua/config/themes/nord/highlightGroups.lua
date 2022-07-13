@@ -43,8 +43,8 @@ highlightGroups.editor = {
     -- Prompt/Status
     EndOfBuffer      = { fg = p.nord1,       bg = p.none                                           },
     ErrorMsg         = { fg = p.nord4,       bg = p.nord11                                         },
-    ModeMsg          = { fg = p.nord4,       bg = p.none                                           },
-    MoreMsg          = { fg = p.nord6,       bg = p.none                                           },
+    ModeMsg          = { fg = p.nord4,       bg = p.none,       style = "bold"                     },
+    MoreMsg          = { fg = p.nord13,      bg = p.none                                           },
     MsgArea          = { link = "Normal"                                                           },
     MsgSeparator     = { link = "StatusLine"                                                       },
     Question         = { fg = p.nord4,       bg = p.none                                           },
