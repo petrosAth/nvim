@@ -18,6 +18,7 @@ local excFiletypes = {
     "Outline",
     "packer",
     "qf",
+    "TelescopePrompt",
     "Trouble",
     "undotree"
 }

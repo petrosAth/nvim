@@ -10,10 +10,10 @@ M.borderchars = {
 --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
     prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
 --  results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
-    results = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+    results = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
 --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
     preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
-        }
+    }
 
 function M.find_recent()
     telescope.extensions.frecency.frecency{
@@ -41,35 +41,6 @@ function M.buffers()
             height = 0.8
         }
     }
-end
-
-function M.registers(opts)
-    if opts == "small" then
-        builtin.registers {
-            results_title = false,
-            sorting_strategy = "ascending",
-            layout_strategy = "cursor",
-            layout_config = {
-                width = 0.2,
-                height = 0.4
-            },
-            borderchars = {
---              prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
-                prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
---              results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
-                results = { "▀",   b.r,   b.b,   b.l,   "▀",   "▀",   b.br,  b.bl  },
---              preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
-                preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
-            }
-        }
-    elseif opts == "large" then
-        builtin.registers {
-            layout_config = {
-                width = 0.95,
-                height = 0.95
-            },
-        }
-    end
 end
 
 function M.lsp_references()

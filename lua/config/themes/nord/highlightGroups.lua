@@ -429,7 +429,7 @@ highlightGroups.plugins = {
     TelescopePromptCounter  = { fg = p.nord7, bg = p.none,       style = "bold" },
 
     TelescopeNormal         = { fg = p.nord4, bg = p.nord0darker                },
-    TelescopeResultsNormal  = { fg = p.nord4, bg = p.none                       },
+    TelescopeResultsNormal  = { fg = p.nord9, bg = p.none                       },
     TelescopePreviewNormal  = { fg = p.nord4, bg = p.none                       },
     TelescopePromptNormal   = { fg = p.nord6, bg = p.nord0                      },
 

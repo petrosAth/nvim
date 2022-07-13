@@ -143,11 +143,7 @@ wk.register({
             l = { "<CMD>Trouble loclist<CR>",  "Loclist"  }, -- trouble
             f = { "<CMD>Trouble quickfix<CR>", "Quickfix" }, -- trouble
         },
-        r = {
-            name = "Registers",
-            r = { telescope_custom .. "registers('small')<CR>", "Compact window"  }, -- telescope
-            R = { telescope_custom .. "registers('large')<CR>", "Extended window" }, -- telescope
-        },
+        r = { "<CMD>Telescope registers<CR>", "Registers" },
         s = {
             name = "Search",
             f = { "<CMD>Telescope find_files<CR>", "File search" }, -- telescope

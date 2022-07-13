@@ -1,5 +1,6 @@
 local t = require("styling").variables.transparency
 local b = require("styling").borders.default
+local bn = require("styling").borders.none
 
 require("dressing").setup({
     input = {
@@ -33,15 +34,23 @@ require("dressing").setup({
         -- Options for telescope selector
         -- These are passed into the telescope picker directly. Can be used like:
         -- telescope = require('telescope.themes').get_ivy({...})
-        telescope = require("telescope.themes").get_dropdown({
+        telescope = require('telescope.themes').get_dropdown({
+            previewer = false,
+            results_title = false,
+            layout_strategy = "vertical",
+            layout_config = {
+                prompt_position = "top",
+                width = 0.4,
+                height = 0.4
+            },
             borderchars = {
---              prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
-                prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
---              results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
-                results = { "▀",   b.r,   b.b,   b.l,   "▀",   "▀",   b.br,  b.bl  },
---              preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
-                preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+            --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
+                prompt  = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
+            --  results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
+                results = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
+            --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+                preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
             }
-        }),
+        })
     },
 })
