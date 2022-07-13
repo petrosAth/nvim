@@ -471,7 +471,7 @@ return packer.startup(function()
     -- undotree - The undo history visualizer for VIM
     use({
         "mbbill/undotree",
-        cmd = { "UndotreeToggle", "UndotreeShow" },
+        cmd = { "UndotreeToggle", "UndotreeShow", "UndotreeHide" },
         config = function()
             require("config.undotree")
         end,
