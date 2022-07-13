@@ -117,19 +117,13 @@ c.separators = function(first_window, last_window, current_window)
     if first_window then
         fg = "TabLineTabCurrent"
         bg = current_window and "TabLineWinCurrent" or "TabLineWinInactive"
-        separator.left = text.separator("█ ", fg, bg)
+        separator.left = text.separator(c.right_separator_icon .. " ", fg, bg)
     end
     -- Last window separator
     if last_window then
         fg = current_window and "TabLineWinCurrent" or "TabLineWinInactive"
         bg = "TabLineBody"
         separator.right = text.separator(c.right_separator_icon, fg, bg)
-        -- When there are more than one tabs add a rectangular separator before close button
-        if #tabs > 1 then
-            fg = "TabLineTabCurrent"
-            bg = current_window and "TabLineWinCurrent" or "TabLineWinInactive"
-            separator.right = text.separator(" █", fg, bg)
-        end
     end
     return separator
 end
