@@ -48,7 +48,6 @@ local buttons_navigation = {
     val = {
         set_button("SPC s r", " " .. i.arrowr[1] .. " Recent files",    tele_custom .. "find_recent()<CR>"),
         set_button("SPC s s", "舘" .. i.arrowr[1] .. " Search sessions", "<CMD>SearchSession<CR>"),
-        set_button("SPC s p", " " .. i.arrowr[1] .. " Projects",        tele_custom .. "project()<CR>"),
         set_button("SPC s f", " " .. i.arrowr[1] .. " File search",     tele_custom .. "find_files()<CR>"),
         set_button("SPC s g", " " .. i.arrowr[1] .. " ripGREP search",  tele_custom .. "live_grep()<CR>")
     },

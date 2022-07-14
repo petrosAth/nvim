@@ -160,7 +160,6 @@ wk.register({
             h = { "<CMD>Telescope help_tags<CR>",          "Vim help"           }, -- telescope
             n = { telescope_custom .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
             o = { "<CMD>Telescope vim_options<CR>",        "Vim options"        }, -- telescope
-            p = { telescope_custom .. "project()<CR>",     "Projects"           }, -- telescope
             r = { telescope_custom .. "find_recent()<CR>", "Find recent"        }, -- telescope
             s = { "<CMD>SearchSession<CR>",                "Search sessions"    }, -- session-lens
             T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" }, -- todo-comments

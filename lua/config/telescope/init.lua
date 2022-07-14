@@ -182,17 +182,11 @@ telescope.setup({
             -- jump to entry where hoop loop was started from
             reset_selection = true,
         },
-        project = {
-            base_dirs = {
-                { path = "$HOME/Develop",  max_depth = 3 },
-            },
-            hidden_files = true,
-        },
     },
 })
 
 -- Load extensions
-local extensions = { "frecency", "fzf", "hop", "project", "session-lens" }
+local extensions = { "frecency", "fzf", "hop", "session-lens" }
 pcall(function()
     for _, ext in ipairs(extensions) do
         telescope.load_extension(ext)

@@ -21,17 +21,6 @@ function M.find_recent()
     }
 end
 
-function M.project()
-    telescope.extensions.project.project{
-        display_type = "full",
-        results_title = "Results",
-        layout_config = {
-            width = 0.5,
-            height = 0.6
-        }
-    }
-end
-
 function M.buffers()
     builtin.buffers {
         previewer = false,

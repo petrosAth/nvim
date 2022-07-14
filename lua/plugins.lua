@@ -321,8 +321,6 @@ return packer.startup(function()
             { "nvim-telescope/telescope-frecency.nvim" },
             -- SQLite/LuaJIT binding for lua and neovim
             { "tami5/sqlite.lua" },
-            -- An extension for telescope.nvim that allows you to switch between projects
-            { "nvim-telescope/telescope-project.nvim" },
             -- An extension for telescope.nvim. It helps you navigate, select, and perform actions on results buffer with motions inspired by hop.nvim.
             { "nvim-telescope/telescope-hop.nvim" },
         },
