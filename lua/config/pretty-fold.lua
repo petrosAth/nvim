@@ -28,7 +28,7 @@ require("pretty-fold").setup({
         "@brief%s*", -- (for C++) Remove '@brief' and all spaces after.
     },
 
-    add_close_pattern = false, -- true, 'last_line' or false
+    add_close_pattern = true, -- true, 'last_line' or false
     matchup_patterns = {
         -- beginning of the line -> any number of spaces -> 'do' -> end of the line
         { "^%s*do$", "end" }, -- `do ... end` blocks
