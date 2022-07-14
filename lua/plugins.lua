@@ -89,7 +89,7 @@ return packer.startup(function()
         end,
     })
 
-    -- nvim-notify -- A fancy, configurable, notification manager for NeoVim
+    -- nvim-notify - A fancy, configurable, notification manager for NeoVim
     use({
         "rcarriga/nvim-notify",
         config = function()
@@ -255,7 +255,7 @@ return packer.startup(function()
         end,
     })
 
-    -- indent-blankline.nvim -- This plugin adds indentation guides to all lines
+    -- indent-blankline.nvim - This plugin adds indentation guides to all lines
     use({
         "lukas-reineke/indent-blankline.nvim",
         config = function()
@@ -333,7 +333,7 @@ return packer.startup(function()
         requires = {
             "nvim-lua/plenary.nvim",
             "kyazdani42/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
+            "MunifTanjim/nui.nvim", -- UI Component Library for Neovim.
         },
         config = function()
             require("config.neo-tree")
@@ -349,6 +349,7 @@ return packer.startup(function()
         end,
     })
 
+    -- aerial.nvim - Neovim plugin for a code outline window
     use({
         "stevearc/aerial.nvim",
         config = function()
