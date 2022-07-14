@@ -72,7 +72,7 @@ opt.colorcolumn = "120" -- Show vertical line for text alignment
 opt.foldcolumn = "auto:9" -- Fold column
 opt.foldmethod = "indent" -- Folding configuration
 opt.foldlevelstart = 99
-opt.foldminlines = 1
+opt.foldminlines = 0 -- Fold even single line
 
 opt.viewoptions:remove("options")
 
@@ -104,6 +104,7 @@ opt.listchars:append({
 
 opt.spell = false
 opt.spelllang = "en_us" -- Use en_us to spellcheck
+opt.spelloptions = 'camel' -- Treat parts of camelCase words as seprate words
 
 opt.laststatus = 3 -- Statusline
 
