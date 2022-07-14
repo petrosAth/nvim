@@ -39,11 +39,11 @@ hydra({
         hint = false,
     },
     heads = {
-        { "b", "<CMD>bn<CR>",                                  { desc = "Next buffer"                       } },
-        { "c", "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", { desc = "Next git hunk",       expr =  true } },
-        { "d", "<CMD>lua vim.diagnostic.goto_next()<CR>",      { desc = "Next diagnostic"                   } },
-        { "s", "]s",                                           { desc = "Next misspelled word"              } },
-        { "t", "<CMD>tabnext<CR>",                             { desc = "Next tab"                          } },
+        { "b", "<CMD>bn<CR>",                                  { desc = "Next buffer"                      } },
+        { "c", "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", { desc = "Next git hunk",       expr = true } },
+        { "d", "<CMD>lua vim.diagnostic.goto_next()<CR>",      { desc = "Next diagnostic"                  } },
+        { "s", "]s",                                           { desc = "Next misspelled word"             } },
+        { "t", "<CMD>tabnext<CR>",                             { desc = "Next tab"                         } },
     },
 })
 hydra({
@@ -54,10 +54,10 @@ hydra({
         hint = false,
     },
     heads = {
-        { "b", "<CMD>bp<CR>",                                  { desc = "Previous buffer"                       } },
-        { "c", "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", { desc = "Previous git hunk",       expr =  true } },
-        { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR>",      { desc = "Previous diagnostic"                   } },
-        { "s", "]s",                                           { desc = "Previous misspelled word"              } },
-        { "t", "<CMD>tabprevious<CR>",                         { desc = "Previous tab"                          } },
+        { "b", "<CMD>bp<CR>",                                  { desc = "Previous buffer"                      } },
+        { "c", "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", { desc = "Previous git hunk",       expr = true } },
+        { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR>",      { desc = "Previous diagnostic"                  } },
+        { "s", "]s",                                           { desc = "Previous misspelled word"             } },
+        { "t", "<CMD>tabprevious<CR>",                         { desc = "Previous tab"                         } },
     },
 })

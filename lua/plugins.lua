@@ -100,9 +100,9 @@ return packer.startup(function()
     -- satellite.nvim - Decorate scrollbar for Neovim
     use({
         "lewis6991/satellite.nvim",
-        config = function ()
+        config = function()
             require("config.satellite")
-        end
+        end,
     })
 
     -- pretty-fold.nvim - Foldtext customization and folded region preview in Neovim
@@ -116,7 +116,7 @@ return packer.startup(function()
     -- incline.nvim - Floating winbar statuslines for Neovim
     use({
         "b0o/incline.nvim",
-        config = function ()
+        config = function()
             require("config.incline")
         end,
     })
@@ -275,8 +275,8 @@ return packer.startup(function()
     use({
         "cappyzawa/trim.nvim",
         event = "BufWritePre",
-        config = function ()
-            require('trim').setup({})
+        config = function()
+            require("trim").setup({})
         end,
     })
 
@@ -291,9 +291,12 @@ return packer.startup(function()
         end,
     })
 
-    -- surround.vim - Delete/change/add parentheses/quotes/XML-tags/much more with ease
+    -- nvim-surround - Add/change/delete surrounding delimiter pairs with ease. Written with love in Lua
     use({
-        "tpope/vim-surround",
+        "kylechui/nvim-surround",
+        config = function()
+            require("config.nvim-surround")
+        end,
     })
 
     -- Tabular - Vim script for text filtering and alignment
@@ -326,7 +329,7 @@ return packer.startup(function()
     })
 
     -- neo-tree.nvim - Neovim plugin to manage the file system and other tree like structures
-    use ({
+    use({
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
         requires = {
@@ -336,7 +339,7 @@ return packer.startup(function()
         },
         config = function()
             require("config.neo-tree")
-        end
+        end,
     })
 
     -- hop.nvim - Hop allows you to jump anywhere in a document with as few keystrokes as possible
@@ -462,9 +465,9 @@ return packer.startup(function()
     -- Hydra.nvim - Bind a bunch of key bindings together
     use({
         "anuvyklack/hydra.nvim",
-        config = function ()
+        config = function()
             require("config.hydra")
-        end
+        end,
     })
 
     -- undotree - The undo history visualizer for VIM
@@ -490,11 +493,6 @@ return packer.startup(function()
         config = function()
             require("config.stabilize")
         end,
-    })
-
-    -- repeat.vim - Enable repeating supported plugin maps with "."
-    use({
-        "tpope/vim-repeat",
     })
 --<==================================================================================================================>--
 
