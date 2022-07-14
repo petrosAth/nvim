@@ -1,10 +1,9 @@
+local lsp_signature = require("lsp_signature")
 local t = require("styling").variables.transparency
 local i = require("styling").icons
 local b = require("styling").borders.default
 
-local lsp_signature = {}
-
-lsp_signature.config = ({
+lsp_signature.setup({
     hint_enable = false, -- virtual hint enable
     hint_prefix = i.hint[1] .. " ",
     handler_opts = {
@@ -16,5 +15,3 @@ lsp_signature.config = ({
 
     select_signature_key = "<M-S>", -- cycle to next signature, e.g. '<M-n>' function overloading
 })
-
-return lsp_signature

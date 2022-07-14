@@ -24,25 +24,6 @@ M.servers = {
     "sumneko_lua",
 }
 
--- Borders for LSP floating windows
-local border = {
-    { b.tl, "FloatBorder" },
-    { b.t,  "FloatBorder" },
-    { b.tr, "FloatBorder" },
-    { b.r,  "FloatBorder" },
-    { b.br, "FloatBorder" },
-    { b.b,  "FloatBorder" },
-    { b.bl, "FloatBorder" },
-    { b.l,  "FloatBorder" },
-}
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = {
-        border = opts.border or border,
-    }
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
 -- Configure lsp handlers
 vim.diagnostic.config({
     virtual_text = {
@@ -90,10 +71,6 @@ function M.custom_on_attach(client, bufnr)
     -- Register client for messages and set up buffer autocommands to update
     -- the statusline and the current function.
     require("lsp-status").on_attach(client)
-
-    -- lsp_signature.nvim
-    local lsp_signature_config = require("config.lsp.lsp-signature").config
-    require("lsp_signature").on_attach(lsp_signature_config, bufnr)
 end
 
 return M

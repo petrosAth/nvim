@@ -66,18 +66,6 @@ require("tabby").setup({
                         text = right_separator,
                     })
                 end
-                -- if #tabs > 1 then
-                --     -- Add Tab close button
-                --     table.insert(coms, {
-                --         type = "text",
-                --         text = tab.close_btn(tabid, c.tab_close_icon, "TabLineTabCurrent", "TabLineTabCurrent"),
-                --     })
-                --     -- Add right tab separator
-                --     table.insert(coms, {
-                --         type = "text",
-                --         text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
-                --     })
-                -- end
                 -- empty space in line
                 table.insert(coms, {
                     type = "text",
