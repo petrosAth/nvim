@@ -14,14 +14,13 @@ Still a work in progress.
 - [x] Organize my custom highlight groups
 - [x] Revisit nvim-cmp menu
 - [x] lazyload everything possible
-- [ ] Add debugger
-- [ ] Polish themer's dracula theme
-- [ ] Add Solarized theme
-- [ ] Add [dictionaries](https://github.com/echasnovski/nvim/blob/0e185055d4a45f079795a6836a821dc8dbbfcee9/lua/ec/settings.lua#L73-L77)
 - [x] Add Session management
 - [x] Replace [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) with [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
 - [x] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
 - [x] Command preview for lsp rename [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
+- [ ] Add debugger
+- [ ] Add dracula theme
+- [ ] Add Solarized theme
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
