@@ -69,7 +69,7 @@ opt.signcolumn = "yes" -- Keep the sign column always visible
 
 opt.colorcolumn = "120" -- Show vertical line for text alignment
 
-opt.foldcolumn = "auto:9" -- Fold column
+opt.foldcolumn = "1" -- Fold column size
 opt.foldmethod = "indent" -- Folding configuration
 opt.foldlevelstart = 99
 opt.foldminlines = 0 -- Fold even single line
@@ -136,10 +136,7 @@ opt.keywordprg = ":help" -- Program to use for the K command
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
 
 opt.swapfile = false -- No swap file
-
 opt.undofile = true -- Maintain undo history between sessions
-
-g.python3_host_prog = vim.fn.trim(vim.fn.system("which python")) -- Python3 path
 
 local disabled_built_ins = { -- Disable builtin vim plugins
     "netrw",

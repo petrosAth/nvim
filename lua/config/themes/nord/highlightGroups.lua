@@ -80,7 +80,7 @@ highlightGroups.editor = {
     -- diff legacy
     diffAdded        = { link = "DiffAdd"                                                          },
     diffChanged      = { link = "DiffChange"                                                       },
-    diffRemoved      = { link = "DiffRemoved"                                                      },
+    diffRemoved      = { link = "DiffDelete"                                                      },
     -- Yank
     Yank             = { fg = p.nord6,       bg = p.nord10                                         },
 }
