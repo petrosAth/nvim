@@ -39,6 +39,10 @@ Still a work in progress.
 - [pantran.nvim](https://github.com/potamides/pantran.nvim) Use your favorite
   machine translation engines without having to leave your favorite editor.
 - [Neogit](https://github.com/TimUntersberger/neogit) magit for neovim.
+- [vim-dadbod](https://github.com/tpope/vim-dadbod) Modern database interface
+  for Vim
+- [vim-dadbod-ui](https://github.com/kristijanhusak/vim-dadbod-ui) Simple UI for
+  vim-dadbod
 
 ### Themes
 - [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula colorscheme
