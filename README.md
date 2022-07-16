@@ -173,9 +173,6 @@ Still a work in progress.
 - [mini.nvim](https://github.com/echasnovski/mini.nvim), Neovim plugin with
   collection of minimal, independent, and fast Lua modules
 
-- [trim.nvim](https://github.com/cappyzawa/trim.nvim), This plugin trims
-  trailing whitespace and lines
-
 - [vim-hexokinase](https://github.com/RRethy/vim-hexokinase), (Neo)Vim plugin
   for asynchronously displaying the colours in the file
 

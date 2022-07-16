@@ -271,15 +271,6 @@ return packer.startup(function()
         end,
     })
 
-    -- trim.nvim - This plugin trims trailing whitespace and lines
-    use({
-        "cappyzawa/trim.nvim",
-        event = "BufWritePre",
-        config = function()
-            require("trim").setup({})
-        end,
-    })
-
     -- vim-hexokinase - (Neo)Vim plugin for asynchronously displaying the colours in the file
     use({
         "RRethy/vim-hexokinase",
