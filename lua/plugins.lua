@@ -267,7 +267,7 @@ return packer.startup(function()
     use({
         "echasnovski/mini.nvim",
         config = function()
-            require("config.mini-cursorword")
+            require("config.mini.cursorword")
         end,
     })
 
@@ -300,6 +300,7 @@ return packer.startup(function()
     -- telescope.nvim - Gaze deeply into unknown regions using the power of the moon
     use({
         "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
         config = function()
             require("config.telescope")
         end,
