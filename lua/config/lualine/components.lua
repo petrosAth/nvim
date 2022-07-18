@@ -5,7 +5,7 @@
 local fn = vim.fn
 local bo = vim.bo
 local i = require("styling").icons
-local excFiletypes = {
+local filetype_list = {
     "aerial",
     "alpha",
     "diff",
@@ -21,6 +21,9 @@ local excFiletypes = {
     "TelescopePrompt",
     "Trouble",
     "undotree"
+}
+local filename_list = {
+    { filename = "[Command Line]", customFilename = "Command line history" },
 }
 
 local M = {}
@@ -66,12 +69,21 @@ M.win_size = function ()
 end
 
 M.is_plugin = function()
-	local filename = fn.expand("%:t")
-	for _, v in pairs(excFiletypes) do
-		if filename == v or bo.filetype == v then
-			return true, filename
-		end
-	end
+    local filename = fn.expand("%:t")
+    for _, filetype in pairs(filetype_list) do
+        if filename == filetype or bo.filetype == filetype then
+            return true, filename
+        end
+    end
+end
+
+M.has_custom_name = function()
+    local filename = fn.expand("%:t")
+    for _, name in pairs(filename_list) do
+        if filename == name.filename then
+            return true, name.customFilename
+        end
+    end
 end
 
 M.is_modified = function ()
@@ -85,7 +97,9 @@ M.is_modified = function ()
 end
 
 M.file_type = function()
-    if M.is_plugin() then
+    if M.has_custom_name() then
+        return ""
+    elseif M.is_plugin() then
         return ""
     else
         local f_type = bo.filetype
@@ -115,7 +129,10 @@ M.file_name_active = function()
     local file_icon = i.file[1] .. " "
     local dir_icon = i.dir[1] .. " "
     local modified_flag = M.is_modified()
-    if M.is_plugin() or bo.filetype == "checkhealth" then
+    local has_custom_name, custom_name = M.has_custom_name()
+    if has_custom_name then
+        return custom_name
+    elseif M.is_plugin() or bo.filetype == "checkhealth" then
         return ""
     else
         if #fn.expand("%:~:.:h") < fn.winwidth(0) * 0.12 and fn.expand("%:h") ~= "." then

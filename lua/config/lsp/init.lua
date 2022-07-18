@@ -24,6 +24,26 @@ M.servers = {
     "sumneko_lua",
 }
 
+-- Borders for LSP floating windows
+local border = {
+    { b.tl, "FloatBorder" },
+    { b.t,  "FloatBorder" },
+    { b.tr, "FloatBorder" },
+    { b.r,  "FloatBorder" },
+    { b.br, "FloatBorder" },
+    { b.b,  "FloatBorder" },
+    { b.bl, "FloatBorder" },
+    { b.l,  "FloatBorder" },
+}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts = {
+        border = opts.border or border,
+    }
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 -- Configure lsp handlers
 vim.diagnostic.config({
     virtual_text = {

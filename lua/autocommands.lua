@@ -79,7 +79,7 @@ autocmd("BufEnter", {
 local bufWritePreAutoCMD = augroup("bufWritePreAutoCMD", { clear = true })
 autocmd("BufWritePre", {
     group = bufWritePreAutoCMD,
-    desc = "Trim trailing whitespace and last blank lines on buffers save.",
+    desc = "Trim trailing whitespace and redundant blank lines on buffer save.",
     command = [[
         let current_pos = getpos(".")
         silent! %s/\s\+$//e          " trim trailing whitespace
