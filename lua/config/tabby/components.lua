@@ -16,16 +16,22 @@ c.right_separator_icon_thin = s[4]
 c.tab_close_icon = i.close[1]
 
 local plugin_list = {
-    { filetype = "aerial",          window_title = "Code Outline"  },
-    { filetype = "alpha",           window_title = "Dashboard"     },
-    { filetype = "DiffviewFiles",   window_title = "Diffview"      },
-    { filetype = "minimap",         window_title = "Minimap"       },
-    { filetype = "neo-tree",        window_title = "File Explorer" },
-    { filetype = "NvimTree",        window_title = "File Explorer" },
-    { filetype = "Outline",         window_title = "Code Outline"  },
-    { filetype = "Trouble",         window_title = "List"          },
-    { filetype = "TelescopePrompt", window_title = "Telescope"     },
-    { filetype = "undotree",        window_title = "Undo tree"     },
+    { filetype = "aerial",          window_title = "Code outline"      },
+    { filetype = "alpha",           window_title = "Dashboard"         },
+    { filetype = "minimap",         window_title = "Minimap"           },
+    { filetype = "neo-tree",        window_title = "File explorer"     },
+    { filetype = "NvimTree",        window_title = "File explorer"     },
+    { filetype = "Outline",         window_title = "Code outline"      },
+    { filetype = "Trouble",         window_title = "List"              },
+    { filetype = "TelescopePrompt", window_title = "Telescope"         },
+    { filetype = "undotree",        window_title = "Undo tree"         },
+}
+local filename_list = {
+    { filename = "%[Command Line%]",     customFilename = "CMD history"       },
+    { filename = "neo%-tree git_status", customFilename = "Git status"        },
+    { filename = "neo%-tree buffers",    customFilename = "Open buffers"      },
+    { filename = "^diffview:///panels",  customFilename = "Diffview explorer" },
+    { filename = "^diffview:///",        customFilename = "Diffview old"      }
 }
 
 c.is_plugin = function(bufid)
@@ -33,6 +39,16 @@ c.is_plugin = function(bufid)
     for _, plugin in pairs(plugin_list) do
         if filetype == plugin.filetype then
             return true, plugin.window_title
+        end
+    end
+end
+
+c.has_custom_name = function(tabid, winid)
+    local winid = winid ~= "" and winid or vim.api.nvim_tabpage_get_win(tabid)
+    local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid))
+    for _, name in pairs(filename_list) do
+        if string.match(fullPath, name.filename) then
+            return true, name.customFilename
         end
     end
 end
@@ -55,10 +71,14 @@ c.tab_top_window = function(tabid, current)
     local name = filename.unique(vim.api.nvim_tabpage_get_win(tabid))
     local bufid = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tabid))
     local is_plugin, filetype = c.is_plugin(bufid)
+    local has_custom_name, custom_name = c.has_custom_name(tabid, "")
     -- local label = string.format("%d : %s", bufid, name)
     local label = string.format("%s", name)
     if is_plugin then
         label = string.format("擄%s", filetype)
+    end
+    if has_custom_name then
+        label = string.format(" %s", custom_name)
     end
     if current then
         return { label, hl = "TabLineWinCurrent" }
@@ -71,10 +91,14 @@ c.win_label = function(winid, current)
     local bufid = vim.api.nvim_win_get_buf(winid)
     local name = filename.unique(winid)
     local is_plugin, filetype = c.is_plugin(bufid)
+    local has_custom_name, custom_name = c.has_custom_name("", winid)
     -- local label = string.format("%d : %s", bufid, name)
     local label = string.format("%s", name)
     if is_plugin then
         label = string.format("擄%s", filetype)
+    end
+    if has_custom_name then
+        label = string.format(" %s", custom_name)
     end
     if current then
         return { label, hl = "TabLineWinCurrent" }
