@@ -88,7 +88,7 @@ tree.setup({
                 "add",
                 -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                 config = {
-                    show_path = "none", -- "none", "relative", "absolute"
+                    show_path = "relative", -- "none", "relative", "absolute"
                 },
             },
             ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add".
@@ -98,12 +98,6 @@ tree.setup({
             ["x"] = "cut_to_clipboard",
             ["p"] = "paste_from_clipboard",
             ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-            -- ["c"] = {
-            --  "copy",
-            --  config = {
-            --    show_path = "none" -- "none", "relative", "absolute"
-            --  }
-            --}
             ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
             ["q"] = "close_window",
             ["r"] = "refresh",
@@ -131,7 +125,7 @@ tree.setup({
         follow_current_file = true, -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
         group_empty_dirs = true, -- when true, empty folders will be grouped together
-        hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
+        hijack_netrw_behavior = "open_current", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",  -- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position
@@ -144,6 +138,7 @@ tree.setup({
                 ["<CR>"] = "set_root",
                 ["."] = "toggle_hidden",
                 ["/"] = "fuzzy_finder",
+                ["d"] = "fuzzy_finder_directory",
                 ["f"] = "filter_on_submit",
                 ["<C-x>"] = "clear_filter",
                 ["[c"] = "prev_git_modified",
@@ -158,7 +153,7 @@ tree.setup({
         show_unloaded = true,
         window = {
             mappings = {
-                ["bd"] = "buffer_delete",
+                ["d"] = "buffer_delete",
                 ["<BS>"] = "navigate_up",
                 ["<CR>"] = "set_root",
             },
