@@ -20,10 +20,7 @@ local filetype_list = {
     "qf",
     "TelescopePrompt",
     "Trouble",
-    "undotree"
-}
-local filename_list = {
-    { filename = "[Command Line]", customFilename = "Command line history" },
+    "undotree",
 }
 
 local M = {}
@@ -31,17 +28,17 @@ local M = {}
 M.theme = require("config.themes." .. THEME .. ".lualine")
 
 M.print_for_width = function(sizes)
--- if global status bar is enabled, get terminal window columns, else get nvim current window columns
-    local win = vim.api.nvim_get_option('columns')
-    if vim.api.nvim_get_option('laststatus') ~= 3 then
+    -- if global status bar is enabled, get terminal window columns, else get nvim current window columns
+    local win = vim.api.nvim_get_option("columns")
+    if vim.api.nvim_get_option("laststatus") ~= 3 then
         win = fn.winwidth(0)
     end
 
     if sizes.autofill then
-        sizes._  = sizes._  ~= "" and sizes._  or ""
-        sizes.S  = sizes.S  ~= "" and sizes.S  or sizes._
-        sizes.M  = sizes.M  ~= "" and sizes.M  or sizes.S
-        sizes.L  = sizes.L  ~= "" and sizes.L  or sizes.M
+        sizes._ = sizes._ ~= "" and sizes._ or ""
+        sizes.S = sizes.S ~= "" and sizes.S or sizes._
+        sizes.M = sizes.M ~= "" and sizes.M or sizes.S
+        sizes.L = sizes.L ~= "" and sizes.L or sizes.M
         sizes.XL = sizes.XL ~= "" and sizes.XL or sizes.L
     end
 
@@ -58,13 +55,13 @@ M.print_for_width = function(sizes)
     end
 end
 
-M.win_size = function ()
+M.win_size = function()
     return M.print_for_width({
         XL = "XL",
-        L  = "L",
-        M  = "M",
-        S  = "S",
-        _  = "_"
+        L = "L",
+        M = "M",
+        S = "S",
+        _ = "_",
     })
 end
 
@@ -78,15 +75,26 @@ M.is_plugin = function()
 end
 
 M.has_custom_name = function()
-    local filename = fn.expand("%:t")
+    local filename = fn.expand("%:p")
+    local filename_list = {
+        { filename = "%[Command Line%]",    customFilename = "Command line history", gitRepo = false },
+        { filename = "^diffview:///panels", customFilename = "",                     gitRepo = false },
+        { filename = "(/%.git/:0:)/",       customFilename = "Original file",        gitRepo = false },
+        { filename = "(/%.git/.-)/",        customFilename = "Commit ",              gitRepo = true  }
+    }
     for _, name in pairs(filename_list) do
-        if filename == name.filename then
+        local filename_match = string.match(filename, name.filename)
+        if filename_match then
+            if name.gitRepo then
+                local commit = string.sub(filename_match, 7, 13)
+                return true, name.customFilename .. commit
+            end
             return true, name.customFilename
         end
     end
 end
 
-M.is_modified = function ()
+M.is_modified = function()
     local bufid = vim.api.nvim_win_get_buf(0)
     local is_modified = vim.bo[bufid].modified
     local modified_icon = i.edit[1]
@@ -103,24 +111,24 @@ M.file_type = function()
         return ""
     else
         local f_type = bo.filetype
-        local f_name, f_extension = fn.expand '%:t', fn.expand '%:e'
-        f_extension = f_extension ~= '' and f_extension or bo.filetype
+        local f_name, f_extension = fn.expand("%:t"), fn.expand("%:e")
+        f_extension = f_extension ~= "" and f_extension or bo.filetype
         local f_icon = require("nvim-web-devicons").get_icon(f_name, f_extension)
 
         -- Return file_name if icon does not exist
         if f_icon == nil or f_icon == "" then
-        return M.print_for_width({
-            autofill = true,
-            M  = f_type,
-        })
+            return M.print_for_width({
+                autofill = true,
+                M = f_type,
+            })
         end
 
         -- Join icon and file_name if icon exists
         return M.print_for_width({
             autofill = true,
             XL = f_icon .. " " .. f_type,
-            M  = f_type,
-            S  = f_icon,
+            M = f_type,
+            S = f_icon,
         })
     end
 end
@@ -140,9 +148,9 @@ M.file_name_active = function()
         else
             return M.print_for_width({
                 autofill = true,
-                L  = file_icon .. fn.expand("%:~:.") .. modified_flag,
-                M  = dir_icon .. fn.expand("%:h:t") .. "/" .. modified_flag,
-                S  = fn.expand("%:h:t") .. "/" .. modified_flag
+                L = file_icon .. fn.expand("%:~:.") .. modified_flag,
+                M = dir_icon .. fn.expand("%:h:t") .. "/" .. modified_flag,
+                S = fn.expand("%:h:t") .. "/" .. modified_flag,
             })
         end
     end
@@ -169,51 +177,52 @@ M.is_readonly = function()
     if bo.modifiable == false or bo.readonly == true then
         return " "
     end
-	return ""
+    return ""
 end
 
 M.current_mode = function()
-	local buffer_name = fn.expand("%:t")
+    local buffer_name = fn.expand("%:t")
     local mode = require("lualine.utils.mode").get_mode()
-	local plugin_list = {
-        { filetype = "alpha",    mode_title = "Alpha"    },
-        { filetype = "minimap",  mode_title = "Minimap"  },
-        { filetype = "neo-tree", mode_title = "NeoTree"  },
-		{ filetype = "NvimTree", mode_title = "NvimTree" },
-        { filetype = "Outline",  mode_title = "Outline"  },
-		{ filetype = "packer",   mode_title = "Packer"   },
-        { filetype = "Trouble",  mode_title = "Trouble"  },
-	}
+    local plugin_list = {
+        { filetype = "alpha",         mode_title = "Alpha"    },
+        { filetype = "DiffviewFiles", mode_title = "Diffview" },
+        { filetype = "minimap",       mode_title = "Minimap"  },
+        { filetype = "neo-tree",      mode_title = "NeoTree"  },
+        { filetype = "NvimTree",      mode_title = "NvimTree" },
+        { filetype = "Outline",       mode_title = "Outline"  },
+        { filetype = "packer",        mode_title = "Packer"   },
+        { filetype = "Trouble",       mode_title = "Trouble"  },
+    }
 
-	-- Return mode if in command mode
-	if fn.mode() == "c" then
+    -- Return mode if in command mode
+    if fn.mode() == "c" then
         return mode
-	end
-
-    if require('hydra.statusline').is_active() then
-        vim.api.nvim_set_hl(0, 'lualine_a_normal', { link = "lualineHydraMode" })
-        return "HYDRA"
-    else
-        vim.api.nvim_set_hl(0, 'lualine_a_normal', M.theme.normal.a )
     end
 
-	-- Return plugin name
+    if require("hydra.statusline").is_active() then
+        vim.api.nvim_set_hl(0, "lualine_a_normal", { link = "lualineHydraMode" })
+        return "HYDRA"
+    else
+        vim.api.nvim_set_hl(0, "lualine_a_normal", M.theme.normal.a)
+    end
+
+    -- Return plugin name
     for _, plugin in pairs(plugin_list) do
         if bo.filetype == plugin.filetype or buffer_name == plugin.filetype then
             return plugin.mode_title
         end
     end
 
-	-- Return mode
-	return mode
+    -- Return mode
+    return mode
 end
 
 M.paste = function()
-	return vim.o.paste and "PASTE" or ""
+    return vim.o.paste and "PASTE" or ""
 end
 
 M.wrap = function()
-	return vim.o.wrap and "WRAP" or ""
+    return vim.o.wrap and "WRAP" or ""
 end
 
 M.spell = function()
@@ -225,16 +234,16 @@ M.spell = function()
         return M.print_for_width({
             autofill = true,
             XL = icon .. " " .. spell,
-            M  = spell,
-            S  = icon
+            M = spell,
+            S = icon,
         })
     else
         return ""
-	end
+    end
 end
 
 M.file_format = function()
-	if M.is_plugin() then
+    if M.is_plugin() then
         return ""
     else
         local f_format = bo.fileformat
@@ -250,9 +259,9 @@ M.file_format = function()
 
         return M.print_for_width({
             XL = f_icon .. " " .. f_eol,
-            L  = f_eol
+            L = f_eol,
         })
-	end
+    end
 end
 
 M.file_encoding = function()
@@ -261,19 +270,19 @@ M.file_encoding = function()
     else
         return M.print_for_width({
             autofill = true,
-            L  = bo.fileencoding
+            L = bo.fileencoding,
         })
-	end
+    end
 end
 
 M.line_info = function()
     local is_plugin, plugin_name = M.is_plugin()
 
-	if not is_plugin then
+    if not is_plugin then
         return M.print_for_width({
             autofill = true,
-            L  = string.format(" %d :  %d", fn.line("."), fn.col(".")),
-            S  = string.format("%d:%d", fn.line("."), fn.col("."))
+            L = string.format(" %d :  %d", fn.line("."), fn.col(".")),
+            S = string.format("%d:%d", fn.line("."), fn.col(".")),
         })
     elseif plugin_name == "Trouble" then
         return string.format(" %d", fn.line("."))
@@ -313,8 +322,8 @@ M.lines_per_total = function()
     if not is_plugin then
         return M.print_for_width({
             autofill = true,
-            L  = M.lines_total() .. " : " .. M.lines_percent(),
-            _  = M.lines_percent()
+            L = M.lines_total() .. " : " .. M.lines_percent(),
+            _ = M.lines_percent(),
         })
     elseif plugin_name == "Trouble" and fn.line("$") > 4 then
         return (M.lines_percent() .. " : " .. M.lines_total())
@@ -328,15 +337,15 @@ M.treesitter_status = function()
     if M.is_plugin() then
         return ""
     else
-    -- Reference:
-    -- LunarVim -- https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L74-L80
+        -- Reference:
+        -- LunarVim -- https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L74-L80
         local bufnr = vim.api.nvim_get_current_buf()
         if next(vim.treesitter.highlighter.active[bufnr]) then
             return M.print_for_width({
                 autofill = true,
                 XL = " TS",
-                M  = "TS",
-                S  = " "
+                M = "TS",
+                S = " ",
             })
         else
             return ""
@@ -378,28 +387,28 @@ M.lsp_diagnostics = function()
             local bufnr = vim.api.nvim_get_current_buf()
 
             local d_color = {
-                errors   = "%#lualineDiagnosticError#",
+                errors = "%#lualineDiagnosticError#",
                 warnings = "%#lualineDiagnosticWarn#",
-                info     = "%#lualineDiagnosticInfo#",
-                hints    = "%#lualineDiagnosticHint#"
+                info = "%#lualineDiagnosticInfo#",
+                hints = "%#lualineDiagnosticHint#",
             }
             local d_symbol = {
-                errors   = i.error[1] .. " ",
+                errors = i.error[1] .. " ",
                 warnings = i.warn[1] .. " ",
-                info     = i.info[1] .. " ",
-                hints    = i.hint[1] .. " "
+                info = i.info[1] .. " ",
+                hints = i.hint[1] .. " ",
             }
             local d_count = {
-                errors   = lsp_diagnostics(bufnr).errors,
+                errors = lsp_diagnostics(bufnr).errors,
                 warnings = lsp_diagnostics(bufnr).warnings,
-                info     = lsp_diagnostics(bufnr).info,
-                hints    = lsp_diagnostics(bufnr).hints
+                info = lsp_diagnostics(bufnr).info,
+                hints = lsp_diagnostics(bufnr).hints,
             }
             local d_status = {
-                signs      = {},
-                count_only = {}
+                signs = {},
+                count_only = {},
             }
-            for _, name in ipairs{ "errors", "warnings", "info", "hints" } do
+            for _, name in ipairs({ "errors", "warnings", "info", "hints" }) do
                 if lsp_diagnostics(bufnr)[name] and lsp_diagnostics(bufnr)[name] > 0 then
                     table.insert(d_status.signs, d_color[name] .. d_symbol[name] .. d_count[name])
                     table.insert(d_status.count_only, d_color[name] .. d_count[name])
@@ -427,17 +436,17 @@ M.lsp_status = function()
                     return M.print_for_width({
                         autofill = true,
                         XL = "  " .. "[" .. table.concat(lsp_clients, " ") .. "]",
-                        L  = "  LSP",
-                        M  = "LSP",
-                        S  = "",
-                        _  = ""
+                        L = "  LSP",
+                        M = "LSP",
+                        S = "",
+                        _ = "",
                     })
                 else
                     return M.print_for_width({
                         autofill = true,
-                        L  = "  " .. table.concat(M.lsp_diagnostics().signs, " "),
-                        M  = table.concat(M.lsp_diagnostics().signs, " "),
-                        _  = table.concat(M.lsp_diagnostics().count_only, " "),
+                        L = "  " .. table.concat(M.lsp_diagnostics().signs, " "),
+                        M = table.concat(M.lsp_diagnostics().signs, " "),
+                        _ = table.concat(M.lsp_diagnostics().count_only, " "),
                     })
                 end
             else
@@ -454,32 +463,32 @@ M.git_status = function()
     if M.is_plugin() then
         return ""
     else
-        local gitsigns = vim.b.gitsigns_status_dict or {head = "", added = 0, changed = 0, removed = 0}
+        local gitsigns = vim.b.gitsigns_status_dict or { head = "", added = 0, changed = 0, removed = 0 }
         if gitsigns.head ~= "" then
             local gs_color = {
-                head    = "",
-                added   = "%#GitSignsAddNr#",
+                head = "",
+                added = "%#GitSignsAddNr#",
                 changed = "%#GitSignsChangeNr#",
-                removed = "%#GitSignsDeleteNr#"
+                removed = "%#GitSignsDeleteNr#",
             }
             local gs_symbol = {
-                head    = "",
-                added   = " +", --
+                head = "",
+                added = " +", --
                 changed = " ~", --
-                removed = " -"  --
+                removed = " -",  --
             }
             local gs_count = {
-                head    = gitsigns.head,
-                added   = gitsigns.added,
+                head = gitsigns.head,
+                added = gitsigns.added,
                 changed = gitsigns.changed,
-                removed = gitsigns.removed
+                removed = gitsigns.removed,
             }
             local gs_status = {
-                head        = {},
-                signs       = {},
-                count_only  = {}
+                head = {},
+                signs = {},
+                count_only = {},
             }
-            for _, name in ipairs{ "head", "added", "changed", "removed" } do
+            for _, name in ipairs({ "head", "added", "changed", "removed" }) do
                 if name == "head" then
                     table.insert(gs_status.head, gs_color[name] .. gs_symbol[name] .. gs_count[name])
                 elseif gitsigns[name] and gitsigns[name] > 0 then
@@ -490,10 +499,10 @@ M.git_status = function()
 
             return M.print_for_width({
                 XL = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                L  = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                M  = gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                S  = table.concat(gs_status.count_only, " "),
-                _  = " "
+                L = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                M = gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                S = table.concat(gs_status.count_only, " "),
+                _ = " ",
             })
         else
             return ""
@@ -508,9 +517,9 @@ M.builtin_diagnostics = function()
         colored = true,
         symbols = {
             error = i.error[1] .. " ",
-            warn  = i.warn[1] .. " ",
-            info  = i.info[1] .. " ",
-            hint  = i.hint[1] .. " "
+            warn = i.warn[1] .. " ",
+            info = i.info[1] .. " ",
+            hint = i.hint[1] .. " ",
         },
         sections = { "error", "warn", "info", "hint" },
         always_visible = false,

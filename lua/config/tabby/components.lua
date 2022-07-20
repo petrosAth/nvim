@@ -31,7 +31,7 @@ local filename_list = {
     { filename = "neo%-tree git_status", customFilename = "Git status"        },
     { filename = "neo%-tree buffers",    customFilename = "Open buffers"      },
     { filename = "^diffview:///panels",  customFilename = "Diffview explorer" },
-    { filename = "^diffview:///",        customFilename = "Diffview old"      }
+    { filename = "^diffview:///",        customFilename = "Diffview"      }
 }
 
 c.is_plugin = function(bufid)
