@@ -46,7 +46,7 @@ wk.register({
         },
         t = {
             name = "Tab",
-            R = { ":TabRename ", "Rename Tab", silent = false }, -- tabby.nvim
+            R = { ":TabRename ", "Rename tab", silent = false }, -- tabby.nvim
         },
         u = {
             name = "Utilities",
