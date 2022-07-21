@@ -4,6 +4,7 @@ local i = require("styling").icons
 local b = require("styling").borders.default
 
 lsp_signature.setup({
+    floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
     hint_enable = false, -- virtual hint enable
     hint_prefix = i.hint[1] .. " ",
     handler_opts = {
