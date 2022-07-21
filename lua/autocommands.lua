@@ -24,6 +24,8 @@ autocmd("FileType", {
     group = fileTypeAutoCMD,
     pattern = {
         "checkhealth",
+        "DiffviewFileHistory",
+        "DiffviewFiles",
         "help",
         "lspinfo",
         "lsp-installer",

@@ -9,6 +9,8 @@ local filetype_list = {
     "aerial",
     "alpha",
     "diff",
+    "DiffviewFileHistory",
+    "DiffviewFiles",
     "help",
     "lsp-installer",
     "man",
@@ -77,10 +79,9 @@ end
 M.has_custom_name = function()
     local filename = fn.expand("%:p")
     local filename_list = {
-        { filename = "%[Command Line%]",    customFilename = "Command line history", gitRepo = false },
-        { filename = "^diffview:///panels", customFilename = "",                     gitRepo = false },
-        { filename = "(/%.git/:0:)/",       customFilename = "Original file",        gitRepo = false },
-        { filename = "(/%.git/.-)/",        customFilename = "Commit ",              gitRepo = true  }
+        { filename = "%[Command Line%]", customFilename = "Command line history",                },
+        { filename = "(/%.git/:0:)/",    customFilename = "Original file",                       },
+        { filename = "(/%.git/.-)/",     customFilename = " Git commit ",          gitRepo = true }
     }
     for _, name in pairs(filename_list) do
         local filename_match = string.match(filename, name.filename)
@@ -184,14 +185,16 @@ M.current_mode = function()
     local buffer_name = fn.expand("%:t")
     local mode = require("lualine.utils.mode").get_mode()
     local plugin_list = {
-        { filetype = "alpha",         mode_title = "Alpha"    },
-        { filetype = "DiffviewFiles", mode_title = "Diffview" },
-        { filetype = "minimap",       mode_title = "Minimap"  },
-        { filetype = "neo-tree",      mode_title = "NeoTree"  },
-        { filetype = "NvimTree",      mode_title = "NvimTree" },
-        { filetype = "Outline",       mode_title = "Outline"  },
-        { filetype = "packer",        mode_title = "Packer"   },
-        { filetype = "Trouble",       mode_title = "Trouble"  },
+        { filetype = "aerial",              mode_title = "Aerial"   },
+        { filetype = "alpha",               mode_title = "Alpha"    },
+        { filetype = "DiffviewFileHistory", mode_title = "Diffview" },
+        { filetype = "DiffviewFiles",       mode_title = "Diffview" },
+        { filetype = "minimap",             mode_title = "Minimap"  },
+        { filetype = "neo-tree",            mode_title = "NeoTree"  },
+        { filetype = "NvimTree",            mode_title = "NvimTree" },
+        { filetype = "Outline",             mode_title = "Outline"  },
+        { filetype = "packer",              mode_title = "Packer"   },
+        { filetype = "Trouble",             mode_title = "Trouble"  },
     }
 
     -- Return mode if in command mode
@@ -498,8 +501,8 @@ M.git_status = function()
             end
 
             return M.print_for_width({
-                XL = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
-                L = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                XL = "  " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
+                L = " " .. gs_status.head[1] .. table.concat(gs_status.signs, ""),
                 M = gs_status.head[1] .. table.concat(gs_status.signs, ""),
                 S = table.concat(gs_status.count_only, " "),
                 _ = " ",

@@ -16,22 +16,25 @@ c.right_separator_icon_thin = s[4]
 c.tab_close_icon = i.close[1]
 
 local plugin_list = {
-    { filetype = "aerial",          window_title = "Code outline"      },
-    { filetype = "alpha",           window_title = "Dashboard"         },
-    { filetype = "minimap",         window_title = "Minimap"           },
-    { filetype = "neo-tree",        window_title = "File explorer"     },
-    { filetype = "NvimTree",        window_title = "File explorer"     },
-    { filetype = "Outline",         window_title = "Code outline"      },
-    { filetype = "Trouble",         window_title = "List"              },
-    { filetype = "TelescopePrompt", window_title = "Telescope"         },
-    { filetype = "undotree",        window_title = "Undo tree"         },
+    { filetype = "aerial",          window_title = "Code outline"  },
+    { filetype = "alpha",           window_title = "Dashboard"     },
+    { filetype = "minimap",         window_title = "Minimap"       },
+    { filetype = "neo-tree",        window_title = "File explorer" },
+    { filetype = "NvimTree",        window_title = "File explorer" },
+    { filetype = "Outline",         window_title = "Code outline"  },
+    { filetype = "Trouble",         window_title = "List"          },
+    { filetype = "TelescopePrompt", window_title = "Telescope"     },
+    { filetype = "undotree",        window_title = "Undo tree"     },
 }
 local filename_list = {
-    { filename = "%[Command Line%]",     customFilename = "CMD history"       },
-    { filename = "neo%-tree git_status", customFilename = "Git status"        },
-    { filename = "neo%-tree buffers",    customFilename = "Open buffers"      },
-    { filename = "^diffview:///panels",  customFilename = "Diffview explorer" },
-    { filename = "^diffview:///",        customFilename = "Diffview"      }
+    { filename = "%[Command Line%]",              customFilename = " CMD history"                     },
+    { filename = "neo%-tree git_status",          customFilename = " Git status"                      },
+    { filename = "neo%-tree buffers",             customFilename = " Open buffers"                    },
+    { filename = "(/%.git/:0:)/",                 customFilename = " Original file"                   },
+    { filename = "(/%.git/.-)/",                  customFilename = " ",                gitRepo = true },
+    { filename = "^diffview:///panels/.*History", customFilename = " Diffview history"                },
+    { filename = "^diffview:///panels/.*",        customFilename = " Diffview files"                  },
+    { filename = "^diffview:///.*",               customFilename = " Diffview"                        }
 }
 
 c.is_plugin = function(bufid)
@@ -47,7 +50,12 @@ c.has_custom_name = function(tabid, winid)
     local winid = winid ~= "" and winid or vim.api.nvim_tabpage_get_win(tabid)
     local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(winid))
     for _, name in pairs(filename_list) do
-        if string.match(fullPath, name.filename) then
+        local filename_match = string.match(fullPath, name.filename)
+        if filename_match then
+            if name.gitRepo then
+                local commit = string.sub(filename_match, 7, 13)
+                return true, name.customFilename .. commit
+            end
             return true, name.customFilename
         end
     end
@@ -75,10 +83,10 @@ c.tab_top_window = function(tabid, current)
     -- local label = string.format("%d : %s", bufid, name)
     local label = string.format("%s", name)
     if is_plugin then
-        label = string.format("擄%s", filetype)
+        label = string.format(" %s", filetype)
     end
     if has_custom_name then
-        label = string.format(" %s", custom_name)
+        label = string.format("%s", custom_name)
     end
     if current then
         return { label, hl = "TabLineWinCurrent" }
@@ -95,10 +103,10 @@ c.win_label = function(winid, current)
     -- local label = string.format("%d : %s", bufid, name)
     local label = string.format("%s", name)
     if is_plugin then
-        label = string.format("擄%s", filetype)
+        label = string.format(" %s", filetype)
     end
     if has_custom_name then
-        label = string.format(" %s", custom_name)
+        label = string.format("%s", custom_name)
     end
     if current then
         return { label, hl = "TabLineWinCurrent" }
