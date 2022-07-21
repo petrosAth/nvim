@@ -6,11 +6,11 @@ highlightGroups.editor = {
     Normal           = { fg = p.nord4,       bg = p.nord0                                          },
     NormalNC         = { fg = p.nord4,       bg = p.nord0dark                                      },
     ColorColumn      = { fg = p.none,        bg = p.nord0dark                                      },
-    Cursor           = {                                        style = "reverse"                  },
-    lCursor          = {                                        style = "reverse"                  },
-    CursorIM         = {                                        style = "reverse"                  },
-    TermCursor       = {                                        style = "reverse"                  },
-    TermCursorNC     = {                                        style = "reverse"                  },
+    Cursor           = { style = "reverse"                                                         },
+    lCursor          = { style = "reverse"                                                         },
+    CursorIM         = { style = "reverse"                                                         },
+    TermCursor       = { style = "reverse"                                                         },
+    TermCursorNC     = { style = "reverse"                                                         },
     CursorLine       = { fg = p.none,        bg = p.nord1dark                                      },
     CursorColumn     = { link = "CursorLine"                                                       },
     CursorLineSign   = { link = "SignColumn"                                                       },
@@ -18,7 +18,7 @@ highlightGroups.editor = {
     LineNrAbove      = { fg = p.nord3,       bg = p.none                                           },
     LineNr           = { fg = p.nord4,       bg = p.none                                           },
     LineNrBelow      = { fg = p.nord3,       bg = p.none                                           },
-    MatchParen       = { fg = p.nord7,       bg = p.nord3light                                     },
+    MatchParen       = { fg = p.nord7,       bg = p.nord3light, style = "bold"                     },
     NonText          = { fg = p.nord2,       bg = p.none                                           },
     Conceal          = { fg = p.none,        bg = p.none                                           },
     Whitespace       = { fg = p.nord2,       bg = p.none                                           },
@@ -80,7 +80,7 @@ highlightGroups.editor = {
     -- diff legacy
     diffAdded        = { link = "DiffAdd"                                                          },
     diffChanged      = { link = "DiffChange"                                                       },
-    diffRemoved      = { link = "DiffDelete"                                                      },
+    diffRemoved      = { link = "DiffDelete"                                                       },
     -- Yank
     Yank             = { fg = p.nord6,       bg = p.nord10                                         },
 }
@@ -382,6 +382,7 @@ highlightGroups.plugins = {
 
     NeoTreeRootName           = { fg = p.nord6,      bg = p.none,  style = "bold,italic" },
     NeoTreeIndentMarker       = { link = "FoldColumn"                                    },
+    NeoTreeFileNameOpened     = { style = "bold,nocombine"                                         },
     NeoTreeBufferNumber       = { fg = p.nord6,      bg = p.none                         },
     NeoTreeDotfile            = { fg = p.nord3light, bg = p.none                         },
     NeoTreeSymbolicLinkTarget = { fg = p.nord7,      bg = p.none,  style = "bold"        },
@@ -487,6 +488,14 @@ highlightGroups.plugins = {
     WhichKeySeperator = { fg = p.nord3,  bg = p.none                 },
     WhichKeyValue     = { link = "Comment"                           },
     WhichKeyFloat     = { link = "NormalFloat"                       },
+
+    -- hydra.nvim
+    HydraHint     = { link = "NormalFloat"       },
+    HydraAmaranth = { fg = p.nord12, bg = p.none },
+    HydraTeal     = { fg = p.nord7,  bg = p.none },
+    HydraPink     = { fg = p.nord15, bg = p.none },
+    HydraBlue     = { fg = p.nord10, bg = p.none },
+    HydraRed      = { fg = p.nord11, bg = p.none }
 }
 
 highlightGroups.treesitter = {

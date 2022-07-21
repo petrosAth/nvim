@@ -27,6 +27,10 @@ wk.register({
     ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor",  silent = false, },
     ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number",                     },
     ["<F11>"] = { "<CMD>set wrap!<CR>",           "Toggle wrap",                                },
+    z = {
+        h = { nil, "Scroll the screen to the left" }, -- Assigned using Hydra.nvim
+        l = { nil, "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
+    },
     ["<M-J>"] = { ":m .+1<CR>==",                 "Move line up",                               },
     ["<M-K>"] = { ":m .-2<CR>==",                 "Move line down",                             },
     j         = { "v:count == 0 ? 'gj' : 'j'",    "Move using displayed lines", expr   = true,  },

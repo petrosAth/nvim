@@ -4,12 +4,12 @@ local telescope_custom = "<CMD>lua require('config.telescope.customPickers')."
 -- Normal mode mappings
 wk.register({
     ["]"] = {
-        c = { nil, "Next git hunk",  expr = true }, -- Assigned using Hydra.nvim
-        d = { nil, "Next diagnostic"             }  -- Assigned using Hydra.nvim
+        c = { nil, "Next git hunk"       }, -- Assigned using Hydra.nvim
+        d = { nil, "Next lsp diagnostic" }  -- Assigned using Hydra.nvim
     },
     ["["] = {
-        c = { nil, "Previous git hunk",  expr = true }, -- Assigned using Hydra.nvim
-        d = { nil, "Previous diagnostic"             }  -- Assigned using Hydra.nvim
+        c = { nil, "Previous git hunk"       }, -- Assigned using Hydra.nvim
+        d = { nil, "Previous lsp diagnostic" }  -- Assigned using Hydra.nvim
     },
     g = {
         a = {
