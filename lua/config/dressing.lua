@@ -40,8 +40,16 @@ require("dressing").setup({
             layout_strategy = "vertical",
             layout_config = {
                 prompt_position = "top",
-                width = 0.4,
-                height = 0.4
+                width = {
+                    0.6,
+                    min = 90,
+                    max = 110,
+                },
+                height = {
+                    0.5,
+                    min = 20,
+                    max = 40,
+                }
             },
             borderchars = {
             --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }

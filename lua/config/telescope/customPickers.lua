@@ -3,6 +3,32 @@ local builtin = require("telescope.builtin")
 local i = require("styling").icons
 local b = require("styling").borders.default
 local bn = require("styling").borders.none
+local window_size = {
+    width = {
+        small = {
+            0.6,
+            min = 90,
+            max = 110,
+        },
+        medium = {
+            0.6,
+            min = 100,
+            max = 130,
+        }
+    },
+    height = {
+        small = {
+            0.5,
+            min = 20,
+            max = 40,
+        },
+        medium = {
+            0.8,
+            min = 40,
+            max = 50,
+        },
+    }
+}
 
 local M = {}
 
@@ -26,8 +52,8 @@ function M.buffers()
         previewer = false,
         layout_strategy = "vertical",
         layout_config = {
-            width = 0.6,
-            height = 0.8
+            width = window_size.width.small,
+            height = window_size.height.small,
         }
     }
 end
@@ -39,8 +65,8 @@ function M.lsp_references()
         layout_config = {
             preview_height = 0.5,
             prompt_position = "bottom",
-            width = 0.4,
-            height = 0.8
+            width = window_size.width.medium,
+            height = window_size.height.medium,
         },
         borderchars = M.borderchars
     })
@@ -53,8 +79,8 @@ function M.lsp_definitions()
         layout_config = {
             preview_height = 0.5,
             prompt_position = "bottom",
-            width = 0.4,
-            height = 0.8
+            width = window_size.width.medium,
+            height = window_size.height.medium,
         },
         borderchars = M.borderchars
     })
@@ -68,8 +94,8 @@ function M.notify()
         layout_config = {
             preview_height = 0.3,
             prompt_position = "bottom",
-            width = 0.4,
-            height = 0.5
+            width = window_size.width.medium,
+            height = window_size.height.medium,
         },
         borderchars = M.borderchars
     }
