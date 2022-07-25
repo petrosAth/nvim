@@ -50,12 +50,13 @@ wk.register({
         },
         u = {
             name = "Utilities",
-            u = { "<CMD>PackerSync<CR>",     "Packer sync"        }, -- packer
-            s = { "<CMD>PackerStatus<CR>",   "Packer status"      }, -- packer
-            c = { "<CMD>PackerCompile<CR>",  "Packer compile"     }, -- packer
-            d = { "<CMD>Alpha<CR>",          "Show dashboard"     }, -- alpha
-            i = { "<CMD>LspInfo<CR>",        "LSP info"           }, -- lsp-config
-            I = { "<CMD>LspInstallInfo<CR>", "LSP installer info" }, -- lsp-installer
+            c = { "<CMD>PackerCompile<CR>",    "Packer compile"      }, -- packer
+            d = { "<CMD>Alpha<CR>",            "Show dashboard"      }, -- alpha
+            l = { "<CMD>LspInfo<CR>",          "LSP info"            }, -- lsp-config
+            m = { "<CMD>Mason<CR>",            "Mason status"        }, -- mason.nvim
+            p = { "<CMD>PackerStatus<CR>",     "Packer status"       }, -- packer
+            u = { "<CMD>PackerSync<CR>",       "Update plugins"      }, -- packer
+            U = { "<CMD>MasonToolsUpdate<CR>", "Update LSP packages" }, -- mason-tool-installer.nvim
         },
     },
     ["<Space>"] = {

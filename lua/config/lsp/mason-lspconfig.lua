@@ -1,9 +1,15 @@
-require("config.lsp.nvim-lsp-installer")
-local lspconfig = require("lspconfig")
-local lsp_cfg = require("config.lsp")
-
 -- Get language server list for installation
+local lsp_cfg = require("config.lsp")
 local servers = lsp_cfg.servers
+
+require("mason-lspconfig").setup({
+    -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
+    -- This setting has no relation with the `automatic_installation` setting.
+    -- ensure_installed = servers,
+    -- automatic_installation = true,
+})
+
+local lspconfig = require("lspconfig")
 local custom_capabilities = lsp_cfg.custom_capabilities()
 local custom_on_attach = lsp_cfg.custom_on_attach
 
@@ -14,8 +20,20 @@ for _, name in ipairs(servers) do
             filetypes = { "sh", "zsh", "makefile" }
         })
     elseif name == "omnisharp" then
+        local install_path = vim.fn.stdpath("data") .. "/mason/packages"
+        local cmd = OMNI_MONO and "mono" or "dotnet"
+        local path = OMNI_MONO and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe" or install_path .. "/omnisharp/OmniSharp.dll"
         lspconfig[name].setup({
-            use_mono = OMNI_MONO
+            -- use_modern_net = OMNI_MONO == false and true or false
+            on_new_config = function(config)
+                config.cmd = {
+                    cmd,
+                    path,
+                    "--languageserver",
+                    "--hostPID",
+                    tostring(vim.fn.getpid()),
+                }
+            end,
         })
     elseif name == "sumneko_lua" then
         if DEV_MODE then

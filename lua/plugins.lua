@@ -40,12 +40,12 @@ packer.init({
         open_fn = function() -- An optional function to open a window for packer's display
             return require("packer.util").float({ border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
         end,
-        working_sym   = i.pending[1] .. " ", -- The symbol for a plugin being installed/updated
-        error_sym     = i.error[1] .. " ", -- The symbol for a plugin with an error in installation/updating
-        done_sym      = i.done[1] .. " ", -- The symbol for a plugin which has completed installation/updating
-        removed_sym   = i.delete[1] .. " ", -- The symbol for an unused plugin which was removed
-        moved_sym     = i.arrowr[1] .. " ", -- The symbol for a plugin which was moved (e.g. from opt to start)
-        header_sym    = bs.t, -- The symbol for the header line in packer's display
+        working_sym = i.pending[1] .. " ", -- The symbol for a plugin being installed/updated
+        error_sym = i.error[1] .. " ", -- The symbol for a plugin with an error in installation/updating
+        done_sym = i.done[1] .. " ", -- The symbol for a plugin which has completed installation/updating
+        removed_sym = i.delete[1] .. " ", -- The symbol for an unused plugin which was removed
+        moved_sym = i.arrowr[1] .. " ", -- The symbol for a plugin which was moved (e.g. from opt to start)
+        header_sym = bs.t, -- The symbol for the header line in packer's display
         prompt_border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }, -- Border style of prompt popups.
     },
     -- log = { level = "debug" }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal"
@@ -55,7 +55,7 @@ return packer.startup(function()
     -- Packer
     use({ "wbthomason/packer.nvim" })
 
---<=< Styling >======================================================================================================>--
+    --<=< Styling >======================================================================================================>--
     -- Dressing.nvim - Neovim plugin to improve the default vim.ui interfaces
     use({
         "stevearc/dressing.nvim",
@@ -120,13 +120,40 @@ return packer.startup(function()
             require("config.incline")
         end,
     })
---<==================================================================================================================>--
+    --<==================================================================================================================>--
 
---<=< Autocompletion and Syntax highlighting >=======================================================================>--
+    --<=< Autocompletion and Syntax highlighting >=======================================================================>--
+    -- mason.nvim - Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
+    -- servers, DAP servers, linters, and formatters.
+    use({
+        "williamboman/mason.nvim",
+        requires = {
+            -- mason-tool-installer - Install and upgrade third party tools automatically
+            {
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
+                after = "mason.nvim",
+                config = function()
+                    require("config.lsp.mason-tool-installer")
+                end,
+            },
+            -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
+            {
+                "williamboman/mason-lspconfig.nvim",
+                after = { "nvim-lspconfig", "mason.nvim", "mason-tool-installer.nvim" },
+                config = function()
+                    require("config.lsp.mason-lspconfig")
+                end,
+            },
+        },
+        config = function()
+            require("config.lsp.mason")
+        end,
+    })
+
     -- nvim-lspconfig - Neovim's built-in language server client.
     use({
         "neovim/nvim-lspconfig",
-        after = { "cmp-nvim-lsp", "nvim-lsp-installer" },
+        after = { "cmp-nvim-lsp" },
         requires = {
             -- lsp-status.nvim - Utility functions for getting diagnostic status and progress messages from LSP servers
             {
@@ -134,10 +161,6 @@ return packer.startup(function()
                 config = function()
                     require("config.lsp.lsp-status").config()
                 end,
-            },
-            -- nvim-lsp-installer - Seamlessly manage LSP servers locally with :LspInstall
-            {
-                "williamboman/nvim-lsp-installer",
             },
             -- lsp_signature - LSP signature hint as you type
             {
@@ -172,9 +195,6 @@ return packer.startup(function()
                 end,
             },
         },
-        config = function()
-            require("config.lsp.install")
-        end,
     })
 
     -- nvim-cmp - A completion engine plugin for neovim written in Lua
@@ -294,9 +314,9 @@ return packer.startup(function()
     use({
         "godlygeek/tabular",
     })
---<==================================================================================================================>--
+    --<==================================================================================================================>--
 
---<=< Project and file navigation >==================================================================================>--
+    --<=< Project and file navigation >==================================================================================>--
     -- telescope.nvim - Gaze deeply into unknown regions using the power of the moon
     use({
         "nvim-telescope/telescope.nvim",
@@ -377,15 +397,15 @@ return packer.startup(function()
     -- possession.nvim - Flexible session management for Neovim
     use({
         "jedrzejboczar/possession.nvim",
-        requires = { 'nvim-lua/plenary.nvim' },
+        requires = { "nvim-lua/plenary.nvim" },
         config = function()
             require("config.possession")
-            require('telescope').load_extension('possession')
+            require("telescope").load_extension("possession")
         end,
     })
---<==================================================================================================================>--
+    --<==================================================================================================================>--
 
---<=< Miscellaneous >================================================================================================>--
+    --<=< Miscellaneous >================================================================================================>--
     -- tabby.nvim - A minimal, configurable, neovim style tabline. Use your nvim tabs as workspace multiplexer.
     use({
         "nanozuki/tabby.nvim",
@@ -477,7 +497,7 @@ return packer.startup(function()
             require("config.stabilize")
         end,
     })
---<==================================================================================================================>--
+    --<==================================================================================================================>--
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
