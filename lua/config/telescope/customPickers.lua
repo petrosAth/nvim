@@ -5,6 +5,11 @@ local b = require("styling").borders.default
 local bn = require("styling").borders.none
 local window_size = {
     width = {
+        tiny = {
+            0.3,
+            min = 40,
+            max = 60,
+        },
         small = {
             0.6,
             min = 90,
@@ -17,6 +22,11 @@ local window_size = {
         }
     },
     height = {
+        tiny = {
+            0.3,
+            min = 20,
+            max = 40,
+        },
         small = {
             0.5,
             min = 20,
@@ -41,8 +51,14 @@ M.borderchars = {
     preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
     }
 
-function M.find_recent()
-    telescope.extensions.frecency.frecency{
+function M.frecency()
+    telescope.extensions.frecency.frecency {
+        prompt_title = "Frecency",
+    }
+end
+
+function M.oldfiles()
+    builtin.oldfiles {
         prompt_title = "Recent Files",
     }
 end
@@ -98,6 +114,17 @@ function M.notify()
             height = window_size.height.medium,
         },
         borderchars = M.borderchars
+    }
+end
+
+function M.possession()
+    telescope.extensions.possession.list {
+        previewer = false,
+        layout_strategy = "vertical",
+        layout_config = {
+            width = window_size.width.tiny,
+            height = window_size.height.tiny,
+        }
     }
 end
 

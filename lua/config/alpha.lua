@@ -46,10 +46,12 @@ local header = {
 local buttons_navigation = {
     type = "group",
     val = {
-        set_button("SPC s r", " " .. i.arrowr[1] .. " Recent files",    tele_custom .. "find_recent()<CR>"),
-        set_button("SPC s s", "舘" .. i.arrowr[1] .. " Search sessions", "<CMD>SearchSession<CR>"),
-        set_button("SPC s f", " " .. i.arrowr[1] .. " File search",     tele_custom .. "find_files()<CR>"),
-        set_button("SPC s g", " " .. i.arrowr[1] .. " ripGREP search",  tele_custom .. "live_grep()<CR>")
+        set_button("LDR s r", "菱" .. i.arrowr[1] .. " Load last session", "<CMD>PossessionLoad<CR>"),
+        set_button("SPC s s", "舘" .. i.arrowr[1] .. " Search sessions",   tele_custom .. "possession()<CR>"),
+        set_button("SPC s r", " " .. i.arrowr[1] .. " Recent files",      tele_custom .. "oldfiles()<CR>"),
+        set_button("SPC s R", " " .. i.arrowr[1] .. " Frecent files",     tele_custom .. "frecency()<CR>"),
+        set_button("SPC s f", " " .. i.arrowr[1] .. " File search",       "<CMD>Telescope find_files<CR>"),
+        set_button("SPC s g", " " .. i.arrowr[1] .. " ripGREP search",    "<CMD>Telescope live_grep<CR>")
     },
     opts = {
         spacing = 0,

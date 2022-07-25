@@ -39,10 +39,10 @@ wk.register({
     ["g#"] = { "g#<CMD>lua require('hlslens').start()<CR>", "Search string under cursor backward" }, -- hlslens
     ["<Leader>"] = {
         s = {
-            name = "Auto Session",
-            d = { "<CMD>DeleteSession<CR>",  "Delete cwd session" }, -- session-lens
-            r = { "<CMD>RestoreSession<CR>", "Restore session"    }, -- session-lens
-            s = { "<CMD>SaveSession<CR>",    "Save session"       }, -- session-lens
+            name = "Possession",
+            d = { "<CMD>PossessionDelete<CR>", "Delete cwd session" }, -- possession.nvim
+            r = { "<CMD>RestoreSession<CR>",   "Restore session"    }, -- possession.nvim
+            s = { "<CMD>PossessionSave ",      "Save session"       }, -- possession.nvim
         },
         t = {
             name = "Tab",
@@ -160,8 +160,9 @@ wk.register({
             h = { "<CMD>Telescope help_tags<CR>",          "Vim help"           }, -- telescope
             n = { telescope_custom .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
             o = { "<CMD>Telescope vim_options<CR>",        "Vim options"        }, -- telescope
-            r = { telescope_custom .. "find_recent()<CR>", "Find recent"        }, -- telescope
-            s = { "<CMD>SearchSession<CR>",                "Search sessions"    }, -- session-lens
+            R = { telescope_custom .. "frecency()<CR>",    "Frecency"           }, -- telescope
+            r = { telescope_custom .. "oldfiles()<CR>",    "Recent files"       }, -- telescope
+            s = { telescope_custom .. "possession()<CR>",  "Search sessions"    }, -- possession.nvim
             T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" }, -- todo-comments
             t = {
                 name = "Telescope",

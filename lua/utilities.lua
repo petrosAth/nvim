@@ -3,7 +3,7 @@
 -- Launch external program
 function _G.launch_ext_prog(prog, args)
     vim.api.nvim_command("!" .. prog .. " " .. args)
-    vim.cmd([[redraw!]])
+    vim.cmd.redraw()
 end
 
 -- Open link in browser
@@ -23,9 +23,10 @@ function _G.open_url(url)
         elseif string.match(url, "^[%w]+[%w-]+%.+[%w]+[%w-]+[./]+.*") then
             vim.cmd([[!firefox --new-tab ]] .. url)
         else
-            vim.cmd('echo "No URL found."')
+            print "No URL found!"
         end
     else
-        vim.cmd('echo "No URL found."')
+        print "No URL found!"
     end
+    vim.cmd.redraw()
 end

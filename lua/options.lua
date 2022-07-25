@@ -133,7 +133,7 @@ opt.pumblend = t -- Transparency for the popup-menu
 
 opt.keywordprg = ":help" -- Program to use for the K command
 
-o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
+o.sessionoptions = "blank,curdir,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
 
 opt.swapfile = false -- No swap file
 opt.undofile = true -- Maintain undo history between sessions

@@ -219,10 +219,8 @@ Still a work in progress.
   interface for easily cycling through diffs for all modified files for any git
   rev
 
-- [auto-session](https://github.com/rmagatti/auto-session), A small automated
-  session manager for Neovim
-- [session-lens](https://github.com/rmagatti/session-lens), A session-switcher
-  extension for rmagatti/auto-session using Telescope.nvim
+- [possession.nvim](https://github.com/jedrzejboczar/possession.nvim), Flexible
+  session management for Neovim
 
 ### Miscellaneous
 - [tabby.nvim](https://github.com/nanozuki/tabby.nvim), A minimal, configurable,

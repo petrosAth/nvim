@@ -374,21 +374,13 @@ return packer.startup(function()
         end,
     })
 
-    -- auto-session - A small automated session manager for Neovim
+    -- possession.nvim - Flexible session management for Neovim
     use({
-        "rmagatti/auto-session",
-        requires = {
-            -- session-lens - A session-switcher extension for rmagatti/auto-session using Telescope.nvim
-            {
-                "rmagatti/session-lens",
-                after = "auto-session",
-                config = function()
-                    require("config.auto-session.session-lens")
-                end,
-            },
-        },
+        "jedrzejboczar/possession.nvim",
+        requires = { 'nvim-lua/plenary.nvim' },
         config = function()
-            require("config.auto-session")
+            require("config.possession")
+            require('telescope').load_extension('possession')
         end,
     })
 --<==================================================================================================================>--
