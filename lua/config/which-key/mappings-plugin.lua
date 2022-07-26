@@ -194,8 +194,8 @@ wk.register({
     ["<Space>"] = {
         f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to"     }, -- hop
         F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to"     }, -- hop
-        t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -2 })<CR>", "Hop before" }, -- hop
-        T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before" }, -- hop
+        t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before" }, -- hop
+        T = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 0 })<CR>", "Hop before" }, -- hop
     },
 }, { mode = "o" })
 
