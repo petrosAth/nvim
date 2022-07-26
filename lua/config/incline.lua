@@ -45,9 +45,6 @@ require("incline").setup({
         buftypes = {},
         filetypes = {
             "alpha",
-            "lspinfo",
-            "lsp-installer",
-            "packer",
         },
         floating_wins = true,
         unlisted_buffers = false,
@@ -58,10 +55,10 @@ require("incline").setup({
         local bufid = vim.api.nvim_buf_get_number(props.buf)
         local fnamemodify = vim.fn.fnamemodify
         local winwidth = vim.fn.winwidth(props.win)
-        if bufname == "" then
-            return "[No name]"
-        elseif only_show_win_number(bufid) then
+        if only_show_win_number(bufid) then
             return " " .. vim.api.nvim_win_get_number(props.win)
+        elseif bufname == "" then
+            return "[No name] │  " .. vim.api.nvim_win_get_number(props.win)
         else
             if #fnamemodify(bufname, ":~:.") < winwidth - 13 and fnamemodify(bufname, ":h") ~= "." then
                 return " " .. fnamemodify(bufname, ":~:.") .. " │  " .. vim.api.nvim_win_get_number(props.win)

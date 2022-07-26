@@ -40,9 +40,9 @@ wk.register({
     ["<Leader>"] = {
         s = {
             name = "Possession",
-            d = { "<CMD>PossessionDelete<CR>", "Delete cwd session" }, -- possession.nvim
-            r = { "<CMD>RestoreSession<CR>",   "Restore session"    }, -- possession.nvim
-            s = { "<CMD>PossessionSave ",      "Save session"       }, -- possession.nvim
+            d = { "<CMD>PossessionDelete<CR>", "Delete cwd session"                  }, -- possession.nvim
+            l = { "<CMD>PossessionLoad<CR>",   "Load last session"                   }, -- possession.nvim
+            s = { ":PossessionSave ",          "Save session",        silent = false }, -- possession.nvim
         },
         t = {
             name = "Tab",
@@ -50,13 +50,13 @@ wk.register({
         },
         u = {
             name = "Utilities",
-            c = { "<CMD>PackerCompile<CR>",    "Packer compile"      }, -- packer
-            d = { "<CMD>Alpha<CR>",            "Show dashboard"      }, -- alpha
-            l = { "<CMD>LspInfo<CR>",          "LSP info"            }, -- lsp-config
-            m = { "<CMD>Mason<CR>",            "Mason status"        }, -- mason.nvim
-            p = { "<CMD>PackerStatus<CR>",     "Packer status"       }, -- packer
-            u = { "<CMD>PackerSync<CR>",       "Update plugins"      }, -- packer
-            U = { "<CMD>MasonToolsUpdate<CR>", "Update LSP packages" }, -- mason-tool-installer.nvim
+            c = { "<CMD>PackerCompile<CR>",                  "Packer compile"      }, -- packer
+            d = { "<CMD>Alpha<CR>",                          "Show dashboard"      }, -- alpha
+            l = { "<CMD>LspInfo<CR>",                        "LSP info"            }, -- lsp-config
+            m = { "<CMD>Mason<CR>",                          "Mason status"        }, -- mason.nvim
+            p = { "<CMD>PackerStatus<CR>",                   "Packer status"       }, -- packer
+            u = { "<CMD>PackerSync<CR>",                     "Update plugins"      }, -- packer
+            U = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", "Update LSP packages" }, -- mason-tool-installer.nvim
         },
     },
     ["<Space>"] = {

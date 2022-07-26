@@ -7,7 +7,8 @@ autocmd("FileType", {
     pattern = {
         "aerial",
         "alpha",
-        "lsp-installer",
+        "lspinfo",
+        "mason.nvim",
         "minimap",
         "NvimTree",
         "Outline",

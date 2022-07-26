@@ -53,7 +53,7 @@ M.borderchars = {
 
 function M.frecency()
     telescope.extensions.frecency.frecency {
-        prompt_title = "Frecency",
+        prompt_title = "Frecent Files",
     }
 end
 

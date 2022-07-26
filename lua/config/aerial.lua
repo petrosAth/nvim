@@ -88,17 +88,9 @@ require("aerial").setup({
 
         -- List of filetypes to ignore.
         filetypes = {
-            "alpha",
-            "diff",
-            "help",
-            "lsp-installer",
             "minimap",
             "NvimTree",
-            "Outline",
-            "packer",
             "qf",
-            "Trouble",
-            "undotree",
         },
 
         -- Ignored buftypes.

@@ -28,7 +28,6 @@ autocmd("FileType", {
         "DiffviewFiles",
         "help",
         "lspinfo",
-        "lsp-installer",
         "man",
         "packer",
     },

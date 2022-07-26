@@ -10,7 +10,6 @@ g.qs_filetype_blacklist = {
     "alpha",
     "diff",
     "help",
-    "lsp-installer",
     "minimap",
     "NvimTree",
     "Outline",

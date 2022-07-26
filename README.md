@@ -119,8 +119,14 @@ Still a work in progress.
   language server client.
 - [lsp-status.nvim](https://github.com/nvim-lua/lsp-status.nvim), Utility
   functions for getting diagnostic status and progress messages from LSP servers
-- [nvim-lsp-installer](https://github.com/williamboman/nvim-lsp-installer),
-  Seamlessly manage LSP servers locally with :LspInstall
+- [mason.nvim](https://github.com/williamboman/mason.nvim), Portable package
+  manager for Neovim that runs everywhere Neovim runs. Easily install and manage
+  LSP servers, DAP servers, linters, and formatters.
+  - [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim),
+    Extension to mason.nvim that makes it easier to use lspconfig with
+    mason.nvim
+  - [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim),
+    Install and upgrade third party tools automatically
 - [lsp_signature](https://github.com/ray-x/lsp_signature.nvim), LSP signature
   hint as you type
 - [lspkind.nvim](https://github.com/onsails/lspkind-nvim), This tiny plugin adds

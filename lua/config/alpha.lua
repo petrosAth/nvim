@@ -14,7 +14,7 @@ local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
 local function set_button(sc, txt, keybind, keybind_opts)
     local button = dashboard.button(sc, txt, keybind, keybind_opts)
-    local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
+    local sc_ = sc:gsub("%s", ""):gsub("SPC", "<Space>")
     button.opts.hl          = "AlphaButtons"
     button.opts.hl_shortcut = "AlphaButtonShortcuts"
     button.opts.cursor      = 4
@@ -61,8 +61,8 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        set_button("LDR u u", " " .. i.arrowr[1] .. " Update plugins",   "<cmd>PackerSync<CR>"),
-        set_button("LDR u I", " " .. i.arrowr[1] .. " Language servers", "<cmd>LspInstallInfo<CR>")
+        set_button("LDR u u", " " .. i.arrowr[1] .. " Update plugins",      "<CMD>PackerSync<CR>"),
+        set_button("LDR u U", " " .. i.arrowr[1] .. " Update LSP packages", "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>")
     },
     opts = {
         spacing = 0,

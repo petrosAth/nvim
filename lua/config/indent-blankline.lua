@@ -3,7 +3,6 @@ local excFiletypes = {
     "alpha",
     "diff",
     "help",
-    "lsp-installer",
     "man",
     "minimap",
     "neo-tree",
