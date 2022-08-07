@@ -410,7 +410,6 @@ return packer.startup(function()
     use({
         "nanozuki/tabby.nvim",
         requires = "nvim-web-devicons",
-        after = "lualine.nvim",
         config = function()
             require("config.tabby")
         end,
@@ -419,10 +418,21 @@ return packer.startup(function()
     -- lualine - A blazing fast and easy to configure Neovim statusline written in Lua
     use({
         "nvim-lualine/lualine.nvim",
+        disable = true,
         requires = "nvim-web-devicons",
-        after = "nvim-lspconfig",
+        after = "mason-lspconfig.nvim",
         config = function()
             require("config.lualine")
+        end,
+    })
+
+    -- heirline.nvim - Heirline.nvim is a no-nonsense Neovim Statusline plugin designed around recursive inheritance to be exceptionally fast and versatile.
+    use({
+        "rebelot/heirline.nvim",
+        config = function()
+            local StatusLines = require("config.statusBars.statusLine").StatusLines
+            -- local WinBars = require("config.statusBars.winBar").WinBars
+            require("heirline").setup(StatusLines--[[ , WinBars ]])
         end,
     })
 

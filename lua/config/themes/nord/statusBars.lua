@@ -33,6 +33,27 @@ local M = {
             c = { fg = p.nord4, bg = p.nord1 },
         },
     },
+    heirline = {
+        modes = {
+            inactive = { fg = p.nord1, bg = p.nord8  },
+            visual   = { fg = p.nord1, bg = p.nord13 },
+            replace  = { fg = p.nord1, bg = p.nord11 },
+            normal   = { fg = p.nord1, bg = p.nord8  },
+            insert   = { fg = p.nord1, bg = p.nord6  },
+            command  = { fg = p.nord1, bg = p.nord7  },
+            terminal = { fg = p.nord1, bg = p.nord12 },
+            hydra    = { fg = p.nord1, bg = p.nord15 },
+        },
+        statusBar = {
+            bright = { fg = p.nord4,  bg = p.nord3 },
+        },
+        winBar = {
+            bright = { fg = p.nord4, bg = p.nord3light },
+        },
+        modified     = { fg = p.nord13, bg = p.none },
+        readOnly     = { fg = p.nord6,  bg = p.none },
+        windowNumber = { fg = p.nord6,  bg = p.none }
+    },
 }
 
 return M

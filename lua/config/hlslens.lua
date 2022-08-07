@@ -10,7 +10,7 @@ require("hlslens").setup({
     -- 'auto': floating window will be opened if room isn't enough for virtual text;
     -- 'always': always use floating window instead of virtual text;
     -- 'never': never use floating window for the nearest lens,
-    -- nearest_float_when = "always",
+    nearest_float_when = "never",
     -- Winblend of the nearest floating window. `:h winbl` for more details,
     float_shadow_blend = 50,
     -- Priority of virtual text, set it lower to overlay others.
@@ -44,10 +44,5 @@ require("hlslens").setup({
             chunks = {{' ', 'Ignore'}, {text, 'HlSearchLens'}}
         end
         render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
-    end,
-
-    -- needed for scrollbar plugin
-    build_position_cb = function(plist, _, _, _)
-        require("scrollbar.handlers.search").handler.show(plist.start_pos)
     end,
 })
