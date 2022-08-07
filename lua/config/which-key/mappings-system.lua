@@ -37,7 +37,8 @@ wk.register({
     k         = { "v:count == 0 ? 'gk' : 'k'",    "Move using displayed lines", expr   = true,  },
     ["<Esc>"] = { ":noh<CR><Esc>",                "Clear search highlight",                     },
     ["<Leader>"] = {
-        q = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab" },
+        q = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window" },
+        Q = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"    },
         b = {
             name = "Buffer",
             d = { "<CMD>Bdelete<CR>", "Delete buffer" },
