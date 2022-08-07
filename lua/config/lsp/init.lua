@@ -75,11 +75,6 @@ function M.custom_capabilities()
     local cmp_lsp = require("cmp_nvim_lsp")
     capabilities = cmp_lsp.update_capabilities(capabilities)
 
-    -- lsp-status.nvim
-    -- Get window/workDoneProgress from lsp server
-    local lsp_status = require("lsp-status")
-    capabilities = vim.tbl_extend("keep", capabilities, lsp_status.capabilities)
-
     return capabilities
 end
 
@@ -87,11 +82,6 @@ end
 function M.custom_on_attach(client, bufnr)
     -- aerial.nvim
     require("aerial").on_attach(client, bufnr)
-
-    -- lsp-status.nvim
-    -- Register client for messages and set up buffer autocommands to update
-    -- the statusline and the current function.
-    require("lsp-status").on_attach(client)
 end
 
 return M

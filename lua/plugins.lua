@@ -155,13 +155,6 @@ return packer.startup(function()
         "neovim/nvim-lspconfig",
         after = { "cmp-nvim-lsp" },
         requires = {
-            -- lsp-status.nvim - Utility functions for getting diagnostic status and progress messages from LSP servers
-            {
-                "nvim-lua/lsp-status.nvim",
-                config = function()
-                    require("config.lsp.lsp-status").config()
-                end,
-            },
             -- lsp_signature - LSP signature hint as you type
             {
                 "ray-x/lsp_signature.nvim",
