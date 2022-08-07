@@ -7,7 +7,7 @@ require("mason").setup({
         icons = {
             package_installed = i.done[1],
             package_pending = i.pending[1],
-            package_uninstalled = i.removed[1],
+            package_uninstalled = i.delete[1],
         },
         keymaps = {
             -- Keymap to expand a package
