@@ -29,6 +29,7 @@ autocmd("FileType", {
         "help",
         "lspinfo",
         "man",
+        "notify",
         "packer",
     },
     desc = "Exit specific FileTypes using 'q'.",
