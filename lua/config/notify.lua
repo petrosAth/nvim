@@ -39,12 +39,12 @@ notify.setup({
 
     -- Icons for the different levels
     icons = {
-        ERROR = i.error[1],
-        WARN  = i.warn[1],
-        INFO  = i.info[1],
+        ERROR = i.lsp.error[1],
+        WARN = i.lsp.warn[1],
+        INFO = i.lsp.info[1],
         DEBUG = i.bug[1],
-        TRACE = i.location[1]
-    }
+        TRACE = i.location[1],
+    },
 })
 
 vim.notify = notify

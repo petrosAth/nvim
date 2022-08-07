@@ -399,10 +399,10 @@ M.lsp_diagnostics = function()
                 hints = "%#lualineDiagnosticHint#",
             }
             local d_symbol = {
-                errors = i.error[1] .. " ",
-                warnings = i.warn[1] .. " ",
-                info = i.info[1] .. " ",
-                hints = i.hint[1] .. " ",
+                errors = i.lsp.error[1] .. " ",
+                warnings = i.lsp.warn[1] .. " ",
+                info = i.lsp.info[1] .. " ",
+                hints = i.lsp.hint[1] .. " ",
             }
             local d_count = {
                 errors = lsp_diagnostics(bufnr).errors,
@@ -522,10 +522,10 @@ M.builtin_diagnostics = function()
         sources = { "nvim_diagnostic" },
         colored = true,
         symbols = {
-            error = i.error[1] .. " ",
-            warn = i.warn[1] .. " ",
-            info = i.info[1] .. " ",
-            hint = i.hint[1] .. " ",
+            error = i.lsp.error[1] .. " ",
+            warn = i.lsp.warn[1] .. " ",
+            info = i.lsp.info[1] .. " ",
+            hint = i.lsp.hint[1] .. " ",
         },
         sections = { "error", "warn", "info", "hint" },
         always_visible = false,

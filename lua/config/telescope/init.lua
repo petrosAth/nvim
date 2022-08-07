@@ -9,7 +9,7 @@ local bn = require("styling").borders.none
 
 telescope.setup({
     defaults = {
-        prompt_prefix = " " .. i.prompt[7] .. "  ",
+        prompt_prefix = " " .. i.search[1] .. "  ",
         selection_caret = i.point[1] .. " ",
         multi_icon = " " .. i.select[1],
         entry_prefix = "  ",

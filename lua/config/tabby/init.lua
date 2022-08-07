@@ -30,14 +30,14 @@ require("tabby").setup({
         local current_tab = vim.api.nvim_get_current_tabpage()
         for _, tabid in ipairs(tabs) do
             if tabid == current_tab then
+                local wins = tab.all_wins(current_tab)
+                local top_win = vim.api.nvim_tabpage_get_win(current_tab)
                 table.insert(coms, {
                     type = "tab",
                     tabid = tabid,
                     label = c.tab_label(tabid, true),
                     left_sep = text.separator(c.left_separator_icon, "TabLineTabCurrent", "TabLineBody"),
                 })
-                local wins = tab.all_wins(current_tab)
-                local top_win = vim.api.nvim_tabpage_get_win(current_tab)
                 for _, winid in ipairs(wins) do
                     local bufid = vim.api.nvim_win_get_buf(winid)
                     local modified = vim.bo[bufid].modified

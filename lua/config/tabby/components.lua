@@ -27,7 +27,7 @@ local plugin_list = {
     { filetype = "undotree",        window_title = "Undo tree"     },
 }
 local filename_list = {
-    { filename = "%[Command Line%]",              customFilename = " CMD history"                     },
+    { filename = "%[Command Line%]",              customFilename = " History"                         },
     { filename = "neo%-tree git_status",          customFilename = " Git status"                      },
     { filename = "neo%-tree buffers",             customFilename = " Open buffers"                    },
     { filename = "(/%.git/:0:)/",                 customFilename = " Original file"                   },

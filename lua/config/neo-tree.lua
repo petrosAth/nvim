@@ -52,16 +52,16 @@ tree.setup({
         git_status = {
             symbols = {
                 -- Change type
-                added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-                modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                deleted = "", -- this can only be used in the git_status source
-                renamed = "", -- this can only be used in the git_status source
+                added = i.git.added[1], -- or "✚", but this is redundant info if you use git_status_colors on the name
+                modified = i.git.changed[1], -- or "", but this is redundant info if you use git_status_colors on the name
+                deleted = i.git.deleted[1], -- this can only be used in the git_status source
+                renamed = i.git.renamed[1], -- this can only be used in the git_status source
                 -- Status type
-                untracked = i.pending[1],
-                ignored = "", --""
-                unstaged = i.edit[4],
-                staged = i.done[2],
-                conflict = "",
+                untracked = i.git.untracked[1],
+                ignored = i.git.ignored[2], --""
+                unstaged = i.git.unstaged[1],
+                staged = i.git.staged[1],
+                conflict = i.git.conflict[1],
             },
         },
     },
