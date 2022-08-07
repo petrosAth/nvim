@@ -1,9 +1,10 @@
 local lualine = require("lualine")
 local components = require("config.lualine.components")
+local theme = require("config.themes." .. THEME .. ".statusBars").lualine
 
 lualine.setup({
     options = {
-        theme = components.theme,
+        theme = theme,
         component_separators = { left = "│", right = "│" },
         section_separators = { left = "", right = "" },
         -- disabled_filetypes = { "alpha", "NvimTree", "Outline" }
