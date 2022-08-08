@@ -84,6 +84,8 @@ tree.setup({
             ["<C-t>"] = "open_tabnew",
             ["w"] = "open_with_window_picker",
             ["h"] = "close_node",
+            ["z"] = false,
+            ["zC"] = "close_all_nodes",
             ["a"] = {
                 "add",
                 -- some commands may take optional config options, see `:h neo-tree-mappings` for details
