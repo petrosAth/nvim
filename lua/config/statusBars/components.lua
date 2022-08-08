@@ -177,7 +177,7 @@ M.SpecialName = {
             { fileName = "%[Command Line%]", specialName = "Search history" },
             { fileName = "^diffview:///null$", specialName = "Original file" },
             { fileName = "(/%.git/:0:)/", specialName = "Original file" },
-            { fileName = "(/%.git/.-)/", specialName = " Git commit ", is_gitRepo = true },
+            { fileName = "(/%.git/.-)/", specialName = " Git commit", is_gitRepo = true },
         }
     end,
 
@@ -186,14 +186,17 @@ M.SpecialName = {
         for _, name in pairs(self.specialNameList) do
             local fileNameMatch = string.match(fileName, name.fileName)
             if fileNameMatch then
+                local specialName = name.specialName
                 if name.is_gitRepo then
                     local commit = string.sub(fileNameMatch, 7, 13)
-                    return name.specialName .. commit
+                    specialName = name.specialName .. h.Separator.mid.provider .. commit
                 end
+
                 if vim.bo.filetype == "vim" then
-                    return "Command history"
+                    specialName = "Command-line window"
                 end
-                return name.specialName .. h.Separator.right.provider .. h.Separator.mid.provider
+
+                return h.Separator.left.provider .. specialName .. h.Separator.right.provider
             end
         end
     end,
