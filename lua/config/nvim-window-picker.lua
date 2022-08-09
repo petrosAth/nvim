@@ -1,3 +1,5 @@
+local hl = require("config.themes.nord.highlightGroups").plugins
+
 require("window-picker").setup({
     -- when you go to window selection mode, status bar will show one of
     -- following letters on them so you can use that letter to select the window
@@ -29,13 +31,13 @@ require("window-picker").setup({
     },
 
     -- the foreground (text) color of the picker
-    fg_color = "#ededed",
+    fg_color = hl.WindowPicker.fg,
 
     -- if you have include_current_win == true, then current_win_hl_color will
     -- be highlighted using this background color
-    current_win_hl_color = "#e35e4f",
+    current_win_hl_color = hl.WindowPicker.bg,
 
     -- all the windows except the curren window will be highlighted using this
     -- color
-    other_win_hl_color = "#44cc41",
+    other_win_hl_color = hl.WindowPickerNC.bg,
 })

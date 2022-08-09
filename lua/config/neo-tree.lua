@@ -78,7 +78,7 @@ tree.setup({
                 nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
             },
             ["<2-LeftMouse>"] = "open",
-            ["l"] = "open",
+            ["l"] = "open_with_window_picker",
             ["<C-s>"] = "split_with_window_picker",
             ["<C-v>"] = "vsplit_with_window_picker",
             ["<C-t>"] = "open_tabnew",

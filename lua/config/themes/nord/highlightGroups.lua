@@ -304,6 +304,10 @@ M.plugins = {
     HlSearchLens     = { fg = p.nord3light, bg = p.none, style = "reverse" },
     HlSearchFloat    = { link = "IncSearch"                                },
 
+    --nvim-windowpicker
+    WindowPicker   = { fg = p.nord6, bg = p.nord3light, style = "bold" },
+    WindowPickerNC = { fg = p.nord6, bg = p.nord3light, style = "bold" },
+
     -- hop.nvim
     HopNextKey   = { fg = p.nord8, bg = p.none, style = "bold" },
     HopNextKey1  = { fg = p.nord8, bg = p.none                 },

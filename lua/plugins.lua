@@ -341,7 +341,7 @@ return packer.startup(function()
             { "MunifTanjim/nui.nvim" }, -- UI Component Library for Neovim.
             {
                 "s1n7ax/nvim-window-picker", -- nvim-window-picker - This plugins prompts the user to pick a window and returns the window id of the picked window
-                tag = "v1.*",
+                -- tag = "v1.*",
                 config = function()
                     require("config.nvim-window-picker")
                 end,
