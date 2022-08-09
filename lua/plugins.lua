@@ -336,9 +336,16 @@ return packer.startup(function()
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
         requires = {
-            "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons",
-            "MunifTanjim/nui.nvim", -- UI Component Library for Neovim.
+            { "nvim-lua/plenary.nvim" },
+            { "kyazdani42/nvim-web-devicons" },
+            { "MunifTanjim/nui.nvim" }, -- UI Component Library for Neovim.
+            {
+                "s1n7ax/nvim-window-picker", -- nvim-window-picker - This plugins prompts the user to pick a window and returns the window id of the picked window
+                tag = "v1.*",
+                config = function()
+                    require("config.nvim-window-picker")
+                end,
+            },
         },
         config = function()
             require("config.neo-tree")
@@ -414,7 +421,9 @@ return packer.startup(function()
         config = function()
             local StatusLines = require("config.statusBars.statusLine").StatusLines
             -- local WinBars = require("config.statusBars.winBar").WinBars
-            require("heirline").setup(StatusLines--[[ , WinBars ]])
+            require("heirline").setup(
+                StatusLines --[[ , WinBars ]]
+            )
         end,
     })
 

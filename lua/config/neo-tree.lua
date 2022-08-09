@@ -79,13 +79,15 @@ tree.setup({
             },
             ["<2-LeftMouse>"] = "open",
             ["l"] = "open",
-            ["<C-s>"] = "open_split",
-            ["<C-v>"] = "open_vsplit",
+            ["<C-s>"] = "split_with_window_picker",
+            ["<C-v>"] = "vsplit_with_window_picker",
             ["<C-t>"] = "open_tabnew",
-            ["w"] = "open_with_window_picker",
+            ["w"] = false,
+            ["s"] = false,
+            ["S"] = false,
             ["h"] = "close_node",
             ["z"] = false,
-            ["zC"] = "close_all_nodes",
+            ["zM"] = "close_all_nodes",
             ["a"] = {
                 "add",
                 -- some commands may take optional config options, see `:h neo-tree-mappings` for details
@@ -100,7 +102,7 @@ tree.setup({
             ["x"] = "cut_to_clipboard",
             ["p"] = "paste_from_clipboard",
             ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-            ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+            ["M"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
             ["q"] = "close_window",
             ["r"] = "refresh",
             ["?"] = "show_help",
