@@ -99,7 +99,7 @@ tree.setup({
             ["D"] = "delete",
             ["R"] = "rename",
             ["y"] = "copy_to_clipboard",
-            ["x"] = "cut_to_clipboard",
+            ["X"] = "cut_to_clipboard",
             ["p"] = "paste_from_clipboard",
             ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
             ["M"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
