@@ -73,11 +73,9 @@ tree.setup({
             nowait = true,
         },
         mappings = {
-            ["<space>"] = {
-                "toggle_node",
-                nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-            },
+            ["<space>"] = false,
             ["<2-LeftMouse>"] = "open",
+            ["<C-y>"] = "open",
             ["l"] = "open_with_window_picker",
             ["<C-s>"] = "split_with_window_picker",
             ["<C-v>"] = "vsplit_with_window_picker",
