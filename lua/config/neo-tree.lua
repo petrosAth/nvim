@@ -75,7 +75,7 @@ tree.setup({
         mappings = {
             ["<space>"] = false,
             ["<2-LeftMouse>"] = "open",
-            ["<C-y>"] = "open",
+            ["L"] = "open",
             ["l"] = "open_with_window_picker",
             ["<C-s>"] = "split_with_window_picker",
             ["<C-v>"] = "vsplit_with_window_picker",
