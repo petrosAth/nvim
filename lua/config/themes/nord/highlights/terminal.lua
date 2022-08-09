@@ -1,7 +1,7 @@
 local p = require("config.themes.nord.palette")
-local terminalColors = {}
+local M = {}
 
-function terminalColors.load()
+function M.load()
     vim.g.terminal_color_0  = p.nord1
     vim.g.terminal_color_8  = p.nord3
 
@@ -27,4 +27,4 @@ function terminalColors.load()
     vim.g.terminal_color_14 = p.nord7
 end
 
-return terminalColors
+return M

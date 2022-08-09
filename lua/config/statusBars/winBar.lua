@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local c = require("config.statusBars.components")
-local theme = require("config.themes." .. THEME .. ".statusBars").heirline.winBar
+local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline.winBar
 local M = {}
 
 local DefaultWinBar = {

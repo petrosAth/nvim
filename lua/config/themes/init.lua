@@ -27,13 +27,13 @@ function theme.loadColorScheme()
 end
 
 function theme.loadTerminalColors(themeName)
-    local terminalColors = require("config.themes." .. themeName .. ".terminalColors")
+    local terminalColors = require("config.themes." .. themeName .. ".highlights.terminal")
 
     terminalColors.load()
 end
 
 function theme.loadHighlightGroups(themeName)
-    local highlightGroups = require("config.themes." .. themeName .. ".highlightGroups")
+    local highlightGroups = require("config.themes." .. themeName .. ".highlights.highlightGroups")
 
     for _, groups in pairs(highlightGroups) do
         for group, colors in pairs(groups) do

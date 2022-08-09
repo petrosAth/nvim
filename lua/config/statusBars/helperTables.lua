@@ -1,4 +1,4 @@
-local theme = require("config.themes." .. THEME .. ".statusBars").heirline
+local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline
 local M = {}
 
 M.Align = { provider = "%=" }
