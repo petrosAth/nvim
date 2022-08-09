@@ -384,6 +384,13 @@ M.plugins = {
     NeoTreeFloatBorder        = { fg = p.nord2,      bg = p.nord0                        },
     NeoTreeFloatTitle         = { fg = p.nord8,      bg = p.nord2, style = "bold"        },
 
+
+    NeoTreeTabActive = { fg = p.nord4, bg = p.nord3 },
+    NeoTreeTabInactive = { fg = p.nord4, bg = p.nord1 },
+    NeoTreeTabBarBackground = { link = "WinBar" },
+    NeoTreeTabSeparatorActive = { fg = p.nord3, bg = p.nord3},
+    NeoTreeTabSeparatorInactive = { fg = p.nord3, bg = p.nord1 },
+
     NeoTreeRootName           = { fg = p.nord6,      bg = p.none,  style = "bold,italic" },
     NeoTreeIndentMarker       = { link = "FoldColumn"                                    },
     NeoTreeFileNameOpened     = { style = "bold,nocombine"                                         },

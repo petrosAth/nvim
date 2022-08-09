@@ -17,6 +17,49 @@ tree.setup({
     --           return a.type > b.type
     --       end
     --   end , -- this sorts files and directories descendantly
+    use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
+    source_selector = {
+        winbar = true, -- toggle to show selector on winbar
+        statusline = false, -- toggle to show selector on statusline
+        show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
+                                               -- of the top visible node when scrolled down.
+        tab_labels = { -- falls back to source_name if nil
+          filesystem = " " .. i.fileExplorer[1] .. " Files ",
+          buffers =   i.buffer[1] .. " Buffers ",
+          git_status = i.git.repo[1] .. " Git ",
+          diagnostics = i.lsp.lspIcon[1] .. " Diagnostics ",
+        },
+        content_layout = "start", -- only with `tabs_layout` = "equal", "focus"
+        --                start  : |/ 裡 bufname     \/...
+        --                end    : |/     裡 bufname \/...
+        --                center : |/   裡 bufname   \/...
+        tabs_layout = "equal", -- start, end, center, equal, focus
+        --             start  : |/  a  \/  b  \/  c  \            |
+        --             end    : |            /  a  \/  b  \/  c  \|
+        --             center : |      /  a  \/  b  \/  c  \      |
+        --             equal  : |/    a    \/    b    \/    c    \|
+        --             active : |/  focused tab    \/  b  \/  c  \|
+        truncation_character = "…", -- character to use when truncating the tab label
+        tabs_min_width = nil, -- nil | int: if int padding is added based on `content_layout`
+        tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
+        padding = 4, -- can be int or table
+        -- separator = "▕", -- can be string or table, see below
+         separator = { left = "▏", right= "▕" },
+        -- separator = { left = "/", right = "\\", override = nil },     -- |/  a  \/  b  \/  c  \...
+        -- separator = { left = "/", right = "\\", override = "right" }, -- |/  a  \  b  \  c  \...
+        -- separator = { left = "/", right = "\\", override = "left" },  -- |/  a  /  b  /  c  /...
+        -- separator = { left = "/", right = "\\", override = "active" },-- |/  a  / b:active \  c  \...
+        -- separator = "|",                                              -- ||  a  |  b  |  c  |...
+        separator_active = nil, -- set separators around the active tab. nil falls back to `source_selector.separator`
+        show_separator_on_edge = false,
+        --                       true  : |/    a    \/    b    \/    c    \|
+        --                       false : |     a    \/    b    \/    c     |
+        highlight_tab = "NeoTreeTabInactive",
+        highlight_tab_active = "NeoTreeTabActive",
+        highlight_background = "NeoTreeTabBarBackground",
+        highlight_separator = "NeoTreeTabSeparatorInactive",
+        highlight_separator_active = "NeoTreeTabSeparatorActive",
+    },
     default_component_configs = {
         container = {
             enable_character_fade = true,
