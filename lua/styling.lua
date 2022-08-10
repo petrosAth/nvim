@@ -88,13 +88,13 @@ styling.icons = {
     -- Fillchar and listchar icons
     nvim_ui  = {
         wbr       = { " " }, -- ' '     window bar
-        horiz     = { "█" }, -- '─' or '-'  horizontal separators |:split|
-        horizup   = { "█" }, -- '┴' or '-'  upwards facing horizontal separator
-        horizdown = { "█" }, -- '┬' or '-'  downwards facing horizontal separator
-        vert      = { "█" }, -- '│' or '|'  vertical separators |:vsplit|
-        vertleft  = { "█" }, -- '┤' or '|'  left facing vertical separator
-        vertright = { "█" }, -- '├' or '|'  right facing vertical separator
-        verthoriz = { "█" }, -- '┼' or '+'  overlapping vertical and horizontal
+        horiz     = { "█", "█", "─", "▁" }, -- '─' or '-'  horizontal separators |:split|
+        horizup   = { "█", "█", "┴", " " }, -- '┴' or '-'  upwards facing horizontal separator
+        horizdown = { "█", "█", "┬", "🭼" }, -- '┬' or '-'  downwards facing horizontal separator
+        vert      = { "█", "█", "│", "▏" }, -- '│' or '|'  vertical separators |:vsplit|
+        vertleft  = { "█", "█", "┤", "▏" }, -- '┤' or '|'  left facing vertical separator
+        vertright = { "█", "█", "├", "🭼" }, -- '├' or '|'  right facing vertical separator
+        verthoriz = { "█", "█", "┼", "🭼" }, -- '┼' or '+'  overlapping vertical and horizontal
         stl       = { " " }, -- ' ' or '^'  statusline of the current window
         stlnc     = { " " }, -- ' ' or '='  statusline of the non-current windows
         fold      = { " " }, -- '·' or '-'  filling 'foldtext'
