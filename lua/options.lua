@@ -71,10 +71,8 @@ opt.colorcolumn = "120" -- Show vertical line for text alignment
 
 opt.foldcolumn = "1" -- Fold column size
 opt.foldmethod = "indent" -- Folding configuration
-opt.foldlevelstart = 99
-opt.foldminlines = 0 -- Fold even single line
-
-opt.viewoptions:remove("options")
+opt.foldlevelstart = 3
+opt.foldminlines = 1 -- Fold even single line
 
 opt.list = true -- Display eol characters
 

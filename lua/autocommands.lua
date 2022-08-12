@@ -50,22 +50,6 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
     command = [[if &nu | set nornu | endif]],
 })
 
-local saveAndRestoreFolds = augroup("saveAndRestoreFolds", { clear = true })
-autocmd("BufWinLeave", {
-    group = saveAndRestoreFolds,
-    desc = "Save folds state.",
-    command = [[
-        if expand('%') != '' | mkview | endif
-    ]],
-})
-autocmd("BufWinEnter", {
-    group = saveAndRestoreFolds,
-    desc = "Restore folds to the last known state.",
-    command = [[
-        if expand('%') != '' | silent! loadview | endif
-    ]],
-})
-
 local bufEnterAutoCMD = augroup("bufEnterAutoCMD", { clear = true })
 -- r - Automatically insert the current comment leader after hitting <Enter> in Insert mode.
 -- o - Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
