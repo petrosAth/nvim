@@ -257,11 +257,6 @@ return packer.startup(function()
                 "p00f/nvim-ts-rainbow",
                 after = { "nvim-treesitter" },
             },
-            -- nvim-ts-autotag - Use treesitter to autoclose and autorename html tagSupport
-            {
-                "windwp/nvim-ts-autotag",
-                ft = { "html", "javascript", "javascriptreact", "typescriptreact", "svelte", "vue" },
-            },
         },
         config = function()
             require("config.treesitter")

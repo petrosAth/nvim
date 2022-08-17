@@ -1,9 +1,5 @@
 require("nvim-treesitter.configs").setup({
     ensure_installed = "all",
-    autotag = {
-        enable = true,
-        filetypes = { "html" , "xml" },
-    },
     context_commentstring = {
         enable = true
     },
