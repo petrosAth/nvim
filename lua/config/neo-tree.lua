@@ -42,7 +42,7 @@ tree.setup({
         truncation_character = "…", -- character to use when truncating the tab label
         tabs_min_width = nil, -- nil | int: if int padding is added based on `content_layout`
         tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
-        padding = 4, -- can be int or table
+        padding = 0, -- can be int or table
         -- separator = "▕", -- can be string or table, see below
          separator = { left = "▏", right= "▕" },
         -- separator = { left = "/", right = "\\", override = nil },     -- |/  a  \/  b  \/  c  \...
@@ -109,8 +109,14 @@ tree.setup({
         },
     },
     window = {
+        popup = {
+            size = {
+                width = 49,
+                height = "80%"
+            }
+        },
         position = "left",
-        width = 45,
+        width = 43,
         mapping_options = {
             noremap = true,
             nowait = true,
