@@ -125,7 +125,7 @@ tree.setup({
         mappings = {
             ["<space>"] = false,
             ["<2-LeftMouse>"] = "open",
-            ["L"] = "open",
+            ["<CR>"] = "open",
             ["l"] = "open_with_window_picker",
             ["<C-s>"] = "split_with_window_picker",
             ["<C-v>"] = "vsplit_with_window_picker",
@@ -147,9 +147,11 @@ tree.setup({
             ["D"] = "delete",
             ["R"] = "rename",
             ["y"] = "copy_to_clipboard",
+            ["x"] = false,
             ["X"] = "cut_to_clipboard",
             ["p"] = "paste_from_clipboard",
             ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+            ["m"] = false,
             ["M"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
             ["q"] = "close_window",
             ["r"] = "refresh",
@@ -187,7 +189,7 @@ tree.setup({
         window = {
             mappings = {
                 ["<BS>"] = "navigate_up",
-                ["<CR>"] = "set_root",
+                ["<L>"] = "set_root",
                 ["."] = "toggle_hidden",
                 ["/"] = "fuzzy_finder",
                 ["d"] = "fuzzy_finder_directory",
@@ -207,7 +209,7 @@ tree.setup({
             mappings = {
                 ["d"] = "buffer_delete",
                 ["<BS>"] = "navigate_up",
-                ["<CR>"] = "set_root",
+                ["<L>"] = "set_root",
             },
         },
     },

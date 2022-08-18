@@ -2,6 +2,9 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local trouble = require("trouble.providers.telescope")
+local fb_actions = require "telescope".extensions.file_browser.actions
+local c = require("config.telescope.customPickers")
+local ws = c.window_size
 local t = require("styling").variables.transparency
 local i = require("styling").icons
 local b = require("styling").borders.default
@@ -49,8 +52,9 @@ telescope.setup({
         },
         layout_strategy = "horizontal",
         layout_config = {
-            width = 0.9,
-            height = 0.9,
+            preview_width = 0.6,
+            width = ws.width.large,
+            height = ws.height.large,
             horizontal = {
                 mirror = false,
             },
@@ -142,6 +146,54 @@ telescope.setup({
         },
     },
     extensions = {
+        file_browser = {
+            grouped = true,
+            depth = 1,
+            dir_icon = i.dir[1],
+            dir_icon_hl = "Directory",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = false,
+            mappings = {
+                ["i"] = {
+                    ["<A-c>"] = false,
+                    ["<C-a>"] = fb_actions.create,
+                    ["<S-CR>"] = fb_actions.create_from_prompt,
+                    ["<A-r>"] = false,
+                    ["<C-R>"] = fb_actions.rename,
+                    ["<A-m>"] = false,
+                    ["<C-M>"] = fb_actions.move,
+                    ["<A-y>"] = false,
+                    ["<C-Y>"] = fb_actions.copy,
+                    ["<A-d>"] = false,
+                    ["<C-D>"] = fb_actions.remove,
+                    ["<C-o>"] = false,
+                    ["<C-g>"] = false,
+                    ["<C-h>"] = fb_actions.goto_parent_dir,
+                    ["<C-e>"] = false,
+                    ["<C-w>"] = false,
+                    ["<C-t>"] = false,
+                    ["<C-L>"] = fb_actions.change_cwd,
+                    ["<C-f>"] = fb_actions.toggle_browser,
+                    ["<C-s>"] = fb_actions.toggle_all,
+                },
+                ["n"] = {
+                    ["a"] = fb_actions.create,
+                    ["R"] = fb_actions.rename,
+                    ["M"] = fb_actions.move,
+                    ["y"] = fb_actions.copy,
+                    ["D"] = fb_actions.remove,
+                    ["<SPACE><SPACE>e"] = fb_actions.open,
+                    ["<BS>"] = fb_actions.goto_parent_dir,
+                    ["h"] = fb_actions.goto_parent_dir,
+                    ["~"] = fb_actions.goto_home_dir,
+                    ["w"] = fb_actions.goto_cwd,
+                    ["L"] = fb_actions.change_cwd,
+                    ["f"] = fb_actions.toggle_browser,
+                    ["."] = fb_actions.toggle_hidden,
+                    ["s"] = fb_actions.toggle_all,
+                },
+            },
+        },
         frecency = {
             db_root = DATA_PATH .. "/databases",
             show_scores = true,
@@ -186,7 +238,7 @@ telescope.setup({
 })
 
 -- Load extensions
-local extensions = { "frecency", "fzf", "hop", "session-lens" }
+local extensions = { "file_browser", "frecency", "fzf", "hop", "session-lens" }
 pcall(function()
     for _, ext in ipairs(extensions) do
         telescope.load_extension(ext)

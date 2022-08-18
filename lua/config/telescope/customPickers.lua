@@ -3,7 +3,9 @@ local builtin = require("telescope.builtin")
 local i = require("styling").icons
 local b = require("styling").borders.default
 local bn = require("styling").borders.none
-local window_size = {
+local M = {}
+
+M.window_size = {
     width = {
         tiny = {
             0.3,
@@ -19,7 +21,8 @@ local window_size = {
             0.6,
             min = 100,
             max = 130,
-        }
+        },
+        large = 0.9
     },
     height = {
         tiny = {
@@ -37,10 +40,10 @@ local window_size = {
             min = 40,
             max = 50,
         },
+        large = 0.9
     }
 }
-
-local M = {}
+local ws = M.window_size
 
 M.borderchars = {
 --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
@@ -68,8 +71,8 @@ function M.buffers()
         previewer = false,
         layout_strategy = "vertical",
         layout_config = {
-            width = window_size.width.small,
-            height = window_size.height.small,
+            width = ws.width.small,
+            height = ws.height.small,
         }
     }
 end
@@ -81,8 +84,8 @@ function M.lsp_references()
         layout_config = {
             preview_height = 0.5,
             prompt_position = "bottom",
-            width = window_size.width.medium,
-            height = window_size.height.medium,
+            width = ws.width.medium,
+            height = ws.height.medium,
         },
         borderchars = M.borderchars
     })
@@ -95,8 +98,8 @@ function M.lsp_definitions()
         layout_config = {
             preview_height = 0.5,
             prompt_position = "bottom",
-            width = window_size.width.medium,
-            height = window_size.height.medium,
+            width = ws.width.medium,
+            height = ws.height.medium,
         },
         borderchars = M.borderchars
     })
@@ -110,8 +113,8 @@ function M.notify()
         layout_config = {
             preview_height = 0.3,
             prompt_position = "bottom",
-            width = window_size.width.medium,
-            height = window_size.height.medium,
+            width = ws.width.medium,
+            height = ws.height.medium,
         },
         borderchars = M.borderchars
     }
@@ -122,8 +125,8 @@ function M.possession()
         previewer = false,
         layout_strategy = "vertical",
         layout_config = {
-            width = window_size.width.tiny,
-            height = window_size.height.tiny,
+            width = ws.width.tiny,
+            height = ws.height.tiny,
         }
     }
 end

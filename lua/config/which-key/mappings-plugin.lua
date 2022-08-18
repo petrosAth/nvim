@@ -148,8 +148,9 @@ wk.register({
         r = { "<CMD>Telescope registers<CR>", "Registers" },
         s = {
             name = "Search",
-            f = { "<CMD>Telescope find_files<CR>", "File search" }, -- telescope
-            g = { "<CMD>Telescope live_grep<CR>",  "ripGREP"     }, -- telescope
+            e = { "<CMD>Telescope file_browser<CR>",       "File explorer"      }, -- telescope
+            f = { "<CMD>Telescope find_files<CR>",         "File search"        }, -- telescope
+            g = { "<CMD>Telescope live_grep<CR>",          "ripGREP"            }, -- telescope
             G = {
                 name = "Git",
                 f = { "<CMD>Telescope git_files<CR>",    "Git files" }, -- telescope
