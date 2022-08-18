@@ -25,7 +25,7 @@ require("hlslens").setup({
         local indicator, text, chunks
         local absRelIdx = math.abs(relIdx)
         if absRelIdx > 0 then
-            indicator = ('%d%s'):format(absRelIdx, sfw ~= (relIdx > 1) and i.arrowu[1] or i.arrowb[1])
+            indicator = ('%d%s'):format(absRelIdx, sfw ~= (relIdx > 0) and i.arrowu[1] or i.arrowb[1])
         else
             indicator = i.arrowr[1]
         end
