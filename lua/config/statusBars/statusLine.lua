@@ -10,7 +10,10 @@ local DefaultStatusline = {
     c.Paste,
     c.Wrap,
     c.SearchResults,
-    c.GitStatus,
+    {
+        c.GitStatus,
+        hl = theme.bright,
+    },
     c.LspBlock,
     c.Treesitter,
     h.Align,
