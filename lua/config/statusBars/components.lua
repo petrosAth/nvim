@@ -27,8 +27,7 @@ local FileTypeIcon = {
 
 local FileType = {
     provider = function(self)
-        -- return string.upper(self.fileType)
-        return self.fileType
+        return string.upper(self.fileType)
     end,
 }
 
@@ -146,7 +145,7 @@ local FilePath = {
 
         filePath = vim.fn.fnamemodify(filePath, ":.:h")
 
-        return "%<" .. i.dir[1] .. " " .. filePath .. "/"
+        return "%<" .. i.dir[1] .. " " .. filePath .. "/" .. h.Separator.mid.provider
     end,
 }
 
@@ -166,7 +165,6 @@ M.FileNameBlock = utils.insert(
     FileNameBlock,
     utils.make_flexible_component(h.Hide.FileName, { h.Separator.left }, { h.Null }),
     utils.make_flexible_component(h.Hide.FilePath, { FilePath }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FilePath, { h.Separator.mid }, { h.Null }),
     utils.make_flexible_component(h.Hide.FileName, { FileName }, { h.Null }),
     utils.make_flexible_component(h.Hide.FileName, { h.Separator.right }, { h.Null })
 )
