@@ -414,10 +414,8 @@ return packer.startup(function()
         "rebelot/heirline.nvim",
         config = function()
             local StatusLines = require("config.statusBars.statusLine").StatusLines
-            -- local WinBars = require("config.statusBars.winBar").WinBars
-            require("heirline").setup(
-                StatusLines --[[ , WinBars ]]
-            )
+            local WinBars = require("config.statusBars.winBar").WinBars
+            require("heirline").setup(StatusLines, WinBars)
         end,
     })
 

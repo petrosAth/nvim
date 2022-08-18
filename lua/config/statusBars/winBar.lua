@@ -1,7 +1,8 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local c = require("config.statusBars.components")
 local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline.winBar
+local h = require("config.statusBars.helperTables")
+local c = require("config.statusBars.components")
 local M = {}
 
 local DefaultWinBar = {
@@ -10,18 +11,18 @@ local DefaultWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.bright,
+        hl = { fg = theme.bright.fg, bg = theme.bright.bg, bold = true }
     },
     {
         c.FileNameBlock,
-        hl = function ()
+        hl = function()
             if vim.bo.modified then
-                return { bg = utils.get_highlight("DiffChange").bg }
+                return { bg = utils.get_highlight("DiffChange").bg, bold = true }
             end
-            return theme.bright
-        end
+            return { fg = theme.bright.fg, bg = theme.bright.bg, bold = true }
+        end,
     },
-    c.Align,
+    h.Align,
     {
         c.CloseButton,
         hl = theme.bright,
@@ -38,13 +39,14 @@ local InactiveWinBar = {
     },
     {
         c.FileNameBlock,
-        hl = function ()
+        hl = function()
             if vim.bo.modified then
-                return { fg = utils.get_highlight("GitSignsChange").fg }
+                return { fg = utils.get_highlight("GitSignsChange").fg, bold = true }
             end
-        end
+            return { bold = true }
+        end,
     },
-    c.Align,
+    h.Align,
     c.WindowNumber,
     {
         c.CloseButton,
@@ -64,6 +66,17 @@ local SpecialWinBar = {
     end,
 }
 
+-- TODO: Delete TempWinBar when whichkey gets fixed
+--At the moment whichkey window disapears when winbar is disabled through buftype conditions
+local TempWinBar = {
+    condition = function()
+        return conditions.buffer_matches({
+            filetype = { "WhichKey" },
+        })
+    end,
+    h.Null,
+}
+
 M.WinBars = {
     hl = function()
         if conditions.is_active() then
@@ -75,6 +88,8 @@ M.WinBars = {
 
     init = utils.pick_child_on_condition,
 
+    -- TODO: Delete TempWinBar when whichkey gets fixed
+    TempWinBar,
     SpecialWinBar,
     InactiveWinBar,
     DefaultWinBar,

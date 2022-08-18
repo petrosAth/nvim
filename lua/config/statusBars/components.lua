@@ -27,7 +27,8 @@ local FileTypeIcon = {
 
 local FileType = {
     provider = function(self)
-        return string.upper(self.fileType)
+        -- return string.upper(self.fileType)
+        return self.fileType
     end,
 }
 

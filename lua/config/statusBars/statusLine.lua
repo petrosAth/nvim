@@ -10,12 +10,6 @@ local DefaultStatusline = {
     c.Paste,
     c.Wrap,
     c.SearchResults,
-    {
-        c.FileNameBlock,
-        c.FileModified,
-        c.FileReadOnly,
-        hl = theme.bright,
-    },
     c.GitStatus,
     c.LspBlock,
     c.Treesitter,
@@ -37,12 +31,6 @@ local InactiveStatusline = {
     end,
 
     c.ViMode,
-    {
-        c.FileNameBlock,
-        c.FileModified,
-        c.FileReadOnly,
-        hl = theme.bright,
-    },
     c.Align,
     {
         c.WindowNumber,
