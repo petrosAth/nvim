@@ -63,6 +63,7 @@ tree.setup({
     default_component_configs = {
         container = {
             enable_character_fade = true,
+            right_padding = 1,
         },
         indent = {
             indent_size = 2,
@@ -109,14 +110,14 @@ tree.setup({
         },
     },
     window = {
+        position = "left",
+        width = 43,
         popup = {
             size = {
                 width = 49,
                 height = "80%"
             }
         },
-        position = "left",
-        width = 43,
         mapping_options = {
             noremap = true,
             nowait = true,
@@ -230,6 +231,7 @@ tree.setup({
             handler = function()
                 vim.cmd([[
                     setlocal
+                        \ relativenumber
                         \ nocursorcolumn
                         \ fillchars+=eob:\ "
                 ]])
