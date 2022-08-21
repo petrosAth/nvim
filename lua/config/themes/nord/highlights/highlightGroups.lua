@@ -233,6 +233,54 @@ M.plugins = {
     BufferLineBackground                = { fg = p.nord4dark,  bg = p.nord2                      },
     BufferLineFill                      = { fg = p.nord6,      bg = p.nord1,      style = "bold" },
 
+    -- diffview.nvim
+    DiffviewVertSplit    = { fg = p.nord1, bg = p.nord13   },
+    DiffviewWinSeparator = { link = "DiffviewVertSplit"    },
+
+    -- gitsigns.nvim
+    GitSignsCurrentLineBlame = { fg = p.nord15, bg = p.none,        style = "bold,italic" },
+    GitSignsAdd              = { fg = p.nord14, bg = p.none                               },
+    GitSignsAddNr            = { fg = p.nord14, bg = p.nord1                              },
+    GitSignsAddLn            = { fg = p.none,   bg = p.nord14darker                       },
+    GitSignsChange           = { fg = p.nord13, bg = p.none                               },
+    GitSignsChangeNr         = { fg = p.nord13, bg = p.nord1                              },
+    GitSignsChangeLn         = { fg = p.none,   bg = p.nord13darker                       },
+    GitSignsDelete           = { fg = p.nord11, bg = p.none                               },
+    GitSignsDeleteNr         = { fg = p.nord11, bg = p.nord1                              },
+    GitSignsDeleteLn         = { fg = p.none,   bg = p.nord11darker                       },
+    GitSignsAddInline        = { fg = p.none,   bg = p.nord14dark                         },
+    GitSignsChangeInline     = { fg = p.none,   bg = p.nord13dark                         },
+    GitSignsDeleteInline     = { fg = p.none,   bg = p.nord11dark                         },
+
+    -- incline.nvim
+    InclineNormal   = { fg = p.nord5, bg = p.nord3 },
+    InclineNormalNC = { link = "InclineNormal"     },
+
+    -- indent-blankline.nvim
+    IndentBlanklineContextChar        = { fg = p.nord7, bg = p.none                                    },
+    IndentBlanklineContextStart       = { fg = p.none,  bg = p.none, style = "underline", sp = p.nord7 },
+    IndentBlanklineSpaceCharBlankline = { fg = p.nord1, bg = p.none                                    },
+    IndentBlanklineSpaceChar          = { fg = p.nord1, bg = p.none                                    },
+    IndentBlanklineChar               = { fg = p.nord1, bg = p.none                                    },
+
+    -- hop.nvim
+    HopNextKey   = { fg = p.nord8, bg = p.none, style = "bold" },
+    HopNextKey1  = { fg = p.nord8, bg = p.none                 },
+    HopNextKey2  = { fg = p.nord4, bg = p.none                 },
+    HopUnmatched = { fg = p.nord3, bg = p.none                 },
+
+    -- lualine.nvim
+    lualineDiagnosticError = { fg = p.nord11, bg = p.nord1  },
+    lualineDiagnosticWarn  = { fg = p.nord13, bg = p.nord1  },
+    lualineDiagnosticInfo  = { fg = p.nord8,  bg = p.nord1  },
+    lualineDiagnosticHint  = { fg = p.nord10, bg = p.nord1  },
+    lualineModifiedFile    = { fg = p.nord13, bg = p.nord3  },
+    lualineHydraMode       = { fg = p.nord1,  bg = p.nord15 },
+
+    -- mini.nvim
+    MiniCursorword        = { link = "Visual" },
+    MiniCursorwordCurrent = { style = "bold"  },
+
     -- nvim-cmp
     CmpGhostText                    = { fg = p.nord3light, bg = p.none, style = "bold"          },
 
@@ -268,63 +316,11 @@ M.plugins = {
     CmpItemKindTextDefault          = { link = "TSText"                                         },
     CmpItemKindDefault              = { link = "Normal"                                         },
 
-    -- diffview.nvim
-    DiffviewVertSplit    = { fg = p.nord1, bg = p.nord13   },
-    DiffviewWinSeparator = { link = "DiffviewVertSplit"    },
-
-    -- gitsigns.nvim
-    GitSignsCurrentLineBlame = { fg = p.nord15, bg = p.none,        style = "bold,italic" },
-    GitSignsAdd              = { fg = p.nord14, bg = p.none                               },
-    GitSignsAddNr            = { fg = p.nord14, bg = p.nord1                              },
-    GitSignsAddLn            = { fg = p.none,   bg = p.nord14darker                       },
-    GitSignsChange           = { fg = p.nord13, bg = p.none                               },
-    GitSignsChangeNr         = { fg = p.nord13, bg = p.nord1                              },
-    GitSignsChangeLn         = { fg = p.none,   bg = p.nord13darker                       },
-    GitSignsDelete           = { fg = p.nord11, bg = p.none                               },
-    GitSignsDeleteNr         = { fg = p.nord11, bg = p.nord1                              },
-    GitSignsDeleteLn         = { fg = p.none,   bg = p.nord11darker                       },
-    GitSignsAddInline        = { fg = p.none,   bg = p.nord14dark                         },
-    GitSignsChangeInline     = { fg = p.none,   bg = p.nord13dark                         },
-    GitSignsDeleteInline     = { fg = p.none,   bg = p.nord11dark                         },
-
-    -- incline.nvim
-    InclineNormal   = { fg = p.nord5, bg = p.nord3 },
-    InclineNormalNC = { link = "InclineNormal"     },
-
-    -- indent-blankline.nvim
-    IndentBlanklineContextChar        = { fg = p.nord7, bg = p.none                                    },
-    IndentBlanklineContextStart       = { fg = p.none,  bg = p.none, style = "underline", sp = p.nord7 },
-    IndentBlanklineSpaceCharBlankline = { fg = p.nord1, bg = p.none                                    },
-    IndentBlanklineSpaceChar          = { fg = p.nord1, bg = p.none                                    },
-    IndentBlanklineChar               = { fg = p.nord1, bg = p.none                                    },
-
     -- nvim-hlslens
     HlSearchNear     = { link = "IncSearch"                                },
     HlSearchLensNear = { fg = p.nord4,      bg = p.none, style = "reverse" },
     HlSearchLens     = { fg = p.nord3light, bg = p.none, style = "reverse" },
     HlSearchFloat    = { link = "IncSearch"                                },
-
-    --nvim-windowpicker
-    WindowPicker   = { fg = p.nord6, bg = p.nord3light, style = "bold" },
-    WindowPickerNC = { fg = p.nord6, bg = p.nord3light, style = "bold" },
-
-    -- hop.nvim
-    HopNextKey   = { fg = p.nord8, bg = p.none, style = "bold" },
-    HopNextKey1  = { fg = p.nord8, bg = p.none                 },
-    HopNextKey2  = { fg = p.nord4, bg = p.none                 },
-    HopUnmatched = { fg = p.nord3, bg = p.none                 },
-
-    -- lualine.nvim
-    lualineDiagnosticError = { fg = p.nord11, bg = p.nord1  },
-    lualineDiagnosticWarn  = { fg = p.nord13, bg = p.nord1  },
-    lualineDiagnosticInfo  = { fg = p.nord8,  bg = p.nord1  },
-    lualineDiagnosticHint  = { fg = p.nord10, bg = p.nord1  },
-    lualineModifiedFile    = { fg = p.nord13, bg = p.nord3  },
-    lualineHydraMode       = { fg = p.nord1,  bg = p.nord15 },
-
-    -- mini.nvim
-    MiniCursorword        = { link = "Visual" },
-    MiniCursorwordCurrent = { style = "bold"  },
 
     -- nvim-notify
     NotifyERRORTitle  = { link = "DiagnosticError" },
@@ -378,41 +374,53 @@ M.plugins = {
     LspDiagnosticsHint        = { link = "DiagnosticHint"                         },
     LspDiagnosticsInformation = { link = "DiagnosticInfo"                         },
 
+    -- nvim-ts-rainbow
+    rainbowcol1 = { fg = p.nord10, bg = p.none },
+    rainbowcol2 = { fg = p.nord11, bg = p.none },
+    rainbowcol3 = { fg = p.nord13, bg = p.none },
+    rainbowcol4 = { fg = p.nord14, bg = p.none },
+    rainbowcol5 = { fg = p.nord15, bg = p.none },
+    rainbowcol6 = { fg = p.nord7,  bg = p.none },
+    rainbowcol7 = { fg = p.nord4,  bg = p.none },
+
+    --nvim-windowpicker
+    WindowPicker   = { fg = p.nord6, bg = p.nord3light, style = "bold" },
+    WindowPickerNC = { fg = p.nord6, bg = p.nord3light, style = "bold" },
+
     -- neo-tree.nvim
-    NeoTreeNormal             = { link = "Normal"                                        },
-    NeoTreeNormalNC           = { link = "NormalNC"                                      },
-    NeoTreeFloatBorder        = { fg = p.nord2,      bg = p.nord0                        },
-    NeoTreeFloatTitle         = { fg = p.nord8,      bg = p.nord2, style = "bold"        },
+    NeoTreeNormal               = { link = "Normal"                                           },
+    NeoTreeNormalNC             = { link = "NormalNC"                                         },
+    NeoTreeFloatBorder          = { fg = p.nord2,      bg = p.nord0                           },
+    NeoTreeFloatTitle           = { fg = p.nord8,      bg = p.nord2, style = "bold"           },
 
+    NeoTreeTabActive            = { fg = p.nord4,      bg = p.nord3                           },
+    NeoTreeTabInactive          = { fg = p.nord4,      bg = p.nord1                           },
+    NeoTreeTabBarBackground     = { link = "WinBar"                                           },
+    NeoTreeTabSeparatorActive   = { fg = p.nord3,      bg = p.nord3                           },
+    NeoTreeTabSeparatorInactive = { fg = p.nord3,      bg = p.nord1                           },
 
-    NeoTreeTabActive = { fg = p.nord4, bg = p.nord3 },
-    NeoTreeTabInactive = { fg = p.nord4, bg = p.nord1 },
-    NeoTreeTabBarBackground = { link = "WinBar" },
-    NeoTreeTabSeparatorActive = { fg = p.nord3, bg = p.nord3},
-    NeoTreeTabSeparatorInactive = { fg = p.nord3, bg = p.nord1 },
+    NeoTreeRootName             = { fg = p.nord6,      bg = p.none,  style = "bold,italic"    },
+    NeoTreeIndentMarker         = { link = "FoldColumn"                                       },
+    NeoTreeFileNameOpened       = {                                  style = "bold,nocombine" },
+    NeoTreeBufferNumber         = { fg = p.nord6,      bg = p.none                            },
+    NeoTreeDotfile              = { fg = p.nord3light, bg = p.none                            },
+    NeoTreeSymbolicLinkTarget   = { fg = p.nord7,      bg = p.none,  style = "bold"           },
 
-    NeoTreeRootName           = { fg = p.nord6,      bg = p.none,  style = "bold,italic" },
-    NeoTreeIndentMarker       = { link = "FoldColumn"                                    },
-    NeoTreeFileNameOpened     = { style = "bold,nocombine"                                         },
-    NeoTreeBufferNumber       = { fg = p.nord6,      bg = p.none                         },
-    NeoTreeDotfile            = { fg = p.nord3light, bg = p.none                         },
-    NeoTreeSymbolicLinkTarget = { fg = p.nord7,      bg = p.none,  style = "bold"        },
+    NeoTreeMessage              = { fg = p.nord15,     bg = p.none                            },
+    NeoTreeDimText              = { fg = p.nord3,      bg = p.none                            },
+    NeoTreeFadeText1            = { link = "NeoTreeDotfile"                                   },
+    NeoTreeFadeText2            = { link = "NeoTreeDimText"                                   },
 
-    NeoTreeMessage            = { fg = p.nord15,     bg = p.none                         },
-    NeoTreeDimText            = { fg = p.nord3,      bg = p.none                         },
-    NeoTreeFadeText1          = { link = "NeoTreeDotfile"                                },
-    NeoTreeFadeText2          = { link = "NeoTreeDimText"                                },
-
-    NeoTreeModified           = { link = "GitSignsChange"                                },
-    NeoTreeGitAdded           = { link = "GitSignsAdd"                                   },
-    NeoTreeGitModified        = { link = "GitSignsChange"                                },
-    NeoTreeGitDeleted         = { link = "GitSignsDelete"                                },
-    NeoTreeGitRenamed         = { link = "NeoTreeGitModified"                            },
-    NeoTreeGitUntracked       = { fg = p.nord10,     bg = p.none                         },
-    NeoTreeGitIgnored         = { link = "NeoTreeDotfile"                                },
-    NeoTreeGitUnstaged        = { link = "NeoTreeGitModified"                            },
-    NeoTreeGitStaged          = { link = "NeoTreeGitAdded"                               },
-    NeoTreeGitConflict        = { fg = p.nord12,     bg = p.none                         },
+    NeoTreeModified             = { link = "GitSignsChange"                                   },
+    NeoTreeGitAdded             = { link = "GitSignsAdd"                                      },
+    NeoTreeGitModified          = { link = "GitSignsChange"                                   },
+    NeoTreeGitDeleted           = { link = "GitSignsDelete"                                   },
+    NeoTreeGitRenamed           = { link = "NeoTreeGitModified"                               },
+    NeoTreeGitUntracked         = { fg = p.nord10,     bg = p.none                            },
+    NeoTreeGitIgnored           = { link = "NeoTreeDotfile"                                   },
+    NeoTreeGitUnstaged          = { link = "NeoTreeGitModified"                               },
+    NeoTreeGitStaged            = { link = "NeoTreeGitAdded"                                  },
+    NeoTreeGitConflict          = { fg = p.nord12,     bg = p.none                            },
 
     -- quickscope.lua
     QuickScopePrimary   = { fg = p.nord13, bg = p.nord0, style = "underline,nocombine" },
@@ -483,14 +491,10 @@ M.plugins = {
     TodoFgHACK   = { link = "DiagnosticWarn"                      },
     TodoSignHACK = { link = "DiagnosticWarn"                      },
 
-    -- nvim-ts-rainbow
-    rainbowcol1 = { fg = p.nord10, bg = p.none },
-    rainbowcol2 = { fg = p.nord11, bg = p.none },
-    rainbowcol3 = { fg = p.nord13, bg = p.none },
-    rainbowcol4 = { fg = p.nord14, bg = p.none },
-    rainbowcol5 = { fg = p.nord15, bg = p.none },
-    rainbowcol6 = { fg = p.nord7,  bg = p.none },
-    rainbowcol7 = { fg = p.nord4,  bg = p.none },
+    -- vim-illuminate
+    IlluminatedWordText  = { link = "Visual" },
+    IlluminatedWordRead  = { link = "Visual" },
+    IlluminatedWordWrite = { link = "Visual" },
 
     -- which-key.nvim
     WhichKey          = { fg = p.nord4,  bg = p.none, style = "bold" },

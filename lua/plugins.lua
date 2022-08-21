@@ -263,11 +263,11 @@ return packer.startup(function()
         end,
     })
 
-    -- mini.nvim - Neovim plugin with collection of minimal, independent, and fast Lua modules
+    -- vim-illuminate - Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
     use({
-        "echasnovski/mini.nvim",
+        "RRethy/vim-illuminate",
         config = function()
-            require("config.mini.cursorword")
+            require("config.vim-illuminate")
         end,
     })
 
