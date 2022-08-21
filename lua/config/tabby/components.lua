@@ -27,14 +27,14 @@ local plugin_list = {
     { filetype = "undotree",        window_title = "Undo tree"     },
 }
 local filename_list = {
-    { filename = "%[Command Line%]",              customFilename = " History"                         },
-    { filename = "neo%-tree git_status",          customFilename = " Git status"                      },
-    { filename = "neo%-tree buffers",             customFilename = " Open buffers"                    },
-    { filename = "(/%.git/:0:)/",                 customFilename = " Original file"                   },
-    { filename = "(/%.git/.-)/",                  customFilename = " ",                gitRepo = true },
-    { filename = "^diffview:///panels/.*History", customFilename = " Diffview history"                },
-    { filename = "^diffview:///panels/.*",        customFilename = " Diffview files"                  },
-    { filename = "^diffview:///.*",               customFilename = " Diffview"                        }
+    { filename = "%[Command Line%]",                     customFilename = " History"                         },
+    { filename = "neo%-tree git_status",                 customFilename = " Git status"                      },
+    { filename = "neo%-tree buffers",                    customFilename = " Open buffers"                    },
+    { filename = "/:0:/",                                customFilename = " Original file"                   },
+    { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", customFilename = " ",                gitRepo = true },
+    { filename = "^diffview:///panels/.*History",        customFilename = " Diffview history"                },
+    { filename = "^diffview:///panels/.*",               customFilename = " Diffview files"                  },
+    { filename = "^diffview:///.*",                      customFilename = " Diffview"                        }
 }
 
 c.is_plugin = function(bufid)
@@ -53,7 +53,7 @@ c.has_custom_name = function(tabid, winid)
         local filename_match = string.match(fullPath, name.filename)
         if filename_match then
             if name.gitRepo then
-                local commit = string.sub(filename_match, 7, 13)
+                local commit = string.sub(filename_match, -11, -4)
                 return true, name.customFilename .. commit
             end
             return true, name.customFilename
