@@ -23,7 +23,7 @@ local excBuftypes = {
 }
 
 require("indent_blankline").setup({
-    char_list = { "│", "╎" }, -- '|', '¦', "│", "❘", "╎", '┆', '┊'
+    char_list = { "│", "╎" }, -- '|', '¦', "│", "❘", "╎", '┆', '┊', '⸽'
     space_char_blankline = " ",
     filetype_exclude = excFiletypes,
     buftype_exclude = excBuftypes,

@@ -9,7 +9,7 @@ require("tabby").setup({
             {
                 type = "text",
                 text = {
-                    " Neo ",
+                    " neoVim",
                     hl = "TabLineEdges",
                     -- hl = string.format("%s", hl_mode)
                 },
