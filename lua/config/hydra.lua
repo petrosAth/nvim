@@ -12,7 +12,7 @@ hydra({
     config = {
         hint = {
             position = "top",
-            offset = 1,
+            offset = 2,
             border = border,
         },
     },
@@ -37,7 +37,7 @@ hydra({
     config = {
         hint = {
             position = "top",
-            offset = 1,
+            offset = 2,
             border = border,
         },
     },
@@ -61,7 +61,7 @@ hydra({
     config = {
         hint = {
             position = "top",
-            offset = 1,
+            offset = 2,
             border = border,
         },
         invoke_on_body = true,
@@ -91,7 +91,7 @@ hydra({
     config = {
         hint = {
             position = "top",
-            offset = 1,
+            offset = 2,
             border = border,
         },
     },
@@ -116,7 +116,7 @@ hydra({
     config = {
         hint = {
             position = "top",
-            offset = 1,
+            offset = 2,
             border = border,
         },
     },
