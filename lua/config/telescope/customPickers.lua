@@ -60,20 +60,9 @@ function M.frecency()
     }
 end
 
-function M.oldfiles()
+function M.oldFiles()
     builtin.oldfiles {
         prompt_title = "Recent Files",
-    }
-end
-
-function M.buffers()
-    builtin.buffers {
-        previewer = false,
-        layout_strategy = "vertical",
-        layout_config = {
-            width = ws.width.small,
-            height = ws.height.small,
-        }
     }
 end
 
@@ -82,10 +71,7 @@ function M.lsp_references()
         jump_type = 'never',
         layout_strategy = "vertical",
         layout_config = {
-            preview_height = 0.5,
             prompt_position = "bottom",
-            width = ws.width.medium,
-            height = ws.height.medium,
         },
         borderchars = M.borderchars
     })
@@ -96,10 +82,7 @@ function M.lsp_definitions()
         jump_type = 'never',
         layout_strategy = "vertical",
         layout_config = {
-            preview_height = 0.5,
             prompt_position = "bottom",
-            width = ws.width.medium,
-            height = ws.height.medium,
         },
         borderchars = M.borderchars
     })
@@ -111,10 +94,7 @@ function M.notify()
         prompt_title = "Notifications",
         layout_strategy = "vertical",
         layout_config = {
-            preview_height = 0.3,
             prompt_position = "bottom",
-            width = ws.width.medium,
-            height = ws.height.medium,
         },
         borderchars = M.borderchars
     }

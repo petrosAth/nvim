@@ -52,14 +52,17 @@ telescope.setup({
         },
         layout_strategy = "horizontal",
         layout_config = {
-            preview_width = 0.6,
-            width = ws.width.large,
-            height = ws.height.large,
             horizontal = {
                 mirror = false,
+                preview_width = 0.6,
+                width = ws.width.large,
+                height = ws.height.large,
             },
             vertical = {
                 mirror = false,
+                preview_height = 0.4,
+                width = ws.width.medium,
+                height = ws.height.medium,
             },
         },
         selection_strategy = "reset",

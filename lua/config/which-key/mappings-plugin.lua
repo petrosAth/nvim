@@ -60,10 +60,10 @@ wk.register({
         },
     },
     ["<Space>"] = {
-        ["?"] = { "<CMD>WhichKey<CR>",                 "Show available hotkeys" }, -- which-key
-        ["."] = { "<CMD>Telescope resume<CR>",         "Reopen Telescope"       }, -- telescope
-        b     = { telescope_custom .. "buffers()<CR>", "Buffer list"            }, -- telescope
-        c     = { "<CMD>HexokinaseToggle<CR>",         "Color codes preview"    }, -- hexokinase
+        ["?"] = { "<CMD>WhichKey<CR>",          "Show available hotkeys" }, -- which-key
+        ["."] = { "<CMD>Telescope resume<CR>",  "Reopen Telescope"       }, -- telescope
+        b     = { "<CMD>Telescope buffers<CR>", "Buffer list"            }, -- telescope
+        c     = { "<CMD>HexokinaseToggle<CR>",  "Color codes preview"    }, -- hexokinase
         d = {
             name = "Diffview",
             q = { "<CMD>DiffviewClose<CR>",         "Quit"                              }, -- diffview
@@ -148,7 +148,7 @@ wk.register({
         r = { "<CMD>Telescope registers<CR>", "Registers" },
         s = {
             name = "Search",
-            e = { "<CMD>Telescope file_browser<CR>",       "File explorer"      }, -- telescope
+            b = { "<CMD>Telescope file_browser<CR>",       "File Browser"       }, -- telescope
             f = { "<CMD>Telescope find_files<CR>",         "File search"        }, -- telescope
             g = { "<CMD>Telescope live_grep<CR>",          "ripGREP"            }, -- telescope
             G = {
@@ -164,7 +164,7 @@ wk.register({
             n = { telescope_custom .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
             o = { "<CMD>Telescope vim_options<CR>",        "Vim options"        }, -- telescope
             R = { telescope_custom .. "frecency()<CR>",    "Frecency"           }, -- telescope
-            r = { telescope_custom .. "oldfiles()<CR>",    "Recent files"       }, -- telescope
+            r = { telescope_custom .. "oldFiles()<CR>",    "Recent files"       }, -- telescope
             s = { telescope_custom .. "possession()<CR>",  "Search sessions"    }, -- possession.nvim
             T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" }, -- todo-comments
             t = {
