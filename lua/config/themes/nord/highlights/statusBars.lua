@@ -44,15 +44,14 @@ local M = {
             terminal = { fg = p.nord1, bg = p.nord12 },
             hydra    = { fg = p.nord1, bg = p.nord15 },
         },
-        statusBar = {
-            bright = { fg = p.nord4,  bg = p.nord3 },
+        bright       = { fg = p.nord4, bg = p.nord3      },
+        current      = { fg = p.nord6, bg = p.nord3light },
+        modified = {
+            current  = { fg = p.nord1dark, bg = p.nord13                 },
+            inactive = { fg = p.nord1dark, bg = p.nord13, reverse = true },
         },
-        winBar = {
-            bright = { fg = p.nord4, bg = p.nord3light },
-        },
-        modified     = { fg = p.nord13, bg = p.none },
-        readOnly     = { fg = p.nord6,  bg = p.none },
-        windowNumber = { fg = p.nord6,  bg = p.none }
+        readOnly     = { fg = p.nord6,  bg = p.none      },
+        windowNumber = { fg = p.nord6,  bg = p.none      }
     },
 }
 

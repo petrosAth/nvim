@@ -108,7 +108,7 @@ M.FileReadOnly = {
         { h.Separator.right },
     }, { h.Null }),
 
-    hl = { fg = theme.readOnly.fg },
+    hl = theme.bright
 }
 
 M.FileModified = {
@@ -122,7 +122,7 @@ M.FileModified = {
         { h.Separator.right },
     }, { h.Null }),
 
-    hl = { fg = theme.modified.fg },
+    hl = theme.modified.current
 }
 
 local FileNameBlock = {
@@ -130,11 +130,33 @@ local FileNameBlock = {
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
     end,
+    static = {
+        typeList = {
+            { title = "aerial",              customTitle = "AERIAL"   },
+            { title = "DiffviewFileHistory", customTitle = "DIFFVIEW" },
+            { title = "DiffviewFiles",       customTitle = "DIFFVIEW" },
+            { title = "help",                customTitle = "HELP"     },
+            { title = "minimap",             customTitle = "MINIMAP"  },
+            { title = "neo-tree",            customTitle = "NEOTREE"  },
+            { title = "NvimTree",            customTitle = "NVIMTREE" },
+            { title = "Outline",             customTitle = "OUTLINE"  },
+            { title = "terminal",            customTitle = "TERMINAL" },
+            { title = "Trouble",             customTitle = "TROUBLE"  },
+            { title = "undotree",            customTitle = "UNDOTREE" },
+        },
+    },
 }
 
 local FilePath = {
     provider = function(self)
         local filePath = self.filePath
+
+        for _, type in pairs(self.typeList) do
+            if vim.bo.filetype == type.title or self.filePath == type.title or vim.bo.buftype == type.title then
+                return ""
+            end
+        end
+
         if filePath == "" then
             return ""
         end
@@ -152,6 +174,12 @@ local FilePath = {
 local FileName = {
     provider = function(self)
         local fileName = vim.fn.fnamemodify(self.fileName, ":t")
+
+        for _, type in pairs(self.typeList) do
+            if vim.bo.filetype == type.title or self.filePath == type.title or vim.bo.buftype == type.title then
+                return type.customTitle
+            end
+        end
 
         if fileName == "" then
             return "[No Name]"
@@ -683,20 +711,6 @@ M.ViMode = {
     static = {
         mode_names = h.ModeNames,
         mode_colors = h.ModeColors,
-        pluginList = {
-            { fileType = "aerial", modeTitle = "AERIAL" },
-            { fileType = "alpha", modeTitle = "ALPHA" },
-            { fileType = "DiffviewFileHistory", modeTitle = "DIFFVIEW" },
-            { fileType = "DiffviewFiles", modeTitle = "DIFFVIEW" },
-            { fileType = "lspinfo", modeTitle = "LSP INFO" },
-            { fileType = "mason.nvim", modeTitle = "MASON" },
-            { fileType = "minimap", modeTitle = "MINIMAP" },
-            { fileType = "neo-tree", modeTitle = "NEOTREE" },
-            { fileType = "NvimTree", modeTitle = "NVIMTREE" },
-            { fileType = "Outline", modeTitle = "OUTLINE" },
-            { fileType = "packer", modeTitle = "PACKER" },
-            { fileType = "Trouble", modeTitle = "TROUBLE" },
-        },
     },
 
     -- We can now access the value of mode() that, by now, would have been
@@ -714,13 +728,6 @@ M.ViMode = {
             -- print HYDRA if hydra is active
             if require("hydra.statusline").is_active() then
                 mode = "HYDRA"
-            end
-
-            -- print plugin name
-            for _, plugin in pairs(self.pluginList) do
-                if vim.bo.filetype == plugin.fileType or self.fileName == plugin.fileType then
-                    mode = plugin.modeTitle
-                end
             end
         end
 

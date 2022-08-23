@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline.statusBar
+local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
 local M = {}
@@ -76,7 +76,6 @@ local SpecialStatusline = {
         c.SpecialName,
         hl = theme.bright,
     },
-    c.FileReadOnly,
     c.Align,
     {
         c.CursorLineSpecial,

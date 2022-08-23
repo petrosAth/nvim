@@ -1,26 +1,48 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline.winBar
+local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
 local M = {}
 
-local DefaultWinBar = {
+local CurrentWinBar = {
     condition = function()
         return conditions.is_active()
     end,
     {
         c.FileReadOnly,
-        hl = { fg = theme.bright.fg, bg = theme.bright.bg, bold = true }
+        hl = theme.bright
     },
     {
         c.FileNameBlock,
         hl = function()
             if vim.bo.modified then
-                return { bg = utils.get_highlight("DiffChange").bg, bold = true }
+                return theme.modified.current
             end
-            return { fg = theme.bright.fg, bg = theme.bright.bg, bold = true }
+            return theme.current
         end,
+    },
+    h.Align,
+    {
+        c.CloseButton,
+        hl = theme.bright,
+    },
+}
+
+local SpecialCurrentWinBar = {
+    condition = function()
+        return conditions.buffer_matches({
+            buftype = h.SpecialBufType,
+            filetype = h.SpecialFileType,
+        })
+    end,
+    {
+        c.FileReadOnly,
+        hl = theme.bright
+    },
+    {
+        c.FileNameBlock,
+        hl = { fg = theme.current.fg, bg = theme.current.bg, bold = true }
     },
     h.Align,
     {
@@ -41,9 +63,8 @@ local InactiveWinBar = {
         c.FileNameBlock,
         hl = function()
             if vim.bo.modified then
-                return { fg = utils.get_highlight("GitSignsChange").fg, bold = true }
+                return theme.modified.inactive
             end
-            return { bold = true }
         end,
     },
     h.Align,
@@ -54,16 +75,28 @@ local InactiveWinBar = {
     },
 }
 
-local SpecialWinBar = {
+local SpecialInactiveWinBar = {
     condition = function()
-        return conditions.buffer_matches({
-            buftype = { "nofile", "prompt", "help", "quickfix" },
-            filetype = { "^git.*", "fugitive" },
+        return not conditions.is_active() and conditions.buffer_matches({
+            buftype = h.SpecialBufType,
+            filetype = h.SpecialFileType,
         })
+
     end,
-    init = function()
-        vim.opt_local.winbar = nil
-    end,
+    {
+        c.FileReadOnly,
+        hl = theme.bright
+    },
+    {
+        c.FileNameBlock,
+        hl = { bold = true },
+    },
+    h.Align,
+    c.WindowNumber,
+    {
+        c.CloseButton,
+        hl = theme.bright,
+    },
 }
 
 -- TODO: Delete TempWinBar when whichkey gets fixed
@@ -75,6 +108,20 @@ local TempWinBar = {
         })
     end,
     h.Null,
+}
+
+local DisableWinBar = {
+    condition = function()
+        -- Source:
+        -- incline.nvim - https://github.com/b0o/incline.nvim/blob/44d4e6f4dcf2f98cf7b62a14e3c10749fc5c6e35/lua/incline/util.lua#L49-L51
+        return vim.api.nvim_win_get_config(0).relative ~= '' or conditions.buffer_matches({
+            buftype = { "prompt" },
+            filetype = { "alpha", "packer", "lspinfo", "mason.nvim" },
+        })
+    end,
+    init = function()
+        vim.opt_local.winbar = nil
+    end,
 }
 
 M.WinBars = {
@@ -90,9 +137,11 @@ M.WinBars = {
 
     -- TODO: Delete TempWinBar when whichkey gets fixed
     TempWinBar,
-    SpecialWinBar,
+    DisableWinBar,
+    SpecialInactiveWinBar,
     InactiveWinBar,
-    DefaultWinBar,
+    SpecialCurrentWinBar,
+    CurrentWinBar,
 }
 
 return M

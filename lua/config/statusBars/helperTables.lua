@@ -44,6 +44,21 @@ M.Hide = {
     lspClients         = 20
 }
 
+M.SpecialBufType = {
+    "nofile",
+    "prompt",
+    "help",
+    "quickfix",
+}
+
+M.SpecialFileType = {
+    "^git.*",
+    "fugitive",
+    "lspinfo",
+    "packer",
+    "undotree",
+}
+
 M.ModeNames = {
     ["n"]     = "NORMAL",
     ["no"]    = "O-PENDING",
