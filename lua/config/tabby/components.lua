@@ -18,6 +18,7 @@ c.tab_close_icon = i.close[1]
 local plugin_list = {
     { filetype = "aerial",          window_title = i.codeOutline[1]  .. " Code outline"  },
     { filetype = "alpha",           window_title = i.dashboard[1]    .. " Dashboard"     },
+    { filetype = "diff",            window_title = i.diffview[1]     .. " Diff Panel"    },
     { filetype = "minimap",         window_title = i.minimap[1]      .. " Minimap"       },
     { filetype = "neo-tree",        window_title = i.fileExplorer[1] .. " File explorer" },
     { filetype = "NvimTree",        window_title = i.fileExplorer[1] .. " File explorer" },

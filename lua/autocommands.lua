@@ -24,6 +24,7 @@ autocmd("FileType", {
     group = fileTypeAutoCMD,
     pattern = {
         "checkhealth",
+        "diff",
         "DiffviewFileHistory",
         "DiffviewFiles",
         "help",
