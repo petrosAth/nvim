@@ -427,7 +427,7 @@ M.plugins = {
     QuickScopeSecondary = { fg = p.nord15, bg = p.nord0, style = "bold,nocombine"      },
 
     -- satellite.nvim
-    ScrollView = { fg = p.none,  bg = p.nord3 },
+    ScrollView = { fg = p.none,  bg = p.nord3light },
     SearchSV   = { fg = p.nord8, bg = p.none  },
 
     -- tabby.nvim
