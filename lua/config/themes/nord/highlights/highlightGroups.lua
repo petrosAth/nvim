@@ -395,7 +395,7 @@ M.plugins = {
 
     NeoTreeTabActive            = { fg = p.nord4,      bg = p.nord3                           },
     NeoTreeTabInactive          = { fg = p.nord4,      bg = p.nord1                           },
-    NeoTreeTabBarBackground     = { link = "WinBar"                                           },
+    NeoTreeTabBarBackground     = { link = "StatusLine"                                           },
     NeoTreeTabSeparatorActive   = { fg = p.nord3,      bg = p.nord3                           },
     NeoTreeTabSeparatorInactive = { fg = p.nord3,      bg = p.nord1                           },
 
