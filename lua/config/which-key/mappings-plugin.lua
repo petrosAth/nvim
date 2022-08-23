@@ -84,11 +84,11 @@ wk.register({
         },
         e = {
             name = "File buffer and git explorer",
-            b = { "<CMD>Neotree buffers reveal toggle<CR>",               "Toggle a list of currently open buffers"                            }, -- neo-tree.nvim
-            B = { "<CMD>Neotree buffers current<CR>",                     "Toggle a list of currently open buffers within the current window", }, -- neo-tree.nvim
-            e = { "<CMD>Neotree filesystem left focus reveal toggle<CR>", "Toggle file explorer"                                               }, -- neo-tree.nvim
-            E = { "<CMD>Neotree filesystem current<CR>",                  "Open file explorer within the current window",                      }, -- neo-tree.nvim
-            g = { "<CMD>Neotree git_status<CR>",                          "Toggle git status in a floating window"                             }, -- neo-tree.nvim
+            b = { "<CMD>Neotree buffers left focus reveal toggle<CR>",     "Toggle a list of currently open buffers"                            }, -- neo-tree.nvim
+            B = { "<CMD>Neotree buffers current<CR>",                      "Toggle a list of currently open buffers within the current window", }, -- neo-tree.nvim
+            e = { "<CMD>Neotree filesystem left focus reveal toggle<CR>",  "Toggle file explorer"                                               }, -- neo-tree.nvim
+            E = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window",                      }, -- neo-tree.nvim
+            g = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window"                             }, -- neo-tree.nvim
         },
         f = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",  "Hop to" }, -- hop
         F = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to" }, -- hop
