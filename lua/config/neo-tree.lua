@@ -19,8 +19,8 @@ tree.setup({
     --   end , -- this sorts files and directories descendantly
     use_popups_for_input = false, -- If false, inputs will use vim.ui.input() instead of custom floats.
     source_selector = {
-        winbar = true, -- toggle to show selector on winbar
-        statusline = false, -- toggle to show selector on statusline
+        winbar = false, -- toggle to show selector on winbar
+        statusline = true, -- toggle to show selector on statusline
         show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
                                                -- of the top visible node when scrolled down.
         tab_labels = { -- falls back to source_name if nil
