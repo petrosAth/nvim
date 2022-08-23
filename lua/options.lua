@@ -3,6 +3,42 @@ local t = require("styling").variables.transparency
 local i = require("styling").icons
 local iUI = i.nvim_ui
 
+local M = {}
+
+M.fillchars = { -- Display chars
+    horiz     = iUI.horiz[1],
+    horizup   = iUI.horizup[1],
+    horizdown = iUI.horizdown[1],
+    vert      = iUI.vert[1],
+    vertleft  = iUI.vertleft[1],
+    vertright = iUI.vertright[1],
+    verthoriz = iUI.verthoriz[1],
+    fold      = iUI.fold[1],
+    foldopen  = iUI.foldopen[1],
+    foldclose = iUI.foldclose[1],
+    foldsep   = iUI.foldsep[1],
+    diff      = iUI.diff[1],
+    msgsep    = iUI.msgsep[1],
+    eob       = iUI.eob[1],
+}
+
+M.localFillchars = { -- Display chars
+    horiz     = iUI.horiz[1],
+    horizup   = iUI.horizup[1],
+    horizdown = iUI.horizdown[1],
+    vert      = iUI.vert[1],
+    vertleft  = iUI.vertleft[1],
+    vertright = iUI.vertright[1],
+    verthoriz = iUI.verthoriz[1],
+    fold      = iUI.fold[1],
+    foldopen  = iUI.foldopen[1],
+    foldclose = iUI.foldclose[1],
+    foldsep   = iUI.foldsep[1],
+    diff      = iUI.diff[1],
+    msgsep    = iUI.msgsep[1],
+    eob       = " ",
+}
+
 --<=< GUI general options >==========================================================================================>--
 -- Set gui font for nvim-qt, neovide etc
 opt.guifont = "Fira Code, Regular:h12"
@@ -76,22 +112,7 @@ opt.foldminlines = 1 -- Fold even single line
 
 opt.list = true -- Display eol characters
 
-opt.fillchars = { -- Display chars
-    horiz     = iUI.horiz[1],
-    horizup   = iUI.horizup[1],
-    horizdown = iUI.horizdown[1],
-    vert      = iUI.vert[1],
-    vertleft  = iUI.vertleft[1],
-    vertright = iUI.vertright[1],
-    verthoriz = iUI.verthoriz[1],
-    fold      = iUI.fold[1],
-    foldopen  = iUI.foldopen[1],
-    foldclose = iUI.foldclose[1],
-    foldsep   = iUI.foldsep[1],
-    diff      = iUI.diff[1],
-    msgsep    = iUI.msgsep[1],
-    eob       = iUI.eob[1],
-}
+opt.fillchars = M.fillchars
 opt.listchars:append({
     tab      = iUI.tab[1],
     lead     = iUI.lead[1],
@@ -163,3 +184,5 @@ g.loaded_python_provider = 0 -- Disable Python2 support
 g.loaded_perl_provider = 0 -- Disable perl provider
 g.loaded_ruby_provider = 0 -- Disable ruby provider
 g.loaded_node_provider = 0 -- Disable node provider
+
+return M

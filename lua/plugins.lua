@@ -1,15 +1,17 @@
-vim.cmd([[
-    augroup PACKER_CURSORLINE
-        autocmd!
-        autocmd FileType packer lua vim.opt.cursorline = true
-    augroup END
-]])
-
 local fn = vim.fn
 local install_path = PACKER_PATH .. "/start/packer.nvim"
 local i = require("styling").icons
 local b = require("styling").borders.default
 local bs = require("styling").borders.single
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("packerFileTypeAutoCMD", { clear = true }),
+    pattern = { "packer", },
+    desc = "Enable cursor line.",
+    callback = function ()
+        vim.opt_local.cursorline = true
+    end
+})
 
 -- Automatically install packer
 if fn.empty(fn.glob(install_path)) > 0 then

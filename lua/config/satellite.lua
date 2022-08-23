@@ -1,6 +1,4 @@
 local t = require("styling").variables.transparency
-local i = require("styling").icons
-local b = require("styling").borders.default
 
 require("satellite").setup({
     current_only = false,

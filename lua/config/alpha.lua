@@ -1,16 +1,19 @@
-vim.cmd([[
-    augroup ALPHA
-        autocmd!
-        autocmd FileType alpha setlocal
-                \ scrolloff=999
-                \ fillchars+=eob:\ "
-    augroup END
-]])
-
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 local i = require("styling").icons
 local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("alphaFileTypeAutoCMD", { clear = true }),
+    pattern = { "alpha", },
+    desc = "Disable scrolling and hide end of buffer fillchars.",
+    callback = function ()
+        local f = require("options")
+
+        vim.opt_local.scrolloff = 999
+        vim.opt_local.fillchars = f.localFillchars
+    end
+})
 
 local function set_button(sc, txt, keybind, keybind_opts)
     local button = dashboard.button(sc, txt, keybind, keybind_opts)

@@ -1,23 +1,16 @@
--- Reset fillchars that trouble.nvim defaulted
-vim.cmd([[
-    augroup TROUBLE_AU
-        autocmd!
-        autocmd FileType Trouble
-                \ setlocal nolist
-                \ colorcolumn=0
-                \ nonumber relativenumber |
-                \ lua local iUI = require("styling").icons.nvim_ui
-                \ vim.opt_local.fillchars = {
-                \     vert = iUI.vert[1],
-                \     fold = iUI.fold[1],
-                \     foldopen = iUI.foldopen[1],
-                \     foldclose = iUI.foldclose[1],
-                \     foldsep = iUI.foldsep[1],
-                \     msgsep = iUI.msgsep[1],
-                \     eob = ' '
-                \ }
-    augroup END
-]])
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("troubleFileTypeAutoCMD", { clear = true }),
+    pattern = { "Trouble", },
+    desc = "Disable color column, enable relative numbering and hide end of buffer fillchars.",
+    callback = function ()
+        local f = require("options")
+
+        vim.opt_local.colorcolumn = ""
+        vim.opt_local.number = true
+        vim.opt_local.relativenumber = true
+        vim.opt_local.fillchars = f.localFillchars
+    end
+})
 
 local trouble = require("trouble")
 local i = require("styling").icons

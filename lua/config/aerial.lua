@@ -1,12 +1,17 @@
-vim.cmd([[
-    augroup AERIAL
-        autocmd!
-        autocmd FileType aerial setlocal
-                \ number
-                \ relativenumber
-                \ fillchars+=eob:\ "
-    augroup END
-]])
+local b = require("styling").borders.default
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("aerialFileTypeAutoCMD", { clear = true }),
+    pattern = { "aerial", },
+    desc = "Enable relative numbering and hide end of buffer fillchars.",
+    callback = function ()
+        local f = require("options")
+
+        vim.opt_local.number = true
+        vim.opt_local.relativenumber = true
+        vim.opt_local.fillchars = f.localFillchars
+    end
+})
 
 -- Call the setup function to change the default behavior
 require("aerial").setup({
@@ -179,7 +184,7 @@ require("aerial").setup({
     -- Options for opening aerial in a floating win
     float = {
         -- Controls border appearance. Passed to nvim_open_win
-        border = "single",
+        border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l },
 
         -- Enum: cursor, editor, win
         --   cursor - Opens float on top of the cursor

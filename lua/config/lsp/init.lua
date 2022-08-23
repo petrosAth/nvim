@@ -1,12 +1,15 @@
-vim.cmd([[
-    augroup LSPINFO_BORDERS
-        autocmd!
-        autocmd FileType lspinfo lua
-                \ local b = require("styling").borders.default
-                \ vim.api.nvim_win_set_config(0, { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
-                \ vim.opt.cursorline = true
-    augroup END
-]])
+local lspinfoFileTypeAutoCMD = vim.api.nvim_create_augroup("lspinfoFileTypeAutoCMD", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+    group = lspinfoFileTypeAutoCMD,
+    pattern = { "lspinfo", },
+    desc = "Change lspinfo window borders.",
+    callback = function ()
+        local b = require("styling").borders.default
+
+        vim.api.nvim_win_set_config(0, { border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l } })
+        vim.opt.cursorline = true
+    end
+})
 
 local M = {}
 local i = require("styling").icons
