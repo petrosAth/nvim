@@ -5,27 +5,7 @@ local c = require("config.tabby.components")
 
 require("tabby").setup({
     components = function()
-        local coms = {
-            {
-                type = "text",
-                text = {
-                    " neoVim",
-                    hl = "TabLineEdges",
-                    -- hl = string.format("%s", hl_mode)
-                },
-            },
-            {
-                type = "text",
-                text = text.separator(c.right_separator_icon, "TabLineEdges", "TabLineBody"),
-            },
-            {
-                type = "text",
-                text = {
-                    " ",
-                    hl = "TabLineBody",
-                },
-            },
-        }
+        local coms = {}
         local tabs = vim.api.nvim_list_tabpages()
         local current_tab = vim.api.nvim_get_current_tabpage()
         for _, tabid in ipairs(tabs) do
@@ -81,6 +61,7 @@ require("tabby").setup({
         end
         if #tabs > 1 then
             for _, tabid in ipairs(tabs) do
+                local last_tab = next(tabs, _) == nil
                 if tabid == current_tab then
                     -- Add active tab number
                     table.insert(coms, {
@@ -94,8 +75,8 @@ require("tabby").setup({
                         type = "tab",
                         tabid = tabid,
                         label = c.tab_top_window(tabid, true),
-                        left_sep = text.separator("█ ", "TabLineTabCurrent", "TabLineWinCurrent"),
-                        right_sep = text.separator(" █", "TabLineTabCurrent", "TabLineWinCurrent"),
+                        left_sep = text.separator("█ ", "TabLineTabCurrent", "TabLineTabTopWinCurrent"),
+                        right_sep = text.separator(" █", "TabLineTabCurrent", "TabLineTabTopWinCurrent"),
                     })
                     -- Add Tab close button
                     table.insert(coms, {
@@ -106,14 +87,6 @@ require("tabby").setup({
                     table.insert(coms, {
                         type = "text",
                         text = text.separator(c.right_separator_icon, "TabLineTabCurrent", "TabLineBody"),
-                    })
-                    -- empty space in line
-                    table.insert(coms, {
-                        type = "text",
-                        text = {
-                            " ",
-                            hl = "TabLineBody",
-                        },
                     })
                 else
                     -- Add inactive tab number
@@ -128,8 +101,8 @@ require("tabby").setup({
                         type = "tab",
                         tabid = tabid,
                         label = c.tab_top_window(tabid),
-                        left_sep = text.separator("█ ", "TabLineTabInactive", "TabLineTabTopWin"),
-                        right_sep = text.separator(" █", "TabLineTabInactive", "TabLineTabTopWin"),
+                        left_sep = text.separator("█ ", "TabLineTabInactive", "TabLineTabTopWinInactive"),
+                        right_sep = text.separator(" █", "TabLineTabInactive", "TabLineTabTopWinInactive"),
                     })
                     -- Add inactive tab close button
                     table.insert(coms, {
@@ -141,7 +114,9 @@ require("tabby").setup({
                         type = "text",
                         text = text.separator(c.right_separator_icon, "TabLineTabInactive", "TabLineBody"),
                     })
-                    -- empty space in line
+                end
+                if not last_tab then
+                    -- space between tabs
                     table.insert(coms, {
                         type = "text",
                         text = {
@@ -152,17 +127,6 @@ require("tabby").setup({
                 end
             end
         end
-        table.insert(coms, {
-            type = "text",
-            text = text.separator(c.left_separator_icon, "TabLineEdges", "TabLineBody"),
-        })
-        table.insert(coms, {
-            type = "text",
-            text = {
-                "裡",
-                hl = "TabLineEdges",
-            },
-        })
 
         return coms
     end,

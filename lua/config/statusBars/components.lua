@@ -107,8 +107,6 @@ M.FileReadOnly = {
         { provider = i.lock[1] },
         { h.Separator.right },
     }, { h.Null }),
-
-    hl = theme.bright
 }
 
 M.FileModified = {

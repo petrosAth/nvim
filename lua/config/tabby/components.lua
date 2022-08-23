@@ -16,25 +16,25 @@ c.right_separator_icon_thin = s[4]
 c.tab_close_icon = i.close[1]
 
 local plugin_list = {
-    { filetype = "aerial",          window_title = "Code outline"  },
-    { filetype = "alpha",           window_title = "Dashboard"     },
-    { filetype = "minimap",         window_title = "Minimap"       },
-    { filetype = "neo-tree",        window_title = "File explorer" },
-    { filetype = "NvimTree",        window_title = "File explorer" },
-    { filetype = "Outline",         window_title = "Code outline"  },
-    { filetype = "Trouble",         window_title = "List"          },
-    { filetype = "TelescopePrompt", window_title = "Telescope"     },
-    { filetype = "undotree",        window_title = "Undo tree"     },
+    { filetype = "aerial",          window_title = i.codeOutline[1]  .. " Code outline"  },
+    { filetype = "alpha",           window_title = i.dashboard[1]    .. " Dashboard"     },
+    { filetype = "minimap",         window_title = i.minimap[1]      .. " Minimap"       },
+    { filetype = "neo-tree",        window_title = i.fileExplorer[1] .. " File explorer" },
+    { filetype = "NvimTree",        window_title = i.fileExplorer[1] .. " File explorer" },
+    { filetype = "Outline",         window_title = i.codeOutline[1]  .. " Code outline"  },
+    { filetype = "Trouble",         window_title = i.list[1]         .. " List"          },
+    { filetype = "TelescopePrompt", window_title = i.telescope[1]    .. " Telescope"     },
+    { filetype = "undotree",        window_title = i.undoTree[1]     .. " Undotree"      },
 }
 local filename_list = {
-    { filename = "%[Command Line%]",                     customFilename = " History"                         },
-    { filename = "neo%-tree git_status",                 customFilename = " Git status"                      },
-    { filename = "neo%-tree buffers",                    customFilename = " Open buffers"                    },
-    { filename = "/:0:/",                                customFilename = " Original file"                   },
-    { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", customFilename = " ",                gitRepo = true },
-    { filename = "^diffview:///panels/.*History",        customFilename = " Diffview history"                },
-    { filename = "^diffview:///panels/.*",               customFilename = " Diffview files"                  },
-    { filename = "^diffview:///.*",                      customFilename = " Diffview"                        }
+    { filename = "%[Command Line%]",                     customFilename = i.history[1]    .. " History"                         },
+    { filename = "neo%-tree git_status",                 customFilename = i.git.repo[1]   .. " Git status"                      },
+    { filename = "neo%-tree buffers",                    customFilename = i.buffers[1]    .. " Open buffers"                    },
+    { filename = "/:0:/",                                customFilename =                    "Original file"                    },
+    { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", customFilename = i.git.commit[1] .. " ",                gitRepo = true },
+    { filename = "^diffview:///panels/.*History",        customFilename = i.diffview[1]   .. " Diffview history"                },
+    { filename = "^diffview:///panels/.*",               customFilename = i.diffview[1]   .. " Diffview files"                  },
+    { filename = "^diffview:///.*",                      customFilename = i.diffview[1]   .. " Diffview"                        }
 }
 
 c.is_plugin = function(bufid)
@@ -83,15 +83,15 @@ c.tab_top_window = function(tabid, current)
     -- local label = string.format("%d : %s", bufid, name)
     local label = string.format("%s", name)
     if is_plugin then
-        label = string.format(" %s", filetype)
+        label = string.format("%s", filetype)
     end
     if has_custom_name then
         label = string.format("%s", custom_name)
     end
     if current then
-        return { label, hl = "TabLineWinCurrent" }
+        return { label, hl = "TabLineTabTopWinCurrent" }
     else
-        return { label, hl = "TabLineTabTopWin" }
+        return { label, hl = "TabLineTabTopWinInactive" }
     end
 end
 
@@ -103,7 +103,7 @@ c.win_label = function(winid, current)
     -- local label = string.format("%d : %s", bufid, name)
     local label = string.format("%s", name)
     if is_plugin then
-        label = string.format(" %s", filetype)
+        label = string.format("%s", filetype)
     end
     if has_custom_name then
         label = string.format("%s", custom_name)
@@ -126,7 +126,6 @@ c.modified_flag = function(current_window, modified)
 end
 
 c.separators = function(first_window, last_window, current_window)
-    local tabs = vim.api.nvim_list_tabpages()
     local fg = "TabLineWinInactive"
     local bg = "TabLineWinInactive"
     local separator = {
@@ -135,7 +134,7 @@ c.separators = function(first_window, last_window, current_window)
     }
     -- If enabled, use thin separators between windows
     if also_use_thin_separators then
-        fg = "TabLineWinCurrent"
+        fg = "TabLineBody"
         separator.left = text.separator(c.left_separator_icon_thin, fg, bg)
         separator.right = text.separator(c.right_separator_icon_thin, fg, bg)
     end

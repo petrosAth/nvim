@@ -25,7 +25,7 @@ tree.setup({
                                                -- of the top visible node when scrolled down.
         tab_labels = { -- falls back to source_name if nil
           filesystem = " " .. i.fileExplorer[1] .. " Files ",
-          buffers =   i.buffer[1] .. " Buffers ",
+          buffers =   i.buffers[1] .. " Buffers ",
           git_status = i.git.repo[1] .. " Git ",
           diagnostics = i.lsp.lspIcon[1] .. " Diagnostics ",
         },

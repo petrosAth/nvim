@@ -11,7 +11,7 @@ local CurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.bright
+        hl = theme.winBar.bright
     },
     {
         c.FileNameBlock,
@@ -19,13 +19,13 @@ local CurrentWinBar = {
             if vim.bo.modified then
                 return theme.modified.current
             end
-            return theme.current
+            return theme.winBar.current
         end,
     },
     h.Align,
     {
         c.CloseButton,
-        hl = theme.bright,
+        hl = theme.winBar.bright,
     },
 }
 
@@ -38,16 +38,16 @@ local SpecialCurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.bright
+        hl = theme.winBar.bright
     },
     {
         c.FileNameBlock,
-        hl = { fg = theme.current.fg, bg = theme.current.bg, bold = true }
+        hl = { fg = theme.winBar.current.fg, bg = theme.winBar.current.bg, bold = true }
     },
     h.Align,
     {
         c.CloseButton,
-        hl = theme.bright,
+        hl = theme.winBar.bright,
     },
 }
 
@@ -57,7 +57,7 @@ local InactiveWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.bright,
+        hl = theme.winBar.bright,
     },
     {
         c.FileNameBlock,
@@ -71,7 +71,7 @@ local InactiveWinBar = {
     c.WindowNumber,
     {
         c.CloseButton,
-        hl = theme.bright,
+        hl = theme.winBar.bright,
     },
 }
 
@@ -85,7 +85,7 @@ local SpecialInactiveWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.bright
+        hl = theme.winBar.bright
     },
     {
         c.FileNameBlock,
@@ -95,7 +95,7 @@ local SpecialInactiveWinBar = {
     c.WindowNumber,
     {
         c.CloseButton,
-        hl = theme.bright,
+        hl = theme.winBar.bright,
     },
 }
 
