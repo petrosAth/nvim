@@ -1,10 +1,11 @@
 vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("troubleFileTypeAutoCMD", { clear = true }),
     pattern = { "Trouble", },
-    desc = "Disable color column, enable relative numbering and hide end of buffer fillchars.",
+    desc = "Enable list mode, disable color column, enable relative numbering and hide end of buffer fillchars.",
     callback = function ()
         local f = require("options")
 
+        vim.opt_local.list = true
         vim.opt_local.colorcolumn = ""
         vim.opt_local.number = true
         vim.opt_local.relativenumber = true
