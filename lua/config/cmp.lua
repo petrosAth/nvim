@@ -1,10 +1,10 @@
-local cmp = require("cmp")
-local luasnip = require("luasnip")
-
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
+
+local luasnip = require("luasnip")
+local cmp = require("cmp")
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -48,7 +48,16 @@ cmp.setup({
         ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
         ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
         ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), { "i", "c" }),
-        ["<C-y>"] = cmp.mapping(cmp.mapping.confirm({ select = true }), { "i", "c" }),
+        ["<C-y>"] = cmp.mapping({
+            c = cmp.mapping.confirm({ select = true }),
+            i = function()
+                if cmp.visible() then
+                    cmp.confirm({ select = true })
+                else
+                    cmp.complete()
+                end
+            end,
+        }),
         ["<Tab>"] = cmp.mapping({
             c = function()
                 if cmp.visible() then
