@@ -28,7 +28,6 @@ autocmd("FileType", {
         "DiffviewFileHistory",
         "DiffviewFiles",
         "help",
-        "lspinfo",
         "man",
         "notify",
         "packer",
