@@ -165,6 +165,8 @@ M.lsp = {
     LspReferenceWrite           = { fg = p.none,   bg = p.nord3                                     },
     -- Neovim LspSignatureHelp
     LspSignatureActiveParameter = { link = "Search"                                                 },
+    -- lspinfo window
+    LspInfoBorder               = { link = "FloatBorder"                                            },
 }
 
 M.plugins = {
