@@ -14,6 +14,7 @@ require("mason-tool-installer").setup({
         "lua-language-server",
         -- Formatter
         "stylua",
+        "prettier"
     },
 
     -- if set to true this will check each tool for updates. If updates

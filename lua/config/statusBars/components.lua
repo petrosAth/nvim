@@ -700,7 +700,10 @@ M.ViMode = {
         -- execute this only once, this is required if you want the ViMode
         -- component to be updated on operator pending mode
         if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", { command = "redrawstatus" })
+            vim.api.nvim_create_autocmd("ModeChanged", {
+                pattern = "*:*o",
+                command = "redrawstatus"
+            })
             self.once = true
         end
     end,
