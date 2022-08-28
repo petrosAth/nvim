@@ -10,7 +10,6 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function ()
         local f = require("options")
 
-        vim.opt_local.scrolloff = 999
         vim.opt_local.fillchars = f.localFillchars
     end
 })
