@@ -5,6 +5,22 @@ local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
 local M = {}
 
+-- TODO: Temporary fix until issue https://github.com/neovim/neovim/issues/18660 is solved
+vim.api.nvim_create_autocmd("User", {
+    pattern = 'HeirlineInitWinbar',
+    callback = function(args)
+        local buf = args.buf
+        local buftype = vim.tbl_contains(
+            { "prompt" },
+            vim.bo[buf].buftype
+        )
+        local filetype = vim.tbl_contains({ "alpha", "lspinfo", "mason", "packer", "WhichKey" }, vim.bo[buf].filetype)
+        if buftype or filetype then
+            vim.opt_local.winbar = nil
+        end
+    end,
+})
+
 local CurrentWinBar = {
     condition = function()
         return conditions.is_active()
@@ -125,6 +141,15 @@ local DisableWinBar = {
 }
 
 M.WinBars = {
+    init = utils.pick_child_on_condition,
+
+    TempWinBar, -- TODO: Delete TempWinBar when whichkey gets fixed
+    DisableWinBar,
+    SpecialInactiveWinBar,
+    InactiveWinBar,
+    SpecialCurrentWinBar,
+    CurrentWinBar,
+
     hl = function()
         if conditions.is_active() then
             return "WinBar"
@@ -132,16 +157,6 @@ M.WinBars = {
             return "WinBarNC"
         end
     end,
-
-    init = utils.pick_child_on_condition,
-
-    -- TODO: Delete TempWinBar when whichkey gets fixed
-    TempWinBar,
-    DisableWinBar,
-    SpecialInactiveWinBar,
-    InactiveWinBar,
-    SpecialCurrentWinBar,
-    CurrentWinBar,
 }
 
 return M
