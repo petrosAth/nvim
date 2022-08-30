@@ -4,7 +4,7 @@ vim.cmd.colorscheme(THEME)
 
 styling.variables = {
     transparency = 0
-}
+				}
 
 styling.icons = {
     line         = { ""                                              },
@@ -118,12 +118,13 @@ styling.icons = {
         foldsep   = { "│" }, -- '│' or '|'  open fold middle marker
         diff      = { "╱" }, -- '-'         deleted lines of the 'diff' option
         msgsep    = { " " }, -- ' '         message separator 'display'
-        eob       = { "~" }, -- '~'         empty lines at the end of a buffer
+        eob       = { "─" }, -- '~'         empty lines at the end of a buffer
         tab       = { "──" },          -- Two or three characters to be used to show a tab
         lead      = { " " },           -- Character to show for leading spaces
+        trail     = { " " },           -- Character to show for trailing spaces.
         eol       = { "" },           -- Character to show at the end of each line
-        extends   = { "" },           -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen
-        precedes  = { "" },           -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
+        extends   = { "" },           -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen
+        precedes  = { "" },           -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
     }
 }
 

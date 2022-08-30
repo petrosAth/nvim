@@ -116,6 +116,7 @@ opt.fillchars = M.fillchars
 opt.listchars:append({
     tab      = iUI.tab[1],
     lead     = iUI.lead[1],
+    trail    = iUI.trail[1],
     eol      = iUI.eol[1],
     extends  = iUI.extends[1],
     precedes = iUI.precedes[1],
