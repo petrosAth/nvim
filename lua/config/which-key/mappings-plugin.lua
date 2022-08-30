@@ -39,10 +39,11 @@ wk.register({
     ["g#"] = { "g#<CMD>lua require('hlslens').start()<CR>", "Search string under cursor backward" }, -- hlslens
     ["<Leader>"] = {
         s = {
-            name = "Possession",
-            d = { "<CMD>PossessionDelete<CR>", "Delete cwd session"                  }, -- possession.nvim
-            l = { "<CMD>PossessionLoad<CR>",   "Load last session"                   }, -- possession.nvim
-            s = { ":PossessionSave ",          "Save session",        silent = false }, -- possession.nvim
+            name = "Session manager",
+            d = { "<CMD>PossessionDelete<CR>",            "Delete cwd session"                 }, -- possession.nvim
+            l = { "<CMD>PossessionLoad<CR>",              "Load last session"                  }, -- possession.nvim
+            S = { ":PossessionSave ",                     "Save session",       silent = false }, -- possession.nvim
+            s = { telescope_custom .. "possession()<CR>", "Search sessions"                    }, -- possession.nvim
         },
         t = {
             name = "Tab",
@@ -159,14 +160,14 @@ wk.register({
                 s = { "<CMD>Telescope git_status<CR>",   "Status"    }, -- telescope
                 S = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope
             },
-            H = { "<CMD>Telescope highlights<CR>",         "Highlight groups"   }, -- telescope
-            h = { "<CMD>Telescope help_tags<CR>",          "Vim help"           }, -- telescope
-            n = { telescope_custom .. "notify()<CR>",      "Notify history"     }, -- telescope -- notify
-            o = { "<CMD>Telescope vim_options<CR>",        "Vim options"        }, -- telescope
-            R = { telescope_custom .. "frecency()<CR>",    "Frecency"           }, -- telescope
-            r = { telescope_custom .. "oldFiles()<CR>",    "Recent files"       }, -- telescope
-            s = { telescope_custom .. "possession()<CR>",  "Search sessions"    }, -- possession.nvim
-            T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments" }, -- todo-comments
+            H = { "<CMD>Telescope highlights<CR>",         "Highlight groups"        }, -- telescope
+            h = { "<CMD>Telescope help_tags<CR>",          "Vim help"                }, -- telescope
+            n = { telescope_custom .. "notify()<CR>",      "Notify history"          }, -- telescope -- notify
+            o = { "<CMD>Telescope vim_options<CR>",        "Vim options"             }, -- telescope
+            R = { telescope_custom .. "frecency()<CR>",    "Frecency"                }, -- telescope
+            r = { telescope_custom .. "oldFiles()<CR>",    "Recent files"            }, -- telescope
+            s = { telescope_custom .. "luasnip()<CR>",     "List available snippets" }, -- telescope-luasnip.nvim
+            T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments"      }, -- todo-comments
             t = {
                 name = "Telescope",
                 b = { "<CMD>Telescope builtin<CR>",         "Telescope builtin" }, -- telescope

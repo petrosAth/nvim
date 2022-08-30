@@ -111,4 +111,14 @@ function M.possession()
     }
 end
 
+function M.luasnip()
+    telescope.extensions.luasnip.luasnip {
+        layout_config = {
+            preview_width = 0.3,
+            width = ws.width.large,
+            height = ws.height.large,
+        }
+    }
+end
+
 return M

@@ -319,7 +319,9 @@ return packer.startup(function()
             -- An extension for telescope.nvim. It helps you navigate, select, and perform actions on results buffer with motions inspired by hop.nvim.
             { "nvim-telescope/telescope-hop.nvim" },
             -- File Browser extension for telescope.nvim
-            { "nvim-telescope/telescope-file-browser.nvim" }
+            { "nvim-telescope/telescope-file-browser.nvim" },
+            -- Telescope.nvim extension that adds LuaSnip integration
+            { "benfowler/telescope-luasnip.nvim", }
         },
     })
 
