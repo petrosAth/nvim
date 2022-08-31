@@ -189,7 +189,7 @@ tree.setup({
         window = {
             mappings = {
                 ["<BS>"] = "navigate_up",
-                ["<L>"] = "set_root",
+                ["L"] = "set_root",
                 ["."] = "toggle_hidden",
                 ["/"] = "fuzzy_finder",
                 ["d"] = "fuzzy_finder_directory",
@@ -209,7 +209,7 @@ tree.setup({
             mappings = {
                 ["d"] = "buffer_delete",
                 ["<BS>"] = "navigate_up",
-                ["<L>"] = "set_root",
+                ["L"] = "set_root",
             },
         },
     },
