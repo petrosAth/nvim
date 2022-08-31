@@ -22,6 +22,7 @@ M.servers = {
     "powershell_es",
     "pyright",
     "sumneko_lua",
+    "tsserver",
 }
 
 -- Borders for LSP floating windows

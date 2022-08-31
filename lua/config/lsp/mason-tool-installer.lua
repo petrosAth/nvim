@@ -12,7 +12,8 @@ require("mason-tool-installer").setup({
         "powershell-editor-services",
         "pyright",
         "lua-language-server",
-        -- Formatter
+        "typescript-language-server",
+        -- Formatters
         "stylua",
         "prettier"
     },
