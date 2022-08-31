@@ -54,7 +54,7 @@ require("possession").setup({
             force = false, -- or fun(buf): boolean
         },
         nvim_tree = true,
-        tabby = false,
+        tabby = true,
         delete_buffers = false,
     },
 })
