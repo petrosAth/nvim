@@ -141,9 +141,10 @@ local DisableWinBar = {
 }
 
 M.WinBars = {
-    init = utils.pick_child_on_condition,
+    fallthrough = false,
 
-    TempWinBar, -- TODO: Delete TempWinBar when whichkey gets fixed
+    -- TODO: Delete TempWinBar when whichkey gets fixed
+    TempWinBar,
     DisableWinBar,
     SpecialInactiveWinBar,
     InactiveWinBar,

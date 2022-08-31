@@ -99,6 +99,12 @@ local TerminalStatusline = {
 }
 
 M.StatusLines = {
+    fallthrough = false,
+
+    TerminalStatusline,
+    SpecialStatusline,
+    InactiveStatusline,
+    DefaultStatusline,
 
     hl = function()
         if conditions.is_active() then
@@ -107,13 +113,6 @@ M.StatusLines = {
             return "StatusLineNC"
         end
     end,
-
-    init = utils.pick_child_on_condition,
-
-    TerminalStatusline,
-    SpecialStatusline,
-    InactiveStatusline,
-    DefaultStatusline,
 }
 
 return M
