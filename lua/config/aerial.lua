@@ -1,18 +1,5 @@
 local b = require("styling").borders.default
 
-vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("aerialFileTypeAutoCMD", { clear = true }),
-    pattern = { "aerial", },
-    desc = "Enable relative numbering and hide end of buffer fillchars.",
-    callback = function ()
-        local f = require("options")
-
-        vim.opt_local.number = true
-        vim.opt_local.relativenumber = true
-        vim.opt_local.fillchars = f.localFillchars
-    end
-})
-
 -- Call the setup function to change the default behavior
 require("aerial").setup({
     -- Priority list of preferred backends for aerial.

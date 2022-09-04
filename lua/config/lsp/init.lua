@@ -1,13 +1,3 @@
-local lspinfoFileTypeAutoCMD = vim.api.nvim_create_augroup("lspinfoFileTypeAutoCMD", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    group = lspinfoFileTypeAutoCMD,
-    pattern = { "lspinfo", },
-    desc = "Enable cursorline in LSPinfo windows",
-    callback = function ()
-        vim.opt.cursorline = true
-    end
-})
-
 local M = {}
 local i = require("styling").icons
 local b = require("styling").borders.default
