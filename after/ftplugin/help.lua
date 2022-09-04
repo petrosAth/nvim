@@ -1,5 +1,4 @@
--- Keep all characters visible
-vim.opt_local.conceallevel = 0
+local ol = vim.opt_local
 
--- Hide colorcolumn
-vim.opt_local.colorcolumn = ""
+ol.conceallevel = 0 -- Keep all characters visible
+ol.colorcolumn = "" -- Hide colorcolumn

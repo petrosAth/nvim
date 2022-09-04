@@ -1,5 +1,5 @@
--- Number of auto-indent spaces
-vim.opt_local.shiftwidth = 4
+local ol = vim.opt_local
 
--- Number of columns per tab
-vim.opt_local.tabstop = 4
+ol.shiftwidth  = 4 -- Number of auto-indent spaces
+ol.softtabstop = 4 -- Number of spaces per Tab
+ol.tabstop     = 4 -- Number of columns per tab

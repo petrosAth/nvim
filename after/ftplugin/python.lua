@@ -1,11 +1,5 @@
--- A <Tab> in front of a line inserts blanks according to 'shiftwidth'
-vim.opt_local.smarttab = true
+local ol = vim.opt_local
 
--- Use spaces instead of tabs
-vim.opt_local.expandtab = true
-
--- Number of auto-indent spaces
-vim.opt_local.shiftwidth = 4
-
--- Number of columns per tab
-vim.opt_local.tabstop = 4
+ol.shiftwidth  = 4 -- Number of auto-indent spaces
+ol.softtabstop = 4 -- Number of spaces per Tab
+ol.tabstop     = 4 -- Number of columns per tab

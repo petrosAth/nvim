@@ -1,6 +1,5 @@
--- Hide line numbers
-vim.opt_local.number = false
--- Disable relative line numbers
-vim.opt_local.relativenumber = false
--- Hide sign column
-vim.opt_local.signcolumn = "no"
+local ol = vim.opt_local
+
+ol.number         = false -- Hide line numbers
+ol.relativenumber = false -- Disable relative line numbers
+ol.signcolumn     = "no"  -- Hide sign column

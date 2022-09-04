@@ -67,13 +67,13 @@ opt.termguicolors = true -- Enable 24bit colors in terminal
 
 opt.cmdheight = 1 -- Give more space for displaying messages
 
-opt.autoindent = true -- Auto-indent new lines
-opt.smartindent = true -- Enable smart-indent
-
-opt.expandtab = true -- Use spaces instead of tabs
 opt.shiftwidth = 4 -- Number of auto-indent spaces
 opt.softtabstop = 4 -- Number of spaces per Tab
 opt.tabstop = 4 -- Number of columns per tab
+opt.expandtab = true -- Use spaces instead of tabs
+opt.smarttab = true -- A <Tab> in front of a line inserts blanks according to 'shiftwidth'
+opt.autoindent = true -- Auto-indent new lines
+opt.smartindent = true -- Enable smart-indent
 
 opt.showmatch = true -- Highlights matching brackets
 opt.cursorline = true -- Highlight the text line of the cursor

@@ -1,5 +1,6 @@
--- Show vertical line for text alignment
-vim.opt_local.colorcolumn = "120"
+local ol = vim.opt_local
 
--- Number of auto-indent spaces
-vim.opt_local.shiftwidth = 4
+ol.colorcolumn = "120" -- Show vertical line for text alignment
+ol.shiftwidth  = 4     -- Number of auto-indent spaces
+ol.softtabstop = 4     -- Number of spaces per Tab
+ol.tabstop     = 4     -- Number of columns per tab
