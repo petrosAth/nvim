@@ -122,7 +122,6 @@ wk.register({
             },
             v = {
                 name = "Diff highlighting",
-                a = { "<CMD>Gitsigns toggle_linehl<CR><CMD>Gitsigns toggle_numhl<CR><CMD>Gitsigns toggle_word_diff<CR><CMD>Gitsigns toggle_deleted<CR>", "Toggle all diff highlightings" }, -- gitsigns
                 l = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"     }, -- gitsigns
                 n = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting"   }, -- gitsigns
                 w = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"     }, -- gitsigns
