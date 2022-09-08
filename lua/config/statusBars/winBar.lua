@@ -5,29 +5,13 @@ local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
 local M = {}
 
--- TODO: Temporary fix until issue https://github.com/neovim/neovim/issues/18660 is solved
-vim.api.nvim_create_autocmd("User", {
-    pattern = 'HeirlineInitWinbar',
-    callback = function(args)
-        local buf = args.buf
-        local buftype = vim.tbl_contains(
-            { "prompt" },
-            vim.bo[buf].buftype
-        )
-        local filetype = vim.tbl_contains({ "alpha", "lspinfo", "mason", "packer", "WhichKey" }, vim.bo[buf].filetype)
-        if buftype or filetype then
-            vim.opt_local.winbar = nil
-        end
-    end,
-})
-
 local CurrentWinBar = {
     condition = function()
         return conditions.is_active()
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright
+        hl = theme.winBar.bright,
     },
     {
         c.FileNameBlock,
@@ -54,11 +38,11 @@ local SpecialCurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright
+        hl = theme.winBar.bright,
     },
     {
         c.FileNameBlock,
-        hl = { fg = theme.winBar.current.fg, bg = theme.winBar.current.bg, bold = true }
+        hl = { fg = theme.winBar.current.fg, bg = theme.winBar.current.bg, bold = true },
     },
     h.Align,
     {
@@ -93,15 +77,15 @@ local InactiveWinBar = {
 
 local SpecialInactiveWinBar = {
     condition = function()
-        return not conditions.is_active() and conditions.buffer_matches({
-            buftype = h.SpecialBufType,
-            filetype = h.SpecialFileType,
-        })
-
+        return not conditions.is_active()
+            and conditions.buffer_matches({
+                buftype = h.SpecialBufType,
+                filetype = h.SpecialFileType,
+            })
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright
+        hl = theme.winBar.bright,
     },
     {
         c.FileNameBlock,
@@ -115,24 +99,13 @@ local SpecialInactiveWinBar = {
     },
 }
 
--- TODO: Delete TempWinBar when whichkey gets fixed
---At the moment whichkey window disapears when winbar is disabled through buftype conditions
-local TempWinBar = {
-    condition = function()
-        return conditions.buffer_matches({
-            filetype = { "WhichKey" },
-        })
-    end,
-    h.Null,
-}
-
 local DisableWinBar = {
     condition = function()
         -- Source:
         -- incline.nvim - https://github.com/b0o/incline.nvim/blob/44d4e6f4dcf2f98cf7b62a14e3c10749fc5c6e35/lua/incline/util.lua#L49-L51
         return vim.api.nvim_win_get_config(0).relative ~= '' or conditions.buffer_matches({
             buftype = { "prompt" },
-            filetype = { "alpha", "packer", "lspinfo", "mason" },
+            filetype = { "alpha", "packer", "lspinfo", "mason", "WhichKey" },
         })
     end,
     init = function()
@@ -143,8 +116,6 @@ local DisableWinBar = {
 M.WinBars = {
     fallthrough = false,
 
-    -- TODO: Delete TempWinBar when whichkey gets fixed
-    TempWinBar,
     DisableWinBar,
     SpecialInactiveWinBar,
     InactiveWinBar,
