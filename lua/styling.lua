@@ -46,6 +46,7 @@ styling.icons = {
     sessions     = { ""                                              },
     update       = { ""                                              },
     lspServers   = { ""                                              },
+    indentLine   = { "│", "❘", '|', '¦', "│", "❘", "╎", '┆', '┊', '⸽' },
     folderop     = { "", "", ""                                    },
     foldercl     = { "", "", ""                                    },
     arrowu       = { "", "", "", "", "", "⯅", "▲", "△", "", "" },

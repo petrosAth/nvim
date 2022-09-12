@@ -1,3 +1,5 @@
+local i = require("styling").icons.indentLine
+
 local excFiletypes = {
     "aerial",
     "alpha",
@@ -23,7 +25,7 @@ local excBuftypes = {
 }
 
 require("indent_blankline").setup({
-    char_list = { "│", "❘" }, -- '|', '¦', "│", "❘", "╎", '┆', '┊', '⸽'
+    char_list = { i[1], i[2] },
     space_char_blankline = " ",
     filetype_exclude = excFiletypes,
     buftype_exclude = excBuftypes,
