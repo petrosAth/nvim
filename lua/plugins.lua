@@ -312,7 +312,7 @@ return packer.startup(function()
             -- File Browser extension for telescope.nvim
             { "nvim-telescope/telescope-file-browser.nvim" },
             -- Telescope.nvim extension that adds LuaSnip integration
-            { "benfowler/telescope-luasnip.nvim", }
+            { "benfowler/telescope-luasnip.nvim" },
         },
     })
 
