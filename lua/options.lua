@@ -126,6 +126,7 @@ opt.spell = false
 opt.spelllang = "en_us" -- Use en_us to spellcheck
 opt.spelloptions = 'camel' -- Treat parts of camelCase words as seprate words
 
+opt.showtabline = 2 -- tabline
 opt.laststatus = 3 -- Statusline
 
 opt.showmode = false -- Don't show mode in command line
