@@ -393,10 +393,9 @@ return packer.startup(function()
     -- tabby.nvim - A minimal, configurable, neovim style tabline. Use your nvim tabs as workspace multiplexer.
     use({
         "nanozuki/tabby.nvim",
-        commit = "4d09e26",
         requires = "nvim-web-devicons",
         config = function()
-            require("config.tabby")
+            require("config.tabLine")
         end,
     })
 
