@@ -67,7 +67,7 @@ cmp.setup({
                 end
             end,
             i = function(fallback)
-                if luasnip.expand_or_jumpable() then
+                if luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 elseif has_words_before() then
                     cmp.complete()
@@ -76,7 +76,7 @@ cmp.setup({
                 end
             end,
             s = function(fallback)
-                if luasnip.expand_or_jumpable() then
+                if luasnip.expand_or_locally_jumpable() then
                     luasnip.expand_or_jump()
                 else
                     fallback()
