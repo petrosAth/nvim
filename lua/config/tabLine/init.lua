@@ -65,21 +65,20 @@ tabline.set(function(line)
         line.spacer(),
         line.tabs().foreach(function(tab)
             local hl = tab.is_current() and theme.TabLineSel or theme.TabLineFill
-            local hl_s = tab.is_current() and theme.TabLineTabSeparatorSel or theme.TabLineTabSeparator
-            local hl_s_internal = tab.is_current() and theme.TabLineSel or theme.TabLineFill
             local hl_i = tab.is_current() and theme.TabLineTabIndicatorSel or theme.TabLineTabIndicator
             return {
-                line.sep("", hl_s, theme.TabLine),
+                line.sep(c.set_sep_all(line, "tab", "left", tab.is_current())),
                 { " ", hl = hl_i },
                 { tab.number(), hl = hl_i },
                 { " ", hl = hl_i },
-                line.sep("", hl_s, hl_s_internal),
+                line.sep(c.set_sep_all(line, "tab", "between", tab.is_current())),
                 { " " },
                 tab.name(),
                 { " " },
                 tab.close_btn(""),
                 { " " },
-                line.sep(" ", hl, theme.TabLineSeparatorTail),
+                line.sep(c.set_sep_all(line, "tab", "right", tab.is_current())),
+                { " ", hl = "TabLine" },
                 hl = hl,
                 margin = "",
             }

@@ -28,8 +28,6 @@ local theme = {
     TabLineSel                     = { fg = p.nord4,     bg = p.nord3light                },
     TabLineFill                    = { fg = p.nord4dark, bg = p.nord2                     },
 
-    TabLineWinSeparator            = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineWinSeparatorSel         = { fg = p.nord4dark, bg = p.nord3light                },
     TabLineTabSeparator            = { fg = p.nord4,     bg = p.nord3                     },
     TabLineTabSeparatorSel         = { fg = p.nord1,     bg = p.nord8                     },
 
@@ -72,9 +70,11 @@ local function set_sep_icon(type, position, index)
 end
 
 local function set_sep_hl(line, type, position, is_current, index)
+    index = index or 0
     local fg = is_current and theme.TabLineSel or theme.TabLineFill
-    local bg = theme.TabLineFill
+    local bg = theme.TabLine
     if type == "win" then
+        bg = theme.TabLineFill
         if position == "left" then
             if is_first_win(index) then
                 fg = theme.TabLineTabSeparatorSel
@@ -84,6 +84,15 @@ local function set_sep_hl(line, type, position, is_current, index)
             if is_last_win(line, index) then
                 bg = theme.TabLine
             end
+        end
+    end
+    if type == "tab" then
+        fg = is_current and theme.TabLineTabSeparatorSel or theme.TabLineTabSeparator
+        if position == "right" then
+            fg = is_current and theme.TabLineSel or theme.TabLineFill
+        end
+        if position == "between" then
+            bg = is_current and theme.TabLineSel or theme.TabLineFill
         end
     end
     return fg, bg
