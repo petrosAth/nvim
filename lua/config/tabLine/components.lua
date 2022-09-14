@@ -60,16 +60,12 @@ local theme = {
 }
 
 local function set_sep_icon(type, position, index)
-    local icon = ""
+    local icon = position == "left" and "" or ""
     if type == "win" then
         if position == "left" then
             if is_first_win(index) then
                 icon = " "
-            else
-                icon = ""
             end
-        else
-            icon = ""
         end
     end
     return icon
