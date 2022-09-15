@@ -44,6 +44,7 @@ styling.icons = {
     history      = { ""                                              },
     lastSession  = { ""                                              },
     sessions     = { ""                                              },
+    windows      = { ""                                              },
     update       = { ""                                              },
     lspServers   = { ""                                              },
     indentLine   = { "│", "❘", '|', '¦', "│", "❘", "╎", '┆', '┊', '⸽' },
