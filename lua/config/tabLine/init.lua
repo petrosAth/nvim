@@ -48,6 +48,7 @@ tabline.set(function(line)
                 line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), line)),
                 { " " },
                 c.tab_top_window(line, tab.id, tab.is_current),
+                c.tab_win_count(tab.id),
                 { " " },
                 line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), line)),
                 { tab.close_btn(i.close[1]), hl = hl_indicator },

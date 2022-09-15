@@ -24,10 +24,14 @@ local function is_not_float_win(win_id)
   return vim.api.nvim_win_get_config(win_id).relative == ""
 end
 
-local function is_last_win(tab_id, win_id)
+local function get_win_count(tab_id)
     local win_list = vim.api.nvim_tabpage_list_wins(tab_id)
     local win_list_no_floats = vim.tbl_filter(is_not_float_win, win_list)
-    local win_count = #win_list_no_floats
+    return #win_list_no_floats
+end
+
+local function is_last_win(tab_id, win_id)
+    local win_count = get_win_count(tab_id)
     local win_number = get_win_number(win_id)
     return win_number == win_count and true or false
 end
@@ -229,7 +233,6 @@ end
 M.tab_top_window = function(line, tab_id, is_current)
     local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
     local buf_id = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tab_id))
-    local win_count = #line.api.get_tab_wins(tab_id)
     local is_plugin, filetype = is_plugin(buf_id)
     local has_custom_name, custom_name = has_custom_name(tab_id, "")
     -- local label = string.format("%d : %s", bufid, name)
@@ -240,7 +243,12 @@ M.tab_top_window = function(line, tab_id, is_current)
     if has_custom_name then
         label = string.format("%s", custom_name)
     end
-    label = string.format("%s[%d]", label, win_count)
+    return label
+end
+
+M.tab_win_count = function(tab_id)
+    local win_count = get_win_count(tab_id)
+    local label = string.format("[%d]", win_count)
     return label
 end
 
