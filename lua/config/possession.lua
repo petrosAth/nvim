@@ -54,8 +54,7 @@ require("possession").setup({
             force = false, -- or fun(buf): boolean
         },
         nvim_tree = true,
-        -- TODO: Disable tab name saving for tabby until possession get updated
-        tabby = false,
+        tabby = true,
         delete_buffers = false,
     },
 })
