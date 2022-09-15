@@ -1,8 +1,8 @@
 local filename = require("tabby.module.filename")
 local tab_name = require("tabby.feature.tab_name")
+local t = require("config.themes.nord.highlights.statusBars").tabby
 local i = require("styling").icons
 local s = require("styling").separators.default
-local p = require("config.themes.nord.palette") -- TODO: remove it after highlights are set
 
 local M = {}
 
@@ -12,8 +12,6 @@ M.left_sep_icon = s[1]
 M.right_sep_icon = s[2]
 M.left_sep_icon_thin = s[3]
 M.right_sep_icon_thin = s[4]
-M.modified_icon = i.edit[1]
-M.tab_close_icon = i.close[1]
 
 local function get_win_number(win_id)
     return vim.api.nvim_win_get_number(win_id)
@@ -55,24 +53,6 @@ local function has_custom_label(tab_id)
     end
     return false, ""
 end
-
-M.theme = {
-    TabLine                        = { fg = p.nord4,     bg = p.nord1                     },
-    TabLineSel                     = { fg = p.nord4,     bg = p.nord3light                },
-    TabLineFill                    = { fg = p.nord4dark, bg = p.nord2                     },
-
-    TabLineHeader                  = { fg = p.nord1,     bg = p.nord8                     },
-
-    TabLineTabSeparator            = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabSeparatorSel         = { fg = p.nord1,     bg = p.nord8                     },
-
-    TabLineTabIndicator            = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabIndicatorSel         = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineIndicatorModified       = { fg = p.nord1,     bg = p.nord2                     },
-    TabLineIndicatorModifiedSel    = { fg = p.nord1,     bg = p.nord3light                },
-    TabLineIndicatorIsModified     = { fg = p.nord13,    bg = p.nord2                     },
-    TabLineIndicatorIsModifiedSel  = { fg = p.nord13,    bg = p.nord3light                },
-}
 
 local function set_sep_icon(type, position, is_current, tab_id, win_id)
     local icon = position == "left" and M.left_sep_icon or M.right_sep_icon
@@ -122,68 +102,68 @@ end
 local function set_sep_hl(type, position, is_current, tab_id, win_id)
     win_id = win_id or 0
     local has_custom_label = has_custom_label(tab_id)
-    local fg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
-    local bg = M.theme.TabLine
+    local fg = is_current and t.TabLineSel or t.TabLineFill
+    local bg = t.TabLine
     if type == "win" then
-        bg = M.theme.TabLineFill
+        bg = t.TabLineFill
         if position == "left" then
             if is_current then
-                bg = M.theme.TabLineSel
+                bg = t.TabLineSel
             end
             if is_first_win(win_id) then
-                fg = M.theme.TabLineTabSeparatorSel
-                bg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+                fg = t.TabLineTabSeparatorSel
+                bg = is_current and t.TabLineSel or t.TabLineFill
             end
         elseif position == "right" then
-            fg = M.theme.TabLine
+            fg = t.TabLine
             if is_last_win(tab_id, win_id) then
-                fg = M.theme.TabLineFill
-                bg = M.theme.TabLine
+                fg = t.TabLineFill
+                bg = t.TabLine
             end
             if is_before_win_sel(is_current, win_id) then
-                fg = M.theme.TabLineFill
-                bg = M.theme.TabLineSel
+                fg = t.TabLineFill
+                bg = t.TabLineSel
             end
             if is_current then
-                fg = M.theme.TabLineSel
+                fg = t.TabLineSel
             end
         end
     end
     if type == "tab" then
-        fg = is_current and M.theme.TabLineTabSeparatorSel or M.theme.TabLineTabSeparator
+        fg = is_current and t.TabLineTabSeparatorSel or t.TabLineTabSeparator
         if position == "inner_right" then
             if is_current then
-                bg = M.theme.TabLineSel
+                bg = t.TabLineSel
                 if has_custom_label then
-                    fg = M.theme.TabLine
-                    bg = M.theme.TabLineTabSeparatorSel
+                    fg = t.TabLine
+                    bg = t.TabLineTabSeparatorSel
                 end
             else
-                bg = M.theme.TabLineFill
+                bg = t.TabLineFill
                 if has_custom_label then
-                    fg = M.theme.TabLine
-                    bg = M.theme.TabLineTabSeparator
+                    fg = t.TabLine
+                    bg = t.TabLineTabSeparator
                 end
             end
         end
         if position == "inner_left" then
-            fg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
-            bg = is_current and M.theme.TabLineTabSeparatorSel or M.theme.TabLineTabSeparator
+            fg = is_current and t.TabLineSel or t.TabLineFill
+            bg = is_current and t.TabLineTabSeparatorSel or t.TabLineTabSeparator
         end
         if position == "split" then
             if is_current then
-                fg = M.theme.TabLine
-                bg = M.theme.TabLineSel
+                fg = t.TabLine
+                bg = t.TabLineSel
                 if has_custom_label then
-                    fg = M.theme.TabLineTabSeparatorSel
-                    bg = M.theme.TabLineSel
+                    fg = t.TabLineTabSeparatorSel
+                    bg = t.TabLineSel
                 end
             else
-                fg = M.theme.TabLine
-                bg = M.theme.TabLineFill
+                fg = t.TabLine
+                bg = t.TabLineFill
                 if has_custom_label then
-                    fg = M.theme.TabLineTabSeparator
-                    bg = M.theme.TabLineFill
+                    fg = t.TabLineTabSeparator
+                    bg = t.TabLineFill
                 end
             end
         end
@@ -267,11 +247,11 @@ end
 M.modified_flag = function(win_id, is_current)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
     local is_modified = vim.bo[buf_id].modified
-    local hl = is_current and M.theme.TabLineIndicatorModifiedSel or M.theme.TabLineIndicatorModified
+    local hl = is_current and t.TabLineIndicatorModifiedSel or t.TabLineIndicatorModified
     if is_modified then
-        hl = is_current and M.theme.TabLineIndicatorIsModifiedSel or M.theme.TabLineIndicatorIsModified
+        hl = is_current and t.TabLineIndicatorIsModifiedSel or t.TabLineIndicatorIsModified
     end
-    return { " " .. M.modified_icon, hl = hl }
+    return { " " .. i.edit[1], hl = hl }
 end
 
 local function tab_top_window(tab_id)
@@ -291,9 +271,9 @@ local function tab_top_window(tab_id)
 end
 
 local function set_tab_label_hl(is_current, has_custom_label)
-    local hl = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+    local hl = is_current and t.TabLineSel or t.TabLineFill
     if has_custom_label then
-        hl = is_current and M.theme.TabLineTabIndicatorSel or M.theme.TabLineTabIndicator
+        hl = is_current and t.TabLineTabIndicatorSel or t.TabLineTabIndicator
     end
     return hl
 end
@@ -310,7 +290,7 @@ end
 
 M.tab_win_count = function(tab_id)
     local win_count = get_win_count(tab_id)
-    local label = "  ⨯".. win_count
+    local label = " " .. i.windows[1] .. " " .. win_count
     return label
 end
 

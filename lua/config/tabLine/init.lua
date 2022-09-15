@@ -1,19 +1,10 @@
 local tabline = require("tabby.tabline")
+local theme = require("config.themes.nord.highlights.statusBars").tabby
 local c = require("config.tabLine.components")
 local i = require("styling").icons
-local s = require("styling").separators.default
-
-local theme = c.theme
 
 tabline.set(function(line)
     return {
-        {
-            { " Neo ", hl = theme.TabLineHeader },
-            line.sep(c.right_sep_icon, theme.TabLineHeader, theme.TabLine),
-        },
-        {
-            { " ", hl = "TabLine" },
-        },
         {
             line.sep(c.left_sep_icon, theme.TabLineTabSeparatorSel, theme.TabLine),
             line.api.get_current_tab(),
@@ -41,6 +32,7 @@ tabline.set(function(line)
                 return nil
             end
             return {
+                { " ", hl = theme.TabLine },
                 line.sep(c.set_sep_all("tab", "left", tab.is_current(), tab.id)),
                 { tab.number(), hl = hl_indicator },
                 line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), tab.id)),
@@ -48,18 +40,12 @@ tabline.set(function(line)
                 line.sep(c.set_sep_all("tab", "split", tab.is_current(), tab.id)),
                 c.tab_win_count(tab.id),
                 line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), tab.id)),
-                { tab.close_btn(" " .. c.tab_close_icon), hl = hl_indicator },
+                { tab.close_btn(" " .. i.close[1]), hl = hl_indicator },
                 line.sep(c.set_sep_all("tab", "right", tab.is_current(), tab.id)),
-                { " ", hl = "TabLine" },
                 hl = hl,
                 margin = "",
             }
         end),
         { "%<" },
-        {
-            line.sep(c.left_sep_icon, theme.TabLineHeader, theme.TabLine),
-            { " 裡", hl = theme.TabLineHeader },
-        },
-        hl = theme.fill,
     }
 end)
