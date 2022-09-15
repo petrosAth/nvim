@@ -7,6 +7,8 @@ local p = require("config.themes.nord.palette") -- TODO: remove it after highlig
 
 local M = {}
 
+M.win_sel_number = 0
+
 M.modified_icon = i.edit[1]
 M.left_separator_icon = s[1]
 M.right_separator_icon = s[2]
@@ -14,39 +16,53 @@ M.left_separator_icon_thin = s[3]
 M.right_separator_icon_thin = s[4]
 M.tab_close_icon = i.close[1]
 
-local function is_last_win(line, index)
+local function get_win_number(win_id)
+    return vim.api.nvim_win_get_number(win_id)
+end
+
+local function is_last_win(line, win_id)
     local win_count = #line.api.get_tab_wins(line.api.get_current_tab())
-    return index == win_count and true or false
+    local win_number = get_win_number(win_id)
+    return win_number == win_count and true or false
 end
 
-local function is_first_win(index)
-    return index == 1 and true or false
+local function is_first_win(win_id)
+    local win_number = get_win_number(win_id)
+    return win_number == 1 and true or false
 end
 
-local theme = {
+local function is_before_win_sel(is_current, win_id)
+    local win_number = get_win_number(win_id)
+    if is_current then
+        M.win_sel_number = win_number
+    end
+    return win_number + 1 == M.win_sel_number
+end
+
+M.theme = {
     TabLine                        = { fg = p.nord4,     bg = p.nord1                     },
     TabLineSel                     = { fg = p.nord4,     bg = p.nord3light                },
     TabLineFill                    = { fg = p.nord4dark, bg = p.nord2                     },
 
+    TabLineHeader                  = { fg = p.nord1,     bg = p.nord8                     },
+
     TabLineTabSeparator            = { fg = p.nord4,     bg = p.nord3                     },
     TabLineTabSeparatorSel         = { fg = p.nord1,     bg = p.nord8                     },
-
-    TabLineSeparatorTail           = { fg = p.nord4,     bg = p.nord1                     },
 
     TabLineTabIndicator            = { fg = p.nord4,     bg = p.nord3                     },
     TabLineTabIndicatorSel         = { fg = p.nord1,     bg = p.nord8                     },
     TabLineTabIndicatorModified    = { fg = p.nord13,    bg = p.nord3light                },
     TabLineTabIndicatorModifiedSel = { fg = p.nord13,    bg = p.nord2                     },
 
-    TabLineHeader                  = { fg = p.nord1,     bg = p.nord8                     },
+    TabLineWinCurrent              = { fg = p.nord6,     bg = p.nord3light                },
+    TabLineWinInactive             = { fg = p.nord4,     bg = p.nord2                     },
+
     TabLineBody                    = { fg = p.nord4,     bg = p.nord1                     },
     TabLineEdges                   = { fg = p.nord1,     bg = p.nord8,     style = "bold" },
     TabLineTabCurrent              = { fg = p.nord1,     bg = p.nord8                     },
     TabLineTabInactive             = { fg = p.nord4,     bg = p.nord3                     },
     TabLineTabTopWinCurrent        = { fg = p.nord6,     bg = p.nord3light                },
     TabLineTabTopWinInactive       = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineWinCurrent              = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineWinInactive             = { fg = p.nord4,     bg = p.nord2                     },
     TabLineWinModifiedCurrent      = { fg = p.nord13,    bg = p.nord3light                },
     TabLineWinModifiedInactive     = { fg = p.nord13,    bg = p.nord2                     },
     TabLineWinFillCurrent          = { fg = p.nord1,     bg = p.nord3light                },
@@ -57,42 +73,74 @@ local theme = {
     test4 = { fg = "#eceff4", bg = "#5e81ac" },
 }
 
-local function set_sep_icon(type, position, index)
+local function set_sep_icon(line, type, position, is_current, win_id)
     local icon = position == "left" and "" or ""
     if type == "win" then
         if position == "left" then
-            if is_first_win(index) then
+            if is_current then
+                icon = " "
+            end
+            if is_first_win(win_id) then
                 icon = " "
             end
+        end
+        if position == "right" then
+            icon = ""
+            if is_last_win(line, win_id) then
+                icon = ""
+            end
+            if is_before_win_sel(is_current, win_id) then
+                icon = ""
+            end
+            if is_current then
+                icon = ""
+            end
+        end
+    end
+    if type == "tab" then
+        if position == "inner_left" then
+            icon = ""
         end
     end
     return icon
 end
 
-local function set_sep_hl(line, type, position, is_current, index)
-    index = index or 0
-    local fg = is_current and theme.TabLineSel or theme.TabLineFill
-    local bg = theme.TabLine
+local function set_sep_hl(line, type, position, is_current, win_id)
+    win_id = win_id or 0
+    local fg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+    local bg = M.theme.TabLine
     if type == "win" then
-        bg = theme.TabLineFill
+        bg = M.theme.TabLineFill
         if position == "left" then
-            if is_first_win(index) then
-                fg = theme.TabLineTabSeparatorSel
-                bg = is_current and theme.TabLineSel or theme.TabLineFill
+            if is_current then
+                bg = M.theme.TabLineSel
+            end
+            if is_first_win(win_id) then
+                fg = M.theme.TabLineTabSeparatorSel
+                bg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
             end
         elseif position == "right" then
-            if is_last_win(line, index) then
-                bg = theme.TabLine
+            fg = M.theme.TabLine
+            if is_last_win(line, win_id) then
+                fg = M.theme.TabLineFill
+                bg = M.theme.TabLine
+            end
+            if is_before_win_sel(is_current, win_id) then
+                fg = M.theme.TabLineFill
+                bg = M.theme.TabLineSel
+            end
+            if is_current then
+                fg = M.theme.TabLineSel
             end
         end
     end
     if type == "tab" then
-        fg = is_current and theme.TabLineTabSeparatorSel or theme.TabLineTabSeparator
-        if position == "right" then
-            fg = is_current and theme.TabLineSel or theme.TabLineFill
+        fg = is_current and M.theme.TabLineTabSeparatorSel or M.theme.TabLineTabSeparator
+        if position == "inner_right" then
+            bg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
         end
-        if position == "between" then
-            bg = is_current and theme.TabLineSel or theme.TabLineFill
+        if position == "inner_left" then
+            bg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
         end
     end
     return fg, bg
@@ -100,12 +148,12 @@ end
 
 -- @param line (var) heirline variable
 -- @param type (string: tab, win) tab or win
--- @param position (string: left, right, between) separator position
+-- @param position (string: left, right, inner_left, inner_right) separator position
 -- @param is_current (boolean) selected or not
--- @param index (number) window position
-function M.set_sep_all(line, type, position, is_current, index)
-    local icon = set_sep_icon(type, position, index)
-    local fg, bg = set_sep_hl(line, type, position, is_current, index)
+-- @param win_id (number) window id
+function M.set_sep_all(line, type, position, is_current, win_id)
+    local icon = set_sep_icon(line, type, position, is_current, win_id)
+    local fg, bg = set_sep_hl(line, type, position, is_current, win_id)
     return icon, fg, bg
 end
 

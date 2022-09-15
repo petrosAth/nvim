@@ -4,60 +4,32 @@ local i = require("styling").icons
 local s = require("styling").separators.default
 local p = require("config.themes.nord.palette") -- TODO: remove it after highlights are set
 
-local theme = {
-    TabLine                        = { fg = p.nord4,     bg = p.nord1                     },
-    TabLineSel                     = { fg = p.nord4,     bg = p.nord3light                },
-    TabLineFill                    = { fg = p.nord4dark, bg = p.nord2                     },
-
-    TabLineWinSeparator            = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineWinSeparatorSel         = { fg = p.nord4dark, bg = p.nord3light                },
-    TabLineTabSeparator            = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabSeparatorSel         = { fg = p.nord1,     bg = p.nord8                     },
-
-    TabLineSeparatorTail           = { fg = p.nord4,     bg = p.nord1                     },
-
-    TabLineTabIndicator            = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabIndicatorSel         = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineTabIndicatorModified    = { fg = p.nord13,    bg = p.nord3light                },
-    TabLineTabIndicatorModifiedSel = { fg = p.nord13,    bg = p.nord2                     },
-
-    TabLineHeader                  = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineBody                    = { fg = p.nord4,     bg = p.nord1                     },
-    TabLineEdges                   = { fg = p.nord1,     bg = p.nord8,     style = "bold" },
-    TabLineTabCurrent              = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineTabInactive             = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabTopWinCurrent        = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineTabTopWinInactive       = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineWinCurrent              = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineWinInactive             = { fg = p.nord4,     bg = p.nord2                     },
-    TabLineWinModifiedCurrent      = { fg = p.nord13,    bg = p.nord3light                },
-    TabLineWinModifiedInactive     = { fg = p.nord13,    bg = p.nord2                     },
-    TabLineWinFillCurrent          = { fg = p.nord1,     bg = p.nord3light                },
-    TabLineWinFillInactive         = { fg = p.nord1,     bg = p.nord2                     },
-}
+local theme = c.theme
 
 tabline.set(function(line)
-    local win_index = 0
     return {
         {
-            { "  ", hl = theme.TabLineHeader },
-            line.sep("", theme.TabLineHeader, theme.TabLineSeparatorTail),
+            { " Neo ", hl = theme.TabLineHeader },
+            line.sep("", theme.TabLineHeader, theme.TabLine),
         },
         {
-            line.sep("", theme.TabLineTabSeparatorSel, theme.TabLineSeparatorTail),
-            line.api.get_tab_number(line.api.get_current_tab()),
+            { " ", hl = "TabLine" },
+        },
+        {
+            line.sep("", theme.TabLineTabSeparatorSel, theme.TabLine),
+            line.api.get_current_tab(),
             hl = theme.TabLineTabIndicatorSel,
             margin = "",
         },
         line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-            win_index = win_index + 1
             local hl = win.is_current() and theme.TabLineSel or theme.TabLineFill
             return {
-                line.sep(c.set_sep_all(line, "win", "left", win.is_current(), win_index)),
                 win.buf_name(),
+                line.sep(c.set_sep_all(line, "win", "left", win.is_current(), win.id)),
+                -- win.buf_name(),
                 { " " },
                 { "" },
-                line.sep(c.set_sep_all(line, "win", "right", win.is_current(), win_index)),
+                line.sep(c.set_sep_all(line, "win", "right", win.is_current(), win.id)),
                 hl = hl,
                 margin = "",
             }
@@ -65,27 +37,31 @@ tabline.set(function(line)
         line.spacer(),
         line.tabs().foreach(function(tab)
             local hl = tab.is_current() and theme.TabLineSel or theme.TabLineFill
-            local hl_i = tab.is_current() and theme.TabLineTabIndicatorSel or theme.TabLineTabIndicator
+            local hl_indicator = tab.is_current() and theme.TabLineTabIndicatorSel or theme.TabLineTabIndicator
+            local tab_count = #vim.api.nvim_list_tabpages()
+            if tab_count == 1 then
+                return nil
+            end
             return {
                 line.sep(c.set_sep_all(line, "tab", "left", tab.is_current())),
-                { " ", hl = hl_i },
-                { tab.number(), hl = hl_i },
-                { " ", hl = hl_i },
-                line.sep(c.set_sep_all(line, "tab", "between", tab.is_current())),
+                { tab.number(), hl = hl_indicator },
+                line.sep(c.set_sep_all(line, "tab", "inner_right", tab.is_current())),
                 { " " },
                 tab.name(),
                 { " " },
-                tab.close_btn(""),
-                { " " },
+                line.sep(c.set_sep_all(line, "tab", "inner_left", tab.is_current())),
+                -- { tab.close_btn(i.close[1]), hl = hl_indicator },
+                { tab.close_btn(i.close[1]), hl = hl_indicator },
                 line.sep(c.set_sep_all(line, "tab", "right", tab.is_current())),
                 { " ", hl = "TabLine" },
                 hl = hl,
                 margin = "",
             }
         end),
+        { "%<" },
         {
-            line.sep("", theme.TabLineHeader, theme.TabLineSeparatorTail),
-            { "  ", hl = theme.TabLineHeader },
+            line.sep("", theme.TabLineHeader, theme.TabLine),
+            { " 裡", hl = theme.TabLineHeader },
         },
         hl = theme.fill,
     }
