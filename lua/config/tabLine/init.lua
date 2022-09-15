@@ -9,13 +9,13 @@ tabline.set(function(line)
     return {
         {
             { " Neo ", hl = theme.TabLineHeader },
-            line.sep("", theme.TabLineHeader, theme.TabLine),
+            line.sep(c.right_sep_icon, theme.TabLineHeader, theme.TabLine),
         },
         {
             { " ", hl = "TabLine" },
         },
         {
-            line.sep("", theme.TabLineTabSeparatorSel, theme.TabLine),
+            line.sep(c.left_sep_icon, theme.TabLineTabSeparatorSel, theme.TabLine),
             line.api.get_current_tab(),
             hl = theme.TabLineTabIndicatorSel,
             margin = "",
@@ -48,7 +48,7 @@ tabline.set(function(line)
                 line.sep(c.set_sep_all("tab", "split", tab.is_current(), tab.id)),
                 c.tab_win_count(tab.id),
                 line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), tab.id)),
-                { tab.close_btn(" " .. i.close[1]), hl = hl_indicator },
+                { tab.close_btn(" " .. c.tab_close_icon), hl = hl_indicator },
                 line.sep(c.set_sep_all("tab", "right", tab.is_current(), tab.id)),
                 { " ", hl = "TabLine" },
                 hl = hl,
@@ -57,7 +57,7 @@ tabline.set(function(line)
         end),
         { "%<" },
         {
-            line.sep("", theme.TabLineHeader, theme.TabLine),
+            line.sep(c.left_sep_icon, theme.TabLineHeader, theme.TabLine),
             { " 裡", hl = theme.TabLineHeader },
         },
         hl = theme.fill,

@@ -8,11 +8,11 @@ local M = {}
 
 M.win_sel_number = 0
 
+M.left_sep_icon = s[1]
+M.right_sep_icon = s[2]
+M.left_sep_icon_thin = s[3]
+M.right_sep_icon_thin = s[4]
 M.modified_icon = i.edit[1]
-M.left_separator_icon = s[1]
-M.right_separator_icon = s[2]
-M.left_separator_icon_thin = s[3]
-M.right_separator_icon_thin = s[4]
 M.tab_close_icon = i.close[1]
 
 local function get_win_number(win_id)
@@ -72,28 +72,10 @@ M.theme = {
     TabLineIndicatorModifiedSel    = { fg = p.nord1,     bg = p.nord3light                },
     TabLineIndicatorIsModified     = { fg = p.nord13,    bg = p.nord2                     },
     TabLineIndicatorIsModifiedSel  = { fg = p.nord13,    bg = p.nord3light                },
-
-    TabLineWinCurrent              = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineWinInactive             = { fg = p.nord4,     bg = p.nord2                     },
-
-    TabLineBody                    = { fg = p.nord4,     bg = p.nord1                     },
-    TabLineEdges                   = { fg = p.nord1,     bg = p.nord8,     style = "bold" },
-    TabLineTabCurrent              = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineTabInactive             = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabTopWinCurrent        = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineTabTopWinInactive       = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineWinModifiedCurrent      = { fg = p.nord13,    bg = p.nord3light                },
-    TabLineWinModifiedInactive     = { fg = p.nord13,    bg = p.nord2                     },
-    TabLineWinFillCurrent          = { fg = p.nord1,     bg = p.nord3light                },
-    TabLineWinFillInactive         = { fg = p.nord1,     bg = p.nord2                     },
-    test1 = { fg = "#bf616a", bg = "#ebcb8b" },
-    test2 = { fg = "#a3be8c", bg = "#b48ead" },
-    test3 = { fg = "#242a35", bg = "#8fbcbb" },
-    test4 = { fg = "#eceff4", bg = "#5e81ac" },
 }
 
 local function set_sep_icon(type, position, is_current, tab_id, win_id)
-    local icon = position == "left" and "" or ""
+    local icon = position == "left" and M.left_sep_icon or M.right_sep_icon
     local has_custom_label = has_custom_label(tab_id)
     if type == "win" then
         if position == "left" then
@@ -101,36 +83,36 @@ local function set_sep_icon(type, position, is_current, tab_id, win_id)
                 icon = " "
             end
             if is_first_win(win_id) then
-                icon = " "
+                icon = M.right_sep_icon .. " "
             end
         end
         if position == "right" then
-            icon = ""
+            icon = M.right_sep_icon_thin
             if is_last_win(tab_id, win_id) then
-                icon = ""
+                icon = M.right_sep_icon
             end
             if is_before_win_sel(is_current, win_id) then
-                icon = ""
+                icon = M.right_sep_icon
             end
             if is_current then
-                icon = ""
+                icon = M.right_sep_icon
             end
         end
     end
     if type == "tab" then
         if position == "inner_left" then
-            icon = ""
+            icon = M.right_sep_icon
         end
         if position == "inner_right" then
-            icon = ""
+            icon = M.right_sep_icon
             if has_custom_label then
-                icon = ""
+                icon = M.right_sep_icon_thin
             end
         end
         if position == "split" then
-            icon = ""
+            icon = M.right_sep_icon_thin
             if has_custom_label then
-                icon = ""
+                icon = M.right_sep_icon
             end
         end
     end
@@ -289,7 +271,7 @@ M.modified_flag = function(win_id, is_current)
     if is_modified then
         hl = is_current and M.theme.TabLineIndicatorIsModifiedSel or M.theme.TabLineIndicatorIsModified
     end
-    return { " " .. i.edit[1], hl = hl }
+    return { " " .. M.modified_icon, hl = hl }
 end
 
 local function tab_top_window(tab_id)
