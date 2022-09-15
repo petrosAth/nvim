@@ -1,8 +1,7 @@
 local filename = require("tabby.module.filename")
-local tab = require("tabby.tab")
+local tab_name = require("tabby.feature.tab_name")
 local i = require("styling").icons
 local s = require("styling").separators.default
-local use_thin_separators = true
 local p = require("config.themes.nord.palette") -- TODO: remove it after highlights are set
 
 local M = {}
@@ -49,6 +48,14 @@ local function is_before_win_sel(is_current, win_id)
     return win_number + 1 == M.win_sel_number
 end
 
+local function has_custom_label(tab_id)
+    local label = tab_name.get_raw(tab_id)
+    if label ~= "" then
+        return true, label
+    end
+    return false, ""
+end
+
 M.theme = {
     TabLine                        = { fg = p.nord4,     bg = p.nord1                     },
     TabLineSel                     = { fg = p.nord4,     bg = p.nord3light                },
@@ -61,8 +68,10 @@ M.theme = {
 
     TabLineTabIndicator            = { fg = p.nord4,     bg = p.nord3                     },
     TabLineTabIndicatorSel         = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineTabIndicatorModified    = { fg = p.nord13,    bg = p.nord3light                },
-    TabLineTabIndicatorModifiedSel = { fg = p.nord13,    bg = p.nord2                     },
+    TabLineIndicatorModified       = { fg = p.nord1,     bg = p.nord2                     },
+    TabLineIndicatorModifiedSel    = { fg = p.nord1,     bg = p.nord3light                },
+    TabLineIndicatorIsModified     = { fg = p.nord13,    bg = p.nord2                     },
+    TabLineIndicatorIsModifiedSel  = { fg = p.nord13,    bg = p.nord3light                },
 
     TabLineWinCurrent              = { fg = p.nord6,     bg = p.nord3light                },
     TabLineWinInactive             = { fg = p.nord4,     bg = p.nord2                     },
@@ -83,8 +92,9 @@ M.theme = {
     test4 = { fg = "#eceff4", bg = "#5e81ac" },
 }
 
-local function set_sep_icon(type, position, is_current, line, tab_id, win_id)
+local function set_sep_icon(type, position, is_current, tab_id, win_id)
     local icon = position == "left" and "" or ""
+    local has_custom_label = has_custom_label(tab_id)
     if type == "win" then
         if position == "left" then
             if is_current then
@@ -109,14 +119,27 @@ local function set_sep_icon(type, position, is_current, line, tab_id, win_id)
     end
     if type == "tab" then
         if position == "inner_left" then
-            icon = ""
+            icon = ""
+        end
+        if position == "inner_right" then
+            icon = ""
+            if has_custom_label then
+                icon = ""
+            end
+        end
+        if position == "split" then
+            icon = ""
+            if has_custom_label then
+                icon = ""
+            end
         end
     end
     return icon
 end
 
-local function set_sep_hl(type, position, is_current, line, tab_id, win_id)
+local function set_sep_hl(type, position, is_current, tab_id, win_id)
     win_id = win_id or 0
+    local has_custom_label = has_custom_label(tab_id)
     local fg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
     local bg = M.theme.TabLine
     if type == "win" then
@@ -147,10 +170,40 @@ local function set_sep_hl(type, position, is_current, line, tab_id, win_id)
     if type == "tab" then
         fg = is_current and M.theme.TabLineTabSeparatorSel or M.theme.TabLineTabSeparator
         if position == "inner_right" then
-            bg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+            if is_current then
+                bg = M.theme.TabLineSel
+                if has_custom_label then
+                    fg = M.theme.TabLine
+                    bg = M.theme.TabLineTabSeparatorSel
+                end
+            else
+                bg = M.theme.TabLineFill
+                if has_custom_label then
+                    fg = M.theme.TabLine
+                    bg = M.theme.TabLineTabSeparator
+                end
+            end
         end
         if position == "inner_left" then
-            bg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+            fg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+            bg = is_current and M.theme.TabLineTabSeparatorSel or M.theme.TabLineTabSeparator
+        end
+        if position == "split" then
+            if is_current then
+                fg = M.theme.TabLine
+                bg = M.theme.TabLineSel
+                if has_custom_label then
+                    fg = M.theme.TabLineTabSeparatorSel
+                    bg = M.theme.TabLineSel
+                end
+            else
+                fg = M.theme.TabLine
+                bg = M.theme.TabLineFill
+                if has_custom_label then
+                    fg = M.theme.TabLineTabSeparator
+                    bg = M.theme.TabLineFill
+                end
+            end
         end
     end
     return fg, bg
@@ -159,12 +212,11 @@ end
 -- @param type (string: tab, win) tab or win
 -- @param position (string: left, right, inner_left, inner_right) separator position
 -- @param is_current (boolean) selected or not
--- @param line (var) heirline variable
 -- @param tab_id (number) tab id
 -- @param win_id (number) window id
-function M.set_sep_all(type, position, is_current, line, tab_id, win_id)
-    local icon = set_sep_icon(type, position, is_current, line, tab_id, win_id)
-    local fg, bg = set_sep_hl(type, position, is_current, line, tab_id, win_id)
+function M.set_sep_all(type, position, is_current, tab_id, win_id)
+    local icon = set_sep_icon(type, position, is_current, tab_id, win_id)
+    local fg, bg = set_sep_hl(type, position, is_current, tab_id, win_id)
     return icon, fg, bg
 end
 
@@ -200,7 +252,7 @@ local function has_custom_name(tab_id, win_id)
         { filename = "^diffview:///panels/.*",               customFilename = i.diffview[1]   .. " Diffview files"                  },
         { filename = "^diffview:///.*",                      customFilename = i.diffview[1]   .. " Diffview"                        }
     }
-    local win_id = win_id ~= "" and win_id or vim.api.nvim_tabpage_get_win(tab_id)
+    win_id = win_id ~= "" and win_id or vim.api.nvim_tabpage_get_win(tab_id)
     local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
     for _, name in pairs(filename_list) do
         local filename_match = string.match(fullPath, name.filename)
@@ -214,41 +266,69 @@ local function has_custom_name(tab_id, win_id)
     end
 end
 
-M.win_label = function(win_id, is_current)
+M.win_label = function(win_id)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
     local name = filename.unique(win_id)
     local is_plugin, title = is_plugin(buf_id)
     local has_custom_name, custom_name = has_custom_name("", win_id)
-    -- local label = string.format("%d : %s", bufid, name)
-    local label = string.format("%s", name)
+    -- local label = bufid .. " : " .. name
+    local label = name
     if is_plugin then
-        label = string.format("%s", title)
+        label = title
     end
     if has_custom_name then
-        label = string.format("%s", custom_name)
+        label = custom_name
     end
     return label
 end
 
-M.tab_top_window = function(line, tab_id, is_current)
+M.modified_flag = function(win_id, is_current)
+    local buf_id = vim.api.nvim_win_get_buf(win_id)
+    local is_modified = vim.bo[buf_id].modified
+    local hl = is_current and M.theme.TabLineIndicatorModifiedSel or M.theme.TabLineIndicatorModified
+    if is_modified then
+        hl = is_current and M.theme.TabLineIndicatorIsModifiedSel or M.theme.TabLineIndicatorIsModified
+    end
+    return { " " .. i.edit[1], hl = hl }
+end
+
+local function tab_top_window(tab_id)
     local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
     local buf_id = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tab_id))
     local is_plugin, filetype = is_plugin(buf_id)
     local has_custom_name, custom_name = has_custom_name(tab_id, "")
-    -- local label = string.format("%d : %s", bufid, name)
-    local label = string.format("%s", name)
+    -- local label = bufid .. " : " .. name
+    local label = name
     if is_plugin then
-        label = string.format("%s", filetype)
+        label = filetype
     end
     if has_custom_name then
-        label = string.format("%s", custom_name)
+        label = custom_name
     end
     return label
 end
 
+local function set_tab_label_hl(is_current, has_custom_label)
+    local hl = is_current and M.theme.TabLineSel or M.theme.TabLineFill
+    if has_custom_label then
+        hl = is_current and M.theme.TabLineTabIndicatorSel or M.theme.TabLineTabIndicator
+    end
+    return hl
+end
+
+M.tab_label = function(tab_id, is_current)
+    local label = tab_top_window(tab_id)
+    local has_custom_label, custom_label = has_custom_label(tab_id)
+    local hl = set_tab_label_hl(is_current, has_custom_label)
+    if has_custom_label then
+        label = custom_label
+    end
+    return { " " .. label, hl = hl }
+end
+
 M.tab_win_count = function(tab_id)
     local win_count = get_win_count(tab_id)
-    local label = string.format("[%d]", win_count)
+    local label = "  ⨯".. win_count
     return label
 end
 

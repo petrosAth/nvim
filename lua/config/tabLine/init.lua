@@ -2,7 +2,6 @@ local tabline = require("tabby.tabline")
 local c = require("config.tabLine.components")
 local i = require("styling").icons
 local s = require("styling").separators.default
-local p = require("config.themes.nord.palette") -- TODO: remove it after highlights are set
 
 local theme = c.theme
 
@@ -25,11 +24,10 @@ tabline.set(function(line)
             local hl = win.is_current() and theme.TabLineSel or theme.TabLineFill
             local tab_id = line.api.get_current_tab()
             return {
-                line.sep(c.set_sep_all("win", "left", win.is_current(), line, tab_id, win.id)),
-                c.win_label(win.id, win.is_current),
-                { " " },
-                { "" },
-                line.sep(c.set_sep_all("win", "right", win.is_current(), line, tab_id, win.id)),
+                line.sep(c.set_sep_all("win", "left", win.is_current(), tab_id, win.id)),
+                c.win_label(win.id),
+                c.modified_flag(win.id, win.is_current()),
+                line.sep(c.set_sep_all("win", "right", win.is_current(), tab_id, win.id)),
                 hl = hl,
                 margin = "",
             }
@@ -43,16 +41,15 @@ tabline.set(function(line)
                 return nil
             end
             return {
-                line.sep(c.set_sep_all("tab", "left", tab.is_current(), line)),
+                line.sep(c.set_sep_all("tab", "left", tab.is_current(), tab.id)),
                 { tab.number(), hl = hl_indicator },
-                line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), line)),
-                { " " },
-                c.tab_top_window(line, tab.id, tab.is_current),
+                line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), tab.id)),
+                c.tab_label(tab.id, tab.is_current()),
+                line.sep(c.set_sep_all("tab", "split", tab.is_current(), tab.id)),
                 c.tab_win_count(tab.id),
-                { " " },
-                line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), line)),
-                { tab.close_btn(i.close[1]), hl = hl_indicator },
-                line.sep(c.set_sep_all("tab", "right", tab.is_current(), line)),
+                line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), tab.id)),
+                { tab.close_btn(" " .. i.close[1]), hl = hl_indicator },
+                line.sep(c.set_sep_all("tab", "right", tab.is_current(), tab.id)),
                 { " ", hl = "TabLine" },
                 hl = hl,
                 margin = "",
