@@ -18,45 +18,53 @@ local function get_win_number(win_id)
 end
 
 local function is_not_float_win(win_id)
-  return vim.api.nvim_win_get_config(win_id).relative == ""
+    return vim.api.nvim_win_get_config(win_id).relative == ""
 end
 
-local function get_win_count(tab_id)
+M.get_win_count = function(tab_id)
     local win_list = vim.api.nvim_tabpage_list_wins(tab_id)
     local win_list_no_floats = vim.tbl_filter(is_not_float_win, win_list)
+
     return #win_list_no_floats
 end
 
 local function is_last_win(tab_id, win_id)
-    local win_count = get_win_count(tab_id)
+    local win_count = M.get_win_count(tab_id)
     local win_number = get_win_number(win_id)
+
     return win_number == win_count and true or false
 end
 
 local function is_first_win(win_id)
     local win_number = get_win_number(win_id)
+
     return win_number == 1 and true or false
 end
 
 local function is_before_win_sel(is_current, win_id)
     local win_number = get_win_number(win_id)
+
     if is_current then
         M.win_sel_number = win_number
     end
+
     return win_number + 1 == M.win_sel_number
 end
 
 local function has_custom_label(tab_id)
     local label = tab_name.get_raw(tab_id)
+
     if label ~= "" then
         return true, label
     end
+
     return false, ""
 end
 
 local function set_sep_icon(type, position, is_current, tab_id, win_id)
     local icon = position == "left" and M.left_sep_icon or M.right_sep_icon
     local has_custom_label = has_custom_label(tab_id)
+
     if type == "win" then
         if position == "left" then
             if is_current then
@@ -82,6 +90,9 @@ local function set_sep_icon(type, position, is_current, tab_id, win_id)
     if type == "tab" then
         if position == "inner_left" then
             icon = M.right_sep_icon
+            if has_custom_label and M.get_win_count(tab_id) == 1 then
+                icon = M.right_sep_icon_thin
+            end
         end
         if position == "inner_right" then
             icon = M.right_sep_icon
@@ -96,6 +107,7 @@ local function set_sep_icon(type, position, is_current, tab_id, win_id)
             end
         end
     end
+
     return icon
 end
 
@@ -104,6 +116,7 @@ local function set_sep_hl(type, position, is_current, tab_id, win_id)
     local has_custom_label = has_custom_label(tab_id)
     local fg = is_current and t.TabLineSel or t.TabLineFill
     local bg = t.TabLine
+
     if type == "win" then
         bg = t.TabLineFill
         if position == "left" then
@@ -168,6 +181,7 @@ local function set_sep_hl(type, position, is_current, tab_id, win_id)
             end
         end
     end
+
     return fg, bg
 end
 
@@ -179,6 +193,7 @@ end
 function M.set_sep_all(type, position, is_current, tab_id, win_id)
     local icon = set_sep_icon(type, position, is_current, tab_id, win_id)
     local fg, bg = set_sep_hl(type, position, is_current, tab_id, win_id)
+
     return icon, fg, bg
 end
 
@@ -196,6 +211,7 @@ local function is_plugin(buf_id)
         { filetype = "undotree",        window_title = i.undoTree[1]     .. " Undotree"      },
     }
     local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
+
     for _, plugin in pairs(plugin_list) do
         if filetype == plugin.filetype then
             return true, plugin.window_title
@@ -204,6 +220,8 @@ local function is_plugin(buf_id)
 end
 
 local function has_custom_name(tab_id, win_id)
+    win_id = win_id ~= "" and win_id or vim.api.nvim_tabpage_get_win(tab_id)
+    local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
     local filename_list = {
         { filename = "%[Command Line%]",                     customFilename = i.history[1]    .. " History"                         },
         { filename = "neo%-tree git_status",                 customFilename = i.git.repo[1]   .. " Git status"                      },
@@ -214,8 +232,7 @@ local function has_custom_name(tab_id, win_id)
         { filename = "^diffview:///panels/.*",               customFilename = i.diffview[1]   .. " Diffview files"                  },
         { filename = "^diffview:///.*",                      customFilename = i.diffview[1]   .. " Diffview"                        }
     }
-    win_id = win_id ~= "" and win_id or vim.api.nvim_tabpage_get_win(tab_id)
-    local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
+
     for _, name in pairs(filename_list) do
         local filename_match = string.match(fullPath, name.filename)
         if filename_match then
@@ -235,12 +252,14 @@ M.win_label = function(win_id)
     local has_custom_name, custom_name = has_custom_name("", win_id)
     -- local label = bufid .. " : " .. name
     local label = name
+
     if is_plugin then
         label = title
     end
     if has_custom_name then
         label = custom_name
     end
+
     return label
 end
 
@@ -248,9 +267,11 @@ M.modified_flag = function(win_id, is_current)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
     local is_modified = vim.bo[buf_id].modified
     local hl = is_current and t.TabLineIndicatorModifiedSel or t.TabLineIndicatorModified
+
     if is_modified then
         hl = is_current and t.TabLineIndicatorIsModifiedSel or t.TabLineIndicatorIsModified
     end
+
     return { " " .. i.edit[1], hl = hl }
 end
 
@@ -261,20 +282,24 @@ local function tab_top_window(tab_id)
     local has_custom_name, custom_name = has_custom_name(tab_id, "")
     -- local label = bufid .. " : " .. name
     local label = name
+
     if is_plugin then
         label = filetype
     end
     if has_custom_name then
         label = custom_name
     end
+
     return label
 end
 
 local function set_tab_label_hl(is_current, has_custom_label)
     local hl = is_current and t.TabLineSel or t.TabLineFill
+
     if has_custom_label then
         hl = is_current and t.TabLineTabIndicatorSel or t.TabLineTabIndicator
     end
+
     return hl
 end
 
@@ -282,16 +307,19 @@ M.tab_label = function(tab_id, is_current)
     local label = tab_top_window(tab_id)
     local has_custom_label, custom_label = has_custom_label(tab_id)
     local hl = set_tab_label_hl(is_current, has_custom_label)
+
     if has_custom_label then
         label = custom_label
     end
+
     return { " " .. label, hl = hl }
 end
 
 M.tab_win_count = function(tab_id)
-    local win_count = get_win_count(tab_id)
+    local win_count = M.get_win_count(tab_id)
     local label = " " .. i.windows[1] .. " " .. win_count
-    return label
+
+    return win_count > 1 and label or ""
 end
 
 return M
