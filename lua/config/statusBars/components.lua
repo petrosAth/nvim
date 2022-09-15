@@ -219,7 +219,7 @@ M.SpecialName = {
                 end
 
                 if vim.bo.filetype == "vim" then
-                    specialName = "Command-line window"
+                    specialName = "Command line history"
                 end
 
                 return h.Separator.left.provider .. specialName .. h.Separator.right.provider
