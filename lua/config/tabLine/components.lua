@@ -20,8 +20,14 @@ local function get_win_number(win_id)
     return vim.api.nvim_win_get_number(win_id)
 end
 
-local function is_last_win(line, win_id)
-    local win_count = #line.api.get_tab_wins(line.api.get_current_tab())
+local function is_not_float_win(win_id)
+  return vim.api.nvim_win_get_config(win_id).relative == ""
+end
+
+local function is_last_win(tab_id, win_id)
+    local win_list = vim.api.nvim_tabpage_list_wins(tab_id)
+    local win_list_no_floats = vim.tbl_filter(is_not_float_win, win_list)
+    local win_count = #win_list_no_floats
     local win_number = get_win_number(win_id)
     return win_number == win_count and true or false
 end
@@ -73,7 +79,7 @@ M.theme = {
     test4 = { fg = "#eceff4", bg = "#5e81ac" },
 }
 
-local function set_sep_icon(line, type, position, is_current, win_id)
+local function set_sep_icon(type, position, is_current, line, tab_id, win_id)
     local icon = position == "left" and "" or ""
     if type == "win" then
         if position == "left" then
@@ -86,7 +92,7 @@ local function set_sep_icon(line, type, position, is_current, win_id)
         end
         if position == "right" then
             icon = ""
-            if is_last_win(line, win_id) then
+            if is_last_win(tab_id, win_id) then
                 icon = ""
             end
             if is_before_win_sel(is_current, win_id) then
@@ -105,7 +111,7 @@ local function set_sep_icon(line, type, position, is_current, win_id)
     return icon
 end
 
-local function set_sep_hl(line, type, position, is_current, win_id)
+local function set_sep_hl(type, position, is_current, line, tab_id, win_id)
     win_id = win_id or 0
     local fg = is_current and M.theme.TabLineSel or M.theme.TabLineFill
     local bg = M.theme.TabLine
@@ -121,7 +127,7 @@ local function set_sep_hl(line, type, position, is_current, win_id)
             end
         elseif position == "right" then
             fg = M.theme.TabLine
-            if is_last_win(line, win_id) then
+            if is_last_win(tab_id, win_id) then
                 fg = M.theme.TabLineFill
                 bg = M.theme.TabLine
             end
@@ -146,15 +152,96 @@ local function set_sep_hl(line, type, position, is_current, win_id)
     return fg, bg
 end
 
--- @param line (var) heirline variable
 -- @param type (string: tab, win) tab or win
 -- @param position (string: left, right, inner_left, inner_right) separator position
 -- @param is_current (boolean) selected or not
+-- @param line (var) heirline variable
+-- @param tab_id (number) tab id
 -- @param win_id (number) window id
-function M.set_sep_all(line, type, position, is_current, win_id)
-    local icon = set_sep_icon(line, type, position, is_current, win_id)
-    local fg, bg = set_sep_hl(line, type, position, is_current, win_id)
+function M.set_sep_all(type, position, is_current, line, tab_id, win_id)
+    local icon = set_sep_icon(type, position, is_current, line, tab_id, win_id)
+    local fg, bg = set_sep_hl(type, position, is_current, line, tab_id, win_id)
     return icon, fg, bg
+end
+
+local function is_plugin(buf_id)
+    local plugin_list = {
+        { filetype = "aerial",          window_title = i.codeOutline[1]  .. " Code outline"  },
+        { filetype = "alpha",           window_title = i.dashboard[1]    .. " Dashboard"     },
+        { filetype = "diff",            window_title = i.diffview[1]     .. " Diff Panel"    },
+        { filetype = "minimap",         window_title = i.minimap[1]      .. " Minimap"       },
+        { filetype = "neo-tree",        window_title = i.fileExplorer[1] .. " File explorer" },
+        { filetype = "NvimTree",        window_title = i.fileExplorer[1] .. " File explorer" },
+        { filetype = "Outline",         window_title = i.codeOutline[1]  .. " Code outline"  },
+        { filetype = "Trouble",         window_title = i.list[1]         .. " List"          },
+        { filetype = "TelescopePrompt", window_title = i.telescope[1]    .. " Telescope"     },
+        { filetype = "undotree",        window_title = i.undoTree[1]     .. " Undotree"      },
+    }
+    local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
+    for _, plugin in pairs(plugin_list) do
+        if filetype == plugin.filetype then
+            return true, plugin.window_title
+        end
+    end
+end
+
+local function has_custom_name(tab_id, win_id)
+    local filename_list = {
+        { filename = "%[Command Line%]",                     customFilename = i.history[1]    .. " History"                         },
+        { filename = "neo%-tree git_status",                 customFilename = i.git.repo[1]   .. " Git status"                      },
+        { filename = "neo%-tree buffers",                    customFilename = i.buffers[1]    .. " Open buffers"                    },
+        { filename = "/:0:/",                                customFilename =                    "Original file"                    },
+        { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", customFilename = i.git.commit[1] .. " ",                gitRepo = true },
+        { filename = "^diffview:///panels/.*History",        customFilename = i.diffview[1]   .. " Diffview history"                },
+        { filename = "^diffview:///panels/.*",               customFilename = i.diffview[1]   .. " Diffview files"                  },
+        { filename = "^diffview:///.*",                      customFilename = i.diffview[1]   .. " Diffview"                        }
+    }
+    local win_id = win_id ~= "" and win_id or vim.api.nvim_tabpage_get_win(tab_id)
+    local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
+    for _, name in pairs(filename_list) do
+        local filename_match = string.match(fullPath, name.filename)
+        if filename_match then
+            if name.gitRepo then
+                local commit = string.sub(filename_match, -11, -4)
+                return true, name.customFilename .. commit
+            end
+            return true, name.customFilename
+        end
+    end
+end
+
+M.win_label = function(win_id, is_current)
+    local buf_id = vim.api.nvim_win_get_buf(win_id)
+    local name = filename.unique(win_id)
+    local is_plugin, title = is_plugin(buf_id)
+    local has_custom_name, custom_name = has_custom_name("", win_id)
+    -- local label = string.format("%d : %s", bufid, name)
+    local label = string.format("%s", name)
+    if is_plugin then
+        label = string.format("%s", title)
+    end
+    if has_custom_name then
+        label = string.format("%s", custom_name)
+    end
+    return label
+end
+
+M.tab_top_window = function(line, tab_id, is_current)
+    local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
+    local buf_id = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tab_id))
+    local win_count = #line.api.get_tab_wins(tab_id)
+    local is_plugin, filetype = is_plugin(buf_id)
+    local has_custom_name, custom_name = has_custom_name(tab_id, "")
+    -- local label = string.format("%d : %s", bufid, name)
+    local label = string.format("%s", name)
+    if is_plugin then
+        label = string.format("%s", filetype)
+    end
+    if has_custom_name then
+        label = string.format("%s", custom_name)
+    end
+    label = string.format("%s[%d]", label, win_count)
+    return label
 end
 
 return M

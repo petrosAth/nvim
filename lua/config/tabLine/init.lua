@@ -23,13 +23,13 @@ tabline.set(function(line)
         },
         line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
             local hl = win.is_current() and theme.TabLineSel or theme.TabLineFill
+            local tab_id = line.api.get_current_tab()
             return {
-                win.buf_name(),
-                line.sep(c.set_sep_all(line, "win", "left", win.is_current(), win.id)),
-                -- win.buf_name(),
+                line.sep(c.set_sep_all("win", "left", win.is_current(), line, tab_id, win.id)),
+                c.win_label(win.id, win.is_current),
                 { " " },
                 { "" },
-                line.sep(c.set_sep_all(line, "win", "right", win.is_current(), win.id)),
+                line.sep(c.set_sep_all("win", "right", win.is_current(), line, tab_id, win.id)),
                 hl = hl,
                 margin = "",
             }
@@ -43,16 +43,15 @@ tabline.set(function(line)
                 return nil
             end
             return {
-                line.sep(c.set_sep_all(line, "tab", "left", tab.is_current())),
+                line.sep(c.set_sep_all("tab", "left", tab.is_current(), line)),
                 { tab.number(), hl = hl_indicator },
-                line.sep(c.set_sep_all(line, "tab", "inner_right", tab.is_current())),
+                line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), line)),
                 { " " },
-                tab.name(),
+                c.tab_top_window(line, tab.id, tab.is_current),
                 { " " },
-                line.sep(c.set_sep_all(line, "tab", "inner_left", tab.is_current())),
-                -- { tab.close_btn(i.close[1]), hl = hl_indicator },
+                line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), line)),
                 { tab.close_btn(i.close[1]), hl = hl_indicator },
-                line.sep(c.set_sep_all(line, "tab", "right", tab.is_current())),
+                line.sep(c.set_sep_all("tab", "right", tab.is_current(), line)),
                 { " ", hl = "TabLine" },
                 hl = hl,
                 margin = "",
