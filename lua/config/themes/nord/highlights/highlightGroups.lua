@@ -62,9 +62,9 @@ M.editor = {
     CurSearch        = { fg = p.nord6,       bg = p.nord10,     style = "underline"                },
     Substitute       = { fg = p.nord6,       bg = p.nord0,      style = "reverse"                  },
     -- Tabs
-    TabLine          = { fg = p.nord6,       bg = p.nord3                                          },
-    TabLineFill      = { fg = p.nord6,       bg = p.nord1                                          },
-    TabLineSel       = { fg = p.nord8,       bg = p.nord1                                          },
+    TabLine          = { fg = p.nord4,       bg = p.nord1                                          },
+    TabLineSel       = { fg = p.nord4,       bg = p.nord3light                                     },
+    TabLineFill      = { fg = p.nord4dark,   bg = p.nord2                                          },
     -- Window
     Title            = { fg = p.nord4,       bg = p.none                                           },
     VertSplit        = { link = "WinSeparator"                                                     },
@@ -431,25 +431,6 @@ M.plugins = {
     -- satellite.nvim
     ScrollView = { fg = p.none,  bg = p.nord3 },
     SearchSV   = { fg = p.nord8, bg = p.none  },
-
-    -- tabby.nvim
-    TabLine                    = { fg = p.nord4,     bg = p.nord1                     },
-    TabLineSel                 = { fg = p.nord4,     bg = p.nord3light                },
-    TabLineFill                = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineHeader              = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineBody                = { fg = p.nord4,     bg = p.nord1                     },
-    TabLineEdges               = { fg = p.nord1,     bg = p.nord8,     style = "bold" },
-    TabLineSeparator           = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineTabCurrent          = { fg = p.nord1,     bg = p.nord8                     },
-    TabLineTabInactive         = { fg = p.nord4,     bg = p.nord3                     },
-    TabLineTabTopWinCurrent    = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineTabTopWinInactive   = { fg = p.nord4dark, bg = p.nord2                     },
-    TabLineWinCurrent          = { fg = p.nord6,     bg = p.nord3light                },
-    TabLineWinInactive         = { fg = p.nord4,     bg = p.nord2                     },
-    TabLineWinModifiedCurrent  = { fg = p.nord13,    bg = p.nord3light                },
-    TabLineWinModifiedInactive = { fg = p.nord13,    bg = p.nord2                     },
-    TabLineWinFillCurrent      = { fg = p.nord1,     bg = p.nord3light                },
-    TabLineWinFillInactive     = { fg = p.nord1,     bg = p.nord2                     },
 
     -- telescope.nvim
     TelescopePromptPrefix   = { fg = p.nord4, bg = p.none,       style = "bold" },

@@ -58,6 +58,20 @@ local M = {
         readOnly     = { fg = p.nord6,  bg = p.none      },
         windowNumber = { fg = p.nord6,  bg = p.none      }
     },
+    tabby = {
+        TabLine                       = { fg = p.nord4,     bg = p.nord1      },
+        TabLineSel                    = { fg = p.nord4,     bg = p.nord3light },
+        TabLineFill                   = { fg = p.nord4dark, bg = p.nord2      },
+        TabLineHeader                 = { fg = p.nord1,     bg = p.nord8      },
+        TabLineTabSeparator           = { fg = p.nord4,     bg = p.nord3      },
+        TabLineTabSeparatorSel        = { fg = p.nord1,     bg = p.nord8      },
+        TabLineTabIndicator           = { fg = p.nord4,     bg = p.nord3      },
+        TabLineTabIndicatorSel        = { fg = p.nord1,     bg = p.nord8      },
+        TabLineIndicatorModified      = { fg = p.nord1,     bg = p.nord2      },
+        TabLineIndicatorModifiedSel   = { fg = p.nord1,     bg = p.nord3light },
+        TabLineIndicatorIsModified    = { fg = p.nord13,    bg = p.nord2      },
+        TabLineIndicatorIsModifiedSel = { fg = p.nord13,    bg = p.nord3light },
+    }
 }
 
 return M
