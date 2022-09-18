@@ -52,7 +52,6 @@ wk.register({
         u = {
             name = "Utilities",
             c = { "<CMD>PackerCompile<CR>",                  "Packer compile"      }, -- packer
-            d = { "<CMD>Alpha<CR>",                          "Show dashboard"      }, -- alpha
             s = {
                 name = "Status",
                 l = { "<CMD>LspInfo<CR>",      "LSP info"      }, -- lsp-config
