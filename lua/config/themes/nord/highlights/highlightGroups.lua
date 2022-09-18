@@ -392,7 +392,8 @@ M.plugins = {
     -- neo-tree.nvim
     NeoTreeNormal               = { link = "Normal"                                                  },
     NeoTreeNormalNC             = { link = "NormalNC"                                                },
-    NeoTreeFloatBorder          = { fg    = p.nord2,         bg = p.nord0                            },
+    NeoTreePreview              = { fg    = p.nord4,         bg = p.nord3light                       },
+    NeoTreeFloatBorder          = { fg    = p.nord2,         bg = p.nord0darker                      },
     NeoTreeFloatTitle           = { fg    = p.nord8,         bg = p.nord2,     style = "bold"        },
 
     NeoTreeTabActive            = { fg    = p.nord4,         bg = p.nord3light                       },

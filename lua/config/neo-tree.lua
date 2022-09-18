@@ -130,6 +130,8 @@ tree.setup({
             ["<C-s>"] = "split_with_window_picker",
             ["<C-v>"] = "vsplit_with_window_picker",
             ["<C-t>"] = "open_tabnew",
+            ["P"] = false,
+            ["<M-p>"] = { "toggle_preview", config = { use_float = true } },
             ["w"] = false,
             ["s"] = false,
             ["S"] = false,
