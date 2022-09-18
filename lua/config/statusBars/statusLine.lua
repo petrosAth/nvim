@@ -1,5 +1,4 @@
 local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
 local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline.statusBar
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
@@ -34,7 +33,7 @@ local InactiveStatusline = {
     end,
 
     c.ViMode,
-    c.Align,
+    h.Align,
     {
         c.WindowNumber,
         hl = theme.bright,
@@ -76,7 +75,7 @@ local SpecialStatusline = {
         c.SpecialName,
         hl = theme.bright,
     },
-    c.Align,
+    h.Align,
     {
         c.CursorLineSpecial,
         hl = theme.bright,
@@ -95,7 +94,7 @@ local TerminalStatusline = {
         c.TerminalName,
         hl = theme.bright,
     },
-    c.Align,
+    h.Align,
 }
 
 M.StatusLines = {
