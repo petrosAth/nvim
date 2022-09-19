@@ -414,14 +414,6 @@ return packer.startup(function()
         "famiu/bufdelete.nvim",
     })
 
-    -- FixCursorHold.nvim - Fix CursorHold performance
-    use({
-        "antoinemadec/FixCursorHold.nvim",
-        config = function()
-            vim.g.cursorhold_updatetime = 100
-        end,
-    })
-
     -- todo-comments.nvim - Highlight, list and search todo comments in your projects
     use({
         "folke/todo-comments.nvim",
