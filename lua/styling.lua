@@ -4,7 +4,7 @@ vim.cmd.colorscheme(THEME)
 
 styling.variables = {
     transparency = 0
-				}
+}
 
 styling.icons = {
     line         = { ""                                              },
@@ -47,7 +47,7 @@ styling.icons = {
     windows      = { ""                                              },
     update       = { ""                                              },
     lspServers   = { ""                                              },
-    indentLine   = { "│", "❘", '|', '¦', "│", "❘", "╎", '┆', '┊', '⸽' },
+    indentLine   = { "│", "╵", '|', "❘", '¦', "│", '╵', "╎", '┆', '┊' },
     folderop     = { "", "", ""                                    },
     foldercl     = { "", "", ""                                    },
     arrowu       = { "", "", "", "", "", "⯅", "▲", "△", "", "" },
