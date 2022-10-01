@@ -131,7 +131,7 @@ tree.setup({
             ["<C-v>"] = "vsplit_with_window_picker",
             ["<C-t>"] = "open_tabnew",
             ["P"] = false,
-            ["<M-p>"] = { "toggle_preview", config = { use_float = true } },
+            ["<M-p>"] = { "toggle_preview", config = { use_float = false } },
             ["w"] = false,
             ["s"] = false,
             ["S"] = false,
@@ -217,7 +217,7 @@ tree.setup({
     },
     git_status = {
         window = {
-            position = "float",
+            position = "left",
             mappings = {
                 ["A"] = "git_add_all",
                 ["gu"] = "git_unstage_file",
