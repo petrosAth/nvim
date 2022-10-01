@@ -233,12 +233,11 @@ tree.setup({
         {
             event = "neo_tree_buffer_enter",
             handler = function()
-                vim.cmd([[
-                    setlocal
-                        \ relativenumber
-                        \ nocursorcolumn
-                        \ fillchars+=eob:\ "
-                ]])
+                local ol = vim.opt_local
+                local f = require("options")
+                ol.cursorcolumn   = false
+                ol.relativenumber = true
+                ol.fillchars      = f.localFillchars
             end,
         },
     },
