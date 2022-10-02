@@ -29,8 +29,6 @@ Still a work in progress.
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) Not UFO in the sky, but
   an ultra fold in Neovim. (Wait for [How can I make it look equal to its
   configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4)
-- [possession.nvim](https://github.com/jedrzejboczar/possession.nvim) Flexible
-  session management for Neovim.
 - [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
   Telescope extension to preview media files using Ueberzug.
 - [nvim-gomove](https://github.com/booperlv/nvim-gomove) A complete plugin for
