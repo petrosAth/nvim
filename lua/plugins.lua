@@ -49,6 +49,10 @@ return packer.startup(function()
     use({ "wbthomason/packer.nvim" })
 
     --<=< Styling >======================================================================================================>--
+    use({
+        -- lush.nvim - Create Neovim themes with real-time feedback, export anywhere.
+        "rktjmp/lush.nvim",
+    })
     -- Dressing.nvim - Neovim plugin to improve the default vim.ui interfaces
     use({
         "stevearc/dressing.nvim",
