@@ -38,6 +38,8 @@ Still a work in progress.
   interactively (with or without instant preview).
 - [pantran.nvim](https://github.com/potamides/pantran.nvim) Use your favorite
   machine translation engines without having to leave your favorite editor.
+- [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) Neovim plugin for
+  Obsidian, written in Lua
 - [Neogit](https://github.com/TimUntersberger/neogit) magit for neovim.
 - [vim-dadbod](https://github.com/tpope/vim-dadbod) Modern database interface
   for Vim
