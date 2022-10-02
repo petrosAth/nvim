@@ -1,8 +1,10 @@
 # Neovim config files
+
 My ["personal"](#sources) Neovim configuration for Windows.
 Still a work in progress.
 
 ## TODO
+
 - [x] lualine root folder (.)
 - [x] Add window number in lualine
 - [x] Add gitsigns in lualine
@@ -23,9 +25,11 @@ Still a work in progress.
 - [ ] Add Solarized theme
 
 ## Reminders
+
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
 
 ## Plugins watch list
+
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) Not UFO in the sky, but
   an ultra fold in Neovim. (Wait for [How can I make it look equal to its
   configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4)
@@ -47,12 +51,14 @@ Still a work in progress.
   vim-dadbod
 
 ### Themes
+
 - [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula colorscheme
   for neovim written in Lua.
 - [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)
   Solarized colorscheme in lua for nvim 0.5.
 
 ### Treesitter
+
 - [nvim-tree-docs](https://github.com/nvim-treesitter/nvim-tree-docs) Code
   documentation built with treesitter
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
@@ -60,6 +66,7 @@ Still a work in progress.
   location in a file. ### Git
 
 ### Debugging
+
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) Debug Adapter Protocol
   client implementation for Neovim.
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) A UI for nvim-dap.
@@ -73,6 +80,7 @@ Still a work in progress.
   multi-language debugging system for Vim.
 
 ### ltex language server
+
 - [LTeX Language Server](https://github.com/valentjn/ltex-ls) LTeX Language
   Server for LanguageTool with support for LaTeX , Markdown, and others.
 - [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim)
@@ -80,12 +88,14 @@ Still a work in progress.
   LaTeX, Markdown or plain text document.
 
 ## Plugins collections
+
 - [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) Collections of
   awesome neovim plugins
 - [neovimcraft.com](https://neovimcraft.com/) Website that makes it easy to find
   neovim plugins
 
 ## <a name="sources"></a>Sources
+
 - Heavily inspired from [Neelfrost](https://github.com/Neelfrost/dotfiles), a
   lot of times mercilessly copy pasting especially at the beggining.
 - [Neil Sabde](https://github.com/VapourNvim/VapourNvim) was extremely helpful
