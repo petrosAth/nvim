@@ -104,7 +104,7 @@ wk.register({
             B = {
                 name = "Git blame",
                 l = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
-                b = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns
+                w = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns
             },
             b = {
                 name = "Buffer actions",
