@@ -34,6 +34,8 @@ Still a work in progress.
 - [nvim-gomove](https://github.com/booperlv/nvim-gomove) A complete plugin for
   moving and duplicating blocks and lines, with complete fold handling,
   reindenting, and undoing in one go.
+- [mini.align](https://github.com/echasnovski/mini.nvim#mini.align) Align text
+  interactively (with or without instant preview).
 - [pantran.nvim](https://github.com/potamides/pantran.nvim) Use your favorite
   machine translation engines without having to leave your favorite editor.
 - [Neogit](https://github.com/TimUntersberger/neogit) magit for neovim.
