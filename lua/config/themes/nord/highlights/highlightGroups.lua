@@ -485,7 +485,7 @@ M.plugins = {
     WhichKey          = { fg = p.nord4,  bg = p.none, style = "bold" },
     WhichKeyGroup     = { fg = p.nord10, bg = p.none, style = "bold" },
     WhichKeyDesc      = { fg = p.nord9,  bg = p.none                 },
-    WhichKeySeperator = { fg = p.nord3,  bg = p.none                 },
+    WhichKeySeparator = { fg = p.nord3,  bg = p.none                 },
     WhichKeyValue     = { link = "Comment"                           },
     WhichKeyFloat     = { link = "NormalFloat"                       },
 
