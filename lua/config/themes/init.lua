@@ -37,7 +37,8 @@ function theme.loadHighlightGroups(themeName)
 
     for _, groups in pairs(highlightGroups) do
         for group, colors in pairs(groups) do
-            theme.highlight(group, colors)
+            -- theme.highlight(group, colors)
+            vim.api.nvim_set_hl(0, group, colors)
         end
     end
 end

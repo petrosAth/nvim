@@ -6,11 +6,11 @@ M.editor = {
     Normal           = { fg = p.nord4,       bg = p.nord0                                          },
     NormalNC         = { fg = p.nord4,       bg = p.nord0dark                                      },
     ColorColumn      = { fg = p.none,        bg = p.nord0dark                                      },
-    Cursor           = { style = "reverse"                                                         },
-    lCursor          = { style = "reverse"                                                         },
-    CursorIM         = { style = "reverse"                                                         },
-    TermCursor       = { style = "reverse"                                                         },
-    TermCursorNC     = { style = "reverse"                                                         },
+    Cursor           = { reverse = true                                                         },
+    lCursor          = { reverse = true                                                         },
+    CursorIM         = { reverse = true                                                         },
+    TermCursor       = { reverse = true                                                         },
+    TermCursorNC     = { reverse = true                                                         },
     CursorLine       = { fg = p.none,        bg = p.nord1dark                                      },
     CursorColumn     = { link = "CursorLine"                                                       },
     CursorLineSign   = { link = "SignColumn"                                                       },
@@ -18,7 +18,7 @@ M.editor = {
     LineNrAbove      = { fg = p.nord3,       bg = p.none                                           },
     LineNr           = { fg = p.nord4,       bg = p.none                                           },
     LineNrBelow      = { fg = p.nord3,       bg = p.none                                           },
-    MatchParen       = { fg = p.nord7,       bg = p.nord3light, style = "bold"                     },
+    MatchParen       = { fg = p.nord7,       bg = p.nord3light, bold = true                     },
     NonText          = { fg = p.nord2,       bg = p.none                                           },
     Conceal          = { fg = p.none,        bg = p.none                                           },
     Whitespace       = { fg = p.nord2,       bg = p.none                                           },
@@ -27,10 +27,10 @@ M.editor = {
     PmenuSbar        = { fg = p.nord4,       bg = p.nord1dark                                      },
     PmenuThumb       = { fg = p.nord8,       bg = p.nord2                                          },
     SpecialKey       = { fg = p.nord3,       bg = p.none                                           },
-    SpellBad         = { fg = p.nord11,      bg = p.none,       style = "undercurl", sp = p.nord11 },
-    SpellCap         = { fg = p.nord13,      bg = p.none,       style = "undercurl", sp = p.nord13 },
-    SpellLocal       = { fg = p.nord5,       bg = p.none,       style = "undercurl", sp = p.nord5  },
-    SpellRare        = { fg = p.nord6,       bg = p.none,       style = "undercurl", sp = p.nord6  },
+    SpellBad         = { fg = p.nord11,      bg = p.none,       undercurl = true, sp = p.nord11 },
+    SpellCap         = { fg = p.nord13,      bg = p.none,       undercurl = true, sp = p.nord13 },
+    SpellLocal       = { fg = p.nord5,       bg = p.none,       undercurl = true, sp = p.nord5  },
+    SpellRare        = { fg = p.nord6,       bg = p.none,       undercurl = true, sp = p.nord6  },
     Visual           = { fg = p.none,        bg = p.nord3                                          },
     VisualNOS        = { fg = p.none,        bg = p.nord3                                          },
     -- Gutter
@@ -43,7 +43,7 @@ M.editor = {
     -- Prompt/Status
     EndOfBuffer      = { fg = p.nord1,       bg = p.none                                           },
     ErrorMsg         = { fg = p.nord4,       bg = p.nord11                                         },
-    ModeMsg          = { fg = p.nord4,       bg = p.none,       style = "bold"                     },
+    ModeMsg          = { fg = p.nord4,       bg = p.none,       bold = true                     },
     MoreMsg          = { fg = p.nord13,      bg = p.none                                           },
     MsgArea          = { link = "Normal"                                                           },
     MsgSeparator     = { link = "StatusLine"                                                       },
@@ -52,15 +52,15 @@ M.editor = {
     StatusLineNC     = { fg = p.nord4,       bg = p.nord1                                          },
     StatusLineTerm   = { fg = p.nord4,       bg = p.nord1                                          },
     StatusLineTermNC = { fg = p.nord4,       bg = p.nord1                                          },
-    WarningMsg       = { fg = p.nord13,      bg = p.nord0,      style = "reverse"                  },
+    WarningMsg       = { fg = p.nord13,      bg = p.nord0,      reverse = true                  },
     WildMenu         = { fg = p.nord1,       bg = p.nord8                                          },
     NormalFloat      = { fg = p.nord4,       bg = p.nord0darker                                    },
-    FloatBorder      = { fg = p.nord0darker, bg = p.none,       style = "reverse"                  },
+    FloatBorder      = { fg = p.nord0darker, bg = p.none,       reverse = true                  },
     -- Search
-    Search           = { fg = p.nord8,       bg = p.nord0,      style = "reverse"                  },
-    IncSearch        = { fg = p.nord6,       bg = p.nord10,     style = "underline"                },
-    CurSearch        = { fg = p.nord6,       bg = p.nord10,     style = "underline"                },
-    Substitute       = { fg = p.nord6,       bg = p.nord0,      style = "reverse"                  },
+    Search           = { fg = p.nord8,       bg = p.nord0,      reverse = true                  },
+    IncSearch        = { fg = p.nord6,       bg = p.nord10,     underline = true                },
+    CurSearch        = { fg = p.nord6,       bg = p.nord10,     underline = true                },
+    Substitute       = { fg = p.nord6,       bg = p.nord0,      reverse = true                  },
     -- Tabs
     TabLine          = { fg = p.nord4,       bg = p.nord1                                          },
     TabLineSel       = { fg = p.nord4,       bg = p.nord3light                                     },
@@ -73,7 +73,7 @@ M.editor = {
     WinBar           = { fg = p.nord4,       bg = p.nord1dark                                      },
     WinBarNC         = { fg = p.nord4,       bg = p.nord1dark                                      },
     -- diff
-    DiffText         = { fg = p.nord4,       bg = p.nord10,     style = "bold"                     },
+    DiffText         = { fg = p.nord4,       bg = p.nord10,     bold = true                     },
     DiffAdd          = { fg = p.none,        bg = p.nord14dark                                     },
     DiffChange       = { fg = p.none,        bg = p.nord13dark                                     },
     DiffDelete       = { fg = p.none,        bg = p.nord11dark                                     },
@@ -89,31 +89,31 @@ M.syntax = {
     Comment        = { fg = p.nord3light,                                       },
 
     Constant       = { fg = p.nord6                                             },
-    String         = { fg = p.nord14,                  style = "italic"         },
+    String         = { fg = p.nord14,                  italic = true         },
     Character      = { fg = p.nord14                                            },
     Number         = { fg = p.nord15                                            },
-    Boolean        = { fg = p.nord9,                   style = "bold"           },
+    Boolean        = { fg = p.nord9,                   bold = true           },
     Float          = { fg = p.nord15                                            },
 
-    Identifier     = { fg = p.nord4,                   style = p.none           },
+    Identifier     = { fg = p.nord4,                   },
     Variable       = { link = "Identifier"                                      },
-    Function       = { fg = p.nord8,                   style = "italic"         },
+    Function       = { fg = p.nord8,                   italic = true         },
 
     Statement      = { fg = p.nord9                                             },
-    Conditional    = { fg = p.nord9,                   style = "italic"         },
+    Conditional    = { fg = p.nord9,                   italic = true         },
     Repeat         = { fg = p.nord9                                             },
     Label          = { fg = p.nord9                                             },
-    Operator       = { fg = p.nord9,                   style = p.none           },
-    Keyword        = { fg = p.nord9,                   style = "italic"         },
+    Operator       = { fg = p.nord9,                   },
+    Keyword        = { fg = p.nord9,                   italic = true         },
     Exception      = { fg = p.nord9                                             },
 
-    PreProc        = { fg = p.nord9,                   style = p.none           },
+    PreProc        = { fg = p.nord9,                   },
     Include        = { fg = p.nord9                                             },
     Define         = { fg = p.nord9                                             },
     Macro          = { link = "Define"                                          },
     PreCondit      = { link = "PreProc"                                         },
 
-    Type           = { fg = p.nord9,                   style = p.none           },
+    Type           = { fg = p.nord9,                   },
     StorageClass   = { fg = p.nord9                                             },
     Structure      = { fg = p.nord9                                             },
     Typedef        = { fg = p.nord9                                             },
@@ -122,12 +122,12 @@ M.syntax = {
     SpecialChar    = { fg = p.nord13                                            },
     Tag            = { fg = p.nord4                                             },
     Delimiter      = { fg = p.nord6                                             },
-    SpecialComment = { fg = p.nord8,                   style = "italic"         },
+    SpecialComment = { fg = p.nord8,                   italic = true         },
     Debug          = { fg = p.nord11                                            },
 
-    Underlined     = { fg = p.nord14,                  style = "underline"      },
+    Underlined     = { fg = p.nord14,                  underline = true      },
     Ignore         = { fg = p.nord1                                             },
-    Error          = { fg = p.nord11,     bg = p.none, style = "bold,underline" },
+    Error          = { fg = p.nord11,     bg = p.none, bold = true, underline = true },
     Todo           = { fg = p.nord13,     bg = p.none                           },
 
     Decorator      = { fg = p.nord12                                            },
@@ -151,14 +151,14 @@ M.lsp = {
     DiagnosticFloatingError     = { link = "DiagnosticWarn"                                         },
     DiagnosticFloatingInfo      = { link = "DiagnosticInfo"                                         },
     DiagnosticFloatingHint      = { link = "DiagnosticHint"                                         },
-    DiagnosticUnderlineError    = { fg = p.nord11, bg = p.none, style = "undercurl",  sp = p.nord11 },
-    DiagnosticUnderlineWarn     = { fg = p.nord13, bg = p.none, style = "undercurl",  sp = p.nord13 },
-    DiagnosticUnderlineInfo     = { fg = p.nord8,  bg = p.none, style = "undercurl",  sp = p.nord8  },
-    DiagnosticUnderlineHint     = { fg = p.nord10, bg = p.none, style = "undercurl",  sp = p.nord10 },
-    DiagnosticVirtualTextError  = { fg = p.nord11, bg = p.none, style = "bold,italic"               },
-    DiagnosticVirtualTextWarn   = { fg = p.nord13, bg = p.none, style = "bold,italic"               },
-    DiagnosticVirtualTextInfo   = { fg = p.nord8,  bg = p.none, style = "bold,italic"               },
-    DiagnosticVirtualTextHint   = { fg = p.nord10, bg = p.none, style = "bold,italic"               },
+    DiagnosticUnderlineError    = { fg = p.nord11, bg = p.none, undercurl = true,  sp = p.nord11 },
+    DiagnosticUnderlineWarn     = { fg = p.nord13, bg = p.none, undercurl = true,  sp = p.nord13 },
+    DiagnosticUnderlineInfo     = { fg = p.nord8,  bg = p.none, undercurl = true,  sp = p.nord8  },
+    DiagnosticUnderlineHint     = { fg = p.nord10, bg = p.none, undercurl = true,  sp = p.nord10 },
+    DiagnosticVirtualTextError  = { fg = p.nord11, bg = p.none, bold = true, italic = true               },
+    DiagnosticVirtualTextWarn   = { fg = p.nord13, bg = p.none, bold = true, italic = true               },
+    DiagnosticVirtualTextInfo   = { fg = p.nord8,  bg = p.none, bold = true, italic = true               },
+    DiagnosticVirtualTextHint   = { fg = p.nord10, bg = p.none, bold = true, italic = true               },
     -- DocumentHighlight
     LspReferenceText            = { fg = p.none,   bg = p.nord3                                     },
     LspReferenceRead            = { fg = p.none,   bg = p.nord3                                     },
@@ -221,9 +221,9 @@ M.plugins = {
     BufferLineSeparator                 = { fg = p.nord1,      bg = p.nord1                      },
     BufferLineSeparatorVisible          = { fg = p.nord1,      bg = p.nord1                      },
     BufferLineSeparatorSelected         = { fg = p.nord3light, bg = p.nord3light                 },
-    BufferLineDuplicate                 = { fg = p.nord6,      bg = p.nord2,      style = "bold" },
-    BufferLineDuplicateVisible          = { fg = p.nord6,      bg = p.nord3,      style = "bold" },
-    BufferLineDuplicateSelected         = { fg = p.nord6,      bg = p.nord3light, style = "bold" },
+    BufferLineDuplicate                 = { fg = p.nord6,      bg = p.nord2,      bold = true },
+    BufferLineDuplicateVisible          = { fg = p.nord6,      bg = p.nord3,      bold = true },
+    BufferLineDuplicateSelected         = { fg = p.nord6,      bg = p.nord3light, bold = true },
     BufferLineModified                  = { fg = p.nord13,     bg = p.nord2                      },
     BufferLineModifiedVisible           = { fg = p.nord13,     bg = p.nord3                      },
     BufferLineModifiedSelected          = { fg = p.nord13,     bg = p.nord3light                 },
@@ -233,14 +233,14 @@ M.plugins = {
     BufferLineIndicatorVisible          = { fg = p.nord1,      bg = p.nord4dark                  },
     BufferLineIndicatorSelected         = { fg = p.nord8,      bg = p.nord1                      },
     BufferLineBackground                = { fg = p.nord4dark,  bg = p.nord2                      },
-    BufferLineFill                      = { fg = p.nord6,      bg = p.nord1,      style = "bold" },
+    BufferLineFill                      = { fg = p.nord6,      bg = p.nord1,      bold = true },
 
     -- diffview.nvim
     DiffviewVertSplit    = { fg = p.nord1, bg = p.nord13   },
     DiffviewWinSeparator = { link = "DiffviewVertSplit"    },
 
     -- gitsigns.nvim
-    GitSignsCurrentLineBlame = { fg = p.nord15, bg = p.none,        style = "bold,italic" },
+    GitSignsCurrentLineBlame = { fg = p.nord15, bg = p.none,        bold = true, italic = true },
     GitSignsAdd              = { fg = p.nord14, bg = p.none                               },
     GitSignsAddNr            = { fg = p.nord14, bg = p.nord1                              },
     GitSignsAddLn            = { fg = p.none,   bg = p.nord14darker                       },
@@ -260,13 +260,13 @@ M.plugins = {
 
     -- indent-blankline.nvim
     IndentBlanklineContextChar        = { fg = p.nord7, bg = p.none                                    },
-    IndentBlanklineContextStart       = { fg = p.none,  bg = p.none, style = "underline", sp = p.nord7 },
+    IndentBlanklineContextStart       = { fg = p.none,  bg = p.none, underline = true, sp = p.nord7 },
     IndentBlanklineSpaceCharBlankline = { fg = p.nord1, bg = p.none                                    },
     IndentBlanklineSpaceChar          = { fg = p.nord1, bg = p.none                                    },
     IndentBlanklineChar               = { fg = p.nord1, bg = p.none                                    },
 
     -- hop.nvim
-    HopNextKey   = { fg = p.nord8, bg = p.none, style = "bold" },
+    HopNextKey   = { fg = p.nord8, bg = p.none, bold = true },
     HopNextKey1  = { fg = p.nord8, bg = p.none                 },
     HopNextKey2  = { fg = p.nord4, bg = p.none                 },
     HopUnmatched = { fg = p.nord3, bg = p.none                 },
@@ -281,16 +281,16 @@ M.plugins = {
 
     -- mini.nvim
     MiniCursorword        = { link = "Visual" },
-    MiniCursorwordCurrent = { style = "bold"  },
+    MiniCursorwordCurrent = { bold = true  },
 
     -- nvim-cmp
-    CmpGhostText                    = { fg = p.nord3light, bg = p.none, style = "bold"          },
+    CmpGhostText                    = { fg = p.nord3light, bg = p.none, bold = true          },
 
     CmpItemMenuDefault              = { fg = p.nord3light, bg = p.none                          },
 
     CmpItemAbbrDefault              = { fg = p.nord4,      bg = p.none                          },
-    CmpItemAbbrDeprecatedDefault    = { fg = p.nord12,     bg = p.none, style = "strikethrough" },
-    CmpItemAbbrMatchDefault         = { fg = p.nord10,     bg = p.none, style = "bold"          },
+    CmpItemAbbrDeprecatedDefault    = { fg = p.nord12,     bg = p.none, strikethrough = true },
+    CmpItemAbbrMatchDefault         = { fg = p.nord10,     bg = p.none, bold = true          },
     CmpItemAbbrMatchFuzzyDefault    = { link = "CmpItemAbbrMatchDefault"                               },
 
     CmpItemKindTypeParameterDefault = { link = "TSParameter"                                    },
@@ -320,8 +320,8 @@ M.plugins = {
 
     -- nvim-hlslens
     HlSearchNear     = { link = "IncSearch"                                },
-    HlSearchLensNear = { fg = p.nord4,      bg = p.none, style = "reverse" },
-    HlSearchLens     = { fg = p.nord3light, bg = p.none, style = "reverse" },
+    HlSearchLensNear = { fg = p.nord4,      bg = p.none, reverse = true },
+    HlSearchLens     = { fg = p.nord3light, bg = p.none, reverse = true },
     HlSearchFloat    = { link = "IncSearch"                                },
 
     -- nvim-notify
@@ -358,7 +358,7 @@ M.plugins = {
     -- nvim-tree.lua
     NvimTreeNormalNC          = { link = "NormalNC"                               },
     NvimTreeSignColumn        = { fg = p.nord1,  bg = p.none                      },
-    NvimTreeRootFolder        = { fg = p.nord8,  bg = p.none, style = "bold"      },
+    NvimTreeRootFolder        = { fg = p.nord8,  bg = p.none, bold = true      },
     NvimTreeFolderIcon        = { fg = p.nord4,  bg = p.none                      },
     NvimTreeFolderName        = { fg = p.nord10, bg = p.none                      },
     NvimTreeEmptyFolderName   = { fg = p.nord3,  bg = p.none                      },
@@ -366,7 +366,7 @@ M.plugins = {
     NvimTreeIndentMarker      = { fg = p.nord3,  bg = p.none                      },
     NvimTreeOpenedFile        = { fg = p.nord9,  bg = p.none                      },
     NvimTreeExecFile          = { fg = p.nord8,  bg = p.none                      },
-    NvimTreeSpecialFile       = { fg = p.nord9,  bg = p.none, style = "underline" },
+    NvimTreeSpecialFile       = { fg = p.nord9,  bg = p.none, underline = true },
     NvimTreeGitNew            = { fg = p.nord14, bg = p.none                      },
     NvimTreeGitDirty          = { fg = p.nord13, bg = p.none                      },
     NvimTreeImageFile         = { fg = p.nord15, bg = p.none                      },
@@ -386,15 +386,15 @@ M.plugins = {
     rainbowcol7 = { fg = p.nord4,  bg = p.none },
 
     --nvim-windowpicker
-    WindowPicker   = { fg = p.nord6, bg = p.nord3light, style = "bold" },
-    WindowPickerNC = { fg = p.nord6, bg = p.nord3light, style = "bold" },
+    WindowPicker   = { fg = p.nord6, bg = p.nord3light, bold = true },
+    WindowPickerNC = { fg = p.nord6, bg = p.nord3light, bold = true },
 
     -- neo-tree.nvim
     NeoTreeNormal               = { link = "Normal"                                                  },
     NeoTreeNormalNC             = { link = "NormalNC"                                                },
     NeoTreePreview              = { fg    = p.nord4,         bg = p.nord3light                       },
     NeoTreeFloatBorder          = { fg    = p.nord2,         bg = p.nord0                            },
-    NeoTreeFloatTitle           = { fg    = p.nord8,         bg = p.nord2,     style = "bold"        },
+    NeoTreeFloatTitle           = { fg    = p.nord8,         bg = p.nord2,     bold = true        },
 
     NeoTreeTabActive            = { fg    = p.nord4,         bg = p.nord3light                       },
     NeoTreeTabInactive          = { fg    = p.nord4,         bg = p.nord2                            },
@@ -402,12 +402,12 @@ M.plugins = {
     NeoTreeTabSeparatorActive   = { fg    = p.nord3,         bg = p.nord3light                       },
     NeoTreeTabSeparatorInactive = { fg    = p.nord1,         bg = p.nord2                            },
 
-    NeoTreeRootName             = { fg    = p.nord6,         bg = p.none,      style = "bold,italic" },
+    NeoTreeRootName             = { fg    = p.nord6,         bg = p.none,      bold = true, italic = true },
     NeoTreeIndentMarker         = { link = "FoldColumn"                                              },
-    NeoTreeFileNameOpened       = { style = "bold,nocombine"                                         },
+    NeoTreeFileNameOpened       = { bold = true, nocombine = true                                         },
     NeoTreeBufferNumber         = { fg    = p.nord6,         bg = p.none                             },
     NeoTreeDotfile              = { fg    = p.nord3light,    bg = p.none                             },
-    NeoTreeSymbolicLinkTarget   = { fg    = p.nord7,         bg = p.none,      style = "bold"        },
+    NeoTreeSymbolicLinkTarget   = { fg    = p.nord7,         bg = p.none,      bold = true        },
 
     NeoTreeMessage              = { fg    = p.nord15,        bg = p.none                             },
     NeoTreeDimText              = { fg    = p.nord3,         bg = p.none                             },
@@ -426,25 +426,25 @@ M.plugins = {
     NeoTreeGitConflict          = { fg    = p.nord12,        bg = p.none                             },
 
     -- quickscope.lua
-    QuickScopePrimary   = { fg = p.nord13, bg = p.nord0, style = "underline,nocombine" },
-    QuickScopeSecondary = { fg = p.nord15, bg = p.nord0, style = "bold,nocombine"      },
+    QuickScopePrimary   = { fg = p.nord13, bg = p.nord0, underline = true, nocombine = true },
+    QuickScopeSecondary = { fg = p.nord15, bg = p.nord0, bold = true, nocombine = true      },
 
     -- satellite.nvim
     ScrollView = { fg = p.none,  bg = p.nord3 },
     SearchSV   = { fg = p.nord8, bg = p.none  },
 
     -- telescope.nvim
-    TelescopePromptPrefix   = { fg = p.nord4, bg = p.none,       style = "bold" },
-    TelescopePromptCounter  = { fg = p.nord7, bg = p.none,       style = "bold" },
+    TelescopePromptPrefix   = { fg = p.nord4, bg = p.none,       bold = true },
+    TelescopePromptCounter  = { fg = p.nord7, bg = p.none,       bold = true },
 
     TelescopeNormal         = { fg = p.nord4, bg = p.nord0darker                },
     TelescopeResultsNormal  = { fg = p.nord9, bg = p.none                       },
     TelescopePreviewNormal  = { fg = p.nord4, bg = p.nord0                      },
     TelescopePromptNormal   = { fg = p.nord6, bg = p.nord0                      },
 
-    TelescopeResultsTitle   = { fg = p.nord8, bg = p.nord2,      style = "bold" },
-    TelescopePreviewTitle   = { fg = p.nord9, bg = p.nord2,      style = "bold" },
-    TelescopePromptTitle    = { fg = p.nord4, bg = p.nord2,      style = "bold" },
+    TelescopeResultsTitle   = { fg = p.nord8, bg = p.nord2,      bold = true },
+    TelescopePreviewTitle   = { fg = p.nord9, bg = p.nord2,      bold = true },
+    TelescopePromptTitle    = { fg = p.nord4, bg = p.nord2,      bold = true },
 
     TelescopeResultsBorder  = { fg = p.nord2, bg = p.none                       },
     TelescopePreviewBorder  = { fg = p.nord2, bg = p.nord0                      },
@@ -457,22 +457,22 @@ M.plugins = {
     TelescopeMatching       = { fg = p.nord6, bg = p.none                       },
 
     -- todo-comments.nvim
-    TodoBgFIX    = { fg = p.nord6,  bg = p.nord11, style = "bold" },
+    TodoBgFIX    = { fg = p.nord6,  bg = p.nord11, bold = true },
     TodoFgFIX    = { link = "DiagnosticError"                     },
     TodoSignFIX  = { link = "DiagnosticError"                     },
-    TodoBgNOTE   = { fg = p.nord6,  bg = p.nord10, style = "bold" },
+    TodoBgNOTE   = { fg = p.nord6,  bg = p.nord10, bold = true },
     TodoFgNOTE   = { link = "DiagnosticHint"                      },
     TodoSignNOTE = { link = "DiagnosticHint"                      },
-    TodoBgWARN   = { fg = p.nord6,  bg = p.nord13, style = "bold" },
+    TodoBgWARN   = { fg = p.nord6,  bg = p.nord13, bold = true },
     TodoFgWARN   = { link = "DiagnosticWarn"                      },
     TodoSignWARN = { link = "DiagnosticWarn"                      },
-    TodoBgPERF   = { fg = p.nord6,  bg = p.nord14, style = "bold" },
+    TodoBgPERF   = { fg = p.nord6,  bg = p.nord14, bold = true },
     TodoFgPERF   = { fg = p.nord14, bg = p.none                   },
     TodoSignPERF = { fg = p.nord14, bg = p.none                   },
-    TodoBgTODO   = { fg = p.nord6,  bg = p.nord8,  style = "bold" },
+    TodoBgTODO   = { fg = p.nord6,  bg = p.nord8,  bold = true },
     TodoFgTODO   = { link = "DiagnosticInfo"                      },
     TodoSignTODO = { link = "DiagnosticInfo"                      },
-    TodoBgHACK   = { fg = p.nord6,  bg = p.nord13, style = "bold" },
+    TodoBgHACK   = { fg = p.nord6,  bg = p.nord13, bold = true },
     TodoFgHACK   = { link = "DiagnosticWarn"                      },
     TodoSignHACK = { link = "DiagnosticWarn"                      },
 
@@ -482,8 +482,9 @@ M.plugins = {
     IlluminatedWordWrite = { link = "Visual" },
 
     -- which-key.nvim
-    WhichKey          = { fg = p.nord4,  bg = p.none, style = "bold" },
-    WhichKeyGroup     = { fg = p.nord10, bg = p.none, style = "bold" },
+    WhichKey          = { fg = p.nord4,  bg = p.none, bold = true },
+    WhichKeyBorder    = { link = "FloatBorder" },
+    WhichKeyGroup     = { fg = p.nord10, bg = p.none, bold = true },
     WhichKeyDesc      = { fg = p.nord9,  bg = p.none                 },
     WhichKeySeparator = { fg = p.nord3,  bg = p.none                 },
     WhichKeyValue     = { link = "Comment"                           },
@@ -517,7 +518,7 @@ M.treesitter = {
     TSBoolean            = { link = "Boolean"                            },
     TSFloat              = { link = "Float"                              },
 
-    TSNamespace          = { fg = p.nord4,              style = "italic" },
+    TSNamespace          = { fg = p.nord4,              italic = true },
     TSVariable           = { link = "Variable"                           },
     TSVariableBuiltin    = { link = "Keyword"                            },
     TSFunction           = { link = "Function"                           },
@@ -535,8 +536,8 @@ M.treesitter = {
     TSException          = { link = "Exception"                          },
 
     TSInclude            = { fg = p.nord9                                },
-    TSMethod             = { fg = p.nord7,              style = "italic" },
-    TSProperty           = { fg = p.nord10,             style = "italic" },
+    TSMethod             = { fg = p.nord7,              italic = true },
+    TSProperty           = { fg = p.nord10,             italic = true },
 
     TSType               = { link = "Type"                               },
     TSTypeBuiltin        = { link = "Type"                               },
@@ -549,16 +550,16 @@ M.treesitter = {
     TSTagDelimiter       = { link = "TSTag"                              },
 
     TSAnnotation         = { link = "Annotation"                         },
-    TSEmphasis           = { style = "Italic"                            },
-    TSStrong             = { style = "Bold"                              },
-    TSUnderline          = { style = "Underline"                         },
+    TSEmphasis           = { italic = true                            },
+    TSStrong             = { bold = true                              },
+    TSUnderline          = { underline = true                         },
     -- TSError              = { link = "Error"                              },
 
     TSAttribute          = { fg = p.nord15                               },
     TSParameter          = { fg = p.nord10                               },
     TSParameterReference = { fg = p.nord10                               },
     TSSymbol             = { fg = p.nord15                               },
-    TSTitle              = { fg = p.nord9, bg = p.none, style = "bold"   },
+    TSTitle              = { fg = p.nord9, bg = p.none, bold = true   },
     TSURI                = { fg = p.nord10                               },
 }
 
