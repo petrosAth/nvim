@@ -1,6 +1,4 @@
 local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
-local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
 local M = {}
@@ -11,21 +9,21 @@ local CurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
     {
         c.FileNameBlock,
         hl = function()
             if vim.bo.modified then
-                return theme.modified.current
+                return "WinBarModifiedCurrent"
             end
-            return theme.winBar.current
+            return "WinBarCurrent"
         end,
     },
     h.Align,
     {
         c.CloseButton,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
 }
 
@@ -38,16 +36,16 @@ local SpecialCurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
     {
         c.FileNameBlock,
-        hl = { fg = theme.winBar.current.fg, bg = theme.winBar.current.bg, bold = true },
+        hl = "WinBarCurrentSpecial"
     },
     h.Align,
     {
         c.CloseButton,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
 }
 
@@ -57,13 +55,13 @@ local InactiveWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
     {
         c.FileNameBlock,
         hl = function()
             if vim.bo.modified then
-                return theme.modified.inactive
+                return "WinBarModifiedInactive"
             end
         end,
     },
@@ -71,7 +69,7 @@ local InactiveWinBar = {
     c.WindowNumber,
     {
         c.CloseButton,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
 }
 
@@ -85,17 +83,17 @@ local SpecialInactiveWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
     {
         c.FileNameBlock,
-        hl = { bold = true },
+        hl = "WinBarSpecial",
     },
     h.Align,
     c.WindowNumber,
     {
         c.CloseButton,
-        hl = theme.winBar.bright,
+        hl = "WinBarLight",
     },
 }
 

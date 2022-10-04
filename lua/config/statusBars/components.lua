@@ -1,6 +1,5 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline
 local h = require("config.statusBars.helperTables")
 local i = require("styling").icons
 local M = {}
@@ -120,7 +119,7 @@ M.FileModified = {
         { h.Separator.right },
     }, { h.Null }),
 
-    hl = theme.modified.current
+    hl = "WinBarModifiedCurrent"
 }
 
 local FileNameBlock = {
@@ -244,7 +243,7 @@ M.Paste = {
         end
     end,
     static = {
-        mode_colors = h.ModeColors,
+        mode_colors = h.ModeHighlightGroups,
     },
     condition = function()
         return vim.o.paste
@@ -256,7 +255,7 @@ M.Paste = {
 
     hl = function(self)
         local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = self.mode_colors[mode]
+        local highlight = utils.get_highlight(self.mode_colors[mode])
         return { fg = highlight.fg, bg = highlight.bg, bold = true }
     end,
 }
@@ -277,7 +276,7 @@ M.Wrap = {
         end
     end,
     static = {
-        mode_colors = h.ModeColors,
+        mode_colors = h.ModeHighlightGroups,
     },
     condition = function()
         return vim.o.wrap
@@ -289,7 +288,7 @@ M.Wrap = {
 
     hl = function(self)
         local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = self.mode_colors[mode]
+        local highlight = utils.get_highlight(self.mode_colors[mode])
         return { fg = highlight.fg, bg = highlight.bg, bold = true }
     end,
 }
@@ -369,7 +368,7 @@ M.LinesTotal = {
         end
     end,
     static = {
-        mode_colors = h.ModeColors,
+        mode_colors = h.ModeHighlightGroups,
     },
     { h.Separator.left },
     { provider = i.linesTotal[1] .. " %L" },
@@ -377,7 +376,7 @@ M.LinesTotal = {
 
     hl = function(self)
         local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = self.mode_colors[mode]
+        local highlight = utils.get_highlight(self.mode_colors[mode])
         return { fg = highlight.fg, bg = highlight.bg, bold = true }
     end,
 }
@@ -398,7 +397,7 @@ M.LinesTotalSpecial = {
         end
     end,
     static = {
-        mode_colors = h.ModeColors,
+        mode_colors = h.ModeHighlightGroups,
     },
     condition = function()
         return conditions.buffer_matches({
@@ -413,7 +412,7 @@ M.LinesTotalSpecial = {
 
     hl = function(self)
         local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = self.mode_colors[mode]
+        local highlight = utils.get_highlight(self.mode_colors[mode])
         return { fg = highlight.fg, bg = highlight.bg, bold = true }
     end,
 }
@@ -427,7 +426,7 @@ M.WindowNumber = {
     },
     { h.Separator.right },
 
-    hl = { fg = theme.windowNumber.fg },
+    hl = "WinBarWindowNumber"
 }
 
 M.CloseButton = {
@@ -510,7 +509,8 @@ M.GitStatus = {
         provider = function(self)
             return self.countAdded > 0 and (h.Separator.mid.provider .. i.git.added[1])
         end,
-        hl = { fg = utils.get_highlight("GitSignsAdd").fg },
+        -- hl = { fg = utils.get_highlight("GitSignsAdd").fg },
+        hl = "GitSignsAdd",
     }, {
         h.Null,
     }),
@@ -519,7 +519,7 @@ M.GitStatus = {
         provider = function(self)
             return self.countAdded > 0 and (" " .. self.countAdded)
         end,
-        hl = { fg = utils.get_highlight("GitSignsAdd").fg },
+        hl = "GitSignsAdd",
     }, {
         h.Null,
     }),
@@ -528,7 +528,7 @@ M.GitStatus = {
         provider = function(self)
             return self.countRemoved > 0 and (h.Separator.mid.provider .. i.git.deleted[1])
         end,
-        hl = { fg = utils.get_highlight("GitSignsDelete").fg },
+        hl = "GitSignsDelete",
     }, {
         h.Null,
     }),
@@ -537,7 +537,7 @@ M.GitStatus = {
         provider = function(self)
             return self.countRemoved > 0 and (" " .. self.countRemoved)
         end,
-        hl = { fg = utils.get_highlight("GitSignsDelete").fg },
+        hl = "GitSignsDelete",
     }, {
         h.Null,
     }),
@@ -546,7 +546,7 @@ M.GitStatus = {
         provider = function(self)
             return self.countChanged > 0 and (h.Separator.mid.provider .. i.git.changed[1])
         end,
-        hl = { fg = utils.get_highlight("GitSignsChange").fg },
+        hl = "GitSignsChange",
     }, {
         h.Null,
     }),
@@ -555,7 +555,7 @@ M.GitStatus = {
         provider = function(self)
             return self.countChanged > 0 and (" " .. self.countChanged)
         end,
-        hl = { fg = utils.get_highlight("GitSignsChange").fg },
+        hl = "GitSignsChange",
     }, {
         h.Null,
     }),
@@ -712,7 +712,7 @@ M.ViMode = {
     -- them at initialisation time.
     static = {
         mode_names = h.ModeNames,
-        mode_colors = h.ModeColors,
+        mode_colors = h.ModeHighlightGroups,
     },
 
     -- We can now access the value of mode() that, by now, would have been
@@ -741,7 +741,7 @@ M.ViMode = {
     -- Same goes for the highlight. Now the foreground will change according to the current mode.
     hl = function(self)
         local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = self.mode_colors[mode]
+        local highlight = utils.get_highlight(self.mode_colors[mode])
         return { fg = highlight.fg, bg = highlight.bg, bold = true }
     end,
 }

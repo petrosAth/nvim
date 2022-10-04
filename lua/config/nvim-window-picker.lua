@@ -1,4 +1,4 @@
-local hl = require("config.themes." .. THEME .. ".highlights.highlightGroups").plugins
+local hl = require("config.themes." .. THEME .. ".colors.highlightGroups").plugins
 
 require("window-picker").setup({
     -- when you go to window selection mode, status bar will show one of

@@ -1,5 +1,5 @@
 local conditions = require("heirline.conditions")
-local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline.statusBar
+local hl = require("config.themes." .. THEME .. ".colors.highlightGroups").statusBars.StatusLineLight
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
 local M = {}
@@ -11,7 +11,7 @@ local DefaultStatusline = {
     c.SearchResults,
     {
         c.GitStatus,
-        hl = theme.bright,
+        hl = hl,
     },
     c.LspBlock,
     c.Treesitter,
@@ -22,7 +22,7 @@ local DefaultStatusline = {
     c.FileTypeBlock,
     {
         c.CursorPosition,
-        hl = theme.bright,
+        hl = hl,
     },
     c.LinesTotal,
 }
@@ -36,7 +36,7 @@ local InactiveStatusline = {
     h.Align,
     {
         c.WindowNumber,
-        hl = theme.bright,
+        hl = hl,
     },
 }
 
@@ -73,12 +73,12 @@ local SpecialStatusline = {
     c.SearchResults,
     {
         c.SpecialName,
-        hl = theme.bright,
+        hl = hl,
     },
     h.Align,
     {
         c.CursorLineSpecial,
-        hl = theme.bright,
+        hl = hl,
     },
     c.LinesTotalSpecial,
 }
@@ -92,7 +92,7 @@ local TerminalStatusline = {
     c.ViMode,
     {
         c.TerminalName,
-        hl = theme.bright,
+        hl = hl,
     },
     h.Align,
 }

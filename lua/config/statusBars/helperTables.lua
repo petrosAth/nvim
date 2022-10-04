@@ -1,4 +1,3 @@
-local theme = require("config.themes." .. THEME .. ".highlights.statusBars").heirline
 local M = {}
 
 M.Align = { provider = "%=" }
@@ -97,21 +96,21 @@ M.ModeNames = {
     ["t"]     = "TERMINAL",
 }
 
-M.ModeColors = {
-    ["n"]   = theme.modes.normal,
-    ["i"]   = theme.modes.insert,
-    ["v"]   = theme.modes.visual,
-    ["V"]   = theme.modes.visual,
-    ["\22"] = theme.modes.visual,
-    ["c"]   = theme.modes.command,
-    ["s"]   = theme.modes.visual,
-    ["S"]   = theme.modes.visual,
-    ["\19"] = theme.modes.visual,
-    ["R"]   = theme.modes.replace,
-    ["r"]   = theme.modes.replace,
-    ["!"]   = theme.modes.terminal,
-    ["t"]   = theme.modes.terminal,
-    ["h"]   = theme.modes.hydra,
+M.ModeHighlightGroups = {
+    ["n"]   = "ModeNormal",
+    ["i"]   = "ModeInsert",
+    ["v"]   = "ModeVisual",
+    ["V"]   = "ModeVisual",
+    ["\22"] = "ModeVisual",
+    ["c"]   = "ModeCommand",
+    ["s"]   = "ModeVisual",
+    ["S"]   = "ModeVisual",
+    ["\19"] = "ModeVisual",
+    ["R"]   = "ModeReplace",
+    ["r"]   = "ModeReplace",
+    ["!"]   = "ModeTerminal",
+    ["t"]   = "ModeTerminal",
+    ["h"]   = "ModeHydra",
 }
 
 return M
