@@ -20,7 +20,7 @@ local FileTypeBlock = {
 
 local FileTypeIcon = {
     provider = function(self)
-        return self.icon and self.icon
+        return self.icon and self.icon .. h.Separator.mid.provider
     end,
 }
 
@@ -34,7 +34,7 @@ M.FileTypeBlock = utils.insert(
     FileTypeBlock,
     utils.make_flexible_component(h.Hide.FileTypeBlock.value, { h.Separator.left }, { h.Null }),
     utils.make_flexible_component(h.Hide.FileTypeBlock.icon, { FileTypeIcon }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileTypeBlock.icon, { h.Separator.mid }, { h.Null }),
+    utils.make_flexible_component(h.Hide.FileTypeBlock.icon, { h.Null }),
     utils.make_flexible_component(h.Hide.FileTypeBlock.value, { FileType }, { h.Null }),
     utils.make_flexible_component(h.Hide.FileTypeBlock.value, { h.Separator.right }, { h.Null })
 )
