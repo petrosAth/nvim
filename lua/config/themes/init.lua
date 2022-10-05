@@ -1,32 +1,29 @@
 local M = {}
 
-function M.loadTerminalColors(themeName)
-    local terminalColors = require("config.themes." .. themeName .. ".terminal")
+function M.loadTerminalColors(palette)
+    local terminalColors = require("config.themes.terminal")
 
-    terminalColors.load()
+    terminalColors.load(palette.terminal)
 end
 
-function M.loadHighlightGroups(themeName)
+function M.loadHighlightGroups(palette)
     local highlightGroups = require("config.themes.highlightGroups")
 
-    for _, groups in pairs(highlightGroups) do
-        for group, colors in pairs(groups) do
-            vim.api.nvim_set_hl(0, group, colors)
-        end
-    end
+    highlightGroups.load(palette.base)
 end
 
 function M.load(themeName)
+    local palette = require("config.themes.palettes." .. themeName)
+
     -- reset colors
     if vim.g.colors_name then
         vim.cmd("hi clear")
     end
 
-    vim.o.termguicolors = true
     vim.g.colors_name = themeName
 
-    M.loadTerminalColors(themeName)
-    M.loadHighlightGroups(themeName)
+    M.loadTerminalColors(palette)
+    M.loadHighlightGroups(palette)
 end
 
 return M
