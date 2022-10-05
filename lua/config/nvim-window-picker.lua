@@ -1,4 +1,4 @@
-local hl = require("config.themes.highlightGroups").plugins
+local getHl = require("config.themes.utilities").getHl
 
 require("window-picker").setup({
     -- when you go to window selection mode, status bar will show one of
@@ -31,13 +31,13 @@ require("window-picker").setup({
     },
 
     -- the foreground (text) color of the picker
-    fg_color = hl.WindowPicker.fg,
+    fg_color = getHl("WindowPicker").fg,
 
     -- if you have include_current_win == true, then current_win_hl_color will
     -- be highlighted using this background color
-    current_win_hl_color = hl.WindowPicker.bg,
+    current_win_hl_color = getHl("WindowPicker").bg,
 
     -- all the windows except the curren window will be highlighted using this
     -- color
-    other_win_hl_color = hl.WindowPickerNC.bg,
+    other_win_hl_color = getHl("WindowPickerNC").bg,
 })

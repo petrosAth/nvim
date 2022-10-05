@@ -1,6 +1,6 @@
 local filename = require("tabby.module.filename")
 local tab_name = require("tabby.feature.tab_name")
-local theme = require("config.themes.highlightGroups").statusBars
+local getHl = require("config.themes.utilities").getHl
 local i = require("styling").icons
 local s = require("styling").separators.default
 
@@ -114,69 +114,69 @@ end
 local function set_sep_hl(type, position, is_current, tab_id, win_id)
     win_id = win_id or 0
     local has_custom_label = has_custom_label(tab_id)
-    local fg = is_current and theme.TabLineSel or theme.TabLineFill
-    local bg = theme.TabLine
+    local fg = is_current and getHl("TabLineSel") or getHl("TabLineFill")
+    local bg = getHl("TabLine")
 
     if type == "win" then
-        bg = theme.TabLineFill
+        bg = getHl("TabLineFill")
         if position == "left" then
             if is_current then
-                bg = theme.TabLineSel
+                bg = getHl("TabLineSel")
             end
             if is_first_win(win_id) then
-                fg = theme.TabLineTabSeparatorSel
-                bg = is_current and theme.TabLineSel or theme.TabLineFill
+                fg = getHl("TabLineTabSeparatorSel")
+                bg = is_current and getHl("TabLineSel") or getHl("TabLineFill")
             end
         elseif position == "right" then
-            fg = theme.TabLine
+            fg = getHl("TabLine")
             if is_last_win(tab_id, win_id) then
-                fg = theme.TabLineFill
-                bg = theme.TabLine
+                fg = getHl("TabLineFill")
+                bg = getHl("TabLine")
             end
             if is_before_win_sel(is_current, win_id) then
-                fg = theme.TabLineFill
-                bg = theme.TabLineSel
+                fg = getHl("TabLineFill")
+                bg = getHl("TabLineSel")
             end
             if is_current then
-                fg = theme.TabLineSel
+                fg = getHl("TabLineSel")
             end
         end
     end
     if type == "tab" then
-        fg = is_current and theme.TabLineTabSeparatorSel or theme.TabLineTabSeparator
+        fg = is_current and getHl("TabLineTabSeparatorSel") or getHl("TabLineTabSeparator")
         if position == "inner_right" then
             if is_current then
-                bg = theme.TabLineSel
+                bg = getHl("TabLineSel")
                 if has_custom_label then
-                    fg = theme.TabLine
-                    bg = theme.TabLineTabSeparatorSel
+                    fg = getHl("TabLine")
+                    bg = getHl("TabLineTabSeparatorSel")
                 end
             else
-                bg = theme.TabLineFill
+                bg = getHl("TabLineFill")
                 if has_custom_label then
-                    fg = theme.TabLine
-                    bg = theme.TabLineTabSeparator
+                    fg = getHl("TabLine")
+                    bg = getHl("TabLineTabSeparator")
                 end
             end
         end
         if position == "inner_left" then
-            fg = is_current and theme.TabLineSel or theme.TabLineFill
-            bg = is_current and theme.TabLineTabSeparatorSel or theme.TabLineTabSeparator
+            fg = is_current and getHl("TabLineSel") or getHl("TabLineFill")
+            bg = is_current and getHl("TabLineTabSeparatorSel") or getHl("TabLineTabSeparator")
         end
         if position == "split" then
             if is_current then
-                fg = theme.TabLine
-                bg = theme.TabLineSel
+                fg = getHl("TabLine")
+                bg = getHl("TabLineSel")
                 if has_custom_label then
-                    fg = theme.TabLineTabSeparatorSel
-                    bg = theme.TabLineSel
+                    fg = getHl("TabLineTabSeparatorSel")
+                    bg = getHl("TabLineSel")
                 end
             else
-                fg = theme.TabLine
-                bg = theme.TabLineFill
+                fg = getHl("TabLine")
+                bg = getHl("TabLineFill")
                 if has_custom_label then
-                    fg = theme.TabLineTabSeparator
-                    bg = theme.TabLineFill
+                    fg = getHl("TabLineTabSeparator")
+                    bg = getHl("TabLineFill")
                 end
             end
         end
@@ -266,10 +266,10 @@ end
 M.modified_flag = function(win_id, is_current)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
     local is_modified = vim.bo[buf_id].modified
-    local hl = is_current and theme.TabLineIndicatorModifiedSel or theme.TabLineIndicatorModified
+    local hl = is_current and getHl("TabLineIndicatorModifiedSel") or getHl("TabLineIndicatorModified")
 
     if is_modified then
-        hl = is_current and theme.TabLineIndicatorIsModifiedSel or theme.TabLineIndicatorIsModified
+        hl = is_current and getHl("TabLineIndicatorIsModifiedSel") or getHl("TabLineIndicatorIsModified")
     end
 
     return { " " .. i.edit[1], hl = hl }
@@ -294,10 +294,10 @@ local function tab_top_window(tab_id)
 end
 
 local function set_tab_label_hl(is_current, has_custom_label)
-    local hl = is_current and theme.TabLineSel or theme.TabLineFill
+    local hl = is_current and getHl("TabLineSel") or getHl("TabLineFill")
 
     if has_custom_label then
-        hl = is_current and theme.TabLineTabIndicatorSel or theme.TabLineTabIndicator
+        hl = is_current and getHl("TabLineTabIndicatorSel") or getHl("TabLineTabIndicator")
     end
 
     return hl

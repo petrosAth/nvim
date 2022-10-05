@@ -1,18 +1,18 @@
 local tabline = require("tabby.tabline")
-local theme = require("config.themes.highlightGroups").statusBars
+local getHl = require("config.themes.utilities").getHl
 local c = require("config.tabLine.components")
 local i = require("styling").icons
 
 tabline.set(function(line)
     return {
         {
-            line.sep(c.left_sep_icon, theme.TabLineTabSeparatorSel, theme.TabLine),
+            line.sep(c.left_sep_icon, getHl("TabLineTabSeparatorSel"), getHl("TabLine")),
             line.api.get_current_tab(),
-            hl = theme.TabLineTabIndicatorSel,
+            hl = getHl("TabLineTabIndicatorSel"),
             margin = "",
         },
         line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-            local hl = win.is_current() and theme.TabLineSel or theme.TabLineFill
+            local hl = win.is_current() and getHl("TabLineSel") or getHl("TabLineFill")
             local tab_id = line.api.get_current_tab()
 
             return {
@@ -26,14 +26,14 @@ tabline.set(function(line)
         end),
         line.spacer(),
         line.tabs().foreach(function(tab)
-            local hl = tab.is_current() and theme.TabLineSel or theme.TabLineFill
-            local hl_indicator = tab.is_current() and theme.TabLineTabIndicatorSel or theme.TabLineTabIndicator
+            local hl = tab.is_current() and getHl("TabLineSel") or getHl("TabLineFill")
+            local hl_indicator = tab.is_current() and getHl("TabLineTabIndicatorSel") or getHl("TabLineTabIndicator")
             local tab_count = #vim.api.nvim_list_tabpages()
             local win_count = c.get_win_count(tab.id)
 
             return tab_count == 1 and ""
                 or {
-                    { " ", hl = theme.TabLine },
+                    { " ", hl = getHl("TabLine") },
                     line.sep(c.set_sep_all("tab", "left", tab.is_current(), tab.id)),
                     { tab.number(), hl = hl_indicator },
                     line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), tab.id)),
