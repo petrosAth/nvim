@@ -25,21 +25,21 @@ local p = {
 }
 
 M.base = {
-    bgDark      = u.adjustHSL(p.nord0, 0, 0, -5),
-    bgDim       = u.adjustHSL(p.nord0, 0, 0, -2),
-    bg          = p.nord0,
+    cBgDark      = u.adjustHSL(p.nord0, 0, 0, -5),
+    cBgDim       = u.adjustHSL(p.nord0, 0, 0, -2),
+    cBg          = p.nord0,
 
-    fgDim       = u.adjustHSL(p.nord3, 0, 0, 25),
-    fg          = p.nord4,
-    fgLight     = p.nord6,
+    cFgDim       = u.adjustHSL(p.nord3, 0, 0, 25),
+    cFg          = p.nord4,
+    cFgLight     = p.nord6,
 
-    select      = p.nord10,
+    cSelect      = p.nord10,
 
-    fill1       = u.adjustHSL(p.nord1, 0, 0, -3),
-    fill2       = p.nord1,
-    fill3       = p.nord2,
-    fill4       = p.nord3,
-    fill5       = u.adjustHSL(p.nord3, 0, 0, 10),
+    cFill1       = u.adjustHSL(p.nord1, 0, 0, -3),
+    cFill2       = p.nord1,
+    cFill3       = p.nord2,
+    cFill4       = p.nord3,
+    cFill5       = u.adjustHSL(p.nord3, 0, 0, 10),
 
     cYellowDark = u.blend(p.nord13, p.nord0, 0.1),
     cYellowDim  = u.blend(p.nord13, p.nord0, 0.2),
