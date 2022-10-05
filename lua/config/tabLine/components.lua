@@ -1,6 +1,6 @@
 local filename = require("tabby.module.filename")
 local tab_name = require("tabby.feature.tab_name")
-local theme = require("config.themes." .. THEME .. ".colors.highlightGroups").statusBars
+local theme = require("config.themes.highlightGroups").statusBars
 local i = require("styling").icons
 local s = require("styling").separators.default
 

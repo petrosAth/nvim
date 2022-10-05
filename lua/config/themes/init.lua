@@ -1,13 +1,13 @@
 local M = {}
 
 function M.loadTerminalColors(themeName)
-    local terminalColors = require("config.themes." .. themeName .. ".colors.terminal")
+    local terminalColors = require("config.themes." .. themeName .. ".terminal")
 
     terminalColors.load()
 end
 
 function M.loadHighlightGroups(themeName)
-    local highlightGroups = require("config.themes." .. themeName .. ".colors.highlightGroups")
+    local highlightGroups = require("config.themes.highlightGroups")
 
     for _, groups in pairs(highlightGroups) do
         for group, colors in pairs(groups) do

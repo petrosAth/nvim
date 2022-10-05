@@ -1,6 +1,7 @@
 local conditions = require("heirline.conditions")
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
+local hl = "WinBarLight"
 local M = {}
 
 local CurrentWinBar = {
@@ -9,7 +10,7 @@ local CurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = "WinBarLight",
+        hl = hl,
     },
     {
         c.FileNameBlock,
@@ -23,7 +24,7 @@ local CurrentWinBar = {
     h.Align,
     {
         c.CloseButton,
-        hl = "WinBarLight",
+        hl = hl,
     },
 }
 
@@ -36,7 +37,7 @@ local SpecialCurrentWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = "WinBarLight",
+        hl = hl,
     },
     {
         c.FileNameBlock,
@@ -45,7 +46,7 @@ local SpecialCurrentWinBar = {
     h.Align,
     {
         c.CloseButton,
-        hl = "WinBarLight",
+        hl = hl,
     },
 }
 
@@ -55,7 +56,7 @@ local InactiveWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = "WinBarLight",
+        hl = hl,
     },
     {
         c.FileNameBlock,
@@ -69,7 +70,7 @@ local InactiveWinBar = {
     c.WindowNumber,
     {
         c.CloseButton,
-        hl = "WinBarLight",
+        hl = hl,
     },
 }
 
@@ -83,7 +84,7 @@ local SpecialInactiveWinBar = {
     end,
     {
         c.FileReadOnly,
-        hl = "WinBarLight",
+        hl = hl,
     },
     {
         c.FileNameBlock,
@@ -93,7 +94,7 @@ local SpecialInactiveWinBar = {
     c.WindowNumber,
     {
         c.CloseButton,
-        hl = "WinBarLight",
+        hl = hl,
     },
 }
 

@@ -1,5 +1,5 @@
 local tabline = require("tabby.tabline")
-local theme = require("config.themes." .. THEME .. ".colors.highlightGroups").statusBars
+local theme = require("config.themes.highlightGroups").statusBars
 local c = require("config.tabLine.components")
 local i = require("styling").icons
 

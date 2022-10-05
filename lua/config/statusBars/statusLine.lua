@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
-local hl = require("config.themes." .. THEME .. ".colors.highlightGroups").statusBars.StatusLineLight
 local h = require("config.statusBars.helperTables")
 local c = require("config.statusBars.components")
+local hl = "StatusLineLight"
 local M = {}
 
 local DefaultStatusline = {
