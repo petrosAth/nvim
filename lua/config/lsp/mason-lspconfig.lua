@@ -25,10 +25,10 @@ for _, name in ipairs(servers) do
         })
     elseif name == "omnisharp" then
         local install_path = vim.fn.stdpath("data") .. "/mason/packages"
-        local cmd = OMNI_MONO and "mono" or "dotnet"
-        local path = OMNI_MONO and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe" or install_path .. "/omnisharp/OmniSharp.dll"
+        local cmd = _G.user.omni_mono and "mono" or "dotnet"
+        local path = _G.user.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe" or install_path .. "/omnisharp/OmniSharp.dll"
         lspconfig[name].setup({
-            -- use_modern_net = OMNI_MONO == false and true or false
+            -- use_modern_net = _G.user.omni_mono == false and true or false
             on_new_config = function(config)
                 config.cmd = {
                     cmd,
@@ -40,7 +40,7 @@ for _, name in ipairs(servers) do
             end,
         })
     elseif name == "sumneko_lua" then
-        if DEV_MODE then
+        if _G.user.dev_mode then
             -- add nvim and nvim-data folders in workspace library
             local nvim_library = {}
             local runtime_path = vim.split(package.path, ";")
