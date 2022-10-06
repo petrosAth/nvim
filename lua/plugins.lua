@@ -387,6 +387,14 @@ return packer.startup(function()
             require("telescope").load_extension("possession")
         end,
     })
+
+    -- nvim-config-local - Secure load local config files for neovim
+    use({
+        "klen/nvim-config-local",
+        config = function()
+            require("config.nvim-config-local")
+        end,
+    })
     --<==================================================================================================================>--
 
     --<=< Miscellaneous >================================================================================================>--
