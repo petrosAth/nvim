@@ -6,37 +6,37 @@ local iUI = i.nvim_ui
 local M = {}
 
 M.fillchars = { -- Display chars
-    horiz     = iUI.horiz[1],
-    horizup   = iUI.horizup[1],
+    horiz = iUI.horiz[1],
+    horizup = iUI.horizup[1],
     horizdown = iUI.horizdown[1],
-    vert      = iUI.vert[1],
-    vertleft  = iUI.vertleft[1],
+    vert = iUI.vert[1],
+    vertleft = iUI.vertleft[1],
     vertright = iUI.vertright[1],
     verthoriz = iUI.verthoriz[1],
-    fold      = iUI.fold[1],
-    foldopen  = iUI.foldopen[1],
+    fold = iUI.fold[1],
+    foldopen = iUI.foldopen[1],
     foldclose = iUI.foldclose[1],
-    foldsep   = iUI.foldsep[1],
-    diff      = iUI.diff[1],
-    msgsep    = iUI.msgsep[1],
-    eob       = iUI.eob[1],
+    foldsep = iUI.foldsep[1],
+    diff = iUI.diff[1],
+    msgsep = iUI.msgsep[1],
+    eob = iUI.eob[1],
 }
 
 M.localFillchars = { -- Display chars
-    horiz     = iUI.horiz[1],
-    horizup   = iUI.horizup[1],
+    horiz = iUI.horiz[1],
+    horizup = iUI.horizup[1],
     horizdown = iUI.horizdown[1],
-    vert      = iUI.vert[1],
-    vertleft  = iUI.vertleft[1],
+    vert = iUI.vert[1],
+    vertleft = iUI.vertleft[1],
     vertright = iUI.vertright[1],
     verthoriz = iUI.verthoriz[1],
-    fold      = iUI.fold[1],
-    foldopen  = iUI.foldopen[1],
+    fold = iUI.fold[1],
+    foldopen = iUI.foldopen[1],
     foldclose = iUI.foldclose[1],
-    foldsep   = iUI.foldsep[1],
-    diff      = iUI.diff[1],
-    msgsep    = iUI.msgsep[1],
-    eob       = " ",
+    foldsep = iUI.foldsep[1],
+    diff = iUI.diff[1],
+    msgsep = iUI.msgsep[1],
+    eob = " ",
 }
 
 --<=< GUI general options >==========================================================================================>--
@@ -55,7 +55,7 @@ g.neovide_transparency = 0.90
 g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe
 --<==================================================================================================================>--
 
-opt.completeopt = { 'menu', 'menuone', 'noinsert' } -- A comma-separated list of options for Insert mode completion
+opt.completeopt = { "menu", "menuone", "noinsert" } -- A comma-separated list of options for Insert mode completion
 
 opt.encoding = "utf-8" -- File encoding
 opt.fileencoding = "utf-8 " -- File encoding
@@ -114,24 +114,24 @@ opt.list = true -- Display eol characters
 
 opt.fillchars = M.fillchars
 opt.listchars:append({
-    tab      = iUI.tab[1],
-    lead     = iUI.lead[1],
-    trail    = iUI.trail[1],
-    eol      = iUI.eol[1],
-    extends  = iUI.extends[1],
+    tab = iUI.tab[1],
+    lead = iUI.lead[1],
+    trail = iUI.trail[1],
+    eol = iUI.eol[1],
+    extends = iUI.extends[1],
     precedes = iUI.precedes[1],
 })
 
 opt.spell = false
 opt.spelllang = "en_us" -- Use en_us to spellcheck
-opt.spelloptions = 'camel' -- Treat parts of camelCase words as seprate words
+opt.spelloptions = "camel" -- Treat parts of camelCase words as separate words
 
 opt.showtabline = 2 -- tabline
 opt.laststatus = 3 -- Statusline
 
 opt.showmode = false -- Don't show mode in command line
 
-opt.autoread = false -- Ask before reloading a file changed outside of neovim
+opt.autoread = false -- Ask before reloading a file changed outside of Neovim
 
 opt.splitright = true
 opt.splitbelow = true
