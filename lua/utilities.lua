@@ -31,13 +31,28 @@ function _G.open_url(url)
     vim.cmd.redraw()
 end
 
+---Check if the given cwd is within the project's local config folder. If it
+---is, strip the config folder from the path.
+---@param cwd string The current working directory path
+---@param cfg_child string The local config subfolder or file
+---@return string path Clean current working directory path
+local function get_local_config_cwd(cwd, cfg_child)
+    local path = cwd .. "/.nvim" .. cfg_child
+
+    if vim.fn.fnamemodify(cwd, ":t") == ".nvim" then
+        path = cwd .. cfg_child
+    end
+
+    return path
+end
+
 ---Load custom hexokinase palettes from the project's local config directory.
 ---If the current working directory is the Neovim config path, load the
 ---currently active theme palette as well.
 ---@param cwd string Current working directory
 ---@return table palettes A table with all the palettes present in the local config palette directory
 function _G.user.load_palettes(cwd)
-    local local_config = cwd .. "/.nvim/palettes/"
+    local cfg_child = get_local_config_cwd(cwd, "/palettes/")
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
         local current_theme_palette = CONFIG_PATH
@@ -47,8 +62,8 @@ function _G.user.load_palettes(cwd)
         table.insert(_G.user.palettes, current_theme_palette)
     end
 
-    for _, palette in pairs(vim.fn.readdir(local_config)) do
-        table.insert(_G.user.palettes, local_config .. palette)
+    for _, palette in pairs(vim.fn.readdir(cfg_child)) do
+        table.insert(_G.user.palettes, cfg_child .. palette)
     end
 
     return _G.user.palettes
@@ -59,10 +74,11 @@ end
 ---@param cwd string Current working directory
 ---@return string path Spell file's path
 function _G.user.spell_file_dir(cwd)
-    local local_config = cwd .. "/.nvim/spell/"
-    if vim.fn.isdirectory(local_config) == 0 then
-        vim.fn.mkdir(local_config)
+    local cfg_child = get_local_config_cwd(cwd, "/spell/")
+
+    if vim.fn.isdirectory(cfg_child) == 0 then
+        vim.fn.mkdir(cfg_child)
     end
 
-    return local_config
+    return cfg_child
 end
