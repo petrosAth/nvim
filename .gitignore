@@ -1,4 +1,5 @@
 plugin/
-.vscode
+spell/en.utf-8.add.spl
 .luarc.json
+.vscode
 Thumbs.db
