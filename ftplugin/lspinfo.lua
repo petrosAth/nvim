@@ -1,3 +1,3 @@
 local ol = vim.opt_local
 
-ol.winbar = "" -- Disable winbar
+ol.winbar = nil -- Disable winbar

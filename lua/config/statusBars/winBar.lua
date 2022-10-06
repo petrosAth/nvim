@@ -41,7 +41,7 @@ local SpecialCurrentWinBar = {
     },
     {
         c.FileNameBlock,
-        hl = "WinBarCurrentSpecial"
+        hl = "WinBarCurrentSpecial",
     },
     h.Align,
     {
@@ -102,10 +102,7 @@ local DisableWinBar = {
     condition = function()
         -- Source:
         -- incline.nvim - https://github.com/b0o/incline.nvim/blob/44d4e6f4dcf2f98cf7b62a14e3c10749fc5c6e35/lua/incline/util.lua#L49-L51
-        return vim.api.nvim_win_get_config(0).relative ~= '' or conditions.buffer_matches({
             buftype = { "prompt" },
-            filetype = { "alpha", "packer", "lspinfo", "mason", "WhichKey" },
-        })
     end,
     init = function()
         vim.opt_local.winbar = nil
