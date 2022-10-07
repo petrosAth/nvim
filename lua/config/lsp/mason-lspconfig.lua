@@ -59,12 +59,12 @@ for _, name in ipairs(servers) do
             add("$VIMRUNTIME")
 
             -- add your config
-            add(CONFIG_PATH .. "/*")
+            add(_G.user.config_path .. "/*")
 
             -- add plugins
             -- if you're not using packer, then you might need to change the paths below
-            add(PACKER_PATH .. "/opt/*")
-            add(PACKER_PATH .. "/start/*")
+            add(_G.user.packer_path .. "/opt/*")
+            add(_G.user.packer_path .. "/start/*")
 
             lspconfig[name].setup({
                 on_new_config = function(config, root)

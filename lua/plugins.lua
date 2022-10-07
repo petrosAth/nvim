@@ -1,5 +1,5 @@
 local fn = vim.fn
-local install_path = PACKER_PATH .. "/start/packer.nvim"
+local install_path = _G.user.packer_path .. "/start/packer.nvim"
 local i = require("styling").icons
 local b = require("styling").borders.default
 local bs = require("styling").borders.single
