@@ -63,6 +63,10 @@ wk.register({
                 l = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", "Update LSP packages"     }, -- mason-tool-installer.nvim
                 P = { "<CMD>PackerSync<CR>",                     "Update plugins"          }, -- packer
                 p = { "<CMD>PackerSync --preview<CR>",           "Preview plugins updates" }, -- packer
+            },
+            p = {
+                name = "Project",
+                c = { "<CMD>lua _G.user.create_local_config(vim.fn.getcwd())<CR>", "Create project local config file" }
             }
         },
     },
