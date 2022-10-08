@@ -4,29 +4,25 @@ local b = require("styling").borders.default
 local lsp_cfg = require("config.lsp")
 local servers = lsp_cfg.servers
 
-require("mason-lspconfig").setup({
-    -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
-    -- This setting has no relation with the `automatic_installation` setting.
-    -- ensure_installed = servers,
-    -- automatic_installation = true,
-})
+require("mason-lspconfig").setup()
 
 local lspconfig = require("lspconfig")
 local custom_capabilities = lsp_cfg.custom_capabilities()
 local custom_on_attach = lsp_cfg.custom_on_attach
 
-require('lspconfig.ui.windows').default_options.border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
+require("lspconfig.ui.windows").default_options.border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
 -- Setup language servers
 for _, name in ipairs(servers) do
     if name == "bashls" then
         lspconfig[name].setup({
-            filetypes = { "sh", "zsh", "makefile" }
+            filetypes = { "makefile", "sh", "zsh" },
         })
     elseif name == "omnisharp" then
         local install_path = vim.fn.stdpath("data") .. "/mason/packages"
         local cmd = _G.user.omni_mono and "mono" or "dotnet"
-        local path = _G.user.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe" or install_path .. "/omnisharp/OmniSharp.dll"
+        local path = _G.user.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe"
+            or install_path .. "/omnisharp/OmniSharp.dll"
         lspconfig[name].setup({
             -- use_modern_net = _G.user.omni_mono == false and true or false
             on_new_config = function(config)
@@ -99,7 +95,7 @@ for _, name in ipairs(servers) do
                     },
                 },
                 on_attach = custom_on_attach,
-                capabilities = custom_capabilities
+                capabilities = custom_capabilities,
             })
         else
             lspconfig[name].setup({
@@ -118,7 +114,7 @@ for _, name in ipairs(servers) do
                     },
                 },
                 on_attach = custom_on_attach,
-                capabilities = custom_capabilities
+                capabilities = custom_capabilities,
             })
         end
     else
