@@ -1,53 +1,71 @@
-local opt, o, g = vim.opt, vim.o, vim.g
+local opt = vim.opt
+local g = vim.g
 local t = require("styling").variables.transparency
 local i = require("styling").icons
 
+-- Neovim GUI's options like nvim-qt and Neovide
+opt.guifont               = "Fira Code, Regular:h12"
+g.neovide_refresh_rate    = 60          -- Setting refresh rate to a positive integer will set the refresh rate of the app
+g.neovide_transparency    = 0.90        -- Setting the value between 0.0 and 1.0 will set the opacity of the window to that value
+g.neovide_cursor_vfx_mode = "wireframe" -- Cursor Particles ( railgun torpedo pixiedust sonicboom ripple wireframe )
+
+opt.swapfile       = false              -- Don't keep swap file
+opt.undofile       = true               -- Maintain undo history between sessions
+opt.sessionoptions = "blank,curdir,help,tabpages,winsize,winpos,terminal" -- mksession command's options list
+opt.completeopt    = { "menu", "menuone", "noinsert" } -- A comma-separated list of options for Insert mode completion
+opt.spell          = false
+opt.spelllang      = "en_us"
+opt.spelloptions   = "camel"            -- Treat parts of camelCase words as separate words
+opt.encoding       = "utf-8"
+opt.fileencoding   = "utf-8"
+opt.ignorecase     = true               -- Always case-insensitive
+opt.smartcase      = true               -- Enable smart-case search
+opt.incsearch      = true               -- Searches for strings incrementally
+opt.shiftwidth     = 4                  -- Number of auto-indent spaces
+opt.softtabstop    = 4                  -- Number of spaces per Tab
+opt.tabstop        = 4                  -- Number of columns per tab
+opt.expandtab      = true               -- Use spaces instead of tabs
+opt.smarttab       = true               -- A <Tab> in front of a line inserts blanks according to 'shiftwidth'
+opt.autoindent     = true               -- Copy indent from current line when starting a new line
+opt.smartindent    = true
+opt.splitright     = true
+opt.splitbelow     = true
+opt.inccommand     = "split"            -- Create a split for items offscreen for search and replace
+opt.virtualedit    = "block"            -- Allow going past the end of line in visual block mode
+opt.showmatch      = true               -- Highlights matching brackets
+opt.wrap           = false              -- Visualy break long lines
+opt.linebreak      = true               -- Wrap lines at specific characters instead of cutting words in the middle
+opt.breakindent    = true               -- Wrapped lines follow parent indentation
+opt.showtabline    = 2                  -- Always show tabline
+opt.laststatus     = 3                  -- Always show a global status line of the active window
+opt.cmdheight      = 1                  -- Give more space for displaying messages
+opt.showmode       = false              -- Don't show mode in command line
+opt.autoread       = false              -- Ask before reloading a file changed outside of Neovim
+opt.lazyredraw     = true               -- No redraw during macro, regex execution
+opt.equalalways    = false              -- When on, all the windows are automatically made the same size after splitting or closing a window
+opt.scrolloff      = 3                  -- Minimal number of screen lines to keep above and below the cursor
+opt.sidescrolloff  = 20                 -- The minimal number of columns to scroll horizontally
+opt.winblend       = t                  -- Transparency for floating windows
+opt.pumblend       = t                  -- Transparency for the popup-menu
+opt.cursorline     = true               -- Highlight the text line of the cursor
+opt.cursorcolumn   = true               -- Highlight the screen column of the cursor
+opt.number         = true               -- Show line numbers
+opt.relativenumber = true               -- Enable relative line numbers
+opt.signcolumn     = "yes"              -- Keep the sign column always visible
+opt.colorcolumn    = "120"              -- Show vertical line for text alignment
+opt.foldcolumn     = "1"                -- Fold column size
+opt.foldmethod     = "indent"           -- Folding configuration
+opt.foldlevelstart = 3                  -- All folds below that level are closed on new buffers
+opt.foldminlines   = 1                  -- Fold even single line
+opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
 opt.listchars      = i.listchars
+opt.clipboard      = "unnamedplus"      -- Use system clipboard for copy/paste
+opt.pastetoggle    = "<F12>"            -- Toggle paste mode
+opt.keywordprg     = ":help"            -- Program to use for the K command
+opt.startofline    = true               -- Keep cursor at place if possible
+opt.mouse          = "a"                -- Enable mouse for normal and visual modes
 }
-
---<=< GUI general options >==========================================================================================>--
--- Set gui font for nvim-qt, neovide etc
-opt.guifont = "Fira Code, Regular:h12"
---<==================================================================================================================>--
-
---<=< Neovide specific options  >====================================================================================>--
--- Setting refresh rate to a positive integer will set the refresh rate of the app.
-g.neovide_refresh_rate = 60
-
--- Setting the value between 0.0 and 1.0 will set the opacity of the window to that value.
-g.neovide_transparency = 0.90
-
--- Cursor Particles
-g.neovide_cursor_vfx_mode = "wireframe" -- railgun torpedo pixiedust sonicboom ripple wireframe
---<==================================================================================================================>--
-
-opt.completeopt = { "menu", "menuone", "noinsert" } -- A comma-separated list of options for Insert mode completion
-
-opt.encoding = "utf-8" -- File encoding
-opt.fileencoding = "utf-8 " -- File encoding
-opt.fileformat = "dos" -- DOS fileformat
-
-opt.background = "dark" -- Enable dark background colorschemes
-
-opt.termguicolors = true -- Enable 24bit colors in terminal
-
-opt.cmdheight = 1 -- Give more space for displaying messages
-
-opt.shiftwidth = 4 -- Number of auto-indent spaces
-opt.softtabstop = 4 -- Number of spaces per Tab
-opt.tabstop = 4 -- Number of columns per tab
-opt.expandtab = true -- Use spaces instead of tabs
-opt.smarttab = true -- A <Tab> in front of a line inserts blanks according to 'shiftwidth'
-opt.autoindent = true -- Auto-indent new lines
-opt.smartindent = true -- Enable smart-indent
-
-opt.showmatch = true -- Highlights matching brackets
-opt.cursorline = true -- Highlight the text line of the cursor
-opt.cursorcolumn = true -- Highlight the screen column of the cursor
-
-opt.startofline = true -- Keep cursor at place if possible
-
 -- Make the cursor blink
 --opt.guicursor = {
 --    "n-v-c:block",
@@ -57,101 +75,3 @@ opt.startofline = true -- Keep cursor at place if possible
 --    "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
 --    "sm:block-blinkwait175-blinkoff150-blinkon175"
 --}
-
-opt.wrap = false -- No wrap
-
-opt.ignorecase = true -- Always case-insensitive
-opt.smartcase = true -- Enable smart-case search
-opt.incsearch = true -- Searches for strings incrementally
-
-opt.inccommand = "split" -- Create a split for items offscreen for search and replace
-
-opt.number = true -- Show line numbers
-opt.relativenumber = true -- Enable relative line numbers
-opt.signcolumn = "yes" -- Keep the sign column always visible
-
-opt.colorcolumn = "120" -- Show vertical line for text alignment
-
-opt.foldcolumn = "1" -- Fold column size
-opt.foldmethod = "indent" -- Folding configuration
-opt.foldlevelstart = 3
-opt.foldminlines = 1 -- Fold even single line
-
-opt.list = true -- Display eol characters
-
-opt.fillchars = M.fillchars
-opt.listchars:append({
-    tab = iUI.tab[1],
-    lead = iUI.lead[1],
-    trail = iUI.trail[1],
-    eol = iUI.eol[1],
-    extends = iUI.extends[1],
-    precedes = iUI.precedes[1],
-})
-
-opt.spell = false
-opt.spelllang = "en_us" -- Use en_us to spellcheck
-opt.spelloptions = "camel" -- Treat parts of camelCase words as separate words
-
-opt.showtabline = 2 -- tabline
-opt.laststatus = 3 -- Statusline
-
-opt.showmode = false -- Don't show mode in command line
-
-opt.autoread = false -- Ask before reloading a file changed outside of Neovim
-
-opt.splitright = true
-opt.splitbelow = true
-opt.equalalways = false -- When on, all the windows are automatically made the same size after splitting or closing a window
-
-opt.conceallevel = 0 -- Don't hide (conceal) special symbols (like `` in markdown)
-
-opt.lazyredraw = true -- No redraw during macro, regex execution
-
-opt.mouse = "a" -- Enable mouse for normal and visual modes
-
-opt.clipboard = "unnamedplus" -- Use system clipboard for copy/paste
-opt.pastetoggle = "<F12>" -- Toggle paste mode
-
-opt.scrolloff = 3 -- Minimal number of screen lines to keep above and below the cursor
-opt.sidescrolloff = 20 -- The minimal number of columns to scroll horizontally
-
-opt.winblend = t -- Transparency for floating windows
-opt.pumblend = t -- Transparency for the popup-menu
-
-opt.keywordprg = ":help" -- Program to use for the K command
-
-o.sessionoptions = "blank,curdir,help,tabpages,winsize,winpos,terminal" -- What to save with mksession command
-
-opt.swapfile = false -- No swap file
-opt.undofile = true -- Maintain undo history between sessions
-
-local disabled_built_ins = { -- Disable builtin vim plugins
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "matchit",
-}
-for _, plugin in pairs(disabled_built_ins) do
-    g["loaded_" .. plugin] = 1
-end
-
-g.loaded_python_provider = 0 -- Disable Python2 support
-g.loaded_perl_provider = 0 -- Disable perl provider
-g.loaded_ruby_provider = 0 -- Disable ruby provider
-g.loaded_node_provider = 0 -- Disable node provider
-
-return M
