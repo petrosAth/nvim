@@ -1,6 +1,5 @@
 local trouble = require("trouble")
 local i = require("styling").icons
-local iUI = i.nvim_ui
 
 trouble.setup({
     position = "bottom", -- position of the list can be: bottom, top, left, right
@@ -8,8 +7,8 @@ trouble.setup({
     width = 50, -- width of the list when position is left or right
     icons = true, -- use devicons for filenames
     mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-    fold_open = iUI.foldopen[1], -- icon used for open folds
-    fold_closed = iUI.foldclose[1], -- icon used for closed folds
+    fold_open = i.fillchars.global.foldopen, -- icon used for open folds
+    fold_closed = i.fillchars.global.foldclose, -- icon used for closed folds
     group = true, -- group results by file
     padding = false, -- add an extra new line on top of the list
     action_keys = { -- key mappings for actions in the trouble list

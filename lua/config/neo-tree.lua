@@ -234,10 +234,10 @@ tree.setup({
             event = "neo_tree_buffer_enter",
             handler = function()
                 local ol = vim.opt_local
-                local f = require("options")
+
                 ol.cursorcolumn   = false
                 ol.relativenumber = true
-                ol.fillchars      = f.localFillchars
+                ol.fillchars:append(i.fillchars.custom) -- Remove eob character
             end,
         },
     },

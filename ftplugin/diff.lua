@@ -1,5 +1,6 @@
+-- Undotree diff panel
 local ol = vim.opt_local
-local f = require("options")
+local i = require("styling").icons.fillchars
 
-ol.colorcolumn = ""               -- Hide vertical line for text alignment
-ol.fillchars   = f.localFillchars
+ol.colorcolumn = ""           -- Hide vertical line for text alignment
+ol.fillchars:append(i.custom) -- Remove eob character

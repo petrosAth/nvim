@@ -1,42 +1,9 @@
 local opt, o, g = vim.opt, vim.o, vim.g
 local t = require("styling").variables.transparency
 local i = require("styling").icons
-local iUI = i.nvim_ui
 
-local M = {}
-
-M.fillchars = { -- Display chars
-    horiz = iUI.horiz[1],
-    horizup = iUI.horizup[1],
-    horizdown = iUI.horizdown[1],
-    vert = iUI.vert[1],
-    vertleft = iUI.vertleft[1],
-    vertright = iUI.vertright[1],
-    verthoriz = iUI.verthoriz[1],
-    fold = iUI.fold[1],
-    foldopen = iUI.foldopen[1],
-    foldclose = iUI.foldclose[1],
-    foldsep = iUI.foldsep[1],
-    diff = iUI.diff[1],
-    msgsep = iUI.msgsep[1],
-    eob = iUI.eob[1],
-}
-
-M.localFillchars = { -- Display chars
-    horiz = iUI.horiz[1],
-    horizup = iUI.horizup[1],
-    horizdown = iUI.horizdown[1],
-    vert = iUI.vert[1],
-    vertleft = iUI.vertleft[1],
-    vertright = iUI.vertright[1],
-    verthoriz = iUI.verthoriz[1],
-    fold = iUI.fold[1],
-    foldopen = iUI.foldopen[1],
-    foldclose = iUI.foldclose[1],
-    foldsep = iUI.foldsep[1],
-    diff = iUI.diff[1],
-    msgsep = iUI.msgsep[1],
-    eob = " ",
+opt.fillchars      = i.fillchars.global
+opt.listchars      = i.listchars
 }
 
 --<=< GUI general options >==========================================================================================>--
