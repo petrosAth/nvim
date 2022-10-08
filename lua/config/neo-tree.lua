@@ -237,6 +237,7 @@ tree.setup({
 
                 ol.cursorcolumn   = false
                 ol.relativenumber = true
+                ol.fillchars      = i.fillchars.global
                 ol.fillchars:append(i.fillchars.custom) -- Remove eob character
             end,
         },
