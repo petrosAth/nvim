@@ -5,9 +5,8 @@ local b = PA.styling.borders.default
 -- List of servers for installation
 M.servers = {
     "bashls",
-    "cssls",
     "clangd",
-    "html",
+    "emmet_ls",
     "omnisharp",
     "powershell_es",
     "pyright",
