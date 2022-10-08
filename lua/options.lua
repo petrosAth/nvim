@@ -65,13 +65,11 @@ opt.pastetoggle    = "<F12>"            -- Toggle paste mode
 opt.keywordprg     = ":help"            -- Program to use for the K command
 opt.startofline    = true               -- Keep cursor at place if possible
 opt.mouse          = "a"                -- Enable mouse for normal and visual modes
+opt.guicursor      = {                  -- Make the cursor blink
+    "n-v-c:block",
+    "i-ci-ve:ver25",
+    "r-cr:hor20",
+    "o:hor50",
+    "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+    "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
--- Make the cursor blink
---opt.guicursor = {
---    "n-v-c:block",
---    "i-ci-ve:ver25",
---    "r-cr:hor20",
---    "o:hor50",
---    "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
---    "sm:block-blinkwait175-blinkoff150-blinkon175"
---}
