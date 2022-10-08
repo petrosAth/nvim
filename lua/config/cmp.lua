@@ -52,7 +52,14 @@ cmp.setup({
             c = cmp.mapping.confirm({ select = true }),
             i = function()
                 if cmp.visible() then
-                    cmp.confirm({ select = true })
+                    -- cmp.confirm({ select = true })
+                    local entry = cmp.get_selected_entry()
+                    if not entry then
+                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        cmp.confirm({ select = true })
+                    else
+                        cmp.confirm({ select = true })
+                    end
                 else
                     cmp.complete()
                 end
@@ -140,24 +147,24 @@ cmp.setup({
         }),
     }),
     sources = cmp.config.sources({
-        { name = "buffer"   },
         { name = "nvim_lsp" },
+        { name = "buffer" },
         { name = "nvim_lua" },
-        { name = "luasnip"  },
-        { name = "path"     },
-        { name = "calc"     },
-        { name = "spell"    },
+        { name = "luasnip" },
+        { name = "path" },
+        { name = "calc" },
+        { name = "spell" },
     }),
     formatting = {
         format = function(entry, vim_item)
             vim_item.kind = string.format("%s %s", kinds[vim_item.kind], vim_item.kind)
             vim_item.menu = ({
-                buffer   = "[BFR]",
+                buffer = "[BFR]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[LUA]",
-                luasnip  = "[SNP]",
-                path     = "[PTH]",
-                spell    = "[SIG]",
+                luasnip = "[SNP]",
+                path = "[PTH]",
+                spell = "[SIG]",
             })[entry.source.name]
             return vim_item
         end,
