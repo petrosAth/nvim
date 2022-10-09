@@ -125,7 +125,7 @@ tree.setup({
         mappings = {
             ["<space>"] = false,
             ["<2-LeftMouse>"] = "open",
-            ["<CR>"] = "open",
+            ["L"] = "open",
             ["l"] = "open_with_window_picker",
             ["<C-s>"] = "split_with_window_picker",
             ["<C-v>"] = "vsplit_with_window_picker",
@@ -191,7 +191,7 @@ tree.setup({
         window = {
             mappings = {
                 ["<BS>"] = "navigate_up",
-                ["L"] = "set_root",
+                ["<CR>"] = "set_root",
                 ["."] = "toggle_hidden",
                 ["/"] = "fuzzy_finder",
                 ["d"] = "fuzzy_finder_directory",
@@ -211,7 +211,7 @@ tree.setup({
             mappings = {
                 ["d"] = "buffer_delete",
                 ["<BS>"] = "navigate_up",
-                ["L"] = "set_root",
+                ["<CR>"] = "set_root",
             },
         },
     },

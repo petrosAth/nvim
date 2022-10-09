@@ -71,8 +71,6 @@ end
 
 -- Configure lsp on_attach function
 function M.custom_on_attach(client, bufnr)
-    -- aerial.nvim
-    require("aerial").on_attach(client, bufnr)
 end
 
 return M

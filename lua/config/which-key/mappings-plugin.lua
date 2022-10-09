@@ -146,7 +146,7 @@ wk.register({
             d = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                  }, -- lspconfig -- trouble
             D = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                 }, -- lspconfig -- trouble
         },
-        o = { "<CMD>AerialToggle<CR>", "Toggle Code outline" }, -- aerial
+        o = { "<CMD>SymbolsOutline<CR>", "Toggle Code outline" }, -- symbols-outline.nvim
         q = {
             name = "Trouble",
             q = { "<CMD>TroubleToggle<CR>",    "Toggle"   }, -- trouble

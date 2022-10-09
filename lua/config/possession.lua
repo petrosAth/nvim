@@ -40,6 +40,7 @@ require("possession").setup({
                 filetype = {
                     "aerial",
                     "neo-tree",
+                    "Outline",
                     "Trouble",
                     "undotree",
                 },

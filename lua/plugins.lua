@@ -344,11 +344,11 @@ return packer.startup(function()
         end,
     })
 
-    -- aerial.nvim - Neovim plugin for a code outline window
+    -- symbols-outline.nvim - A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite languages.
     use({
-        "stevearc/aerial.nvim",
+        "simrat39/symbols-outline.nvim",
         config = function()
-            require("config.aerial")
+            require("config.symbols-outline")
         end,
     })
 

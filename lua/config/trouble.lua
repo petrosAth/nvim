@@ -17,14 +17,14 @@ trouble.setup({
         close = "q", -- close the list
         cancel = {}, -- cancel the preview and get back to your last window / buffer / cursor
         refresh = "R", -- manually refresh
-        jump = "<CR>", -- jump to the diagnostic or open / close folds
+        jump = "L", -- jump to the diagnostic or open / close folds
         open_split = "<C-s>", -- open buffer in new split
         open_vsplit = "<C-v>", -- open buffer in new vsplit
         open_tab = "<C-t>", -- open buffer in new tab
-        jump_close = "<C-y>", -- jump to the diagnostic and close the list
+        jump_close = "<CR>", -- jump to the diagnostic and close the list
         toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
         toggle_preview = "<m-p>", -- toggle auto_preview
-        hover = "K", -- opens a small popup with the full multiline message
+        hover = "h", -- opens a small popup with the full multiline message
         preview = "l", -- preview the diagnostic location
         close_folds = { "zM", "zm" }, -- close all folds
         open_folds = { "zR", "zr" }, -- open all folds
