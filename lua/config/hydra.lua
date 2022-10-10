@@ -28,10 +28,30 @@ hydra({
     },
 })
 hydra({
+    name = "Manipulate folds",
+    hint = [[   _r_  Fold less   _m_  Fold more   ]],
+    mode = { "n", "x" },
+    body = "z",
+    config = {
+        hint = {
+            position = "top",
+            offset = 2,
+            border = border,
+        },
+    },
+    heads = {
+        { "r", "zr" },
+        { "m", "zm" },
+
+        { "q",     nil, { exit = true, nowait = true, desc = false } },
+        { "<Esc>", nil, { exit = true, nowait = true, desc = false } },
+    },
+})
+hydra({
     name = "Windows navigation",
     hint = [[
-   _<C-k>_  Go to the upper window   _<C-l>_  Go to the right window
-   _<C-j>_  Go to the lower window   _<C-h>_  Go to the left window   ]],
+   _<C-k>_  Go to the upper window   _<C-h>_  Go to the left window
+   _<C-j>_  Go to the lower window   _<C-l>_  Go to the right window  ]],
     mode = { "n" },
     body = "<C-w>",
     config = {
@@ -42,8 +62,8 @@ hydra({
         },
     },
     heads = {
-        { "<C-j>", "<C-w>j" },
         { "<C-k>", "<C-w>k" },
+        { "<C-j>", "<C-w>j" },
         { "<C-h>", "<C-w>h" },
         { "<C-l>", "<C-w>l" },
 
