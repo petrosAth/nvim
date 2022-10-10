@@ -70,8 +70,35 @@ wk.setup({
     },
 })
 
-require("config.which-key.mappings-plugin")
-require("config.which-key.mappings-system")
+local function register_descriptions(mappings)
+-- Source: echasnovski/nvim
+-- https://github.com/echasnovski/nvim/blob/70e70bfa9223383f059b474ae4969f79676b3dc0/lua/ec/configs/which-key.lua#L24-L34
+    return vim.tbl_map(function(keymap)
+        if type(keymap) ~= "table" then
+            return keymap
+        end
+
+        -- If command's name is present, return it
+        if type(keymap[2]) == "string" then
+            return keymap[2]
+        end
+
+        -- Otherwise further traverse tree
+        return register_descriptions(keymap)
+    end, mappings)
+end
+
+local function register_modes(mappings)
+    for mode, keymaps in pairs(mappings) do
+        wk.register(register_descriptions(keymaps), { mode = mode })
+    end
+end
+
+local function register_mappings_in_wk(mappings)
+    register_modes(mappings)
+end
+
+register_mappings_in_wk(user.mappings)
 
 -- Code snippets
 -- For future reference - https://github.com/folke/which-key.nvim/issues/165#issuecomment-921332940
