@@ -68,18 +68,18 @@ local function load_palettes(cwd)
     create_local_config_file(path, file, contents)
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
-        local current_theme_palette = _G.user.config_path
+        local current_theme_palette = user.config_path
             .. "/lua/config/hexokinase/theme-palettes/"
-            .. _G.user.theme
+            .. user.theme
             .. ".json"
-        table.insert(_G.user.palettes, current_theme_palette)
+        table.insert(user.palettes, current_theme_palette)
     end
 
     for _, palette in pairs(vim.fn.readdir(path)) do
-        table.insert(_G.user.palettes, path .. palette)
+        table.insert(user.palettes, path .. palette)
     end
 
-    return _G.user.palettes
+    return user.palettes
 end
 
 ---Return spell file's path in the project's local config directory. The "spell"
@@ -97,7 +97,7 @@ end
 ---Load the project's local config files.
 ---@param cwd string Current working directory
 ---@param config table Loading options
-function _G.user.load_local_config(cwd, config)
+function user.load_local_config(cwd, config)
     if string.find(cwd, "%.nvim") ~= nil then
         return
     end
@@ -112,10 +112,10 @@ end
 
 ---Create a project local config file, and open it in the editor.
 ---@param cwd string Current working directory
-function _G.user.create_local_config(cwd)
+function user.create_local_config(cwd)
     local path = cwd .. "/.nvim/"
     local file = "init.local.lua"
-    local contents = [[_G.user.load_local_config(vim.fn.getcwd(), {\
+    local contents = [[user.load_local_config(vim.fn.getcwd(), {\
     \n    use_palettes  = false,\
     \n    use_spellfile = true,\
     \n})]]

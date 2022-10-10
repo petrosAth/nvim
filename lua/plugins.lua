@@ -5,7 +5,7 @@ local bs = require("styling").borders.single
 -- Automatically install and set up packer.nvim
 local ensure_packer = function()
     local fn = vim.fn
-    local install_path = _G.user.packer_path .. "/start/packer.nvim"
+    local install_path = user.packer_path .. "/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
         vim.cmd([[packadd packer.nvim]])
