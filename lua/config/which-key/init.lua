@@ -98,7 +98,7 @@ local function register_mappings_in_wk(mappings)
     register_modes(mappings)
 end
 
-register_mappings_in_wk(user.mappings)
+register_mappings_in_wk(PA.mappings)
 
 -- Code snippets
 -- For future reference - https://github.com/folke/which-key.nvim/issues/165#issuecomment-921332940

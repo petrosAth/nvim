@@ -69,7 +69,7 @@ telescope.setup({
         sorting_strategy = "descending",
         file_ignore_patterns = { "^.git", "tags" },
         history = {
-            path = user.data_path .. "/databases/telescope_history",
+            path = PA.data_path .. "/databases/telescope_history",
             limit = 100
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -198,7 +198,7 @@ telescope.setup({
             },
         },
         frecency = {
-            db_root = user.data_path .. "/databases",
+            db_root = PA.data_path .. "/databases",
             show_scores = true,
             show_unindexed = true,
             ignore_patterns = {"*.git/*", "*/tmp/*"},

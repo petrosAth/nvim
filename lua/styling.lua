@@ -1,6 +1,6 @@
 local styling = {}
 
-vim.cmd.colorscheme(user.theme)
+vim.cmd.colorscheme(PA.theme)
 
 styling.variables = {
     transparency = 0

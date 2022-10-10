@@ -17,7 +17,7 @@ trouble.setup({
         close = "q", -- close the list
         cancel = {}, -- cancel the preview and get back to your last window / buffer / cursor
         refresh = "R", -- manually refresh
-        jump = "L", -- jump to the diagnostic or open / close folds
+        jump = "l", -- jump to the diagnostic or open / close folds
         open_split = "<C-s>", -- open buffer in new split
         open_vsplit = "<C-v>", -- open buffer in new vsplit
         open_tab = "<C-t>", -- open buffer in new tab
@@ -25,7 +25,7 @@ trouble.setup({
         toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
         toggle_preview = "<m-p>", -- toggle auto_preview
         hover = "h", -- opens a small popup with the full multiline message
-        preview = "l", -- preview the diagnostic location
+        preview = "L", -- preview the diagnostic location
         close_folds = { "zM", "zm" }, -- close all folds
         open_folds = { "zR", "zr" }, -- open all folds
         toggle_fold = { "zA", "za" }, -- toggle fold of current file
