@@ -10,7 +10,7 @@ function M.load(palette)
         Normal = { fg = p.cFg, bg = p.cBg },
         NormalNC = { fg = p.cFg, bg = p.cBgDim },
         NormalFloat = { fg = p.cFg, bg = p.cBgDark },
-        FloatBorder = { fg = p.cFill2, bg = p.cBgDark },
+        FloatBorder = { fg = p.cFill1, bg = p.cBgDark },
         ColorColumn = { bg = p.cBgDim },
         Cursor = { reverse = true },
         lCursor = { link = "Cursor" },
