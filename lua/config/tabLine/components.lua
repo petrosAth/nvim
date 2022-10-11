@@ -206,6 +206,7 @@ local function is_plugin(buf_id)
         { filetype = "neo-tree",        window_title = i.fileExplorer[1] .. " File explorer" },
         { filetype = "NvimTree",        window_title = i.fileExplorer[1] .. " File explorer" },
         { filetype = "Outline",         window_title = i.codeOutline[1]  .. " Code outline"  },
+        { filetype = "qf",              window_title = i.list[1]         .. " List"          },
         { filetype = "Trouble",         window_title = i.list[1]         .. " List"          },
         { filetype = "TelescopePrompt", window_title = i.telescope[1]    .. " Telescope"     },
         { filetype = "undotree",        window_title = i.undoTree[1]     .. " Undotree"      },

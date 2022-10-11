@@ -41,6 +41,7 @@ require("possession").setup({
                     "aerial",
                     "neo-tree",
                     "Outline",
+                    "qf",
                     "Trouble",
                     "undotree",
                 },

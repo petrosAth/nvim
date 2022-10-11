@@ -138,6 +138,7 @@ local FileNameBlock = {
             { title = "neo-tree",            customTitle = "NEOTREE"    },
             { title = "NvimTree",            customTitle = "NVIMTREE"   },
             { title = "Outline",             customTitle = "OUTLINE"    },
+            { title = "qf",                  customTitle = "QUICKFIX"   },
             { title = "terminal",            customTitle = "TERMINAL"   },
             { title = "Trouble",             customTitle = "TROUBLE"    },
             { title = "undotree",            customTitle = "UNDOTREE"   },
@@ -343,7 +344,7 @@ M.CursorLineSpecial = {
     condition = function()
         return conditions.buffer_matches({
             buftype = {},
-            filetype = { "Trouble" },
+            filetype = { "qf", "Trouble" },
         })
     end,
 
@@ -402,7 +403,7 @@ M.LinesTotalSpecial = {
     condition = function()
         return conditions.buffer_matches({
             buftype = {},
-            filetype = { "Trouble" },
+            filetype = { "qf", "Trouble" },
         })
     end,
 
