@@ -10,7 +10,7 @@ function M.load(palette)
         Normal = { fg = p.cFg, bg = p.cBg },
         NormalNC = { fg = p.cFg, bg = p.cBgDim },
         NormalFloat = { fg = p.cFg, bg = p.cBgDark },
-        FloatBorder = { fg = p.cFill1, bg = p.cBgDark },
+        FloatBorder = { fg = p.cFill2, bg = p.cBgDark },
         ColorColumn = { bg = p.cBgDim },
         Cursor = { reverse = true },
         lCursor = { link = "Cursor" },
@@ -30,7 +30,7 @@ function M.load(palette)
         SpellCap = { bg = p.none, sp = p.cYellow, underdotted = true },
         SpellLocal = { bg = p.none, sp = p.cFg, underdotted = true },
         SpellRare = { bg = p.none, sp = p.cFgLight, underdotted = true },
-        Visual = { fg = p.none, bg = p.cFill4 },
+        Visual = { bg = p.cFill4 },
         VisualNOS = { fg = p.none, bg = p.cFill4 },
         Folded = { fg = p.cFill4, bg = p.none },
         FoldColumn = { fg = p.cFill4, bg = p.none },
@@ -127,14 +127,15 @@ function M.load(palette)
 
     g.lsp = {
         -- DocumentHighlight
-        LspReferenceText = { fg = p.none, bg = p.cFill4 },
-        LspReferenceRead = { fg = p.none, bg = p.cFill4 },
-        LspReferenceWrite = { fg = p.none, bg = p.cFill4 },
+        LspReferenceText = { link = "Visual" },
+        LspReferenceRead = { link = "Visual" },
+        LspReferenceWrite = { link = "Visual" },
         -- Neovim LspSignatureHelp
         LspSignatureActiveParameter = { link = "Search" },
         -- lspinfo window
         LspInfoBorder = { link = "FloatBorder" },
     }
+
     g.diagnostic = {
         DiagnosticError = { fg = p.cRed },
         DiagnosticWarn = { fg = p.cYellow },
@@ -148,22 +149,22 @@ function M.load(palette)
         DiagnosticFloatingError = { link = "DiagnosticWarn" },
         DiagnosticFloatingInfo = { link = "DiagnosticInfo" },
         DiagnosticFloatingHint = { link = "DiagnosticHint" },
-        DiagnosticUnderlineError = { bg = p.none, underline = true, sp = p.cRed },
-        DiagnosticUnderlineWarn = { bg = p.none, underline = true, sp = p.cYellow },
-        DiagnosticUnderlineInfo = { bg = p.none, underline = true, sp = p.cCyan },
-        DiagnosticUnderlineHint = { bg = p.none, underline = true, sp = p.cSelect },
-        DiagnosticVirtualTextError = { fg = p.cRed, bg = p.none, bold = true, italic = true },
-        DiagnosticVirtualTextWarn = { fg = p.cYellow, bg = p.none, bold = true, italic = true },
-        DiagnosticVirtualTextInfo = { fg = p.cCyan, bg = p.none, bold = true, italic = true },
-        DiagnosticVirtualTextHint = { fg = p.cSelect, bg = p.none, bold = true, italic = true },
+        DiagnosticUnderlineError = { underline = true, sp = p.cRed },
+        DiagnosticUnderlineWarn = { underline = true, sp = p.cYellow },
+        DiagnosticUnderlineInfo = { underline = true, sp = p.cCyan },
+        DiagnosticUnderlineHint = { underline = true, sp = p.cSelect },
+        DiagnosticVirtualTextError = { fg = p.cRed, bold = true, italic = true },
+        DiagnosticVirtualTextWarn = { fg = p.cYellow, bold = true, italic = true },
+        DiagnosticVirtualTextInfo = { fg = p.cCyan, bold = true, italic = true },
+        DiagnosticVirtualTextHint = { fg = p.cSelect, bold = true, italic = true },
     }
 
     g.plugins = {
         -- alpha-nvim
-        AlphaButtons = { fg = p.cFg, bg = p.none },
-        AlphaButtonShortcuts = { fg = p.cCyan, bg = p.none },
-        AlphaHeader = { fg = p.cBlue, bg = p.none },
-        AlphaFooter = { fg = p.cFill5, bg = p.none },
+        AlphaButtons = { fg = p.cFg },
+        AlphaButtonShortcuts = { fg = p.cCyan },
+        AlphaHeader = { fg = p.cBlue },
+        AlphaFooter = { fg = p.cFill5 },
 
         -- diffview.nvim
         DiffviewVertSplit = { fg = p.cFill2, bg = p.cYellow },
@@ -378,9 +379,9 @@ function M.load(palette)
         TodoSignHACK = { link = "DiagnosticWarn" },
 
         -- vim-illuminate
-        IlluminatedWordText = { link = "Visual" },
-        IlluminatedWordRead = { link = "Visual" },
-        IlluminatedWordWrite = { link = "Visual" },
+        IlluminatedWordText = { link = "LspReferenceText" },
+        IlluminatedWordRead = { link = "LspReferenceRead" },
+        IlluminatedWordWrite = { link = "LspReferenceWrite" },
 
         -- which-key.nvim
         WhichKey = { fg = p.cFg, bg = p.none, bold = true },
