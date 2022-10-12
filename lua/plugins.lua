@@ -46,7 +46,7 @@ return packer.startup(function()
     -- Packer
     use({ "wbthomason/packer.nvim" })
 
-    --<=< Styling >======================================================================================================>--
+    ---- Styling -------------------------------------------------------------------------------------------------------
     -- Dressing.nvim - Neovim plugin to improve the default vim.ui interfaces
     use({
         "stevearc/dressing.nvim",
@@ -103,9 +103,8 @@ return packer.startup(function()
             require("config.pretty-fold")
         end,
     })
-    --<==================================================================================================================>--
 
-    --<=< Autocompletion and Syntax highlighting >=======================================================================>--
+    ---- Autocompletion and Syntax highlighting ---------------------------------------------------------------------
     -- mason.nvim - Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
     -- servers, DAP servers, linters, and formatters.
     use({
@@ -286,9 +285,8 @@ return packer.startup(function()
     use({
         "godlygeek/tabular",
     })
-    --<==================================================================================================================>--
 
-    --<=< Project and file navigation >==================================================================================>--
+    ---- Project and file navigation -----------------------------------------------------------------------------------
     -- telescope.nvim - Gaze deeply into unknown regions using the power of the moon
     use({
         "nvim-telescope/telescope.nvim",
@@ -393,9 +391,8 @@ return packer.startup(function()
             require("config.nvim-config-local")
         end,
     })
-    --<==================================================================================================================>--
 
-    --<=< Miscellaneous >================================================================================================>--
+    ---- Miscellaneous -------------------------------------------------------------------------------------------------
     -- tabby.nvim - A minimal, configurable, neovim style tabline. Use your nvim tabs as workspace multiplexer.
     use({
         "nanozuki/tabby.nvim",
@@ -478,7 +475,6 @@ return packer.startup(function()
             require("config.stabilize")
         end,
     })
-    --<==================================================================================================================>--
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

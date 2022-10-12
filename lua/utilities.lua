@@ -34,11 +34,11 @@ function _G.open_url(url)
     vim.cmd.redraw()
 end
 
----Creates a file with the given content on the specified path.
----@param path string The path of the file
+---Creates a directory or file with the given content on the specified path.
+---@param path string The path of the directory or file
 ---@param file string? The name of the file
 ---@param contents string? The content of the file
-local function create_local_config_file(path, file, contents)
+local function create_element(path, file, contents)
     file = file or ""
     contents = contents or ""
 
@@ -48,6 +48,19 @@ local function create_local_config_file(path, file, contents)
             vim.cmd("!echo -e '" .. contents .. "' > " .. path .. file)
         end
     end
+    vim.cmd.redraw()
+end
+
+---Deletes a file or folder, if it exists.
+---@param path string The path of the element
+---@param name string? The name of the element
+local function delete_element(path, name)
+    if vim.fn.isdirectory(path .. name) == 1 then
+        vim.cmd("silent w !rm -rf " .. path .. name)
+    elseif vim.fn.filereadable(path .. name) == 1 then
+        vim.cmd("silent w !rm " .. path .. name)
+    end
+    vim.cmd.redraw()
 end
 
 ---Load custom hexokinase palettes from the project's local config directory.
@@ -65,7 +78,7 @@ local function load_palettes(cwd)
     \n  }\
     \n}]]
 
-    create_local_config_file(path, file, contents)
+    create_element(path, file, contents)
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
         local current_theme_palette = PA.config_path
@@ -89,7 +102,7 @@ end
 local function get_spell_file_dir(cwd)
     local path = cwd .. "/.nvim/spell/"
 
-    create_local_config_file(path)
+    create_element(path)
 
     return path
 end
@@ -102,25 +115,73 @@ function PA.load_local_config(cwd, config)
         return
     end
 
-    if config.use_palettes == true then
-        vim.g.Hexokinase_palettes = load_palettes(cwd)
+    if config.use_session == true then
+        PA.load_local_session(cwd)
+        PA.save_local_session(cwd)
     end
     if config.use_spellfile == true then
         vim.opt.spellfile = get_spell_file_dir(cwd) .. "en.utf-8.add"
     end
+    if config.use_palettes == true then
+        vim.g.Hexokinase_palettes = load_palettes(cwd)
+    end
 end
 
 ---Create a project local config file, and open it in the editor.
----@param cwd string Current working directory
-function PA.create_local_config(cwd)
-    local path = cwd .. "/.nvim/"
+function PA.create_local_config()
+    local cwd = vim.fn.getcwd() .. "/.nvim/"
     local file = "init.local.lua"
-    local contents = [[user.load_local_config(vim.fn.getcwd(), {\
+    local contents = [[PA.load_local_config(vim.fn.getcwd(), {\
+    \n    use_session   = true,\
+    \n    use_spellfile = false,\
     \n    use_palettes  = false,\
-    \n    use_spellfile = true,\
     \n})]]
 
-    create_local_config_file(path, file, contents)
-    vim.cmd(":e " .. path .. file)
+    create_element(cwd, file, contents)
+    vim.cmd(":e " .. cwd .. file)
     vim.cmd.redraw()
+end
+
+---Delete the project's local config file.
+function PA.delete_local_config(cwd)
+    cwd = cwd or vim.fn.getcwd()
+    local dir = "/.nvim/"
+
+    delete_element(cwd, dir)
+    vim.cmd.redraw()
+end
+
+function PA.get_session_name(cwd)
+    cwd = cwd or vim.fn.getcwd()
+    local saved = PA.data_path .. "/possession/"
+    local session = vim.fn.fnamemodify(cwd, ":t")
+    local available = true
+
+    if vim.fn.filereadable(saved .. session .. ".json") == 1 then
+        return session, available
+    end
+
+    return session, not available
+end
+
+function PA.save_local_session(cwd)
+    cwd = cwd or vim.fn.getcwd()
+    local session, available = PA.get_session_name(cwd)
+
+    if available then
+        return
+    end
+
+    vim.cmd.PossessionSave(session)
+end
+
+function PA.load_local_session(cwd)
+    cwd = cwd or vim.fn.getcwd()
+    local session, available = PA.get_session_name(cwd)
+
+    if not available then
+        vim.notify("There is no saved session for this project", "error")
+    else
+        vim.cmd.PossessionLoad(session)
+    end
 end

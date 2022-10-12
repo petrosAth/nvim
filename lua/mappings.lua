@@ -114,12 +114,17 @@ PA.mappings = {
             },
             q = { "<CMD>Bdelete<CR><CMD>quit<CR>", "Delete buffer and close window" },
             Q = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab" },
-            s = {
-                name = "Session manager",
-                d     = { "<CMD>PossessionDelete<CR>",            "Delete cwd session"                 }, -- possession.nvim
-                ["."] = { "<CMD>PossessionLoad<CR>",              "Load last session"                  }, -- possession.nvim
-                S     = { ":PossessionSave ",                     "Save session",       silent = false }, -- possession.nvim
-                s     = { telescope_custom .. "possession()<CR>", "Search sessions"                    }, -- possession.nvim
+            p = {
+                name = "Project",
+                c     = { "<CMD>lua PA.create_local_config()<CR>", "Create local config file" },
+                D = {
+                    name = "Delete",
+                    c = { "<CMD>lua PA.delete_local_config()<CR>", "Delete local config file" },
+                    s = { "<CMD>PossessionDelete<CR>",             "Delete local session"     }, -- possession.nvim
+                },
+                ["."] = { "<CMD>PossessionLoad Last closed<CR>",  "Load last closed"                }, -- possession.nvim
+                S     = { ":PossessionSave ",                     "Save session",    silent = false }, -- possession.nvim
+                s     = { telescope_custom .. "possession()<CR>", "Search sessions"                 }, -- possession.nvim
             },
             t = {
                 name = "Tab",
@@ -144,10 +149,6 @@ PA.mappings = {
                     P = { "<CMD>PackerSync<CR>",                     "Update plugins"          }, -- packer
                     p = { "<CMD>PackerSync --preview<CR>",           "Preview plugins updates" }, -- packer
                 },
-                p = {
-                    name = "Project",
-                    c = { "<CMD>lua user.create_local_config(vim.fn.getcwd())<CR>", "Create project local config file" }
-                }
             },
         },
         ["<Space>"] = {

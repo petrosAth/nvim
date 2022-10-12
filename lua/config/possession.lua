@@ -1,11 +1,13 @@
+local _, local_session_available = PA.get_session_name()
+
 require("possession").setup({
     silent = false,
     load_silent = true,
     debug = false,
     prompt_no_cr = false,
     autosave = {
-        current = false, -- or fun(name): boolean
-        tmp = true, -- or fun(): boolean
+        current = local_session_available, -- or fun(name): boolean
+        tmp = not local_session_available, -- or fun(): boolean
         tmp_name = "Last closed",
         on_load = true,
         on_quit = true,
