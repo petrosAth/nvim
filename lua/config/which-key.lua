@@ -99,24 +99,3 @@ local function register_mappings_in_wk(mappings)
 end
 
 register_mappings_in_wk(PA.mappings)
-
--- Code snippets
--- For future reference - https://github.com/folke/which-key.nvim/issues/165#issuecomment-921332940
--- require('which-key').register({
---     ['key'] = {
---         key = "text"
---     },
--- }, {
---     buffer = vim.api.nvim_get_current_buf(), --- pass buffer number in option then it will work
--- })
-
--- For future reference - https://github.com/folke/which-key.nvim/issues/135#issuecomment-898175086
--- function WhichKeyFileType()
---     local fileType = vim.api.nvim_buf_get_option(0, "filetype")
---     local opts = { buffer = 0 }
---     if fileType == "FileType" then
---         wk.register({
---             ["<key>"] = { "text" }
---         }, opts )
---     end
--- end
