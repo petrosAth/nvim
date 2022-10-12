@@ -4,8 +4,10 @@ require("mason-tool-installer").setup({
     ensure_installed = {
         -- LSP
         "bash-language-server",
+        "css-lsp",
         "clangd",
         "emmet-ls",
+        -- "html-lsp",
         "omnisharp",
         "omnisharp-mono",
         "powershell-editor-services",

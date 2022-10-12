@@ -20,6 +20,10 @@ for _, name in ipairs(servers) do
             on_attach = on_attach,
             capabilities = capabilities,
         })
+    elseif name == "emmet_ls" then
+        lspconfig[name].setup({
+            filetypes = { "html", },
+        })
     elseif name == "omnisharp" then
         local install_path = vim.fn.stdpath("data") .. "/mason/packages"
         local cmd = PA.omni_mono and "mono" or "dotnet"
