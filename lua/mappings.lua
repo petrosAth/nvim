@@ -116,15 +116,16 @@ PA.mappings = {
             Q = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab" },
             p = {
                 name = "Project",
-                c     = { "<CMD>lua PA.create_local_config()<CR>", "Create local config file" },
-                D = {
-                    name = "Delete",
-                    c = { "<CMD>lua PA.delete_local_config()<CR>", "Delete local config file" },
-                    s = { "<CMD>PossessionDelete<CR>",             "Delete local session"     }, -- possession.nvim
+                ["."] = { "<CMD>PossessionLoad<CR>",   "Load last closed"                }, -- possession.nvim
+                c = {
+                    name = "Create local files",
+                    c = { "<CMD>lua PA.create_local_config()<CR>",  "Create config file" },
+                    s = { "<CMD>lua PA.save_local_session()<CR>",   "Create session"     }, -- possession.nvim
+                    p = { "<CMD>lua PA.create_local_palette()<CR>", "Create palette"     }, -- hexokinase
                 },
-                ["."] = { "<CMD>PossessionLoad Last closed<CR>",  "Load last closed"                }, -- possession.nvim
-                S     = { ":PossessionSave ",                     "Save session",    silent = false }, -- possession.nvim
-                s     = { telescope_custom .. "possession()<CR>", "Search sessions"                 }, -- possession.nvim
+                D = { "<CMD>PossessionDelete<CR>",            "Delete currently loaded session"                },
+                L = { "<CMD>lua PA.load_local_session()<CR>", "Load last closed"                               }, -- possession.nvim
+                S = { ":PossessionSave ",                     "Save session",                   silent = false }, -- possession.nvim
             },
             t = {
                 name = "Tab",
@@ -257,7 +258,8 @@ PA.mappings = {
                 o = { "<CMD>Telescope vim_options<CR>",        "Vim options"             }, -- telescope
                 R = { telescope_custom .. "frecency()<CR>",    "Frecency"                }, -- telescope
                 r = { telescope_custom .. "oldFiles()<CR>",    "Recent files"            }, -- telescope
-                s = { telescope_custom .. "luasnip()<CR>",     "List available snippets" }, -- telescope-luasnip.nvim
+                s = { telescope_custom .. "possession()<CR>",  "Search sessions"         }, -- telescope -- possession.nvim
+                S = { telescope_custom .. "luasnip()<CR>",     "List available snippets" }, -- telescope-luasnip.nvim
                 T = { "<CMD>TodoTelescope<CR>",                "Show TODO comments"      }, -- todo-comments
                 t = {
                     name = "Telescope",

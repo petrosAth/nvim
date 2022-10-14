@@ -1,13 +1,12 @@
-local _, local_session_available = PA.get_session_name()
-
 require("possession").setup({
+    session_dir = PA.data_path .. "/sessions/",
     silent = false,
     load_silent = true,
     debug = false,
-    prompt_no_cr = false,
+    prompt_no_cr = true,
     autosave = {
-        current = local_session_available, -- or fun(name): boolean
-        tmp = not local_session_available, -- or fun(): boolean
+        current = true, -- or fun(name): boolean
+        tmp = true, -- or fun(): boolean
         tmp_name = "Last closed",
         on_load = true,
         on_quit = true,
@@ -23,7 +22,7 @@ require("possession").setup({
     },
     hooks = {
         before_save = function(name)
-            vim.cmd.DiffviewClose()
+            vim.cmd.tabdo("DiffviewClose")
             return {}
         end,
         after_save = function(name, user_data, aborted) end,

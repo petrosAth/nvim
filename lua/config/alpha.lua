@@ -32,12 +32,13 @@ local header = {
 local buttons_navigation = {
     type = "group",
     val = {
-        set_button("LDR p .", i.lastSession[1] .. " " .. i.arrowr[1] .. " Load last session", "<CMD>PossessionLoad Last closed<CR>" ),
-        set_button("LDR s s", i.sessions[1]    .. " " .. i.arrowr[1] .. " Search sessions",   tele_custom .. "possession()<CR>"     ),
-        set_button("SPC s r", i.history[1]     .. " " .. i.arrowr[1] .. " Recent files",      tele_custom .. "oldfiles()<CR>"       ),
-        set_button("SPC s R", i.history[1]     .. " " .. i.arrowr[1] .. " Frecent files",     tele_custom .. "frecency()<CR>"       ),
-        set_button("SPC s f", i.search[1]      .. " " .. i.arrowr[1] .. " File search",       "<CMD>Telescope find_files<CR>"       ),
-        set_button("SPC s g", i.grep[1]        .. " " .. i.arrowr[1] .. " ripGREP search",    "<CMD>Telescope live_grep<CR>"        )
+        set_button("LDR p .", i.lastSession[1] .. " " .. i.arrowr[1] .. " Load last session",  "<CMD>PossessionLoad<CR>" ),
+        set_button("LDR p L", i.lastSession[1] .. " " .. i.arrowr[1] .. " Load local session", "<CMD>lua PA.load_local_session()<CR>"             ),
+        set_button("LDR s s", i.sessions[1]    .. " " .. i.arrowr[1] .. " Search sessions",    tele_custom .. "possession()<CR>"     ),
+        set_button("SPC s r", i.history[1]     .. " " .. i.arrowr[1] .. " Recent files",       tele_custom .. "oldfiles()<CR>"       ),
+        set_button("SPC s R", i.history[1]     .. " " .. i.arrowr[1] .. " Frecent files",      tele_custom .. "frecency()<CR>"       ),
+        set_button("SPC s f", i.search[1]      .. " " .. i.arrowr[1] .. " File search",        "<CMD>Telescope find_files<CR>"       ),
+        set_button("SPC s g", i.grep[1]        .. " " .. i.arrowr[1] .. " ripGREP search",     "<CMD>Telescope live_grep<CR>"        )
     },
     opts = {
         spacing = 0,
