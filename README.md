@@ -1,14 +1,15 @@
 # Neovim config files
 
-My ["personal"](#sources) Neovim configuration for Windows.
-Still a work in progress.
+My ["personal"](#sources) Neovim configuration for Windows. Still a work in
+progress.
 
 ## TODO
 
 - [x] lualine root folder (.)
 - [x] Add window number in lualine
 - [x] Add gitsigns in lualine
-- [x] Try treesitter folding - reddit [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
+- [x] Try treesitter folding - reddit
+  [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
 - [x] Revisit FileType and BufEnter autocommands
 - [x] Add comment string snippets and telescope finder
 - [x] :h mark-motions
@@ -17,9 +18,11 @@ Still a work in progress.
 - [x] Revisit nvim-cmp menu
 - [x] lazyload everything possible
 - [x] Add Session management
-- [x] Replace [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) with [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
+- [x] Replace [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) with
+  [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
 - [x] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
-- [x] Command preview for lsp rename [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
+- [x] Command preview for lsp rename
+  [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
 - [ ] Add debugger
 - [ ] Add dracula theme
 - [ ] Add Solarized theme
@@ -35,11 +38,9 @@ Still a work in progress.
   configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4)
 - [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
   Telescope extension to preview media files using Ueberzug.
-- [nvim-gomove](https://github.com/booperlv/nvim-gomove) A complete plugin for
-  moving and duplicating blocks and lines, with complete fold handling,
-  reindenting, and undoing in one go.
 - [mini.align](https://github.com/echasnovski/mini.nvim#mini.align) Align text
   interactively (with or without instant preview).
+- [mini.nvim - mini.map](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-map.md)
 - [pantran.nvim](https://github.com/potamides/pantran.nvim) Use your favorite
   machine translation engines without having to leave your favorite editor.
 - [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) Neovim plugin for
@@ -83,9 +84,6 @@ Still a work in progress.
 
 - [LTeX Language Server](https://github.com/valentjn/ltex-ls) LTeX Language
   Server for LanguageTool with support for LaTeX , Markdown, and others.
-- [grammar-guard.nvim](https://github.com/brymer-meneses/grammar-guard.nvim)
-  Grammar Guard is a Neovim plugin that checks your grammar as you write your
-  LaTeX, Markdown or plain text document.
 
 ## Plugins collections
 
@@ -102,7 +100,8 @@ Still a work in progress.
   when I first dove in Vim/Neovim customization world with his [Neovim Lua From
   Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
   Youtube series.
-- [Getting started using Lua in Neovim](https://github.com/nanotee/nvim-lua-guide)
+- [Getting started using Lua in
+  Neovim](https://github.com/nanotee/nvim-lua-guide)
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim)
 - [NvChad](https://github.com/NvChad/NvChad)
 - [williamboman](https://github.com/williamboman/nvim-config)

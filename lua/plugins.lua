@@ -155,12 +155,7 @@ return packer.startup(function()
             {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
-                    require("null-ls").setup({
-                        sources = {
-                            require("null-ls").builtins.formatting.stylua,
-                            require("null-ls").builtins.formatting.prettier,
-                        },
-                    })
+                    require("config.lsp.null-ls")
                 end,
             },
             -- inc-rename.nvim - Incremental LSP rename command based on Neovim's command-preview feature
