@@ -27,7 +27,7 @@ function PA.create_local_palette(config_dir)
         [[    "color1": "#ffffff",]],
         [[    "color2": "#000000"]],
         [[  }]],
-        [[}]]
+        [[}]],
     }
 
     if vim.fn.isdirectory(path) == 0 then
@@ -49,10 +49,7 @@ local function get_palettes(cwd, config_dir)
     local palettes = {}
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
-        local current_theme_palette = PA.config_path
-            .. "/lua/config/hexokinase/theme-palettes/"
-            .. PA.theme
-            .. ".json"
+        local current_theme_palette = PA.config_path .. "/lua/config/hexokinase/theme-palettes/" .. PA.theme .. ".json"
         table.insert(palettes, current_theme_palette)
     end
 
@@ -113,7 +110,7 @@ function PA.create_local_config()
         [[    use_session   = false,]],
         [[    use_spellfile = false,]],
         [[    use_palettes  = false,]],
-        [[})]]
+        [[})]],
     }
 
     vim.fn.mkdir(dir)
