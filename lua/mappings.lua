@@ -336,7 +336,9 @@ PA.mappings = {
         },
     },
     -- Insert mode mappints
-    i = {},
+    i = {
+        ["<C-j>"] = { "<CR>", "Enter", noremap = false }, -- nvim-autopairs
+    },
     -- Command-line mode mappings
     c = {
         ["<C-y>"] = { "<CR>",      "Enter"                                 },
