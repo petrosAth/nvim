@@ -262,7 +262,7 @@ return packer.startup(function()
         "RRethy/vim-hexokinase",
         run = "make hexokinase",
         cmd = { "HexokinaseToggle", "HexokinaseTurnOn" },
-        ft = { "css", "html", "json" },
+        ft = { "css", "html", "javascript", "json", },
         setup = function()
             require("config.hexokinase")
         end,

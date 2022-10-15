@@ -18,13 +18,14 @@ g.Hexokinase_optInPatterns = {
     "colour_names",
 }
 g.Hexokinase_refreshEvents = {
-    "BufRead",
     "BufEnter",
-    "TextChanged",
+    "BufRead",
     "InsertLeave",
+    "TextChanged",
 }
 g.Hexokinase_ftEnabled = {
     "css",
     "html",
+    "javascript",
     "json",
 }
