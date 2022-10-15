@@ -119,7 +119,7 @@ M.FileModified = {
         { h.Separator.right },
     }, { h.Null }),
 
-    hl = "WinBarModifiedCurrent"
+    hl = "WinBarModifiedCurrent",
 }
 
 local FileNameBlock = {
@@ -239,7 +239,10 @@ M.Paste = {
         -- execute this only once, this is required if you want the ViMode
         -- component to be updated on operator pending mode
         if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", { command = "redrawstatus" })
+            vim.api.nvim_create_autocmd("ModeChanged", {
+                pattern = "*:*o",
+                command = "redrawstatus",
+            })
             self.once = true
         end
     end,
@@ -272,7 +275,10 @@ M.Wrap = {
         -- execute this only once, this is required if you want the ViMode
         -- component to be updated on operator pending mode
         if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", { command = "redrawstatus" })
+            vim.api.nvim_create_autocmd("ModeChanged", {
+                pattern = "*:*o",
+                command = "redrawstatus",
+            })
             self.once = true
         end
     end,
@@ -364,7 +370,10 @@ M.LinesTotal = {
         -- execute this only once, this is required if you want the ViMode
         -- component to be updated on operator pending mode
         if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", { command = "redrawstatus" })
+            vim.api.nvim_create_autocmd("ModeChanged", {
+                pattern = "*:*o",
+                command = "redrawstatus",
+            })
             self.once = true
         end
     end,
@@ -393,7 +402,10 @@ M.LinesTotalSpecial = {
         -- execute this only once, this is required if you want the ViMode
         -- component to be updated on operator pending mode
         if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", { command = "redrawstatus" })
+            vim.api.nvim_create_autocmd("ModeChanged", {
+                pattern = "*:*o",
+                command = "redrawstatus",
+            })
             self.once = true
         end
     end,
@@ -427,7 +439,7 @@ M.WindowNumber = {
     },
     { h.Separator.right },
 
-    hl = "WinBarWindowNumber"
+    hl = "WinBarWindowNumber",
 }
 
 M.CloseButton = {
@@ -703,7 +715,7 @@ M.ViMode = {
         if not self.once then
             vim.api.nvim_create_autocmd("ModeChanged", {
                 pattern = "*:*o",
-                command = "redrawstatus"
+                command = "redrawstatus",
             })
             self.once = true
         end
