@@ -25,7 +25,8 @@ local excBuftypes = {
 }
 
 require("indent_blankline").setup({
-    char_list = { i[1], i[2] },
+    char_list = { i.char[1], i.char[2] },
+    context_char_list = { i.context_char[1], i.context_char[2] },
     space_char_blankline = " ",
     filetype_exclude = excFiletypes,
     buftype_exclude = excBuftypes,

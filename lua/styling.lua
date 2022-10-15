@@ -3,7 +3,7 @@ local styling = {}
 vim.cmd.colorscheme(PA.theme)
 
 styling.variables = {
-    transparency = 0
+    transparency = 0,
 }
 
 styling.icons = {
@@ -12,12 +12,12 @@ styling.icons = {
     column       = { ""                                              },
     linesTotal   = { ""                                              },
     close        = { "", "", "", ""                               },
-    delete       = { "",                                             },
-    pending      = { "",                                             },
+    delete       = { ""                                              },
+    pending      = { ""                                              },
     done         = { "", "", ""                                    },
     def          = { "", "", "", "硫"                              },
     modified     = { "", "", ""                                    },
-    edit         = { "",                                             },
+    edit         = { ""                                              },
     prompt       = { "❯", "", "", "", "❯", "›"                     },
     search       = { ""                                              },
     grep         = { ""                                              },
@@ -48,7 +48,6 @@ styling.icons = {
     windows      = { ""                                              },
     update       = { ""                                              },
     lspServers   = { ""                                              },
-    indentLine   = { "│", "╵", '|', "❘", '¦', "│", '╵', "╎", '┆', '┊' },
     folderop     = { "", "", ""                                    },
     foldercl     = { "", "", ""                                    },
     arrowu       = { "", "", "", "", "", "⯅", "▲", "△", "", "" },
@@ -60,7 +59,12 @@ styling.icons = {
     arrowl       = { "", "", "", "", "", "⯇", "◀", "◁", "", "" },
     arrowul      = { "", ""                                         },
     treesiter    = { ""                                              },
-    lsp        = {
+    indentLine = {
+        char         = { "│", "╷"                                    },
+        context_char = { "│", "╷"                                    },
+        misc         = { "|", "❘", "¦", "│", "╵", "╷", "╎", "┆", "┊" },
+    },
+    lsp = {
         lspIcon  = { "", "", ""                          },
         error    = { "", "", "", "", "", "", "", "" },
         warn     = { "", "", "", "", "", "", "", "" },
@@ -68,9 +72,9 @@ styling.icons = {
         info     = { "", "", "", "", "", "", "", "" },
         action   = { "", "", "", "", "", "", ""      },
         ok       = { "", "", "", "", ""                },
-        virtText = { "", "", "●", "", "▌", ""           }
+        virtText = { "", "", "●", "", "▌", ""           },
     },
-    git        = {
+    git = {
         repo      = { ""                },
         branch    = { "", ""           },
         commit    = { ""                },
@@ -89,44 +93,44 @@ styling.icons = {
         linux   = { "" },
         mac     = { "" },
     },
-    loading  = {
+    loading = {
         circle = {
-            "◝", "◞", "◟", "◜"
+            "◝", "◞", "◟", "◜",
         },
         braille = {
-            "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾"
+            "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾",
         },
         sphere = {
             "", "", "", "", "", "", "",
             "", "", "", "", "", "", "",
             "", "", "", "", "", "", "",
             "", "", "", "", "", "", "",
-        }
+        },
     },
     -- Fillchar and listchar icons
     fillchars = {
         global = {
-            stl       =  " " , -- statusline of the current window
-            stlnc     =  " " , -- statusline of the non-current windows
-            wbr       =  " " , -- window bar
-            horiz     =  "█" , -- "█", "─", "━", "🬭", "▁" horizontal separators |:split|
-            horizup   =  "█" , -- "█", "┴", "┻", "🬲", " " upwards facing horizontal separator
-            horizdown =  "█" , -- "█", "┬", "┳", "🬲", "🭼" downwards facing horizontal separator
-            vert      =  "█" , -- "█", "│", "┃", "▌", "▏" vertical separators |:vsplit|
-            vertleft  =  "█" , -- "█", "┤", "┫", "▌", "▏" left facing vertical separator
-            vertright =  "█" , -- "█", "├", "┣", "🬲", "🭼" right facing vertical separator
-            verthoriz =  "█" , -- "█", "┼", "╋", "🬲", "🭼" overlapping vertical and horizontal
-            fold      =  " " , -- filling 'foldtext'
-            foldopen  =  "┌" , -- mark the beginning of a fold
-            foldclose =  "─" , -- show a closed fold
-            foldsep   =  "│" , -- open fold middle marker
-            diff      =  "╱" , -- deleted lines of the 'diff' option
-            msgsep    =  " " , -- message separator 'display'
-            eob       =  "─" , -- empty lines at the end of a buffer
+            stl       = " ", -- statusline of the current window
+            stlnc     = " ", -- statusline of the non-current windows
+            wbr       = " ", -- window bar
+            horiz     = "█", -- "█", "─", "━", "🬭", "▁" horizontal separators |:split|
+            horizup   = "█", -- "█", "┴", "┻", "🬲", " " upwards facing horizontal separator
+            horizdown = "█", -- "█", "┬", "┳", "🬲", "🭼" downwards facing horizontal separator
+            vert      = "█", -- "█", "│", "┃", "▌", "▏" vertical separators |:vsplit|
+            vertleft  = "█", -- "█", "┤", "┫", "▌", "▏" left facing vertical separator
+            vertright = "█", -- "█", "├", "┣", "🬲", "🭼" right facing vertical separator
+            verthoriz = "█", -- "█", "┼", "╋", "🬲", "🭼" overlapping vertical and horizontal
+            fold      = " ", -- filling 'foldtext'
+            foldopen  = "┌", -- mark the beginning of a fold
+            foldclose = "─", -- show a closed fold
+            foldsep   = "│", -- open fold middle marker
+            diff      = "╱", -- deleted lines of the 'diff' option
+            msgsep    = " ", -- message separator 'display'
+            eob       = "─", -- empty lines at the end of a buffer
         },
         custom = {
-            eob = " "
-        }
+            eob = " ",
+        },
     },
     listchars = {
         eol            = "↵",  -- Character to show at the end of each line.
@@ -144,14 +148,14 @@ styling.icons = {
 }
 
 styling.borders = {
-    default  = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕" },
-    outline  = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕" },
-    single   = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤" },
-    round    = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤" },
-    double   = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢",      "╠",      "╣", },
-    box      = { tl = "🬕",  t = "🬂", tr = "🬨",  r = "▐", br = "🬷",  b = "🬭", bl = "🬲",  l = "▌", ml = "🬛", mr = "🬫" },
-    fatbox   = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌" },
-    none     = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " " },
+    default = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
+    outline = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
+    single  = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤",           },
+    round   = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤",           },
+    double  = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢", "╠", "╣", },
+    box     = { tl = "🬕",  t = "🬂", tr = "🬨",  r = "▐", br = "🬷",  b = "🬭", bl = "🬲",  l = "▌", ml = "🬛", mr = "🬫",           },
+    fatbox  = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌"                                },
+    none    = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " "            },
 }
 
 styling.separators = {
