@@ -1,15 +1,26 @@
 local alpha = require("alpha")
-local dashboard = require("alpha.themes.dashboard")
 local i = require("styling").icons
-local tele_custom = "<cmd> lua require('config.telescope.customPickers')."
 
-local function set_button(sc, txt, keybind, keybind_opts)
-    local button = dashboard.button(sc, txt, keybind, keybind_opts)
-    button.opts.hl          = "AlphaButtons"
-    button.opts.hl_shortcut = "AlphaButtonShortcuts"
-    button.opts.cursor      = 4
+local function button(shortcut, description)
+    return {
+        type = "button",
+        val = description,
+        on_press = function()
+            local sc_ = shortcut:gsub("%s", ""):gsub("SPC", "<space>"):gsub("LDR", "<leader>")
+            local key = vim.api.nvim_replace_termcodes(sc_ .. "<Ignore>", true, false, true)
 
-    return button
+            vim.api.nvim_feedkeys(key, "normal", false)
+        end,
+        opts = {
+            position = "center",
+            hl = "AlphaButtons",
+            shortcut = shortcut,
+            align_shortcut = "right",
+            hl_shortcut = "AlphaButtonShortcuts",
+            cursor = 0,
+            width = 50,
+        },
+    }
 end
 
 local header = {
@@ -21,24 +32,33 @@ local header = {
         [[/_/ /_/\___/\____/   MM.  M'(O) _ __ ___  ]],
         [[                     `MM A' |M|| '_ ` _ \ ]],
         [[                      :MM;  |M|| | | | | |]],
-        [[                       VF   |M||_| |_| |_|]]
+        [[                       VF   |M||_| |_| |_|]],
     },
     opts = {
         position = "center",
-        hl = "AlphaHeader"
-    }
+        hl = "AlphaHeader",
+    },
+}
+
+local buttons_session = {
+    type = "group",
+    val = {
+        button("LDR p .", "│ " .. i.lastSession[1] .. " Load last session"),
+        button("LDR p L", "│ " .. i.lastSession[1] .. " Load local session"),
+        button("LDR s s", "│ " .. i.sessions[1]    .. " Search sessions"),
+    },
+    opts = {
+        spacing = 0,
+    },
 }
 
 local buttons_navigation = {
     type = "group",
     val = {
-        set_button("LDR p .", i.lastSession[1] .. " " .. i.arrowr[1] .. " Load last session",  "<CMD>PossessionLoad<CR>" ),
-        set_button("LDR p L", i.lastSession[1] .. " " .. i.arrowr[1] .. " Load local session", "<CMD>lua PA.load_local_session()<CR>"             ),
-        set_button("LDR s s", i.sessions[1]    .. " " .. i.arrowr[1] .. " Search sessions",    tele_custom .. "possession()<CR>"     ),
-        set_button("SPC s r", i.history[1]     .. " " .. i.arrowr[1] .. " Recent files",       tele_custom .. "oldfiles()<CR>"       ),
-        set_button("SPC s R", i.history[1]     .. " " .. i.arrowr[1] .. " Frecent files",      tele_custom .. "frecency()<CR>"       ),
-        set_button("SPC s f", i.search[1]      .. " " .. i.arrowr[1] .. " File search",        "<CMD>Telescope find_files<CR>"       ),
-        set_button("SPC s g", i.grep[1]        .. " " .. i.arrowr[1] .. " ripGREP search",     "<CMD>Telescope live_grep<CR>"        )
+        button("SPC s r", "│ " .. i.history[1] .. " Recent files"),
+        button("SPC s R", "│ " .. i.history[1] .. " Frecent files"),
+        button("SPC s f", "│ " .. i.search[1]  .. " File search"),
+        button("SPC s g", "│ " .. i.grep[1]    .. " ripGREP search"),
     },
     opts = {
         spacing = 0,
@@ -48,9 +68,9 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        set_button("LDR u u p", i.diffview[1]   .. " " .. i.arrowr[1] .. " Preview plugins updates", "<CMD>PackerSync --preview<CR>"           ),
-        set_button("LDR u u P", i.update[1]     .. " " .. i.arrowr[1] .. " Update plugins",          "<CMD>PackerSync<CR>"                     ),
-        set_button("LDR u u l", i.lspServers[1] .. " " .. i.arrowr[1] .. " Update LSP packages",     "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>" ),
+        button("LDR u u p", "│ " .. i.diffview[1]   .. " Preview plugins updates"),
+        button("LDR u u P", "│ " .. i.update[1]     .. " Update plugins"),
+        button("LDR u u l", "│ " .. i.lspServers[1] .. " Update LSP packages"),
     },
     opts = {
         spacing = 0,
@@ -59,10 +79,10 @@ local buttons_utility = {
 
 local footer = {
     type = "text",
-    val = require'alpha.fortune'(),
+    val = require("alpha.fortune")(),
     opts = {
         position = "center",
-        hl = "AlphaFooter"
+        hl = "AlphaFooter",
     },
 }
 
@@ -71,6 +91,8 @@ alpha.setup({
         { type = "padding", val = 5 },
         header,
         { type = "padding", val = 4 },
+        buttons_session,
+        { type = "padding", val = 1 },
         buttons_navigation,
         { type = "padding", val = 1 },
         buttons_utility,
@@ -79,6 +101,6 @@ alpha.setup({
     },
     opts = {
         margin = 5,
-        noautocmd = false
+        noautocmd = false,
     },
 })
