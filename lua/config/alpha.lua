@@ -43,9 +43,9 @@ local header = {
 local buttons_session = {
     type = "group",
     val = {
-        button("LDR p .", "│ " .. i.lastSession[1] .. " Load last session"),
-        button("LDR p L", "│ " .. i.lastSession[1] .. " Load local session"),
-        button("LDR s s", "│ " .. i.sessions[1]    .. " Search sessions"),
+        button("LDR p .", i.alphaCursor[1] .. " " .. i.lastSession[1] .. " Load last session"),
+        button("LDR p L", i.alphaCursor[1] .. " " .. i.lastSession[1] .. " Load local session"),
+        button("LDR s s", i.alphaCursor[1] .. " " .. i.sessions[1]    .. " Search sessions"),
     },
     opts = {
         spacing = 0,
@@ -55,10 +55,10 @@ local buttons_session = {
 local buttons_navigation = {
     type = "group",
     val = {
-        button("SPC s r", "│ " .. i.history[1] .. " Recent files"),
-        button("SPC s R", "│ " .. i.history[1] .. " Frecent files"),
-        button("SPC s f", "│ " .. i.search[1]  .. " File search"),
-        button("SPC s g", "│ " .. i.grep[1]    .. " ripGREP search"),
+        button("SPC s r", i.alphaCursor[1] .. " " .. i.history[1] .. " Recent files"),
+        button("SPC s R", i.alphaCursor[1] .. " " .. i.history[1] .. " Frecent files"),
+        button("SPC s f", i.alphaCursor[1] .. " " .. i.search[1]  .. " File search"),
+        button("SPC s g", i.alphaCursor[1] .. " " .. i.grep[1]    .. " ripGREP search"),
     },
     opts = {
         spacing = 0,
@@ -68,9 +68,9 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        button("LDR u u p", "│ " .. i.diffview[1]   .. " Preview plugins updates"),
-        button("LDR u u P", "│ " .. i.update[1]     .. " Update plugins"),
-        button("LDR u u l", "│ " .. i.lspServers[1] .. " Update LSP packages"),
+        button("LDR u u p", i.alphaCursor[1] .. " " .. i.diffview[1]   .. " Preview plugins updates"),
+        button("LDR u u P", i.alphaCursor[1] .. " " .. i.update[1]     .. " Update plugins"),
+        button("LDR u u l", i.alphaCursor[1] .. " " .. i.lspServers[1] .. " Update LSP packages"),
     },
     opts = {
         spacing = 0,

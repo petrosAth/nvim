@@ -7,6 +7,7 @@ styling.variables = {
 }
 
 styling.icons = {
+    alphaCursor  = { "░"                                              },
     line         = { ""                                              },
     column       = { ""                                              },
     linesTotal   = { ""                                              },
