@@ -1,3 +1,3 @@
 require("config-local").setup({
-    config_files = { ".nvim/init.local.lua" }, -- Config file patterns to load (lua supported)
+    config_files = { PA.local_config.dir .. "/" .. PA.local_config.file }, -- Config file patterns to load
 })

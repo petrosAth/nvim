@@ -10,6 +10,7 @@ _G.PA = { -- Custom table to store my functions, tables, variables etc
     mappings     = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
         dir = ".nvim", -- Local configuration directory
+        file = "init.local.lua", -- Local configuration file
         palettes_dir = "palettes", -- Palettes directory
         spell_dir = "spell", -- Spell directory
     },
