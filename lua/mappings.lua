@@ -125,12 +125,17 @@ PA.mappings = {
                 name = "Project",
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
                 c = {
-                    name = "Create local files",
+                    name = "Create local config files",
                     c = { "<CMD>lua PA.create_local_config()<CR>",  "Create config file" },
                     s = { "<CMD>lua PA.save_local_session()<CR>",   "Create session"     }, -- possession.nvim
                     p = { "<CMD>lua PA.create_local_palette()<CR>", "Create palette"     }, -- hexokinase
                 },
                 D = { "<CMD>PossessionDelete<CR>",            "Delete currently loaded session"                }, -- possession.nvim
+                e = {
+                    name = "Edit local config files",
+                    c = { "<CMD>lua PA.edit_local_config()<CR>", "Edit config file" },
+                    g = { "<CMD>lua PA.edit_gitignore()<CR>",    "Edit .gitignore"  }
+                },
                 L = { "<CMD>lua PA.load_local_session()<CR>", "Load last closed"                               }, -- possession.nvim
                 S = { ":PossessionSave ",                     "Save session",                   silent = false }, -- possession.nvim
             },
