@@ -18,7 +18,7 @@ local function button(shortcut, description)
             align_shortcut = "right",
             hl_shortcut = "AlphaButtonShortcuts",
             cursor = 0,
-            width = 50,
+            width = 40,
         },
     }
 end
