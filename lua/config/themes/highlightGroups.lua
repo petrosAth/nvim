@@ -131,7 +131,7 @@ function M.load(palette)
         LspReferenceRead = g.editor.Visual,
         LspReferenceWrite = g.editor.Visual,
         -- Neovim LspSignatureHelp
-        LspSignatureActiveParameter = g.syntax.SpecialComment,
+        LspSignatureActiveParameter = { fg = g.syntax.Operator.fg, reverse = true },
         -- lspinfo window
         LspInfoBorder = { link = "FloatBorder" },
     }
@@ -459,7 +459,7 @@ function M.load(palette)
         ["@function.builtin"]      = g.syntax.Function,
         ["@function.call"]         = g.syntax.Function,
         ["@function.macro"]        = g.syntax.Function,
-        ["@parameter"]             = g.syntax.SpecialComment,
+        ["@parameter"]             = g.syntax.Operator,
         ["@method"]                = g.syntax.Function,
         ["@method.call"]           = g.syntax.Function,
         ["@field"]                 = g.syntax.Special,
