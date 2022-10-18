@@ -126,6 +126,9 @@ function PA.load_local_config(cwd, config)
     if config.use_palettes == true then
         vim.g.Hexokinase_palettes = get_palettes(cwd, dir)
     end
+    if config.use_format_on_save == true then
+        PA.enable_format_on_save()
+    end
 end
 
 ---Create a project local config file, and open it in the current window.
@@ -134,15 +137,16 @@ function PA.create_local_config()
     local file = PA.local_config.file
     local content = {
         [[PA.load_local_config(vim.fn.getcwd(), {]],
-        [[    use_session   = false,]],
-        [[    use_spellfile = false,]],
-        [[    use_palettes  = false,]],
+        [[    use_session        = false,]],
+        [[    use_spellfile      = false,]],
+        [[    use_palettes       = false,]],
+        [[    use_format_on_save = false,]],
         [[})]],
     }
 
     create_gitignore()
     vim.fn.mkdir(dir)
-    create_buffer(dir, file, content, { 2, 20 })
+    create_buffer(dir, file, content, { 2, 21 })
     vim.cmd.redraw()
 end
 

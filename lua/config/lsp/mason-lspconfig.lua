@@ -7,8 +7,8 @@ local servers = lsp_cfg.servers
 require("mason-lspconfig").setup()
 
 local lspconfig = require("lspconfig")
-local custom_capabilities = lsp_cfg.custom_capabilities()
-local custom_on_attach = lsp_cfg.custom_on_attach
+local capabilities = lsp_cfg.capabilities()
+local on_attach = lsp_cfg.on_attach
 
 require("lspconfig.ui.windows").default_options.border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
@@ -17,6 +17,8 @@ for _, name in ipairs(servers) do
     if name == "bashls" then
         lspconfig[name].setup({
             filetypes = { "makefile", "sh", "zsh" },
+            on_attach = on_attach,
+            capabilities = capabilities,
         })
     elseif name == "omnisharp" then
         local install_path = vim.fn.stdpath("data") .. "/mason/packages"
@@ -34,6 +36,8 @@ for _, name in ipairs(servers) do
                     tostring(vim.fn.getpid()),
                 }
             end,
+            on_attach = on_attach,
+            capabilities = capabilities,
         })
     elseif name == "sumneko_lua" then
         if PA.dev_mode then
@@ -94,8 +98,8 @@ for _, name in ipairs(servers) do
                         },
                     },
                 },
-                on_attach = custom_on_attach,
-                capabilities = custom_capabilities,
+                on_attach = on_attach,
+                capabilities = capabilities,
             })
         else
             lspconfig[name].setup({
@@ -113,14 +117,14 @@ for _, name in ipairs(servers) do
                         },
                     },
                 },
-                on_attach = custom_on_attach,
-                capabilities = custom_capabilities,
+                on_attach = on_attach,
+                capabilities = capabilities,
             })
         end
     else
         lspconfig[name].setup({
-            on_attach = custom_on_attach,
-            capabilities = custom_capabilities,
+            on_attach = on_attach,
+            capabilities = capabilities,
         })
     end
 end

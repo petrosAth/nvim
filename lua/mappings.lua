@@ -136,8 +136,9 @@ PA.mappings = {
                     c = { "<CMD>lua PA.edit_local_config()<CR>", "Edit config file" },
                     g = { "<CMD>lua PA.edit_gitignore()<CR>",    "Edit .gitignore"  }
                 },
-                L = { "<CMD>lua PA.load_local_session()<CR>", "Load last closed"                               }, -- possession.nvim
-                S = { ":PossessionSave ",                     "Save session",                   silent = false }, -- possession.nvim
+                f = { "<CMD>LspToggleAutoFormat<CR>",         "Toggle auto formatting"                },
+                L = { "<CMD>lua PA.load_local_session()<CR>", "Load last closed"                      },     -- possession.nvim
+                S = { ":PossessionSave ",                     "Save session",          silent = false }, -- possession.nvim
             },
             t = {
                 name = "Tab",
@@ -290,8 +291,8 @@ PA.mappings = {
             u = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>",                                                                         "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 name = "Launch",
-                e = { "<CMD>lua launch_ext_prog('dolphin ', vim.fn.expand('%:p:h'))<CR>", "Open cwd in system file browser",                 },
-                l = { "<CMD>lua open_url(vim.fn.expand('<cWORD>'))<CR>",                  "Open URL under cursor in browser", silent = true, },
+                e = { "<CMD>lua PA.launch_ext_prog('dolphin ', vim.fn.expand('%:p:h'))<CR>", "Open cwd in system file browser",                 },
+                l = { "<CMD>lua PA.open_url(vim.fn.expand('<cWORD>'))<CR>",                  "Open URL under cursor in browser", silent = true, },
             },
         },
     },

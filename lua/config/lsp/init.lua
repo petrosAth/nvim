@@ -18,13 +18,13 @@ M.servers = {
 -- Borders for LSP floating windows
 local border = {
     { b.tl, "FloatBorder" },
-    { b.t,  "FloatBorder" },
+    { b.t, "FloatBorder" },
     { b.tr, "FloatBorder" },
-    { b.r,  "FloatBorder" },
+    { b.r, "FloatBorder" },
     { b.br, "FloatBorder" },
-    { b.b,  "FloatBorder" },
+    { b.b, "FloatBorder" },
     { b.bl, "FloatBorder" },
-    { b.l,  "FloatBorder" },
+    { b.l, "FloatBorder" },
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -41,7 +41,7 @@ vim.diagnostic.config({
     virtual_text = {
         source = "if_many", --"always" "if_many"
         spacing = 4,
-        prefix = i.lsp.virtText[1]
+        prefix = i.lsp.virtText[1],
     },
     signs = true,
     underline = true,
@@ -57,7 +57,7 @@ for type, icon in pairs(signs) do
 end
 
 -- Configure lsp capabilities
-function M.custom_capabilities()
+function M.capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -70,7 +70,11 @@ function M.custom_capabilities()
 end
 
 -- Configure lsp on_attach function
-function M.custom_on_attach(client, bufnr)
+function M.on_attach(client, bufnr)
+    if client.name == "cssls" then
+        client.server_capabilities.documentFormattingProvider = true
+        client.server_capabilities.documentRangeFormattingProvider = true
+    end
 end
 
 return M
