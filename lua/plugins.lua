@@ -104,6 +104,14 @@ return packer.startup(function()
         end,
     })
 
+    -- codewindow.nvim - Codewindow.nvim is a minimap plugin for neovim, that is closely integrated with treesitter and the builtin LSP to display more information to the user
+    use({
+        "gorbit99/codewindow.nvim",
+        config = function()
+            require("config.codewindow")
+        end,
+    })
+
     ---- Autocompletion and Syntax highlighting ---------------------------------------------------------------------
     -- mason.nvim - Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
     -- servers, DAP servers, linters, and formatters.
@@ -264,7 +272,7 @@ return packer.startup(function()
         "RRethy/vim-hexokinase",
         run = "make hexokinase",
         cmd = { "HexokinaseToggle", "HexokinaseTurnOn" },
-        ft = { "css", "html", "javascript", "json", },
+        ft = { "css", "html", "javascript", "json" },
         setup = function()
             require("config.hexokinase")
         end,

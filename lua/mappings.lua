@@ -240,6 +240,12 @@ PA.mappings = {
                 d = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                 }, -- lspconfig -- trouble
                 D = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                }, -- lspconfig -- trouble
             },
+            m = {
+                name = "Minimap",
+                m = { "<CMD>lua require('codewindow').open_minimap()<CR>",  "Open minimap"          }, -- codewindow.nvim
+                c = { "<CMD>lua require('codewindow').close_minimap()<CR>", "Close minimap"         }, -- codewindow.nvim
+                f = { "<CMD>lua require('codewindow').toggle_focus()<CR>",  "Focus/unfocus minimap" }, -- codewindow.nvim
+            },
             o = { "<CMD>SymbolsOutline<CR>", "Toggle Code outline" }, -- symbols-outline.nvim
             q = {
                 name = "Trouble",
