@@ -22,12 +22,12 @@ tree.setup({
         winbar = false, -- toggle to show selector on winbar
         statusline = true, -- toggle to show selector on statusline
         show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
-                                               -- of the top visible node when scrolled down.
+        -- of the top visible node when scrolled down.
         tab_labels = { -- falls back to source_name if nil
-          filesystem = " " .. i.fileExplorer[1] .. " Files ",
-          buffers =   i.buffers[1] .. " Buffers ",
-          git_status = i.git.repo[1] .. " Git ",
-          diagnostics = i.lsp.lspIcon[1] .. " Diagnostics ",
+            filesystem = " " .. i.fileExplorer[1] .. " Files ",
+            buffers = i.buffers[1] .. " Buffers ",
+            git_status = i.git.repo[1] .. " Git ",
+            diagnostics = i.lsp.lspIcon[1] .. " Diagnostics ",
         },
         content_layout = "start", -- only with `tabs_layout` = "equal", "focus"
         --                start  : |/ 裡 bufname     \/...
@@ -44,7 +44,7 @@ tree.setup({
         tabs_max_width = nil, -- this will truncate text even if `text_trunc_to_fit = false`
         padding = 0, -- can be int or table
         -- separator = "▕", -- can be string or table, see below
-         separator = { left = "▏", right= "▕" },
+        separator = { left = "▏", right = "▕" },
         -- separator = { left = "/", right = "\\", override = nil },     -- |/  a  \/  b  \/  c  \...
         -- separator = { left = "/", right = "\\", override = "right" }, -- |/  a  \  b  \  c  \...
         -- separator = { left = "/", right = "\\", override = "left" },  -- |/  a  /  b  /  c  /...
@@ -115,8 +115,8 @@ tree.setup({
         popup = {
             size = {
                 width = 49,
-                height = "80%"
-            }
+                height = "80%",
+            },
         },
         mapping_options = {
             noremap = true,
@@ -125,36 +125,39 @@ tree.setup({
         mappings = {
             ["<space>"] = false,
             ["<2-LeftMouse>"] = "open",
-            ["L"] = "open",
+            ["<CR>"] = "open",
             ["l"] = "open_with_window_picker",
-            ["<C-s>"] = "split_with_window_picker",
-            ["<C-v>"] = "vsplit_with_window_picker",
-            ["<C-t>"] = "open_tabnew",
-            ["P"] = false,
-            ["<M-p>"] = { "toggle_preview", config = { use_float = false } },
+            ["o"] = "split_with_window_picker",
+            ["v"] = "vsplit_with_window_picker",
+            ["t"] = "open_tabnew",
+            ["p"] = { "toggle_preview", config = { use_float = false } },
             ["w"] = false,
             ["s"] = false,
             ["S"] = false,
             ["h"] = "close_node",
             ["z"] = false,
             ["zM"] = "close_all_nodes",
-            ["a"] = {
+            ["zR"] = "expand_all_nodes",
+            ["%"] = {
                 "add",
                 -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                 config = {
                     show_path = "relative", -- "none", "relative", "absolute"
                 },
             },
-            ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add".
+            ["d"] = "add_directory", -- also accepts the optional config.show_path option like "add".
+            ["A"] = false, -- also accepts the optional config.show_path option like "add".
             ["D"] = "delete",
             ["R"] = "rename",
-            ["y"] = "copy_to_clipboard",
+            ["Y"] = "copy_to_clipboard",
+            ["y"] = false,
             ["x"] = false,
             ["X"] = "cut_to_clipboard",
-            ["p"] = "paste_from_clipboard",
-            ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+            ["P"] = "paste_from_clipboard",
+            ["c"] = false, -- takes text input for destination, also accepts the optional config.show_path option like "add":
+            ["cp"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
             ["m"] = false,
-            ["M"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+            ["mv"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
             ["q"] = "close_window",
             ["r"] = "refresh",
             ["?"] = "show_help",
@@ -190,15 +193,18 @@ tree.setup({
         -- instead of relying on nvim autocmd events.
         window = {
             mappings = {
-                ["<BS>"] = "navigate_up",
-                ["<CR>"] = "set_root",
-                ["."] = "toggle_hidden",
-                ["/"] = "fuzzy_finder",
-                ["d"] = "fuzzy_finder_directory",
-                ["f"] = "filter_on_submit",
-                ["<C-x>"] = "clear_filter",
+                ["-"] = "navigate_up",
+                ["cd"] = "set_root",
+                ["gh"] = "toggle_hidden",
+                ["D"] = false,
+                ["/"] = "filter_on_submit",
+                ["f"] = false,
+                ["<Esc>"] = "clear_filter",
+                ["<C-x>"] = false,
                 ["[c"] = "prev_git_modified",
                 ["]c"] = "next_git_modified",
+                ["[g"] = false,
+                ["]g"] = false,
             },
         },
     },
@@ -210,8 +216,8 @@ tree.setup({
         window = {
             mappings = {
                 ["d"] = "buffer_delete",
-                ["<BS>"] = "navigate_up",
-                ["<CR>"] = "set_root",
+                ["-"] = "navigate_up",
+                ["cd"] = "set_root",
             },
         },
     },
@@ -235,9 +241,10 @@ tree.setup({
             handler = function()
                 local ol = vim.opt_local
 
-                ol.cursorcolumn   = false
+                ol.colorcolumn = "" -- Hide vertical line for text alignment
+                ol.cursorcolumn = false
                 ol.relativenumber = true
-                ol.fillchars      = i.fillchars.global
+                ol.fillchars = i.fillchars.global
                 ol.fillchars:append(i.fillchars.custom) -- Remove eob character
             end,
         },
