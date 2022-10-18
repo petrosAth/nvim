@@ -20,6 +20,7 @@ require("null-ls").setup({
                 "graphql",
                 "handlebars",
             },
+            command = "prettierd",
         }),
     },
 })
