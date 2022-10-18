@@ -187,6 +187,8 @@ return packer.startup(function()
             { "f3fora/cmp-spell", after = "nvim-cmp" },
             -- nvim-cmp source for filesystem paths
             { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            -- nvim-cmp source for math calculation
+            { "hrsh7th/cmp-calc", after = "nvim-cmp" },
             -- nvim-cmp source for vim's cmdline
             { "hrsh7th/cmp-cmdline", after = "nvim-cmp" },
         },
