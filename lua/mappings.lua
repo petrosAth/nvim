@@ -136,9 +136,9 @@ PA.mappings = {
                     c = { "<CMD>lua PA.edit_local_config()<CR>", "Edit config file" },
                     g = { "<CMD>lua PA.edit_gitignore()<CR>",    "Edit .gitignore"  }
                 },
-                f = { "<CMD>LspToggleAutoFormat<CR>",         "Toggle auto formatting"                },
                 L = { "<CMD>lua PA.load_local_session()<CR>", "Load last closed"                      },     -- possession.nvim
                 S = { ":PossessionSave ",                     "Save session",          silent = false }, -- possession.nvim
+                f = { "<CMD>LspToggleAutoFormat<CR>", "Toggle auto formatting"                },
             },
             t = {
                 name = "Tab",
