@@ -1,38 +1,62 @@
----Edit a file or directory using a system program.
+---Open file or directory with a system program
 ---Source: Neelfrost Neovim config
----https://github.com/Neelfrost/nvim-config/blob/bdffbc3c74fc5ee8b5789c8d9e3e68c0f1163e34/lua/user/utils.lua
----@param prog string Any system program with terminal functionality
----@param args string Path for a file or directory to edit
-function PA.launch_ext_prog(prog, args)
-    vim.cmd("!" .. prog .. " " .. args)
-    vim.cmd.redraw()
+---https://github.com/Neelfrost/nvim-config/blob/634cf9db1ee5000e3e8d0bdad5050986caa3a057/lua/user/utils.lua#L23-L28
+---@param program string Any system program with terminal functionality
+---@vararg string args Arguments for program
+local function launch_with_system_program(program, ...)
+    vim.fn.system(program .. " " .. table.concat({ ... }, " "))
 end
 
----Open URL using the system internet browser.
----@param url string Any URL
-function PA.open_url(url)
+vim.api.nvim_create_user_command("LaunchFile", function(args)
+    local program = args.args
+    local path = vim.fn.expand("%:p")
+
+    launch_with_system_program(program, path)
+end, { nargs = "*", desc = "Open file using a system program" })
+
+vim.api.nvim_create_user_command("LaunchDir", function(args)
+    local program = args.args
+    local path = vim.fn.expand("%:p:h")
+
+    launch_with_system_program(program, path)
+end, { nargs = "*", desc = "Open directory using a system program" })
+
+---Extract url from the word under the cursor.
+---@param url string Any string.
+---@return string url The extracted url if it is valid, or an empty string.
+local function extract_url(url)
     if url ~= nil then
         url = string.gsub(url:gsub("^.+%(", ""), "%)$", "")
         url = string.gsub(string.gsub(url:gsub(",$", ""), "^['\"]", ""), "['\",]$", "")
 
         if string.match(url, "^%w[%w-]*/[%w-_.]+$") then
-            vim.cmd([[!firefox --new-tab https://github.com/]] .. url)
+            return "https://github.com/" .. url
         elseif string.match(url, "^ftps?://.*") then
-            vim.cmd([[!firefox --new-tab ]] .. url)
+            return url
         elseif string.match(url, "^https?://.*") then
-            vim.cmd([[!firefox --new-tab ]] .. url)
+            return url
         elseif string.match(url, "^[%w]+[%w-]+%.+[%w]+[%w-]+$") then
-            vim.cmd([[!firefox --new-tab ]] .. url)
+            return url
         elseif string.match(url, "^[%w]+[%w-]+%.+[%w]+[%w-]+[./]+.*") then
-            vim.cmd([[!firefox --new-tab ]] .. url)
+            return url
         else
-            print("No URL found!")
+            return ""
         end
+    end
+
+    return ""
+end
+
+vim.api.nvim_create_user_command("LaunchURL", function(args)
+    local program = args.args
+    local url = extract_url(vim.fn.expand("<cWORD>"))
+
+    if url ~= "" then
+        launch_with_system_program(program, url)
     else
         print("No URL found!")
     end
-    vim.cmd.redraw()
-end
+end, { nargs = 1, desc = "Open URL using the system internet browser" })
 
 ---- Source: Ecovim ----------------------------------------------------------------------------------------------------
 -- https://github.com/ecosse3/nvim/blob/58559b65f0e15384c3ed76b41bb3636a43141a0e/lua/lsp/functions.lua#L3-L25
