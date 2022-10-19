@@ -1,9 +1,10 @@
 ---Creates a file with the given content on the specified path.
 ---@param path string The path of the file
 ---@param file string The name of the file
----@param content table Text content in the form of a table with one line of
+---@param content? table Text content in the form of a table with one line of
 ---text per entry.
 local function create_file(path, file, content)
+    content = content or {}
     if vim.fn.isdirectory(path) == 0 then
         vim.fn.mkdir(path)
     end
@@ -18,9 +19,9 @@ end
 ---directories if they don't exist.
 ---@param dir string Parent directory of the file.
 ---@param file string Name of the file.
----@param content table Text content in the form of a table with one line of
+---@param content? table Text content in the form of a table with one line of
 ---text per entry.
----@param cursor table Starting cursor position.
+---@param cursor? table Starting cursor position.
 local function create_buffer(dir, file, content, cursor)
     content = content or {}
     cursor = cursor or {}
@@ -30,41 +31,21 @@ local function create_buffer(dir, file, content, cursor)
     end
 
     vim.cmd.edit(dir .. "/" .. file)
-    local buf_id = vim.api.nvim_win_get_buf(0)
 
+    local buf_id = vim.api.nvim_win_get_buf(0)
     vim.api.nvim_buf_set_lines(buf_id, 0, -1, false, content)
     vim.api.nvim_win_set_cursor(0, cursor)
 end
 
 ---Create and populate .gitignore file
----@param cwd string? Current working directory.
-local function create_gitignore(cwd)
-    cwd = cwd or vim.fn.getcwd()
+local function create_gitignore()
+    local cwd = vim.fn.getcwd()
     local file = ".gitignore"
     local content = {
         [[/.nvim/spell/]],
     }
 
     create_file(cwd, file, content)
-end
-
----Create a palette template in the local project's configuration directory.
----The palettes folder is created if it doesn't exist.
----@param config_dir string Local project's configuration directory
-function PA.create_local_palette(config_dir)
-    config_dir = config_dir or PA.local_config.dir
-    local dir = PA.local_config.palettes_dir
-    local file = "palette.json"
-    local path = config_dir .. "/" .. dir
-    local content = {
-        [[{]],
-        [[  "colour_table": {]],
-        [[    "color": "#ffffff"]],
-        [[  }]],
-        [[}]],
-    }
-
-    create_buffer(path, file, content, { 3, 5 })
 end
 
 ---Load custom hexokinase palettes from the project's local configuration
@@ -117,22 +98,21 @@ end
 function PA.load_local_config(cwd, config)
     local dir = PA.local_config.dir
 
-    if config.use_session == true then
-        PA.save_local_session(cwd)
+    if config.use_session then
+        vim.cmd.ProjectCreateSession()
     end
-    if config.use_spellfile == true then
+    if config.use_spellfile then
         vim.opt.spellfile = get_spell_file(cwd, dir)
     end
-    if config.use_palettes == true then
+    if config.use_palettes then
         vim.g.Hexokinase_palettes = get_palettes(cwd, dir)
     end
-    if config.use_format_on_save == true then
-        PA.enable_format_on_save()
+    if config.use_format_on_save then
+        vim.cmd.LspToggleAutoFormat()
     end
 end
 
----Create a project local config file, and open it in the current window.
-function PA.create_local_config()
+vim.api.nvim_create_user_command("ProjectCreateConfit", function()
     local dir = PA.local_config.dir
     local file = PA.local_config.file
     local content = {
@@ -148,22 +128,38 @@ function PA.create_local_config()
     vim.fn.mkdir(dir)
     create_buffer(dir, file, content, { 2, 21 })
     vim.cmd.redraw()
-end
+end, { desc = "Create a project local config file, and open it in the current window" })
 
----Edit the local config file in the current window.
----@param cwd string? Current working directory.
-function PA.edit_local_config(cwd)
-    cwd = cwd or vim.fn.getcwd()
+vim.api.nvim_create_user_command("ProjectEditConfig", function()
     local dir = PA.local_config.dir
     local file = PA.local_config.file
 
     vim.cmd.edit(dir .. "/" .. file)
-end
+end, { desc = "Edit the local config file in the current window" })
 
----Edit the .gitignore file in the current window.
----@param cwd string? Current working directory.
-function PA.edit_gitignore(cwd)
-    cwd = cwd or vim.fn.getcwd()
+vim.api.nvim_create_user_command("ProjectCreatePalette", function()
+    local config_dir = PA.local_config.dir
+    local dir = PA.local_config.palettes_dir
+    local file = "palette.json"
+    local path = config_dir .. "/" .. dir
+    local content = {
+        [[{]],
+        [[  "colour_table": {]],
+        [[    "color": "#ffffff"]],
+        [[  }]],
+        [[}]],
+    }
 
-    vim.cmd.edit(cwd .. "/" .. ".gitignore")
-end
+    create_buffer(path, file, content, { 3, 5 })
+end, { desc = "Create a palette template in the local project's configuration directory" })
+
+vim.api.nvim_create_user_command("ProjectEditGitignore", function()
+    local cwd = vim.fn.getcwd()
+    local file = ".gitignore"
+
+    if vim.fn.filereadable(file) == 0 then
+        create_buffer(cwd, file)
+    else
+        vim.cmd.edit(cwd .. "/" .. file)
+    end
+end, { desc = "Edit the .gitignore file in the current window" })

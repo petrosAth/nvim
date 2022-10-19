@@ -19,7 +19,7 @@ _G.PA = { -- Custom table to store my functions, tables, variables etc
 -- Load Neovim config
 require("options") -- Neovim options
 require("utilities") -- Utility functions
-require("projects") -- Project's local configuration helper functions
+require("project") -- Project's local configuration helper functions
 require("sessions") -- Session managment helper functions
 require("autocommands") -- Custom autocommands
 require("styling") -- Everything GUI related
