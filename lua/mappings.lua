@@ -243,10 +243,10 @@ PA.mappings = {
             },
             m = {
                 name = "Minimap",
-                m = { "<CMD>lua require('codewindow').open_minimap()<CR>",  "Toggle minimap"          }, -- codewindow.nvim
-                o = { "<CMD>lua require('codewindow').open_minimap()<CR>",  "Open minimap"          }, -- codewindow.nvim
-                c = { "<CMD>lua require('codewindow').close_minimap()<CR>", "Close minimap"         }, -- codewindow.nvim
-                f = { "<CMD>lua require('codewindow').toggle_focus()<CR>",  "Focus/unfocus minimap" }, -- codewindow.nvim
+                m = { "<CMD>lua require('codewindow').toggle_minimap()<CR>", "Toggle minimap"        }, -- codewindow.nvim
+                o = { "<CMD>lua require('codewindow').open_minimap()<CR>",   "Open minimap"          }, -- codewindow.nvim
+                c = { "<CMD>lua require('codewindow').close_minimap()<CR>",  "Close minimap"         }, -- codewindow.nvim
+                f = { "<CMD>lua require('codewindow').toggle_focus()<CR>",   "Focus/unfocus minimap" }, -- codewindow.nvim
             },
             o = { "<CMD>SymbolsOutline<CR>", "Toggle Code outline" }, -- symbols-outline.nvim
             q = {
