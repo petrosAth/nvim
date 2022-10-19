@@ -126,19 +126,19 @@ PA.mappings = {
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
                 c = {
                     name = "Create local config files",
-                    c = { "<CMD>lua PA.create_local_config()<CR>",  "Create config file" },
-                    s = { "<CMD>lua PA.save_local_session()<CR>",   "Create session"     }, -- possession.nvim
-                    p = { "<CMD>lua PA.create_local_palette()<CR>", "Create palette"     }, -- hexokinase
+                    c = { "<CMD>ProjectCreateConfit<CR>",  "Create config file" },
+                    s = { "<CMD>ProjectCreateSession<CR>", "Create session"     }, -- possession.nvim
+                    p = { "<CMD>ProjectCreatePalette<CR>", "Create palette"     }, -- hexokinase
                 },
-                D = { "<CMD>PossessionDelete<CR>",            "Delete currently loaded session"                }, -- possession.nvim
+                D = { "<CMD>PossessionDelete<CR>", "Delete currently loaded session" }, -- possession.nvim
                 e = {
                     name = "Edit local config files",
-                    c = { "<CMD>lua PA.edit_local_config()<CR>", "Edit config file" },
-                    g = { "<CMD>lua PA.edit_gitignore()<CR>",    "Edit .gitignore"  }
+                    c = { "<CMD>ProjectEditConfig<CR>",    "Edit config file" },
+                    g = { "<CMD>ProjectEditGitignore<CR>", "Edit .gitignore"  }
                 },
-                L = { "<CMD>lua PA.load_local_session()<CR>", "Load last closed"                      },     -- possession.nvim
-                S = { ":PossessionSave ",                     "Save session",          silent = false }, -- possession.nvim
                 f = { "<CMD>LspToggleAutoFormat<CR>", "Toggle auto formatting"                },
+                L = { "<CMD>ProjectLoadSession<CR>",  "Load last closed"                      }, -- possession.nvim
+                S = { ":PossessionSave ",             "Save session",          silent = false }, -- possession.nvim
             },
             t = {
                 name = "Tab",

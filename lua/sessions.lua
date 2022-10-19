@@ -15,22 +15,17 @@ local function get_session_name(cwd)
     return session, false
 end
 
----Save the local session, using the name of the current working directory.
----@param cwd string The current working directory.
-function PA.save_local_session(cwd)
-    cwd = cwd or vim.fn.getcwd()
+vim.api.nvim_create_user_command("ProjectCreateSession", function()
+    local cwd = vim.fn.getcwd()
     local session, available = get_session_name(cwd)
 
     if not available then
         vim.cmd.PossessionSave(session)
     end
-end
+end, { desc = "Save the local session, using the name of the current working directory" })
 
----Load the local session based on the current working directory. If it doesn't
----exist throw a notification.
----@param cwd string The current working directory.
-function PA.load_local_session(cwd)
-    cwd = cwd or vim.fn.getcwd()
+vim.api.nvim_create_user_command("ProjectLoadSession", function()
+    local cwd = vim.fn.getcwd()
     local session, available = get_session_name(cwd)
 
     if not available then
@@ -38,4 +33,4 @@ function PA.load_local_session(cwd)
     else
         vim.cmd.PossessionLoad(session)
     end
-end
+end, { desc = "Load the local session based on the current working directory. If it doesn't exist throw a notification" })
