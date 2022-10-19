@@ -149,11 +149,12 @@ tree.setup({
             ["A"] = false, -- also accepts the optional config.show_path option like "add".
             ["D"] = "delete",
             ["R"] = "rename",
-            ["Y"] = "copy_to_clipboard",
+            ["mc"] = "copy_to_clipboard",
             ["y"] = false,
             ["x"] = false,
-            ["X"] = "cut_to_clipboard",
-            ["P"] = "paste_from_clipboard",
+            ["mm"] = "cut_to_clipboard",
+            ["P"] = false,
+            ["mp"] = "paste_from_clipboard",
             ["c"] = false, -- takes text input for destination, also accepts the optional config.show_path option like "add":
             ["cp"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
             ["m"] = false,
