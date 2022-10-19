@@ -40,6 +40,7 @@ require("possession").setup({
                 buftype = {},
                 filetype = {
                     "aerial",
+                    "Codewindow",
                     "neo-tree",
                     "Outline",
                     "qf",
