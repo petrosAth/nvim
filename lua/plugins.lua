@@ -317,6 +317,18 @@ return packer.startup(function()
         },
     })
 
+    -- dir-telescope.nvim - Perform telescope functions in a selected directory
+    use({
+        "princejoogie/dir-telescope.nvim",
+        after = "telescope.nvim",
+        config = function()
+            require("dir-telescope").setup({
+                hidden = true,
+                respect_gitignore = true,
+            })
+        end,
+    })
+
     -- neo-tree.nvim - Neovim plugin to manage the file system and other tree like structures
     use({
         "nvim-neo-tree/neo-tree.nvim",

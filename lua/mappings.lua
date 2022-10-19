@@ -167,8 +167,8 @@ PA.mappings = {
         },
         ["<Space>"] = {
             ["?"] = { "<CMD>WhichKey<CR>",          "Show available hotkeys" }, -- which-key
-            ["."] = { "<CMD>Telescope resume<CR>",  "Reopen Telescope"       }, -- telescope
-            b     = { "<CMD>Telescope buffers<CR>", "Buffer list"            }, -- telescope
+            ["."] = { "<CMD>Telescope resume<CR>",  "Reopen Telescope"       }, -- telescope.nvim
+            b     = { "<CMD>Telescope buffers<CR>", "Buffer list"            }, -- telescope.nvim
             c     = { "<CMD>HexokinaseToggle<CR>",  "Color codes preview"    }, -- hexokinase
             d = {
                 name = "Diffview",
@@ -229,17 +229,17 @@ PA.mappings = {
             },
             l = {
                 name = "LSP",
-                f = { "<CMD>lua vim.lsp.buf.format { async = true }<CR>", "Code formatting"                      }, -- lspconfig
-                H = { "<CMD>lua vim.diagnostic.open_float()<CR>",         "Line diagnostics"                     }, -- lspconfig
-                R = { ":IncRename ",                                      "Rename symbol",        silent = false }, -- lspconfig -- inc-rename
-                -- R = { "<CMD>lua vim.lsp.buf.rename()<CR>",                "Rename symbol",        silent = false }, -- lspconfig
-                s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",        "Signagture help"                      }, -- lspconfig
-                a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",           "Code actions"                         }, -- lspconfig -- telescope
-                r = { telescope_custom .. "lsp_references()<CR>",         "References"                           }, -- lspconfig -- telescope
-                K = { telescope_custom .. "lsp_definitions()<CR>",        "Definitions"                          }, -- lspconfig -- telescope
-                h = { "<CMD>lua vim.lsp.buf.hover()<CR>",                 "Hover symbol"                         }, -- lspconfig
-                d = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                 }, -- lspconfig -- trouble
-                D = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                }, -- lspconfig -- trouble
+                f = { "<CMD>lua vim.lsp.buf.format { async = true }<CR>", "Code formatting"                      }, -- nvim-lspconfig
+                H = { "<CMD>lua vim.diagnostic.open_float()<CR>",         "Line diagnostics"                     }, -- nvim-lspconfig
+                R = { ":IncRename ",                                      "Rename symbol",        silent = false }, -- nvim-lspconfig -- inc-rename
+                -- R = { "<CMD>lua vim.lsp.buf.rename()<CR>",                "Rename symbol",        silent = false }, -- nvim-lspconfig
+                s = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",        "Signagture help"                      }, -- nvim-lspconfig
+                a = { "<CMD>lua vim.lsp.buf.code_action()<CR>",           "Code actions"                         }, -- nvim-lspconfig -- telescope.nvim
+                r = { telescope_custom .. "lsp_references()<CR>",         "References"                           }, -- nvim-lspconfig -- telescope.nvim
+                K = { telescope_custom .. "lsp_definitions()<CR>",        "Definitions"                          }, -- nvim-lspconfig -- telescope.nvim
+                h = { "<CMD>lua vim.lsp.buf.hover()<CR>",                 "Hover symbol"                         }, -- nvim-lspconfig
+                d = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
+                D = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                }, -- nvim-lspconfig -- trouble.nvim
             },
             m = {
                 name = "Minimap",
@@ -251,40 +251,45 @@ PA.mappings = {
             o = { "<CMD>SymbolsOutline<CR>", "Toggle Code outline" }, -- symbols-outline.nvim
             q = {
                 name = "Trouble",
-                q = { "<CMD>TroubleToggle<CR>",    "Toggle"   }, -- trouble
-                o = { "<CMD>Trouble<CR>",          "Open"     }, -- trouble
-                c = { "<CMD>TroubleClose<CR>",     "Close"    }, -- trouble
-                R = { "<CMD>TroubleRefresh<CR>",   "Refresh"  }, -- trouble
-                l = { "<CMD>Trouble loclist<CR>",  "Loclist"  }, -- trouble
-                f = { "<CMD>Trouble quickfix<CR>", "Quickfix" }, -- trouble
+                q = { "<CMD>TroubleToggle<CR>",    "Toggle"   }, -- trouble.nvim
+                o = { "<CMD>Trouble<CR>",          "Open"     }, -- trouble.nvim
+                c = { "<CMD>TroubleClose<CR>",     "Close"    }, -- trouble.nvim
+                R = { "<CMD>TroubleRefresh<CR>",   "Refresh"  }, -- trouble.nvim
+                l = { "<CMD>Trouble loclist<CR>",  "Loclist"  }, -- trouble.nvim
+                f = { "<CMD>Trouble quickfix<CR>", "Quickfix" }, -- trouble.nvim
             },
             r = { "<CMD>Telescope registers<CR>", "Registers" },
             s = {
                 name = "Search",
-                b = { "<CMD>Telescope file_browser<CR>", "File Browser" }, -- telescope
-                f = { "<CMD>Telescope find_files<CR>",   "File search"  }, -- telescope
-                g = { "<CMD>Telescope live_grep<CR>",    "ripGREP"      }, -- telescope
+                b = { "<CMD>Telescope file_browser<CR>", "File Browser" }, -- telescope.nvim
+                d = {
+                    name = "Directory",
+                    g = { "<CMD>GrepInDirectory<CR>", "File search" }, -- telescope.nvim -- dir-telescope.nvim
+                    f = { "<CMD>FileInDirectory<CR>", "ripGREP"     }, -- telescope.nvim -- dir-telescope.nvim
+                },
+                f = { "<CMD>Telescope find_files<CR>",   "File search"  }, -- telescope.nvim
+                g = { "<CMD>Telescope live_grep<CR>",    "ripGREP"      }, -- telescope.nvim
                 G = {
                     name = "Git",
-                    f = { "<CMD>Telescope git_files<CR>",    "Git files" }, -- telescope
-                    c = { "<CMD>Telescope git_commits<CR>",  "Commits"   }, -- telescope
-                    b = { "<CMD>Telescope git_branches<CR>", "Branches"  }, -- telescope
-                    s = { "<CMD>Telescope git_status<CR>",   "Status"    }, -- telescope
-                    S = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope
+                    f = { "<CMD>Telescope git_files<CR>",    "Git files" }, -- telescope.nvim
+                    c = { "<CMD>Telescope git_commits<CR>",  "Commits"   }, -- telescope.nvim
+                    b = { "<CMD>Telescope git_branches<CR>", "Branches"  }, -- telescope.nvim
+                    s = { "<CMD>Telescope git_status<CR>",   "Status"    }, -- telescope.nvim
+                    S = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope.nvim
                 },
-                H = { "<CMD>Telescope highlights<CR>",        "Highlight groups"        }, -- telescope
-                h = { "<CMD>Telescope help_tags<CR>",         "Vim help"                }, -- telescope
-                n = { telescope_custom .. "notify()<CR>",     "Notify history"          }, -- telescope -- notify
-                o = { "<CMD>Telescope vim_options<CR>",       "Vim options"             }, -- telescope
-                R = { telescope_custom .. "frecency()<CR>",   "Frecency"                }, -- telescope
-                r = { telescope_custom .. "oldFiles()<CR>",   "Recent files"            }, -- telescope
-                s = { telescope_custom .. "possession()<CR>", "Search sessions"         }, -- telescope -- possession.nvim
+                H = { "<CMD>Telescope highlights<CR>",        "Highlight groups"        }, -- telescope.nvim
+                h = { "<CMD>Telescope help_tags<CR>",         "Vim help"                }, -- telescope.nvim
+                n = { telescope_custom .. "notify()<CR>",     "Notify history"          }, -- telescope.nvimnvim -- notify
+                o = { "<CMD>Telescope vim_options<CR>",       "Vim options"             }, -- telescope.nvim
+                R = { telescope_custom .. "frecency()<CR>",   "Frecency"                }, -- telescope.nvim
+                r = { telescope_custom .. "oldFiles()<CR>",   "Recent files"            }, -- telescope.nvim
+                s = { telescope_custom .. "possession()<CR>", "Search sessions"         }, -- telescope.nvim -- possession.nvim
                 S = { telescope_custom .. "luasnip()<CR>",    "List available snippets" }, -- telescope-luasnip.nvim
                 T = { "<CMD>TodoTelescope<CR>",               "Show TODO comments"      }, -- todo-comments
                 t = {
                     name = "Telescope",
-                    b = { "<CMD>Telescope builtin<CR>",         "Telescope builtin" }, -- telescope
-                    c = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope
+                    b = { "<CMD>Telescope builtin<CR>",         "Telescope builtin" }, -- telescope.nvim
+                    c = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope.nvim
                 },
             },
             t = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before",      }, -- hop
