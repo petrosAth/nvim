@@ -312,7 +312,10 @@ PA.mappings = {
         },
     },
     -- Select mode mappings
-    ["s"] = {},
+    ["s"] = {
+        ["<BS>"]  = { [[<BS>i]],  "Delete selection" }, -- Helpful when editing snippet placeholders
+        ["<C-h>"] = { [[<C-h>i]], "Delete selection" }, -- Helpful when editing snippet placeholders
+    },
     -- Visual mode mappings
     ["x"] = {
         ["g"] = {
