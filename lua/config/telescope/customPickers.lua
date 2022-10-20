@@ -1,8 +1,8 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
-local i = require("styling").icons
-local b = require("styling").borders.default
-local bn = require("styling").borders.none
+local i = PA.styling.icons
+local b = PA.styling.borders.default
+local bn = PA.styling.borders.none
 local M = {}
 
 M.window_size = {

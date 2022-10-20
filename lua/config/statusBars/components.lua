@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local h = require("config.statusBars.helperTables")
-local i = require("styling").icons
+local i = PA.styling.icons
 local M = {}
 
 local FileTypeBlock = {

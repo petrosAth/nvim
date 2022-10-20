@@ -1,6 +1,6 @@
-local i = require("styling").icons
-local b = require("styling").borders.default
-local bs = require("styling").borders.single
+local i = PA.styling.icons
+local b = PA.styling.borders.default
+local bs = PA.styling.borders.single
 
 -- Automatically install and set up packer.nvim
 local ensure_packer = function()

@@ -1,6 +1,6 @@
 local tree = require("neo-tree")
-local i = require("styling").icons
-local b = require("styling").borders.default
+local i = PA.styling.icons
+local b = PA.styling.borders.default
 
 tree.setup({
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -216,7 +216,7 @@ tree.setup({
         show_unloaded = true,
         window = {
             mappings = {
-                ["d"] = "buffer_delete",
+                ["D"] = "buffer_delete",
                 ["-"] = "navigate_up",
                 ["cd"] = "set_root",
             },

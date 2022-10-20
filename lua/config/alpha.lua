@@ -1,5 +1,5 @@
 local alpha = require("alpha")
-local i = require("styling").icons
+local i = PA.styling.icons
 
 local function button(shortcut, description)
     return {

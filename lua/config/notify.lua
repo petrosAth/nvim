@@ -1,6 +1,6 @@
 local notify = require("notify")
-local i = require("styling").icons
-local b = require("styling").borders.default
+local i = PA.styling.icons
+local b = PA.styling.borders.default
 local client_notifs = {}
 local spinner_frames = i.loading.braille
 

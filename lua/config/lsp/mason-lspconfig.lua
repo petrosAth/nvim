@@ -1,4 +1,4 @@
-local b = require("styling").borders.default
+local b = PA.styling.borders.default
 
 -- Get language server list for installation
 local lsp_cfg = require("config.lsp")

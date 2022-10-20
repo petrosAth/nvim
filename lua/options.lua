@@ -1,7 +1,7 @@
 local opt = vim.opt
 local g = vim.g
-local t = require("styling").variables.transparency
-local i = require("styling").icons
+local t = PA.styling.variables.transparency
+local i = PA.styling.icons
 
 -- Neovim GUI's options like nvim-qt and Neovide
 opt.guifont               = "Fira Code, Regular:h12"

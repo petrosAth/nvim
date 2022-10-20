@@ -1,7 +1,7 @@
 local tabline = require("tabby.tabline")
 local getHl = require("config.themes.utilities").getHl
 local c = require("config.tabLine.components")
-local i = require("styling").icons
+local i = PA.styling.icons
 
 tabline.set(function(line)
     return {

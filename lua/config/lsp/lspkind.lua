@@ -1,5 +1,3 @@
-local kinds = require("styling").icons.lsp.kinds
-
 require("lspkind").init({
     -- defines how annotations are shown
     -- default: symbol
@@ -16,5 +14,5 @@ require("lspkind").init({
     -- override preset symbols
     --
     -- default: {}
-    symbol_map = kinds,
+    symbol_map = PA.styling.icons.lsp.kinds,
 })

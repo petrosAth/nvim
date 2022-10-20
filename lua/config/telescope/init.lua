@@ -5,10 +5,9 @@ local trouble = require("trouble.providers.telescope")
 local fb_actions = require("telescope").extensions.file_browser.actions
 local c = require("config.telescope.customPickers")
 local ws = c.window_size
-local t = require("styling").variables.transparency
-local i = require("styling").icons
-local b = require("styling").borders.default
-local bn = require("styling").borders.none
+local i = PA.styling.icons
+local b = PA.styling.borders.default
+local bn = PA.styling.borders.none
 
 telescope.setup({
     defaults = {
@@ -16,7 +15,7 @@ telescope.setup({
         selection_caret = i.point[1] .. " ",
         multi_icon = " " .. i.select[1],
         entry_prefix = "  ",
-        winblend = t,
+        winblend = PA.styling.variables.transparency,
         color_devicons = true,
         border = true,
         borderchars = {

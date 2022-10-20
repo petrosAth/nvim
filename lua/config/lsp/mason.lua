@@ -1,5 +1,5 @@
-local i = require("styling").icons
-local b = require("styling").borders.default
+local i = PA.styling.icons
+local b = PA.styling.borders.default
 
 require("mason").setup({
     ui = {

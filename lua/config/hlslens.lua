@@ -1,4 +1,4 @@
-local i = require("styling").icons
+local i = PA.styling.icons
 
 require("hlslens").setup({
     auto_enable = true,

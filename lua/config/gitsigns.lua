@@ -1,4 +1,4 @@
-local b = require("styling").borders.outline
+local b = PA.styling.borders.outline
 
 require("gitsigns").setup {
     signs = {

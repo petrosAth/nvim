@@ -1,8 +1,6 @@
-local t = require("styling").variables.transparency
-
 require("satellite").setup({
     current_only = false,
-    winblend = t,
+    winblend = PA.styling.variables.transparency,
     zindex = 40,
     excluded_filetypes = {},
     width = 0,

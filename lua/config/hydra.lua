@@ -1,5 +1,5 @@
 local hydra = require("hydra")
-local b = require("styling").borders.default
+local b = PA.styling.borders.default
 local border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
 hydra({

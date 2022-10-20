@@ -1,7 +1,6 @@
 local wk = require("which-key")
-local t = require("styling").variables.transparency
-local i = require("styling").icons
-local sb = require("styling").borders.default
+local i = PA.styling.icons
+local sb = PA.styling.borders.default
 
 wk.setup({
     plugins = {
@@ -48,7 +47,7 @@ wk.setup({
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = t
+        winblend = PA.styling.variables.transparency
     },
     layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns
