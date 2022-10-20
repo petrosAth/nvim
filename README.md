@@ -32,6 +32,8 @@ progress.
 - [codewindow.nvim](https://github.com/gorbit99/codewindow.nvim) Codewindow.nvim
   is a minimap plugin for neovim, that is closely integrated with treesitter and
   the builtin LSP to display more information to the user.
+- [nvim-nonicons](https://github.com/yamatsum/nvim-nonicons) Icon set using
+  nonicons for neovim plugins and settings.
 - [mini.nvim - mini.map](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-map.md)
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) Not UFO in the sky, but
   an ultra fold in Neovim. (Wait for [How can I make it look equal to its
