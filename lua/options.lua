@@ -9,6 +9,7 @@ g.neovide_refresh_rate    = 60          -- Setting refresh rate to a positive in
 g.neovide_transparency    = 0.90        -- Setting the value between 0.0 and 1.0 will set the opacity of the window to that value
 g.neovide_cursor_vfx_mode = "wireframe" -- Cursor Particles ( railgun torpedo pixiedust sonicboom ripple wireframe )
 
+-- Neovim options
 opt.swapfile       = false              -- Don't keep swap file
 opt.undofile       = true               -- Maintain undo history between sessions
 opt.sessionoptions = "blank,curdir,help,tabpages,winsize,winpos,terminal" -- mksession command's options list
@@ -73,3 +74,6 @@ opt.guicursor      = {                  -- Make the cursor blink
     "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
     "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
+
+-- Neovim theme
+vim.cmd.colorscheme(PA.theme)
