@@ -126,6 +126,7 @@ tree.setup({
             ["<space>"] = false,
             ["<2-LeftMouse>"] = "open",
             ["<CR>"] = "open",
+            ["P"] = "open",
             ["l"] = "open_with_window_picker",
             ["o"] = "split_with_window_picker",
             ["v"] = "vsplit_with_window_picker",
@@ -153,7 +154,6 @@ tree.setup({
             ["y"] = false,
             ["x"] = false,
             ["mm"] = "cut_to_clipboard",
-            ["P"] = false,
             ["mp"] = "paste_from_clipboard",
             ["c"] = false, -- takes text input for destination, also accepts the optional config.show_path option like "add":
             ["cp"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
