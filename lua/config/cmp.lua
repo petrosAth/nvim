@@ -5,38 +5,12 @@ end
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
+local kinds = require("styling").icons.lsp.kinds
 
+-- TODO: create global function
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
-
-local kinds = {
-    Text = "  ",
-    Method = "  ",
-    Function = "  ",
-    Constructor = "  ",
-    Field = "  ",
-    Variable = "  ",
-    Class = "  ",
-    Interface = "  ",
-    Module = "  ",
-    Property = "  ",
-    Unit = "  ",
-    Value = "  ",
-    Enum = "  ",
-    Keyword = "  ",
-    Snippet = "  ",
-    Color = "  ",
-    File = "  ",
-    Reference = "  ",
-    Folder = "  ",
-    EnumMember = "  ",
-    Constant = "  ",
-    Struct = "  ",
-    Event = "  ",
-    Operator = "  ",
-    TypeParameter = "  ",
-}
 
 cmp.setup({
     snippet = {
@@ -157,8 +131,9 @@ cmp.setup({
     }),
     formatting = {
         format = function(entry, vim_item)
-            vim_item.kind = string.format("%s %s", kinds[vim_item.kind], vim_item.kind)
+            vim_item.kind = string.format("%s %s", "  " .. kinds[vim_item.kind] .. " ", vim_item.kind)
             vim_item.menu = ({
+
                 buffer = "[BFR]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[LUA]",
