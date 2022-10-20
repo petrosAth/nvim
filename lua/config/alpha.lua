@@ -45,7 +45,7 @@ local buttons_session = {
     val = {
         button("LDR p .", i.alphaCursor[1] .. " " .. i.lastSession[1] .. " Load last session"),
         button("LDR p L", i.alphaCursor[1] .. " " .. i.lastSession[1] .. " Load local session"),
-        button("LDR s s", i.alphaCursor[1] .. " " .. i.sessions[1]    .. " Search sessions"),
+        button("SPC s s", i.alphaCursor[1] .. " " .. i.sessions[1]    .. " Search sessions"),
     },
     opts = {
         spacing = 0,

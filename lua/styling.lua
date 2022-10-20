@@ -44,6 +44,7 @@ PA.styling = {
         windows      = { ""                                              },
         update       = { ""                                              },
         lspServers   = { ""                                              },
+        save         = { ""                                              },
         folderop     = { "", "", ""                                    },
         foldercl     = { "", "", ""                                    },
         arrowu       = { "", "", "", "", "", "⯅", "▲", "△", "", "" },
