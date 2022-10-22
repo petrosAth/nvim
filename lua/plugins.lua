@@ -90,7 +90,7 @@ return packer.startup(function()
 
     -- satellite.nvim - Decorate scrollbar for Neovim
     use({
-        "lewis6991/satellite.nvim",
+        "petrosAth/satellite.nvim",
         config = function()
             require("config.satellite")
         end,
