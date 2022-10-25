@@ -1,3 +1,4 @@
+-- symbols-outline.nvim
 local ol = vim.opt_local
 local i = PA.styling.icons.fillchars
 

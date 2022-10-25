@@ -1,4 +1,4 @@
--- Undotree diff panel
+-- undotree diff panel
 local ol = vim.opt_local
 local i = PA.styling.icons.fillchars
 
