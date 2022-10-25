@@ -1,12 +1,13 @@
+local i = PA.styling.icons.git.signs
 local b = PA.styling.borders.outline
 
 require("gitsigns").setup {
     signs = {
-        add          = { hl = "GitSignsAdd"   , text = "▐", numhl="GitSignsAddNr"   , linehl="GitSignsAddLn"    },
-        change       = { hl = "GitSignsChange", text = "▐", numhl="GitSignsChangeNr", linehl="GitSignsChangeLn" },
-        delete       = { hl = "GitSignsDelete", text = "🭬", numhl="GitSignsDeleteNr", linehl="GitSignsDeleteLn" },
-        topdelete    = { hl = "GitSignsDelete", text = "🭬", numhl="GitSignsDeleteNr", linehl="GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "🭨", numhl="GitSignsChangeNr", linehl="GitSignsChangeLn" },
+        add          = { hl = "GitSignsAdd",    text = i.add,          numhl="GitSignsAddNr",    linehl="GitSignsAddLn"    },
+        change       = { hl = "GitSignsChange", text = i.change,       numhl="GitSignsChangeNr", linehl="GitSignsChangeLn" },
+        delete       = { hl = "GitSignsDelete", text = i.delete,       numhl="GitSignsDeleteNr", linehl="GitSignsDeleteLn" },
+        topdelete    = { hl = "GitSignsDelete", text = i.topdelete,    numhl="GitSignsDeleteNr", linehl="GitSignsDeleteLn" },
+        changedelete = { hl = "GitSignsChange", text = i.changedelete, numhl="GitSignsChangeNr", linehl="GitSignsChangeLn" },
     },
     signcolumn   = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl        = false, -- Toggle with `:Gitsigns toggle_numhl`

@@ -115,6 +115,13 @@ PA.styling = {
             unstaged  = { "", "", "", "" },
             staged    = { "", "", ""      },
             conflict  = { "", ""           },
+            signs = {
+                add          = "▐",
+                change       = "▐",
+                delete       = "🭬",
+                topdelete    = "🭬",
+                changedelete = "🭨",
+            },
         },
         OS = {
             windows = { "" },
