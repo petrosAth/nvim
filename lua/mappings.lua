@@ -197,8 +197,8 @@ PA.mappings = {
                 ["E"] = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window",                      }, -- neo-tree.nvim
                 ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window",                            }, -- neo-tree.nvim
             },
-            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",  "Hop to", }, -- hop
-            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to", }, -- hop
+            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",  "Hop to", }, -- hop.nvim
+            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to", }, -- hop.nvim
             ["g"] = {
                 name = "Git & gitsigns",
                 ["B"] = {
@@ -291,8 +291,8 @@ PA.mappings = {
                     ["c"] = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope.nvim
                 },
             },
-            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before",      }, -- hop
-            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before",      }, -- hop
+            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before",      }, -- hop.nvim
+            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before",      }, -- hop.nvim
             ["u"] = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>",                                                                         "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 name = "Launch",
@@ -331,10 +331,10 @@ PA.mappings = {
             ["b"] = { nil, "Block comment" }, -- comment.nvim
         },
         ["<Space>"] = {
-            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to",     }, -- hop
-            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to",     }, -- hop
-            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before", }, -- hop
-            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before", }, -- hop
+            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to",     }, -- hop.nvim
+            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to",     }, -- hop.nvim
+            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before", }, -- hop.nvim
+            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before", }, -- hop.nvim
             ["gh"] = {
                 name = "Git & gitsigns",
                 ["a"] = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
@@ -349,10 +349,10 @@ PA.mappings = {
             ["gh"] = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
         },
         ["<Space>"] = {
-            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to",     }, -- hop
-            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to",     }, -- hop
-            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before", }, -- hop
-            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 0 })<CR>", "Hop before", }, -- hop
+            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to",     }, -- hop.nvim
+            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to",     }, -- hop.nvim
+            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before", }, -- hop.nvim
+            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before", }, -- hop.nvim
         },
     },
     -- Insert mode mappints
