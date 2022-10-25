@@ -1,3 +1,5 @@
+local b = PA.styling.borders.default
+
 require("codewindow").setup({
     exclude_filetypes = { -- Choose certain filetypes to not show minimap on
         "aerial",
@@ -16,5 +18,6 @@ require("codewindow").setup({
         "Trouble",
         "undotree",
     },
-    z_index = 50, -- The z-index the floating window will be on
+    z_index = 45, -- The z-index the floating window will be on
+    window_border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }, -- The border style of the floating window (accepts all usual options)
 })

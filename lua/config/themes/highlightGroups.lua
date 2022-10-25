@@ -119,7 +119,7 @@ function M.load(palette)
         SpecialComment = { fg = p.cCyan },
         Debug = { fg = p.cRed },
 
-        Underlined = { fg = p.cGreen, underline = true },
+        Underlined = { underline = true },
         Ignore = { fg = p.cFill2 },
         Error = { fg = p.cRed, bg = p.none, bold = true, underline = true },
         Todo = { fg = p.cYellow, bg = p.none },
@@ -165,6 +165,12 @@ function M.load(palette)
         AlphaButtonShortcuts = { fg = p.cCyan },
         AlphaHeader = { fg = p.cBlue },
         AlphaFooter = { fg = p.cFill5 },
+
+        -- codewindow.nvim
+        CodewindowBackground = { link = "NormalFloat" },
+        CodewindowBorder = { link = "FloatBorder" },
+        CodewindowWarn = { link = "DiagnosticWarn" },
+        CodewindowError = { link = "DiagnosticError" },
 
         -- diffview.nvim
         DiffviewVertSplit = { fg = p.cFill2, bg = p.cYellow },
