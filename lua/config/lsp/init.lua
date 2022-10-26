@@ -8,7 +8,6 @@ M.servers = {
     "cssls",
     "clangd",
     "emmet_ls",
-    -- "html",
     "omnisharp",
     "powershell_es",
     "pyright",

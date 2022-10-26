@@ -7,7 +7,6 @@ require("mason-tool-installer").setup({
         "css-lsp",
         "clangd",
         "emmet-ls",
-        -- "html-lsp",
         "omnisharp",
         "omnisharp-mono",
         "powershell-editor-services",
