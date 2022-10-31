@@ -197,7 +197,6 @@ tree.setup({
                 ["-"] = "navigate_up",
                 ["cd"] = "set_root",
                 ["gh"] = "toggle_hidden",
-                ["D"] = false,
                 ["/"] = "filter_on_submit",
                 ["f"] = false,
                 ["<Esc>"] = "clear_filter",
