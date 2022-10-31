@@ -171,6 +171,9 @@ function M.load(palette)
         CodewindowBorder = { link = "FloatBorder" },
         CodewindowWarn = { link = "DiagnosticWarn" },
         CodewindowError = { link = "DiagnosticError" },
+        CodewindowDeletion = { link = "GitSignsDelete" },
+        CodewindowAddition = { link = "GitSignsAdd" },
+        CodewindowUnderline = { underline = true, sp = p.cCyan },
 
         -- diffview.nvim
         DiffviewVertSplit = { fg = p.cFill2, bg = p.cYellow },
