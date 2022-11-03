@@ -18,6 +18,8 @@ require("codewindow").setup({
         "Trouble",
         "undotree",
     },
+    minimap_width = 10, -- The width of the text part of the minimap
+    width_multiplier = 8, -- How many characters one dot represents
     z_index = 45, -- The z-index the floating window will be on
     window_border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }, -- The border style of the floating window (accepts all usual options)
 })
