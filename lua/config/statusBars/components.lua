@@ -32,11 +32,11 @@ local FileType = {
 
 M.FileTypeBlock = utils.insert(
     FileTypeBlock,
-    utils.make_flexible_component(h.Hide.FileTypeBlock.value, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileTypeBlock.icon, { FileTypeIcon }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileTypeBlock.icon, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileTypeBlock.value, { FileType }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileTypeBlock.value, { h.Separator.right }, { h.Null })
+    { flexible = h.Hide.FileTypeBlock.value, { h.Separator.left }, { h.Null } },
+    { flexible = h.Hide.FileTypeBlock.icon, { FileTypeIcon }, { h.Null } },
+    { flexible = h.Hide.FileTypeBlock.icon, { h.Null } },
+    { flexible = h.Hide.FileTypeBlock.value, { FileType }, { h.Null } },
+    { flexible = h.Hide.FileTypeBlock.value, { h.Separator.right }, { h.Null } }
 )
 
 local FileFormatBlock = {
@@ -75,11 +75,11 @@ local FileFormat = {
 
 M.FileFormatBlock = utils.insert(
     FileFormatBlock,
-    utils.make_flexible_component(h.Hide.FileFormatBlock.value, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileFormatBlock.icon, { FileFormatIcon }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileFormatBlock.icon, { h.Separator.mid }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileFormatBlock.value, { FileFormat }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileFormatBlock.value, { h.Separator.right }, { h.Null })
+    { flexible = h.Hide.FileFormatBlock.value, { h.Separator.left }, { h.Null } },
+    { flexible = h.Hide.FileFormatBlock.icon, { FileFormatIcon }, { h.Null } },
+    { flexible = h.Hide.FileFormatBlock.icon, { h.Separator.mid }, { h.Null } },
+    { flexible = h.Hide.FileFormatBlock.value, { FileFormat }, { h.Null } },
+    { flexible = h.Hide.FileFormatBlock.value, { h.Separator.right }, { h.Null } }
 )
 
 M.FileEncoding = {
@@ -87,13 +87,17 @@ M.FileEncoding = {
         self.fileEncoding = vim.bo.fileencoding
     end,
 
-    utils.make_flexible_component(h.Hide.FileEncoding, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileEncoding, {
-        provider = function(self)
-            return string.upper(self.fileEncoding)
-        end,
-    }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileEncoding, { h.Separator.right }, { h.Null }),
+    { flexible = h.Hide.FileEncoding, { h.Separator.left }, { h.Null } },
+    {
+        flexible = h.Hide.FileEncoding,
+        {
+            provider = function(self)
+                return string.upper(self.fileEncoding)
+            end,
+        },
+        { h.Null },
+    },
+    { flexible = h.Hide.FileEncoding, { h.Separator.right }, { h.Null } },
 }
 
 M.FileReadOnly = {
@@ -101,11 +105,15 @@ M.FileReadOnly = {
         return not vim.bo.modifiable or vim.bo.readonly
     end,
 
-    utils.make_flexible_component(h.Hide.FileReadOnly, {
-        { h.Separator.left },
-        { provider = i.lock[1] },
-        { h.Separator.right },
-    }, { h.Null }),
+    {
+        flexible = h.Hide.FileReadOnly,
+        {
+            { h.Separator.left },
+            { provider = i.lock[1] },
+            { h.Separator.right },
+        },
+        { h.Null },
+    },
 }
 
 M.FileModified = {
@@ -113,11 +121,15 @@ M.FileModified = {
         return vim.bo.modified
     end,
 
-    utils.make_flexible_component(h.Hide.FileModified, {
-        { h.Separator.left },
-        { provider = i.edit[1] },
-        { h.Separator.right },
-    }, { h.Null }),
+    {
+        flexible = h.Hide.FileModified,
+        {
+            { h.Separator.left },
+            { provider = i.edit[1] },
+            { h.Separator.right },
+        },
+        { h.Null },
+    },
 
     hl = "WinBarModifiedCurrent",
 }
@@ -129,19 +141,19 @@ local FileNameBlock = {
     end,
     static = {
         typeList = {
-            { title = "aerial",              customTitle = "AERIAL"     },
-            { title = "DiffviewFileHistory", customTitle = "DIFFVIEW"   },
-            { title = "DiffviewFiles",       customTitle = "DIFFVIEW"   },
-            { title = "diff",                customTitle = "DIFF PANEL" },
-            { title = "help",                customTitle = "HELP"       },
-            { title = "minimap",             customTitle = "MINIMAP"    },
-            { title = "neo-tree",            customTitle = "NEOTREE"    },
-            { title = "NvimTree",            customTitle = "NVIMTREE"   },
-            { title = "Outline",             customTitle = "OUTLINE"    },
-            { title = "qf",                  customTitle = "QUICKFIX"   },
-            { title = "terminal",            customTitle = "TERMINAL"   },
-            { title = "Trouble",             customTitle = "TROUBLE"    },
-            { title = "undotree",            customTitle = "UNDOTREE"   },
+            { title = "aerial", customTitle = "AERIAL" },
+            { title = "DiffviewFileHistory", customTitle = "DIFFVIEW" },
+            { title = "DiffviewFiles", customTitle = "DIFFVIEW" },
+            { title = "diff", customTitle = "DIFF PANEL" },
+            { title = "help", customTitle = "HELP" },
+            { title = "minimap", customTitle = "MINIMAP" },
+            { title = "neo-tree", customTitle = "NEOTREE" },
+            { title = "NvimTree", customTitle = "NVIMTREE" },
+            { title = "Outline", customTitle = "OUTLINE" },
+            { title = "qf", customTitle = "QUICKFIX" },
+            { title = "terminal", customTitle = "TERMINAL" },
+            { title = "Trouble", customTitle = "TROUBLE" },
+            { title = "undotree", customTitle = "UNDOTREE" },
         },
     },
 }
@@ -190,10 +202,10 @@ local FileName = {
 
 M.FileNameBlock = utils.insert(
     FileNameBlock,
-    utils.make_flexible_component(h.Hide.FileName, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FilePath, { FilePath }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileName, { FileName }, { h.Null }),
-    utils.make_flexible_component(h.Hide.FileName, { h.Separator.right }, { h.Null })
+    { flexible = h.Hide.FileName, { h.Separator.left }, { h.Null } },
+    { flexible = h.Hide.FilePath, { FilePath }, { h.Null } },
+    { flexible = h.Hide.FileName, { FileName }, { h.Null } },
+    { flexible = h.Hide.FileName, { h.Separator.right }, { h.Null } }
 )
 
 M.SpecialName = {
@@ -305,18 +317,26 @@ M.Spell = {
         return vim.wo.spell
     end,
 
-    utils.make_flexible_component(h.Hide.Spell.value, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Spell.icon, {
-        provider = function()
-            return "暈"
-        end,
-    }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Spell.value, {
-        provider = function()
-            return vim.bo.spelllang
-        end,
-    }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Spell.value, { h.Separator.right }, { h.Null }),
+    { flexible = h.Hide.Spell.value, { h.Separator.left }, { h.Null } },
+    {
+        flexible = h.Hide.Spell.icon,
+        {
+            provider = function()
+                return "暈"
+            end,
+        },
+        { h.Null },
+    },
+    {
+        flexible = h.Hide.Spell.value,
+        {
+            provider = function()
+                return vim.bo.spelllang
+            end,
+        },
+        { h.Null },
+    },
+    { flexible = h.Hide.Spell.value, { h.Separator.right }, { h.Null } },
 }
 
 M.Treesitter = {
@@ -329,21 +349,25 @@ M.Treesitter = {
         return is_active
     end,
 
-    utils.make_flexible_component(h.Hide.Treesitter.value, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Treesitter.icon, { provider = i.treesiter[1] }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Treesitter.icon, { h.Separator.mid }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Treesitter.value, { provider = "TS" }, { h.Null }),
-    utils.make_flexible_component(h.Hide.Treesitter.value, { h.Separator.right }, { h.Null }),
+    { flexible = h.Hide.Treesitter.value, { h.Separator.left }, { h.Null } },
+    { flexible = h.Hide.Treesitter.icon, { provider = i.treesiter[1] }, { h.Null } },
+    { flexible = h.Hide.Treesitter.icon, { h.Separator.mid }, { h.Null } },
+    { flexible = h.Hide.Treesitter.value, { provider = "TS" }, { h.Null } },
+    { flexible = h.Hide.Treesitter.value, { h.Separator.right }, { h.Null } },
 }
 
 M.CursorPosition = {
-    utils.make_flexible_component(h.Hide.CursorPosition, { h.Separator.left }, { h.Null }),
-    utils.make_flexible_component(h.Hide.CursorPosition, {
-        provider = i.line[1] .. " %l" .. " : " .. i.column[1] .. " %c",
-    }, {
-        provider = "%l:%c",
-    }),
-    utils.make_flexible_component(h.Hide.CursorPosition, { h.Separator.right }, { h.Null }),
+    { flexible = h.Hide.CursorPosition, { h.Separator.left }, { h.Null } },
+    {
+        flexible = h.Hide.CursorPosition,
+        {
+            provider = i.line[1] .. " %l" .. " : " .. i.column[1] .. " %c",
+        },
+        {
+            provider = "%l:%c",
+        },
+    },
+    { flexible = h.Hide.CursorPosition, { h.Separator.right }, { h.Null } },
 }
 
 M.CursorLineSpecial = {
@@ -506,72 +530,100 @@ M.GitStatus = {
     end,
 
     { h.Separator.left },
-    utils.make_flexible_component(h.Hide.GitBranch, { -- git branch name
-        provider = function(self)
-            return i.git.repo[1] .. " " .. i.git.branch[1] .. " " .. self.status_dict.head
-        end,
-        hl = { bold = true },
-    }, {
-        provider = function()
-            return i.git.repo[1] .. " "
-        end,
-        hl = { bold = true },
-    }),
+    {
+        flexible = h.Hide.GitBranch,
+        { -- git branch name
+            provider = function(self)
+                return i.git.repo[1] .. " " .. i.git.branch[1] .. " " .. self.status_dict.head
+            end,
+            hl = { bold = true },
+        },
+        {
+            provider = function()
+                return i.git.repo[1] .. " "
+            end,
+            hl = { bold = true },
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.GitSigns.icon, {
-        provider = function(self)
-            return self.countAdded > 0 and (h.Separator.mid.provider .. i.git.added[1])
-        end,
-        -- hl = { fg = utils.get_highlight("GitSignsAdd").fg },
-        hl = "GitSignsAdd",
-    }, {
-        h.Null,
-    }),
+    {
+        flexible = h.Hide.GitSigns.icon,
+        {
+            provider = function(self)
+                return self.countAdded > 0 and (h.Separator.mid.provider .. i.git.added[1])
+            end,
+            -- hl = { fg = utils.get_highlight("GitSignsAdd").fg },
+            hl = "GitSignsAdd",
+        },
+        {
+            h.Null,
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.GitSigns.value, {
-        provider = function(self)
-            return self.countAdded > 0 and (" " .. self.countAdded)
-        end,
-        hl = "GitSignsAdd",
-    }, {
-        h.Null,
-    }),
+    {
+        flexible = h.Hide.GitSigns.value,
+        {
+            provider = function(self)
+                return self.countAdded > 0 and (" " .. self.countAdded)
+            end,
+            hl = "GitSignsAdd",
+        },
+        {
+            h.Null,
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.GitSigns.icon, {
-        provider = function(self)
-            return self.countRemoved > 0 and (h.Separator.mid.provider .. i.git.deleted[1])
-        end,
-        hl = "GitSignsDelete",
-    }, {
-        h.Null,
-    }),
+    {
+        flexible = h.Hide.GitSigns.icon,
+        {
+            provider = function(self)
+                return self.countRemoved > 0 and (h.Separator.mid.provider .. i.git.deleted[1])
+            end,
+            hl = "GitSignsDelete",
+        },
+        {
+            h.Null,
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.GitSigns.value, {
-        provider = function(self)
-            return self.countRemoved > 0 and (" " .. self.countRemoved)
-        end,
-        hl = "GitSignsDelete",
-    }, {
-        h.Null,
-    }),
+    {
+        flexible = h.Hide.GitSigns.value,
+        {
+            provider = function(self)
+                return self.countRemoved > 0 and (" " .. self.countRemoved)
+            end,
+            hl = "GitSignsDelete",
+        },
+        {
+            h.Null,
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.GitSigns.icon, {
-        provider = function(self)
-            return self.countChanged > 0 and (h.Separator.mid.provider .. i.git.changed[1])
-        end,
-        hl = "GitSignsChange",
-    }, {
-        h.Null,
-    }),
+    {
+        flexible = h.Hide.GitSigns.icon,
+        {
+            provider = function(self)
+                return self.countChanged > 0 and (h.Separator.mid.provider .. i.git.changed[1])
+            end,
+            hl = "GitSignsChange",
+        },
+        {
+            h.Null,
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.GitSigns.value, {
-        provider = function(self)
-            return self.countChanged > 0 and (" " .. self.countChanged)
-        end,
-        hl = "GitSignsChange",
-    }, {
-        h.Null,
-    }),
+    {
+        flexible = h.Hide.GitSigns.value,
+        {
+            provider = function(self)
+                return self.countChanged > 0 and (" " .. self.countChanged)
+            end,
+            hl = "GitSignsChange",
+        },
+        {
+            h.Null,
+        },
+    },
 
     { h.Separator.right },
 }
@@ -623,65 +675,81 @@ M.LspDiagnostics = {
         hintIcon = i.lsp.hint[1],
     },
 
-    utils.make_flexible_component(h.Hide.lspDiagnosticIcons, {
-        provider = function(self)
-            return self.errors > 0 and (h.Separator.mid.provider .. self.errorIcon .. " " .. self.errors)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticError").fg },
-    }, {
-        provider = function(self)
-            return self.errors > 0 and (h.Separator.mid.provider .. self.errors)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticError").fg },
-    }),
+    {
+        flexible = h.Hide.lspDiagnosticIcons,
+        {
+            provider = function(self)
+                return self.errors > 0 and (h.Separator.mid.provider .. self.errorIcon .. " " .. self.errors)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticError").fg },
+        },
+        {
+            provider = function(self)
+                return self.errors > 0 and (h.Separator.mid.provider .. self.errors)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticError").fg },
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.lspDiagnosticIcons, {
-        provider = function(self)
-            return self.warnings > 0 and (h.Separator.mid.provider .. self.warnIcon .. " " .. self.warnings)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
-    }, {
-        provider = function(self)
-            return self.warnings > 0 and (h.Separator.mid.provider .. self.warnings)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
-    }),
+    {
+        flexible = h.Hide.lspDiagnosticIcons,
+        {
+            provider = function(self)
+                return self.warnings > 0 and (h.Separator.mid.provider .. self.warnIcon .. " " .. self.warnings)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
+        },
+        {
+            provider = function(self)
+                return self.warnings > 0 and (h.Separator.mid.provider .. self.warnings)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.lspDiagnosticIcons, {
-        provider = function(self)
-            return self.info > 0 and (h.Separator.mid.provider .. self.infoIcon .. " " .. self.info)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
-    }, {
-        provider = function(self)
-            return self.info > 0 and (h.Separator.mid.provider .. self.info)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
-    }),
+    {
+        flexible = h.Hide.lspDiagnosticIcons,
+        {
+            provider = function(self)
+                return self.info > 0 and (h.Separator.mid.provider .. self.infoIcon .. " " .. self.info)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
+        },
+        {
+            provider = function(self)
+                return self.info > 0 and (h.Separator.mid.provider .. self.info)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
+        },
+    },
 
-    utils.make_flexible_component(h.Hide.lspDiagnosticIcons, {
-        provider = function(self)
-            return self.hints > 0 and (h.Separator.mid.provider .. self.hintIcon .. " " .. self.hints)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticHint").fg },
-    }, {
-        provider = function(self)
-            return self.hints > 0 and (h.Separator.mid.provider .. self.hints)
-        end,
-        hl = { fg = utils.get_highlight("DiagnosticHint").fg },
-    }),
+    {
+        flexible = h.Hide.lspDiagnosticIcons,
+        {
+            provider = function(self)
+                return self.hints > 0 and (h.Separator.mid.provider .. self.hintIcon .. " " .. self.hints)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticHint").fg },
+        },
+        {
+            provider = function(self)
+                return self.hints > 0 and (h.Separator.mid.provider .. self.hints)
+            end,
+            hl = { fg = utils.get_highlight("DiagnosticHint").fg },
+        },
+    },
 }
 
 M.LspBlock = utils.insert(
     LspBlock,
 
     { h.Separator.left },
-    utils.make_flexible_component(h.Hide.lspIcon, {
+    { flexible = h.Hide.lspIcon, {
         provider = i.lsp.lspIcon[1] .. " ",
     }, {
         h.Null,
-    }),
-    utils.make_flexible_component(h.Hide.lspClients, M.LspClients, { h.Null }),
+    } },
+    { flexible = h.Hide.lspClients, M.LspClients, { h.Null } },
     { M.LspDiagnostics },
     { h.Separator.right }
 )
