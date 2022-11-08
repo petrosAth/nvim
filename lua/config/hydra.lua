@@ -114,10 +114,22 @@ hydra({
             offset = 2,
             border = border,
         },
+        on_key = function() vim.wait(50) end,
     },
     heads = {
         { "b", "<CMD>bn<CR>"                                                    },
-        { "c", "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", {  expr = true } },
+        { "c",
+            function()
+                if vim.wo.diff then
+                    return "]c"
+                end
+                vim.schedule(function()
+                    require("gitsigns").next_hunk()
+                end)
+                return "<Ignore>"
+            end,
+            { expr = true },
+        },
         { "d", "<CMD>lua vim.diagnostic.goto_next()<CR>"                        },
         { "s", "]s"                                                             },
         { "t", "<CMD>tabnext<CR>"                                               },
@@ -139,10 +151,22 @@ hydra({
             offset = 2,
             border = border,
         },
+        on_key = function() vim.wait(50) end,
     },
     heads = {
         { "b", "<CMD>bp<CR>"                                                    },
-        { "c", "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", {  expr = true } },
+        { "c",
+            function()
+                if vim.wo.diff then
+                    return "[c"
+                end
+                vim.schedule(function()
+                    require("gitsigns").prev_hunk()
+                end)
+                return "<Ignore>"
+            end,
+            { expr = true },
+        },
         { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR>"                        },
         { "s", "]s"                                                             },
         { "t", "<CMD>tabprevious<CR>"                                           },
