@@ -3,7 +3,7 @@ PA.styling = {
         transparency = 0,
     },
     icons = {
-        alphaCursor  = { "░"                                              },
+        alphaCursor  = { "▒"                                              },
         line         = { ""                                              },
         column       = { ""                                              },
         linesTotal   = { ""                                              },
@@ -121,6 +121,7 @@ PA.styling = {
                 delete       = "🭬",
                 topdelete    = "🭬",
                 changedelete = "🭨",
+                untracked    = "▒",
             },
         },
         OS = {
