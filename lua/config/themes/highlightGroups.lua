@@ -17,7 +17,7 @@ function M.load(palette)
         CursorIM = { link = "Cursor" },
         TermCursor = { link = "Cursor" },
         TermCursorNC = { link = "Cursor" },
-        MatchParen = { fg = p.cViolet, bold = true, underline = true },
+        MatchParen = { bold = true, underline = true },
         NonText = { fg = p.cFill3, bg = p.none },
         Conceal = { fg = p.none, bg = p.none },
         Whitespace = { fg = p.cFill3, bg = p.none },
@@ -66,7 +66,7 @@ function M.load(palette)
         TabLine = { fg = p.cFg, bg = p.cFill2 },
         TabLineSel = { fg = p.cFg, bg = p.cFill5 },
         TabLineFill = { fg = p.cFgDim, bg = p.cFill3 },
-        Title = { fg = p.cSelect, bold = true },
+        Title = { fg = p.cSelect },
         WinSeparator = { fg = p.cFill2, bg = p.cBgDim },
         VertSplit = { link = "WinSeparator" },
         QuickFixLine = { fg = p.cBg, bg = p.cCyan },
@@ -114,10 +114,10 @@ function M.load(palette)
 
         Special = { fg = p.cFgLight },
         SpecialChar = { fg = p.cYellow },
-        Tag = { fg = p.cSelect },
-        Delimiter = { fg = p.cFgLight },
-        SpecialComment = { fg = p.cCyan },
-        Debug = { fg = p.cRed },
+        Tag = { link = "Special" },
+        Delimiter = { fg = p.cFgLight, bold = true },
+        SpecialComment = { fg = p.cMagenta },
+        Debug = { fg = p.cOrange },
 
         Underlined = { underline = true },
         Ignore = { fg = p.cFill2 },
@@ -221,7 +221,7 @@ function M.load(palette)
         CmpItemMenu = { fg = p.cFill5 },
 
         CmpItemAbbr = { fg = p.cFg },
-        CmpItemAbbrDeprecated = { fg = p.cOrange, strikethrough = true },
+        CmpItemAbbrDeprecated = { fg = p.cRed, strikethrough = true },
         CmpItemAbbrMatch = { fg = p.cSelect, bold = true },
         CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
 
@@ -288,13 +288,13 @@ function M.load(palette)
         ScrollBarSearch = { link = "Search" },
 
         -- nvim-ts-rainbow
-        rainbowcol1 = { link = "Tag" },
-        rainbowcol2 = { fg = p.cRed },
-        rainbowcol3 = { fg = p.cYellow },
-        rainbowcol4 = { fg = p.cGreen },
-        rainbowcol5 = { fg = p.cMagenta },
-        rainbowcol6 = { fg = p.cFgLight },
-        rainbowcol7 = { fg = p.cCyan },
+        rainbowcol1 = { fg = g.syntax.Special.fg, nocombine = true },
+        rainbowcol2 = { fg = p.cMagenta, nocombine = true },
+        rainbowcol3 = { fg = p.cYellow, nocombine = true },
+        rainbowcol4 = { fg = p.cSelect, nocombine = true },
+        rainbowcol5 = { fg = p.cFgLight, nocombine = true },
+        rainbowcol6 = { fg = p.cOrange, nocombine = true },
+        rainbowcol7 = { fg = p.cCyan, nocombine = true },
 
         --nvim-windowpicker
         WindowPicker = { fg = p.cBgDark, bg = p.cSelect, bold = true },
@@ -448,7 +448,7 @@ function M.load(palette)
         -- ["@none"]                  = { },
         ["@preproc"]               = g.syntax.PreProc,
         ["@punctuation.delimiter"] = g.syntax.Delimiter,
-        ["@punctuation.bracket"]   = { fg = p.cCyan },
+        ["@punctuation.bracket"]   = g.syntax.Special,
         ["@punctuation.special"]   = { fg = p.cCyan },
 
         ["@constant"]              = g.syntax.Constant,
@@ -472,6 +472,7 @@ function M.load(palette)
         ["@method"]                = { fg = g.syntax.Function.fg, bold = true },
         ["@method.call"]           = { fg = g.syntax.Function.fg, bold = true },
         ["@field"]                 = g.syntax.Special,
+        ["@field.lua"]             = g.editor.Normal,
         ["@property"]              = g.syntax.Identifier,
         ["@constructor"]           = g.syntax.Keyword,
 
@@ -481,7 +482,6 @@ function M.load(palette)
         ["@keyword"]               = g.syntax.Keyword,
         ["@keyword.function"]      = g.syntax.Function,
         ["@keyword.operator"]      = g.syntax.Operator,
-        ["@keyword.return"]        = g.syntax.Keyword,
         ["@operator"]              = g.syntax.Operator,
         ["@exception"]             = g.syntax.Exception,
         ["@include"]               = g.syntax.Include,
@@ -504,6 +504,7 @@ function M.load(palette)
         ["@text.underline"]        = { underline = true },
         ["@text.strike"]           = { strikethrough = true },
         ["@text.title"]            = g.editor.Title,
+        ["@text.title.html"]       = g.editor.Normal,
         ["@text.literal"]          = g.syntax.Delimiter,
         ["@text.uri"]              = { fg = p.cBlue, italic = true },
         ["@text.math"]             = g.syntax.Number,
@@ -516,7 +517,7 @@ function M.load(palette)
         ["@todo"]                  = g.diagnostic.DiagnosticInfo,
         ["@tag"]                   = g.syntax.Tag,
         ["@tag.attribute"]         = g.syntax.Label,
-        -- ["@tag.delimiter"]         = g.diagnostic.DiagnosticHint,
+        -- ["@tag.delimiter"]         = g.syntax.Delimiter,
     }
 
     for _, highlightGroups in pairs(g) do
