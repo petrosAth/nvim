@@ -472,7 +472,7 @@ function M.load(palette)
         ["@method"]                = { fg = g.syntax.Function.fg, bold = true },
         ["@method.call"]           = { fg = g.syntax.Function.fg, bold = true },
         ["@field"]                 = g.syntax.Special,
-        ["@field.lua"]             = g.editor.Normal,
+        ["@field.lua"]             = { fg = g.editor.Normal.fg },
         ["@property"]              = g.syntax.Identifier,
         ["@constructor"]           = g.syntax.Keyword,
 
@@ -504,7 +504,7 @@ function M.load(palette)
         ["@text.underline"]        = { underline = true },
         ["@text.strike"]           = { strikethrough = true },
         ["@text.title"]            = g.editor.Title,
-        ["@text.title.html"]       = g.editor.Normal,
+        ["@text.title.html"]       = { fg = g.editor.Normal.fg },
         ["@text.literal"]          = g.syntax.Delimiter,
         ["@text.uri"]              = { fg = p.cBlue, italic = true },
         ["@text.math"]             = g.syntax.Number,
