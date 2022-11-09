@@ -1,4 +1,5 @@
 local notify = require("notify")
+local timeout = 1000
 local i = PA.styling.icons
 local b = PA.styling.borders.default
 local client_notifs = {}
@@ -9,28 +10,28 @@ notify.setup({
     stages = "slide",
 
     -- Function called when a new window is opened, use for changing win settings/config
-    on_open = function (win)
-        vim.api.nvim_win_set_config(win, { border = {
-                { b.tl, "FloatBorder" },
-                { b.t,  "FloatBorder" },
-                { b.tr, "FloatBorder" },
-                { b.r,  "FloatBorder" },
-                { b.br, "FloatBorder" },
-                { b.b,  "FloatBorder" },
-                { b.bl, "FloatBorder" },
-                { b.l,  "FloatBorder" },
-            }
-        })
+    on_open = function(win)
+        if vim.api.nvim_win_is_valid(win) then
+            vim.api.nvim_win_set_config(
+                win,
+                {
+                    border = {
+                        { b.tl, "FloatBorder" },
+                        { b.t, "FloatBorder" },
+                        { b.tr, "FloatBorder" },
+                        { b.r, "FloatBorder" },
+                        { b.br, "FloatBorder" },
+                        { b.b, "FloatBorder" },
+                        { b.bl, "FloatBorder" },
+                        { b.l, "FloatBorder" },
+                    },
+                }
+            )
+        end
     end,
 
-    -- Function called when a window is closed
-    on_close = nil,
-
-    -- Render function for notifications. See notify-render()
-    render = "default",
-
     -- Default timeout for notifications
-    timeout = 5000,
+    timeout = timeout,
 
     -- For stages that change opacity this is treated as the highlight behind the window
     -- Set this to either a highlight group or an RGB hex value e.g. "#000000"
@@ -125,7 +126,7 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
         notif_data.notification = vim.notify(val.message and format_message(val.message) or "Complete", "info", {
             icon = i.done[1],
             replace = notif_data.notification,
-            timeout = 3000,
+            timeout = timeout,
         })
 
         notif_data.spinner = nil
