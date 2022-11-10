@@ -227,7 +227,7 @@ local function has_custom_name(tab_id, win_id)
         { filename = "%[Command Line%]",                     customFilename = i.history[1]    .. " History"                         },
         { filename = "neo%-tree git_status",                 customFilename = i.git.repo[1]   .. " Git status"                      },
         { filename = "neo%-tree buffers",                    customFilename = i.buffers[1]    .. " Open buffers"                    },
-        { filename = "/:0:/",                                customFilename =                    "Original file"                    },
+        { filename = "/:0:/",                                customFilename = i.file[1]       .. " Original file"                   },
         { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", customFilename = i.git.commit[1] .. " ",                gitRepo = true },
         { filename = "^diffview:///panels/.*History",        customFilename = i.diffview[1]   .. " Diffview history"                },
         { filename = "^diffview:///panels/.*",               customFilename = i.diffview[1]   .. " Diffview files"                  },
