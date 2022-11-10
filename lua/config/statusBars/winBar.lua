@@ -29,18 +29,18 @@ local CurrentWinBar = {
 }
 
 local SpecialCurrentWinBar = {
-    condition = function()
-        return conditions.buffer_matches({
-            buftype = h.SpecialBufType,
-            filetype = h.SpecialFileType,
-        })
+    condition = function(self)
+        self.fileName = vim.api.nvim_buf_get_name(0)
+        self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
+        local has_custom_title, _ = c.check_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        return has_custom_title
     end,
     {
         c.FileReadOnly,
         hl = hl,
     },
     {
-        c.FileNameBlock,
+        c.CustomTitle,
         hl = "WinBarCurrentSpecial",
     },
     h.Align,
@@ -75,19 +75,18 @@ local InactiveWinBar = {
 }
 
 local SpecialInactiveWinBar = {
-    condition = function()
-        return not conditions.is_active()
-            and conditions.buffer_matches({
-                buftype = h.SpecialBufType,
-                filetype = h.SpecialFileType,
-            })
+    condition = function(self)
+        self.fileName = vim.api.nvim_buf_get_name(0)
+        self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
+        local has_custom_title, _ = c.check_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        return not conditions.is_active() and has_custom_title
     end,
     {
         c.FileReadOnly,
         hl = hl,
     },
     {
-        c.FileNameBlock,
+        c.CustomTitle,
         hl = "WinBarSpecial",
     },
     h.Align,
@@ -104,8 +103,8 @@ local DisableWinBar = {
         -- incline.nvim - https://github.com/b0o/incline.nvim/blob/44d4e6f4dcf2f98cf7b62a14e3c10749fc5c6e35/lua/incline/util.lua#L49-L51
         return vim.api.nvim_win_get_config(0).relative ~= ""
             or conditions.buffer_matches({
-                buftype = { "nofile", "prompt" },
-                filetype = { "alpha", "packer", "lspinfo", "mason", "WhichKey" },
+                buftype = h.DisableBufType,
+                filetype = h.DisableFileType,
             })
     end,
     init = function()

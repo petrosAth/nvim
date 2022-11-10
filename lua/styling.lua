@@ -32,6 +32,7 @@ PA.styling = {
         buffers      = { ""                                              },
         fileExplorer = { ""                                              },
         list         = { ""                                              },
+        help         = { ""                                              },
         codeOutline  = { ""                                              },
         minimap      = { ""                                              },
         dashboard    = { ""                                              },

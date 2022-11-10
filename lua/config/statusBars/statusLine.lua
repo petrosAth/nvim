@@ -27,6 +27,44 @@ local DefaultStatusline = {
     c.LinesTotal,
 }
 
+local SpecialStatusline = {
+    condition = function()
+        return conditions.buffer_matches({
+            buftype = { "qf" },
+            filetype = { "qf", "Trouble" },
+        })
+    end,
+
+    c.ViMode,
+    c.SearchResults,
+
+    h.Align,
+    {
+        c.CursorLine,
+        hl = hl,
+    },
+    c.LinesTotal,
+}
+
+local MinimalStatusline = {
+    condition = function(self)
+        self.fileName = vim.api.nvim_buf_get_name(0)
+        self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
+        local has_custom_title, _ = c.check_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        local in_diffview = string.match(self.fileName, "^diffview:///[^(panels)]") -- in diffview but not in diffview panels
+        local disabled_buffer = conditions.buffer_matches({
+            buftype = h.DisableBufType,
+            filetype = h.DisableFileType,
+        })
+        return disabled_buffer or (has_custom_title and not in_diffview)
+    end,
+
+    c.ViMode,
+    c.SearchResults,
+
+    h.Align,
+}
+
 local InactiveStatusline = {
     condition = function()
         return not conditions.is_active()
@@ -38,49 +76,6 @@ local InactiveStatusline = {
         c.WindowNumber,
         hl = hl,
     },
-}
-
-local SpecialStatusline = {
-    condition = function()
-        return conditions.buffer_matches({
-            buftype = { "nofile", "prompt", "help", "quickfix" },
-            filetype = {
-                "aerial",
-                "alpha",
-                "diff",
-                "DiffviewFileHistory",
-                "DiffviewFiles",
-                "fugitive",
-                "^git.*",
-                "help",
-                "lspinfo",
-                "man",
-                "mason.nvim",
-                "minimap",
-                "neo-tree",
-                "NvimTree",
-                "Outline",
-                "packer",
-                "qf",
-                "TelescopePrompt",
-                "Trouble",
-                "undotree",
-            },
-        })
-    end,
-
-    c.ViMode,
-    c.SearchResults,
-    {
-        c.SpecialName,
-        hl = hl,
-    },
-    h.Align,
-    {
-        c.CursorLineSpecial,
-        hl = hl,
-    },
-    c.LinesTotalSpecial,
 }
 
 local TerminalStatusline = {
@@ -95,14 +90,20 @@ local TerminalStatusline = {
         hl = hl,
     },
     h.Align,
+    {
+        c.CursorPosition,
+        hl = hl,
+    },
+    c.LinesTotal,
 }
 
 M.StatusLines = {
     fallthrough = false,
 
-    TerminalStatusline,
-    SpecialStatusline,
     InactiveStatusline,
+    TerminalStatusline,
+    MinimalStatusline,
+    SpecialStatusline,
     DefaultStatusline,
 
     hl = function()

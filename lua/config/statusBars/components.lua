@@ -139,34 +139,58 @@ local FileNameBlock = {
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
     end,
-    static = {
-        typeList = {
-            { title = "aerial", customTitle = "AERIAL" },
-            { title = "DiffviewFileHistory", customTitle = "DIFFVIEW" },
-            { title = "DiffviewFiles", customTitle = "DIFFVIEW" },
-            { title = "diff", customTitle = "DIFF PANEL" },
-            { title = "help", customTitle = "HELP" },
-            { title = "minimap", customTitle = "MINIMAP" },
-            { title = "neo-tree", customTitle = "NEOTREE" },
-            { title = "NvimTree", customTitle = "NVIMTREE" },
-            { title = "Outline", customTitle = "OUTLINE" },
-            { title = "qf", customTitle = "QUICKFIX" },
-            { title = "terminal", customTitle = "TERMINAL" },
-            { title = "Trouble", customTitle = "TROUBLE" },
-            { title = "undotree", customTitle = "UNDOTREE" },
-        },
-    },
+}
+
+function M.check_custom_title(path, buftype, filetype)
+    for _, type in pairs(h.SpecialBufTypes) do
+        local buftype_match = string.match(buftype, type.buftype)
+        if buftype_match then
+            if type.title ~= "" then
+                return true, type.icon .. type.title
+            end
+        end
+    end
+
+    for _, type in pairs(h.SpecialFileTypes) do
+        local filetype_match = string.match(filetype, type.filetype)
+        if filetype_match then
+            return true, type.icon .. type.title
+        end
+    end
+
+    for _, name in pairs(h.SpecialFileNames) do
+        local filename_match = string.match(path, name.filename)
+        if filename_match then
+            if name.gitRepo then
+                local commit = string.sub(filename_match, -11, -4)
+                return true, name.icon .. name.title .. commit
+            end
+            return true, name.icon .. name.title
+        end
+    end
+
+    return false, ""
+end
+
+M.CustomTitle = {
+    init = function(self)
+        self.fileName = vim.api.nvim_buf_get_name(0)
+        self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
+    end,
+
+    provider = function(self)
+        local has_custom_title, custom_title = M.check_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        if has_custom_title then
+            return h.Separator.left.provider .. custom_title .. h.Separator.right.provider
+        end
+
+        return ""
+    end,
 }
 
 local FilePath = {
     provider = function(self)
         local filePath = self.filePath
-
-        for _, type in pairs(self.typeList) do
-            if vim.bo.filetype == type.title or self.filePath == type.title or vim.bo.buftype == type.title then
-                return ""
-            end
-        end
 
         if filePath == "" then
             return ""
@@ -185,12 +209,6 @@ local FilePath = {
 local FileName = {
     provider = function(self)
         local fileName = vim.fn.fnamemodify(self.fileName, ":t")
-
-        for _, type in pairs(self.typeList) do
-            if vim.bo.filetype == type.title or self.filePath == type.title or vim.bo.buftype == type.title then
-                return type.customTitle
-            end
-        end
 
         if fileName == "" then
             return "[No Name]"
@@ -338,14 +356,7 @@ M.CursorPosition = {
     { flexible = h.Hide.CursorPosition, { h.Separator.right }, { h.Null } },
 }
 
-M.CursorLineSpecial = {
-    condition = function()
-        return conditions.buffer_matches({
-            buftype = {},
-            filetype = { "qf", "Trouble" },
-        })
-    end,
-
+M.CursorLine = {
     { h.Separator.left },
     { provider = i.line[1] .. " %l" },
     { h.Separator.right },
@@ -372,45 +383,6 @@ M.LinesTotal = {
     static = {
         mode_colors = h.ModeHighlightGroups,
     },
-    { h.Separator.left },
-    { provider = i.linesTotal[1] .. " %L" },
-    { h.Separator.right },
-
-    hl = function(self)
-        local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = utils.get_highlight(self.mode_colors[mode])
-        return { fg = highlight.fg, bg = highlight.bg, bold = true }
-    end,
-}
-
-M.LinesTotalSpecial = {
-    init = function(self)
-        if require("hydra.statusline").is_active() then
-            self.mode = "hydra"
-        else
-            self.mode = vim.fn.mode(1) -- :h mode()
-        end
-
-        -- execute this only once, this is required if you want the ViMode
-        -- component to be updated on operator pending mode
-        if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", {
-                pattern = "*:*o",
-                command = "redrawstatus",
-            })
-            self.once = true
-        end
-    end,
-    static = {
-        mode_colors = h.ModeHighlightGroups,
-    },
-    condition = function()
-        return conditions.buffer_matches({
-            buftype = {},
-            filetype = { "qf", "Trouble" },
-        })
-    end,
-
     { h.Separator.left },
     { provider = i.linesTotal[1] .. " %L" },
     { h.Separator.right },
@@ -723,6 +695,9 @@ M.LspBlock = utils.insert(
 )
 
 M.TerminalName = {
+    condition = function()
+        return conditions.buffer_matches({ buftype = { "terminal" } })
+    end,
     { h.Separator.left },
     {
         provider = function()
