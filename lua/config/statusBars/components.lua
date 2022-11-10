@@ -208,38 +208,6 @@ M.FileNameBlock = utils.insert(
     { flexible = h.Hide.FileName, { h.Separator.right }, { h.Null } }
 )
 
-M.SpecialName = {
-    init = function(self)
-        self.fileName = vim.api.nvim_buf_get_name(0)
-        self.specialNameList = {
-            { fileName = "%[Command Line%]", specialName = "Search history" },
-            { fileName = "^diffview:///null$", specialName = "Original file" },
-            { fileName = "(/%.git/:0:)/", specialName = "Original file" },
-            { fileName = "(/%.git/.-)/", specialName = " Git commit", is_gitRepo = true },
-        }
-    end,
-
-    provider = function(self)
-        local fileName = vim.fn.fnamemodify(self.fileName, ":p")
-        for _, name in pairs(self.specialNameList) do
-            local fileNameMatch = string.match(fileName, name.fileName)
-            if fileNameMatch then
-                local specialName = name.specialName
-                if name.is_gitRepo then
-                    local commit = string.sub(fileNameMatch, 7, 13)
-                    specialName = name.specialName .. h.Separator.mid.provider .. commit
-                end
-
-                if vim.bo.filetype == "vim" then
-                    specialName = "Command line history"
-                end
-
-                return h.Separator.left.provider .. specialName .. h.Separator.right.provider
-            end
-        end
-    end,
-}
-
 M.Paste = {
     init = function(self)
         if require("hydra.statusline").is_active() then
