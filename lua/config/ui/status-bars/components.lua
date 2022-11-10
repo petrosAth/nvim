@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local h = require("config.status-bars.tables")
+local h = require("config.ui.status-bars.tables")
 local i = PA.styling.icons
 local M = {}
 
