@@ -1,5 +1,5 @@
 local conditions = require("heirline.conditions")
-local h = require("config.status-bars.helperTables")
+local h = require("config.status-bars.tables")
 local c = require("config.status-bars.components")
 local hl = "StatusLineLight"
 local M = {}
@@ -102,8 +102,8 @@ M.StatusLines = {
 
     InactiveStatusline,
     TerminalStatusline,
-    MinimalStatusline,
     SpecialStatusline,
+    MinimalStatusline,
     DefaultStatusline,
 
     hl = function()
