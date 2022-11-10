@@ -1,4 +1,5 @@
 local conditions = require("heirline.conditions")
+local u = require("config.ui.utilities")
 local h = require("config.ui.status-bars.tables")
 local c = require("config.ui.status-bars.components")
 local hl = "WinBarLight"
@@ -32,7 +33,7 @@ local SpecialCurrentWinBar = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
-        local has_custom_title, _ = c.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        local has_custom_title, _ = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         return has_custom_title
     end,
     {
@@ -78,7 +79,7 @@ local SpecialInactiveWinBar = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
-        local has_custom_title, _ = c.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        local has_custom_title, _ = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         return not conditions.is_active() and has_custom_title
     end,
     {

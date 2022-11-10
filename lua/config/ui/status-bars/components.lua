@@ -1,5 +1,6 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
+local u = require("config.ui.utilities")
 local h = require("config.ui.status-bars.tables")
 local i = PA.styling.icons
 local M = {}
@@ -141,37 +142,6 @@ local FileNameBlock = {
     end,
 }
 
-function M.check_for_custom_title(path, buftype, filetype)
-    for _, type in pairs(h.SpecialBufTypes) do
-        local buftype_match = string.match(buftype, type.buftype)
-        if buftype_match then
-            if type.title ~= "" then
-                return true, type.icon .. type.title
-            end
-        end
-    end
-
-    for _, type in pairs(h.SpecialFileTypes) do
-        local filetype_match = string.match(filetype, type.filetype)
-        if filetype_match then
-            return true, type.icon .. type.title
-        end
-    end
-
-    for _, name in pairs(h.SpecialFileNames) do
-        local filename_match = string.match(path, name.filename)
-        if filename_match then
-            if name.gitRepo then
-                local commit = string.sub(filename_match, -11, -4)
-                return true, name.icon .. name.title .. commit
-            end
-            return true, name.icon .. name.title
-        end
-    end
-
-    return false, ""
-end
-
 M.CustomTitle = {
     init = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
@@ -179,7 +149,7 @@ M.CustomTitle = {
     end,
 
     provider = function(self)
-        local has_custom_title, custom_title = M.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        local has_custom_title, custom_title = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         if has_custom_title then
             return h.Separator.left.provider .. custom_title .. h.Separator.right.provider
         end

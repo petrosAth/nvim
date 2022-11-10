@@ -1,6 +1,7 @@
 local filename = require("tabby.module.filename")
 local tab_name = require("tabby.feature.tab_name")
 local getHl = require("config.themes.utilities").getHl
+local u = require("config.ui.utilities")
 local i = PA.styling.icons
 local s = PA.styling.separators.default
 
@@ -51,7 +52,7 @@ local function is_before_win_sel(is_current, win_id)
     return win_number + 1 == M.win_sel_number
 end
 
-local function has_custom_label(tab_id)
+local function check_for_custom_label(tab_id)
     local label = tab_name.get_raw(tab_id)
 
     if label ~= "" then
@@ -63,7 +64,7 @@ end
 
 local function set_sep_icon(type, position, is_current, tab_id, win_id)
     local icon = position == "left" and M.left_sep_icon or M.right_sep_icon
-    local has_custom_label = has_custom_label(tab_id)
+    local has_custom_label = check_for_custom_label(tab_id)
 
     if type == "win" then
         if position == "left" then
@@ -113,7 +114,7 @@ end
 
 local function set_sep_hl(type, position, is_current, tab_id, win_id)
     win_id = win_id or 0
-    local has_custom_label = has_custom_label(tab_id)
+    local has_custom_label = check_for_custom_label(tab_id)
     local fg = is_current and getHl("TabLineSel") or getHl("TabLineFill")
     local bg = getHl("TabLine")
 
@@ -197,68 +198,18 @@ function M.set_sep_all(type, position, is_current, tab_id, win_id)
     return icon, fg, bg
 end
 
-local function is_plugin(buf_id)
-    local plugin_list = {
-        { filetype = "aerial",          window_title = i.codeOutline[1]  .. " Code outline"  },
-        { filetype = "alpha",           window_title = i.dashboard[1]    .. " Dashboard"     },
-        { filetype = "diff",            window_title = i.diffview[1]     .. " Diff Panel"    },
-        { filetype = "minimap",         window_title = i.minimap[1]      .. " Minimap"       },
-        { filetype = "neo-tree",        window_title = i.fileExplorer[1] .. " File explorer" },
-        { filetype = "NvimTree",        window_title = i.fileExplorer[1] .. " File explorer" },
-        { filetype = "Outline",         window_title = i.codeOutline[1]  .. " Code outline"  },
-        { filetype = "qf",              window_title = i.list[1]         .. " List"          },
-        { filetype = "Trouble",         window_title = i.list[1]         .. " List"          },
-        { filetype = "TelescopePrompt", window_title = i.telescope[1]    .. " Telescope"     },
-        { filetype = "undotree",        window_title = i.undoTree[1]     .. " Undotree"      },
-    }
-    local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
-
-    for _, plugin in pairs(plugin_list) do
-        if filetype == plugin.filetype then
-            return true, plugin.window_title
-        end
-    end
-end
-
-local function has_custom_name(tab_id, win_id)
-    win_id = win_id ~= "" and win_id or vim.api.nvim_tabpage_get_win(tab_id)
-    local fullPath = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win_id))
-    local filename_list = {
-        { filename = "%[Command Line%]",                     customFilename = i.history[1]    .. " History"                         },
-        { filename = "neo%-tree git_status",                 customFilename = i.git.repo[1]   .. " Git status"                      },
-        { filename = "neo%-tree buffers",                    customFilename = i.buffers[1]    .. " Open buffers"                    },
-        { filename = "/:0:/",                                customFilename = i.file[1]       .. " Original file"                   },
-        { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", customFilename = i.git.commit[1] .. " ",                gitRepo = true },
-        { filename = "^diffview:///panels/.*History",        customFilename = i.diffview[1]   .. " Diffview history"                },
-        { filename = "^diffview:///panels/.*",               customFilename = i.diffview[1]   .. " Diffview files"                  },
-        { filename = "^diffview:///.*",                      customFilename = i.diffview[1]   .. " Diffview"                        }
-    }
-
-    for _, name in pairs(filename_list) do
-        local filename_match = string.match(fullPath, name.filename)
-        if filename_match then
-            if name.gitRepo then
-                local commit = string.sub(filename_match, -11, -4)
-                return true, name.customFilename .. commit
-            end
-            return true, name.customFilename
-        end
-    end
-end
-
 M.win_label = function(win_id)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
+    local fullPath = vim.api.nvim_buf_get_name(buf_id)
+    local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
+    local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
+    local has_custom_title, custom_title = u.check_for_custom_title(fullPath, buftype, filetype)
     local name = filename.unique(win_id)
-    local is_plugin, title = is_plugin(buf_id)
-    local has_custom_name, custom_name = has_custom_name("", win_id)
     -- local label = bufid .. " : " .. name
     local label = name
 
-    if is_plugin then
-        label = title
-    end
-    if has_custom_name then
-        label = custom_name
+    if has_custom_title then
+        label = custom_title
     end
 
     return label
@@ -277,18 +228,17 @@ M.modified_flag = function(win_id, is_current)
 end
 
 local function tab_top_window(tab_id)
-    local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
     local buf_id = vim.api.nvim_win_get_buf(vim.api.nvim_tabpage_get_win(tab_id))
-    local is_plugin, filetype = is_plugin(buf_id)
-    local has_custom_name, custom_name = has_custom_name(tab_id, "")
+    local fullPath = vim.api.nvim_buf_get_name(buf_id)
+    local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
+    local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
+    local has_custom_title, custom_title = u.check_for_custom_title(fullPath, buftype, filetype)
+    local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
     -- local label = bufid .. " : " .. name
     local label = name
 
-    if is_plugin then
-        label = filetype
-    end
-    if has_custom_name then
-        label = custom_name
+    if has_custom_title then
+        label = custom_title
     end
 
     return label
@@ -306,7 +256,7 @@ end
 
 M.tab_label = function(tab_id, is_current)
     local label = tab_top_window(tab_id)
-    local has_custom_label, custom_label = has_custom_label(tab_id)
+    local has_custom_label, custom_label = check_for_custom_label(tab_id)
     local hl = set_tab_label_hl(is_current, has_custom_label)
 
     if has_custom_label then

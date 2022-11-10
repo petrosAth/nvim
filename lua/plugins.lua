@@ -415,7 +415,7 @@ return packer.startup(function()
         "nanozuki/tabby.nvim",
         requires = "nvim-web-devicons",
         config = function()
-            require("config.tabLine")
+            require("config.ui.tab-line")
         end,
     })
 
@@ -423,9 +423,9 @@ return packer.startup(function()
     use({
         "rebelot/heirline.nvim",
         config = function()
-            local StatusLines = require("config.statusBars.statusLine").StatusLines
-            local WinBars = require("config.statusBars.winBar").WinBars
-            require("heirline").setup(StatusLines, WinBars)
+            local status_lines = require("config.ui.status-bars.status-line").StatusLines
+            local win_bars = require("config.ui.status-bars.win-bar").WinBars
+            require("heirline").setup(status_lines, win_bars)
         end,
     })
 
