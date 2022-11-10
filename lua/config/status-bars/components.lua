@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local h = require("config.statusBars.helperTables")
+local h = require("config.status-bars.helperTables")
 local i = PA.styling.icons
 local M = {}
 
@@ -141,7 +141,7 @@ local FileNameBlock = {
     end,
 }
 
-function M.check_custom_title(path, buftype, filetype)
+function M.check_for_custom_title(path, buftype, filetype)
     for _, type in pairs(h.SpecialBufTypes) do
         local buftype_match = string.match(buftype, type.buftype)
         if buftype_match then
@@ -179,7 +179,7 @@ M.CustomTitle = {
     end,
 
     provider = function(self)
-        local has_custom_title, custom_title = M.check_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        local has_custom_title, custom_title = M.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         if has_custom_title then
             return h.Separator.left.provider .. custom_title .. h.Separator.right.provider
         end
