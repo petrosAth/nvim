@@ -410,7 +410,7 @@ function M.load(palette)
         HydraRed = { fg = p.cRed, bg = p.none },
     }
 
-    g.statusBars = {
+    g.StatusBars = {
         ModeInactive = { fg = p.cFill2, bg = p.cCyan },
         ModeVisual = { fg = p.cFill2, bg = p.cYellow },
         ModeReplace = { fg = p.cFill2, bg = p.cRed },

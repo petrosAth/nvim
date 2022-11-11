@@ -92,6 +92,7 @@ M.ModeNames = {
     ["r?"]    = "CONFIRM",
     ["!"]     = "SHELL",
     ["t"]     = "TERMINAL",
+    ["h"]     = "HYDRA",
 }
 
 M.ModeHighlightGroups = {

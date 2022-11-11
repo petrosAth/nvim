@@ -5,6 +5,24 @@ local h = require("config.ui.status-bars.tables")
 local i = PA.styling.icons
 local M = {}
 
+local function get_vim_mode()
+    if require("hydra.statusline").is_active() then
+        return "h"
+    else
+        return vim.fn.mode(1) -- :h mode()
+    end
+end
+
+local function get_vim_mode_color(mode)
+    mode = mode or get_vim_mode()
+    mode = mode:sub(1, 1) -- get only the first mode character
+    local mode_colors = h.ModeHighlightGroups
+    local highlight = utils.get_highlight(mode_colors[mode])
+
+    return { fg = highlight.fg, bg = highlight.bg, bold = true }
+end
+
+
 local FileTypeBlock = {
     condition = function()
         return vim.bo.filetype ~= ""
@@ -197,26 +215,6 @@ M.FileNameBlock = utils.insert(
 )
 
 M.Paste = {
-    init = function(self)
-        if require("hydra.statusline").is_active() then
-            self.mode = "hydra"
-        else
-            self.mode = vim.fn.mode(1) -- :h mode()
-        end
-
-        -- execute this only once, this is required if you want the ViMode
-        -- component to be updated on operator pending mode
-        if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", {
-                pattern = "*:*o",
-                command = "redrawstatus",
-            })
-            self.once = true
-        end
-    end,
-    static = {
-        mode_colors = h.ModeHighlightGroups,
-    },
     condition = function()
         return vim.o.paste
     end,
@@ -226,33 +224,11 @@ M.Paste = {
     { h.Separator.right },
 
     hl = function(self)
-        local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = utils.get_highlight(self.mode_colors[mode])
-        return { fg = highlight.fg, bg = highlight.bg, bold = true }
+        return get_vim_mode_color(self.mode)
     end,
 }
 
 M.Wrap = {
-    init = function(self)
-        if require("hydra.statusline").is_active() then
-            self.mode = "hydra"
-        else
-            self.mode = vim.fn.mode(1) -- :h mode()
-        end
-
-        -- execute this only once, this is required if you want the ViMode
-        -- component to be updated on operator pending mode
-        if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", {
-                pattern = "*:*o",
-                command = "redrawstatus",
-            })
-            self.once = true
-        end
-    end,
-    static = {
-        mode_colors = h.ModeHighlightGroups,
-    },
     condition = function()
         return vim.o.wrap
     end,
@@ -262,9 +238,7 @@ M.Wrap = {
     { h.Separator.right },
 
     hl = function(self)
-        local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = utils.get_highlight(self.mode_colors[mode])
-        return { fg = highlight.fg, bg = highlight.bg, bold = true }
+        return get_vim_mode_color(self.mode)
     end,
 }
 
@@ -333,34 +307,12 @@ M.CursorLine = {
 }
 
 M.LinesTotal = {
-    init = function(self)
-        if require("hydra.statusline").is_active() then
-            self.mode = "hydra"
-        else
-            self.mode = vim.fn.mode(1) -- :h mode()
-        end
-
-        -- execute this only once, this is required if you want the ViMode
-        -- component to be updated on operator pending mode
-        if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", {
-                pattern = "*:*o",
-                command = "redrawstatus",
-            })
-            self.once = true
-        end
-    end,
-    static = {
-        mode_colors = h.ModeHighlightGroups,
-    },
     { h.Separator.left },
     { provider = i.linesTotal[1] .. " %L" },
     { h.Separator.right },
 
     hl = function(self)
-        local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = utils.get_highlight(self.mode_colors[mode])
-        return { fg = highlight.fg, bg = highlight.bg, bold = true }
+        return get_vim_mode_color(self.mode)
     end,
 }
 
@@ -679,17 +631,8 @@ M.TerminalName = {
 }
 
 M.ViMode = {
-    -- get vim current mode, this information will be required by the provider
-    -- and the highlight functions, so we compute it only once per component
-    -- evaluation and store it as a component attribute
     init = function(self)
-        if require("hydra.statusline").is_active() then
-            self.mode = "hydra"
-        else
-            self.mode = vim.fn.mode(1) -- :h mode()
-        end
-        self.fileName = vim.api.nvim_buf_get_name(0)
-        self.fileName = vim.fn.fnamemodify(self.fileName, ":t")
+        self.mode = get_vim_mode()
 
         -- execute this only once, this is required if you want the ViMode
         -- component to be updated on operator pending mode
@@ -701,42 +644,15 @@ M.ViMode = {
             self.once = true
         end
     end,
-    -- Now we define some dictionaries to map the output of mode() to the
-    -- corresponding string and color. We can put these into `static` to compute
-    -- them at initialisation time.
-    static = {
-        mode_names = h.ModeNames,
-        mode_colors = h.ModeHighlightGroups,
-    },
 
-    -- We can now access the value of mode() that, by now, would have been
-    -- computed by `init()` and use it to index our strings dictionary.
-    -- note how `static` fields become just regular attributes once the
-    -- component is instantiated.
-    -- To be extra meticulous, we can also add some vim statusline syntax to
-    -- control the padding and make sure our string is always at least 2
-    -- characters long. Plus a nice Icon.
     provider = function(self)
-        local mode = self.mode_names[self.mode]
-
-        -- print mode if in command mode
-        if self.mode ~= "c" then
-            -- print HYDRA if hydra is active
-            if require("hydra.statusline").is_active() then
-                mode = "HYDRA"
-            end
-        end
-
-        return h.Separator.left.provider .. "%2(" .. mode .. "%)"
+        return h.Separator.left.provider .. "%2(" .. h.ModeNames[self.mode] .. "%)"
     end,
 
     h.Separator.right,
 
-    -- Same goes for the highlight. Now the foreground will change according to the current mode.
     hl = function(self)
-        local mode = self.mode:sub(1, 1) -- get only the first mode character
-        local highlight = utils.get_highlight(self.mode_colors[mode])
-        return { fg = highlight.fg, bg = highlight.bg, bold = true }
+        return get_vim_mode_color(self.mode)
     end,
 }
 
