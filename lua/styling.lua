@@ -30,6 +30,7 @@ PA.styling = {
         terminal     = { ""                                              },
         buffer       = { ""                                              },
         buffers      = { ""                                              },
+        info         = { ""                                              },
         fileExplorer = { ""                                              },
         list         = { ""                                              },
         help         = { ""                                              },
