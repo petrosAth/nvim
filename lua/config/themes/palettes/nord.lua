@@ -55,8 +55,6 @@ M.base = {
     cGreenDark  = u.blend(p.nord14, p.nord0, 0.1),
     cGreenDim   = u.blend(p.nord14, p.nord0, 0.2),
     cGreen      = p.nord14,
-
-    none        = "none",
 }
 
 M.terminal = {

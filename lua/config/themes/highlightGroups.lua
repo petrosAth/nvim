@@ -18,40 +18,40 @@ function M.load(palette)
         TermCursor = { link = "Cursor" },
         TermCursorNC = { link = "Cursor" },
         MatchParen = { bold = true, underline = true },
-        NonText = { fg = p.cFill3, bg = p.none },
-        Conceal = { fg = p.none, bg = p.none },
-        Whitespace = { fg = p.cFill3, bg = p.none },
+        NonText = { fg = p.cFill3 },
+        Conceal = {},
+        Whitespace = { fg = p.cFill3 },
         Pmenu = { fg = p.cFg, bg = p.cBgDark },
         PmenuSel = { fg = p.cCyan, bg = p.cFill4 },
         PmenuSbar = { fg = p.cFg, bg = p.cFill1 },
         PmenuThumb = { fg = p.cCyan, bg = p.cFill3 },
-        SpecialKey = { fg = p.cFill4, bg = p.none },
-        SpellBad = { bg = p.none, sp = p.cRed, underdotted = true },
-        SpellCap = { bg = p.none, sp = p.cYellow, underdotted = true },
-        SpellLocal = { bg = p.none, sp = p.cFg, underdotted = true },
-        SpellRare = { bg = p.none, sp = p.cFgLight, underdotted = true },
+        SpecialKey = { fg = p.cFill4 },
+        SpellBad = { sp = p.cRed, underdotted = true },
+        SpellCap = { sp = p.cYellow, underdotted = true },
+        SpellLocal = { sp = p.cFg, underdotted = true },
+        SpellRare = { sp = p.cFgLight, underdotted = true },
         Visual = { bg = p.cFill4 },
-        VisualNOS = { fg = p.none, bg = p.cFill4 },
+        VisualNOS = { bg = p.cFill4 },
         Folded = { fg = p.cFill4 },
         FoldColumn = { fg = p.cFill4 },
         SignColumn = { fg = p.cFill2 },
         LineNrAbove = { link = "LineNr" },
-        LineNr = { fg = p.cFill5, bg = p.none },
+        LineNr = { fg = p.cFill5 },
         LineNrBelow = { link = "LineNr" },
         CursorLineNr = { fg = p.cFg, bg = p.cFill1 },
-        CursorLine = { fg = p.none, bg = p.cFill1 },
+        CursorLine = { bg = p.cFill1 },
         CursorColumn = { link = "CursorLine" },
         CursorLineSign = { link = "SignColumn" },
         CursorLineFold = { link = "FoldColumn" },
-        Directory = { fg = p.cCyan, bg = p.none },
-        EndOfBuffer = { fg = p.cFill2, bg = p.none },
+        Directory = { fg = p.cCyan },
+        EndOfBuffer = { fg = p.cFill2 },
         ErrorMsg = { fg = p.cFg, bg = p.cRed },
-        ModeMsg = { fg = p.cFg, bg = p.none, bold = true },
-        MoreMsg = { fg = p.cYellow, bg = p.none },
+        ModeMsg = { fg = p.cFg, bold = true },
+        MoreMsg = { fg = p.cYellow },
         MsgArea = { link = "Normal" },
         WarningMsg = { fg = p.cYellow, bg = p.cBg, reverse = true },
         MsgSeparator = { fg = p.cFg, bg = p.cFill1 },
-        Question = { fg = p.cFg, bg = p.none },
+        Question = { fg = p.cFg },
         StatusLine = { fg = p.cFg, bg = p.cFill2 },
         StatusLineNC = { fg = p.cFgDim, bg = p.cFill2 },
         StatusLineTerm = { link = "StatusLine" },
@@ -121,8 +121,8 @@ function M.load(palette)
 
         Underlined = { underline = true },
         Ignore = { fg = p.cFill2 },
-        Error = { fg = p.cRed, bg = p.none, bold = true, underline = true },
-        Todo = { fg = p.cYellow, bg = p.none },
+        Error = { fg = p.cRed, bold = true, underline = true },
+        Todo = { fg = p.cYellow },
     }
 
     g.lsp = {
@@ -199,17 +199,17 @@ function M.load(palette)
         InclineNormalNC = { link = "InclineNormal" },
 
         -- indent-blankline.nvim
-        IndentBlanklineContextChar = { fg = p.cViolet, bg = p.none },
-        IndentBlanklineContextStart = { fg = p.none, bg = p.none, underline = true, sp = p.cViolet },
-        IndentBlanklineSpaceCharBlankline = { fg = p.cFill2, bg = p.none },
-        IndentBlanklineSpaceChar = { fg = p.cFill2, bg = p.none },
-        IndentBlanklineChar = { fg = p.cFill2, bg = p.none },
+        IndentBlanklineContextChar = { fg = p.cViolet },
+        IndentBlanklineContextStart = { underline = true, sp = p.cViolet },
+        IndentBlanklineSpaceCharBlankline = { fg = p.cFill2 },
+        IndentBlanklineSpaceChar = { fg = p.cFill2 },
+        IndentBlanklineChar = { fg = p.cFill2 },
 
         -- hop.nvim
-        HopNextKey = { fg = p.cCyan, bg = p.none, bold = true },
-        HopNextKey1 = { fg = p.cCyan, bg = p.none },
-        HopNextKey2 = { fg = p.cFg, bg = p.none },
-        HopUnmatched = { fg = p.cFill4, bg = p.none },
+        HopNextKey = { fg = p.cCyan, bold = true },
+        HopNextKey1 = { fg = p.cCyan },
+        HopNextKey2 = { fg = p.cFg },
+        HopUnmatched = { fg = p.cFill4 },
 
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
@@ -225,7 +225,7 @@ function M.load(palette)
         CmpItemAbbrMatch = { fg = p.cSelect, bold = true },
         CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
 
-        CmpItemKind = { fg = g.editor.Normal.fg },
+        CmpItemKind = { fg },
         CmpItemKindTypeParameter = { link = "@parameter" },
         CmpItemKindConstructor = { link = "@constructor" },
         CmpItemKindEnum = g.syntax.Structure,
@@ -252,8 +252,8 @@ function M.load(palette)
 
         -- nvim-hlslens
         HlSearchNear = { link = "IncSearch" },
-        HlSearchLensNear = { fg = p.cFg, bg = p.none, reverse = true },
-        HlSearchLens = { fg = p.cFill5, bg = p.none, reverse = true },
+        HlSearchLensNear = { fg = p.cFg, reverse = true },
+        HlSearchLens = { fg = p.cFill5, reverse = true },
         HlSearchFloat = { link = "IncSearch" },
 
         -- nvim-notify
@@ -279,12 +279,12 @@ function M.load(palette)
         NotifyTRACEBody = { link = "NormalFloat" },
 
         -- nvim-scrollbar
-        ScrollBarHandle = { fg = p.none, bg = p.cFill3 },
+        ScrollBarHandle = { bg = p.cFill3 },
         ScrollBarError = { link = "DiagnosticError" },
         ScrollBarWarn = { link = "DiagnosticWarn" },
         ScrollBarInfo = { link = "DiagnosticInfo" },
         ScrollBarHint = { link = "DiagnosticHint" },
-        ScrollBarMisc = { fg = p.cFg, bg = p.none },
+        ScrollBarMisc = { fg = p.cFg },
         ScrollBarSearch = { link = "Search" },
 
         -- nvim-ts-rainbow
@@ -313,15 +313,15 @@ function M.load(palette)
         NeoTreeTabSeparatorActive = { fg = p.cFill4, bg = p.cFill5 },
         NeoTreeTabSeparatorInactive = { fg = p.cFill2, bg = p.cFill3 },
 
-        NeoTreeRootName = { fg = p.cFgLight, bg = p.none, bold = true, italic = true },
+        NeoTreeRootName = { fg = p.cFgLight, bold = true, italic = true },
         NeoTreeIndentMarker = { link = "FoldColumn" },
         NeoTreeFileNameOpened = { bold = true, nocombine = true },
-        NeoTreeBufferNumber = { fg = p.cFgLight, bg = p.none },
-        NeoTreeDotfile = { fg = p.cFill5, bg = p.none },
-        NeoTreeSymbolicLinkTarget = { fg = p.cViolet, bg = p.none, bold = true },
+        NeoTreeBufferNumber = { fg = p.cFgLight },
+        NeoTreeDotfile = { fg = p.cFill5 },
+        NeoTreeSymbolicLinkTarget = { fg = p.cViolet, bold = true },
 
-        NeoTreeMessage = { fg = p.cMagenta, bg = p.none },
-        NeoTreeDimText = { fg = p.cFill4, bg = p.none },
+        NeoTreeMessage = { fg = p.cMagenta },
+        NeoTreeDimText = { fg = p.cFill4 },
         NeoTreeFadeText1 = { link = "NeoTreeDotfile" },
         NeoTreeFadeText2 = { link = "NeoTreeDimText" },
 
@@ -330,26 +330,26 @@ function M.load(palette)
         NeoTreeGitModified = { link = "GitSignsChange" },
         NeoTreeGitDeleted = { link = "GitSignsDelete" },
         NeoTreeGitRenamed = { link = "NeoTreeGitModified" },
-        NeoTreeGitUntracked = { fg = p.cSelect, bg = p.none },
+        NeoTreeGitUntracked = { fg = p.cSelect },
         NeoTreeGitIgnored = { link = "NeoTreeDotfile" },
         NeoTreeGitUnstaged = { link = "NeoTreeGitModified" },
         NeoTreeGitStaged = { link = "NeoTreeGitAdded" },
-        NeoTreeGitConflict = { fg = p.cOrange, bg = p.none },
+        NeoTreeGitConflict = { fg = p.cOrange },
 
         -- quickscope.lua
         QuickScopePrimary = { fg = p.cYellow, bg = p.cBg, underline = true, nocombine = true },
         QuickScopeSecondary = { fg = p.cMagenta, bg = p.cBg, bold = true, nocombine = true },
 
         -- satellite.nvim
-        ScrollView = { fg = p.none, bg = p.cFill4 },
-        SearchSV = { fg = p.cCyan, bg = p.none },
+        ScrollView = { bg = p.cFill4 },
+        SearchSV = { fg = p.cCyan },
 
         -- telescope.nvim
-        TelescopePromptPrefix = { fg = p.cFg, bg = p.none, bold = true },
-        TelescopePromptCounter = { fg = p.cViolet, bg = p.none, bold = true },
+        TelescopePromptPrefix = { fg = p.cFg, bold = true },
+        TelescopePromptCounter = { fg = p.cViolet, bold = true },
 
         TelescopeNormal = { fg = p.cFg, bg = p.cBgDark },
-        TelescopeResultsNormal = { fg = p.cBlue, bg = p.none },
+        TelescopeResultsNormal = { fg = p.cBlue },
         TelescopePreviewNormal = { fg = p.cFg, bg = p.cBg },
         TelescopePromptNormal = { fg = p.cFgLight, bg = p.cBg },
 
@@ -357,7 +357,7 @@ function M.load(palette)
         TelescopePreviewTitle = { fg = p.cBlue, bg = p.cFill3, bold = true },
         TelescopePromptTitle = { fg = p.cFg, bg = p.cFill3, bold = true },
 
-        TelescopeResultsBorder = { fg = p.cFill3, bg = p.none },
+        TelescopeResultsBorder = { fg = p.cFill3 },
         TelescopePreviewBorder = { fg = p.cFill3, bg = p.cBg },
         TelescopePromptBorder = { fg = p.cFill3, bg = p.cBg },
 
@@ -365,7 +365,7 @@ function M.load(palette)
         TelescopeMultiIcon = { fg = p.cFgLight, bg = p.cFill3 },
         TelescopselectionCaret = { fg = p.cCyan, bg = p.cFill2 },
         Telescopselection = { link = "Telescop.cSelectionCaret" },
-        TelescopeMatching = { fg = p.cFgLight, bg = p.none },
+        TelescopeMatching = { fg = p.cFgLight },
 
         -- todo-comments.nvim
         TodoBgFIX = { fg = p.cFgLight, bg = p.cRed, bold = true },
@@ -378,8 +378,8 @@ function M.load(palette)
         TodoFgWARN = { link = "DiagnosticWarn" },
         TodoSignWARN = { link = "DiagnosticWarn" },
         TodoBgPERF = { fg = p.cFgLight, bg = p.cGreen, bold = true },
-        TodoFgPERF = { fg = p.cGreen, bg = p.none },
-        TodoSignPERF = { fg = p.cGreen, bg = p.none },
+        TodoFgPERF = { fg = p.cGreen },
+        TodoSignPERF = { fg = p.cGreen },
         TodoBgTODO = { fg = p.cFgLight, bg = p.cCyan, bold = true },
         TodoFgTODO = { link = "DiagnosticInfo" },
         TodoSignTODO = { link = "DiagnosticInfo" },
@@ -393,21 +393,21 @@ function M.load(palette)
         IlluminatedWordWrite = { link = "LspReferenceWrite" },
 
         -- which-key.nvim
-        WhichKey = { fg = p.cFg, bg = p.none, bold = true },
+        WhichKey = { fg = p.cFg, bold = true },
         WhichKeyBorder = { link = "FloatBorder" },
-        WhichKeyGroup = { fg = p.cSelect, bg = p.none, bold = true },
-        WhichKeyDesc = { fg = p.cBlue, bg = p.none },
-        WhichKeySeparator = { fg = p.cFill4, bg = p.none },
+        WhichKeyGroup = { fg = p.cSelect, bold = true },
+        WhichKeyDesc = { fg = p.cBlue },
+        WhichKeySeparator = { fg = p.cFill4 },
         WhichKeyValue = { link = "Comment" },
         WhichKeyFloat = { link = "NormalFloat" },
 
         -- hydra.nvim
         HydraHint = { link = "NormalFloat" },
-        HydraAmaranth = { fg = p.cOrange, bg = p.none },
-        HydraTeal = { fg = p.cViolet, bg = p.none },
-        HydraPink = { fg = p.cMagenta, bg = p.none },
-        HydraBlue = { fg = p.cSelect, bg = p.none },
-        HydraRed = { fg = p.cRed, bg = p.none },
+        HydraAmaranth = { fg = p.cOrange },
+        HydraTeal = { fg = p.cViolet },
+        HydraPink = { fg = p.cMagenta },
+        HydraBlue = { fg = p.cSelect },
+        HydraRed = { fg = p.cRed },
     }
 
     g.StatusBars = {
@@ -472,7 +472,7 @@ function M.load(palette)
         ["@method"]                = { fg = g.syntax.Function.fg, bold = true },
         ["@method.call"]           = { fg = g.syntax.Function.fg, bold = true },
         ["@field"]                 = g.syntax.Special,
-        ["@field.lua"]             = { fg = g.editor.Normal.fg },
+        ["@field.lua"]             = { fg },
         ["@property"]              = g.syntax.Identifier,
         ["@constructor"]           = g.syntax.Keyword,
 
@@ -494,17 +494,17 @@ function M.load(palette)
         ["@symbol"]                = g.syntax.Identifier,
         ["@attribute"]             = g.syntax.Constant,
 
-        ["@variable"]              = { fg = g.editor.Normal.fg },
-        ["@variable.builtin"]      = { fg = g.editor.Normal.fg, bold = true },
-        ["@variable.global"]       = { fg = g.editor.Normal.fg, bold = true },
+        ["@variable"]              = { fg },
+        ["@variable.builtin"]      = { fg, bold = true },
+        ["@variable.global"]       = { fg, bold = true },
 
-        ["@text"]                  = { fg = g.editor.Normal.fg },
+        ["@text"]                  = { fg },
         ["@text.strong"]           = { bold = true },
         ["@text.emphasis"]         = { italic = true },
         ["@text.underline"]        = { underline = true },
         ["@text.strike"]           = { strikethrough = true },
         ["@text.title"]            = g.editor.Title,
-        ["@text.title.html"]       = { fg = g.editor.Normal.fg },
+        ["@text.title.html"]       = { fg },
         ["@text.literal"]          = g.syntax.Delimiter,
         ["@text.uri"]              = { fg = p.cBlue, italic = true },
         ["@text.math"]             = g.syntax.Number,
