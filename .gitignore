@@ -1,5 +1,4 @@
 plugin/
 .nvim/spell/*
-.luarc.json
 .vscode
 Thumbs.db
