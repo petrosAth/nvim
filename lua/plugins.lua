@@ -117,6 +117,7 @@ return packer.startup(function()
     -- servers, DAP servers, linters, and formatters.
     use({
         "williamboman/mason.nvim",
+        after = { "nvim-lspconfig" },
         requires = {
             -- mason-tool-installer - Install and upgrade third party tools automatically
             {
@@ -129,7 +130,7 @@ return packer.startup(function()
             -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
             {
                 "williamboman/mason-lspconfig.nvim",
-                after = { "nvim-lspconfig", "mason.nvim", "mason-tool-installer.nvim" },
+                after = { "mason.nvim", "mason-tool-installer.nvim" },
                 config = function()
                     require("config.lsp.mason-lspconfig")
                 end,
