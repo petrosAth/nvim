@@ -396,7 +396,7 @@ M.GitStatus = {
         flexible = h.Hide.GitBranch,
         { -- git branch name
             provider = function(self)
-                return i.git.repo[1] .. " " .. i.git.branch[1] .. " " .. self.status_dict.head
+                return string.format("%s %s %s", i.git.repo[1], i.git.branch[1], self.status_dict.head)
             end,
             hl = { bold = true },
         },
@@ -541,7 +541,7 @@ M.LspDiagnostics = {
         flexible = h.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.errors > 0 and (h.Separator.mid.provider .. self.errorIcon .. " " .. self.errors)
+                return self.errors > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.errorIcon, self.errors)
             end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
@@ -557,7 +557,7 @@ M.LspDiagnostics = {
         flexible = h.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.warnings > 0 and (h.Separator.mid.provider .. self.warnIcon .. " " .. self.warnings)
+                return self.warnings > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.warnIcon, self.warnings)
             end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
@@ -573,7 +573,7 @@ M.LspDiagnostics = {
         flexible = h.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.info > 0 and (h.Separator.mid.provider .. self.infoIcon .. " " .. self.info)
+                return self.info > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.infoIcon, self.info)
             end,
             hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
         },
@@ -589,7 +589,7 @@ M.LspDiagnostics = {
         flexible = h.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.hints > 0 and (h.Separator.mid.provider .. self.hintIcon .. " " .. self.hints)
+                return self.hints > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.hintIcon, self.hints)
             end,
             hl = { fg = utils.get_highlight("DiagnosticHint").fg },
         },
@@ -624,7 +624,7 @@ M.TerminalName = {
     {
         provider = function()
             local terminalName, _ = vim.api.nvim_buf_get_name(0):gsub(".*:/bin/", "")
-            return i.terminal[1] .. " " .. terminalName
+            return string.format("%s %s", i.terminal[1], terminalName)
         end,
     },
     { h.Separator.right },

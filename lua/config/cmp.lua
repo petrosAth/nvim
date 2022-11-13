@@ -130,11 +130,10 @@ cmp.setup({
     }),
     formatting = {
         format = function(entry, vim_item)
-            vim_item.kind = string.format("%s %s", "  " .. kinds[vim_item.kind] .. " ", vim_item.kind)
+            vim_item.kind = string.format("  %s %s ", kinds[vim_item.kind], vim_item.kind)
             vim_item.menu = ({
-
-                buffer = "[BFR]",
                 nvim_lsp = "[LSP]",
+                buffer = "[BFR]",
                 nvim_lua = "[LUA]",
                 luasnip = "[SNP]",
                 path = "[PTH]",

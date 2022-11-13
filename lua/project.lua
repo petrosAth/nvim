@@ -10,7 +10,7 @@ local function create_file(path, file, content)
     end
 
     for _, line in ipairs(content) do
-        os.execute("echo '" .. line .. "' >> " .. path .. "/" .. file)
+        os.execute(string.format("echo '%s' >> %s/%s", line, path, file))
     end
 end
 

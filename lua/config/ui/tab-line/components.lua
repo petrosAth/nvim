@@ -205,7 +205,6 @@ M.win_label = function(win_id)
     local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
     local has_custom_title, custom_title = u.check_for_custom_title(fullPath, buftype, filetype)
     local name = filename.unique(win_id)
-    -- local label = bufid .. " : " .. name
     local label = name
 
     if has_custom_title then
@@ -234,7 +233,6 @@ local function tab_top_window(tab_id)
     local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
     local has_custom_title, custom_title = u.check_for_custom_title(fullPath, buftype, filetype)
     local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
-    -- local label = bufid .. " : " .. name
     local label = name
 
     if has_custom_title then
@@ -268,7 +266,7 @@ end
 
 M.tab_win_count = function(tab_id)
     local win_count = M.get_win_count(tab_id)
-    local label = " " .. i.windows[1] .. " " .. win_count
+    local label = string.format(" %s %s", i.windows[1], win_count)
 
     return win_count > 1 and label or ""
 end
