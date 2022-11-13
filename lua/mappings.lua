@@ -136,7 +136,6 @@ PA.mappings = {
                     ["c"] = { "<CMD>ProjectEditConfig<CR>",    "Edit config file" },
                     ["g"] = { "<CMD>ProjectEditGitignore<CR>", "Edit .gitignore"  }
                 },
-                ["f"] = { "<CMD>LspToggleAutoFormat<CR>", "Toggle auto formatting"                },
                 ["L"] = { "<CMD>ProjectLoadSession<CR>",  "Load last closed"                      }, -- possession.nvim
                 ["S"] = { ":PossessionSave ",             "Save session",          silent = false }, -- possession.nvim
             },
@@ -230,6 +229,7 @@ PA.mappings = {
             ["l"] = {
                 name = "LSP",
                 ["f"] = { "<CMD>lua vim.lsp.buf.format { async = true }<CR>", "Code formatting"                      }, -- nvim-lspconfig
+                ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                     "Toggle auto formatting"               }, -- nvim-lspconfig
                 ["H"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",         "Line diagnostics"                     }, -- nvim-lspconfig
                 ["R"] = { ":IncRename ",                                      "Rename symbol",        silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",        "Signagture help"                      }, -- nvim-lspconfig
