@@ -157,7 +157,7 @@ PA.mappings = {
                     ["c"] = { "<CMD>ProjectEditConfig<CR>",    "Edit config file" },
                     ["g"] = { "<CMD>ProjectEditGitignore<CR>", "Edit .gitignore"  }
                 },
-                ["L"] = { "<CMD>ProjectLoadSession<CR>",  "Load last closed"                      }, -- possession.nvim
+                ["L"] = { "<CMD>ProjectLoadSession<CR>",  "Load local session"                    }, -- possession.nvim
                 ["S"] = { ":PossessionSave ",             "Save session",          silent = false }, -- possession.nvim
             },
             ["t"] = {
