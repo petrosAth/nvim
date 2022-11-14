@@ -70,6 +70,16 @@ local function telescope_picker(picker)
     return lua_cmd(config_path, picker)
 end
 
+local function hop_key(direction, offset, char_num)
+    offset = offset and ( ", hint_offset = " .. offset ) or ""
+    char_num = char_num or 1
+
+    local plugin = [[require('hop')]]
+    local modules = "hint_char" .. char_num
+    local opts = [[{ direction = require("hop.hint").HintDirection.]] .. direction .. "_CURSOR" .. offset .. " }"
+    return lua_cmd(plugin, modules, opts)
+end
+
 PA.mappings = {
     -- Normal mode mappings
     ["n"] = {
@@ -91,7 +101,7 @@ PA.mappings = {
         ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor", silent = false },
         ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number"                    },
         ["<F11>"] = { "<CMD>set wrap!<CR>",           "Toggle wrap"                               },
-        ["g"]         = {
+        ["g"] = {
             ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", "Search word under cursor"          }, -- hlslens
             ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", "Search word under cursor backward" }, -- hlslens
             ["a"] = {
@@ -118,13 +128,13 @@ PA.mappings = {
             ["h"] = { nil, "Scroll the screen to the left"  }, -- Assigned using Hydra.nvim
             ["l"] = { nil, "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
-        ["<M-J>"]    = { ":m .+1<CR>==",              "Move line up"                            },
-        ["<M-K>"]    = { ":m .-2<CR>==",              "Move line down"                          },
-        ["j"]            = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines", expr = true },
-        ["k"]            = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines", expr = true },
-        ["n"]            = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'"           }, -- hlslens
-        ["N"]            = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backwards" }, -- hlslens
-        ["<Esc>"]    = { ":noh<CR><Esc>",             "Clear search highlight"                  },
+        ["<M-J>"] = { ":m .+1<CR>==",              "Move line up"                            },
+        ["<M-K>"] = { ":m .-2<CR>==",              "Move line down"                          },
+        ["j"]     = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines", expr = true },
+        ["k"]     = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines", expr = true },
+        ["n"]     = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'"           }, -- hlslens
+        ["N"]     = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backwards" }, -- hlslens
+        ["<Esc>"] = { ":noh<CR><Esc>",             "Clear search highlight"                  },
         ["<Leader>"] = {
             ["b"] = {
                 name = "Buffer",
@@ -154,9 +164,9 @@ PA.mappings = {
                 name = "Tab",
                 ["}"] = { ":+tabmove<CR>",     "Move tab right"                },
                 ["{"] = { ":-tabmove<CR>",     "Move tab left"                 },
-                ["a"]     = { "<CMD>tabnew<CR>",   "Create new tab"                },
-                ["c"]     = { "<CMD>tabclose<CR>", "Close tab"                     },
-                ["R"]     = { ":TabRename ",       "Rename tab",    silent = false }, -- tabby.nvim
+                ["a"] = { "<CMD>tabnew<CR>",   "Create new tab"                },
+                ["c"] = { "<CMD>tabclose<CR>", "Close tab"                     },
+                ["R"] = { ":TabRename ",       "Rename tab",    silent = false }, -- tabby.nvim
             },
             ["u"] = {
                 name = "Utilities",
@@ -178,8 +188,8 @@ PA.mappings = {
         ["<Space>"] = {
             ["?"] = { "<CMD>WhichKey<CR>",          "Show available hotkeys" }, -- which-key
             ["."] = { "<CMD>Telescope resume<CR>",  "Reopen Telescope"       }, -- telescope.nvim
-            ["b"]     = { "<CMD>Telescope buffers<CR>", "Buffer list"            }, -- telescope.nvim
-            ["c"]     = { "<CMD>HexokinaseToggle<CR>",  "Color codes preview"    }, -- hexokinase
+            ["b"] = { "<CMD>Telescope buffers<CR>", "Buffer list"            }, -- telescope.nvim
+            ["c"] = { "<CMD>HexokinaseToggle<CR>",  "Color codes preview"    }, -- hexokinase
             ["d"] = {
                 name = "Diffview",
                 ["q"] = { "<CMD>DiffviewClose<CR>",         "Quit"                              }, -- diffview
@@ -207,8 +217,8 @@ PA.mappings = {
                 ["E"] = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window",                      }, -- neo-tree.nvim
                 ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window",                            }, -- neo-tree.nvim
             },
-            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",  "Hop to", }, -- hop.nvim
-            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>", "Hop to", }, -- hop.nvim
+            ["f"] = { hop_key("AFTER"),  "Hop to", }, -- hop.nvim
+            ["F"] = { hop_key("BEFORE"), "Hop to", }, -- hop.nvim
             ["g"] = {
                 name = "Git & gitsigns",
                 ["B"] = {
@@ -239,17 +249,17 @@ PA.mappings = {
             },
             ["l"] = {
                 name = "LSP",
-                ["f"] = { "<CMD>lua vim.lsp.buf.format { async = true }<CR>", "Code formatting"                      }, -- nvim-lspconfig
-                ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                     "Toggle auto formatting"               }, -- nvim-lspconfig
-                ["H"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",         "Line diagnostics"                     }, -- nvim-lspconfig
-                ["R"] = { ":IncRename ",                                      "Rename symbol",        silent = false }, -- nvim-lspconfig -- inc-rename
-                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",        "Signagture help"                      }, -- nvim-lspconfig
-                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",           "Code actions"                         }, -- nvim-lspconfig -- telescope.nvim
-                ["h"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                 "Hover symbol"                         }, -- nvim-lspconfig
-                ["d"] = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
-                ["D"] = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                }, -- nvim-lspconfig -- trouble.nvim
+                ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Code formatting"                      }, -- nvim-lspconfig
+                ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"               }, -- nvim-lspconfig
+                ["H"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                     }, -- nvim-lspconfig
+                ["R"] = { ":IncRename ",                                       "Rename symbol",        silent = false }, -- nvim-lspconfig -- inc-rename
+                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signagture help"                      }, -- nvim-lspconfig
+                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",            "Code actions"                         }, -- nvim-lspconfig -- telescope.nvim
                 ["r"] = { telescope_picker("lsp_references"),                  "References"                           }, -- nvim-lspconfig -- telescope.nvim
                 ["K"] = { telescope_picker("lsp_definitions"),                 "Definitions"                          }, -- nvim-lspconfig -- telescope.nvim
+                ["h"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                         }, -- nvim-lspconfig
+                ["d"] = { "<CMD>Trouble document_diagnostics<CR>",             "Document diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
+                ["D"] = { "<CMD>Trouble workspace_diagnostics<CR>",            "Workspace diagnostics"                }, -- nvim-lspconfig -- trouble.nvim
             },
             ["m"] = {
                 name = "Minimap",
@@ -302,9 +312,9 @@ PA.mappings = {
                     ["c"] = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope.nvim
                 },
             },
-            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before",      }, -- hop.nvim
-            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before",      }, -- hop.nvim
-            ["u"] = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>",                                                                         "Toggle undo tree" }, -- undotree
+            ["t"] = { hop_key("AFTER", -1),                           "Hop before",      }, -- hop.nvim
+            ["T"] = { hop_key("BEFORE", 1),                           "Hop before",      }, -- hop.nvim
+            ["u"] = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 name = "Launch",
                 ["e"] = { "<CMD>LaunchDir dolphin<CR>",           "Open cwd in system file browser",                 },
@@ -342,10 +352,10 @@ PA.mappings = {
             ["b"] = { nil, "Block comment" }, -- comment.nvim
         },
         ["<Space>"] = {
-            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to",     }, -- hop.nvim
-            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to",     }, -- hop.nvim
-            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before", }, -- hop.nvim
-            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before", }, -- hop.nvim
+            ["f"] = { hop_key("AFTER"),     "Hop to",     }, -- hop.nvim
+            ["F"] = { hop_key("BEFORE"),    "Hop to",     }, -- hop.nvim
+            ["t"] = { hop_key("AFTER", -1), "Hop before", }, -- hop.nvim
+            ["T"] = { hop_key("BEFORE", 1), "Hop before", }, -- hop.nvim
             ["gh"] = {
                 name = "Git & gitsigns",
                 ["a"] = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
@@ -360,10 +370,10 @@ PA.mappings = {
             ["gh"] = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
         },
         ["<Space>"] = {
-            ["f"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<CR>",                   "Hop to",     }, -- hop.nvim
-            ["F"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<CR>",                  "Hop to",     }, -- hop.nvim
-            ["t"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, hint_offset = -1 })<CR>", "Hop before", }, -- hop.nvim
-            ["T"] = { "<CMD>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, hint_offset = 1 })<CR>", "Hop before", }, -- hop.nvim
+            ["f"] = { hop_key("AFTER"),     "Hop to",     }, -- hop.nvim
+            ["F"] = { hop_key("BEFORE"),    "Hop to",     }, -- hop.nvim
+            ["t"] = { hop_key("AFTER", -1), "Hop before", }, -- hop.nvim
+            ["T"] = { hop_key("BEFORE", 1), "Hop before", }, -- hop.nvim
         },
     },
     -- Insert mode mappints
