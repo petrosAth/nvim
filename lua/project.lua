@@ -42,7 +42,7 @@ local function create_gitignore()
     local cwd = vim.fn.getcwd()
     local file = ".gitignore"
     local content = {
-        [[/.nvim/spell/]],
+        [[.nvim/spell/]],
     }
 
     create_file(cwd, file, content)

@@ -28,4 +28,5 @@ g.Hexokinase_ftEnabled = {
     "html",
     "javascript",
     "json",
+    "scss",
 }
