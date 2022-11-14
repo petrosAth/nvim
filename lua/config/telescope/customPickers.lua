@@ -121,4 +121,10 @@ function M.luasnip()
     }
 end
 
+function M.file_browser()
+    telescope.extensions.file_browser.file_browser {
+        path = "%:p:h"
+    }
+end
+
 return M

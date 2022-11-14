@@ -215,7 +215,7 @@ telescope.setup({
                     ["o"] = false,
                     ["g"] = false,
                     ["e"] = false,
-                    ["t"] = false,
+                    ["t"] = actions.select_tab,
                     ["f"] = false,
                     ["s"] = false,
                 },

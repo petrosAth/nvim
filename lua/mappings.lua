@@ -1,6 +1,5 @@
 -- "Undo chain" break points
 local undo_break_points = { ".", ",", "!", "?", "=", "-", "_" }
-local telescope_custom = "<CMD>lua require('config.telescope.customPickers')."
 
 local default_opts = {
     noremap = true,
@@ -57,6 +56,18 @@ local function set_mappings(mappings)
     for mode, keymaps in pairs(mappings) do
         set_keymap(keymaps, mode)
     end
+end
+
+local function lua_cmd(plugin, modules, opts)
+    modules = modules or ""
+    opts = opts or ""
+
+    return string.format([[<CMD>lua %s.%s(%s)<CR>]], plugin, modules, opts)
+end
+
+local function telescope_picker(picker)
+    local config_path = [[require("config.telescope.customPickers")]]
+    return lua_cmd(config_path, picker)
 end
 
 PA.mappings = {
@@ -234,11 +245,11 @@ PA.mappings = {
                 ["R"] = { ":IncRename ",                                      "Rename symbol",        silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",        "Signagture help"                      }, -- nvim-lspconfig
                 ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",           "Code actions"                         }, -- nvim-lspconfig -- telescope.nvim
-                ["r"] = { telescope_custom .. "lsp_references()<CR>",         "References"                           }, -- nvim-lspconfig -- telescope.nvim
-                ["K"] = { telescope_custom .. "lsp_definitions()<CR>",        "Definitions"                          }, -- nvim-lspconfig -- telescope.nvim
                 ["h"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                 "Hover symbol"                         }, -- nvim-lspconfig
                 ["d"] = { "<CMD>Trouble document_diagnostics<CR>",            "Document diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
                 ["D"] = { "<CMD>Trouble workspace_diagnostics<CR>",           "Workspace diagnostics"                }, -- nvim-lspconfig -- trouble.nvim
+                ["r"] = { telescope_picker("lsp_references"),                  "References"                           }, -- nvim-lspconfig -- telescope.nvim
+                ["K"] = { telescope_picker("lsp_definitions"),                 "Definitions"                          }, -- nvim-lspconfig -- telescope.nvim
             },
             ["m"] = {
                 name = "Minimap",
@@ -260,7 +271,7 @@ PA.mappings = {
             ["r"] = { "<CMD>Telescope registers<CR>", "Registers" },
             ["s"] = {
                 name = "Search",
-                ["b"] = { "<CMD>Telescope file_browser<CR>", "File Browser" }, -- telescope.nvim
+                ["b"] = { telescope_picker("file_browser"), "File Browser" }, -- telescope.nvim
                 ["d"] = {
                     name = "Directory",
                     ["g"] = { "<CMD>GrepInDirectory<CR>", "File search" }, -- telescope.nvim -- dir-telescope.nvim
@@ -276,15 +287,15 @@ PA.mappings = {
                     ["s"] = { "<CMD>Telescope git_status<CR>",   "Status"    }, -- telescope.nvim
                     ["S"] = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope.nvim
                 },
-                ["H"] = { "<CMD>Telescope highlights<CR>",        "Highlight groups"        }, -- telescope.nvim
-                ["h"] = { "<CMD>Telescope help_tags<CR>",         "Vim help"                }, -- telescope.nvim
-                ["n"] = { telescope_custom .. "notify()<CR>",     "Notify history"          }, -- telescope.nvimnvim -- notify
-                ["o"] = { "<CMD>Telescope vim_options<CR>",       "Vim options"             }, -- telescope.nvim
-                ["R"] = { telescope_custom .. "frecency()<CR>",   "Frecency"                }, -- telescope.nvim
-                ["r"] = { telescope_custom .. "oldFiles()<CR>",   "Recent files"            }, -- telescope.nvim
-                ["s"] = { telescope_custom .. "possession()<CR>", "Search sessions"         }, -- telescope.nvim -- possession.nvim
-                ["S"] = { telescope_custom .. "luasnip()<CR>",    "List available snippets" }, -- telescope-luasnip.nvim
-                ["T"] = { "<CMD>TodoTelescope<CR>",               "Show TODO comments"      }, -- todo-comments
+                ["H"] = { "<CMD>Telescope highlights<CR>",  "Highlight groups"        }, -- telescope.nvim
+                ["h"] = { "<CMD>Telescope help_tags<CR>",   "Vim help"                }, -- telescope.nvim
+                ["n"] = { telescope_picker("notify"),       "Notify history"          }, -- telescope.nvimnvim -- notify
+                ["o"] = { "<CMD>Telescope vim_options<CR>", "Vim options"             }, -- telescope.nvim
+                ["R"] = { telescope_picker("frecency"),     "Frecency"                }, -- telescope.nvim
+                ["r"] = { telescope_picker("oldFiles"),     "Recent files"            }, -- telescope.nvim
+                ["s"] = { telescope_picker("possession"),   "Search sessions"         }, -- telescope.nvim -- possession.nvim
+                ["S"] = { telescope_picker("luasnip"),      "List available snippets" }, -- telescope-luasnip.nvim
+                ["T"] = { "<CMD>TodoTelescope<CR>",         "Show TODO comments"      }, -- todo-comments
                 ["t"] = {
                     name = "Telescope",
                     ["b"] = { "<CMD>Telescope builtin<CR>",         "Telescope builtin" }, -- telescope.nvim
