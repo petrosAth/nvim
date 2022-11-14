@@ -126,7 +126,7 @@ vim.api.nvim_create_user_command("ProjectCreateConfit", function()
 
     create_gitignore()
     vim.fn.mkdir(dir)
-    create_buffer(dir, file, content, { 2, 21 })
+    create_buffer(dir, file, content, { 2, 25 })
     vim.cmd.redraw()
 end, { desc = "Create a project local config file, and open it in the current window" })
 
