@@ -288,13 +288,13 @@ function M.load(palette)
         ScrollBarSearch = { link = "Search" },
 
         -- nvim-ts-rainbow
-        rainbowcol1 = { fg = g.syntax.Special.fg, nocombine = true },
-        rainbowcol2 = { fg = p.cMagenta, nocombine = true },
-        rainbowcol3 = { fg = p.cYellow, nocombine = true },
-        rainbowcol4 = { fg = p.cSelect, nocombine = true },
-        rainbowcol5 = { fg = p.cFgLight, nocombine = true },
-        rainbowcol6 = { fg = p.cOrange, nocombine = true },
-        rainbowcol7 = { fg = p.cCyan, nocombine = true },
+        rainbowcol1 = { fg = g.syntax.Special.fg },
+        rainbowcol2 = { fg = p.cMagenta },
+        rainbowcol3 = { fg = p.cYellow },
+        rainbowcol4 = { fg = p.cSelect },
+        rainbowcol5 = { fg = p.cFgLight },
+        rainbowcol6 = { fg = p.cOrange },
+        rainbowcol7 = { fg = p.cCyan },
 
         --nvim-windowpicker
         WindowPicker = { fg = p.cBgDark, bg = p.cSelect, bold = true },
