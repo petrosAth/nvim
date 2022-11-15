@@ -223,7 +223,7 @@ M.modified_flag = function(win_id, is_current)
         hl = is_current and getHl("TabLineIndicatorIsModifiedSel") or getHl("TabLineIndicatorIsModified")
     end
 
-    return { " " .. i.edit[1], hl = hl }
+    return { "  " .. i.edit[1], hl = hl }
 end
 
 local function tab_top_window(tab_id)
