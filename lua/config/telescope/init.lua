@@ -178,7 +178,7 @@ telescope.setup({
                     ["-"] = false,
                     ["~"] = false,
                     ["<A-c>"] = false,
-                    ["<S-CR>"] = fb_actions.create_from_prompt,
+                    ["<A-%>"] = fb_actions.create_from_prompt,
                     ["<A-r>"] = false,
                     ["<A-m>"] = false,
                     ["<A-y>"] = false,
