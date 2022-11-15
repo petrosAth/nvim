@@ -420,8 +420,16 @@ function M.load(palette)
         ModeTerminal = { fg = p.cFill2, bg = p.cOrange },
         ModeHydra = { fg = p.cFill2, bg = p.cMagenta },
         StatusLineLight = { fg = p.cFg, bg = p.cFill4 },
-        WinBarLight = { fg = p.cFg, bg = p.cFill3 },
+        WinBarLight = { fg = g.editor.WinBar.fg, bg = p.cFill3 },
         WinBarLightNC = { link = "WinBarLight" },
+        WinBarFile = { fg = p.cFgLight },
+        WinBarFileNC = { fg = g.editor.WinBarNC.fg },
+        WinBarSpecial = { fg = p.cFgLight },
+        WinBarSpecialNC = { fg = g.editor.WinBarNC.fg },
+        WinBarIsModified = { fg = p.cYellow },
+        WinBarIsReadOnly = { fg = p.cFgLight },
+        WinBarWindowNumber = { fg = p.cFgLight },
+        WinBarCloseButton = { fg = g.editor.WinBar.fg },
         TabLine = { fg = p.cFg, bg = p.cFill2 },
         TabLineSel = { fg = p.cFg, bg = p.cFill5 },
         TabLineFill = { fg = p.cFgDim, bg = p.cFill3 },
@@ -434,17 +442,6 @@ function M.load(palette)
         TabLineIndicatorModifiedSel = { fg = p.cFill2, bg = p.cFill5 },
         TabLineIndicatorIsModified = { fg = p.cYellow, bg = p.cFill3 },
         TabLineIndicatorIsModifiedSel = { fg = p.cYellow, bg = p.cFill5 },
-    }
-
-    g.StatusBarsItems = {
-        WinBarFile         = { fg = p.cFgLight                                                },
-        WinBarFileNC       = { link = "WinBarNC" },
-        WinBarSpecial      = { fg = p.cFgLight, bg = g.StatusBars.WinBarLight.bg, bold = true },
-        WinBarSpecialNC    = { fg = p.cFill5,   bg = g.StatusBars.WinBarLight.bg, bold = true },
-        WinBarIsModified   = { fg = p.cYellow,  bg = g.StatusBars.WinBarLight.bg              },
-        WinBarIsReadOnly   = { fg = p.cFgLight, bg = g.StatusBars.WinBarLight.bg              },
-        WinBarCloseButton  = { link = "WinBarLight" },
-        WinBarWindowNumber = { fg = p.cFgLight                                                },
     }
 
    g.treesitter = {

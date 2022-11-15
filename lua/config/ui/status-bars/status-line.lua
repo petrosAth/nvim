@@ -5,7 +5,7 @@ local c = require("config.ui.status-bars.components")
 local hl = "StatusLineLight"
 local M = {}
 
-local InactiveStatusline = {
+local StatusLineInactive = {
     condition = function()
         return not conditions.is_active()
     end,
@@ -18,7 +18,7 @@ local InactiveStatusline = {
     },
 }
 
-local TerminalStatusline = {
+local StatusLineTerminal = {
     condition = function()
         return conditions.buffer_matches({ buftype = { "terminal" } })
     end,
@@ -36,7 +36,7 @@ local TerminalStatusline = {
     c.LinesTotal,
 }
 
-local SpecialStatusline = {
+local StatusLineSpecial = {
     condition = function()
         return conditions.buffer_matches({
             buftype = { "qf" },
@@ -55,7 +55,7 @@ local SpecialStatusline = {
     c.LinesTotal,
 }
 
-local MinimalStatusline = {
+local StatusLineMinimal = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
@@ -74,7 +74,7 @@ local MinimalStatusline = {
     h.Align,
 }
 
-local DefaultStatusline = {
+local StatusLine = {
     c.ViMode,
     c.Paste,
     c.Wrap,
@@ -100,11 +100,11 @@ local DefaultStatusline = {
 M.StatusLines = {
     fallthrough = false,
 
-    InactiveStatusline,
-    TerminalStatusline,
-    SpecialStatusline,
-    MinimalStatusline,
-    DefaultStatusline,
+    StatusLineInactive,
+    StatusLineTerminal,
+    StatusLineSpecial,
+    StatusLineMinimal,
+    StatusLine,
 
     hl = function()
         if conditions.is_active() then

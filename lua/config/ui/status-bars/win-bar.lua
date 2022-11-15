@@ -19,7 +19,7 @@ local DisableWinBar = {
     end,
 }
 
-local WinBarSpecial = {
+local WinBarSpecialNC = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
@@ -27,12 +27,15 @@ local WinBarSpecial = {
         return not conditions.is_active() and has_custom_title
     end,
     {
-        c.FileReadOnly,
-        hl = "WinBarIsReadOnly",
-    },
-    {
-        c.CustomTitle,
-        hl = "WinBarSpecialNC",
+        {
+            c.FileReadOnly,
+            hl = "WinBarIsReadOnly",
+        },
+        {
+            c.CustomTitle,
+            hl = "WinBarSpecialNC",
+        },
+        hl = "WinBarLightNC"
     },
     h.Align,
     {
@@ -40,22 +43,28 @@ local WinBarSpecial = {
         hl = "WinBarWindowNumber"
     },
     {
-        c.CloseButton,
-        hl = "WinBarCloseButton",
-    },
+        {
+            c.CloseButton,
+            hl = "WinBarCloseButton",
+        },
+        hl = "WinBarLightNC"
+    }
 }
 
-local WinBar = {
+local WinBarNC = {
     condition = function()
         return not conditions.is_active()
     end,
     {
-        c.FileReadOnly,
-        hl = "WinBarIsReadOnly",
-    },
-    {
-        c.FileModified,
-        hl = "WinBarIsModified",
+        {
+            c.FileReadOnly,
+            hl = "WinBarIsReadOnly",
+        },
+        {
+            c.FileModified,
+            hl = "WinBarIsModified",
+        },
+        hl = "WinBarLightNC"
     },
     {
         c.FileNameBlock,
@@ -67,12 +76,15 @@ local WinBar = {
         hl = "WinBarWindowNumber"
     },
     {
-        c.CloseButton,
-        hl = "WinBarCloseButton",
-    },
+        {
+            c.CloseButton,
+            hl = "WinBarCloseButton",
+        },
+        hl = "WinBarLightNC"
+    }
 }
 
-local WinBarSpecialCurrent = {
+local WinBarSpecial = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
@@ -80,31 +92,40 @@ local WinBarSpecialCurrent = {
         return has_custom_title
     end,
     {
-        c.FileReadOnly,
-        hl = "WinBarIsReadOnly",
-    },
-    {
-        c.CustomTitle,
-        hl = "WinBarSpecial",
+        {
+            c.FileReadOnly,
+            hl = "WinBarIsReadOnly",
+        },
+        {
+            c.CustomTitle,
+            hl = "WinBarSpecial",
+        },
+        hl = "WinBarLight"
     },
     h.Align,
     {
-        c.CloseButton,
-        hl = "WinBarCloseButton",
-    },
+        {
+            c.CloseButton,
+            hl = "WinBarCloseButton",
+        },
+        hl = "WinBarLight"
+    }
 }
 
-local WinBarCurrent = {
+local WinBar = {
     condition = function()
         return conditions.is_active()
     end,
     {
-        c.FileReadOnly,
-        hl = "WinBarIsReadOnly",
-    },
-    {
-        c.FileModified,
-        hl = "WinBarIsModified",
+        {
+            c.FileReadOnly,
+            hl = "WinBarIsReadOnly",
+        },
+        {
+            c.FileModified,
+            hl = "WinBarIsModified",
+        },
+        hl = "WinBarLight"
     },
     {
         c.FileNameBlock,
@@ -112,8 +133,11 @@ local WinBarCurrent = {
     },
     h.Align,
     {
-        c.CloseButton,
-        hl = "WinBarCloseButton",
+        {
+            c.CloseButton,
+            hl = "WinBarCloseButton",
+        },
+        hl = "WinBarLight"
     },
 }
 
@@ -121,10 +145,10 @@ M.WinBars = {
     fallthrough = false,
 
     DisableWinBar,
+    WinBarSpecialNC,
+    WinBarNC,
     WinBarSpecial,
     WinBar,
-    WinBarSpecialCurrent,
-    WinBarCurrent,
 
     hl = function()
         if conditions.is_active() then
