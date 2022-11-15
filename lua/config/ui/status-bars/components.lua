@@ -149,15 +149,6 @@ M.FileModified = {
         },
         { h.Null },
     },
-
-    hl = "WinBarModifiedCurrent",
-}
-
-local FileNameBlock = {
-    init = function(self)
-        self.fileName = vim.api.nvim_buf_get_name(0)
-        self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
-    end,
 }
 
 M.CustomTitle = {
@@ -173,6 +164,13 @@ M.CustomTitle = {
         end
 
         return ""
+    end,
+}
+
+local FileNameBlock = {
+    init = function(self)
+        self.fileName = vim.api.nvim_buf_get_name(0)
+        self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
     end,
 }
 
@@ -212,6 +210,7 @@ M.FileNameBlock = utils.insert(
     { flexible = h.Hide.FilePath, { FilePath }, { h.Null } },
     { flexible = h.Hide.FileName, { FileName }, { h.Null } },
     { flexible = h.Hide.FileName, { h.Separator.right }, { h.Null } }
+
 )
 
 M.Paste = {
@@ -324,8 +323,6 @@ M.WindowNumber = {
         end,
     },
     { h.Separator.right },
-
-    hl = "WinBarWindowNumber",
 }
 
 M.CloseButton = {

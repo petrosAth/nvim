@@ -20,10 +20,10 @@ M.Hide = {
         value          = 30
     },
     FileEncoding       = 30,
-    FileReadOnly       = 50,
-    FileModified       = 50,
-    FilePath           = 60,
-    FileName           = 70,
+    FileReadOnly       = 70,
+    FileModified       = 70,
+    FilePath           = 50,
+    FileName           = 60,
     Spell = {
         icon           = 20,
         value          = 40

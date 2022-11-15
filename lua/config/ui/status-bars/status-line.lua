@@ -5,22 +5,30 @@ local c = require("config.ui.status-bars.components")
 local hl = "StatusLineLight"
 local M = {}
 
-local DefaultStatusline = {
+local InactiveStatusline = {
+    condition = function()
+        return not conditions.is_active()
+    end,
+
     c.ViMode,
-    c.Paste,
-    c.Wrap,
-    c.SearchResults,
+    h.Align,
     {
-        c.GitStatus,
+        c.WindowNumber,
         hl = hl,
     },
-    c.LspBlock,
-    c.Treesitter,
+}
+
+local TerminalStatusline = {
+    condition = function()
+        return conditions.buffer_matches({ buftype = { "terminal" } })
+    end,
+
+    c.ViMode,
+    {
+        c.TerminalName,
+        hl = hl,
+    },
     h.Align,
-    c.Spell,
-    c.FileFormatBlock,
-    c.FileEncoding,
-    c.FileTypeBlock,
     {
         c.CursorPosition,
         hl = hl,
@@ -66,31 +74,22 @@ local MinimalStatusline = {
     h.Align,
 }
 
-local InactiveStatusline = {
-    condition = function()
-        return not conditions.is_active()
-    end,
-
+local DefaultStatusline = {
     c.ViMode,
-    h.Align,
+    c.Paste,
+    c.Wrap,
+    c.SearchResults,
     {
-        c.WindowNumber,
+        c.GitStatus,
         hl = hl,
     },
-}
-
-local TerminalStatusline = {
-
-    condition = function()
-        return conditions.buffer_matches({ buftype = { "terminal" } })
-    end,
-
-    c.ViMode,
-    {
-        c.TerminalName,
-        hl = hl,
-    },
+    c.LspBlock,
+    c.Treesitter,
     h.Align,
+    c.Spell,
+    c.FileFormatBlock,
+    c.FileEncoding,
+    c.FileTypeBlock,
     {
         c.CursorPosition,
         hl = hl,

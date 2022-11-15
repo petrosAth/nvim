@@ -57,7 +57,7 @@ function M.load(palette)
         StatusLineTerm = { link = "StatusLine" },
         StatusLineTermNC = { link = "StatusLineNC" },
         WinBar = { fg = p.cFg, bg = p.cFill1 },
-        WinBarNC = { fg = p.cFg, bg = p.cFill1 },
+        WinBarNC = { fg = p.cFill5, bg = p.cFill1 },
         WildMenu = { fg = p.cFill2, bg = p.cCyan },
         Search = { fg = p.cCyan, bg = p.cBg, reverse = true },
         IncSearch = { fg = p.cFgLight, bg = p.cSelect, underline = true },
@@ -297,8 +297,8 @@ function M.load(palette)
         rainbowcol7 = { fg = p.cCyan },
 
         --nvim-windowpicker
-        WindowPicker = { fg = p.cBgDark, bg = p.cSelect, bold = true },
-        WindowPickerNC = { fg = p.cBgDark, bg = p.cSelect, bold = true },
+        WindowPicker = { fg = p.cBgDark, bg = p.cCyan, bold = true },
+        WindowPickerNC = { link = "WindowPicker" },
 
         -- neo-tree.nvim
         NeoTreeNormal = { link = "Normal" },
@@ -421,12 +421,7 @@ function M.load(palette)
         ModeHydra = { fg = p.cFill2, bg = p.cMagenta },
         StatusLineLight = { fg = p.cFg, bg = p.cFill4 },
         WinBarLight = { fg = p.cFg, bg = p.cFill3 },
-        WinBarCurrent = { fg = p.cFgLight, bg = p.cFill5 },
-        WinBarSpecial = { fg = p.cFg, bg = p.cFill1, bold = true },
-        WinBarCurrentSpecial = { fg = p.cFgLight, bg = p.cFill5, bold = true },
-        WinBarModifiedCurrent = { fg = p.cFill1, bg = p.cYellow },
-        WinBarModifiedInactive = { fg = p.cYellow, bg = p.cFill1 },
-        WinBarWindowNumber = { fg = p.cFgLight },
+        WinBarLightNC = { link = "WinBarLight" },
         TabLine = { fg = p.cFg, bg = p.cFill2 },
         TabLineSel = { fg = p.cFg, bg = p.cFill5 },
         TabLineFill = { fg = p.cFgDim, bg = p.cFill3 },
@@ -439,6 +434,17 @@ function M.load(palette)
         TabLineIndicatorModifiedSel = { fg = p.cFill2, bg = p.cFill5 },
         TabLineIndicatorIsModified = { fg = p.cYellow, bg = p.cFill3 },
         TabLineIndicatorIsModifiedSel = { fg = p.cYellow, bg = p.cFill5 },
+    }
+
+    g.StatusBarsItems = {
+        WinBarFile         = { fg = p.cFgLight                                                },
+        WinBarFileNC       = { link = "WinBarNC" },
+        WinBarSpecial      = { fg = p.cFgLight, bg = g.StatusBars.WinBarLight.bg, bold = true },
+        WinBarSpecialNC    = { fg = p.cFill5,   bg = g.StatusBars.WinBarLight.bg, bold = true },
+        WinBarIsModified   = { fg = p.cYellow,  bg = g.StatusBars.WinBarLight.bg              },
+        WinBarIsReadOnly   = { fg = p.cFgLight, bg = g.StatusBars.WinBarLight.bg              },
+        WinBarCloseButton  = { link = "WinBarLight" },
+        WinBarWindowNumber = { fg = p.cFgLight                                                },
     }
 
    g.treesitter = {
