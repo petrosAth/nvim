@@ -23,7 +23,7 @@ require("trouble").setup({
         jump_close = "P", -- jump to the diagnostic and close the list
         toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
         toggle_preview = {}, -- toggle auto_preview
-        hover = "qf", -- opens a small popup with the full multiline message
+        hover = "H", -- opens a small popup with the full multiline message
         preview = "p", -- preview the diagnostic location
         close_folds = { "zM", "zm" }, -- close all folds
         open_folds = { "zR", "zr" }, -- open all folds
