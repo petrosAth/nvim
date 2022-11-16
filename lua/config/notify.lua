@@ -12,21 +12,18 @@ notify.setup({
     -- Function called when a new window is opened, use for changing win settings/config
     on_open = function(win)
         if vim.api.nvim_win_is_valid(win) then
-            vim.api.nvim_win_set_config(
-                win,
-                {
-                    border = {
-                        { b.tl, "FloatBorder" },
-                        { b.t, "FloatBorder" },
-                        { b.tr, "FloatBorder" },
-                        { b.r, "FloatBorder" },
-                        { b.br, "FloatBorder" },
-                        { b.b, "FloatBorder" },
-                        { b.bl, "FloatBorder" },
-                        { b.l, "FloatBorder" },
-                    },
-                }
-            )
+            vim.api.nvim_win_set_config(win, {
+                border = {
+                    { b.tl, "FloatBorder" },
+                    { b.t, "FloatBorder" },
+                    { b.tr, "FloatBorder" },
+                    { b.r, "FloatBorder" },
+                    { b.br, "FloatBorder" },
+                    { b.b, "FloatBorder" },
+                    { b.bl, "FloatBorder" },
+                    { b.l, "FloatBorder" },
+                },
+            })
         end
     end,
 
@@ -94,13 +91,26 @@ end
 
 -- LSP integration
 -- Make sure to also have the snippet with the common helper functions in your config!
+local null_ls_token = nil
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
     local client_id = ctx.client_id
-
     local val = result.value
 
     if not val.kind then
         return
+    end
+
+    local name = vim.lsp.get_client_by_id(client_id).name
+    if name == "null-ls" then
+        if result.token == null_ls_token then
+            return
+        end
+        if vim.bo.filetype == "zsh" then
+            if val.title == "diagnostics" and val.message == nil then
+                null_ls_token = result.token
+                return
+            end
+        end
     end
 
     local notif_data = get_notif_data(client_id, result.token)
