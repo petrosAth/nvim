@@ -4,7 +4,7 @@ local t = PA.styling.variables.transparency
 local i = PA.styling.icons
 
 -- Neovim GUI's options like nvim-qt and Neovide
-opt.guifont               = "Fira Code, Regular:h12"
+opt.guifont               = "Monospace"
 g.neovide_refresh_rate    = 60          -- Setting refresh rate to a positive integer will set the refresh rate of the app
 g.neovide_transparency    = 0.90        -- Setting the value between 0.0 and 1.0 will set the opacity of the window to that value
 g.neovide_cursor_vfx_mode = "wireframe" -- Cursor Particles ( railgun torpedo pixiedust sonicboom ripple wireframe )
