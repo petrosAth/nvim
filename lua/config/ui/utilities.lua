@@ -21,6 +21,7 @@ function M.check_for_custom_title(path, buftype, filetype)
         { filetype = "man",                 icon = i.help[1],         title = " Man page"             },
         { filetype = "mason",               icon = i.info[1],         title = " Mason info"           },
         { filetype = "minimap",             icon = i.minimap[1],      title = " Minimap"              },
+        { filetype = "null%-ls%-info",      icon = i.info[1],         title = " Null-ls info"         },
         { filetype = "NvimTree",            icon = i.fileExplorer[1], title = " File explorer"        },
         { filetype = "Outline",             icon = i.codeOutline[1],  title = " Code outline"         },
         { filetype = "packer",              icon = i.info[1],         title = " Packer info"          },
