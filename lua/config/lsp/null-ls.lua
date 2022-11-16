@@ -1,7 +1,11 @@
-require("null-ls").setup({
+local null_ls = require("null-ls")
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+
+null_ls.setup({
     sources = {
-        require("null-ls").builtins.formatting.stylua,
-        require("null-ls").builtins.formatting.prettierd.with({
+        formatting.stylua,
+        formatting.prettierd.with({
             filetypes = {
                 "javascript",
                 "javascriptreact",
@@ -22,5 +26,6 @@ require("null-ls").setup({
             },
             command = "prettierd",
         }),
+        diagnostics.zsh
     },
 })
