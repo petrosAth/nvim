@@ -173,10 +173,10 @@ PA.mappings = {
                 ["c"] = { "<CMD>PackerCompile<CR>", "Packer compile" }, -- packer
                 ["s"] = {
                     name = "Status",
-                    ["l"] = { "<CMD>LspInfo<CR>",      "LSP info"       }, -- lsp-config
-                    ["m"] = { "<CMD>Mason<CR>",        "Mason status"   }, -- mason.nvim
-                    ["n"] = { "<CMD>NullLsInfo<CR>",   "Null-ls status" }, -- null-ls.nvim
-                    ["p"] = { "<CMD>PackerStatus<CR>", "Packer status"  }, -- packer
+                    ["l"] = { "<CMD>LspInfo<CR>",      "LSP info"      }, -- lsp-config
+                    ["m"] = { "<CMD>Mason<CR>",        "Mason status"  }, -- mason.nvim
+                    ["n"] = { "<CMD>NullLsInfo<CR>",   "Null-ls info"  }, -- null-ls.nvim
+                    ["p"] = { "<CMD>PackerStatus<CR>", "Packer status" }, -- packer
                 },
                 ["u"] = {
                     name = "Update",
