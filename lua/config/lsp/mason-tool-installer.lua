@@ -15,7 +15,6 @@ require("mason-tool-installer").setup({
         "typescript-language-server",
         -- Formatters
         "stylua",
-        "prettier",
         "prettierd"
     },
 
