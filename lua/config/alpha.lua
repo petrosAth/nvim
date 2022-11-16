@@ -68,9 +68,9 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        button("LDR u u p", i.alphaCursor[1] .. " " .. i.diffview[1]   .. " Preview plugins updates"),
-        button("LDR u u P", i.alphaCursor[1] .. " " .. i.update[1]     .. " Update plugins"),
-        button("LDR u u l", i.alphaCursor[1] .. " " .. i.lspServers[1] .. " Update LSP packages"),
+        button("LDR u u p", i.alphaCursor[1] .. " " .. i.diffview[1] .. " Preview plugins updates"),
+        button("LDR u u P", i.alphaCursor[1] .. " " .. i.update[1]   .. " Update plugins"),
+        button("LDR u u l", i.alphaCursor[1] .. " " .. i.lsp.icon[1] .. " Update LSP packages"),
     },
     opts = {
         spacing = 0,

@@ -27,7 +27,7 @@ tree.setup({
             filesystem = " " .. i.fileExplorer[1] .. " Files ",
             buffers = i.buffers[1] .. " Buffers ",
             git_status = i.git.repo[1] .. " Git ",
-            diagnostics = i.lsp.lspIcon[1] .. " Diagnostics ",
+            diagnostics = i.lsp.icon[1] .. " Diagnostics ",
         },
         content_layout = "start", -- only with `tabs_layout` = "equal", "focus"
         --                start  : |/ 裡 bufname     \/...

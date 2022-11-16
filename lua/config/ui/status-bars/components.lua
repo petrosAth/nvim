@@ -510,7 +510,7 @@ M.LspClients = {
     {
         flexible = h.Hide.lspIcon,
         {
-            provider = i.lsp.lspIcon[1] .. " ",
+            provider = i.lsp.icon[1] .. " ",
         },
         {
             h.Null,
