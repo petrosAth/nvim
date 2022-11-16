@@ -492,6 +492,8 @@ local LspBlock = {
     init = function(self)
         -- LspClients
         self.Clients = vim.lsp.buf_get_clients()
+        -- self.Sources = require("null-ls.sources")
+        self.Sources = require("null-ls.sources").get_available(vim.bo.filetype)
         -- LspDiagnostics
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
         self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -501,27 +503,67 @@ local LspBlock = {
 }
 
 M.LspClients = {
-    condition = conditions.lsp_attached,
-
-    provider = function(self)
-        -- Source:
-        -- LunarVim - https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L85-L116
-        local ClientNames = {}
-        local clientNames = ""
-
-        if not next(self.Clients) then
-            return ""
-        end
-
-        for _, client in pairs(self.Clients) do
-            table.insert(ClientNames, client.name)
-        end
-
-        clientNames = "[" .. table.concat(ClientNames, " ") .. "]"
-
-        -- return ClientNames
-        return clientNames
+    condition = function (self)
+        return next(self.Clients) ~= nil
     end,
+
+    {
+        flexible = h.Hide.lspIcon,
+        {
+            provider = i.lsp.lspIcon[1] .. " ",
+        },
+        {
+            h.Null,
+        }
+    },
+    {
+        provider = function(self)
+            -- Source:
+            -- LunarVim - https://github.com/LunarVim/LunarVim/blob/a79de08d40f08e9a3b753175df11283ed737067c/lua/lvim/core/lualine/components.lua#L85-L116
+            local lsp_servers = {}
+
+            for _, client in pairs(self.Clients) do
+                table.insert(lsp_servers, client.name)
+            end
+
+            return "[" .. table.concat(lsp_servers, " ") .. "]"
+        end,
+    },
+}
+
+M.LspNullLsGap = {
+    condition = function (self)
+        return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil)
+    end,
+
+    provider = h.Separator.mid.provider,
+}
+
+M.NullLsSources = {
+    condition = function (self)
+        return next(self.Sources) ~= nil
+    end,
+
+    {
+        flexible = h.Hide.nullLsIcon,
+        {
+            provider = i.lsp.null_ls[1] .. " ",
+        },
+        {
+            h.Null,
+        }
+    },
+    {
+        provider = function(self)
+            local null_ls_sources = {}
+
+            for _, source in ipairs(self.Sources) do
+                table.insert(null_ls_sources, source.name)
+            end
+
+            return "[" .. table.concat(null_ls_sources, " ") .. "]"
+        end,
+    }
 }
 
 M.LspDiagnostics = {
@@ -603,12 +645,9 @@ M.LspBlock = utils.insert(
     LspBlock,
 
     { h.Separator.left },
-    { flexible = h.Hide.lspIcon, {
-        provider = i.lsp.lspIcon[1] .. " ",
-    }, {
-        h.Null,
-    } },
     { flexible = h.Hide.lspClients, M.LspClients, { h.Null } },
+    { flexible = math.min(h.Hide.lspClients, h.Hide.nullLsSources), M.LspNullLsGap, { h.Null } },
+    { flexible = h.Hide.nullLsSources, M.NullLsSources, { h.Null } },
     { M.LspDiagnostics },
     { h.Separator.right }
 )

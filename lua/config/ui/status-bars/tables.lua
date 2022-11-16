@@ -38,9 +38,11 @@ M.Hide = {
         icon           = 20,
         value          = 40
     },
-    lspDiagnosticIcons = 40,
+    nullLsIcon         = 50,
+    nullLsSources      = 20,
     lspIcon            = 50,
-    lspClients         = 20
+    lspClients         = 20,
+    lspDiagnosticIcons = 40
 }
 
 M.DisableBufType = {
@@ -52,6 +54,7 @@ M.DisableFileType = {
     "Codewindow",
     "lspinfo",
     "mason",
+    "null%-ls%-info",
     "packer",
     "TelescopePrompt",
 }
