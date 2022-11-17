@@ -380,7 +380,7 @@ PA.mappings = {
     -- Insert mode mappints
     ["i"] = {
         ["<C-j>"] = { "<CR>",          "Carriage return",              noremap = false }, -- nvim-autopairs
-        ["<M-p>"] = { [[<C-r><C-o>"]], "Paste and stay in insert mode"                 },
+        ["<M-p>"] = { [[<C-r><C-o>+]], "Paste and stay in insert mode"                 },
     },
     -- Command-line mode mappings
     ["c"] = {
