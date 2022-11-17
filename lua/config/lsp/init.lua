@@ -59,14 +59,14 @@ end
 
 -- Files to look for when searching for project root dir
 M.root_files = {
-    ".luarc.json",
-    ".luacheckrc",
-    ".stylua.toml",
-    "stylua.toml",
     "selene.toml",
     "selene.yml",
+    "stylua.toml",
     ".git",
+    ".luarc.json",
+    ".luacheckrc",
     ".nvim",
+    ".stylua.toml",
 }
 
 -- Configure lsp capabilities
@@ -83,7 +83,6 @@ function M.capabilities()
 end
 
 -- Configure lsp on_attach function
-function M.on_attach(client, bufnr)
-end
+function M.on_attach(client, bufnr) end
 
 return M
