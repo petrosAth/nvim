@@ -11,4 +11,4 @@ npairs.setup({
     map_c_w = true,
 })
 
-require("config.autopairs.rules").add_rules()
+require("config.autopairs-config.rules").add_rules()

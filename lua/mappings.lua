@@ -66,7 +66,7 @@ local function lua_cmd(plugin, modules, opts)
 end
 
 local function telescope_picker(picker)
-    local config_path = [[require("config.telescope.customPickers")]]
+    local config_path = [[require("config.telescope-config.customPickers")]]
     return lua_cmd(config_path, picker)
 end
 

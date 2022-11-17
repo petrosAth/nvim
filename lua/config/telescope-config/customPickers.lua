@@ -1,6 +1,5 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
-local i = USER.styling.icons
 local b = USER.styling.borders.default
 local bn = USER.styling.borders.none
 local M = {}

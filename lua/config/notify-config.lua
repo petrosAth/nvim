@@ -92,7 +92,7 @@ end
 local null_ls_token = nil
 local function is_spam_message(client_id, result, val)
     local name = vim.lsp.get_client_by_id(client_id).name
-    local bad_filetype = { "zsh" }
+    local bad_filetype = { "lua", "zsh" }
 
     if name == "null-ls" then
         if result.token == null_ls_token then

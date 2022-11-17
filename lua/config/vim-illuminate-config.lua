@@ -12,7 +12,7 @@ require("illuminate").configure({
         "aerial",
         "alpha",
         "lspinfo",
-        "mason.nvim",
+        "mason",
         "minimap",
         "NvimTree",
         "Outline",

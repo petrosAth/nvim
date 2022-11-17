@@ -7,16 +7,17 @@ require("mason-tool-installer").setup({
         "css-lsp",
         "clangd",
         "emmet-ls",
+        "lua-language-server",
         "omnisharp",
         "omnisharp-mono",
         "powershell-editor-services",
         "pyright",
-        "lua-language-server",
         "typescript-language-server",
         -- Formatters
         "prettierd",
-        "selene",
         "stylua",
+        -- Linters
+        "selene",
     },
 
     -- if set to true this will check each tool for updates. If updates

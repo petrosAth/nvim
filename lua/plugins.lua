@@ -51,7 +51,7 @@ return packer.startup(function()
     use({
         "stevearc/dressing.nvim",
         config = function()
-            require("config.dressing")
+            require("config.dressing-config")
         end,
     })
 
@@ -59,7 +59,7 @@ return packer.startup(function()
     use({
         "kyazdani42/nvim-web-devicons",
         config = function()
-            require("config.nvim-web-devicons")
+            require("config.nvim-web-devicons-config")
         end,
     })
 
@@ -67,7 +67,7 @@ return packer.startup(function()
     use({
         "karb94/neoscroll.nvim",
         config = function()
-            require("config.neoscroll")
+            require("config.neoscroll-config")
         end,
     })
 
@@ -76,7 +76,7 @@ return packer.startup(function()
         "goolord/alpha-nvim",
         requires = "nvim-web-devicons",
         config = function()
-            require("config.alpha")
+            require("config.alpha-config")
         end,
     })
 
@@ -84,7 +84,7 @@ return packer.startup(function()
     use({
         "rcarriga/nvim-notify",
         config = function()
-            require("config.notify")
+            require("config.notify-config")
         end,
     })
 
@@ -92,7 +92,7 @@ return packer.startup(function()
     use({
         "petrosAth/satellite.nvim",
         config = function()
-            require("config.satellite")
+            require("config.satellite-config")
         end,
     })
 
@@ -100,7 +100,7 @@ return packer.startup(function()
     use({
         "anuvyklack/pretty-fold.nvim",
         config = function()
-            require("config.pretty-fold")
+            require("config.pretty-fold-config")
         end,
     })
 
@@ -108,7 +108,7 @@ return packer.startup(function()
     use({
         "gorbit99/codewindow.nvim",
         config = function()
-            require("config.codewindow")
+            require("config.codewindow-config")
         end,
     })
 
@@ -124,7 +124,7 @@ return packer.startup(function()
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
                 after = "mason.nvim",
                 config = function()
-                    require("config.lsp.mason-tool-installer")
+                    require("config.lsp.mason-tool-installer-config")
                 end,
             },
             -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
@@ -132,12 +132,12 @@ return packer.startup(function()
                 "williamboman/mason-lspconfig.nvim",
                 after = { "mason.nvim", "mason-tool-installer.nvim" },
                 config = function()
-                    require("config.lsp.mason-lspconfig")
+                    require("config.lsp.mason-lspconfig-config")
                 end,
             },
         },
         config = function()
-            require("config.lsp.mason")
+            require("config.lsp.mason-config")
         end,
     })
 
@@ -150,21 +150,21 @@ return packer.startup(function()
             {
                 "ray-x/lsp_signature.nvim",
                 config = function()
-                    require("config.lsp.lsp-signature")
+                    require("config.lsp.lsp-signature-config")
                 end,
             },
             -- lspkind.nvim - This tiny plugin adds vscode-like pictograms to neovim built-in lsp
             {
                 "onsails/lspkind-nvim",
                 config = function()
-                    require("config.lsp.lspkind")
+                    require("config.lsp.lspkind-config")
                 end,
             },
             -- null-ls.nvim - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
             {
                 "jose-elias-alvarez/null-ls.nvim",
                 config = function()
-                    require("config.lsp.null-ls")
+                    require("config.lsp.null-ls-config")
                 end,
             },
             -- inc-rename.nvim - Incremental LSP rename command based on Neovim's command-preview feature
@@ -181,7 +181,7 @@ return packer.startup(function()
     use({
         "hrsh7th/nvim-cmp",
         config = function()
-            require("config.cmp")
+            require("config.cmp-config")
         end,
         requires = {
             -- nvim-cmp source for neovim Lua API
@@ -222,7 +222,7 @@ return packer.startup(function()
         "numToStr/Comment.nvim",
         keys = { { "n", "gc" }, { "v", "gc" }, { "n", "gb" }, { "v", "gb" } },
         config = function()
-            require("config.comment")
+            require("config.comment-config")
         end,
     })
 
@@ -232,7 +232,7 @@ return packer.startup(function()
         event = "InsertEnter",
         after = { "nvim-treesitter", "nvim-cmp" },
         config = function()
-            require("config.autopairs")
+            require("config.autopairs-config")
         end,
     })
 
@@ -248,7 +248,7 @@ return packer.startup(function()
             },
         },
         config = function()
-            require("config.treesitter")
+            require("config.treesitter-config")
         end,
     })
 
@@ -256,7 +256,7 @@ return packer.startup(function()
     use({
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("config.indent-blankline")
+            require("config.indent-blankline-config")
         end,
     })
 
@@ -264,7 +264,7 @@ return packer.startup(function()
     use({
         "RRethy/vim-illuminate",
         config = function()
-            require("config.vim-illuminate")
+            require("config.vim-illuminate-config")
         end,
     })
 
@@ -275,7 +275,7 @@ return packer.startup(function()
         cmd = { "HexokinaseToggle", "HexokinaseTurnOn" },
         ft = { "css", "html", "javascript", "json", "scss" },
         setup = function()
-            require("config.hexokinase")
+            require("config.hexokinase-config")
         end,
     })
 
@@ -298,7 +298,7 @@ return packer.startup(function()
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         config = function()
-            require("config.telescope")
+            require("config.telescope-config")
         end,
         requires = {
             -- All the lua functions I don't want to write twice
@@ -342,12 +342,12 @@ return packer.startup(function()
                 "s1n7ax/nvim-window-picker", -- nvim-window-picker - This plugins prompts the user to pick a window and returns the window id of the picked window
                 -- tag = "v1.*",
                 config = function()
-                    require("config.nvim-window-picker")
+                    require("config.nvim-window-picker-config")
                 end,
             },
         },
         config = function()
-            require("config.neo-tree")
+            require("config.neo-tree-config")
         end,
     })
 
@@ -364,7 +364,7 @@ return packer.startup(function()
     use({
         "simrat39/symbols-outline.nvim",
         config = function()
-            require("config.symbols-outline")
+            require("config.symbols-outline-config")
         end,
     })
 
@@ -372,7 +372,7 @@ return packer.startup(function()
     use({
         "folke/trouble.nvim",
         config = function()
-            require("config.trouble")
+            require("config.trouble-config")
         end,
     })
 
@@ -380,7 +380,7 @@ return packer.startup(function()
     use({
         "kevinhwang91/nvim-hlslens",
         config = function()
-            require("config.hlslens")
+            require("config.hlslens-config")
         end,
     })
 
@@ -388,7 +388,7 @@ return packer.startup(function()
     use({
         "sindrets/diffview.nvim",
         config = function()
-            require("config.diffview")
+            require("config.diffview-config")
         end,
     })
 
@@ -397,7 +397,7 @@ return packer.startup(function()
         "jedrzejboczar/possession.nvim",
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
-            require("config.possession")
+            require("config.possession-config")
         end,
     })
 
@@ -405,7 +405,7 @@ return packer.startup(function()
     use({
         "klen/nvim-config-local",
         config = function()
-            require("config.nvim-config-local")
+            require("config.nvim-config-local-config")
         end,
     })
 
@@ -439,7 +439,7 @@ return packer.startup(function()
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("config.todo-comments")
+            require("config.todo-comments-config")
         end,
     })
 
@@ -448,7 +448,7 @@ return packer.startup(function()
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("config.gitsigns")
+            require("config.gitsigns-config")
         end,
     })
 
@@ -456,7 +456,7 @@ return packer.startup(function()
     use({
         "folke/which-key.nvim",
         config = function()
-            require("config.which-key")
+            require("config.which-key-config")
         end,
     })
 
@@ -464,7 +464,7 @@ return packer.startup(function()
     use({
         "anuvyklack/hydra.nvim",
         config = function()
-            require("config.hydra")
+            require("config.hydra-config")
         end,
     })
 
@@ -473,7 +473,7 @@ return packer.startup(function()
         "mbbill/undotree",
         cmd = { "UndotreeToggle", "UndotreeShow", "UndotreeHide" },
         config = function()
-            require("config.undotree")
+            require("config.undotree-config")
         end,
     })
 
@@ -481,7 +481,7 @@ return packer.startup(function()
     use({
         "unblevable/quick-scope",
         config = function()
-            require("config.quick-scope")
+            require("config.quick-scope-config")
         end,
     })
 
@@ -489,7 +489,7 @@ return packer.startup(function()
     use({
         "luukvbaal/stabilize.nvim",
         config = function()
-            require("config.stabilize")
+            require("config.stabilize-config")
         end,
     })
 
