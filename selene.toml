@@ -1,4 +1,4 @@
-std="neovim"
+std="selene-neovim"
 
 [rules]
 global_usage = "allow"
