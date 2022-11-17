@@ -14,8 +14,9 @@ require("mason-tool-installer").setup({
         "lua-language-server",
         "typescript-language-server",
         -- Formatters
+        "prettierd",
+        "selene",
         "stylua",
-        "prettierd"
     },
 
     -- if set to true this will check each tool for updates. If updates
@@ -27,5 +28,5 @@ require("mason-tool-installer").setup({
     -- will happen on startup. You can use `:MasonToolsUpdate` to install
     -- tools and check for updates.
     -- Default: true
-    run_on_start = true
+    run_on_start = true,
 })

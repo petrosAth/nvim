@@ -26,6 +26,7 @@ null_ls.setup({
             },
             command = "prettierd",
         }),
+        diagnostics.selene,
         diagnostics.zsh
     },
     root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".nvim", ".git"),
