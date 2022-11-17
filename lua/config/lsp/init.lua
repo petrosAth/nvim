@@ -13,6 +13,7 @@ M.servers = {
     "pyright",
     "sumneko_lua",
     "tsserver",
+    "vimls",
 }
 
 -- Borders for LSP floating windows
@@ -71,10 +72,6 @@ end
 
 -- Configure lsp on_attach function
 function M.on_attach(client, bufnr)
-    if client.name == "cssls" then
-        client.server_capabilities.documentFormattingProvider = true
-        client.server_capabilities.documentRangeFormattingProvider = true
-    end
 end
 
 return M

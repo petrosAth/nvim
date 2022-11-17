@@ -13,6 +13,7 @@ require("mason-tool-installer").setup({
         "powershell-editor-services",
         "pyright",
         "typescript-language-server",
+        "vim-language-server",
         -- Formatters
         "prettierd",
         "stylua",
