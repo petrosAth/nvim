@@ -28,4 +28,5 @@ null_ls.setup({
         }),
         diagnostics.zsh
     },
+    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".nvim", ".git"),
 })
