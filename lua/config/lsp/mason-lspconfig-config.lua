@@ -23,9 +23,11 @@ for _, name in ipairs(servers) do
     elseif name == "emmet_ls" then
         lspconfig[name].setup({
             filetypes = { "html" },
+            on_attach = on_attach,
+            capabilities = capabilities,
         })
     elseif name == "omnisharp" then
-        local install_path = vim.fn.stdpath("data") .. "/mason/packages"
+        local install_path = USER.data_path .. "/mason/packages"
         local cmd = USER.omni_mono and "mono" or "dotnet"
         local path = USER.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe"
             or install_path .. "/omnisharp/OmniSharp.dll"
@@ -106,18 +108,8 @@ for _, name in ipairs(servers) do
                 capabilities = capabilities,
             })
         else
-            local root_files = {
-                ".luarc.json",
-                ".luacheckrc",
-                ".stylua.toml",
-                "stylua.toml",
-                "selene.toml",
-                "selene.yml",
-                ".git",
-                ".nvim", -- Add local project directory
-            }
             lspconfig[name].setup({
-                root_dir = lspconfig.util.root_pattern(root_files),
+                root_dir = lspconfig.util.root_pattern(lsp_cfg.root_files),
                 -- add only project root folder in workspace library
                 settings = {
                     Lua = {

@@ -30,5 +30,5 @@ require("mason").setup({
             apply_language_filter = "<C-f>",
         },
     },
-    install_root_dir = vim.fn.stdpath("data") .. "/mason"
+    install_root_dir = USER.data_path .. "/mason"
 })

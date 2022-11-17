@@ -1,3 +1,4 @@
+local lsp_cfg = require("config.lsp")
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -29,5 +30,5 @@ null_ls.setup({
         diagnostics.selene,
         diagnostics.zsh
     },
-    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".nvim", ".git"),
+    root_dir = require("null-ls.utils").root_pattern(lsp_cfg.root_files),
 })

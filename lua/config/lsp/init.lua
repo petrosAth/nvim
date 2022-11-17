@@ -57,6 +57,18 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- Files to look for when searching for project root dir
+M.root_files = {
+    ".luarc.json",
+    ".luacheckrc",
+    ".stylua.toml",
+    "stylua.toml",
+    "selene.toml",
+    "selene.yml",
+    ".git",
+    ".nvim",
+}
+
 -- Configure lsp capabilities
 function M.capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
