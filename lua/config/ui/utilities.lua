@@ -29,10 +29,9 @@ function M.check_for_custom_title(path, buftype, filetype)
         { filetype = "Trouble",             icon = i.list[1],         title = " List"                 },
         { filetype = "TelescopePrompt",     icon = i.telescope[1],    title = " Telescope"            },
         { filetype = "undotree",            icon = i.undoTree[1],     title = " Undotree"             },
-        { filetype = "vim",                 icon = i.history[1],      title = " Command line history" },
     }
     local SpecialFileNames = {
-        { filename = "%[Command Line%]",                     icon = i.history[1],      title = " Search history"                },
+        { filename = "%[Command Line%]",                     icon = i.history[1],      title = " history"                       },
         { filename = "neo%-tree filesystem",                 icon = i.fileExplorer[1], title = " File explorer"                 },
         { filename = "neo%-tree git_status",                 icon = i.git.repo[1],     title = " Git status"                    },
         { filename = "neo%-tree buffers",                    icon = i.buffers[1],      title = " Open buffers"                  },
@@ -44,7 +43,7 @@ function M.check_for_custom_title(path, buftype, filetype)
     for _, type in pairs(SpecialBufTypes) do
         local buftype_match = string.match(buftype, type.buftype)
         if buftype_match then
-            if type.title ~= "" then
+            if type.buftype ~= "nofile" then
                 return true, type.icon .. type.title
             end
         end
@@ -60,10 +59,19 @@ function M.check_for_custom_title(path, buftype, filetype)
     for _, name in pairs(SpecialFileNames) do
         local filename_match = string.match(path, name.filename)
         if filename_match then
+            if name.filename == "%[Command Line%]" then
+                if vim.bo.filetype == "vim" then
+                    return true, name.icon .. " Command line" .. name.title
+                else
+                    return true, name.icon .. " Search" .. name.title
+                end
+            end
+
             if name.gitRepo then
                 local commit = string.sub(filename_match, -11, -4)
                 return true, name.icon .. name.title .. commit
             end
+
             return true, name.icon .. name.title
         end
     end
