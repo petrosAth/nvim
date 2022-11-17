@@ -398,7 +398,6 @@ return packer.startup(function()
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
             require("config.possession")
-            require("telescope").load_extension("possession")
         end,
     })
 
