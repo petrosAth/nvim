@@ -1,5 +1,5 @@
 require("possession").setup({
-    session_dir = PA.data_path .. "/sessions/",
+    session_dir = USER.data_path .. "/sessions/",
     silent = false,
     load_silent = true,
     debug = false,

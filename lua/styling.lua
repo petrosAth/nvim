@@ -1,4 +1,4 @@
-PA.styling = {
+USER.styling = {
     variables = {
         transparency = 0,
     },

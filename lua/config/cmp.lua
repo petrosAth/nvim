@@ -5,7 +5,7 @@ end
 
 local luasnip = require("luasnip")
 local cmp = require("cmp")
-local kinds = PA.styling.icons.lsp.kinds
+local kinds = USER.styling.icons.lsp.kinds
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)

@@ -1,4 +1,4 @@
-local i = PA.styling.icons
+local i = USER.styling.icons
 
 local M = {}
 

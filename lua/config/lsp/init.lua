@@ -1,6 +1,6 @@
 local M = {}
-local i = PA.styling.icons
-local b = PA.styling.borders.default
+local i = USER.styling.icons
+local b = USER.styling.borders.default
 
 -- List of servers for installation
 M.servers = {

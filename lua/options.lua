@@ -1,7 +1,7 @@
 local opt = vim.opt
 local g = vim.g
-local t = PA.styling.variables.transparency
-local i = PA.styling.icons
+local t = USER.styling.variables.transparency
+local i = USER.styling.icons
 
 -- Neovim GUI's options like nvim-qt and Neovide
 opt.guifont               = "Monospace"
@@ -76,4 +76,4 @@ opt.guicursor      = {                  -- Make the cursor blink
 }
 
 -- Neovim theme
-vim.cmd.colorscheme(PA.theme)
+vim.cmd.colorscheme(USER.theme)

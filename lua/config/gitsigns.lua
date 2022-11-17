@@ -1,5 +1,5 @@
-local i = PA.styling.icons.git.signs
-local b = PA.styling.borders.outline
+local i = USER.styling.icons.git.signs
+local b = USER.styling.borders.outline
 
 require("gitsigns").setup {
     signs = {

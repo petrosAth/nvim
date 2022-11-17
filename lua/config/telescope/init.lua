@@ -5,9 +5,9 @@ local trouble = require("trouble.providers.telescope")
 local fb_actions = require("telescope").extensions.file_browser.actions
 local c = require("config.telescope.customPickers")
 local ws = c.window_size
-local i = PA.styling.icons
-local b = PA.styling.borders.default
-local bn = PA.styling.borders.none
+local i = USER.styling.icons
+local b = USER.styling.borders.default
+local bn = USER.styling.borders.none
 
 telescope.setup({
     defaults = {
@@ -15,7 +15,7 @@ telescope.setup({
         selection_caret = i.point[1] .. " ",
         multi_icon = " " .. i.select[1],
         entry_prefix = "  ",
-        winblend = PA.styling.variables.transparency,
+        winblend = USER.styling.variables.transparency,
         color_devicons = true,
         border = true,
         borderchars = {
@@ -68,7 +68,7 @@ telescope.setup({
         sorting_strategy = "descending",
         file_ignore_patterns = { "^.git", "tags" },
         history = {
-            path = PA.data_path .. "/databases/telescope_history",
+            path = USER.data_path .. "/databases/telescope_history",
             limit = 100,
         },
         file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -222,7 +222,7 @@ telescope.setup({
             },
         },
         frecency = {
-            db_root = PA.data_path .. "/databases",
+            db_root = USER.data_path .. "/databases",
             show_scores = true,
             show_unindexed = true,
             ignore_patterns = { "*.git/*", "*/tmp/*" },

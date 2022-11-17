@@ -1,4 +1,4 @@
-local b = PA.styling.borders.default
+local b = USER.styling.borders.default
 
 -- Get language server list for installation
 local lsp_cfg = require("config.lsp")
@@ -26,8 +26,8 @@ for _, name in ipairs(servers) do
         })
     elseif name == "omnisharp" then
         local install_path = vim.fn.stdpath("data") .. "/mason/packages"
-        local cmd = PA.omni_mono and "mono" or "dotnet"
-        local path = PA.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe"
+        local cmd = USER.omni_mono and "mono" or "dotnet"
+        local path = USER.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe"
             or install_path .. "/omnisharp/OmniSharp.dll"
         lspconfig[name].setup({
             -- use_modern_net = user.omni_mono == false and true or false
@@ -44,7 +44,7 @@ for _, name in ipairs(servers) do
             capabilities = capabilities,
         })
     elseif name == "sumneko_lua" then
-        if PA.dev_mode then
+        if USER.dev_mode then
             -- add nvim and nvim-data folders in workspace library
             local nvim_library = {}
             local runtime_path = vim.split(package.path, ";")
@@ -63,12 +63,12 @@ for _, name in ipairs(servers) do
             add("$VIMRUNTIME")
 
             -- add your config
-            add(PA.config_path .. "/*")
+            add(USER.config_path .. "/*")
 
             -- add plugins
             -- if you're not using packer, then you might need to change the paths below
-            add(PA.packer_path .. "/opt/*")
-            add(PA.packer_path .. "/start/*")
+            add(USER.packer_path .. "/opt/*")
+            add(USER.packer_path .. "/start/*")
 
             lspconfig[name].setup({
                 on_new_config = function(config, root)

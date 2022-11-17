@@ -6,3 +6,5 @@ globals:
     any: true
   use:
     any: true
+  USER:
+    any: true

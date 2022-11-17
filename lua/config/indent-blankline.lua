@@ -1,4 +1,4 @@
-local i = PA.styling.icons.indentLine
+local i = USER.styling.icons.indentLine
 
 local excFiletypes = {
     "aerial",

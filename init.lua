@@ -1,5 +1,5 @@
 -- Custom global variables
-_G.PA = { -- Custom table to store my functions, tables, variables etc
+USER = { -- Custom table to store my functions, tables, variables etc
     home_path    = vim.fn.expand("$HOME"),
     config_path  = vim.fn.stdpath("config"),
     data_path    = vim.fn.stdpath("data"),

@@ -1,4 +1,4 @@
-local i = PA.styling.icons
+local i = USER.styling.icons
 
 require("todo-comments").setup({
     signs = true, -- show icons in the signs column

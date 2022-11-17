@@ -55,12 +55,12 @@ end
 ---@param config_dir string Local project's configuration directory.
 ---@return table palettes Table containing the palettes.
 local function get_palettes(cwd, config_dir)
-    local dir = PA.local_config.palettes_dir
+    local dir = USER.local_config.palettes_dir
     local path = config_dir .. "/" .. dir
     local palettes = {}
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
-        local current_theme_palette = PA.config_path .. "/lua/config/hexokinase/theme-palettes/" .. PA.theme .. ".json"
+        local current_theme_palette = USER.config_path .. "/lua/config/hexokinase/theme-palettes/" .. USER.theme .. ".json"
         table.insert(palettes, current_theme_palette)
     end
 
@@ -81,7 +81,7 @@ end
 ---@param config_dir string Local project's configuration directory.
 ---@return string path Spell file's path.
 local function get_spell_file(cwd, config_dir)
-    local dir = PA.local_config.spell_dir
+    local dir = USER.local_config.spell_dir
     local file = "en.utf-8.add"
     local path = config_dir .. "/" .. dir
 
@@ -95,8 +95,8 @@ end
 ---Load the project's local config files.
 ---@param cwd string Current working directory.
 ---@param config table Table containing the loading options.
-function PA.load_local_config(cwd, config)
-    local dir = PA.local_config.dir
+function USER.load_local_config(cwd, config)
+    local dir = USER.local_config.dir
 
     if config.use_session then
         vim.cmd.ProjectCreateSession()
@@ -113,8 +113,8 @@ function PA.load_local_config(cwd, config)
 end
 
 vim.api.nvim_create_user_command("ProjectCreateConfit", function()
-    local dir = PA.local_config.dir
-    local file = PA.local_config.file
+    local dir = USER.local_config.dir
+    local file = USER.local_config.file
     local content = {
         [[PA.load_local_config(vim.fn.getcwd(), {]],
         [[    use_session        = false,]],
@@ -131,15 +131,15 @@ vim.api.nvim_create_user_command("ProjectCreateConfit", function()
 end, { desc = "Create a project local config file, and open it in the current window" })
 
 vim.api.nvim_create_user_command("ProjectEditConfig", function()
-    local dir = PA.local_config.dir
-    local file = PA.local_config.file
+    local dir = USER.local_config.dir
+    local file = USER.local_config.file
 
     vim.cmd.edit(dir .. "/" .. file)
 end, { desc = "Edit the local config file in the current window" })
 
 vim.api.nvim_create_user_command("ProjectCreatePalette", function()
-    local config_dir = PA.local_config.dir
-    local dir = PA.local_config.palettes_dir
+    local config_dir = USER.local_config.dir
+    local dir = USER.local_config.palettes_dir
     local file = "palette.json"
     local path = config_dir .. "/" .. dir
     local content = {

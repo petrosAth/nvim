@@ -1,7 +1,7 @@
 local lsp_signature = require("lsp_signature")
-local t = PA.styling.variables.transparency
-local i = PA.styling.icons
-local b = PA.styling.borders.default
+local t = USER.styling.variables.transparency
+local i = USER.styling.icons
+local b = USER.styling.borders.default
 
 lsp_signature.setup({
     floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:

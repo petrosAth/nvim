@@ -1,11 +1,11 @@
-local i = PA.styling.icons
-local b = PA.styling.borders.default
-local bs = PA.styling.borders.single
+local i = USER.styling.icons
+local b = USER.styling.borders.default
+local bs = USER.styling.borders.single
 
 -- Automatically install and set up packer.nvim
 local ensure_packer = function()
     local fn = vim.fn
-    local install_path = PA.packer_path .. "/start/packer.nvim"
+    local install_path = USER.packer_path .. "/start/packer.nvim"
     if fn.empty(fn.glob(install_path)) > 0 then
         fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
         vim.cmd([[packadd packer.nvim]])

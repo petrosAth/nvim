@@ -13,7 +13,7 @@ local default_opts = {
 
 local function set_undo_break_points(break_points)
     for _, point in pairs(break_points) do
-        PA.mappings.i[point] = { point .. "<C-g>u" }
+        USER.mappings.i[point] = { point .. "<C-g>u" }
     end
 end
 
@@ -80,7 +80,7 @@ local function hop_key(direction, offset, char_num)
     return lua_cmd(plugin, modules, opts)
 end
 
-PA.mappings = {
+USER.mappings = {
     -- Normal mode mappings
     ["n"] = {
         ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", "Search word under cursor"          }, -- hlslens
@@ -405,4 +405,4 @@ PA.mappings = {
 }
 
 set_undo_break_points(undo_break_points)
-set_mappings(PA.mappings)
+set_mappings(USER.mappings)

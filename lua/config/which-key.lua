@@ -1,6 +1,6 @@
 local wk = require("which-key")
-local i = PA.styling.icons
-local sb = PA.styling.borders.default
+local i = USER.styling.icons
+local sb = USER.styling.borders.default
 
 wk.setup({
     plugins = {
@@ -47,7 +47,7 @@ wk.setup({
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = PA.styling.variables.transparency
+        winblend = USER.styling.variables.transparency
     },
     layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -97,4 +97,4 @@ local function register_mappings_in_wk(mappings)
     register_modes(mappings)
 end
 
-register_mappings_in_wk(PA.mappings)
+register_mappings_in_wk(USER.mappings)

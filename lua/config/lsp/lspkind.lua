@@ -14,5 +14,5 @@ require("lspkind").init({
     -- override preset symbols
     --
     -- default: {}
-    symbol_map = PA.styling.icons.lsp.kinds,
+    symbol_map = USER.styling.icons.lsp.kinds,
 })

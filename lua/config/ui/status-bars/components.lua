@@ -2,7 +2,7 @@ local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local u = require("config.ui.utilities")
 local h = require("config.ui.status-bars.tables")
-local i = PA.styling.icons
+local i = USER.styling.icons
 local M = {}
 
 local function get_vim_mode()

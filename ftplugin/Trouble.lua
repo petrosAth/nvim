@@ -1,6 +1,6 @@
 -- trouble.nvim
 local ol = vim.opt_local
-local i = PA.styling.icons.fillchars
+local i = USER.styling.icons.fillchars
 
 ol.colorcolumn    = ""        -- Hide vertical line for text alignment
 ol.number         = true

@@ -1,6 +1,6 @@
 local tree = require("neo-tree")
-local i = PA.styling.icons
-local b = PA.styling.borders.default
+local i = USER.styling.icons
+local b = USER.styling.borders.default
 
 tree.setup({
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab

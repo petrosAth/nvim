@@ -1,7 +1,7 @@
-local i = PA.styling.icons
-local k = PA.styling.icons.lsp.kinds
-local kp = PA.styling.icons.lsp.kinds_plus
-local b = PA.styling.borders.default
+local i = USER.styling.icons
+local k = USER.styling.icons.lsp.kinds
+local kp = USER.styling.icons.lsp.kinds_plus
+local b = USER.styling.borders.default
 
 require("symbols-outline").setup({
     highlight_hovered_item = true,

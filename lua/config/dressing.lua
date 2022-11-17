@@ -1,6 +1,6 @@
-local t = PA.styling.variables.transparency
-local b = PA.styling.borders.default
-local bn = PA.styling.borders.none
+local t = USER.styling.variables.transparency
+local b = USER.styling.borders.default
+local bn = USER.styling.borders.none
 
 require("dressing").setup({
     input = {

@@ -1,5 +1,5 @@
 require("satellite").setup({
-    winblend = PA.styling.variables.transparency,
+    winblend = USER.styling.variables.transparency,
     zindex = 40,
     handlers = {
         marks = {

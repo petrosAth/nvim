@@ -1,4 +1,4 @@
-local b = PA.styling.borders.default
+local b = USER.styling.borders.default
 
 require("codewindow").setup({
     exclude_filetypes = { -- Choose certain filetypes to not show minimap on
