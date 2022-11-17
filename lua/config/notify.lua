@@ -89,9 +89,28 @@ local function format_message(message, percentage)
     return (percentage and percentage .. "%\t" or "") .. (message or "")
 end
 
+local null_ls_token = nil
+local function is_spam_message(client_id, result, val)
+    local name = vim.lsp.get_client_by_id(client_id).name
+    local bad_filetype = { "zsh" }
+
+    if name == "null-ls" then
+        if result.token == null_ls_token then
+            return true
+        end
+        for _, filetype in pairs(bad_filetype) do
+            if vim.bo.filetype == filetype then
+                if val.title == "diagnostics" and val.message == nil then
+                    null_ls_token = result.token
+                    return true
+                end
+            end
+        end
+    end
+end
+
 -- LSP integration
 -- Make sure to also have the snippet with the common helper functions in your config!
-local null_ls_token = nil
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
     local client_id = ctx.client_id
     local val = result.value
@@ -100,17 +119,8 @@ vim.lsp.handlers["$/progress"] = function(_, result, ctx)
         return
     end
 
-    local name = vim.lsp.get_client_by_id(client_id).name
-    if name == "null-ls" then
-        if result.token == null_ls_token then
-            return
-        end
-        if vim.bo.filetype == "zsh" then
-            if val.title == "diagnostics" and val.message == nil then
-                null_ls_token = result.token
-                return
-            end
-        end
+    if is_spam_message(client_id, result, val) then
+        return
     end
 
     local notif_data = get_notif_data(client_id, result.token)
