@@ -174,6 +174,14 @@ return packer.startup(function()
                     require("inc_rename").setup()
                 end,
             },
+            -- j-hui/fidget.nvim - Standalone UI for nvim-lsp progress
+            {
+                "j-hui/fidget.nvim",
+                after = { "nvim-lspconfig" },
+                config = function ()
+                    require("config.lsp.fidget-config")
+                end
+            }
         },
     })
 
