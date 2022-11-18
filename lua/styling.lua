@@ -50,6 +50,7 @@ USER.styling = {
         windows      = { ""                                              },
         update       = { ""                                              },
         save         = { ""                                              },
+        key          = { ""                                              },
         folderop     = { "", "", ""                                    },
         foldercl     = { "", "", ""                                    },
         arrowu       = { "", "", "", "", "", "⯅", "▲", "△", "", "" },
