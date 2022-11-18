@@ -15,6 +15,7 @@ require("mason-tool-installer").setup({
         "taplo",
         "typescript-language-server",
         "vim-language-server",
+        "yaml-language-server",
         -- Formatters
         "prettierd",
         "stylua",
