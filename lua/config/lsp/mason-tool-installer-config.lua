@@ -12,6 +12,7 @@ require("mason-tool-installer").setup({
         "omnisharp-mono",
         "powershell-editor-services",
         "pyright",
+        "taplo",
         "typescript-language-server",
         "vim-language-server",
         -- Formatters

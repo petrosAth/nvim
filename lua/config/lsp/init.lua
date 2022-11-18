@@ -14,6 +14,7 @@ M.servers = {
     "sumneko_lua",
     "tsserver",
     "vimls",
+    "taplo",
 }
 
 -- Borders for LSP floating windows
