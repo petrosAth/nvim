@@ -43,7 +43,7 @@ USER.styling = {
         dashboard    = { ""                                              },
         telescope    = { ""                                              },
         undoTree     = { ""                                              },
-        diffview     = { ""                                              },
+        diffview     = { ""                                              },
         history      = { ""                                              },
         lastSession  = { ""                                              },
         sessions     = { ""                                              },
@@ -177,7 +177,7 @@ USER.styling = {
             },
         },
         listchars = {
-            eol            = "↵",  -- Character to show at the end of each line.
+            eol            = "",  -- Character to show at the end of each line.
             tab            = "──", -- Two or three characters to be used to show a tab.
             space          = " ",  -- Character to show for a space.
             multispace     = " ",  -- One or more characters to use cyclically to show for multiple consecutive spaces

@@ -380,8 +380,9 @@ USER.mappings = {
     },
     -- Insert mode mappints
     ["i"] = {
-        ["<C-j>"] = { "<CR>",          "Carriage return",              noremap = false }, -- nvim-autopairs
-        ["<M-p>"] = { [[<C-r><C-o>+]], "Paste and stay in insert mode"                 },
+        ["<C-j>"] = { "<CR>",                                   "Carriage return",              noremap = false }, -- nvim-autopairs
+        ["<M-p>"] = { [[<C-r><C-o>+]],                          "Paste and stay in insert mode"                 },
+        ["<M-a>"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code actions"                                  }, -- nvim-lspconfig -- nvim-lightbulb
     },
     -- Command-line mode mappings
     ["c"] = {

@@ -178,10 +178,17 @@ return packer.startup(function()
             {
                 "j-hui/fidget.nvim",
                 after = { "nvim-lspconfig" },
-                config = function ()
+                config = function()
                     require("config.lsp.fidget-config")
-                end
-            }
+                end,
+            },
+            -- kosayoda/nvim-lightbulb - VSCode bulb for neovim's built-in LSP.
+            {
+                "kosayoda/nvim-lightbulb",
+                config = function()
+                    require("config.lsp.nvim-lightbulb-config")
+                end,
+            },
         },
     })
 
