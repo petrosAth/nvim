@@ -250,17 +250,16 @@ USER.mappings = {
             },
             ["l"] = {
                 name = "LSP",
-                ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Code formatting"                      }, -- nvim-lspconfig
-                ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"               }, -- nvim-lspconfig
-                ["H"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                     }, -- nvim-lspconfig
-                ["R"] = { ":IncRename ",                                       "Rename symbol",        silent = false }, -- nvim-lspconfig -- inc-rename
-                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signagture help"                      }, -- nvim-lspconfig
-                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",            "Code actions"                         }, -- nvim-lspconfig -- telescope.nvim
-                ["r"] = { telescope_picker("lsp_references"),                  "References"                           }, -- nvim-lspconfig -- telescope.nvim
-                ["K"] = { telescope_picker("lsp_definitions"),                 "Definitions"                          }, -- nvim-lspconfig -- telescope.nvim
-                ["h"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                         }, -- nvim-lspconfig
-                ["d"] = { "<CMD>Trouble document_diagnostics<CR>",             "Document diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
-                ["D"] = { "<CMD>Trouble workspace_diagnostics<CR>",            "Workspace diagnostics"                }, -- nvim-lspconfig -- trouble.nvim
+                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",            "Code actions"                          }, -- nvim-lspconfig
+                ["d"] = { telescope_picker("lsp_definitions"),                 "Definitions"                           }, -- nvim-lspconfig -- telescope.nvim
+                ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
+                ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
+                ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
+                ["i"] = { telescope_picker("lsp_implementations"),             "Implementations"                       }, -- nvim-lspconfig -- telescope.nvim
+                ["K"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
+                ["r"] = { telescope_picker("lsp_references"),                  "References"                            }, -- nvim-lspconfig -- telescope.nvim
+                ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
+                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signagture help"                       }, -- nvim-lspconfig
             },
             ["m"] = {
                 name = "Minimap",
@@ -272,12 +271,14 @@ USER.mappings = {
             ["o"] = { "<CMD>SymbolsOutline<CR>", "Toggle Code outline" }, -- symbols-outline.nvim
             ["q"] = {
                 name = "Trouble",
-                ["q"] = { "<CMD>TroubleToggle<CR>",    "Toggle"   }, -- trouble.nvim
-                ["o"] = { "<CMD>Trouble<CR>",          "Open"     }, -- trouble.nvim
-                ["c"] = { "<CMD>TroubleClose<CR>",     "Close"    }, -- trouble.nvim
-                ["R"] = { "<CMD>TroubleRefresh<CR>",   "Refresh"  }, -- trouble.nvim
-                ["l"] = { "<CMD>Trouble loclist<CR>",  "Loclist"  }, -- trouble.nvim
-                ["f"] = { "<CMD>Trouble quickfix<CR>", "Quickfix" }, -- trouble.nvim
+                ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"                 }, -- trouble.nvim
+                ["d"] = { "<CMD>Trouble document_diagnostics<CR>",  "Document diagnostics"  }, -- nvim-lspconfig -- trouble.nvim
+                ["D"] = { "<CMD>Trouble workspace_diagnostics<CR>", "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
+                ["f"] = { "<CMD>Trouble quickfix<CR>",              "Quickfix"              }, -- trouble.nvim
+                ["l"] = { "<CMD>Trouble loclist<CR>",               "Loclist"               }, -- trouble.nvim
+                ["o"] = { "<CMD>Trouble<CR>",                       "Open"                  }, -- trouble.nvim
+                ["q"] = { "<CMD>TroubleToggle<CR>",                 "Toggle"                }, -- trouble.nvim
+                ["R"] = { "<CMD>TroubleRefresh<CR>",                "Refresh"               }, -- trouble.nvim
             },
             ["r"] = { "<CMD>Telescope registers<CR>", "Registers" },
             ["s"] = {

@@ -65,28 +65,6 @@ function M.oldFiles()
     }
 end
 
-function M.lsp_references()
-    builtin.lsp_references({
-        jump_type = 'never',
-        layout_strategy = "vertical",
-        layout_config = {
-            prompt_position = "bottom",
-        },
-        borderchars = M.borderchars
-    })
-end
-
-function M.lsp_definitions()
-    builtin.lsp_definitions({
-        jump_type = 'never',
-        layout_strategy = "vertical",
-        layout_config = {
-            prompt_position = "bottom",
-        },
-        borderchars = M.borderchars
-    })
-end
-
 function M.notify()
     telescope.extensions.notify.notify{
         results_title = "Results",
@@ -124,6 +102,27 @@ function M.file_browser()
     telescope.extensions.file_browser.file_browser {
         path = "%:p:h"
     }
+end
+
+local lsp_layout = {
+        jump_type = 'never',
+        layout_strategy = "vertical",
+        layout_config = {
+            prompt_position = "bottom",
+        },
+        borderchars = M.borderchars
+}
+
+function M.lsp_references()
+    builtin.lsp_references(lsp_layout)
+end
+
+function M.lsp_definitions()
+    builtin.lsp_definitions(lsp_layout)
+end
+
+function M.lsp_implementations()
+    builtin.lsp_implementations(lsp_layout)
 end
 
 return M
