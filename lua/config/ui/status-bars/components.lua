@@ -202,6 +202,7 @@ local FileName = {
 
         return i.file[1] .. " " .. fileName
     end,
+    hl = { bold = true },
 }
 
 local Navic = {
@@ -210,7 +211,7 @@ local Navic = {
     end,
     provider = function(self)
         local context = self.navic.get_location()
-        return context ~= "" and "  " .. context or ""
+        return context ~= "" and " " .. i.arrowr[1] .. " " .. context or ""
     end,
     update = "CursorMoved",
 }
@@ -218,13 +219,7 @@ local Navic = {
 M.FileNameBlock = utils.insert(
     FileNameBlock,
     { flexible = h.Hide.FileName, { h.Separator.left }, { h.Null } },
-    {
-        flexible = h.Hide.FilePath,
-        {
-            FilePath,
-        },
-        { h.Null },
-    },
+    { flexible = h.Hide.FilePath, { FilePath }, { h.Null } },
     { flexible = h.Hide.FileName, { FileName }, { h.Null } },
     { flexible = h.Hide.Navic, { Navic }, { h.Null } },
     { flexible = h.Hide.FileName, { h.Separator.right }, { h.Null } }
