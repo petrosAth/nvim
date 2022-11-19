@@ -31,6 +31,7 @@ opt.autoindent     = true               -- Copy indent from current line when st
 opt.smartindent    = true
 opt.splitright     = true
 opt.splitbelow     = true
+opt.splitkeep      = "topline"          -- On horizontal splits keep the top line the same
 opt.inccommand     = "split"            -- Create a split for items offscreen for search and replace
 opt.virtualedit    = "block"            -- Allow going past the end of line in visual block mode
 opt.showmatch      = true               -- Highlights matching brackets

@@ -498,14 +498,6 @@ return packer.startup(function()
         end,
     })
 
-    -- stabilize.nvim - Neovim plugin to stabilize window open/close events
-    use({
-        "luukvbaal/stabilize.nvim",
-        config = function()
-            require("config.stabilize-config")
-        end,
-    })
-
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
