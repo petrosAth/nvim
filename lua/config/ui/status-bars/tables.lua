@@ -24,6 +24,7 @@ M.Hide = {
     FileModified       = 70,
     FilePath           = 50,
     FileName           = 60,
+    Navic              = 55,
     Spell = {
         icon           = 20,
         value          = 40

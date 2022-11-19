@@ -22,7 +22,6 @@ local function get_vim_mode_color(mode)
     return { fg = highlight.fg, bg = highlight.bg, bold = true }
 end
 
-
 local FileTypeBlock = {
     condition = function()
         return vim.bo.filetype ~= ""
@@ -171,6 +170,7 @@ local FileNameBlock = {
     init = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
+        self.navic = require("nvim-navic")
     end,
 }
 
@@ -188,7 +188,7 @@ local FilePath = {
 
         filePath = vim.fn.fnamemodify(filePath, ":.:h")
 
-        return "%<" .. i.dir[1] .. " " .. filePath .. "/" .. h.Separator.mid.provider
+        return "%<" .. i.dir[1] .. " " .. filePath .. " " .. i.arrowr[1] .. h.Separator.mid.provider
     end,
 }
 
@@ -204,13 +204,30 @@ local FileName = {
     end,
 }
 
+local Navic = {
+    condition = function(self)
+        return self.navic.is_available and conditions.is_active()
+    end,
+    provider = function(self)
+        local context = self.navic.get_location()
+        return context ~= "" and "  " .. context or ""
+    end,
+    update = "CursorMoved",
+}
+
 M.FileNameBlock = utils.insert(
     FileNameBlock,
     { flexible = h.Hide.FileName, { h.Separator.left }, { h.Null } },
-    { flexible = h.Hide.FilePath, { FilePath }, { h.Null } },
+    {
+        flexible = h.Hide.FilePath,
+        {
+            FilePath,
+        },
+        { h.Null },
+    },
     { flexible = h.Hide.FileName, { FileName }, { h.Null } },
+    { flexible = h.Hide.Navic, { Navic }, { h.Null } },
     { flexible = h.Hide.FileName, { h.Separator.right }, { h.Null } }
-
 )
 
 M.Paste = {
@@ -502,10 +519,11 @@ local LspBlock = {
     end,
 }
 
-M.LspClients = {
-    condition = function (self)
+local LspClients = {
+    condition = function(self)
         return next(self.Clients) ~= nil
     end,
+    update = { "LspAttach", "LspDetach" },
 
     {
         flexible = h.Hide.lspIcon,
@@ -514,7 +532,7 @@ M.LspClients = {
         },
         {
             h.Null,
-        }
+        },
     },
     {
         provider = function(self)
@@ -531,18 +549,20 @@ M.LspClients = {
     },
 }
 
-M.LspNullLsGap = {
-    condition = function (self)
+local LspNullLsGap = {
+    condition = function(self)
         return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil)
     end,
+    update = { "LspAttach", "LspDetach" },
 
     provider = h.Separator.mid.provider,
 }
 
-M.NullLsSources = {
-    condition = function (self)
+local NullLsSources = {
+    condition = function(self)
         return next(self.Sources) ~= nil
     end,
+    update = { "LspAttach", "LspDetach" },
 
     {
         flexible = h.Hide.nullLsIcon,
@@ -551,7 +571,7 @@ M.NullLsSources = {
         },
         {
             h.Null,
-        }
+        },
     },
     {
         provider = function(self)
@@ -563,10 +583,10 @@ M.NullLsSources = {
 
             return "[" .. table.concat(null_ls_sources, " ") .. "]"
         end,
-    }
+    },
 }
 
-M.LspDiagnostics = {
+local LspDiagnostics = {
     condition = conditions.has_diagnostics,
 
     static = {
@@ -580,7 +600,8 @@ M.LspDiagnostics = {
         flexible = h.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.errors > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.errorIcon, self.errors)
+                return self.errors > 0
+                    and string.format("%s%s %s", h.Separator.mid.provider, self.errorIcon, self.errors)
             end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
@@ -596,7 +617,8 @@ M.LspDiagnostics = {
         flexible = h.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.warnings > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.warnIcon, self.warnings)
+                return self.warnings > 0
+                    and string.format("%s%s %s", h.Separator.mid.provider, self.warnIcon, self.warnings)
             end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
@@ -645,10 +667,10 @@ M.LspBlock = utils.insert(
     LspBlock,
 
     { h.Separator.left },
-    { flexible = h.Hide.lspClients, M.LspClients, { h.Null } },
-    { flexible = math.min(h.Hide.lspClients, h.Hide.nullLsSources), M.LspNullLsGap, { h.Null } },
-    { flexible = h.Hide.nullLsSources, M.NullLsSources, { h.Null } },
-    { M.LspDiagnostics },
+    { flexible = h.Hide.lspClients, LspClients, { h.Null } },
+    { flexible = math.min(h.Hide.lspClients, h.Hide.nullLsSources), LspNullLsGap, { h.Null } },
+    { flexible = h.Hide.nullLsSources, NullLsSources, { h.Null } },
+    { LspDiagnostics },
     { h.Separator.right }
 )
 
