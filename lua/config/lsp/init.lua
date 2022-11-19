@@ -86,6 +86,9 @@ function M.capabilities()
 end
 
 -- Configure lsp on_attach function
-function M.on_attach(client, bufnr) end
-
+function M.on_attach(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+        require("nvim-navic").attach(client, bufnr)
+    end
+end
 return M

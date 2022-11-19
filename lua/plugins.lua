@@ -189,6 +189,13 @@ return packer.startup(function()
                     require("config.lsp.nvim-lightbulb-config")
                 end,
             },
+            -- SmiteshP/nvim-navic - Simple winbar/statusline plugin that shows your current code context
+            {
+                "SmiteshP/nvim-navic",
+                config = function ()
+                    require("config.lsp.nvim-navic-config")
+                end
+            }
         },
     })
 
