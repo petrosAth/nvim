@@ -337,19 +337,9 @@ return packer.startup(function()
             { "nvim-telescope/telescope-file-browser.nvim" },
             -- Telescope.nvim extension that adds LuaSnip integration
             { "benfowler/telescope-luasnip.nvim" },
+            -- dir-telescope.nvim - Perform telescope functions in a selected directory
+            { "princejoogie/dir-telescope.nvim" }
         },
-    })
-
-    -- dir-telescope.nvim - Perform telescope functions in a selected directory
-    use({
-        "princejoogie/dir-telescope.nvim",
-        after = "telescope.nvim",
-        config = function()
-            require("dir-telescope").setup({
-                hidden = true,
-                respect_gitignore = true,
-            })
-        end,
     })
 
     -- neo-tree.nvim - Neovim plugin to manage the file system and other tree like structures

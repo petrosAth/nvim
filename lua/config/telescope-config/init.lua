@@ -301,7 +301,7 @@ telescope.setup({
 })
 
 -- Load extensions
-local extensions = { "file_browser", "frecency", "fzf", "hop", "luasnip", "possession" }
+local extensions = { "dir", "file_browser", "frecency", "fzf", "hop", "luasnip", "possession" }
 pcall(function()
     for _, ext in ipairs(extensions) do
         telescope.load_extension(ext)

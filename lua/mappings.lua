@@ -285,9 +285,9 @@ USER.mappings = {
                 name = "Search",
                 ["b"] = { telescope_picker("file_browser"), "File Browser" }, -- telescope.nvim
                 ["d"] = {
-                    name = "Directory",
-                    ["g"] = { "<CMD>GrepInDirectory<CR>", "File search" }, -- telescope.nvim -- dir-telescope.nvim
-                    ["f"] = { "<CMD>FileInDirectory<CR>", "ripGREP"     }, -- telescope.nvim -- dir-telescope.nvim
+                    name = "Search in Directory",
+                    ["g"] = { "<CMD>Telescope dir live_grep<CR>",  "ripGREP"     }, -- telescope.nvim -- dir-telescope.nvim
+                    ["f"] = { "<CMD>Telescope dir find_files<CR>", "File search" }, -- telescope.nvim -- dir-telescope.nvim
                 },
                 ["f"] = { "<CMD>Telescope find_files<CR>",   "File search"  }, -- telescope.nvim
                 ["g"] = { "<CMD>Telescope live_grep<CR>",    "ripGREP"      }, -- telescope.nvim
