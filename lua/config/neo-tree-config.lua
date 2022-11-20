@@ -75,8 +75,8 @@ tree.setup({
             highlight = "NeoTreeIndentMarker",
             -- expander config, needed for nesting files
             with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-            expander_collapsed = i.foldercl[1],
-            expander_expanded = i.folderop[1],
+            expander_collapsed = i.arrowr[1],
+            expander_expanded = i.arrowb[1],
             expander_highlight = "NeoTreeExpander",
         },
         icon = {

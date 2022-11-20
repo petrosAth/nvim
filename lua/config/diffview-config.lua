@@ -10,8 +10,8 @@ require("diffview").setup({
         folder_open   = "",
     },
     signs = {
-        fold_closed = i.foldercl[1],
-        fold_open = i.folderop[1],
+        fold_closed = i.arrowr[1],
+        fold_open = i.arrowb[1],
     },
     file_panel = {
         listing_style = "tree",              -- One of 'list' or 'tree'

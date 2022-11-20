@@ -18,7 +18,7 @@ require("symbols-outline").setup({
     preview_bg_highlight = "Pmenu",
     autofold_depth = nil,
     auto_unfold_hover = true,
-    fold_markers = { i.foldercl[1], i.folderop[1] },
+    fold_markers = { i.arrowr[1], i.arrowr[1] },
     wrap = false,
     keymaps = {
         close = { "<Esc>", "q" },
