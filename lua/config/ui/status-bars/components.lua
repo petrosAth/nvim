@@ -188,7 +188,7 @@ local FilePath = {
 
         filePath = vim.fn.fnamemodify(filePath, ":.:h")
 
-        return "%<" .. i.dir[1] .. " " .. filePath .. " " .. i.arrowr[1] .. h.Separator.mid.provider
+        return "%<" .. i.root_dir[1] .. " /" .. filePath .. " " .. i.arrowr[1] .. h.Separator.mid.provider
     end,
 }
 
