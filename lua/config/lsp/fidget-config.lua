@@ -1,5 +1,5 @@
 local i = USER.styling.icons
-local b = USER.styling.borders.default
+
 require("fidget").setup({
     text = {
         spinner = i.loading.sphere, -- animation shown when tasks are ongoing
@@ -20,17 +20,7 @@ require("fidget").setup({
         relative = "win", -- where to anchor, either "win" or "editor"
         blend = 0, -- &winblend for the window
         zindex = nil, -- the zindex value for the window
-        -- border = "none", -- style of border for the fidget window
-        border = {
-            { "", "FloatBorder" }, -- b.tl,
-            { "", "FloatBorder" }, -- b.t,
-            { "", "FloatBorder" }, -- b.tr,
-            { "", "FloatBorder" }, -- b.r,
-            { "", "FloatBorder" }, -- b.br,
-            { "", "FloatBorder" }, -- b.b,
-            { "", "FloatBorder" }, -- b.bl,
-            { b.l, "FloatBorder" }, -- b.l,
-        }, -- style of border for the fidget window
+        border = "none", -- style of border for the fidget window
     },
     fmt = {
         leftpad = true, -- right-justify text in fidget box

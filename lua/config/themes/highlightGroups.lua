@@ -294,8 +294,8 @@ function M.load(palette)
         DiffviewWinSeparator = { link = "DiffviewVertSplit" },
 
         -- fidget.nvim
-        FidgetTitle = { fg = g.editor.Title.fg, bg = g.editor.NormalFloat.bg },
-        FidgetTask = { link = "NormalFloat" },
+        FidgetTitle = { fg = p.cFgDim },
+        FidgetTask = { fg = g.editor.Folded.fg, bg = g.editor.Normal.bg },
 
         -- gitsigns.nvim
         GitSignsCurrentLineBlame = { fg = p.cMagenta, bold = true, italic = true },
