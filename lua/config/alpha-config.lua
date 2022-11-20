@@ -43,9 +43,9 @@ local header = {
 local buttons_session = {
     type = "group",
     val = {
-        button("LDR p .", i.alphaCursor[1] .. " " .. i.lastSession[1] .. " Load last session"),
-        button("LDR p L", i.alphaCursor[1] .. " " .. i.lastSession[1] .. " Load local session"),
-        button("SPC s s", i.alphaCursor[1] .. " " .. i.sessions[1]    .. " Search sessions"),
+        button("LDR p .", string.format("%s %s Load last session",  i.alphaCursor[1], i.lastSession[1])),
+        button("LDR p L", string.format("%s %s Load local session", i.alphaCursor[1], i.lastSession[1])),
+        button("SPC s s", string.format("%s %s Search sessions",    i.alphaCursor[1], i.sessions[1])),
     },
     opts = {
         spacing = 0,
@@ -55,10 +55,10 @@ local buttons_session = {
 local buttons_navigation = {
     type = "group",
     val = {
-        button("SPC s r", i.alphaCursor[1] .. " " .. i.history[1] .. " Recent files"),
-        button("SPC s R", i.alphaCursor[1] .. " " .. i.history[1] .. " Frecent files"),
-        button("SPC s f", i.alphaCursor[1] .. " " .. i.search[1]  .. " File search"),
-        button("SPC s g", i.alphaCursor[1] .. " " .. i.grep[1]    .. " ripGREP search"),
+        button("SPC s r", string.format("%s %s Recent files",   i.alphaCursor[1], i.history[1])),
+        button("SPC s R", string.format("%s %s Frecent files",  i.alphaCursor[1], i.history[1])),
+        button("SPC s f", string.format("%s %s File search",    i.alphaCursor[1], i.search[1])),
+        button("SPC s g", string.format("%s %s ripGREP search", i.alphaCursor[1], i.grep[1])),
     },
     opts = {
         spacing = 0,
@@ -68,9 +68,9 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        button("LDR u u p", i.alphaCursor[1] .. " " .. i.preview[1]  .. " Preview plugins updates"),
-        button("LDR u u P", i.alphaCursor[1] .. " " .. i.update[1]   .. " Update plugins"),
-        button("LDR u u l", i.alphaCursor[1] .. " " .. i.lsp.icon[1] .. " Update LSP packages"),
+        button("LDR u u p", string.format("%s %s Preview plugins updates", i.alphaCursor[1], i.preview[1])),
+        button("LDR u u P", string.format("%s %s Update plugins",          i.alphaCursor[1], i.update[1])),
+        button("LDR u u l", string.format("%s %s Update LSP packages",     i.alphaCursor[1], i.update[1])),
     },
     opts = {
         spacing = 0,
