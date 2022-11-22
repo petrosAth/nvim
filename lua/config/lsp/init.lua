@@ -90,5 +90,13 @@ function M.on_attach(client, bufnr)
     if client.server_capabilities.documentSymbolProvider then
         require("nvim-navic").attach(client, bufnr)
     end
+    if client.name == "ltex" then
+        require("ltex_extra").setup({
+            load_langs = { "en-US" }, -- table <string> : languages for witch dictionaries will be loaded
+            init_check = true, -- boolean : whether to load dictionaries on startup
+            path = ".nvim/ltex", -- string : path to store dictionaries. Relative path uses current working directory
+            log_level = "none", -- string : "none", "trace", "debug", "info", "warn", "error", "fatal"
+        })
+    end
 end
 return M
