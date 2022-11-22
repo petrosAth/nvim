@@ -1,12 +1,11 @@
 # Neovim config files
-My ["personal"](#sources) Neovim configuration for Windows. Still a work in
-progress.
+My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
-## TODO
+## To-do
 - [x] lualine root folder (.)
 - [x] Add window number in lualine
 - [x] Add gitsigns in lualine
-- [x] Try treesitter folding - reddit
+- [x] Try nvim-treesitter folding - Reddit
   [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
 - [x] Revisit FileType and BufEnter autocommands
 - [x] Add comment string snippets and telescope finder
@@ -14,30 +13,26 @@ progress.
 - [x] Migrate to WSL under windows
 - [x] Organize my custom highlight groups
 - [x] Revisit nvim-cmp menu
-- [x] lazyload everything possible
+- [x] lazy load everything possible
 - [x] Add Session management
 - [x] Replace [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) with
   [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
 - [x] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
-- [x] Command preview for lsp rename
+- [x] Command preview for LSP rename
   [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
 - [ ] Add debugger
-- [ ] Add dracula theme
+- [ ] Add Dracula theme
 - [ ] Add Solarized theme
 
 ## Reminders
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
 
 ## Plugins watch list
-- [codewindow.nvim](https://github.com/gorbit99/codewindow.nvim) Codewindow.nvim
-  is a minimap plugin for neovim, that is closely integrated with treesitter and
-  the builtin LSP to display more information to the user.
 - [nvim-nonicons](https://github.com/yamatsum/nvim-nonicons) Icon set using
-  nonicons for neovim plugins and settings.
-- [mini.nvim - mini.map](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-map.md)
+  Nonicons for Neovim plugins and settings.
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) Not UFO in the sky, but
   an ultra fold in Neovim. (Wait for [How can I make it look equal to its
-  configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4)
+  configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4))
 - [mini.align](https://github.com/echasnovski/mini.nvim#mini.align) Align text
   interactively (with or without instant preview).
 - [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) Neovim plugin for
@@ -47,11 +42,11 @@ progress.
 - [vim-dadbod-ui](https://github.com/kristijanhusak/vim-dadbod-ui) Simple UI for
   vim-dadbod
 - [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
-  Neovim treesitter plugin for setting the commentstring based on the cursor
-  location in a file.
-- [telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
+  Neovim nvim-treesitter plugin for setting the comment string based on the
+  cursor location in a file.
+- [Telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
   Telescope extension to preview media files using Ueberzug.
-- [Neogit](https://github.com/TimUntersberger/neogit) magit for neovim.
+- [Neogit](https://github.com/TimUntersberger/neogit) Magit for Neovim.
 - [pantran.nvim](https://github.com/potamides/pantran.nvim) Use your favorite
   machine translation engines without having to leave your favorite editor.
 
@@ -59,7 +54,7 @@ progress.
 - [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula colorscheme
   for neovim written in Lua.
 - [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)
-  Solarized colorscheme in lua for nvim 0.5.
+  Solarized color scheme in Lua for nvim 0.5.
 
 ### Debugging
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) Debug Adapter Protocol
@@ -67,24 +62,24 @@ progress.
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) A UI for nvim-dap.
 - [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
   This plugin adds virtual text support to nvim-dap.
-- [DAPInstall](https://github.com/Pocco81/DAPInstall.nvim) A NeoVim plugin for
-  managing several debuggers for Nvim-dap.
+- [DAPInstall](https://github.com/Pocco81/DAPInstall.nvim) A Neovim plugin for
+  managing several debuggers for nvim-dap.
 - [calltree.nvim](https://github.com/ldelossa/calltree.nvim) Neovim's missing
   call-hierarchy UI.
 
 ## Plugins collections
 - [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) Collections of
-  awesome neovim plugins
+  awesome Neovim plugins
 - [neovimcraft.com](https://neovimcraft.com/) Website that makes it easy to find
-  neovim plugins
+  Neovim plugins
 
 ## <a name="sources"></a>Sources
 - Heavily inspired from [Neelfrost](https://github.com/Neelfrost/dotfiles), a
-  lot of times mercilessly copy pasting especially at the beggining.
+  lot of times mercilessly copy-pasting especially at the beginning.
 - [Neil Sabde](https://github.com/VapourNvim/VapourNvim) was extremely helpful
   when I first dove in Vim/Neovim customization world with his [Neovim Lua From
   Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
-  Youtube series.
+  YouTube series.
 - [Getting started using Lua in
   Neovim](https://github.com/nanotee/nvim-lua-guide)
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim)
