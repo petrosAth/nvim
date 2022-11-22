@@ -124,16 +124,16 @@ USER.mappings = {
                 ["c"] = { nil, "Comment out" }, -- comment.nvim
             },
         },
+        ["j"]     = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines", expr = true },
+        ["k"]     = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines", expr = true },
+        ["n"]     = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'"           }, -- hlslens
+        ["N"]     = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backwards" }, -- hlslens
         ["z"] = {
             ["h"] = { nil, "Scroll the screen to the left"  }, -- Assigned using Hydra.nvim
             ["l"] = { nil, "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
         ["<M-J>"] = { ":m .+1<CR>==",              "Move line up"                            },
         ["<M-K>"] = { ":m .-2<CR>==",              "Move line down"                          },
-        ["j"]     = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines", expr = true },
-        ["k"]     = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines", expr = true },
-        ["n"]     = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'"           }, -- hlslens
-        ["N"]     = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backwards" }, -- hlslens
         ["<Esc>"] = { ":noh<CR><Esc>",             "Clear search highlight"                  },
         ["<Leader>"] = {
             ["b"] = {

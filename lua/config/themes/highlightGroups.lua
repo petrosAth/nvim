@@ -329,6 +329,14 @@ function M.load(palette)
         HopNextKey2 = { fg = p.cFg },
         HopUnmatched = { fg = p.cFill4 },
 
+        -- hydra.nvim
+        HydraHint = { link = "NormalFloat" },
+        HydraAmaranth = { fg = p.cOrange },
+        HydraTeal = { fg = p.cViolet },
+        HydraPink = { fg = p.cMagenta },
+        HydraBlue = { fg = p.cSelect },
+        HydraRed = { fg = p.cRed },
+
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
         MiniCursorwordCurrent = { bold = true },
@@ -548,14 +556,6 @@ function M.load(palette)
         WhichKeySeparator = { fg = p.cFill4 },
         WhichKeyValue = { link = "Comment" },
         WhichKeyFloat = { link = "NormalFloat" },
-
-        -- hydra.nvim
-        HydraHint = { link = "NormalFloat" },
-        HydraAmaranth = { fg = p.cOrange },
-        HydraTeal = { fg = p.cViolet },
-        HydraPink = { fg = p.cMagenta },
-        HydraBlue = { fg = p.cSelect },
-        HydraRed = { fg = p.cRed },
     }
 
     for _, highlightGroups in pairs(g) do
