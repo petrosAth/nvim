@@ -4,7 +4,6 @@ USER = { -- Custom table to store my functions, tables, variables etc
     config_path  = vim.fn.stdpath("config"),
     data_path    = vim.fn.stdpath("data"),
     packer_path  = vim.fn.stdpath("data") .. "/site/pack/packer",
-    dev_mode     = false, -- Used from sumneko_lua to populate workspace library accordingly
     omni_mono    = false, -- Make omnisharp change cmd between mono/dotnet
     styling      = {}, -- Table with variables and icons used for neovim styling
     theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable

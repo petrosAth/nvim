@@ -46,88 +46,26 @@ for _, name in ipairs(servers) do
             capabilities = capabilities,
         })
     elseif name == "sumneko_lua" then
-        if USER.dev_mode then
-            -- add nvim and nvim-data folders in workspace library
-            local nvim_library = {}
-            local runtime_path = vim.split(package.path, ";")
-
-            table.insert(runtime_path, "lua/?.lua")
-            table.insert(runtime_path, "lua/?/init.lua")
-
-            local function add(lib)
-                for _, p in pairs(vim.fn.expand(lib, false, true)) do
-                    p = vim.loop.fs_realpath(p)
-                    nvim_library[p] = true
-                end
-            end
-
-            -- add runtime
-            add("$VIMRUNTIME")
-
-            -- add your config
-            add(USER.config_path .. "/*")
-
-            -- add plugins
-            -- if you're not using packer, then you might need to change the paths below
-            add(USER.packer_path .. "/opt/*")
-            add(USER.packer_path .. "/start/*")
-
-            lspconfig[name].setup({
-                on_new_config = function(config, root)
-                    local libs = vim.tbl_deep_extend("force", {}, nvim_library)
-                    libs[root] = nil
-                    config.settings.Lua.workspace.library = libs
-                    return config
-                end,
-                settings = {
-                    Lua = {
-                        runtime = {
-                            -- version = "Lua 5.4",
-                            version = "LuaJIT",
-                            path = runtime_path,
-                        },
-                        diagnostics = {
-                            globals = { "vim", "use" },
-                        },
-                        workspace = {
-                            -- library = vim.api.nvim_get_runtime_file("", true),
-                            library = nvim_library,
-                            maxPreload = 10000,
-                            preloadFileSize = 10000,
-                            checkThirdParty = false,
-                        },
-                        telemetry = {
-                            enable = false,
-                        },
-                        format = {
-                            enable = false,
-                        },
+        -- Make the server aware of Neovim runtime files when editing Neovim config
+        local library = vim.fn.getcwd() == USER.config_path and vim.api.nvim_get_runtime_file("", true) or nil
+        lspconfig[name].setup({
+            root_dir = lspconfig.util.root_pattern(lsp_cfg.root_files),
+            settings = {
+                Lua = {
+                    telemetry = {
+                        enable = false,
+                    },
+                    format = {
+                        enable = false,
+                    },
+                    workspace = {
+                        library = library,
                     },
                 },
-                on_attach = on_attach,
-                capabilities = capabilities,
-            })
-        else
-            lspconfig[name].setup({
-                root_dir = lspconfig.util.root_pattern(lsp_cfg.root_files),
-                -- add only project root folder in workspace library
-                settings = {
-                    Lua = {
-                        runtime = {
-                            version = "Lua 5.4",
-                        },
-                        telemetry = {
-                            enable = false,
-                        },
-                        format = {
-                            enable = false,
-                        },
-                    },
-                },
-                on_attach = on_attach,
-                capabilities = capabilities,
-            })
-        end
+            },
+            on_attach = on_attach,
+            capabilities = capabilities,
+        })
     else
         lspconfig[name].setup({
             on_attach = on_attach,
