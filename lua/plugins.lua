@@ -117,7 +117,7 @@ return packer.startup(function()
     -- servers, DAP servers, linters, and formatters.
     use({
         "williamboman/mason.nvim",
-        after = { "nvim-lspconfig" },
+        after = "nvim-lspconfig",
         requires = {
             -- mason-tool-installer - Install and upgrade third party tools automatically
             {
@@ -130,7 +130,7 @@ return packer.startup(function()
             -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
             {
                 "williamboman/mason-lspconfig.nvim",
-                after = { "mason.nvim", "mason-tool-installer.nvim" },
+                after = "mason.nvim",
                 config = function()
                     require("config.lsp.mason-lspconfig-config")
                 end,
@@ -144,7 +144,7 @@ return packer.startup(function()
     -- nvim-lspconfig - Neovim's built-in language server client.
     use({
         "neovim/nvim-lspconfig",
-        after = { "cmp-nvim-lsp" },
+        after = "cmp-nvim-lsp",
         requires = {
             -- lsp_signature - LSP signature hint as you type
             {
@@ -177,25 +177,24 @@ return packer.startup(function()
             -- j-hui/fidget.nvim - Standalone UI for nvim-lsp progress
             {
                 "j-hui/fidget.nvim",
-                after = { "nvim-lspconfig" },
                 config = function()
                     require("config.lsp.fidget-config")
                 end,
             },
-            -- kosayoda/nvim-lightbulb - VSCode bulb for neovim's built-in LSP.
+            -- nvim-lightbulb - VSCode bulb for neovim's built-in LSP.
             {
                 "kosayoda/nvim-lightbulb",
                 config = function()
                     require("config.lsp.nvim-lightbulb-config")
                 end,
             },
-            -- SmiteshP/nvim-navic - Simple winbar/statusline plugin that shows your current code context
+            -- nvim-navic - Simple winbar/statusline plugin that shows your current code context
             {
                 "SmiteshP/nvim-navic",
-                config = function ()
+                config = function()
                     require("config.lsp.nvim-navic-config")
-                end
-            }
+                end,
+            },
         },
     })
 
@@ -338,7 +337,7 @@ return packer.startup(function()
             -- Telescope.nvim extension that adds LuaSnip integration
             { "benfowler/telescope-luasnip.nvim" },
             -- dir-telescope.nvim - Perform telescope functions in a selected directory
-            { "princejoogie/dir-telescope.nvim" }
+            { "princejoogie/dir-telescope.nvim" },
         },
     })
 
