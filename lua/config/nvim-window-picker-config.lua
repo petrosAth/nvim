@@ -12,7 +12,27 @@ require("window-picker").setup({
         -- filter using buffer options
         bo = {
             -- if the file type is one of following, the window will be ignored
-            filetype = { "NvimTree", "neo-tree", "neo-tree-popup", "notify" },
+            filetype = {
+                "aerial",
+                "alpha",
+                "Codewindow",
+                "diff",
+                "DiffviewFileHistory",
+                "DiffviewFiles",
+                "lspinfo",
+                "man",
+                "mason",
+                "minimap",
+                "neo%-tree",
+                "notify",
+                "null%-ls%-info",
+                "NvimTree",
+                "Outline",
+                "packer",
+                "qf",
+                "Trouble",
+                "undotree",
+            },
 
             -- if the buffer type is one of following, the window will be ignored
             buftype = { "terminal" },
