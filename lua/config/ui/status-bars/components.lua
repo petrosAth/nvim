@@ -518,8 +518,7 @@ local LspClients = {
     condition = function(self)
         return next(self.Clients) ~= nil
     end,
-    update = { "LspAttach", "LspDetach" },
-
+    update = { "LspAttach", "LspDetach", "BufEnter" },
     {
         flexible = h.Hide.lspIcon,
         {
@@ -548,8 +547,7 @@ local LspNullLsGap = {
     condition = function(self)
         return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil)
     end,
-    update = { "LspAttach", "LspDetach" },
-
+    update = { "LspAttach", "LspDetach", "BufEnter" },
     provider = h.Separator.mid.provider,
 }
 
@@ -557,8 +555,7 @@ local NullLsSources = {
     condition = function(self)
         return next(self.Sources) ~= nil
     end,
-    update = { "LspAttach", "LspDetach" },
-
+    update = { "LspAttach", "LspDetach", "BufEnter" },
     {
         flexible = h.Hide.nullLsIcon,
         {
@@ -583,14 +580,13 @@ local NullLsSources = {
 
 local LspDiagnostics = {
     condition = conditions.has_diagnostics,
-
+    update = { "DiagnosticChanged", "BufEnter" },
     static = {
         errorIcon = i.lsp.error[1],
         warnIcon = i.lsp.warn[1],
         infoIcon = i.lsp.info[1],
         hintIcon = i.lsp.hint[1],
     },
-
     {
         flexible = h.Hide.lspDiagnosticIcons,
         {
