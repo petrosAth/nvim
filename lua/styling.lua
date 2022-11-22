@@ -173,7 +173,6 @@ USER.styling = {
                 foldclose = "╾", -- show a closed fold
                 foldsep   = "╎", -- open fold middle marker -- "╎", "┆", "┊"
                 diff      = "╱", -- deleted lines of the 'diff' option
-                msgsep    = " ", -- message separator 'display'
                 eob       = "─", -- empty lines at the end of a buffer
             },
             custom = {
@@ -187,11 +186,11 @@ USER.styling = {
             multispace     = " ",  -- One or more characters to use cyclically to show for multiple consecutive spaces
             lead           = " ",  -- Character to show for leading spaces.
             leadmultispace = " ",  -- One or more characters to use cyclically to show for multiple consecutive leading spaces.
-            trail          = " ",  -- Character to show for trailing spaces.
+            trail          = "-",  -- Character to show for trailing spaces.
             extends        = "",  -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen.
             precedes       = "",  -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
             conceal        = " ",  -- Character to show in place of concealed text.
-            nbsp           = " ",  -- Character to show for a non-breakable space character.
+            nbsp           = "␣",  -- Character to show for a non-breakable space character.
         },
     },
     borders = {
