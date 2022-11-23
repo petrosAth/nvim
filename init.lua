@@ -11,8 +11,10 @@ USER = { -- Custom table to store my functions, tables, variables etc
     local_config = { -- Project's local configuration
         dir = ".nvim", -- Local configuration directory
         file = "init.local.lua", -- Local configuration file
+        templates = "lua/project/templates",
         palettes_dir = "palettes", -- Palettes directory
         spell_dir = "spell", -- Spell directory
+        vale_dir = "styles", -- Vale directory
     },
 }
 

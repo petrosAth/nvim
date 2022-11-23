@@ -5,12 +5,14 @@
 ---text per entry.
 local function create_file(path, file, content)
     content = content or {}
+    local file_path = string.format("%s/%s", path, file)
     if vim.fn.isdirectory(path) == 0 then
-        vim.fn.mkdir(path)
+        vim.fn.mkdir(path, "p")
     end
+    os.execute("touch " .. file_path)
 
     for _, line in ipairs(content) do
-        os.execute(string.format("echo '%s' >> %s/%s", line, path, file))
+        os.execute(string.format("echo '%s' >> %s", line, file_path))
     end
 end
 
@@ -27,7 +29,7 @@ local function create_buffer(dir, file, content, cursor)
     cursor = cursor or {}
 
     if vim.fn.isdirectory(dir) == 0 then
-        vim.fn.mkdir(dir)
+        vim.fn.mkdir(dir, "p")
     end
 
     vim.cmd.edit(dir .. "/" .. file)
@@ -42,7 +44,9 @@ local function create_gitignore()
     local cwd = vim.fn.getcwd()
     local file = ".gitignore"
     local content = {
-        [[.nvim/spell/]],
+        [[.nvim/spell/*.spl]],
+        [[.nvim/styles/*]],
+        [[!.nvim/styles/Vocab/]],
     }
 
     create_file(cwd, file, content)
@@ -65,7 +69,7 @@ local function get_palettes(cwd, config_dir)
     end
 
     if vim.fn.isdirectory(path) == 0 then
-        vim.fn.mkdir(path)
+        vim.fn.mkdir(path, "p")
     end
 
     for _, palette in pairs(vim.fn.readdir(path)) do
@@ -86,7 +90,7 @@ local function get_spell_file(cwd, config_dir)
     local path = config_dir .. "/" .. dir
 
     if vim.fn.isdirectory(path) == 0 then
-        vim.fn.mkdir(path)
+        vim.fn.mkdir(path, "p")
     end
 
     return cwd .. "/" .. config_dir .. "/" .. dir .. "/" .. file
@@ -101,8 +105,11 @@ function USER.load_local_config(cwd, config)
     if config.use_session then
         vim.cmd.ProjectCreateSession()
     end
-    if config.use_spellfile then
+    if config.use_spellfile or config.use_vale then
         vim.opt.spellfile = get_spell_file(cwd, dir)
+    end
+    if config.use_vale then
+        vim.cmd.ProjectCreateValeConfig()
     end
     if config.use_palettes then
         vim.g.Hexokinase_palettes = get_palettes(cwd, dir)
@@ -112,20 +119,21 @@ function USER.load_local_config(cwd, config)
     end
 end
 
-vim.api.nvim_create_user_command("ProjectCreateConfit", function()
+vim.api.nvim_create_user_command("ProjectCreateConfig", function()
     local dir = USER.local_config.dir
     local file = USER.local_config.file
     local content = {
-        [[PA.load_local_config(vim.fn.getcwd(), {]],
+        [[USER.load_local_config(vim.fn.getcwd(), {]],
         [[    use_session        = false,]],
         [[    use_spellfile      = false,]],
+        [[    use_vale           = false,]],
         [[    use_palettes       = false,]],
         [[    use_format_on_save = false,]],
         [[})]],
     }
 
     create_gitignore()
-    vim.fn.mkdir(dir)
+    vim.fn.mkdir(dir, "p")
     create_buffer(dir, file, content, { 2, 25 })
     vim.cmd.redraw()
 end, { desc = "Create a project local config file, and open it in the current window" })
@@ -163,3 +171,21 @@ vim.api.nvim_create_user_command("ProjectEditGitignore", function()
         vim.cmd.edit(cwd .. "/" .. file)
     end
 end, { desc = "Edit the .gitignore file in the current window" })
+
+vim.api.nvim_create_user_command("ProjectCreateValeConfig", function()
+    local cwd = vim.fn.getcwd()
+    local local_cfg_dir = USER.local_config.dir
+    local nvim_cfg_dir = USER.config_path
+    local templates_dir = USER.local_config.templates
+    local vale_dir = USER.local_config.vale_dir
+    local vocab_dir = cwd .. "/" .. local_cfg_dir .. "/" .. vale_dir .. "/Vocab/Project"
+    local vale_file = ".vale.ini"
+    local spell_file_path = get_spell_file(cwd, local_cfg_dir)
+
+    vim.fn.mkdir(vocab_dir, "p")
+    os.execute("ln -s " .. spell_file_path .. " " .. vocab_dir .. "/accept.txt")
+    create_file(vocab_dir, "/reject.txt")
+
+    local copy_vale_template = string.format("cp %s/%s/%s %s", nvim_cfg_dir, templates_dir, vale_file, cwd)
+    os.execute(copy_vale_template)
+end, { desc = "Create a palette template in the local project's configuration directory" })

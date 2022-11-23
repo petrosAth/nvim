@@ -147,7 +147,7 @@ USER.mappings = {
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
                 ["c"] = {
                     name = "Create local config files",
-                    ["c"] = { "<CMD>ProjectCreateConfit<CR>",  "Create config file" },
+                    ["c"] = { "<CMD>ProjectCreateConfig<CR>",  "Create config file" },
                     ["s"] = { "<CMD>ProjectCreateSession<CR>", "Create session"     }, -- possession.nvim
                     ["p"] = { "<CMD>ProjectCreatePalette<CR>", "Create palette"     }, -- hexokinase
                 },
