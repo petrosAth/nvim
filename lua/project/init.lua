@@ -42,14 +42,14 @@ end
 ---Create and populate .gitignore file
 local function create_gitignore()
     local cwd = vim.fn.getcwd()
+    local nvim_cfg_dir = USER.config_path
+    local templates_dir = USER.local_config.templates
     local file = ".gitignore"
-    local content = {
-        [[.nvim/spell/*.spl]],
-        [[.nvim/styles/*]],
-        [[!.nvim/styles/Vocab/]],
-    }
 
-    create_file(cwd, file, content)
+    local gitignore_template = nvim_cfg_dir .. "/" .. templates_dir .. "/" .. file
+    local content = vim.fn.readfile(gitignore_template)
+
+    vim.fn.writefile(content, cwd .. "/" .. file, "a")
 end
 
 ---Load custom hexokinase palettes from the project's local configuration
