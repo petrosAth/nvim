@@ -168,6 +168,6 @@ vim.api.nvim_create_user_command("ProjectCreateValeConfig", function()
     os.execute("ln -s " .. spell_file_path .. " " .. vocab_dir .. "/accept.txt")
     create_file(vocab_dir, "/reject.txt")
 
-    local copy_vale_template = string.format("cp %s/%s/%s %s", nvim_cfg_dir, templates_dir, vale_file, cwd)
-    os.execute(copy_vale_template)
+    local vale_template = nvim_cfg_dir .. "/" .. templates_dir .. "/" .. vale_file
+    os.execute("cp " .. vale_template .. " " .. cwd)
 end, { desc = "Create a palette template in the local project's configuration directory" })
