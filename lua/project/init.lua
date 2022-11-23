@@ -138,13 +138,6 @@ vim.api.nvim_create_user_command("ProjectCreateConfig", function()
     vim.cmd.redraw()
 end, { desc = "Create a project local config file, and open it in the current window" })
 
-vim.api.nvim_create_user_command("ProjectEditConfig", function()
-    local dir = USER.local_config.dir
-    local file = USER.local_config.file
-
-    vim.cmd.edit(dir .. "/" .. file)
-end, { desc = "Edit the local config file in the current window" })
-
 vim.api.nvim_create_user_command("ProjectCreatePalette", function()
     local config_dir = USER.local_config.dir
     local dir = USER.local_config.palettes_dir
@@ -160,17 +153,6 @@ vim.api.nvim_create_user_command("ProjectCreatePalette", function()
 
     create_buffer(path, file, content, { 3, 5 })
 end, { desc = "Create a palette template in the local project's configuration directory" })
-
-vim.api.nvim_create_user_command("ProjectEditGitignore", function()
-    local cwd = vim.fn.getcwd()
-    local file = ".gitignore"
-
-    if vim.fn.filereadable(file) == 0 then
-        create_buffer(cwd, file)
-    else
-        vim.cmd.edit(cwd .. "/" .. file)
-    end
-end, { desc = "Edit the .gitignore file in the current window" })
 
 vim.api.nvim_create_user_command("ProjectCreateValeConfig", function()
     local cwd = vim.fn.getcwd()

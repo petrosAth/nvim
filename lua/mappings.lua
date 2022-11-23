@@ -152,11 +152,6 @@ USER.mappings = {
                     ["p"] = { "<CMD>ProjectCreatePalette<CR>", "Create palette"     }, -- hexokinase
                 },
                 ["D"] = { "<CMD>PossessionDelete<CR>", "Delete currently loaded session" }, -- possession.nvim
-                ["e"] = {
-                    name = "Edit local config files",
-                    ["c"] = { "<CMD>ProjectEditConfig<CR>",    "Edit config file" },
-                    ["g"] = { "<CMD>ProjectEditGitignore<CR>", "Edit .gitignore"  }
-                },
                 ["L"] = { "<CMD>ProjectLoadSession<CR>",  "Load local session"                    }, -- possession.nvim
                 ["S"] = { ":PossessionSave ",             "Save session",          silent = false }, -- possession.nvim
             },
