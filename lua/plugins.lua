@@ -195,11 +195,6 @@ return packer.startup(function()
                     require("config.lsp.nvim-navic-config")
                 end,
             },
-            -- ltex_extra.nvim - Provides external LTeX file handling (off-spec lsp) and other functions.
-            {
-                "barreiroleo/ltex_extra.nvim",
-                after = "mason-lspconfig.nvim",
-            },
         },
     })
 

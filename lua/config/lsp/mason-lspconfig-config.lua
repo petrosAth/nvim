@@ -26,17 +26,6 @@ for _, name in ipairs(servers) do
             on_attach = on_attach,
             capabilities = capabilities,
         })
-    elseif name == "ltex" then
-        lspconfig[name].setup({
-            settings = {
-                ltex = {
-                    language = "en-US",
-                    completionEnabled = true,
-                },
-            },
-            on_attach = on_attach,
-            capabilities = capabilities,
-        })
     elseif name == "omnisharp" then
         local install_path = USER.data_path .. "/mason/packages"
         local cmd = USER.omni_mono and "mono" or "dotnet"

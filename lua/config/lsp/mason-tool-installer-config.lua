@@ -7,7 +7,6 @@ require("mason-tool-installer").setup({
         "css-lsp",
         "clangd",
         "emmet-ls",
-        "ltex-ls",
         "lua-language-server",
         "omnisharp",
         "omnisharp-mono",
