@@ -67,6 +67,7 @@ M.root_files = {
     ".git",
     ".luarc.json",
     ".luacheckrc",
+    "Makefile",
     ".nvim",
     ".stylua.toml",
 }

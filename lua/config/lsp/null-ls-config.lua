@@ -1,4 +1,4 @@
-local lsp_cfg = require("config.lsp")
+local root_files = require("config.lsp").root_files
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -28,7 +28,8 @@ null_ls.setup({
             command = "prettierd",
         }),
         diagnostics.selene,
-        diagnostics.zsh
+        diagnostics.vale,
+        diagnostics.zsh,
     },
-    root_dir = require("null-ls.utils").root_pattern(lsp_cfg.root_files),
+    root_dir = require("null-ls.utils").root_pattern(table.concat(root_files, " ,")),
 })
