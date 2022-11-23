@@ -21,6 +21,7 @@ require("mason-tool-installer").setup({
         "stylua",
         -- Linters
         "selene",
+        "vale",
     },
 
     -- if set to true this will check each tool for updates. If updates
