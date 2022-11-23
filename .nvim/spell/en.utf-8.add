@@ -1,0 +1,4 @@
+Neovim
+config
+lualine
+gitsigns
