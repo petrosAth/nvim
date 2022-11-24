@@ -1,4 +1,4 @@
-USER.load_local_config(vim.fn.getcwd(), {
+USER.load_local_config({
     use_session        = false, -- Use local session
     use_spellfile      = false, -- Use local spell file
     use_vale           = false, -- Use Vale linter(with local spell file)
