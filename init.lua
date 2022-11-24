@@ -9,12 +9,14 @@ USER = { -- Custom table to store my functions, tables, variables etc
     theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
     mappings     = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
-        dir = ".nvim", -- Local configuration directory
-        file = "init.local.lua", -- Local configuration file
-        templates = "lua/project/templates",
-        palettes_dir = "palettes", -- Palettes directory
-        spell_dir = "spell", -- Spell directory
-        vale_dir = "styles", -- Vale directory
+        dir          = ".nvim",                -- Local config directory
+        file         = "init.local.lua",       -- Local config file
+        palettes_dir = "palettes",             -- Palettes local config directory
+        palette_file = "palette.json",         -- Pallette file name
+        spell_dir    = "spell",                -- Spell local config directory
+        vale_dir     = "styles/Vocab/Project", -- Vale local config directory
+        vale_file    = ".vale.ini",            -- Vale config file name
+        templates    = vim.fn.stdpath("config") .. "/lua/project/templates", -- Directory within nvim config containing file templates
     },
 }
 
