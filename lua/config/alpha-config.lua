@@ -43,9 +43,9 @@ local header = {
 local buttons_session = {
     type = "group",
     val = {
-        button("LDR p .", string.format("%s %s Load last session",  i.alphaCursor[1], i.lastSession[1])),
+        button("LDR p .", string.format("%s %s Load last session", i.alphaCursor[1], i.lastSession[1])),
         button("LDR p L", string.format("%s %s Load local session", i.alphaCursor[1], i.lastSession[1])),
-        button("SPC s s", string.format("%s %s Search sessions",    i.alphaCursor[1], i.sessions[1])),
+        button("SPC s s", string.format("%s %s Search sessions", i.alphaCursor[1], i.sessions[1])),
     },
     opts = {
         spacing = 0,
@@ -55,9 +55,9 @@ local buttons_session = {
 local buttons_navigation = {
     type = "group",
     val = {
-        button("SPC s r", string.format("%s %s Recent files",   i.alphaCursor[1], i.history[1])),
-        button("SPC s R", string.format("%s %s Frecent files",  i.alphaCursor[1], i.history[1])),
-        button("SPC s f", string.format("%s %s File search",    i.alphaCursor[1], i.search[1])),
+        button("SPC s r", string.format("%s %s Recent files", i.alphaCursor[1], i.history[1])),
+        button("SPC s R", string.format("%s %s Frecent files", i.alphaCursor[1], i.history[1])),
+        button("SPC s f", string.format("%s %s File search", i.alphaCursor[1], i.search[1])),
         button("SPC s g", string.format("%s %s ripGREP search", i.alphaCursor[1], i.grep[1])),
     },
     opts = {
@@ -69,11 +69,35 @@ local buttons_utility = {
     type = "group",
     val = {
         button("LDR u u p", string.format("%s %s Preview plugins updates", i.alphaCursor[1], i.preview[1])),
-        button("LDR u u P", string.format("%s %s Update plugins",          i.alphaCursor[1], i.update[1])),
-        button("LDR u u l", string.format("%s %s Update LSP packages",     i.alphaCursor[1], i.update[1])),
+        button("LDR u u P", string.format("%s %s Update plugins", i.alphaCursor[1], i.update[1])),
+        button("LDR u u l", string.format("%s %s Update LSP packages", i.alphaCursor[1], i.update[1])),
     },
     opts = {
         spacing = 0,
+    },
+}
+
+local change_log = {
+    type = "button",
+    val = string.format("%s %s Nigthly changelog", i.alphaCursor[1], i.list[1]),
+    on_press = function()
+        if vim.version()["prerelease"] then
+            vim.cmd("vert help news")
+            vim.cmd("79wincmd|")
+            vim.cmd("0")
+            return
+        end
+        local message = "This information is only available in nightly versions"
+        require("notify")(message, "warn", { title = "Alpha" })
+    end,
+    opts = {
+        position = "center",
+        hl = "AlphaButtons",
+        align_shortcut = "right",
+        shortcut = "",
+        hl_shortcut = "AlphaButtonShortcuts",
+        cursor = 0,
+        width = 40,
     },
 }
 
@@ -96,6 +120,8 @@ alpha.setup({
         buttons_navigation,
         { type = "padding", val = 1 },
         buttons_utility,
+        { type = "padding", val = 1 },
+        change_log,
         { type = "padding", val = 1 },
         footer,
     },
