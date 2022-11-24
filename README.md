@@ -2,24 +2,6 @@
 My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## To-do
-- [x] lualine root folder (.)
-- [x] Add window number in lualine
-- [x] Add gitsigns in lualine
-- [x] Try nvim-treesitter folding - Reddit
-  [post](https://www.reddit.com/r/neovim/comments/psl8rq/sexy_folds/)
-- [x] Revisit FileType and BufEnter autocommands
-- [x] Add comment string snippets and telescope finder
-- [x] :h mark-motions
-- [x] Migrate to WSL under windows
-- [x] Organize my custom highlight groups
-- [x] Revisit nvim-cmp menu
-- [x] lazy load everything possible
-- [x] Add Session management
-- [x] Replace [bufferline.nvim](https://github.com/akinsho/bufferline.nvim) with
-  [tabby.nvim](https://github.com/nanozuki/tabby.nvim)
-- [x] Floating status lines [Incline.nvim](https://github.com/b0o/incline.nvim)
-- [x] Command preview for LSP rename
-  [inc-rename.nvim](https://github.com/smjonas/inc-rename.nvim)
 - [ ] Add debugger
 - [ ] Add Dracula theme
 - [ ] Add Solarized theme
@@ -51,8 +33,8 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   machine translation engines without having to leave your favorite editor.
 
 ### Themes
-- [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula colorscheme
-  for neovim written in Lua.
+- [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula color scheme
+  for Neovim written in Lua.
 - [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)
   Solarized color scheme in Lua for nvim 0.5.
 
