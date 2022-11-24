@@ -1,20 +1,24 @@
 # Neovim config files
+
 My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## To-do
+
 - [ ] Add debugger
 - [ ] Add Dracula theme
 - [ ] Add Solarized theme
 
 ## Reminders
+
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
 
 ## Plugins watch list
+
 - [nvim-nonicons](https://github.com/yamatsum/nvim-nonicons) Icon set using
   Nonicons for Neovim plugins and settings.
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) Not UFO in the sky, but
-  an ultra fold in Neovim. (Wait for [How can I make it look equal to its
-  configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4))
+  an ultra fold in Neovim. (Wait for
+  [How can I make it look equal to its configuration #4](https://github.com/kevinhwang91/nvim-ufo/issues/4))
 - [mini.align](https://github.com/echasnovski/mini.nvim#mini.align) Align text
   interactively (with or without instant preview).
 - [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) Neovim plugin for
@@ -33,12 +37,14 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   machine translation engines without having to leave your favorite editor.
 
 ### Themes
+
 - [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula color scheme
   for Neovim written in Lua.
 - [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)
   Solarized color scheme in Lua for nvim 0.5.
 
 ### Debugging
+
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) Debug Adapter Protocol
   client implementation for Neovim.
 - [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) A UI for nvim-dap.
@@ -50,20 +56,21 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   call-hierarchy UI.
 
 ## Plugins collections
+
 - [awesome-neovim](https://github.com/rockerBOO/awesome-neovim) Collections of
   awesome Neovim plugins
 - [neovimcraft.com](https://neovimcraft.com/) Website that makes it easy to find
   Neovim plugins
 
 ## <a name="sources"></a>Sources
+
 - Heavily inspired from [Neelfrost](https://github.com/Neelfrost/dotfiles), a
   lot of times mercilessly copy-pasting especially at the beginning.
 - [Neil Sabde](https://github.com/VapourNvim/VapourNvim) was extremely helpful
-  when I first dove in Vim/Neovim customization world with his [Neovim Lua From
-  Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
+  when I first dove in Vim/Neovim customization world with his
+  [Neovim Lua From Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
   YouTube series.
-- [Getting started using Lua in
-  Neovim](https://github.com/nanotee/nvim-lua-guide)
+- [Getting started using Lua in Neovim](https://github.com/nanotee/nvim-lua-guide)
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim)
 - [NvChad](https://github.com/NvChad/NvChad)
 - [williamboman](https://github.com/williamboman/nvim-config)
