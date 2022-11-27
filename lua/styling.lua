@@ -60,8 +60,8 @@ USER.styling = {
         arrowul      = { "", ""                                         },
         treesiter    = { ""                                              },
         indentLine = {
-            char         = { "│", "╷"                                    },
-            context_char = { "│", "╷"                                    },
+            char         = { "╎", "╷"                                    },
+            context_char = { "▏", "╷"                                    },
             misc         = { "|", "❘", "¦", "│", "╵", "╷", "╎", "┆", "┊" },
         },
         lsp = {
@@ -161,13 +161,13 @@ USER.styling = {
                 stl       = " ", -- statusline of the current window
                 stlnc     = " ", -- statusline of the non-current windows
                 wbr       = " ", -- window bar
-                horiz     = "█", -- "█", "─", "━", "🬭", "▁" horizontal separators |:split|
-                horizup   = "█", -- "█", "┴", "┻", "🬲", " " upwards facing horizontal separator
-                horizdown = "█", -- "█", "┬", "┳", "🬲", "🭼" downwards facing horizontal separator
-                vert      = "█", -- "█", "│", "┃", "▌", "▏" vertical separators |:vsplit|
-                vertleft  = "█", -- "█", "┤", "┫", "▌", "▏" left facing vertical separator
-                vertright = "█", -- "█", "├", "┣", "🬲", "🭼" right facing vertical separator
-                verthoriz = "█", -- "█", "┼", "╋", "🬲", "🭼" overlapping vertical and horizontal
+                horiz     = "─", -- "█", "─", "━", "🬭", "▁" horizontal separators |:split|
+                horizup   = "┴", -- "█", "┴", "┻", "🬲", " " upwards facing horizontal separator
+                horizdown = "┬", -- "█", "┬", "┳", "🬲", "🭼" downwards facing horizontal separator
+                vert      = "│", -- "█", "│", "┃", "▌", "▏" vertical separators |:vsplit|
+                vertleft  = "┤", -- "█", "┤", "┫", "▌", "▏" left facing vertical separator
+                vertright = "├", -- "█", "├", "┣", "🬲", "🭼" right facing vertical separator
+                verthoriz = "┼", -- "█", "┼", "╋", "🬲", "🭼" overlapping vertical and horizontal
                 fold      = " ", -- filling 'foldtext'
                 foldopen  = "┭", -- mark the beginning of a fold
                 foldclose = "╾", -- show a closed fold
@@ -194,17 +194,18 @@ USER.styling = {
         },
     },
     borders = {
-        default = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
-        outline = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
-        single  = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤",           },
-        round   = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤",           },
-        double  = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢", "╠", "╣", },
-        box     = { tl = "🬕",  t = "🬂", tr = "🬨",  r = "▐", br = "🬷",  b = "🬭", bl = "🬲",  l = "▌", ml = "🬛", mr = "🬫",           },
-        fatbox  = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌"                                },
-        none    = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " "            },
+        default   = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " "            },
+        outline   = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
+        single    = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤",           },
+        singlefat = { tl = "┏",  t = "━", tr = "┓",  r = "┃", br = "┛",  b = "━", bl = "┗",  l = "┃", ml = "┣", mr = "┫",           },
+        round     = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤",           },
+        double    = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢", "╠", "╣", },
+        box       = { tl = "🬕",  t = "🬂", tr = "🬨",  r = "▐", br = "🬷",  b = "🬭", bl = "🬲",  l = "▌", ml = "🬛", mr = "🬫",           },
+        boxfat    = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌"                                },
+        none      = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " "            },
     },
     separators = {
-        default       = { "█",  "█",  "▏",  "▕"  },
+        default       = { "█",  "█",  " ",  " "  },
         block         = { "█",  "█",  "▏",  "▕"  },
         half_block    = { "▐",  "▌",  "▏",  "▕"  },
         arrow         = { "",  "",  "",  ""  },

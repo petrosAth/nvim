@@ -1,17 +1,15 @@
 local M = {}
 
----Set the highlights based on the given color palette
----@param palette table The values must be a hexadecimal string
-function M.load(palette)
+function M.get_highlight_groups(palette)
     local p = palette
     local g = {}
 
     g.editor = {
         Normal = { fg = p.cFg, bg = p.cBg },
-        NormalNC = { fg = p.cFg, bg = p.cBgDim },
+        NormalNC = { fg = p.cFg, bg = p.cBg },
         NormalFloat = { fg = p.cFg, bg = p.cBgDark },
         FloatBorder = { fg = p.cFill1, bg = p.cBgDark },
-        ColorColumn = { bg = p.cBgDark },
+        ColorColumn = { bg = p.cBgDim },
         Cursor = { reverse = true },
         lCursor = { link = "Cursor" },
         CursorIM = { link = "Cursor" },
@@ -56,8 +54,8 @@ function M.load(palette)
         StatusLineNC = { fg = p.cFgDim, bg = p.cFill2 },
         StatusLineTerm = { link = "StatusLine" },
         StatusLineTermNC = { link = "StatusLineNC" },
-        WinBar = { fg = p.cFg, bg = p.cFill1 },
-        WinBarNC = { fg = p.cFill5, bg = p.cFill1 },
+        WinBar = { fg = p.cFg, bg = p.cFill5 },
+        WinBarNC = { fg = p.cFgDim, bg = p.cFill3 },
         WildMenu = { fg = p.cFill2, bg = p.cCyan },
         Search = { fg = p.cCyan, bg = p.cBg, reverse = true },
         IncSearch = { fg = p.cFgLight, bg = p.cSelect, underline = true },
@@ -67,7 +65,7 @@ function M.load(palette)
         TabLineSel = { fg = p.cFg, bg = p.cFill5 },
         TabLineFill = { fg = p.cFgDim, bg = p.cFill3 },
         Title = { fg = p.cSelect },
-        WinSeparator = { fg = p.cFill2, bg = p.cBgDim },
+        WinSeparator = { fg = p.cFill2, bg = p.cBg },
         VertSplit = { link = "WinSeparator" },
         QuickFixLine = { fg = p.cBg, bg = p.cCyan },
         DiffText = { sp = p.cYellowDim, underdashed = true },
@@ -505,17 +503,17 @@ function M.load(palette)
         TelescopePromptCounter = { fg = p.cViolet, bold = true },
 
         TelescopeNormal = { fg = p.cFg, bg = p.cBgDark },
-        TelescopeResultsNormal = { fg = p.cBlue },
-        TelescopePreviewNormal = { fg = p.cFg, bg = p.cBg },
-        TelescopePromptNormal = { fg = p.cFgLight, bg = p.cBg },
+        TelescopeResultsNormal = { fg = p.cBlue, bg = p.cBgDark },
+        TelescopePreviewNormal = { fg = p.cFg, bg = p.cBgDim },
+        TelescopePromptNormal = { fg = p.cFgLight, bg = p.cBgDim },
 
         TelescopeResultsTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
         TelescopePreviewTitle = { fg = p.cBlue, bg = p.cFill3, bold = true },
         TelescopePromptTitle = { fg = p.cFg, bg = p.cFill3, bold = true },
 
-        TelescopeResultsBorder = { fg = p.cFill3 },
-        TelescopePreviewBorder = { fg = p.cFill3, bg = p.cBg },
-        TelescopePromptBorder = { fg = p.cFill3, bg = p.cBg },
+        TelescopeResultsBorder = { fg = p.cFill3, bg = p.cBgDark },
+        TelescopePreviewBorder = { fg = p.cFill3, bg = p.cBgDim },
+        TelescopePromptBorder = { fg = p.cFill3, bg = p.cBgDim },
 
         TelescopeMultiSelection = { fg = p.cFgLight, bg = p.cFill3 },
         TelescopeMultiIcon = { fg = p.cFgLight, bg = p.cFill3 },
@@ -557,6 +555,14 @@ function M.load(palette)
         WhichKeyValue = { link = "Comment" },
         WhichKeyFloat = { link = "NormalFloat" },
     }
+
+    return g
+end
+
+---Set the highlights based on the given color palette
+---@param palette table The values must be a hexadecimal string
+function M.load(palette)
+    local g = M.get_highlight_groups(palette)
 
     for _, highlightGroups in pairs(g) do
         for group, highlightName in pairs(highlightGroups) do
