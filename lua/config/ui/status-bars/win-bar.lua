@@ -6,8 +6,6 @@ local M = {}
 
 local DisableWinBar = {
     condition = function()
-        -- Source:
-        -- incline.nvim - https://github.com/b0o/incline.nvim/blob/44d4e6f4dcf2f98cf7b62a14e3c10749fc5c6e35/lua/incline/util.lua#L49-L51
         return vim.api.nvim_win_get_config(0).relative ~= ""
             or conditions.buffer_matches({
                 buftype = h.DisableBufType,
@@ -43,10 +41,10 @@ local WinBarSpecialNC = {
         hl = "WinBarWindowNumber",
     },
     {
-        {
-            c.CloseButton,
-            hl = "WinBarCloseButton",
-        },
+        -- {
+        --     c.CloseButton,
+        --     hl = "WinBarCloseButton",
+        -- },
         hl = "WinBarLightNC",
     },
 }
@@ -76,10 +74,10 @@ local WinBarNC = {
         hl = "WinBarWindowNumber",
     },
     {
-        {
-            c.CloseButton,
-            hl = "WinBarCloseButton",
-        },
+        -- {
+        --     c.CloseButton,
+        --     hl = "WinBarCloseButton",
+        -- },
         hl = "WinBarLightNC",
     },
 }
@@ -104,10 +102,10 @@ local WinBarSpecial = {
     },
     h.Align,
     {
-        {
-            c.CloseButton,
-            hl = "WinBarCloseButton",
-        },
+        -- {
+        --     c.CloseButton,
+        --     hl = "WinBarCloseButton",
+        -- },
         hl = "WinBarLight",
     },
 }
@@ -125,7 +123,7 @@ local WinBar = {
             c.FileModified,
             hl = "WinBarIsModified",
         },
-        hl = "WinBarLight"
+        hl = "WinBarLight",
     },
     {
         c.FileNameBlock,
@@ -133,10 +131,10 @@ local WinBar = {
     },
     h.Align,
     {
-        {
-            c.CloseButton,
-            hl = "WinBarCloseButton",
-        },
+        -- {
+        --     c.CloseButton,
+        --     hl = "WinBarCloseButton",
+        -- },
         hl = "WinBarLight",
     },
 }

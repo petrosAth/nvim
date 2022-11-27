@@ -76,3 +76,16 @@ autocmd("BufWritePre", {
         silent! call setpos(".", current_pos)
     ]],
 })
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "HeirlineInitWinbar",
+    callback = function(args)
+        local h = require("config.ui.status-bars.tables")
+        local buf = args.buf
+        local buftype = vim.tbl_contains(h.DisableBufType, vim.bo[buf].buftype)
+        local filetype = vim.tbl_contains(h.DisableFileType, vim.bo[buf].filetype)
+        if buftype or filetype then
+            vim.opt_local.winbar = nil
+        end
+    end,
+})

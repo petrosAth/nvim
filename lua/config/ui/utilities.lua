@@ -4,7 +4,6 @@ local M = {}
 
 function M.check_for_custom_title(path, buftype, filetype)
     local SpecialBufTypes = {
-        { buftype = "nofile",   icon = "",            title = ""          },
         { buftype = "help",     icon = i.help[1],     title = " Help"     },
         { buftype = "qf",       icon = i.list[1],     title = " List"     },
         { buftype = "terminal", icon = i.terminal[1], title = " Terminal" },
@@ -43,9 +42,7 @@ function M.check_for_custom_title(path, buftype, filetype)
     for _, type in pairs(SpecialBufTypes) do
         local buftype_match = string.match(buftype, type.buftype)
         if buftype_match then
-            if type.buftype ~= "nofile" then
-                return true, type.icon .. type.title
-            end
+            return true, type.icon .. type.title
         end
     end
 

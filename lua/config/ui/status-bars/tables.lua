@@ -47,7 +47,8 @@ M.Hide = {
 }
 
 M.DisableBufType = {
-    "prompt",
+    "nofile",
+    "prompt"
 }
 
 M.DisableFileType = {
