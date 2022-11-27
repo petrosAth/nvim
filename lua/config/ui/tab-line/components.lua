@@ -211,7 +211,7 @@ M.win_label = function(win_id)
         label = custom_title
     end
 
-    return label
+    return label .. "  "
 end
 
 M.modified_flag = function(win_id, is_current)
@@ -223,7 +223,7 @@ M.modified_flag = function(win_id, is_current)
         hl = is_current and getHl("TabLineIndicatorIsModifiedSel") or getHl("TabLineIndicatorIsModified")
     end
 
-    return { "  " .. i.edit[1], hl = hl }
+    return { i.edit[1] .. " ", hl = hl }
 end
 
 local function tab_top_window(tab_id)

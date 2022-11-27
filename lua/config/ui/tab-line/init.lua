@@ -17,8 +17,8 @@ tabline.set(function(line)
 
             return {
                 line.sep(c.set_sep_all("win", "left", win.is_current(), tab_id, win.id)),
-                c.win_label(win.id),
                 c.modified_flag(win.id, win.is_current()),
+                c.win_label(win.id),
                 line.sep(c.set_sep_all("win", "right", win.is_current(), tab_id, win.id)),
                 hl = hl,
                 margin = "",
