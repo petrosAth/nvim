@@ -12,7 +12,7 @@ tabline.set(function(line)
             margin = "",
         },
         line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-            local hl = win.is_current() and getHl("TabLineSel") or getHl("TabLineFill")
+            local hl = win.is_current() and getHl("TabLineBuffer") or getHl("TabLineBufferNC")
             local tab_id = line.api.get_current_tab()
 
             return {

@@ -119,27 +119,28 @@ local function set_sep_hl(type, position, is_current, tab_id, win_id)
     local bg = getHl("TabLine")
 
     if type == "win" then
-        bg = getHl("TabLineFill")
+        fg = getHl("TabLineBufferNC")
+        bg = getHl("TabLineBufferNC")
         if position == "left" then
             if is_current then
-                bg = getHl("TabLineSel")
+                bg = getHl("TabLineBuffer")
             end
             if is_first_win(win_id) then
                 fg = getHl("TabLineTabSeparatorSel")
-                bg = is_current and getHl("TabLineSel") or getHl("TabLineFill")
+                bg = is_current and getHl("TabLineBuffer") or getHl("TabLineBufferNC")
             end
         elseif position == "right" then
             fg = getHl("TabLine")
             if is_last_win(tab_id, win_id) then
-                fg = getHl("TabLineFill")
+                fg = getHl("TabLineBufferNC")
                 bg = getHl("TabLine")
             end
             if is_before_win_sel(is_current, win_id) then
-                fg = getHl("TabLineFill")
-                bg = getHl("TabLineSel")
+                fg = getHl("TabLineBufferNC")
+                bg = getHl("TabLineBuffer")
             end
             if is_current then
-                fg = getHl("TabLineSel")
+                fg = getHl("TabLineBuffer")
             end
         end
     end

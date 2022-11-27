@@ -37,14 +37,10 @@ local WinBarSpecialNC = {
     },
     h.Align,
     {
-        c.WindowNumber,
-        hl = "WinBarWindowNumber",
-    },
-    {
-        -- {
-        --     c.CloseButton,
-        --     hl = "WinBarCloseButton",
-        -- },
+        {
+            c.WindowNumber,
+            hl = "WinBarWindowNumber",
+        },
         hl = "WinBarLightNC",
     },
 }
@@ -70,14 +66,10 @@ local WinBarNC = {
     },
     h.Align,
     {
-        c.WindowNumber,
-        hl = "WinBarWindowNumber",
-    },
-    {
-        -- {
-        --     c.CloseButton,
-        --     hl = "WinBarCloseButton",
-        -- },
+        {
+            c.WindowNumber,
+            hl = "WinBarWindowNumber",
+        },
         hl = "WinBarLightNC",
     },
 }
@@ -101,13 +93,6 @@ local WinBarSpecial = {
         hl = "WinBarLight",
     },
     h.Align,
-    {
-        -- {
-        --     c.CloseButton,
-        --     hl = "WinBarCloseButton",
-        -- },
-        hl = "WinBarLight",
-    },
 }
 
 local WinBar = {
@@ -130,13 +115,6 @@ local WinBar = {
         hl = "WinBarFile",
     },
     h.Align,
-    {
-        -- {
-        --     c.CloseButton,
-        --     hl = "WinBarCloseButton",
-        -- },
-        hl = "WinBarLight",
-    },
 }
 
 M.WinBars = {
