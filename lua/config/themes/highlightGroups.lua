@@ -494,7 +494,7 @@ function M.get_highlight_groups(palette)
         QuickScopeSecondary = { fg = p.cMagenta, bg = p.cBg, bold = true, nocombine = true },
 
         -- satellite.nvim
-        ScrollView = { bg = p.cFill4 },
+        ScrollView = { bg = p.cFill3 },
         SearchSV = { fg = p.cCyan },
 
         -- telescope.nvim
