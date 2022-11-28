@@ -168,7 +168,7 @@ hydra({
             { expr = true },
         },
         { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR>"                        },
-        { "s", "]s"                                                             },
+        { "s", "[s"                                                             },
         { "t", "<CMD>tabprevious<CR>"                                           },
 
         { "q",     nil, { exit = true, nowait = true, desc = false } },
