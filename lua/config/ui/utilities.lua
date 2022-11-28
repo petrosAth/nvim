@@ -30,13 +30,13 @@ function M.check_for_custom_title(path, buftype, filetype)
         { filetype = "undotree",            icon = i.undoTree[1],     title = " Undotree"             },
     }
     local SpecialFileNames = {
-        { filename = "%[Command Line%]",                     icon = i.history[1],      title = " history"                       },
-        { filename = "neo%-tree filesystem",                 icon = i.fileExplorer[1], title = " File explorer"                 },
-        { filename = "neo%-tree git_status",                 icon = i.git.repo[1],     title = " Git status"                    },
-        { filename = "neo%-tree buffers",                    icon = i.buffers[1],      title = " Open buffers"                  },
-        { filename = "^diffview:///null$",                   icon = i.file[1],         title = " Original file"                 },
-        { filename = "/:0:/",                                icon = i.file[1],         title = " Original file"                 },
-        { filename = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", icon = i.git.commit[1],   title = " ",              gitRepo = true },
+        { bufname = "%[Command Line%]",                     icon = i.history[1],      title = " history"                       },
+        { bufname = "neo%-tree filesystem",                 icon = i.fileExplorer[1], title = " File explorer"                 },
+        { bufname = "neo%-tree git_status",                 icon = i.git.repo[1],     title = " Git status"                    },
+        { bufname = "neo%-tree buffers",                    icon = i.buffers[1],      title = " Open buffers"                  },
+        { bufname = "^diffview:///null$",                   icon = i.file[1],         title = " Original file"                 },
+        { bufname = "/:0:/",                                icon = i.file[1],         title = " Original file"                 },
+        { bufname = "(/%.git/.+[a-z0-9]+[0-9]+[a-z0-9]+)/", icon = i.git.commit[1],   title = " ",              gitRepo = true },
     }
 
     for _, type in pairs(SpecialBufTypes) do
@@ -54,9 +54,9 @@ function M.check_for_custom_title(path, buftype, filetype)
     end
 
     for _, name in pairs(SpecialFileNames) do
-        local filename_match = string.match(path, name.filename)
+        local filename_match = string.match(path, name.bufname)
         if filename_match then
-            if name.filename == "%[Command Line%]" then
+            if name.bufname == "%[Command Line%]" then
                 if vim.bo.filetype == "vim" then
                     return true, name.icon .. " Command line" .. name.title
                 else

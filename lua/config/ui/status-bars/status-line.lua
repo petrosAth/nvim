@@ -62,8 +62,8 @@ local StatusLineMinimal = {
         local has_custom_title, _ = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         local in_diffview = string.match(self.fileName, "^diffview:///[^(panels)]") -- in diffview but not in diffview panels
         local disabled_buffer = conditions.buffer_matches({
-            buftype = h.DisableBufType,
-            filetype = h.DisableFileType,
+            buftype = h.Disable.statusLine.buftype,
+            filetype = h.Disable.statusLine.filetype,
         })
         return disabled_buffer or (has_custom_title and not in_diffview)
     end,

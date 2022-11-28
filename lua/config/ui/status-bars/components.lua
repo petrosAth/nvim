@@ -186,9 +186,13 @@ local FilePath = {
             filePath = vim.fn.pathshorten(self.filePath)
         end
 
-        filePath = vim.fn.fnamemodify(filePath, ":.:h")
+        filePath = vim.fn.fnamemodify(filePath, ":.:h") .. "/"
 
-        return "%<" .. i.root_dir[1] .. " /" .. filePath .. " " .. i.arrowr[1] .. h.Separator.mid.provider
+        if filePath == "./" then
+            filePath = ""
+        end
+
+        return "%<" .. i.root_dir[1] .. " /" .. filePath .. h.Separator.mid.provider
     end,
 }
 
@@ -200,9 +204,13 @@ local FileName = {
             return "[No Name]"
         end
 
-        return i.file[1] .. " " .. fileName
+        return h.Separator.mid.provider .. i.file[1] .. " " .. fileName .. h.Separator.mid.provider
     end,
-    hl = { bold = true },
+    hl = function()
+        if conditions.is_active() then
+            return "WinBarFile"
+        end
+    end,
 }
 
 local Navic = {
@@ -218,7 +226,7 @@ local Navic = {
 
 M.FileNameBlock = utils.insert(
     FileNameBlock,
-    { flexible = h.Hide.FileName, { h.Separator.left }, { h.Null } },
+    { flexible = h.Hide.FilePath, { h.Separator.left }, { h.Null } },
     { flexible = h.Hide.FilePath, { FilePath }, { h.Null } },
     { flexible = h.Hide.FileName, { FileName }, { h.Null } },
     { flexible = h.Hide.Navic, { Navic }, { h.Null } },

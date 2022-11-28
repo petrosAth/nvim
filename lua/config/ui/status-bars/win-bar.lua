@@ -8,8 +8,8 @@ local DisableWinBar = {
     condition = function()
         return vim.api.nvim_win_get_config(0).relative ~= ""
             or conditions.buffer_matches({
-                buftype = h.DisableBufType,
-                filetype = h.DisableFileType,
+                buftype = h.Disable.winBar.buftype,
+                filetype = h.Disable.winBar.filetype,
             })
     end,
     init = function()
@@ -29,11 +29,11 @@ local WinBarSpecialNC = {
             c.FileReadOnly,
             hl = "WinBarIsReadOnly",
         },
-        {
-            c.CustomTitle,
-            hl = "WinBarSpecialNC",
-        },
         hl = "WinBarLightNC",
+    },
+    {
+        c.CustomTitle,
+        hl = "WinBarSpecialNC",
     },
     h.Align,
     {
@@ -62,7 +62,6 @@ local WinBarNC = {
     },
     {
         c.FileNameBlock,
-        hl = "WinBarFileNC",
     },
     h.Align,
     {
@@ -112,7 +111,6 @@ local WinBar = {
     },
     {
         c.FileNameBlock,
-        hl = "WinBarFile",
     },
     h.Align,
 }
