@@ -49,3 +49,7 @@ config.ui
 nofile
 heirline
 nvim-navic
+bashls
+cssls
+clangd
+cssmodules_ls

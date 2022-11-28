@@ -1,8 +1,6 @@
 local i = USER.styling.icons
-local k = USER.styling.icons.lsp.kinds
-local kp = USER.styling.icons.lsp.kinds_plus
 local navic_kinds = function()
-    local lsp_kinds = vim.tbl_extend("keep", k, kp)
+    local lsp_kinds = vim.deepcopy(i.lsp.kinds)
     for kind, icon in pairs(lsp_kinds) do
         lsp_kinds[kind] = icon .. " "
     end

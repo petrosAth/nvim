@@ -1,6 +1,5 @@
 local i = USER.styling.icons
 local k = USER.styling.icons.lsp.kinds
-local kp = USER.styling.icons.lsp.kinds_plus
 local b = USER.styling.borders.default
 
 require("symbols-outline").setup({
@@ -61,7 +60,7 @@ require("symbols-outline").setup({
         Operator = { icon = k.Operator, hl = "@operator" },
         TypeParameter = { icon = k.TypeParameter, hl = "@parameter" },
         String = { icon = k.Text, hl = "@string" },
-        Number = { icon = kp.Number, hl = "@number" },
-        Boolean = { icon = kp.Boolean, hl = "@boolean" },
+        Number = { icon = k.Number, hl = "@number" },
+        Boolean = { icon = k.Boolean, hl = "@boolean" },
     },
 })
