@@ -55,7 +55,7 @@ return packer.startup(function()
         end,
     })
 
-    -- nvim-web-devicons - lua `fork` of vim-web-devicons for neovim
+    -- nvim-web-devicons - Lua `fork` of vim-web-devicons for Neovim
     use({
         "kyazdani42/nvim-web-devicons",
         config = function()
@@ -63,7 +63,7 @@ return packer.startup(function()
         end,
     })
 
-    -- neoscroll.nvim - Smooth scrolling neovim plugin written in lua
+    -- neoscroll.nvim - Smooth scrolling Neovim plugin written in Lua
     use({
         "karb94/neoscroll.nvim",
         config = function()
@@ -71,7 +71,7 @@ return packer.startup(function()
         end,
     })
 
-    -- alpha-nvim - A fast and highly customizable greeter for neovim
+    -- alpha-nvim - A fast and highly customizable greeter for Neovim
     use({
         "goolord/alpha-nvim",
         requires = "nvim-web-devicons",
@@ -80,7 +80,7 @@ return packer.startup(function()
         end,
     })
 
-    -- nvim-notify - A fancy, configurable, notification manager for NeoVim
+    -- nvim-notify - A fancy, configurable, notification manager for Neovim
     use({
         "rcarriga/nvim-notify",
         config = function()
@@ -96,7 +96,7 @@ return packer.startup(function()
         end,
     })
 
-    -- pretty-fold.nvim - Foldtext customization and folded region preview in Neovim
+    -- pretty-fold.nvim - foldtext customization and folded region preview in Neovim
     use({
         "anuvyklack/pretty-fold.nvim",
         config = function()
@@ -104,7 +104,7 @@ return packer.startup(function()
         end,
     })
 
-    -- codewindow.nvim - Codewindow.nvim is a minimap plugin for neovim, that is closely integrated with treesitter and the builtin LSP to display more information to the user
+    -- codewindow.nvim - Codewindow.nvim is a minimap plugin for Neovim, that is closely integrated with treesitter and the builtin LSP to display more information to the user
     use({
         "gorbit99/codewindow.nvim",
         config = function()
