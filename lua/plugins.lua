@@ -153,13 +153,6 @@ return packer.startup(function()
                     require("config.lsp.lsp-signature-config")
                 end,
             },
-            -- lspkind.nvim - This tiny plugin adds vscode-like pictograms to neovim built-in lsp
-            {
-                "onsails/lspkind-nvim",
-                config = function()
-                    require("config.lsp.lspkind-config")
-                end,
-            },
             -- null-ls.nvim - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
             {
                 "jose-elias-alvarez/null-ls.nvim",
