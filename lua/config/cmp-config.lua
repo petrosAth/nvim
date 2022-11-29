@@ -128,6 +128,7 @@ cmp.setup({
         { name = "calc", keyword_length = 3 },
         { name = "spell", keyword_length = 2 },
     }),
+    preselect = cmp.PreselectMode.None,
     formatting = {
         format = function(entry, vim_item)
             vim_item.kind = string.format("  %s %s ", kinds[vim_item.kind], vim_item.kind)
