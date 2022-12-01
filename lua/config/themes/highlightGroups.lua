@@ -457,7 +457,7 @@ function M.get_highlight_groups(palette)
         NeoTreeNormal = { link = "Normal" },
         NeoTreeNormalNC = { link = "NormalNC" },
         NeoTreePreview = { fg = p.cFg, bg = p.cFill5 },
-        NeoTreeFloatBorder = { fg = p.cFill3, bg = p.cBg },
+        NeoTreeFloatBorder = { fg = p.cFill3, bg = p.cBgDark },
         NeoTreeFloatTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
 
         NeoTreeTabActive = { fg = p.cFg, bg = p.cFill5 },

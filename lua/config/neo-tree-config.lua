@@ -4,7 +4,6 @@ local b = USER.styling.borders.default
 
 tree.setup({
     close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
-    -- popup_border_style = "double",
     popup_border_style = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }, -- Border style of prompt popups.,
     enable_git_status = true,
     enable_diagnostics = true,
@@ -131,7 +130,7 @@ tree.setup({
             ["o"] = "split_with_window_picker",
             ["v"] = "vsplit_with_window_picker",
             ["t"] = "open_tabnew",
-            ["p"] = { "toggle_preview", config = { use_float = false } },
+            ["p"] = { "toggle_preview", config = { use_float = true } },
             ["w"] = false,
             ["s"] = false,
             ["S"] = false,
