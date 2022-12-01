@@ -309,17 +309,6 @@ function M.get_highlight_groups(palette)
         GitSignsChangeInline = { bg = p.cYellowDim },
         GitSignsDeleteInline = { bg = p.cRedDim },
 
-        -- incline.nvim
-        InclineNormal = { fg = p.nord5, bg = p.cFill4 },
-        InclineNormalNC = { link = "InclineNormal" },
-
-        -- indent-blankline.nvim
-        IndentBlanklineContextChar = { fg = p.cViolet },
-        IndentBlanklineContextStart = { underline = true, sp = p.cViolet },
-        IndentBlanklineSpaceCharBlankline = { fg = p.cFill2 },
-        IndentBlanklineSpaceChar = { fg = p.cFill2 },
-        IndentBlanklineChar = { fg = p.cFill2 },
-
         -- hop.nvim
         HopNextKey = { fg = p.cCyan, bold = true },
         HopNextKey1 = { fg = p.cCyan },
@@ -333,6 +322,17 @@ function M.get_highlight_groups(palette)
         HydraPink = { fg = p.cMagenta },
         HydraBlue = { fg = p.cSelect },
         HydraRed = { fg = p.cRed },
+
+        -- incline.nvim
+        InclineNormal = { fg = p.nord5, bg = p.cFill4 },
+        InclineNormalNC = { link = "InclineNormal" },
+
+        -- indent-blankline.nvim
+        IndentBlanklineContextChar = { fg = p.cViolet },
+        IndentBlanklineContextStart = { underline = true, sp = p.cViolet },
+        IndentBlanklineSpaceCharBlankline = { fg = p.cFill2 },
+        IndentBlanklineSpaceChar = { fg = p.cFill2 },
+        IndentBlanklineChar = { fg = p.cFill2 },
 
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
@@ -449,7 +449,7 @@ function M.get_highlight_groups(palette)
         rainbowcol6 = { fg = p.cOrange },
         rainbowcol7 = { fg = p.cCyan },
 
-        --nvim-windowpicker
+        -- nvim-windowpicker
         WindowPicker = { fg = p.cBgDark, bg = p.cCyan, bold = true },
         WindowPickerNC = { link = "WindowPicker" },
 
@@ -488,6 +488,12 @@ function M.get_highlight_groups(palette)
         NeoTreeGitUnstaged = { link = "NeoTreeGitModified" },
         NeoTreeGitStaged = { link = "NeoTreeGitAdded" },
         NeoTreeGitConflict = { fg = p.cOrange },
+
+        -- null-ls.nvim
+        NullLsInfoSources = { link = "Title" },
+        NullLsInfoHeader = { link = "Label" },
+        NullLsInfoBorder = { link = "FloatBorder" },
+        NullLsInfoTitle = { link = "Type" },
 
         -- quickscope.lua
         QuickScopePrimary = { fg = p.cYellow, bg = p.cBg, underline = true, nocombine = true },
