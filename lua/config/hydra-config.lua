@@ -130,7 +130,7 @@ hydra({
             end,
             { expr = true },
         },
-        { "d", "<CMD>lua vim.diagnostic.goto_next()<CR>"                        },
+        { "d", "<CMD>lua vim.diagnostic.goto_next()<CR><CMD>lua vim.diagnostic.open_float()<CR>"                        },
         { "s", "]s"                                                             },
         { "t", "<CMD>tabnext<CR>"                                               },
 
@@ -167,7 +167,7 @@ hydra({
             end,
             { expr = true },
         },
-        { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR>"                        },
+        { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR><CMD>lua vim.diagnostic.open_float()<CR>"                        },
         { "s", "[s"                                                             },
         { "t", "<CMD>tabprevious<CR>"                                           },
 
