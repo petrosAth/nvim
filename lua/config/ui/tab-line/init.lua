@@ -11,6 +11,7 @@ tabline.set(function(line)
             hl = getHl("TabLineTabIndicatorSel"),
             margin = "",
         },
+        line.truncate_point(),
         line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
             local hl = win.is_current() and getHl("TabLineBuffer") or getHl("TabLineBufferNC")
             local tab_id = line.api.get_current_tab()
