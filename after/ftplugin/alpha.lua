@@ -1,6 +1,6 @@
 -- alpha-nvim
 local ol = vim.opt_local
-local i = USER.styling.icons.fillchars
+local fc = USER.styling.icons.fillchars
 
-ol.fillchars = i.global       -- Re-apply fillchars because Trouble resets them
-ol.fillchars:append(i.custom) -- Remove eob character
+ol.fillchars      = fc.global  -- Re-apply fillchars because some plugins reset them
+ol.fillchars:append(fc.custom)

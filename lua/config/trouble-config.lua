@@ -1,4 +1,4 @@
-local i = USER.styling.icons
+local f = USER.styling.icons.fillchars.global
 
 require("trouble").setup({
     position = "bottom", -- position of the list can be: bottom, top, left, right
@@ -6,8 +6,8 @@ require("trouble").setup({
     width = 50, -- width of the list when position is left or right
     icons = true, -- use devicons for filenames
     mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
-    fold_open = i.fillchars.global.foldopen, -- icon used for open folds
-    fold_closed = i.fillchars.global.foldclose, -- icon used for closed folds
+    fold_open = f.foldopen, -- icon used for open folds
+    fold_closed = f.foldclose, -- icon used for closed folds
     group = true, -- group results by file
     padding = false, -- add an extra new line on top of the list
     action_keys = { -- key mappings for actions in the trouble list

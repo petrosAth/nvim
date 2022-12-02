@@ -1,6 +1,7 @@
-local i = USER.styling.icons
-local k = USER.styling.icons.lsp.kinds
-local b = USER.styling.borders.default
+local s = USER.styling
+local f = s.icons.fillchars.global
+local k = s.icons.lsp.kinds
+local b = s.borders.default
 
 require("symbols-outline").setup({
     highlight_hovered_item = true,
@@ -17,7 +18,7 @@ require("symbols-outline").setup({
     preview_bg_highlight = "Pmenu",
     autofold_depth = nil,
     auto_unfold_hover = true,
-    fold_markers = { i.arrowr[1], i.arrowr[1] },
+    fold_markers = { f.foldopen, f.foldclose },
     wrap = false,
     keymaps = {
         close = { "<Esc>", "q" },

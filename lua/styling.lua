@@ -167,8 +167,8 @@ USER.styling = {
                 vertright = "▕", -- "█", "├", "┣", "🬲", "🭼" right facing vertical separator
                 verthoriz = "▕", -- "█", "┼", "╋", "🬲", "🭼" overlapping vertical and horizontal
                 fold      = " ", -- filling 'foldtext'
-                foldopen  = "┭", -- mark the beginning of a fold
-                foldclose = "╾", -- show a closed fold
+                foldopen  = "", -- mark the beginning of a fold
+                foldclose = "", -- show a closed fold
                 foldsep   = "╎", -- open fold middle marker -- "╎", "┆", "┊"
                 diff      = "╱", -- deleted lines of the 'diff' option
                 eob       = "─", -- empty lines at the end of a buffer
@@ -178,17 +178,25 @@ USER.styling = {
             },
         },
         listchars = {
-            eol            = "",  -- Character to show at the end of each line.
-            tab            = "──", -- Two or three characters to be used to show a tab.
-            space          = " ",  -- Character to show for a space.
-            multispace     = " ",  -- One or more characters to use cyclically to show for multiple consecutive spaces
-            lead           = " ",  -- Character to show for leading spaces.
-            leadmultispace = " ",  -- One or more characters to use cyclically to show for multiple consecutive leading spaces.
-            trail          = "-",  -- Character to show for trailing spaces.
-            extends        = "",  -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen.
-            precedes       = "",  -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
-            conceal        = " ",  -- Character to show in place of concealed text.
-            nbsp           = "␣",  -- Character to show for a non-breakable space character.
+            global = {
+                eol            = "",  -- Character to show at the end of each line.
+                tab            = "──", -- Two or three characters to be used to show a tab.
+                space          = " ",  -- Character to show for a space.
+                multispace     = " ",  -- One or more characters to use cyclically to show for multiple consecutive spaces
+                lead           = " ",  -- Character to show for leading spaces.
+                leadmultispace = " ",  -- One or more characters to use cyclically to show for multiple consecutive leading spaces.
+                trail          = "-",  -- Character to show for trailing spaces.
+                extends        = "",  -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen.
+                precedes       = "",  -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
+                conceal        = " ",  -- Character to show in place of concealed text.
+                nbsp           = "␣",  -- Character to show for a non-breakable space character.
+            },
+            custom = {
+                eol   = " ",
+                tab   = "  ",
+                trail = " ",
+                nbsp  = " ",
+            },
         },
     },
     borders = {

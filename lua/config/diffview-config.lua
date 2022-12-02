@@ -6,8 +6,8 @@ require("diffview").setup({
     enhanced_diff_hl = false, -- See ':h diffview-config-enhanced_diff_hl'
     use_icons = true,         -- Requires nvim-web-devicons
     icons = {                 -- Only applies when use_icons is true.
-        folder_closed = "",
-        folder_open   = "",
+        folder_closed = i.dir[1],
+        folder_open   = i.diropen[1],
     },
     signs = {
         fold_closed = i.arrowr[1],
@@ -22,6 +22,13 @@ require("diffview").setup({
         win_config = {                       -- See ':h diffview-config-win_config'
             position = "left",
             width = 35,
+            win_opts = {
+                cursorcolumn   = false,
+                number         = true,
+                relativenumber = true,
+                signcolumn     = "no",
+                foldcolumn     = "0",
+            }
         },
     },
     file_history_panel = {
@@ -37,6 +44,13 @@ require("diffview").setup({
         win_config = {         -- See ':h diffview-config-win_config'
             position = "bottom",
             height = 16,
+            win_opts = {
+                cursorcolumn   = false,
+                number         = true,
+                relativenumber = true,
+                signcolumn     = "no",
+                foldcolumn     = "0",
+            }
         },
     },
     commit_log_panel = {

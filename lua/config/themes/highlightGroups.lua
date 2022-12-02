@@ -19,7 +19,7 @@ function M.get_highlight_groups(palette)
         NonText = { fg = p.cFill3 },
         Conceal = {},
         Whitespace = { fg = p.cFill3 },
-        Pmenu = { fg = p.cFg, bg = p.cBgDark },
+        Pmenu = { fg = p.cFg, bg = p.cBgDim },
         PmenuSel = { fg = p.cCyan, bg = p.cFill4 },
         PmenuSbar = { fg = p.cFg, bg = p.cFill1 },
         PmenuThumb = { fg = p.cCyan, bg = p.cFill3 },
@@ -270,6 +270,13 @@ function M.get_highlight_groups(palette)
         TabLineIndicatorIsModifiedSel = { fg = p.cYellow, bg = p.cFill4 },
     }
 
+    g.SidePanel = {
+        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgDim },
+        SidePanelNormalNC     = { link = "SidePanelNormal" },
+        SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgDim },
+        SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgDim }
+    }
+
     g.plugins = {
         -- alpha-nvim
         AlphaButtons = { fg = p.cFg },
@@ -287,8 +294,11 @@ function M.get_highlight_groups(palette)
         CodewindowUnderline = { underline = true, sp = p.cCyan },
 
         -- diffview.nvim
-        DiffviewVertSplit = { fg = p.cFill2, bg = p.cYellow },
-        DiffviewWinSeparator = { link = "DiffviewVertSplit" },
+        DiffviewNormal = { link = "SidePanelNormal" },
+        DiffviewWinSeparator = { link = "SidePanelWinSeparator" },
+        DiffviewVertSplit = { link = "SidePanelWinSeparator" },
+        DiffviewEndOfBuffer = { fg = g.SidePanel.SidePanelNormal.bg },
+        DiffviewNonText = { link = "SidePanelNonText" },
 
         -- fidget.nvim
         FidgetTitle = { fg = p.cFgDim },
@@ -454,11 +464,12 @@ function M.get_highlight_groups(palette)
         WindowPickerNC = { link = "WindowPicker" },
 
         -- neo-tree.nvim
-        NeoTreeNormal = { link = "Normal" },
-        NeoTreeNormalNC = { link = "NormalNC" },
+        NeoTreeNormal = { link = "SidePanelNormal" },
+        NeoTreeNormalNC = { link = "SidePanelNormalNC" },
         NeoTreePreview = { fg = p.cFg, bg = p.cFill5 },
-        NeoTreeFloatBorder = { fg = p.cFill3, bg = p.cBgDark },
+        NeoTreeFloatBorder = { link = "FloatBorder" },
         NeoTreeFloatTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
+        NeoTreeWinSeparator = { link = "SidePanelWinSeparator" },
 
         NeoTreeTabActive = { fg = p.cFg, bg = p.cFill5 },
         NeoTreeTabInactive = { fg = p.cFg, bg = p.cFill3 },
@@ -494,6 +505,9 @@ function M.get_highlight_groups(palette)
         NullLsInfoHeader = { link = "Label" },
         NullLsInfoBorder = { link = "FloatBorder" },
         NullLsInfoTitle = { link = "Type" },
+
+        -- symbols-outline.nvim
+        SymbolsOutlineConnector = { link = "FoldColumn" },
 
         -- quickscope.lua
         QuickScopePrimary = { fg = p.cYellow, bg = p.cBg, underline = true, nocombine = true },
@@ -545,6 +559,11 @@ function M.get_highlight_groups(palette)
         TodoBgHACK = { fg = p.cFgLight, bg = p.cYellow, bold = true },
         TodoFgHACK = { link = "DiagnosticWarn" },
         TodoSignHACK = { link = "DiagnosticWarn" },
+
+        -- trouble.nvim
+        TroubleNormal = { link = "SidePanelNormal" },
+        TroubleFoldIcon = { link = "FoldColumn" },
+        TroubleIndent = { link = "FoldColumn" },
 
         -- vim-illuminate
         IlluminatedWordText = { link = "LspReferenceText" },
