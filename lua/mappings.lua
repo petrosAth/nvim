@@ -175,9 +175,11 @@ USER.mappings = {
                 },
                 ["u"] = {
                     name = "Update",
-                    ["l"] = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", "Update LSP packages"     }, -- mason-tool-installer.nvim
-                    ["P"] = { "<CMD>PackerSync<CR>",                     "Update plugins"          }, -- packer
-                    ["p"] = { "<CMD>PackerSync --preview<CR>",           "Preview plugins updates" }, -- packer
+                    ["l"] = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", "Update LSP packages"               }, -- mason-tool-installer.nvim
+                    ["P"] = { "<CMD>PackerSync<CR>",                     "Update plugins"                    }, -- packer
+                    ["p"] = { "<CMD>PackerSync --preview<CR>",           "Preview plugins updates"           }, -- packer
+                    ["S"] = { "<CMD>SmartPackerSnapshot<CR>",            "Take a smart packer snapshot"      }, -- packer
+                    ["L"] = { "<CMD>SmartPackerSnapshotRollback<CR>",    "Smart rollback on packer snapshot" }  -- packer
                 },
             },
         },

@@ -96,3 +96,19 @@ vim.api.nvim_create_user_command("LspToggleAutoFormat", function()
     toggle_format_on_save()
 end, { desc = "Toggle auto format on save" })
 ------------------------------------------------------------------------------------------------------------------------
+
+vim.api.nvim_create_user_command("SmartPackerSnapshot", function()
+    if vim.version()["prerelease"] then
+        vim.cmd("PackerSnapshot " .. "nightly")
+        return
+    end
+    vim.cmd("PackerSnapshot " .. "stable")
+end, { desc = "Create a packer snapshot and name it after the Neovim version used(stable/nightly)" })
+
+vim.api.nvim_create_user_command("SmartPackerSnapshotRollback", function()
+    if vim.version()["prerelease"] then
+        vim.cmd("PackerPackerSnapshotRollback " .. "nightly")
+        return
+    end
+    vim.cmd("PackerPackerSnapshotRollback " .. "stable")
+end, { desc = "Roll back on a packer snapshot based on the Neovim version used(stable/nightly)" })

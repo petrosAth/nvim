@@ -24,8 +24,7 @@ end
 
 -- Initialize packer
 packer.init({
-    -- max_jobs = 10, -- Limit the number of simultaneous jobs. nil means no limit
-    transitive_disable = true, -- Automatically disable dependencies of disabled plugins
+    snapshot_path = USER.config_path .. "/snapshots",
     display = {
         non_interactive = false, -- If true, disable display windows for all operations
         open_fn = function() -- An optional function to open a window for packer's display
