@@ -1,6 +1,4 @@
 -- alpha-nvim
-local ol = vim.opt_local
-local fc = USER.styling.icons.fillchars
+local sp = require("config.ui.side-panels")
 
-ol.fillchars      = fc.global  -- Re-apply fillchars because some plugins reset them
-ol.fillchars:append(fc.custom)
+sp.set_non_chars()

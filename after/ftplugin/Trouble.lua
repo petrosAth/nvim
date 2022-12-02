@@ -1,15 +1,6 @@
 -- trouble.nvim
-local ol = vim.opt_local
-local fc = USER.styling.icons.fillchars
-local ns = vim.api.nvim_create_namespace("SidePanel")
+local sp = require("config.ui.side-panels")
 
-ol.colorcolumn    = ""
-ol.cursorcolumn   = false
-ol.number         = true
-ol.relativenumber = true
-ol.fillchars      = fc.global -- Re-apply fillchars because some plugins reset them
-ol.fillchars:append(fc.custom)
-
-vim.api.nvim_set_hl(ns, "WinSeparator", vim.api.nvim_get_hl_by_name("SidePanelWinSeparator", true))
-vim.api.nvim_set_hl(ns, "NonText", vim.api.nvim_get_hl_by_name("SidePanelNonText", true))
-vim.api.nvim_win_set_hl_ns(0, ns)
+sp.set_local_options()
+sp.set_non_chars()
+sp.set_local_highlights()
