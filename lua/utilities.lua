@@ -107,8 +107,8 @@ end, { desc = "Create a packer snapshot and name it after the Neovim version use
 
 vim.api.nvim_create_user_command("SmartPackerSnapshotRollback", function()
     if vim.version()["prerelease"] then
-        vim.cmd("PackerPackerSnapshotRollback " .. "nightly")
+        vim.cmd("PackerSnapshotRollback " .. "nightly")
         return
     end
-    vim.cmd("PackerPackerSnapshotRollback " .. "stable")
+    vim.cmd("PackerSnapshotRollback " .. "stable")
 end, { desc = "Roll back on a packer snapshot based on the Neovim version used(stable/nightly)" })
