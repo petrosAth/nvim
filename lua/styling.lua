@@ -49,6 +49,7 @@ USER.styling = {
         windows      = { ""                                              },
         update       = { ""                                              },
         save         = { ""                                              },
+        load         = { ""                                              },
         key          = { ""                                              },
         arrowu       = { "", "", "", "", "", "⯅", "▲", "△", "", "" },
         arrowur      = { "", ""                                         },
