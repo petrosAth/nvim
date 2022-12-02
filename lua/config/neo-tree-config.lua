@@ -66,7 +66,7 @@ tree.setup({
         },
         indent = {
             indent_size = 2,
-            padding = 1, -- extra padding on left hand side
+            padding = 0, -- extra padding on left hand side
             -- indent guides
             with_markers = false,
             indent_marker = "│",
@@ -74,8 +74,8 @@ tree.setup({
             highlight = "NeoTreeIndentMarker",
             -- expander config, needed for nesting files
             with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-            expander_collapsed = i.arrowr[1],
-            expander_expanded = i.arrowb[1],
+            expander_collapsed = i.fillchars.global.foldclose,
+            expander_expanded = i.fillchars.global.foldopen,
             expander_highlight = "NeoTreeExpander",
         },
         icon = {
