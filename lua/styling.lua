@@ -131,7 +131,7 @@ USER.styling = {
                 delete       = "🭬",
                 topdelete    = "🭬",
                 changedelete = "🭨",
-                untracked    = "▒",
+                untracked    = "🬠",
             },
         },
         OS = {
