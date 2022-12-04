@@ -412,6 +412,13 @@ return packer.startup(function()
         end,
     })
 
+    -- nvim-unception
+    -- A plugin that leverages Neovim's built-in RPC functionality to simplify opening files from within Neovim's
+    -- terminal emulator without unintentionally nesting sessions
+    use({
+        "samjwill/nvim-unception",
+    })
+
     ---- Miscellaneous -------------------------------------------------------------------------------------------------
     -- tabby.nvim - A minimal, configurable, neovim style tabline. Use your nvim tabs as workspace multiplexer.
     use({
