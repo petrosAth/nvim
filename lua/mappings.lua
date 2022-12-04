@@ -316,8 +316,9 @@ USER.mappings = {
             ["u"] = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 name = "Launch",
-                ["e"] = { "<CMD>LaunchDir dolphin<CR>",           "Open cwd in system file browser",                 },
-                ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", "Open URL under cursor in browser", },
+                ["e"] = { "<CMD>LaunchDir dolphin<CR>",           "Open cwd in system file browser",        },
+                ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", "Open URL under cursor in browser",       },
+                ["t"] = { "<CMD>term<CR>i",                       "Start a terminal session within Neovim", },
             },
         },
     },
