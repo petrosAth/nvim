@@ -417,6 +417,9 @@ return packer.startup(function()
     -- terminal emulator without unintentionally nesting sessions
     use({
         "samjwill/nvim-unception",
+        config = function ()
+            vim.g.unception_delete_replaced_buffer = true
+        end
     })
 
     ---- Miscellaneous -------------------------------------------------------------------------------------------------
