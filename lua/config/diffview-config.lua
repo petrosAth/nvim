@@ -61,12 +61,13 @@ require("diffview").setup({
         DiffviewFileHistory = {},
     },
     hooks = {
-        view_opened = function()
+        view_opened = function(view)
             USER.is_diffview = true
         end,
-        view_closed = function ()
+        view_closed = function()
             USER.is_diffview = false
-        end
+            vim.cmd.tabprevious()
+        end,
     },          -- See ':h diffview-config-hooks'
     keymaps = {
         disable_defaults = false, -- Disable the default keymaps
