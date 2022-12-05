@@ -8,6 +8,7 @@ USER = { -- Custom table to store my functions, tables, variables etc
     styling      = {}, -- Table with variables and icons used for neovim styling
     theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
     mappings     = {}, -- Table for all the key bindings
+    is_diffview  = false, -- Keep status of diffview state
     local_config = { -- Project's local configuration
         dir          = ".nvim",                -- Local config directory
         file         = "init.local.lua",       -- Local config file

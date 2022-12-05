@@ -4,30 +4,30 @@ local M = {}
 
 function M.check_for_custom_title(path, buftype, filetype)
     local SpecialBufTypes = {
-        { buftype = "help",     icon = i.help[1],     title = " Help"     },
-        { buftype = "qf",       icon = i.list[1],     title = " List"     },
-        { buftype = "terminal", icon = i.terminal[1], title = " Terminal" },
+        ["help"]     = i.help[1]     .. " Help",
+        ["qf"]       = i.list[1]     .. " List",
+        ["terminal"] = i.terminal[1] .. " Terminal",
     }
     local SpecialFileTypes = {
-        { filetype = "aerial",              icon = i.codeOutline[1],  title = " Code outline"         },
-        { filetype = "alpha",               icon = i.dashboard[1],    title = " Dashboard"            },
-        { filetype = "Codewindow",          icon = i.minimap[1],      title = " Minimap"              },
-        { filetype = "diff",                icon = i.diffview[1],     title = " Diff Panel"           },
-        { filetype = "DiffviewFileHistory", icon = i.diffview[1],     title = " Diffview history"     },
-        { filetype = "DiffviewFiles",       icon = i.diffview[1],     title = " Diffview files"       },
-        { filetype = "help",                icon = i.help[1],         title = " Help"                 },
-        { filetype = "lspinfo",             icon = i.info[1],         title = " LSP info"             },
-        { filetype = "man",                 icon = i.help[1],         title = " Man page"             },
-        { filetype = "mason",               icon = i.info[1],         title = " Mason status"         },
-        { filetype = "minimap",             icon = i.minimap[1],      title = " Minimap"              },
-        { filetype = "null%-ls%-info",      icon = i.info[1],         title = " Null-ls info"         },
-        { filetype = "NvimTree",            icon = i.fileExplorer[1], title = " File explorer"        },
-        { filetype = "Outline",             icon = i.codeOutline[1],  title = " Code outline"         },
-        { filetype = "packer",              icon = i.info[1],         title = " Packer status"        },
-        { filetype = "qf",                  icon = i.list[1],         title = " List"                 },
-        { filetype = "Trouble",             icon = i.list[1],         title = " List"                 },
-        { filetype = "TelescopePrompt",     icon = i.telescope[1],    title = " Telescope"            },
-        { filetype = "undotree",            icon = i.undoTree[1],     title = " Undotree"             },
+        ["aerial"]              = i.codeOutline[1]  .. " Code outline",
+        ["alpha"]               = i.dashboard[1]    .. " Dashboard",
+        ["Codewindow"]          = i.minimap[1]      .. " Minimap",
+        ["diff"]                = i.diffview[1]     .. " Diff Panel",
+        ["DiffviewFileHistory"] = i.diffview[1]     .. " Diffview history",
+        ["DiffviewFiles"]       = i.diffview[1]     .. " Diffview files",
+        ["help"]                = i.help[1]         .. " Help",
+        ["lspinfo"]             = i.info[1]         .. " LSP info",
+        ["man"]                 = i.help[1]         .. " Man page",
+        ["mason"]               = i.info[1]         .. " Mason status",
+        ["minimap"]             = i.minimap[1]      .. " Minimap",
+        ["null-ls-info"]        = i.info[1]         .. " Null-ls info",
+        ["NvimTree"]            = i.fileExplorer[1] .. " File explorer",
+        ["Outline"]             = i.codeOutline[1]  .. " Code outline",
+        ["packer"]              = i.info[1]         .. " Packer status",
+        ["qf"]                  = i.list[1]         .. " List",
+        ["Trouble"]             = i.list[1]         .. " List",
+        ["TelescopePrompt"]     = i.telescope[1]    .. " Telescope",
+        ["undotree"]            = i.undoTree[1]     .. " Undotree",
     }
     local SpecialFileNames = {
         { bufname = "%[Command Line%]",                     icon = i.history[1],      title = " history"                       },
@@ -40,36 +40,50 @@ function M.check_for_custom_title(path, buftype, filetype)
     }
 
     for _, type in pairs(SpecialBufTypes) do
-        local buftype_match = string.match(buftype, type.buftype)
-        if buftype_match then
-            return true, type.icon .. type.title
+        -- local buftype_match = string.match(buftype, type.buftype)
+        -- if buftype_match then
+        --     return true, type.icon .. type.title
+        -- end
+        if _ == buftype then
+            return true, type
         end
     end
 
     for _, type in pairs(SpecialFileTypes) do
-        local filetype_match = string.match(filetype, type.filetype)
-        if filetype_match then
-            return true, type.icon .. type.title
+        -- local filetype_match = string.match(filetype, type.filetype)
+        -- if filetype_match then
+        --     return true, type.icon .. type.title
+        -- end
+        if _ == filetype then
+            return true, type
         end
     end
 
-    for _, name in pairs(SpecialFileNames) do
-        local filename_match = string.match(path, name.bufname)
-        if filename_match then
-            if name.bufname == "%[Command Line%]" then
-                if vim.bo.filetype == "vim" then
-                    return true, name.icon .. " Command line" .. name.title
-                else
-                    return true, name.icon .. " Search" .. name.title
+    local is_special = buftype == "nofile" and true or USER.is_diffview
+    if is_special then
+        for _, name in pairs(SpecialFileNames) do
+            local filename_match = string.match(path, name.bufname)
+            -- if vim.fn.fnamemodify(path, ":t") == name.bufname then
+            if filename_match then
+                if name.bufname == "%[Command Line%]" then
+                    if vim.bo.filetype == "vim" then
+                        return true, name.icon .. " Command line" .. name.title
+                        -- return true, string.format("%s", filename_match == "[Command Line]")
+                    else
+                        return true, name.icon .. " Search" .. name.title
+                        -- return true, filename_match
+                    end
                 end
-            end
 
-            if name.gitRepo then
-                local commit = string.sub(filename_match, -11, -4)
-                return true, name.icon .. name.title .. commit
-            end
+                if name.gitRepo then
+                    local commit = string.sub(filename_match, -11, -4)
+                    return true, name.icon .. name.title .. commit
+                    -- return true, filename_match
+                end
 
-            return true, name.icon .. name.title
+                return true, name.icon .. name.title
+                -- return true, filename_match
+            end
         end
     end
 

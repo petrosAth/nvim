@@ -60,7 +60,14 @@ require("diffview").setup({
         DiffviewOpen = {},
         DiffviewFileHistory = {},
     },
-    hooks = {},          -- See ':h diffview-config-hooks'
+    hooks = {
+        view_opened = function()
+            USER.is_diffview = true
+        end,
+        view_closed = function ()
+            USER.is_diffview = false
+        end
+    },          -- See ':h diffview-config-hooks'
     keymaps = {
         disable_defaults = false, -- Disable the default keymaps
         view = {
