@@ -22,7 +22,9 @@ require("dressing").setup({
         min_width = { 20, 0.2 },
 
         -- Window transparency (0-100)
-        winblend = t,
+        win_options = {
+            winblend = t,
+        }
     },
     select = {
         -- Set to false to disable the vim.ui.select implementation
