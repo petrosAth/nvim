@@ -66,7 +66,6 @@ require("diffview").setup({
         end,
         view_closed = function()
             USER.is_diffview = USER.is_diffview - 1
-            vim.cmd.tabprevious()
         end,
     },          -- See ':h diffview-config-hooks'
     keymaps = {
