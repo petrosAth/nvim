@@ -48,20 +48,20 @@ end
 
 local function get_diffview_label(path)
     local Matches = {
-        "^diffview:.+/(null)$", -- DiffviewOpen of undracked files
-        "^diffview:.+/:(0):/", -- DiffviewOpen
+        "^(diffview):.+/null$", -- DiffviewOpen of untracked files
+        "^(diffview):.+/:0:/", -- DiffviewOpen
         "^diffview:.+/%.git/.+/([a-z0-9]+[0-9]+[a-z0-9]+)/", -- DiffviewFileHistory
     }
 
-    for index, pattern in pairs(Matches) do
+    for _, pattern in pairs(Matches) do
         local match = string.match(path, pattern)
 
         if match then
-            if index > 2 then
-                return true, Labels["DiffviewCommit"] .. match
+            if match == "diffview" then
+                return true, Labels["DiffviewOriginalFile"]
             end
 
-            return true, Labels["DiffviewOriginalFile"]
+            return true, Labels["DiffviewCommit"] .. match
         end
     end
 
@@ -91,12 +91,12 @@ function M.check_for_custom_title(path, buftype, filetype)
         return get_neo_tree_label(path)
     end
 
-    if USER.is_diffview > 0 then
-        return get_diffview_label(path)
-    end
-
     if buftype == "nofile" then
         return get_cmdwin_label()
+    end
+
+    if USER.is_diffview > 0 then
+        return get_diffview_label(path)
     end
 
     return false, ""
