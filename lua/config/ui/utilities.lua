@@ -25,7 +25,7 @@ local Labels = {
     ["Trouble"]              = i.list[1]         .. " List",
     ["TelescopePrompt"]      = i.telescope[1]    .. " Telescope",
     ["undotree"]             = i.undoTree[1]     .. " Undotree",
-    -- pattern matches
+    -- path matches
     ["DiffviewOriginalFile"] = i.file[1]         .. " Original file",
     ["DiffviewCommit"]       = i.git.commit[1]   .. " ",
     ["neo-tree filesystem"]  = i.fileExplorer[1] .. " File explorer",
@@ -68,7 +68,7 @@ local function get_diffview_label(path)
     return false, ""
 end
 
-local function get_cmdwin_label(buftype)
+local function get_cmdwin_label()
     local match = vim.fn.getcmdwintype()
 
     if match ~= "" then
@@ -96,7 +96,7 @@ function M.check_for_custom_title(path, buftype, filetype)
     end
 
     if buftype == "nofile" then
-        return get_cmdwin_label(buftype)
+        return get_cmdwin_label()
     end
 
     return false, ""
