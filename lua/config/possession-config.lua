@@ -22,7 +22,7 @@ require("possession").setup({
     },
     hooks = {
         before_save = function(name)
-            if USER.is_diffview then
+            if USER.is_diffview > 0 then
                 vim.cmd.tabdo("DiffviewClose")
             end
             return {}

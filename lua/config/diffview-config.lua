@@ -62,10 +62,10 @@ require("diffview").setup({
     },
     hooks = {
         view_opened = function(view)
-            USER.is_diffview = true
+            USER.is_diffview = USER.is_diffview + 1
         end,
         view_closed = function()
-            USER.is_diffview = false
+            USER.is_diffview = USER.is_diffview - 1
             vim.cmd.tabprevious()
         end,
     },          -- See ':h diffview-config-hooks'
