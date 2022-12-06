@@ -225,6 +225,8 @@ function M.get_highlight_groups(palette)
         ["@text.literal"]          = g.syntax.Delimiter,
         ["@text.uri"]              = { fg = p.cBlue, italic = true },
         ["@text.math"]             = g.syntax.Number,
+        ["@text.todo.checked"]     = { fg = p.cGreen },
+        ["@text.todo.unchecked"]   = g.syntax.Todo,
         -- ["@text.environment"]      = {},
         -- ["@text.environment.name"] = {},
         ["@text.reference"]        = g.syntax.SpecialComment,
