@@ -204,12 +204,12 @@ M.win_label = function(win_id)
     local fullPath = vim.api.nvim_buf_get_name(buf_id)
     local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
     local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
-    local has_custom_title, custom_title = u.check_for_custom_title(fullPath, buftype, filetype)
+    local buf_label = u.get_buf_label(fullPath, buftype, filetype)
     local name = filename.unique(win_id)
     local label = name
 
-    if has_custom_title then
-        label = custom_title
+    if buf_label then
+        label = buf_label
     end
 
     return label .. "  "
@@ -232,12 +232,12 @@ local function tab_top_window(tab_id)
     local fullPath = vim.api.nvim_buf_get_name(buf_id)
     local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
     local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
-    local has_custom_title, custom_title = u.check_for_custom_title(fullPath, buftype, filetype)
+    local buf_label = u.get_buf_label(fullPath, buftype, filetype)
     local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
     local label = name
 
-    if has_custom_title then
-        label = custom_title
+    if buf_label then
+        label = buf_label
     end
 
     return label

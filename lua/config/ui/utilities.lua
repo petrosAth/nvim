@@ -40,10 +40,8 @@ local function get_neo_tree_label(path)
     local match = string.match(path, "(neo%-tree .+) .*")
 
     if match then
-        return true, Labels[match]
+        return Labels[match]
     end
-
-    return false, ""
 end
 
 local function get_diffview_label(path)
@@ -58,33 +56,29 @@ local function get_diffview_label(path)
 
         if match then
             if match == "diffview" then
-                return true, Labels["DiffviewOriginalFile"]
+                return Labels["DiffviewOriginalFile"]
             end
 
-            return true, Labels["DiffviewCommit"] .. match
+            return Labels["DiffviewCommit"] .. match
         end
     end
-
-    return false, ""
 end
 
 local function get_cmdwin_label()
     local match = vim.fn.getcmdwintype()
 
     if match ~= "" then
-        return true, Labels[match]
+        return Labels[match]
     end
-
-    return false, ""
 end
 
-function M.check_for_custom_title(path, buftype, filetype)
+function M.get_buf_label(path, buftype, filetype)
     if Labels[buftype] then
-        return true, Labels[buftype]
+        return Labels[buftype]
     end
 
     if Labels[filetype] then
-        return true, Labels[filetype]
+        return Labels[filetype]
     end
 
     if filetype == "neo-tree" then
@@ -98,8 +92,6 @@ function M.check_for_custom_title(path, buftype, filetype)
     if USER.is_diffview > 0 then
         return get_diffview_label(path)
     end
-
-    return false, ""
 end
 
 return M

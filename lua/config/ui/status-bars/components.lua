@@ -157,9 +157,9 @@ M.CustomTitle = {
     end,
 
     provider = function(self)
-        local has_custom_title, custom_title = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
-        if has_custom_title then
-            return h.Separator.left.provider .. custom_title .. h.Separator.right.provider
+        local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        if buf_label then
+            return h.Separator.left.provider .. buf_label .. h.Separator.right.provider
         end
 
         return ""

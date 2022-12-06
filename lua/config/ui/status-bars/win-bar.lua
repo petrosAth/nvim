@@ -21,8 +21,8 @@ local WinBarSpecialNC = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
-        local has_custom_title, _ = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
-        return not conditions.is_active() and has_custom_title
+        local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        return not conditions.is_active() and buf_label
     end,
     {
         {
@@ -77,8 +77,8 @@ local WinBarSpecial = {
     condition = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
-        local has_custom_title, _ = u.check_for_custom_title(self.fullPath, vim.bo.buftype, vim.bo.filetype)
-        return has_custom_title
+        local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+        return buf_label
     end,
     {
         {
