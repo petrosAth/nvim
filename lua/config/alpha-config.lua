@@ -68,7 +68,7 @@ local buttons_navigation = {
 local buttons_utility = {
     type = "group",
     val = {
-        button("LDR u u l", string.format("%s %s Update LSP packages", i.alphaCursor[1], i.update[1])),
+        button("LDR u u l", string.format("%s %s Update external tooling", i.alphaCursor[1], i.update[1])),
         button("LDR u u p", string.format("%s %s Preview plugins updates", i.alphaCursor[1], i.preview[1])),
         button("LDR u u P", string.format("%s %s Update plugins", i.alphaCursor[1], i.update[1])),
         button("LDR u u S", string.format("%s %s Snapshot plugins", i.alphaCursor[1], i.save[1])),
