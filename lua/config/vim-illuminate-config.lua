@@ -14,6 +14,7 @@ require("illuminate").configure({
         "lspinfo",
         "mason",
         "minimap",
+        "neo-tree",
         "NvimTree",
         "Outline",
         "packer",
