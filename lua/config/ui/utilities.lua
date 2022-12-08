@@ -46,8 +46,8 @@ end
 
 local function get_diffview_label(path)
     local Matches = {
-        "^(diffview):.+/null$", -- DiffviewOpen of untracked files
-        "^(diffview):.+/:0:/", -- DiffviewOpen
+        "^(diffview):.+/null$", -- DiffviewOpen Original untracked file
+        "^(diffview):.+/:0:/", -- DiffviewOpen Original file
         "^diffview:.+/%.git/.+/([a-z0-9]+[0-9]+[a-z0-9]+)/", -- DiffviewFileHistory
     }
 
@@ -89,7 +89,8 @@ function M.get_buf_label(path, buftype, filetype)
         return get_cmdwin_label()
     end
 
-    if USER.is_diffview > 0 then
+    -- if USER.is_diffview > 0 then
+    if vim.api.nvim_win_get_option(0, "diff") then
         return get_diffview_label(path)
     end
 end

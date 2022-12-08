@@ -22,9 +22,19 @@ require("possession").setup({
     },
     hooks = {
         before_save = function(name)
-            if USER.is_diffview > 0 then
+            local diff = false
+            local wins = vim.api.nvim_list_wins()
+
+            for _, win_nr in ipairs(wins) do
+                if vim.api.nvim_win_get_option(win_nr, "diff") then
+                    diff = true
+                end
+            end
+
+            if diff then
                 vim.cmd.tabdo("DiffviewClose")
             end
+
             return {}
         end,
         after_save = function(name, user_data, aborted) end,
