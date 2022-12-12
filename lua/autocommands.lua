@@ -51,21 +51,32 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
     command = [[if &nu | set nornu | endif]],
 })
 
-local bufEnterAutoCMD = augroup("bufEnterAutoCMD", { clear = true })
--- r - Automatically insert the current comment leader after hitting <Enter> in Insert mode.
--- o - Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+local setFormatOption = augroup("setFormatOption", { clear = true })
 autocmd("BufEnter", {
-    group = bufEnterAutoCMD,
+    group = setFormatOption,
     pattern = "*",
-    desc = "Don't automatically insert comment leader.",
+    desc = "Set buffer local formatoptions.",
     callback = function()
-        vim.opt_local.formatoptions:remove({ "r", "o" })
+        vim.opt_local.formatoptions:remove({
+            "r", -- r - Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+            "o", -- o - Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+        })
     end,
 })
 
-local bufWritePreAutoCMD = augroup("bufWritePreAutoCMD", { clear = true })
+local terminalSetNoSpell = augroup("terminalSetNoSpell", { clear = true })
+autocmd("TermOpen", {
+    group = terminalSetNoSpell,
+    pattern = "*",
+    desc = "Disable spell checking in terminal buffers.",
+    callback = function()
+        vim.opt_local.spell = false
+    end,
+})
+
+local clearSpaces = augroup("clearSpaces", { clear = true })
 autocmd("BufWritePre", {
-    group = bufWritePreAutoCMD,
+    group = clearSpaces,
     desc = "Trim trailing whitespace and redundant blank lines on buffer save.",
     command = [[
         let current_pos = getpos(".")
@@ -84,9 +95,8 @@ vim.api.nvim_create_autocmd("User", {
         local h = require("config.ui.status-bars.tables")
         local buftype = vim.tbl_contains(h.Disable.winBar.buftype, vim.bo[buf].buftype)
         local filetype = vim.tbl_contains(h.Disable.winBar.filetype, vim.bo[buf].filetype)
-        if vim.api.nvim_win_get_config(0).relative ~= ""
-            or buftype or filetype then
-                vim.opt_local.winbar = nil
+        if vim.api.nvim_win_get_config(0).relative ~= "" or buftype or filetype then
+            vim.opt_local.winbar = nil
         end
     end,
 })
