@@ -79,7 +79,7 @@ function M.get_highlight_groups(palette)
     }
 
     g.syntax = {
-        Comment = { fg = p.cFill5 },
+        Comment = { fg = p.cFill5, italic = true },
 
         Constant = { fg = p.cFgLight, bold = true },
         String = { fg = p.cGreen, italic = true },
@@ -273,10 +273,10 @@ function M.get_highlight_groups(palette)
     }
 
     g.SidePanel = {
-        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgDim },
+        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgOpaque },
         SidePanelNormalNC     = { link = "SidePanelNormal" },
-        SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgDim },
-        SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgDim }
+        SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgOpaque },
+        SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgOpaque }
     }
 
     g.plugins = {
