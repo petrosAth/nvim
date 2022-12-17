@@ -32,15 +32,6 @@ require("diffview").setup({
         },
     },
     file_history_panel = {
-        log_options = {
-            single_file = {
-                max_count = 512, -- Limit the number of commits
-                follow = true, -- Follow renames (only for single file)
-            },
-            multi_file = {
-                max_count = 512, -- Limit the number of commits
-            },
-        },
         win_config = { -- See ':h diffview-config-win_config'
             position = "bottom",
             height = 16,
