@@ -255,10 +255,9 @@ return packer.startup(function()
         run = ":TSUpdate",
         requires = {
             -- nvim-ts-rainbow - Rainbow parentheses for neovim using tree-sitter
-            {
-                "p00f/nvim-ts-rainbow",
-                after = { "nvim-treesitter" },
-            },
+            { "p00f/nvim-ts-rainbow" },
+            -- nvim-treesitter-textobjects - Syntax aware text-objects, select, move, swap, and peek support.
+            { "nvim-treesitter/nvim-treesitter-textobjects" },
         },
         config = function()
             require("config.treesitter-config")
@@ -417,9 +416,9 @@ return packer.startup(function()
     -- terminal emulator without unintentionally nesting sessions
     use({
         "samjwill/nvim-unception",
-        config = function ()
+        config = function()
             vim.g.unception_delete_replaced_buffer = true
-        end
+        end,
     })
 
     ---- Miscellaneous -------------------------------------------------------------------------------------------------
