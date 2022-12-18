@@ -7,7 +7,7 @@ function M.get_highlight_groups(palette)
     g.editor = {
         Normal = { fg = p.cFg, bg = p.cBg },
         NormalNC = { fg = p.cFg, bg = p.cBg },
-        NormalFloat = { fg = p.cFg, bg = p.cBgDark },
+        FloatNormal = { fg = p.cFg, bg = p.cBgDark },
         FloatBorder = { fg = p.cFill1, bg = p.cBgDark },
         ColorColumn = { bg = p.cBgDim },
         Cursor = { reverse = true },
@@ -273,7 +273,7 @@ function M.get_highlight_groups(palette)
     }
 
     g.SidePanel = {
-        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgOpaque },
+        SidePanelNormal       = { fg = g.editor.FloatNormal.fg,  bg = p.cBgOpaque },
         SidePanelNormalNC     = { link = "SidePanelNormal" },
         SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgOpaque },
         SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgOpaque }
@@ -287,7 +287,7 @@ function M.get_highlight_groups(palette)
         AlphaFooter = { fg = p.cFill5 },
 
         -- codewindow.nvim
-        CodewindowBackground = { link = "NormalFloat" },
+        CodewindowBackground = { link = "FloatNormal" },
         CodewindowBorder = { link = "FloatBorder" },
         CodewindowWarn = { link = "DiagnosticWarn" },
         CodewindowError = { link = "DiagnosticError" },
@@ -328,7 +328,7 @@ function M.get_highlight_groups(palette)
         HopUnmatched = { fg = p.cFill4 },
 
         -- hydra.nvim
-        HydraHint = { link = "NormalFloat" },
+        HydraHint = { link = "FloatNormal" },
         HydraAmaranth = { fg = p.cOrange },
         HydraTeal = { fg = p.cViolet },
         HydraPink = { fg = p.cMagenta },
@@ -422,26 +422,26 @@ function M.get_highlight_groups(palette)
         NavicSeparator = g.editor.WinBar,
 
         -- nvim-notify
-        NotifyERRORTitle = { fg = p.cRed, bg = g.editor.NormalFloat.bg },
-        NotifyWARNTitle = { fg = p.cYellow, bg = g.editor.NormalFloat.bg },
-        NotifyINFOTitle = { fg = p.cCyan, bg = g.editor.NormalFloat.bg },
-        NotifyDEBUGTitle = { fg = p.cOrange, bg = g.editor.NormalFloat.bg },
-        NotifyTRACETitle = { fg = p.cSelect, bg = g.editor.NormalFloat.bg },
-        NotifyERRORIcon = { fg = p.cRed, bg = g.editor.NormalFloat.bg },
-        NotifyWARNIcon = { fg = p.cYellow, bg = g.editor.NormalFloat.bg },
-        NotifyINFOIcon = { fg = p.cCyan, bg = g.editor.NormalFloat.bg },
-        NotifyDEBUGIcon = { fg = p.cOrange, bg = g.editor.NormalFloat.bg },
-        NotifyTRACEIcon = { fg = p.cSelect, bg = g.editor.NormalFloat.bg },
+        NotifyERRORTitle = { fg = p.cRed, bg = g.editor.FloatNormal.bg },
+        NotifyWARNTitle = { fg = p.cYellow, bg = g.editor.FloatNormal.bg },
+        NotifyINFOTitle = { fg = p.cCyan, bg = g.editor.FloatNormal.bg },
+        NotifyDEBUGTitle = { fg = p.cOrange, bg = g.editor.FloatNormal.bg },
+        NotifyTRACETitle = { fg = p.cSelect, bg = g.editor.FloatNormal.bg },
+        NotifyERRORIcon = { fg = p.cRed, bg = g.editor.FloatNormal.bg },
+        NotifyWARNIcon = { fg = p.cYellow, bg = g.editor.FloatNormal.bg },
+        NotifyINFOIcon = { fg = p.cCyan, bg = g.editor.FloatNormal.bg },
+        NotifyDEBUGIcon = { fg = p.cOrange, bg = g.editor.FloatNormal.bg },
+        NotifyTRACEIcon = { fg = p.cSelect, bg = g.editor.FloatNormal.bg },
         NotifyERRORBorder = { link = "FloatBorder" },
         NotifyWARNBorder = { link = "FloatBorder" },
         NotifyINFOBorder = { link = "FloatBorder" },
         NotifyDEBUGBorder = { link = "FloatBorder" },
         NotifyTRACEBorder = { link = "FloatBorder" },
-        NotifyERRORBody = { link = "NormalFloat" },
-        NotifyWARNBody = { link = "NormalFloat" },
-        NotifyINFOBody = { link = "NormalFloat" },
-        NotifyDEBUGBody = { link = "NormalFloat" },
-        NotifyTRACEBody = { link = "NormalFloat" },
+        NotifyERRORBody = { link = "FloatNormal" },
+        NotifyWARNBody = { link = "FloatNormal" },
+        NotifyINFOBody = { link = "FloatNormal" },
+        NotifyDEBUGBody = { link = "FloatNormal" },
+        NotifyTRACEBody = { link = "FloatNormal" },
 
         -- nvim-scrollbar
         ScrollBarHandle = { bg = p.cFill3 },
@@ -580,7 +580,7 @@ function M.get_highlight_groups(palette)
         WhichKeyDesc = { fg = p.cBlue },
         WhichKeySeparator = { fg = p.cFill4 },
         WhichKeyValue = { link = "Comment" },
-        WhichKeyFloat = { link = "NormalFloat" },
+        WhichKeyFloat = { link = "FloatNormal" },
     }
 
     return g
