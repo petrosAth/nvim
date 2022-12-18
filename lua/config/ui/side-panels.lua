@@ -26,7 +26,6 @@ M.set_local_highlights = function()
     vim.api.nvim_set_hl(ns, "WinSeparator", vim.api.nvim_get_hl_by_name("SidePanelWinSeparator", true))
     vim.api.nvim_set_hl(ns, "CursorLineFold", vim.api.nvim_get_hl_by_name("CursorLine", true))
     vim.api.nvim_win_set_hl_ns(0, ns)
-    vim.api.nvim_win_set_hl_ns(0, ns)
 end
 
 return M
