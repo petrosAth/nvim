@@ -469,7 +469,8 @@ function M.get_highlight_groups(palette)
         NeoTreeNormal = { link = "SidePanelNormal" },
         NeoTreeNormalNC = { link = "SidePanelNormalNC" },
         NeoTreePreview = { fg = p.cFg, bg = p.cFill5 },
-        NeoTreeFloatBorder = { link = "FloatBorder" },
+        NeoTreeFloatNormal = { fg = g.editor.Normal.fg, bg = p.cBgDim },
+        NeoTreeFloatBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
         NeoTreeFloatTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
         NeoTreeWinSeparator = { link = "SidePanelWinSeparator" },
 
