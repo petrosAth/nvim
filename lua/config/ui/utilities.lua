@@ -48,7 +48,7 @@ local function get_diffview_label(path)
     local Matches = {
         "^(diffview):.+/null$", -- DiffviewOpen Original untracked file
         "^(diffview):.+/:0:/", -- DiffviewOpen Original file
-        "^diffview:.+/%.git/.+/([a-z0-9]+[0-9]+[a-z0-9]+)/", -- DiffviewFileHistory
+        "^diffview:.+/%.git.*/([a-z0-9]+[0-9]+[a-z0-9]+)/", -- DiffviewFileHistory
     }
 
     for _, pattern in pairs(Matches) do
