@@ -20,12 +20,13 @@ M.set_non_chars = function()
     ol.listchars:append(lc.custom)
 end
 
-M.set_local_highlights = function()
+M.set_local_highlights = function(win)
+    win = win or vim.api.nvim_get_current_win()
     vim.api.nvim_set_hl(ns, "Normal", vim.api.nvim_get_hl_by_name("SidePanelNormal", true))
     vim.api.nvim_set_hl(ns, "NormalNC", vim.api.nvim_get_hl_by_name("SidePanelNormalNC", true))
     vim.api.nvim_set_hl(ns, "WinSeparator", vim.api.nvim_get_hl_by_name("SidePanelWinSeparator", true))
     vim.api.nvim_set_hl(ns, "CursorLineFold", vim.api.nvim_get_hl_by_name("CursorLine", true))
-    vim.api.nvim_win_set_hl_ns(0, ns)
+    vim.api.nvim_win_set_hl_ns(win, ns)
 end
 
 return M
