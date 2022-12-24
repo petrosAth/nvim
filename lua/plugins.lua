@@ -34,7 +34,7 @@ packer.init({
         error_sym = i.lsp.error[1], -- The symbol for a plugin with an error in installation/updating
         done_sym = i.done[1], -- The symbol for a plugin which has completed installation/updating
         removed_sym = i.delete[1], -- The symbol for an unused plugin which was removed
-        moved_sym = i.arrowr[1], -- The symbol for a plugin which was moved (e.g. from opt to start)
+        moved_sym = i.arrow.hollow.r, -- The symbol for a plugin which was moved (e.g. from opt to start)
         header_sym = bs.t, -- The symbol for the header line in packer's display
         prompt_border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }, -- Border style of prompt popups.
     },

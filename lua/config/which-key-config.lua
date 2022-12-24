@@ -34,8 +34,8 @@ wk.setup({
         ["<Leader>"] = "LDR"
     },
     icons = {
-        breadcrumb = i.arrowr[1], -- symbol used in the command line area that shows your active key combo
-        separator = i.arrowr[1], -- symbol used between a key and it's label
+        breadcrumb = i.arrow.hollow.r, -- symbol used in the command line area that shows your active key combo
+        separator = i.arrow.hollow.r, -- symbol used between a key and it's label
         group = i.key[1] .. " ", -- symbol prepended to a group
     },
     popup_mappings = {

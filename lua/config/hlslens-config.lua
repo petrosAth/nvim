@@ -25,9 +25,9 @@ require("hlslens").setup({
         local indicator, text, chunks
         local absRelIdx = math.abs(relIdx)
         if absRelIdx > 0 then
-            indicator = ('%d%s'):format(absRelIdx, sfw ~= (relIdx > 0) and i.arrowu[1] or i.arrowb[1])
+            indicator = ('%d%s'):format(absRelIdx, sfw ~= (relIdx > 0) and i.arrow.hollow.u or i.arrow.hollow.d)
         else
-            indicator = i.arrowr[1]
+            indicator = i.arrow.hollow.r
         end
 
         local lnum, col = unpack(posList[idx])

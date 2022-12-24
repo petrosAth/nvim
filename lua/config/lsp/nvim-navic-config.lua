@@ -10,7 +10,7 @@ end
 require("nvim-navic").setup({
     icons = navic_kinds(),
     highlight = true,
-    separator = string.format(" %s ", i.arrowr[1]),
+    separator = string.format(" %s ", i.arrow.hollow.r),
     depth_limit = 0,
     depth_limit_indicator = "..",
     safe_output = true,

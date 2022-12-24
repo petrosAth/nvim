@@ -1,11 +1,11 @@
 require("pretty-fold").setup({
-    fill_char = "─",
+    fill_char = "·",
     sections = {
         left = {
             "content"
         },
         right = {
-            " ", "number_of_folded_lines", " │ ", "percentage", " ────"
+            " ", "number_of_folded_lines", " │ ", "percentage", " ····"
         }
     },
 

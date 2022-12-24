@@ -219,7 +219,7 @@ local Navic = {
     end,
     provider = function(self)
         local context = self.navic.get_location()
-        return context ~= "" and " " .. i.arrowr[1] .. " " .. context or ""
+        return context ~= "" and " " .. i.arrow.hollow.r .. " " .. context or ""
     end,
     update = "CursorMoved",
 }
