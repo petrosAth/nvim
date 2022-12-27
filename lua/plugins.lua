@@ -62,11 +62,11 @@ return packer.startup(function()
         end,
     })
 
-    -- neoscroll.nvim - Smooth scrolling Neovim plugin written in Lua
+    -- mini.animate - Neovim Lua plugin to animate common Neovim actions. Part of 'mini.nvim' library.
     use({
-        "karb94/neoscroll.nvim",
+        "echasnovski/mini.animate",
         config = function()
-            require("config.neoscroll-config")
+            require("config.mini-config")
         end,
     })
 
