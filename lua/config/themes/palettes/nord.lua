@@ -28,7 +28,6 @@ M.base = {
     cBgDark      = u.adjustHSL(p.nord0, 0, 0, -5),
     cBgDim       = u.adjustHSL(p.nord0, 0, 0, -2),
     cBg          = p.nord0,
-    cBgOpaque    = u.adjustHSL(p.nord0, 0, 0, 0.3),
 
     cFgDim       = u.adjustHSL(p.nord3, 0, 0, 25),
     cFg          = p.nord4,

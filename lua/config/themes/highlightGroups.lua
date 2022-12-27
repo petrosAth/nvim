@@ -273,10 +273,10 @@ function M.get_highlight_groups(palette)
     }
 
     g.SidePanel = {
-        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgOpaque },
+        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgDim },
         SidePanelNormalNC     = { link = "SidePanelNormal" },
-        SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgOpaque },
-        SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgOpaque }
+        SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgDim },
+        SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgDim }
     }
 
     g.plugins = {
