@@ -10,11 +10,11 @@ animate.setup({
         timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
 
         -- Path generator for visualized cursor movement
-        path = animate.gen_path.line({
-            predicate = function()
-                return true
-            end,
-        }),
+        -- path = animate.gen_path.line({
+        --     predicate = function()
+        --         return true
+        --     end,
+        -- }),
     },
     -- Vertical scroll
     scroll = {
