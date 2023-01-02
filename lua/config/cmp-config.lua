@@ -125,7 +125,6 @@ cmp.setup({
         { name = "nvim_lua", keyword_length = 3 },
         { name = "luasnip", keyword_length = 1 },
         { name = "path", keyword_length = 1 },
-        { name = "calc", keyword_length = 3 },
         { name = "spell", keyword_length = 2 },
     }),
     preselect = cmp.PreselectMode.None,
@@ -138,7 +137,6 @@ cmp.setup({
                 nvim_lua = "[LUA]",
                 luasnip = "[SNP]",
                 path = "[PTH]",
-                calc = "[CLC]",
                 spell = "[ABC]",
             })[entry.source.name]
             return vim_item
