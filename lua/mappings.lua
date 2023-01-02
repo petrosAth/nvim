@@ -256,7 +256,8 @@ USER.mappings = {
                 ["K"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
                 ["r"] = { telescope_picker("lsp_references"),                  "References"                            }, -- nvim-lspconfig -- telescope.nvim
                 ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
-                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signagture help"                       }, -- nvim-lspconfig
+                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signature help"                        }, -- nvim-lspconfig
+                ["t"] = { telescope_picker("lsp_type_definitions"),            "Type Definitions"                      }, -- nvim-lspconfig -- telescope.nvim
             },
             ["m"] = {
                 name = "Minimap",

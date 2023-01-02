@@ -121,6 +121,10 @@ function M.lsp_definitions()
     builtin.lsp_definitions(lsp_layout)
 end
 
+function M.lsp_type_definitions()
+    builtin.lsp_type_definitions(lsp_layout)
+end
+
 function M.lsp_implementations()
     builtin.lsp_implementations(lsp_layout)
 end
