@@ -1,37 +1,49 @@
-require("mason-tool-installer").setup({
-    -- a list of all tools you want to ensure are installed upon
-    -- start; they should be the names Mason uses for each tool
-    ensure_installed = {
-        -- LSP
-        "bash-language-server",
-        "css-lsp",
-        "clangd",
-        "emmet-ls",
-        "lua-language-server",
-        "omnisharp",
-        "omnisharp-mono",
-        "powershell-editor-services",
-        "pyright",
-        "taplo",
-        "typescript-language-server",
-        "vim-language-server",
-        "yaml-language-server",
-        -- Formatters
-        "prettierd",
-        "stylua",
-        -- Linters
-        "selene",
-        "vale",
-    },
+local M = {}
 
-    -- if set to true this will check each tool for updates. If updates
-    -- are available the tool will be updated.
-    -- Default: false
-    auto_update = false,
+local function get_lsp_servers()
+    local servers = require("config.lsp").servers
+    local remap = require("mason-lspconfig.mappings.server").lspconfig_to_package
+    local mapped_servers = {}
 
-    -- automatically install / update on startup. If set to false nothing
-    -- will happen on startup. You can use `:MasonToolsUpdate` to install
-    -- tools and check for updates.
-    -- Default: true
-    run_on_start = true,
-})
+    for _, server in ipairs(servers) do
+        table.insert(mapped_servers, remap[server])
+    end
+
+    return mapped_servers
+end
+
+local function get_null_ls_sources()
+    local sources_table = require("config.lsp.null-ls-config").sources
+    local sources = {}
+
+    for _, source in ipairs(sources_table) do
+        if source["name"] ~= "zsh" then
+            table.insert(sources, source["name"])
+        end
+    end
+
+    return sources
+end
+
+local ensure_installed = function()
+    local tools = get_lsp_servers()
+    vim.list_extend(tools, get_null_ls_sources())
+
+    return tools
+end
+
+function M.setup()
+    local loaded, mason_tool_installer = pcall(require, "mason-tool-installer")
+    if not loaded then
+        vim.notify("mason-tool-installer", "ERROR", { title = "Loading failure" })
+        return
+    end
+
+    mason_tool_installer.setup({
+        ensure_installed = ensure_installed(),
+        auto_update = false,
+        run_on_start = true,
+    })
+end
+
+return M

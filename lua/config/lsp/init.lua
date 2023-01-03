@@ -1,11 +1,12 @@
 local M = {}
-local i = USER.styling.icons
-local b = USER.styling.borders.default
+local icons = USER.styling.icons
+local borders = USER.styling.borders.default
 
 -- List of servers for installation
 M.servers = {
     "bashls",
     "cssls",
+    "cssmodules_ls",
     "clangd",
     "emmet_ls",
     "omnisharp",
@@ -20,20 +21,20 @@ M.servers = {
 
 -- Borders for LSP floating windows
 local border = {
-    { b.tl, "FloatBorder" },
-    { b.t, "FloatBorder" },
-    { b.tr, "FloatBorder" },
-    { b.r, "FloatBorder" },
-    { b.br, "FloatBorder" },
-    { b.b, "FloatBorder" },
-    { b.bl, "FloatBorder" },
-    { b.l, "FloatBorder" },
+    { borders.tl, "FloatBorder" },
+    { borders.t, "FloatBorder" },
+    { borders.tr, "FloatBorder" },
+    { borders.r, "FloatBorder" },
+    { borders.br, "FloatBorder" },
+    { borders.b, "FloatBorder" },
+    { borders.bl, "FloatBorder" },
+    { borders.l, "FloatBorder" },
 }
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts = {
-        max_width = 80,
+        -- max_width = 80,
         border = opts.border or border,
     }
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
@@ -44,7 +45,7 @@ vim.diagnostic.config({
     virtual_text = {
         source = "if_many", --"always" "if_many"
         spacing = 4,
-        prefix = i.lsp.virtText[1],
+        prefix = icons.lsp.virtText[1],
     },
     signs = true,
     underline = true,
@@ -53,7 +54,12 @@ vim.diagnostic.config({
 })
 
 -- Set diagnostic signs
-local signs = { Error = i.lsp.error[1], Warn = i.lsp.warn[1], Hint = i.lsp.hint[1], Info = i.lsp.info[1] }
+local signs = {
+    Error = icons.lsp.error[1],
+    Warn = icons.lsp.warn[1],
+    Hint = icons.lsp.hint[1],
+    Info = icons.lsp.info[1],
+}
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -72,15 +78,37 @@ M.root_files = {
     ".stylua.toml",
 }
 
+local root_files = {
+    "selene.toml",
+    "selene.yml",
+    "stylua.toml",
+    ".git",
+    ".luarc.json",
+    ".luacheckrc",
+    "Makefile",
+    ".nvim",
+    ".stylua.toml",
+}
+
 -- Configure lsp capabilities
 function M.capabilities()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+    }
+    capabilities.textDocument.completion.completionItem.resolveSupport = {
+        properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+        },
+    }
 
     -- cmp-nvim-lsp
     -- Use lsp to populate cmp completions
-    local cmp_lsp = require("cmp_nvim_lsp")
-    capabilities = cmp_lsp.default_capabilities(capabilities)
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
     return capabilities
 end
@@ -92,5 +120,10 @@ function M.on_attach(client, bufnr)
     end
 end
 
+function M.setup()
+    require("config.lsp.mason-tool-installer-config").setup()
+    require("config.lsp.null-ls-config").setup(root_files, border)
+    require("config.lsp.nvim-navic-config").setup(icons)
 end
+
 return M

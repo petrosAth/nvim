@@ -112,39 +112,30 @@ return packer.startup(function()
     })
 
     ---- Autocompletion and Syntax highlighting ---------------------------------------------------------------------
-    -- mason.nvim - Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
-    -- servers, DAP servers, linters, and formatters.
-    use({
-        "williamboman/mason.nvim",
-        after = "nvim-lspconfig",
-        requires = {
-            -- mason-tool-installer - Install and upgrade third party tools automatically
-            {
-                "WhoIsSethDaniel/mason-tool-installer.nvim",
-                after = "mason.nvim",
-                config = function()
-                    require("config.lsp.mason-tool-installer-config")
-                end,
-            },
-            -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
-            {
-                "williamboman/mason-lspconfig.nvim",
-                after = "mason.nvim",
-                config = function()
-                    require("config.lsp.mason-lspconfig-config")
-                end,
-            },
-        },
-        config = function()
-            require("config.lsp.mason-config")
-        end,
-    })
-
     -- nvim-lspconfig - Neovim's built-in language server client.
     use({
         "neovim/nvim-lspconfig",
         after = "cmp-nvim-lsp",
         requires = {
+            -- mason.nvim - Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
+            -- servers, DAP servers, linters, and formatters.
+            {
+                "williamboman/mason.nvim",
+                config = function()
+                    require("config.lsp.mason-config")
+                end,
+            },
+            -- mason-tool-installer - Install and upgrade third party tools automatically
+            {
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
+                -- config = function()
+                --     require("config.lsp.mason-tool-installer-config")
+                -- end,
+            },
+            -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
+            {
+                "williamboman/mason-lspconfig.nvim",
+            },
             -- lsp_signature - LSP signature hint as you type
             {
                 "ray-x/lsp_signature.nvim",
@@ -155,9 +146,9 @@ return packer.startup(function()
             -- null-ls.nvim - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
             {
                 "jose-elias-alvarez/null-ls.nvim",
-                config = function()
-                    require("config.lsp.null-ls-config")
-                end,
+                -- config = function()
+                --     require("config.lsp.null-ls-config")
+                -- end,
             },
             -- inc-rename.nvim - Incremental LSP rename command based on Neovim's command-preview feature
             {
@@ -188,6 +179,10 @@ return packer.startup(function()
                 end,
             },
         },
+        config = function()
+            require("config.lsp").setup()
+            require("config.lsp.mason-lspconfig-config")
+        end,
     })
 
     -- nvim-cmp - A completion engine plugin for neovim written in Lua

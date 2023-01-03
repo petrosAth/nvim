@@ -1,46 +1,43 @@
-local root_files = require("config.lsp").root_files
-local b = USER.styling.borders.default
+local M = {}
+
 local null_ls = require("null-ls")
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
-null_ls.setup({
-    root_dir = require("null-ls.utils").root_pattern(table.concat(root_files, " ,")),
-    sources = {
-        formatting.stylua,
-        formatting.prettierd.with({
-            filetypes = {
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact",
-                "vue",
-                "css",
-                "scss",
-                "less",
-                "html",
-                "json",
-                "jsonc",
-                "yaml",
-                "markdown",
-                "markdown.mdx",
-                "graphql",
-                "handlebars",
-            },
-            command = "prettierd",
-        }),
-        diagnostics.selene,
-        diagnostics.vale,
-        diagnostics.zsh,
-    },
-    border = {
-        { b.tl, "FloatBorder" },
-        { b.t, "FloatBorder" },
-        { b.tr, "FloatBorder" },
-        { b.r, "FloatBorder" },
-        { b.br, "FloatBorder" },
-        { b.b, "FloatBorder" },
-        { b.bl, "FloatBorder" },
-        { b.l, "FloatBorder" },
-    },
-})
+M.sources = {
+    formatting.stylua,
+    formatting.prettierd.with({
+        filetypes = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+            "css",
+            "scss",
+            "less",
+            "html",
+            "json",
+            "jsonc",
+            "yaml",
+            "markdown",
+            "markdown.mdx",
+            "graphql",
+            "handlebars",
+        },
+        command = "prettierd",
+    }),
+    diagnostics.selene,
+    diagnostics.vale,
+    diagnostics.zsh,
+}
+
+function M.setup(root_files, border)
+    null_ls.setup({
+        root_dir = require("null-ls.utils").root_pattern(table.concat(root_files, " ,")),
+        sources = M.sources,
+        border = border,
+    })
+end
+
+return M

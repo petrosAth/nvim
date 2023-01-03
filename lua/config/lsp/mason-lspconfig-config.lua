@@ -1,16 +1,16 @@
 local b = USER.styling.borders.default
 
--- Get language server list for installation
-local lsp_cfg = require("config.lsp")
-local servers = lsp_cfg.servers
+local lspconfig = require("lspconfig")
+
+-- Set lspinfo window borders
+require("lspconfig.ui.windows").default_options.border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
 require("mason-lspconfig").setup()
 
-local lspconfig = require("lspconfig")
+local lsp_cfg = require("config.lsp")
+local servers = lsp_cfg.servers
 local capabilities = lsp_cfg.capabilities()
 local on_attach = lsp_cfg.on_attach
-
-require("lspconfig.ui.windows").default_options.border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
 -- Setup language servers
 for _, name in ipairs(servers) do
