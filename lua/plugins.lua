@@ -126,58 +126,21 @@ return packer.startup(function()
                 end,
             },
             -- mason-tool-installer - Install and upgrade third party tools automatically
-            {
-                "WhoIsSethDaniel/mason-tool-installer.nvim",
-                -- config = function()
-                --     require("config.lsp.mason-tool-installer-config")
-                -- end,
-            },
+            { "WhoIsSethDaniel/mason-tool-installer.nvim" },
             -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
-            {
-                "williamboman/mason-lspconfig.nvim",
-            },
+            { "williamboman/mason-lspconfig.nvim" },
             -- lsp_signature - LSP signature hint as you type
-            {
-                "ray-x/lsp_signature.nvim",
-                config = function()
-                    require("config.lsp.lsp-signature-config")
-                end,
-            },
+            { "ray-x/lsp_signature.nvim" },
             -- null-ls.nvim - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-            {
-                "jose-elias-alvarez/null-ls.nvim",
-                -- config = function()
-                --     require("config.lsp.null-ls-config")
-                -- end,
-            },
+            { "jose-elias-alvarez/null-ls.nvim" },
             -- inc-rename.nvim - Incremental LSP rename command based on Neovim's command-preview feature
-            {
-                "smjonas/inc-rename.nvim",
-                config = function()
-                    require("inc_rename").setup()
-                end,
-            },
+            { "smjonas/inc-rename.nvim" },
             -- j-hui/fidget.nvim - Standalone UI for nvim-lsp progress
-            {
-                "j-hui/fidget.nvim",
-                config = function()
-                    require("config.lsp.fidget-config")
-                end,
-            },
+            { "j-hui/fidget.nvim" },
             -- nvim-lightbulb - VSCode bulb for neovim's built-in LSP.
-            {
-                "kosayoda/nvim-lightbulb",
-                config = function()
-                    require("config.lsp.nvim-lightbulb-config")
-                end,
-            },
+            { "kosayoda/nvim-lightbulb" },
             -- nvim-navic - Simple winbar/statusline plugin that shows your current code context
-            {
-                "SmiteshP/nvim-navic",
-                config = function()
-                    require("config.lsp.nvim-navic-config")
-                end,
-            },
+            { "SmiteshP/nvim-navic" },
         },
         config = function()
             require("config.lsp").setup()

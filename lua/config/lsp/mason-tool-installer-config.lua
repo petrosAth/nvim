@@ -35,7 +35,7 @@ end
 function M.setup()
     local loaded, mason_tool_installer = pcall(require, "mason-tool-installer")
     if not loaded then
-        vim.notify("mason-tool-installer", "ERROR", { title = "Loading failed" })
+        vim.notify("mason-tool-installer.nvim", "ERROR", { title = "Loading failed" })
         return
     end
 

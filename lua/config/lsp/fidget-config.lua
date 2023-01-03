@@ -3,7 +3,7 @@ local M = {}
 function M.setup(icons)
     local loaded, fidget = pcall(require, "fidget")
     if not loaded then
-        vim.notify("fidget", "ERROR", { title = "Loading failed" })
+        vim.notify("fidget.nvim", "ERROR", { title = "Loading failed" })
         return
     end
 

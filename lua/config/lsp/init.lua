@@ -126,6 +126,7 @@ function M.setup()
     require("config.lsp.nvim-navic-config").setup(icons)
     require("config.lsp.nvim-lightbulb-config").setup(icons)
     require("config.lsp.fidget-config").setup(icons)
+    require("config.lsp.inc-rename").setup()
 end
 
 return M
