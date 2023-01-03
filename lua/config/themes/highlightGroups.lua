@@ -304,7 +304,7 @@ function M.get_highlight_groups(palette)
 
         -- fidget.nvim
         FidgetTitle = { fg = p.cFgDim },
-        FidgetTask = { fg = g.editor.Folded.fg, bg = g.editor.Normal.bg },
+        FidgetTask = { fg = g.syntax.Comment.fg, bg = g.editor.Normal.bg },
 
         -- gitsigns.nvim
         GitSignsCurrentLineBlame = { fg = p.cMagenta, bold = true, italic = true },
