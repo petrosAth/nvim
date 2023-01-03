@@ -33,7 +33,7 @@ local sources = function(null_ls)
     }
 end
 
-function M.setup(root_files, border)
+function M.setup(border, root_files)
     local loaded, null_ls = pcall(require, "null-ls")
     if not loaded then
         vim.notify("null-ls.nvim", "ERROR", { title = "Loading failed" })

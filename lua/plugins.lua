@@ -119,12 +119,7 @@ return packer.startup(function()
         requires = {
             -- mason.nvim - Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
             -- servers, DAP servers, linters, and formatters.
-            {
-                "williamboman/mason.nvim",
-                config = function()
-                    require("config.lsp.mason-config")
-                end,
-            },
+            { "williamboman/mason.nvim" },
             -- mason-tool-installer - Install and upgrade third party tools automatically
             { "WhoIsSethDaniel/mason-tool-installer.nvim" },
             -- mason-lspconfig.nvim - Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
@@ -144,7 +139,6 @@ return packer.startup(function()
         },
         config = function()
             require("config.lsp").setup()
-            require("config.lsp.mason-lspconfig-config")
         end,
     })
 

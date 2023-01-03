@@ -3,7 +3,7 @@ local icons = USER.styling.icons
 local borders = USER.styling.borders.default
 
 -- List of servers for installation
-M.servers = {
+local servers = {
     "bashls",
     "cssls",
     "cssmodules_ls",
@@ -66,18 +66,6 @@ for type, icon in pairs(signs) do
 end
 
 -- Files to look for when searching for project root dir
-M.root_files = {
-    "selene.toml",
-    "selene.yml",
-    "stylua.toml",
-    ".git",
-    ".luarc.json",
-    ".luacheckrc",
-    "Makefile",
-    ".nvim",
-    ".stylua.toml",
-}
-
 local root_files = {
     "selene.toml",
     "selene.yml",
@@ -90,42 +78,16 @@ local root_files = {
     ".stylua.toml",
 }
 
--- Configure lsp capabilities
-function M.capabilities()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-    }
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = {
-            "documentation",
-            "detail",
-            "additionalTextEdits",
-        },
-    }
-
-    -- cmp-nvim-lsp
-    -- Use lsp to populate cmp completions
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-    return capabilities
-end
-
--- Configure lsp on_attach function
-function M.on_attach(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
-        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-    end
-end
-
 function M.setup()
-    require("config.lsp.null-ls-config").setup(root_files, border)
-    require("config.lsp.mason-tool-installer-config").setup()
-    require("config.lsp.nvim-navic-config").setup(icons)
-    require("config.lsp.nvim-lightbulb-config").setup(icons)
-    require("config.lsp.fidget-config").setup(icons)
+    -- Setup language servers and null-ls
+    require("config.lsp.config").setup(icons, border, root_files, servers)
+    require("config.lsp.install").setup(servers)
+
+    -- Setup lsp utilities
+    require("config.lsp.signature").setup(icons, border)
+    require("config.lsp.navic").setup(icons)
+    require("config.lsp.lightbulb").setup(icons)
+    require("config.lsp.fidget").setup(icons)
     require("config.lsp.inc-rename").setup()
 end
 

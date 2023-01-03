@@ -1,7 +1,6 @@
 local M = {}
 
-local function get_lsp_servers()
-    local servers = require("config.lsp").servers
+local function get_lsp_servers(servers)
     local remap = require("mason-lspconfig.mappings.server").lspconfig_to_package
     local mapped_servers = {}
 
@@ -25,14 +24,14 @@ local function get_null_ls_sources()
     return sources
 end
 
-local ensure_installed = function()
-    local tools = get_lsp_servers()
+local ensure_installed = function(servers)
+    local tools = get_lsp_servers(servers)
     vim.list_extend(tools, get_null_ls_sources())
 
     return tools
 end
 
-function M.setup()
+function M.setup(servers)
     local loaded, mason_tool_installer = pcall(require, "mason-tool-installer")
     if not loaded then
         vim.notify("mason-tool-installer.nvim", "ERROR", { title = "Loading failed" })
@@ -40,7 +39,7 @@ function M.setup()
     end
 
     mason_tool_installer.setup({
-        ensure_installed = ensure_installed(),
+        ensure_installed = ensure_installed(servers),
         auto_update = false,
         run_on_start = true,
     })
