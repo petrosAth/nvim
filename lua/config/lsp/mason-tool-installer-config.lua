@@ -13,7 +13,7 @@ local function get_lsp_servers()
 end
 
 local function get_null_ls_sources()
-    local sources_table = require("config.lsp.null-ls-config").sources
+    local sources_table = require("null-ls").get_sources()
     local sources = {}
 
     for _, source in ipairs(sources_table) do
@@ -35,7 +35,7 @@ end
 function M.setup()
     local loaded, mason_tool_installer = pcall(require, "mason-tool-installer")
     if not loaded then
-        vim.notify("mason-tool-installer", "ERROR", { title = "Loading failure" })
+        vim.notify("mason-tool-installer", "ERROR", { title = "Loading failed" })
         return
     end
 

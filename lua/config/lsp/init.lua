@@ -6,6 +6,7 @@ local borders = USER.styling.borders.default
 M.servers = {
     "bashls",
     "cssls",
+    "cssmodules_ls",
     "clangd",
     "emmet_ls",
     "omnisharp",
@@ -120,8 +121,8 @@ function M.on_attach(client, bufnr)
 end
 
 function M.setup()
-    require("config.lsp.mason-tool-installer-config").setup()
     require("config.lsp.null-ls-config").setup(root_files, border)
+    require("config.lsp.mason-tool-installer-config").setup()
     require("config.lsp.nvim-navic-config").setup(icons)
 end
 

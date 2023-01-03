@@ -11,7 +11,7 @@ end
 function M.setup(icons)
     local loaded, navic = pcall(require, "nvim-navic")
     if not loaded then
-        vim.notify("nvim-navic", "ERROR", { title = "Loading failure" })
+        vim.notify("nvim-navic", "ERROR", { title = "Loading failed" })
         return
     end
 
