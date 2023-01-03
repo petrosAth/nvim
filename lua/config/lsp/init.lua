@@ -6,7 +6,6 @@ local borders = USER.styling.borders.default
 M.servers = {
     "bashls",
     "cssls",
-    "cssmodules_ls",
     "clangd",
     "emmet_ls",
     "omnisharp",
