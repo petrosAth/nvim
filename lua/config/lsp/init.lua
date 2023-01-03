@@ -125,6 +125,7 @@ function M.setup()
     require("config.lsp.mason-tool-installer-config").setup()
     require("config.lsp.nvim-navic-config").setup(icons)
     require("config.lsp.nvim-lightbulb-config").setup(icons)
+    require("config.lsp.fidget-config").setup(icons)
 end
 
 return M
