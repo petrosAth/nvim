@@ -89,12 +89,8 @@ end
 function M.on_attach(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-    else
-        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "")
     end
+end
 
-    if client.server_capabilities.documentSymbolProvider then
-        require("nvim-navic").attach(client, bufnr)
-    end
 end
 return M
