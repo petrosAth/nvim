@@ -1,6 +1,5 @@
 local M = {}
 
--- Configure lsp capabilities
 local function capabilities()
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
     client_capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -16,14 +15,16 @@ local function capabilities()
         },
     }
 
-    -- cmp-nvim-lsp
     -- Use lsp to populate cmp completions
-    client_capabilities = require("cmp_nvim_lsp").default_capabilities(client_capabilities)
+    local loaded, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if not loaded then
+        USER.loading_msg("cmp_nvim_lsp")
+    end
+    client_capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
 
     return client_capabilities
 end
 
--- Configure lsp on_attach function
 local function on_attach(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
@@ -96,22 +97,14 @@ end
 function M.setup(icons, border, root_files, servers)
     local loaded, lspconfig = pcall(require, "lspconfig")
     if not loaded then
-        vim.notify("lspconfig", "ERROR", { title = "Loading failed" })
+        USER.loading_msg("lspconfig")
         return
     end
-
     -- Set lspinfo window borders
     require("lspconfig.ui.windows").default_options.border = border
 
     require("config.lsp.mason").setup(icons, border)
-
-    local loaded, mason_lspconfig = pcall(require, "mason-lspconfig")
-    if not loaded then
-        vim.notify("mason-lspconfig", "ERROR", { title = "Loading failed" })
-        return
-    end
-
-    mason_lspconfig.setup()
+    require("config.lsp.mason-lspconfig").setup()
 
     setup_language_servers(lspconfig, servers, root_files)
 

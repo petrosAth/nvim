@@ -74,13 +74,13 @@ local function enable_format_on_save()
         end,
         group = group,
     })
-    require("notify")("Enabled format on save", "info", { title = "LSP" })
+    vim.notify("Enabled format on save", "INFO", { title = "LSP" })
 end
 
 ---Delete augroup and disable auto format on save.
 local function disable_format_on_save()
     vim.api.nvim_del_augroup_by_name("format_on_save")
-    require("notify")("Disabled format on save", "info", { title = "LSP" })
+    vim.notify("Disabled format on save", "INFO", { title = "LSP" })
 end
 
 ---Toggle auto format on save.
@@ -112,3 +112,7 @@ vim.api.nvim_create_user_command("SmartPackerSnapshotRollback", function()
     end
     vim.cmd("PackerSnapshotRollback " .. "stable")
 end, { desc = "Roll back on a packer snapshot based on the Neovim version used(stable/nightly)" })
+
+function USER.loading_msg(plugin_name)
+    vim.notify(plugin_name, "ERROR", { title = "Loading failed" })
+end
