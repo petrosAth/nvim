@@ -3,11 +3,11 @@ local M = {}
 function M.setup(icons)
     local loaded, fidget = pcall(require, "fidget")
     if not loaded then
-        vim.notify("fidget.nvim", "ERROR", { title = "Loading failed" })
+        USER.loading_error_msg("fidget.nvim")
         return
     end
 
-    require("fidget").setup({
+    fidget.setup({
         text = {
             spinner = icons.loading.sphere, -- animation shown when tasks are ongoing
             done = icons.lsp.loaded[1], -- character shown when all tasks are complete

@@ -3,7 +3,7 @@ local M = {}
 function M.setup(icons)
     local loaded, nvim_lightbulb = pcall(require, "nvim-lightbulb")
     if not loaded then
-        vim.notify("nvim-lightbulb", "ERROR", { title = "Loading failed" })
+        USER.loading_error_msg("nvim-lightbulb")
         return
     end
 

@@ -3,7 +3,7 @@ local M = {}
 function M.setup(icons, border)
     local loaded, mason = pcall(require, "mason")
     if not loaded then
-        vim.notify("mason.nvim", "ERROR", { title = "Loading failed" })
+        USER.loading_error_msg("mason.nvim")
         return
     end
 

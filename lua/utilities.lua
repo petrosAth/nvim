@@ -113,6 +113,6 @@ vim.api.nvim_create_user_command("SmartPackerSnapshotRollback", function()
     vim.cmd("PackerSnapshotRollback " .. "stable")
 end, { desc = "Roll back on a packer snapshot based on the Neovim version used(stable/nightly)" })
 
-function USER.loading_msg(plugin_name)
+function USER.loading_error_msg(plugin_name)
     vim.notify(plugin_name, "ERROR", { title = "Loading failed" })
 end

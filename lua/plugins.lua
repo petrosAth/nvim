@@ -50,7 +50,7 @@ return packer.startup(function()
     use({
         "stevearc/dressing.nvim",
         config = function()
-            require("config.dressing-config")
+            require("config.dressing-config").setup()
         end,
     })
 
@@ -58,7 +58,7 @@ return packer.startup(function()
     use({
         "kyazdani42/nvim-web-devicons",
         config = function()
-            require("config.nvim-web-devicons-config")
+            require("config.nvim-web-devicons-config").setup()
         end,
     })
 
@@ -66,7 +66,7 @@ return packer.startup(function()
     use({
         "echasnovski/mini.animate",
         config = function()
-            require("config.mini-config")
+            require("config.mini-config").setup()
         end,
     })
 
@@ -75,7 +75,7 @@ return packer.startup(function()
         "goolord/alpha-nvim",
         requires = "nvim-web-devicons",
         config = function()
-            require("config.alpha-config")
+            require("config.alpha-config").setup()
         end,
     })
 
@@ -83,7 +83,7 @@ return packer.startup(function()
     use({
         "rcarriga/nvim-notify",
         config = function()
-            require("config.notify-config")
+            require("config.notify-config").setup()
         end,
     })
 
@@ -91,7 +91,7 @@ return packer.startup(function()
     use({
         "petrosAth/satellite.nvim",
         config = function()
-            require("config.satellite-config")
+            require("config.satellite-config").setup()
         end,
     })
 
@@ -99,7 +99,7 @@ return packer.startup(function()
     use({
         "anuvyklack/pretty-fold.nvim",
         config = function()
-            require("config.pretty-fold-config")
+            require("config.pretty-fold-config").setup()
         end,
     })
 
@@ -107,7 +107,7 @@ return packer.startup(function()
     use({
         "gorbit99/codewindow.nvim",
         config = function()
-            require("config.codewindow-config")
+            require("config.codewindow-config").setup()
         end,
     })
 
@@ -146,7 +146,7 @@ return packer.startup(function()
     use({
         "hrsh7th/nvim-cmp",
         config = function()
-            require("config.cmp-config")
+            require("config.cmp-config").setup()
         end,
         requires = {
             -- nvim-cmp source for neovim Lua API
@@ -185,7 +185,7 @@ return packer.startup(function()
         "numToStr/Comment.nvim",
         keys = { { "n", "gc" }, { "v", "gc" }, { "n", "gb" }, { "v", "gb" } },
         config = function()
-            require("config.comment-config")
+            require("config.comment-config").setup()
         end,
     })
 
@@ -195,7 +195,7 @@ return packer.startup(function()
         event = "InsertEnter",
         after = { "nvim-treesitter", "nvim-cmp" },
         config = function()
-            require("config.autopairs-config")
+            require("config.autopairs-config").setup()
         end,
     })
 
@@ -210,7 +210,7 @@ return packer.startup(function()
             { "nvim-treesitter/nvim-treesitter-textobjects" },
         },
         config = function()
-            require("config.treesitter-config")
+            require("config.treesitter-config").setup()
         end,
     })
 
@@ -218,7 +218,7 @@ return packer.startup(function()
     use({
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            require("config.indent-blankline-config")
+            require("config.indent-blankline-config").setup()
         end,
     })
 
@@ -226,7 +226,7 @@ return packer.startup(function()
     use({
         "RRethy/vim-illuminate",
         config = function()
-            require("config.vim-illuminate-config")
+            require("config.vim-illuminate-config").setup()
         end,
     })
 
@@ -237,7 +237,7 @@ return packer.startup(function()
         cmd = { "HexokinaseToggle", "HexokinaseTurnOn" },
         ft = { "css", "html", "javascript", "json", "scss" },
         setup = function()
-            require("config.hexokinase-config")
+            require("config.hexokinase-config").setup()
         end,
     })
 
@@ -260,7 +260,7 @@ return packer.startup(function()
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         config = function()
-            require("config.telescope-config")
+            require("config.telescope-config").setup()
         end,
         requires = {
             -- All the lua functions I don't want to write twice
@@ -295,12 +295,12 @@ return packer.startup(function()
                 "s1n7ax/nvim-window-picker",
                 -- tag = "v1.*",
                 config = function()
-                    require("config.nvim-window-picker-config")
+                    require("config.nvim-window-picker-config").setup()
                 end,
             },
         },
         config = function()
-            require("config.neo-tree-config")
+            require("config.neo-tree-config").setup()
         end,
     })
 
@@ -317,7 +317,7 @@ return packer.startup(function()
     use({
         "simrat39/symbols-outline.nvim",
         config = function()
-            require("config.symbols-outline-config")
+            require("config.symbols-outline-config").setup()
         end,
     })
 
@@ -325,7 +325,7 @@ return packer.startup(function()
     use({
         "folke/trouble.nvim",
         config = function()
-            require("config.trouble-config")
+            require("config.trouble-config").setup()
         end,
     })
 
@@ -333,7 +333,7 @@ return packer.startup(function()
     use({
         "kevinhwang91/nvim-hlslens",
         config = function()
-            require("config.hlslens-config")
+            require("config.hlslens-config").setup()
         end,
     })
 
@@ -341,7 +341,7 @@ return packer.startup(function()
     use({
         "sindrets/diffview.nvim",
         config = function()
-            require("config.diffview-config")
+            require("config.diffview-config").setup()
         end,
     })
 
@@ -350,7 +350,7 @@ return packer.startup(function()
         "jedrzejboczar/possession.nvim",
         requires = { "nvim-lua/plenary.nvim" },
         config = function()
-            require("config.possession-config")
+            require("config.possession-config").setup()
         end,
     })
 
@@ -358,7 +358,7 @@ return packer.startup(function()
     use({
         "klen/nvim-config-local",
         config = function()
-            require("config.nvim-config-local-config")
+            require("config.nvim-config-local-config").setup()
         end,
     })
 
@@ -378,7 +378,7 @@ return packer.startup(function()
         "nanozuki/tabby.nvim",
         requires = "nvim-web-devicons",
         config = function()
-            require("config.ui.tab-line")
+            require("config.ui.tab-line").setup()
         end,
     })
 
@@ -386,9 +386,7 @@ return packer.startup(function()
     use({
         "rebelot/heirline.nvim",
         config = function()
-            local status_lines = require("config.ui.status-bars.status-line").StatusLines
-            local win_bars = require("config.ui.status-bars.win-bar").WinBars
-            require("heirline").setup(status_lines, win_bars)
+            require("config.ui.status-bars").setup()
         end,
     })
 
@@ -402,7 +400,7 @@ return packer.startup(function()
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("config.todo-comments-config")
+            require("config.todo-comments-config").setup()
         end,
     })
 
@@ -411,7 +409,7 @@ return packer.startup(function()
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
         config = function()
-            require("config.gitsigns-config")
+            require("config.gitsigns-config").setup()
         end,
     })
 
@@ -419,7 +417,7 @@ return packer.startup(function()
     use({
         "folke/which-key.nvim",
         config = function()
-            require("config.which-key-config")
+            require("config.which-key-config").setup()
         end,
     })
 
@@ -427,7 +425,7 @@ return packer.startup(function()
     use({
         "anuvyklack/hydra.nvim",
         config = function()
-            require("config.hydra-config")
+            require("config.hydra-config").setup()
         end,
     })
 
@@ -436,7 +434,7 @@ return packer.startup(function()
         "mbbill/undotree",
         cmd = { "UndotreeToggle", "UndotreeShow", "UndotreeHide" },
         config = function()
-            require("config.undotree-config")
+            require("config.undotree-config").setup()
         end,
     })
 
@@ -444,7 +442,7 @@ return packer.startup(function()
     use({
         "unblevable/quick-scope",
         config = function()
-            require("config.quick-scope-config")
+            require("config.quick-scope-config").setup()
         end,
     })
 

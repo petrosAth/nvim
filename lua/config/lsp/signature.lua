@@ -3,7 +3,7 @@ local M = {}
 function M.setup(icons, border)
     local loaded, lsp_signature = pcall(require, "lsp_signature")
     if not loaded then
-        vim.notify("lsp_signature.nvim", "ERROR", { title = "Loading failed" })
+        USER.loading_error_msg("lsp_signature.nvim")
         return
     end
 

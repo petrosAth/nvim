@@ -1,14 +1,32 @@
-local npairs = require("nvim-autopairs")
+local M = {}
 
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-local cmp = require("cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+function M.config_cmp()
+    local loaded, cmp = pcall(require, "cmp")
+    if not loaded then
+        USER.loading_error_msg("nvim-cmp")
+        return
+    end
 
-npairs.setup({
-    disable_filetype = { "html", "TelescopePrompt" },
-    map_cr = true,
-    map_c_h = true,
-    map_c_w = true,
-})
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+end
 
-require("config.autopairs-config.rules").add_rules()
+function M.setup()
+    local loaded, nvim_autopairs = pcall(require, "nvim-autopairs")
+    if not loaded then
+        USER.loading_error_msg("nvim-autopairs")
+        return
+    end
+
+    M.config_cmp()
+
+    nvim_autopairs.setup({
+        map_cr = true,
+        map_c_h = true,
+        map_c_w = true,
+    })
+
+    require("config.autopairs-config.rules").add_rules()
+end
+
+return M

@@ -36,7 +36,7 @@ end
 function M.setup(border, root_files)
     local loaded, null_ls = pcall(require, "null-ls")
     if not loaded then
-        vim.notify("null-ls.nvim", "ERROR", { title = "Loading failed" })
+        USER.loading_error_msg("null-ls.nvim")
         return
     end
 
