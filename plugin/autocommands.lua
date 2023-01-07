@@ -5,9 +5,9 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
-local highlightYankedText = augroup("highlightYankedText", { clear = true })
+local TextYankHighlight = augroup("TextYankHighlight", { clear = true })
 autocmd("TextYankPost", {
-    group = highlightYankedText,
+    group = TextYankHighlight,
     desc = "Configure Yank Highlight.",
     callback = function()
         vim.highlight.on_yank({
@@ -19,9 +19,9 @@ autocmd("TextYankPost", {
     end,
 })
 
-local fileTypeAutoCMD = augroup("fileTypeAutoCMD", { clear = true })
+local ExitWithQ = augroup("ExitWithQ", { clear = true })
 autocmd("FileType", {
-    group = fileTypeAutoCMD,
+    group = ExitWithQ,
     pattern = {
         "checkhealth",
         "Codewindow",
@@ -39,21 +39,21 @@ autocmd("FileType", {
     end,
 })
 
-local toggleRelativeNumber = augroup("toggleRelativeNumber", { clear = true })
+local RelativeNumberToggle = augroup("RelativeNumberToggle", { clear = true })
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
-    group = toggleRelativeNumber,
+    group = RelativeNumberToggle,
     desc = "Enable relative number.",
     command = [[ if &nu && mode() != "i" | set rnu | endif ]],
 })
 autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
-    group = toggleRelativeNumber,
+    group = RelativeNumberToggle,
     desc = "Disable relative number while in insert mode.",
     command = [[if &nu | set nornu | endif]],
 })
 
-local setFormatOption = augroup("setFormatOption", { clear = true })
+local FormatOptions = augroup("FormatOptions", { clear = true })
 autocmd("BufEnter", {
-    group = setFormatOption,
+    group = FormatOptions,
     pattern = "*",
     desc = "Set buffer local formatoptions.",
     callback = function()
@@ -64,9 +64,9 @@ autocmd("BufEnter", {
     end,
 })
 
-local terminalSetNoSpell = augroup("terminalSetNoSpell", { clear = true })
+local TerminalNoSpell = augroup("TerminalNoSpell", { clear = true })
 autocmd("TermOpen", {
-    group = terminalSetNoSpell,
+    group = TerminalNoSpell,
     pattern = "*",
     desc = "Disable spell checking in terminal buffers.",
     callback = function()
@@ -74,9 +74,9 @@ autocmd("TermOpen", {
     end,
 })
 
-local clearSpaces = augroup("clearSpaces", { clear = true })
+local WhiteSpaceClear = augroup("WhiteSpaceClear", { clear = true })
 autocmd("BufWritePre", {
-    group = clearSpaces,
+    group = WhiteSpaceClear,
     desc = "Trim trailing whitespace and redundant blank lines on buffer save.",
     command = [[
         let current_pos = getpos(".")

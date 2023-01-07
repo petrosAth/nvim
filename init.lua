@@ -1,4 +1,3 @@
--- Custom global variables
 USER = { -- Custom table to store my functions, tables, variables etc
     home_path    = vim.fn.expand("$HOME"),
     config_path  = vim.fn.stdpath("config"),
@@ -20,12 +19,5 @@ USER = { -- Custom table to store my functions, tables, variables etc
     },
 }
 
--- Load Neovim config
-require("styling")      -- Everything GUI related
-require("options")      -- Neovim options
-require("utilities")    -- Utility functions
-require("project")      -- Project's local configuration helper functions
-require("sessions")     -- Session managment helper functions
-require("autocommands") -- Custom autocommands
-require("mappings")     -- Keymaps
-require("plugins")      -- LOaD aLL tEH plUGiNs!!one!1!
+require("styling")
+require("plugins")

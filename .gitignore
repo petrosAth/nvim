@@ -1,4 +1,4 @@
-plugin/
+plugin/packer_compiled.lua
 .nvim/spell/*.spl
 .nvim/styles/*
 !.nvim/styles/Vocab/
