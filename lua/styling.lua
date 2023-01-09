@@ -1,4 +1,6 @@
-USER.styling = {
+local M = {}
+
+M = {
     variables = {
         transparency = 0,
     },
@@ -242,3 +244,5 @@ USER.styling = {
         trapezoid     = { "",  ""              },
     }
 }
+
+return M

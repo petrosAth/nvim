@@ -4,7 +4,7 @@ USER = { -- Custom table to store my functions, tables, variables etc
     data_path    = vim.fn.stdpath("data"),
     packer_path  = vim.fn.stdpath("data") .. "/site/pack/packer",
     omni_mono    = false, -- Make omnisharp change cmd between mono/dotnet
-    styling      = {}, -- Table with variables and icons used for neovim styling
+    styling      = require("styling"), -- Table with variables and icons used for neovim styling
     theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
     mappings     = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
@@ -19,5 +19,4 @@ USER = { -- Custom table to store my functions, tables, variables etc
     },
 }
 
-require("styling")
 require("plugins")
