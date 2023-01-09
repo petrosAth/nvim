@@ -31,8 +31,8 @@ local function get_palettes()
     local palettes = {}
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
-        local current_theme_palette = USER.config_path
-            .. "/lua/config/hexokinase-config/theme-palettes/"
+        local current_theme_palette = vim.fn.stdpath("config")
+            .. "/lua/plugins/hexokinase/theme-palettes/"
             .. USER.theme
             .. ".json"
         table.insert(palettes, current_theme_palette)

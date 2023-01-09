@@ -1,0 +1,30 @@
+{
+    "colour_table": {
+    "cBgDark"     : "#242933",
+    "cBgDim"      : "#2a303b",
+    "cBg"         : "#2e3440",
+    "cFill1"      : "#353b4a",
+    "cFill2"      : "#3b4252",
+    "cFill3"      : "#434c5e",
+    "cFill4"      : "#4c566a",
+    "cFill5"      : "#626e87",
+    "cFgDim"      : "#8695b3",
+    "cFg"         : "#d8dee9",
+    "cFgLight"    : "#eceff4",
+    "cSelect"     : "#5e81ac",
+    "cYellowDark" : "#414348",
+    "cYellowDim"  : "#54524f",
+    "cYellow"     : "#ebcb8b",
+    "cOrange"     : "#d08770",
+    "cRedDark"    : "#3d3944",
+    "cRedDim"     : "#4b3d48",
+    "cRed"        : "#bf616a",
+    "cMagenta"    : "#b48ead",
+    "cViolet"     : "#8fbcbb",
+    "cBlue"       : "#81a1c1",
+    "cCyan"       : "#88c0d0",
+    "cGreenDark"  : "#3a4248",
+    "cGreenDim"   : "#45504f",
+    "cGreen"      : "#a3be8c"
+    }
+}

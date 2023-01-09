@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd("User", {
     pattern = "HeirlineInitWinbar",
     callback = function(args)
         local buf = args.buf
-        local h = require("config.ui.status-bars.tables")
+        local h = require("plugins.ui.status-bars.tables")
         local buftype = vim.tbl_contains(h.Disable.winBar.buftype, vim.bo[buf].buftype)
         local filetype = vim.tbl_contains(h.Disable.winBar.filetype, vim.bo[buf].filetype)
         if vim.api.nvim_win_get_config(0).relative ~= "" or buftype or filetype then

@@ -76,7 +76,7 @@ function M.setup()
             sorting_strategy = "descending",
             file_ignore_patterns = { "^.git", "tags" },
             history = {
-                path = USER.data_path .. "/databases/telescope_history",
+                path = vim.fn.stdpath("data") .. "/databases/telescope_history",
                 limit = 100,
             },
             file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -230,7 +230,7 @@ function M.setup()
                 },
             },
             frecency = {
-                db_root = USER.data_path .. "/databases",
+                db_root = vim.fn.stdpath("data") .. "/databases",
                 show_scores = true,
                 show_unindexed = true,
                 ignore_patterns = { "*.git/*", "*/tmp/*" },

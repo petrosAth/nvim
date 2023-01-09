@@ -1,1 +1,1 @@
-require("config.themes").load("nord")
+require("themes").load("nord")

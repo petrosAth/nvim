@@ -8,7 +8,7 @@ function M.setup()
     end
 
     require("possession").setup({
-        session_dir = USER.data_path .. "/sessions/",
+        session_dir = vim.fn.stdpath("data") .. "/sessions/",
         silent = false,
         load_silent = true,
         debug = false,

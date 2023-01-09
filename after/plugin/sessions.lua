@@ -5,7 +5,7 @@
 ---@return string name Session's name.
 ---@return boolean exists True if the name is already used.
 local function get_session_name(cwd)
-    local saved = USER.data_path .. "/sessions/"
+    local saved = vim.fn.stdpath("data") .. "/sessions/"
     local session = vim.fn.fnamemodify(cwd, ":t")
 
     if vim.fn.filereadable(saved .. session .. ".json") == 1 then

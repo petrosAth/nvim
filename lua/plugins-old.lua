@@ -24,7 +24,7 @@ end
 
 -- Initialize packer
 packer.init({
-    snapshot_path = USER.config_path .. "/snapshots",
+    snapshot_path = vim.fn.stdpath("config") .. "/snapshots",
     display = {
         non_interactive = false, -- If true, disable display windows for all operations
         open_fn = function() -- An optional function to open a window for packer's display

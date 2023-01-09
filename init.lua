@@ -1,8 +1,5 @@
-USER = { -- Custom table to store my functions, tables, variables etc
-    home_path    = vim.fn.expand("$HOME"),
-    config_path  = vim.fn.stdpath("config"),
-    data_path    = vim.fn.stdpath("data"),
-    packer_path  = vim.fn.stdpath("data") .. "/site/pack/packer",
+-- Create custom table to store my functions, tables, variables etc
+USER = {
     omni_mono    = false, -- Make omnisharp change cmd between mono/dotnet
     styling      = require("styling"), -- Table with variables and icons used for neovim styling
     theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
@@ -18,3 +15,9 @@ USER = { -- Custom table to store my functions, tables, variables etc
         templates    = vim.fn.stdpath("config") .. "/lua/project/templates", -- Directory within nvim config containing file templates
     },
 }
+
+-- Set colorscheme
+vim.cmd.colorscheme(USER.theme)
+
+-- Initialize plugin-manager
+require("plugin-manager").setup()
