@@ -18,5 +18,3 @@ USER = { -- Custom table to store my functions, tables, variables etc
         templates    = vim.fn.stdpath("config") .. "/lua/project/templates", -- Directory within nvim config containing file templates
     },
 }
-
-require("plugins")
