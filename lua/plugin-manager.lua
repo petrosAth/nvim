@@ -1,21 +1,24 @@
 local M = {}
 
-local function install_package_manager()
-    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-    if not vim.loop.fs_stat(lazypath) then
+local function install_plugin_manager()
+    local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not vim.loop.fs_stat(lazy_path) then
         vim.fn.system({
             "git",
             "clone",
             "--filter=blob:none",
             "https://github.com/folke/lazy.nvim.git",
-            "--branch=stable", -- latest stable release
-            lazypath,
+            "--branch=stable",
+            lazy_path,
         })
     end
-    vim.opt.rtp:prepend(lazypath)
+    vim.opt.rtp:prepend(lazy_path)
 end
 
-local function setup_plugins(icons, borders)
+local function setup_plugin_manager()
+    local icons = USER.styling.icons
+    local borders = USER.styling.borders.default
+
     require("lazy").setup({
         root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
         defaults = {
@@ -25,7 +28,6 @@ local function setup_plugins(icons, borders)
         },
         -- leave nil when passing the spec as the first argument to setup()
         spec = {
-            { "folke/LazyVim" },
             { import = "plugins" },
         },
         lockfile = vim.fn.stdpath("config") .. "/lazy-lock.json", -- lockfile generated after running update.
@@ -94,14 +96,14 @@ local function setup_plugins(icons, borders)
                 -- To disable one of the defaults, set it to false
 
                 -- open lazygit log
-                ["<localleader>l"] = function(plugin)
+                ["<Leader>l"] = function(plugin)
                     require("lazy.util").float_term({ "lazygit", "log" }, {
                         cwd = plugin.dir,
                     })
                 end,
 
                 -- open a terminal for the plugin dir
-                ["<localleader>t"] = function(plugin)
+                ["<Leader>t"] = function(plugin)
                     require("lazy.util").float_term(nil, {
                         cwd = plugin.dir,
                     })
@@ -173,13 +175,9 @@ end
 
 function M.setup()
     -- Bootstrap plugin manager
-    -- lazy.nvim is a modern plugin manager for Neovim.
-    install_package_manager()
+    install_plugin_manager()
 
-    -- Setup and config plugin manager
-    local icons = USER.styling.icons
-    local borders = USER.styling.borders.default
-    setup_plugins(icons, borders)
+    setup_plugin_manager()
 end
 
 return M
