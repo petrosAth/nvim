@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
-local u = require("plugins.ui.utilities")
-local h = require("plugins.ui.status-bars.tables")
-local c = require("plugins.ui.status-bars.components")
+local u = require("ui.utilities")
+local h = require("ui.status-bars.tables")
+local c = require("ui.status-bars.components")
 local M = {}
 
 local DisableWinBar = {

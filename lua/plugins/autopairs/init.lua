@@ -11,6 +11,8 @@ end
 
 return {
     {
+        -- nvim-autopairs
+        -- A super powerful autopair for Neovim. It supports multiple characters
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()

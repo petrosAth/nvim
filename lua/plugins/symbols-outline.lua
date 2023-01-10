@@ -1,5 +1,85 @@
+local function setup(symbols_outline, icons, borders)
+    local fillchars = icons.fillchars.global
+    local kinds = icons.lsp.kinds
+
+    symbols_outline.setup({
+        highlight_hovered_item = true,
+        show_guides = true,
+        auto_preview = false,
+        position = "right",
+        border = {
+            borders.tl,
+            borders.t,
+            borders.tr,
+            borders.r,
+            borders.br,
+            borders.b,
+            borders.bl,
+            borders.l,
+        },
+        relative_width = true,
+        width = 25,
+        auto_close = false,
+        show_numbers = false,
+        show_relative_numbers = false,
+        show_symbol_details = true,
+        preview_bg_highlight = "Pmenu",
+        autofold_depth = nil,
+        auto_unfold_hover = true,
+        fold_markers = { fillchars.foldopen, fillchars.foldclose },
+        wrap = false,
+        keymaps = {
+            close = { "<Esc>", "q" },
+            goto_location = "L",
+            focus_location = "l",
+            hover_symbol = "h",
+            toggle_preview = "<M-p>",
+            rename_symbol = "R",
+            code_actions = "a",
+            fold = "zc",
+            unfold = "zo",
+            fold_all = "zM",
+            unfold_all = "zR",
+            fold_reset = "za",
+        },
+        lsp_blacklist = {},
+        symbol_blacklist = {},
+        symbols = {
+            Method = { icon = kinds.Method, hl = "@method" },
+            Function = { icon = kinds.Function, hl = "@function" },
+            Constructor = { icon = kinds.Constructor, hl = "@constructor" },
+            Field = { icon = kinds.Field, hl = "@field" },
+            Variable = { icon = kinds.Variable, hl = "@variable" },
+            Class = { icon = kinds.Class, hl = "@type" },
+            Interface = { icon = kinds.Interface, hl = "@type" },
+            Module = { icon = kinds.Module, hl = "@include" },
+            Namespace = { icon = kinds.Module, hl = "@namespace" },
+            Package = { icon = kinds.Module, hl = "@include" },
+            Property = { icon = kinds.Property, hl = "@method" },
+            Enum = { icon = kinds.Enum, hl = "@type" },
+            Object = { icon = kinds.Enum, hl = "@type" },
+            Null = { icon = kinds.Enum, hl = "@type" },
+            Key = { icon = kinds.Keyword, hl = "@keyword" },
+            File = { icon = kinds.File, hl = "Directory" },
+            EnumMember = { icon = kinds.EnumMember, hl = "@field" },
+            Constant = { icon = kinds.Constant, hl = "@constant" },
+            Array = { icon = kinds.Constant, hl = "@constant" },
+            Struct = { icon = kinds.Struct, hl = "@type" },
+            Event = { icon = kinds.Event, hl = "@type" },
+            Operator = { icon = kinds.Operator, hl = "@operator" },
+            TypeParameter = { icon = kinds.TypeParameter, hl = "@parameter" },
+            String = { icon = kinds.Text, hl = "@string" },
+            Number = { icon = kinds.Number, hl = "@number" },
+            Boolean = { icon = kinds.Boolean, hl = "@boolean" },
+        },
+    })
+end
+
 return {
     {
+        -- symbols-outline.nvim
+        -- A tree like view for symbols in Neovim using the Language Server Protocol. Supports all your favourite
+        -- languages.
         "simrat39/symbols-outline.nvim",
         cmd = {
             "SymbolsOutline",
@@ -13,73 +93,9 @@ return {
                 return
             end
 
-            local s = USER.styling
-            local f = s.icons.fillchars.global
-            local k = s.icons.lsp.kinds
-            local b = s.borders.default
-
-            require("symbols-outline").setup({
-                highlight_hovered_item = true,
-                show_guides = true,
-                auto_preview = false,
-                position = "right",
-                border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l },
-                relative_width = true,
-                width = 25,
-                auto_close = false,
-                show_numbers = false,
-                show_relative_numbers = false,
-                show_symbol_details = true,
-                preview_bg_highlight = "Pmenu",
-                autofold_depth = nil,
-                auto_unfold_hover = true,
-                fold_markers = { f.foldopen, f.foldclose },
-                wrap = false,
-                keymaps = {
-                    close = { "<Esc>", "q" },
-                    goto_location = "L",
-                    focus_location = "l",
-                    hover_symbol = "h",
-                    toggle_preview = "<M-p>",
-                    rename_symbol = "R",
-                    code_actions = "a",
-                    fold = "zc",
-                    unfold = "zo",
-                    fold_all = "zM",
-                    unfold_all = "zR",
-                    fold_reset = "za",
-                },
-                lsp_blacklist = {},
-                symbol_blacklist = {},
-                symbols = {
-                    Method = { icon = k.Method, hl = "@method" },
-                    Function = { icon = k.Function, hl = "@function" },
-                    Constructor = { icon = k.Constructor, hl = "@constructor" },
-                    Field = { icon = k.Field, hl = "@field" },
-                    Variable = { icon = k.Variable, hl = "@variable" },
-                    Class = { icon = k.Class, hl = "@type" },
-                    Interface = { icon = k.Interface, hl = "@type" },
-                    Module = { icon = k.Module, hl = "@include" },
-                    Namespace = { icon = k.Module, hl = "@namespace" },
-                    Package = { icon = k.Module, hl = "@include" },
-                    Property = { icon = k.Property, hl = "@method" },
-                    Enum = { icon = k.Enum, hl = "@type" },
-                    Object = { icon = k.Enum, hl = "@type" },
-                    Null = { icon = k.Enum, hl = "@type" },
-                    Key = { icon = k.Keyword, hl = "@keyword" },
-                    File = { icon = k.File, hl = "Directory" },
-                    EnumMember = { icon = k.EnumMember, hl = "@field" },
-                    Constant = { icon = k.Constant, hl = "@constant" },
-                    Array = { icon = k.Constant, hl = "@constant" },
-                    Struct = { icon = k.Struct, hl = "@type" },
-                    Event = { icon = k.Event, hl = "@type" },
-                    Operator = { icon = k.Operator, hl = "@operator" },
-                    TypeParameter = { icon = k.TypeParameter, hl = "@parameter" },
-                    String = { icon = k.Text, hl = "@string" },
-                    Number = { icon = k.Number, hl = "@number" },
-                    Boolean = { icon = k.Boolean, hl = "@boolean" },
-                },
-            })
+            local icons = USER.styling.icons
+            local borders = USER.styling.borders.default
+            setup(symbols_outline, icons, borders)
         end,
     },
 }

@@ -1,7 +1,7 @@
 local filename = require("tabby.module.filename")
 local tab_name = require("tabby.feature.tab_name")
-local getHl = require("config.themes.utilities").getHl
-local u = require("config.ui.utilities")
+local getHl = require("themes.utilities").getHl
+local u = require("ui.utilities")
 local i = USER.styling.icons
 local s = USER.styling.separators.default
 

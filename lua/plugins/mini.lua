@@ -1,5 +1,7 @@
 return {
     {
+        -- mini.animate
+        -- Neovim Lua plugin to animate common Neovim actions. Part of 'mini.nvim' library.
         "echasnovski/mini.animate",
         config = function()
             local loaded, animate = pcall(require, "mini.animate")

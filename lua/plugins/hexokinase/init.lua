@@ -1,5 +1,8 @@
 return {
     {
+        -- vim-hexokinase
+        -- The fastest (Neo)Vim plugin for asynchronously displaying the colours in the file (#rrggbb, #rgb, rgb(a)?
+        -- functions, hsl(a)? functions, web colours, custom patterns)
         "RRethy/vim-hexokinase",
         build = "make hexokinase",
         cmd = {

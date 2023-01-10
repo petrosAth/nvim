@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local u = require("config.ui.utilities")
-local h = require("config.ui.status-bars.tables")
+local u = require("ui.utilities")
+local h = require("ui.status-bars.tables")
 local i = USER.styling.icons
 local M = {}
 
@@ -512,7 +512,6 @@ local LspBlock = {
     init = function(self)
         -- LspClients
         self.Clients = vim.lsp.buf_get_clients()
-        -- self.Sources = require("null-ls.sources")
         self.Sources = require("null-ls.sources").get_available(vim.bo.filetype)
         -- LspDiagnostics
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })

@@ -103,12 +103,12 @@ function M.setup(icons, border, root_files, servers)
     -- Set lspinfo window borders
     require("lspconfig.ui.windows").default_options.border = border
 
-    require("config.lsp.mason").setup(icons, border)
-    require("config.lsp.mason-lspconfig").setup()
+    require("plugins.lsp.mason").setup(icons, border)
+    require("plugins.lsp.mason-lspconfig").setup()
 
     setup_language_servers(lspconfig, servers, root_files)
 
-    require("config.lsp.null-ls").setup(border, root_files)
+    require("plugins.lsp.null-ls").setup(border, root_files)
 end
 
 return M

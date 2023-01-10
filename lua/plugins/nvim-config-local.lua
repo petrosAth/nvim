@@ -1,5 +1,7 @@
 return {
     {
+        -- nvim-config-local
+        -- Secure load local config files for neovim
         "klen/nvim-config-local",
         config = function()
             local loaded, config_local = pcall(require, "config-local")

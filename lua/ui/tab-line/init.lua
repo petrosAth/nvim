@@ -2,7 +2,7 @@ local M = {}
 
 M.setup = function(line)
     local getHl = require("themes.utilities").getHl
-    local c = require("plugins.ui.tab-line.components")
+    local c = require("ui.tab-line.components")
     local i = USER.styling.icons
 
     return {

@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
-local u = require("config.ui.utilities")
-local h = require("config.ui.status-bars.tables")
-local c = require("config.ui.status-bars.components")
+local u = require("ui.utilities")
+local h = require("ui.status-bars.tables")
+local c = require("ui.status-bars.components")
 local hl = "StatusLineLight"
 local M = {}
 

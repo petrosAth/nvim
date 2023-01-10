@@ -1,4 +1,4 @@
 -- alpha-nvim
-local sp = require("config.ui.side-panels")
+local sp = require("ui.side-panels")
 
 sp.set_non_chars()
