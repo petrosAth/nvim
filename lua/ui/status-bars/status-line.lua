@@ -85,6 +85,7 @@ local StatusLine = {
     },
     c.LspBlock,
     c.Treesitter,
+    t.Align,
     c.PluginUpdates,
     t.Align,
     c.Spell,
