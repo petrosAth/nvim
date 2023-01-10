@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local u = require("ui.utilities")
-local h = require("ui.status-bars.tables")
+local t = require("ui.status-bars.tables")
 local i = USER.styling.icons
 local M = {}
 
@@ -16,7 +16,7 @@ end
 local function get_vim_mode_color(mode)
     mode = mode or get_vim_mode()
     mode = mode:sub(1, 1) -- get only the first mode character
-    local mode_colors = h.ModeHighlightGroups
+    local mode_colors = t.ModeHighlightGroups
     local highlight = utils.get_highlight(mode_colors[mode])
 
     return { fg = highlight.fg, bg = highlight.bg, bold = true }
@@ -38,7 +38,7 @@ local FileTypeBlock = {
 
 local FileTypeIcon = {
     provider = function(self)
-        return self.icon and self.icon .. h.Separator.mid.provider
+        return self.icon and self.icon .. t.Separator.mid.provider
     end,
 }
 
@@ -50,11 +50,11 @@ local FileType = {
 
 M.FileTypeBlock = utils.insert(
     FileTypeBlock,
-    { flexible = h.Hide.FileTypeBlock.value, { h.Separator.left }, { h.Null } },
-    { flexible = h.Hide.FileTypeBlock.icon, { FileTypeIcon }, { h.Null } },
-    { flexible = h.Hide.FileTypeBlock.icon, { h.Null } },
-    { flexible = h.Hide.FileTypeBlock.value, { FileType }, { h.Null } },
-    { flexible = h.Hide.FileTypeBlock.value, { h.Separator.right }, { h.Null } }
+    { flexible = t.Hide.FileTypeBlock.value, { t.Separator.left }, { t.Null } },
+    { flexible = t.Hide.FileTypeBlock.icon, { FileTypeIcon }, { t.Null } },
+    { flexible = t.Hide.FileTypeBlock.icon, { t.Null } },
+    { flexible = t.Hide.FileTypeBlock.value, { FileType }, { t.Null } },
+    { flexible = t.Hide.FileTypeBlock.value, { t.Separator.right }, { t.Null } }
 )
 
 local FileFormatBlock = {
@@ -93,11 +93,11 @@ local FileFormat = {
 
 M.FileFormatBlock = utils.insert(
     FileFormatBlock,
-    { flexible = h.Hide.FileFormatBlock.value, { h.Separator.left }, { h.Null } },
-    { flexible = h.Hide.FileFormatBlock.icon, { FileFormatIcon }, { h.Null } },
-    { flexible = h.Hide.FileFormatBlock.icon, { h.Separator.mid }, { h.Null } },
-    { flexible = h.Hide.FileFormatBlock.value, { FileFormat }, { h.Null } },
-    { flexible = h.Hide.FileFormatBlock.value, { h.Separator.right }, { h.Null } }
+    { flexible = t.Hide.FileFormatBlock.value, { t.Separator.left }, { t.Null } },
+    { flexible = t.Hide.FileFormatBlock.icon, { FileFormatIcon }, { t.Null } },
+    { flexible = t.Hide.FileFormatBlock.icon, { t.Separator.mid }, { t.Null } },
+    { flexible = t.Hide.FileFormatBlock.value, { FileFormat }, { t.Null } },
+    { flexible = t.Hide.FileFormatBlock.value, { t.Separator.right }, { t.Null } }
 )
 
 M.FileEncoding = {
@@ -105,17 +105,17 @@ M.FileEncoding = {
         self.fileEncoding = vim.bo.fileencoding
     end,
 
-    { flexible = h.Hide.FileEncoding, { h.Separator.left }, { h.Null } },
+    { flexible = t.Hide.FileEncoding, { t.Separator.left }, { t.Null } },
     {
-        flexible = h.Hide.FileEncoding,
+        flexible = t.Hide.FileEncoding,
         {
             provider = function(self)
                 return string.upper(self.fileEncoding)
             end,
         },
-        { h.Null },
+        { t.Null },
     },
-    { flexible = h.Hide.FileEncoding, { h.Separator.right }, { h.Null } },
+    { flexible = t.Hide.FileEncoding, { t.Separator.right }, { t.Null } },
 }
 
 M.FileReadOnly = {
@@ -124,13 +124,13 @@ M.FileReadOnly = {
     end,
 
     {
-        flexible = h.Hide.FileReadOnly,
+        flexible = t.Hide.FileReadOnly,
         {
-            { h.Separator.left },
+            { t.Separator.left },
             { provider = i.lock[1] },
-            { h.Separator.right },
+            { t.Separator.right },
         },
-        { h.Null },
+        { t.Null },
     },
 }
 
@@ -140,13 +140,13 @@ M.FileModified = {
     end,
 
     {
-        flexible = h.Hide.FileModified,
+        flexible = t.Hide.FileModified,
         {
-            { h.Separator.left },
+            { t.Separator.left },
             { provider = i.edit[1] },
-            { h.Separator.right },
+            { t.Separator.right },
         },
-        { h.Null },
+        { t.Null },
     },
 }
 
@@ -159,7 +159,7 @@ M.CustomTitle = {
     provider = function(self)
         local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         if buf_label then
-            return h.Separator.left.provider .. buf_label .. h.Separator.right.provider
+            return t.Separator.left.provider .. buf_label .. t.Separator.right.provider
         end
 
         return ""
@@ -192,7 +192,7 @@ local FilePath = {
             filePath = ""
         end
 
-        return "%<" .. i.root_dir[1] .. " /" .. filePath .. h.Separator.mid.provider
+        return "%<" .. i.root_dir[1] .. " /" .. filePath .. t.Separator.mid.provider
     end,
 }
 
@@ -204,7 +204,7 @@ local FileName = {
             return "[No Name]"
         end
 
-        return h.Separator.mid.provider .. i.file[1] .. " " .. fileName .. h.Separator.mid.provider
+        return t.Separator.mid.provider .. i.file[1] .. " " .. fileName .. t.Separator.mid.provider
     end,
     hl = function()
         if conditions.is_active() then
@@ -226,11 +226,11 @@ local Navic = {
 
 M.FileNameBlock = utils.insert(
     FileNameBlock,
-    { flexible = h.Hide.FilePath, { h.Separator.left }, { h.Null } },
-    { flexible = h.Hide.FilePath, { FilePath }, { h.Null } },
-    { flexible = h.Hide.FileName, { FileName }, { h.Null } },
-    { flexible = h.Hide.Navic, { Navic }, { h.Null } },
-    { flexible = h.Hide.FileName, { h.Separator.right }, { h.Null } }
+    { flexible = t.Hide.FilePath, { t.Separator.left }, { t.Null } },
+    { flexible = t.Hide.FilePath, { FilePath }, { t.Null } },
+    { flexible = t.Hide.FileName, { FileName }, { t.Null } },
+    { flexible = t.Hide.Navic, { Navic }, { t.Null } },
+    { flexible = t.Hide.FileName, { t.Separator.right }, { t.Null } }
 )
 
 M.Paste = {
@@ -238,9 +238,9 @@ M.Paste = {
         return vim.o.paste
     end,
 
-    { h.Separator.left },
+    { t.Separator.left },
     { provider = "PASTE" },
-    { h.Separator.right },
+    { t.Separator.right },
 
     hl = function(self)
         return get_vim_mode_color(self.mode)
@@ -252,9 +252,9 @@ M.Wrap = {
         return vim.o.wrap
     end,
 
-    { h.Separator.left },
+    { t.Separator.left },
     { provider = "WRAP" },
-    { h.Separator.right },
+    { t.Separator.right },
 
     hl = function(self)
         return get_vim_mode_color(self.mode)
@@ -266,26 +266,26 @@ M.Spell = {
         return vim.wo.spell
     end,
 
-    { flexible = h.Hide.Spell.value, { h.Separator.left }, { h.Null } },
+    { flexible = t.Hide.Spell.value, { t.Separator.left }, { t.Null } },
     {
-        flexible = h.Hide.Spell.icon,
+        flexible = t.Hide.Spell.icon,
         {
             provider = function()
                 return "暈"
             end,
         },
-        { h.Null },
+        { t.Null },
     },
     {
-        flexible = h.Hide.Spell.value,
+        flexible = t.Hide.Spell.value,
         {
             provider = function()
                 return vim.bo.spelllang
             end,
         },
-        { h.Null },
+        { t.Null },
     },
-    { flexible = h.Hide.Spell.value, { h.Separator.right }, { h.Null } },
+    { flexible = t.Hide.Spell.value, { t.Separator.right }, { t.Null } },
 }
 
 M.Treesitter = {
@@ -298,17 +298,43 @@ M.Treesitter = {
         return is_active
     end,
 
-    { flexible = h.Hide.Treesitter.value, { h.Separator.left }, { h.Null } },
-    { flexible = h.Hide.Treesitter.icon, { provider = i.treesiter[1] }, { h.Null } },
-    { flexible = h.Hide.Treesitter.icon, { h.Separator.mid }, { h.Null } },
-    { flexible = h.Hide.Treesitter.value, { provider = "TS" }, { h.Null } },
-    { flexible = h.Hide.Treesitter.value, { h.Separator.right }, { h.Null } },
+    { flexible = t.Hide.Treesitter.value, { t.Separator.left }, { t.Null } },
+    { flexible = t.Hide.Treesitter.icon, { provider = i.treesiter[1] }, { t.Null } },
+    { flexible = t.Hide.Treesitter.icon, { t.Separator.mid }, { t.Null } },
+    { flexible = t.Hide.Treesitter.value, { provider = "TS" }, { t.Null } },
+    { flexible = t.Hide.Treesitter.value, { t.Separator.right }, { t.Null } },
+}
+
+M.PluginUpdates = {
+    condition = function(self)
+        -- Source
+        -- lazy.nvim - https://github.com/folke/lazy.nvim/blob/d2110278be136fd977d357ff49689352d58b2e83/lua/lazy/status.lua
+        self.Checker = require("lazy.manage.checker")
+
+        return #self.Checker.updated > 0
+    end,
+
+    { flexible = t.Hide.PluginUpdates.value, { t.Separator.left }, { t.Null } },
+    { flexible = t.Hide.PluginUpdates.icon, { provider = i.plugin[1] }, { t.Null } },
+    { flexible = t.Hide.PluginUpdates.icon, { t.Separator.mid }, { t.Null } },
+    {
+        flexible = t.Hide.PluginUpdates.value,
+        {
+            provider = function(self)
+                return #self.Checker.updated
+            end,
+        },
+        { t.Null },
+    },
+    { flexible = t.Hide.PluginUpdates.value, { t.Separator.right }, { t.Null } },
+
+    hl = "StatusLinePluginUpdates"
 }
 
 M.CursorPosition = {
-    { flexible = h.Hide.CursorPosition, { h.Separator.left }, { h.Null } },
+    { flexible = t.Hide.CursorPosition, { t.Separator.left }, { t.Null } },
     {
-        flexible = h.Hide.CursorPosition,
+        flexible = t.Hide.CursorPosition,
         {
             provider = i.line[1] .. " %l" .. " : " .. i.column[1] .. " %c",
         },
@@ -316,19 +342,19 @@ M.CursorPosition = {
             provider = "%l:%c",
         },
     },
-    { flexible = h.Hide.CursorPosition, { h.Separator.right }, { h.Null } },
+    { flexible = t.Hide.CursorPosition, { t.Separator.right }, { t.Null } },
 }
 
 M.CursorLine = {
-    { h.Separator.left },
+    { t.Separator.left },
     { provider = i.line[1] .. " %l" },
-    { h.Separator.right },
+    { t.Separator.right },
 }
 
 M.LinesTotal = {
-    { h.Separator.left },
+    { t.Separator.left },
     { provider = i.linesTotal[1] .. " %L" },
-    { h.Separator.right },
+    { t.Separator.right },
 
     hl = function(self)
         return get_vim_mode_color(self.mode)
@@ -336,17 +362,17 @@ M.LinesTotal = {
 }
 
 M.WindowNumber = {
-    { h.Separator.left },
+    { t.Separator.left },
     {
         provider = function(self)
             return i.window[1] .. " " .. self.winnr
         end,
     },
-    { h.Separator.right },
+    { t.Separator.right },
 }
 
 M.CloseButton = {
-    { h.Separator.left },
+    { t.Separator.left },
     { provider = i.close[1] },
     on_click = {
         callback = function()
@@ -354,7 +380,7 @@ M.CloseButton = {
         end,
         name = "heirline_closeButton",
     },
-    { h.Separator.right },
+    { t.Separator.right },
 }
 
 -- Source
@@ -386,13 +412,13 @@ M.SearchResults = {
         return true
     end,
 
-    { h.Separator.left },
+    { t.Separator.left },
     {
         provider = function(self)
             return table.concat({ i.search[1], " ", self.count.current, "/", self.count.total })
         end,
     },
-    { h.Separator.right },
+    { t.Separator.right },
 
     hl = "HlSearchLensNear",
 }
@@ -408,9 +434,9 @@ M.GitStatus = {
         self.countChanged = self.status_dict.changed or 0
     end,
 
-    { h.Separator.left },
+    { t.Separator.left },
     {
-        flexible = h.Hide.GitBranch,
+        flexible = t.Hide.GitBranch,
         { -- git branch name
             provider = function(self)
                 return string.format("%s %s %s", i.git.repo[1], i.git.branch[1], self.status_dict.head)
@@ -426,21 +452,21 @@ M.GitStatus = {
     },
 
     {
-        flexible = h.Hide.GitSigns.icon,
+        flexible = t.Hide.GitSigns.icon,
         {
             provider = function(self)
-                return self.countAdded > 0 and (h.Separator.mid.provider .. i.git.added[1])
+                return self.countAdded > 0 and (t.Separator.mid.provider .. i.git.added[1])
             end,
             -- hl = { fg = utils.get_highlight("GitSignsAdd").fg },
             hl = "GitSignsAdd",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
 
     {
-        flexible = h.Hide.GitSigns.value,
+        flexible = t.Hide.GitSigns.value,
         {
             provider = function(self)
                 return self.countAdded > 0 and (" " .. self.countAdded)
@@ -448,25 +474,25 @@ M.GitStatus = {
             hl = "GitSignsAdd",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
 
     {
-        flexible = h.Hide.GitSigns.icon,
+        flexible = t.Hide.GitSigns.icon,
         {
             provider = function(self)
-                return self.countRemoved > 0 and (h.Separator.mid.provider .. i.git.deleted[1])
+                return self.countRemoved > 0 and (t.Separator.mid.provider .. i.git.deleted[1])
             end,
             hl = "GitSignsDelete",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
 
     {
-        flexible = h.Hide.GitSigns.value,
+        flexible = t.Hide.GitSigns.value,
         {
             provider = function(self)
                 return self.countRemoved > 0 and (" " .. self.countRemoved)
@@ -474,25 +500,25 @@ M.GitStatus = {
             hl = "GitSignsDelete",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
 
     {
-        flexible = h.Hide.GitSigns.icon,
+        flexible = t.Hide.GitSigns.icon,
         {
             provider = function(self)
-                return self.countChanged > 0 and (h.Separator.mid.provider .. i.git.changed[1])
+                return self.countChanged > 0 and (t.Separator.mid.provider .. i.git.changed[1])
             end,
             hl = "GitSignsChange",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
 
     {
-        flexible = h.Hide.GitSigns.value,
+        flexible = t.Hide.GitSigns.value,
         {
             provider = function(self)
                 return self.countChanged > 0 and (" " .. self.countChanged)
@@ -500,11 +526,11 @@ M.GitStatus = {
             hl = "GitSignsChange",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
 
-    { h.Separator.right },
+    { t.Separator.right },
 }
 
 local LspBlock = {
@@ -527,12 +553,12 @@ local LspClients = {
     end,
     update = { "LspAttach", "LspDetach", "BufEnter" },
     {
-        flexible = h.Hide.lspIcon,
+        flexible = t.Hide.lspIcon,
         {
             provider = i.lsp.icon[1] .. " ",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
     {
@@ -555,7 +581,7 @@ local LspNullLsGap = {
         return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil)
     end,
     update = { "LspAttach", "LspDetach", "BufEnter" },
-    provider = h.Separator.mid.provider,
+    provider = t.Separator.mid.provider,
 }
 
 local NullLsSources = {
@@ -564,12 +590,12 @@ local NullLsSources = {
     end,
     update = { "LspAttach", "LspDetach", "BufEnter" },
     {
-        flexible = h.Hide.nullLsIcon,
+        flexible = t.Hide.nullLsIcon,
         {
             provider = i.lsp.null_ls[1] .. " ",
         },
         {
-            h.Null,
+            t.Null,
         },
     },
     {
@@ -595,66 +621,66 @@ local LspDiagnostics = {
         hintIcon = i.lsp.hint[1],
     },
     {
-        flexible = h.Hide.lspDiagnosticIcons,
+        flexible = t.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
                 return self.errors > 0
-                    and string.format("%s%s %s", h.Separator.mid.provider, self.errorIcon, self.errors)
+                    and string.format("%s%s %s", t.Separator.mid.provider, self.errorIcon, self.errors)
             end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
         {
             provider = function(self)
-                return self.errors > 0 and (h.Separator.mid.provider .. self.errors)
+                return self.errors > 0 and (t.Separator.mid.provider .. self.errors)
             end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
     },
 
     {
-        flexible = h.Hide.lspDiagnosticIcons,
+        flexible = t.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
                 return self.warnings > 0
-                    and string.format("%s%s %s", h.Separator.mid.provider, self.warnIcon, self.warnings)
+                    and string.format("%s%s %s", t.Separator.mid.provider, self.warnIcon, self.warnings)
             end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
         {
             provider = function(self)
-                return self.warnings > 0 and (h.Separator.mid.provider .. self.warnings)
+                return self.warnings > 0 and (t.Separator.mid.provider .. self.warnings)
             end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
     },
 
     {
-        flexible = h.Hide.lspDiagnosticIcons,
+        flexible = t.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.info > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.infoIcon, self.info)
+                return self.info > 0 and string.format("%s%s %s", t.Separator.mid.provider, self.infoIcon, self.info)
             end,
             hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
         },
         {
             provider = function(self)
-                return self.info > 0 and (h.Separator.mid.provider .. self.info)
+                return self.info > 0 and (t.Separator.mid.provider .. self.info)
             end,
             hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
         },
     },
 
     {
-        flexible = h.Hide.lspDiagnosticIcons,
+        flexible = t.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.hints > 0 and string.format("%s%s %s", h.Separator.mid.provider, self.hintIcon, self.hints)
+                return self.hints > 0 and string.format("%s%s %s", t.Separator.mid.provider, self.hintIcon, self.hints)
             end,
             hl = { fg = utils.get_highlight("DiagnosticHint").fg },
         },
         {
             provider = function(self)
-                return self.hints > 0 and (h.Separator.mid.provider .. self.hints)
+                return self.hints > 0 and (t.Separator.mid.provider .. self.hints)
             end,
             hl = { fg = utils.get_highlight("DiagnosticHint").fg },
         },
@@ -664,26 +690,26 @@ local LspDiagnostics = {
 M.LspBlock = utils.insert(
     LspBlock,
 
-    { h.Separator.left },
-    { flexible = h.Hide.lspClients, LspClients, { h.Null } },
-    { flexible = math.min(h.Hide.lspClients, h.Hide.nullLsSources), LspNullLsGap, { h.Null } },
-    { flexible = h.Hide.nullLsSources, NullLsSources, { h.Null } },
+    { t.Separator.left },
+    { flexible = t.Hide.lspClients, LspClients, { t.Null } },
+    { flexible = math.min(t.Hide.lspClients, t.Hide.nullLsSources), LspNullLsGap, { t.Null } },
+    { flexible = t.Hide.nullLsSources, NullLsSources, { t.Null } },
     { LspDiagnostics },
-    { h.Separator.right }
+    { t.Separator.right }
 )
 
 M.TerminalName = {
     condition = function()
         return conditions.buffer_matches({ buftype = { "terminal" } })
     end,
-    { h.Separator.left },
+    { t.Separator.left },
     {
         provider = function()
             local terminalName, _ = vim.api.nvim_buf_get_name(0):gsub(".*:/bin/", "")
             return string.format("%s %s", i.terminal[1], terminalName)
         end,
     },
-    { h.Separator.right },
+    { t.Separator.right },
 }
 
 M.ViMode = {
@@ -702,10 +728,10 @@ M.ViMode = {
     end,
 
     provider = function(self)
-        return h.Separator.left.provider .. "%2(" .. h.ModeNames[self.mode] .. "%)"
+        return t.Separator.left.provider .. "%2(" .. t.ModeNames[self.mode] .. "%)"
     end,
 
-    h.Separator.right,
+    t.Separator.right,
 
     hl = function(self)
         return get_vim_mode_color(self.mode)

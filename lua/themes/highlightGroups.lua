@@ -249,6 +249,7 @@ function M.get_highlight_groups(palette)
         ModeTerminal = { fg = p.cFill2, bg = p.cOrange },
         ModeHydra = { fg = p.cFill2, bg = p.cMagenta },
         StatusLineLight = { fg = p.cFg, bg = p.cFill4 },
+        StatusLinePluginUpdates = { fg = p.cViolet },
         WinBarLight = { fg = g.editor.WinBar.fg, bg = p.cFill4 },
         WinBarLightNC = { link = "WinBarLight" },
         WinBarFile = { fg = p.cFgLight, bg = p.cFill4 },

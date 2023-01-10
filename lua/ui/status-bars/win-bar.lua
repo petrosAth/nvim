@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local u = require("ui.utilities")
-local h = require("ui.status-bars.tables")
+local t = require("ui.status-bars.tables")
 local c = require("ui.status-bars.components")
 local M = {}
 
@@ -8,8 +8,8 @@ local DisableWinBar = {
     condition = function()
         return vim.api.nvim_win_get_config(0).relative ~= ""
             or conditions.buffer_matches({
-                buftype = h.Disable.winBar.buftype,
-                filetype = h.Disable.winBar.filetype,
+                buftype = t.Disable.winBar.buftype,
+                filetype = t.Disable.winBar.filetype,
             })
     end,
     init = function()
@@ -35,7 +35,7 @@ local WinBarSpecialNC = {
         c.CustomTitle,
         hl = "WinBarSpecialNC",
     },
-    h.Align,
+    t.Align,
     {
         {
             c.WindowNumber,
@@ -63,7 +63,7 @@ local WinBarNC = {
     {
         c.FileNameBlock,
     },
-    h.Align,
+    t.Align,
     {
         {
             c.WindowNumber,
@@ -91,7 +91,7 @@ local WinBarSpecial = {
         },
         hl = "WinBarLight",
     },
-    h.Align,
+    t.Align,
 }
 
 local WinBar = {
@@ -112,7 +112,7 @@ local WinBar = {
     {
         c.FileNameBlock,
     },
-    h.Align,
+    t.Align,
 }
 
 M.WinBars = {

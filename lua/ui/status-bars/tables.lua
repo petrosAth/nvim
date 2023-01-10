@@ -33,6 +33,10 @@ M.Hide = {
         icon = 20,
         value = 30,
     },
+    PluginUpdates = {
+        icon = 10,
+        value = 15,
+    },
     CursorPosition = 60,
     GitBranch = 30,
     GitSigns = {

@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
 local u = require("ui.utilities")
-local h = require("ui.status-bars.tables")
+local t = require("ui.status-bars.tables")
 local c = require("ui.status-bars.components")
 local hl = "StatusLineLight"
 local M = {}
@@ -11,7 +11,7 @@ local StatusLineInactive = {
     end,
 
     c.ViMode,
-    h.Align,
+    t.Align,
     {
         c.WindowNumber,
         hl = hl,
@@ -28,7 +28,7 @@ local StatusLineTerminal = {
         c.TerminalName,
         hl = hl,
     },
-    h.Align,
+    t.Align,
     {
         c.CursorPosition,
         hl = hl,
@@ -47,7 +47,7 @@ local StatusLineSpecial = {
     c.ViMode,
     c.SearchResults,
 
-    h.Align,
+    t.Align,
     {
         c.CursorLine,
         hl = hl,
@@ -62,8 +62,8 @@ local StatusLineMinimal = {
         local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         local in_diffview = string.match(self.fileName, "^diffview:///[^(panels)]") -- in diffview but not in diffview panels
         local is_disabled = conditions.buffer_matches({
-            buftype = h.Disable.statusLine.buftype,
-            filetype = h.Disable.statusLine.filetype,
+            buftype = t.Disable.statusLine.buftype,
+            filetype = t.Disable.statusLine.filetype,
         })
         return is_disabled or (buf_label and not in_diffview)
     end,
@@ -71,7 +71,7 @@ local StatusLineMinimal = {
     c.ViMode,
     c.SearchResults,
 
-    h.Align,
+    t.Align,
 }
 
 local StatusLine = {
@@ -85,7 +85,8 @@ local StatusLine = {
     },
     c.LspBlock,
     c.Treesitter,
-    h.Align,
+    c.PluginUpdates,
+    t.Align,
     c.Spell,
     c.FileFormatBlock,
     c.FileEncoding,
