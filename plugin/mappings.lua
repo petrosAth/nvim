@@ -165,21 +165,18 @@ USER.mappings = {
             },
             ["u"] = {
                 name = "Utilities",
-                ["c"] = { "<CMD>PackerCompile<CR>", "Packer compile" }, -- packer
                 ["s"] = {
                     name = "Status",
-                    ["l"] = { "<CMD>LspInfo<CR>",      "LSP info"      }, -- lsp-config
-                    ["m"] = { "<CMD>Mason<CR>",        "Mason status"  }, -- mason.nvim
-                    ["n"] = { "<CMD>NullLsInfo<CR>",   "Null-ls info"  }, -- null-ls.nvim
-                    ["p"] = { "<CMD>PackerStatus<CR>", "Packer status" }, -- packer
+                    ["l"] = { "<CMD>LspInfo<CR>",    "LSP info"       }, -- lsp-config
+                    ["m"] = { "<CMD>Mason<CR>",      "Mason status"   }, -- mason.nvim
+                    ["n"] = { "<CMD>NullLsInfo<CR>", "Null-ls info"   }, -- null-ls.nvim
+                    ["p"] = { "<CMD>Lazy<CR>",       "Plugins status" }, -- lazy.nvim
                 },
                 ["u"] = {
                     name = "Update",
-                    ["l"] = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", "Update LSP packages"               }, -- mason-tool-installer.nvim
-                    ["P"] = { "<CMD>PackerSync<CR>",                     "Update plugins"                    }, -- packer
-                    ["p"] = { "<CMD>PackerSync --preview<CR>",           "Preview plugins updates"           }, -- packer
-                    ["S"] = { "<CMD>SmartPackerSnapshot<CR>",            "Take a smart packer snapshot"      }, -- packer
-                    ["L"] = { "<CMD>SmartPackerSnapshotRollback<CR>",    "Smart rollback on packer snapshot" }  -- packer
+                    ["l"] = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", "Update LSP packages"       }, -- mason-tool-installer.nvim
+                    ["P"] = { "<CMD>Lazy update<CR>",                    "Update plugins"            }, -- lazy.nvim
+                    ["p"] = { "<CMD>Lazy check<CR>",                     "Check for plugins updates" }, -- lazy.nvim
                 },
             },
         },

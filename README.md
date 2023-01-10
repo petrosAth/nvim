@@ -5,6 +5,10 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 ## To-do
 
 - [ ] Replace packer.nvim with [lazy.nvim](https://github.com/folke/lazy.nvim)
+  - [x] Change packer.nvim mappings to lazy.nvim
+  - [x] Change packer.nvim to lazy.nvim on dashboard
+  - [ ] Configure lazy.nvim icons and highlights
+  - [ ] Add "lazy" filetype in status-bars/tab-line tables
 - [ ] Add [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
 - [ ] Add debugger
 - [ ] Add Dracula theme

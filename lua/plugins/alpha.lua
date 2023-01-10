@@ -67,10 +67,8 @@ local function setup(alpha, icons)
         type = "group",
         val = {
             button("LDR u u l", string.format("%s %s Update external tooling", icons.alphaCursor[1], icons.update[1])),
-            button("LDR u u p", string.format("%s %s Preview plugins updates", icons.alphaCursor[1], icons.preview[1])),
+            button("LDR u u p", string.format("%s %s Check for plugins updates", icons.alphaCursor[1], icons.preview[1])),
             button("LDR u u P", string.format("%s %s Update plugins", icons.alphaCursor[1], icons.update[1])),
-            button("LDR u u S", string.format("%s %s Snapshot plugins", icons.alphaCursor[1], icons.save[1])),
-            button("LDR u u L", string.format("%s %s Rollback on snapshot", icons.alphaCursor[1], icons.load[1])),
         },
         opts = {
             spacing = 0,
