@@ -88,7 +88,7 @@ function M.get_highlight_groups(palette)
         Boolean = { fg = p.cMagenta, italic = true },
         Float = { fg = p.cMagenta },
 
-        Identifier = { fg = p.cSelect },
+        Identifier = { link = "Normal" },
         Function = { fg = p.cCyan, italic = true },
 
         Statement = { fg = p.cBlue },

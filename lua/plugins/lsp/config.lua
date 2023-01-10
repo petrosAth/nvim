@@ -1,13 +1,13 @@
 local M = {}
 
 local function capabilities()
-    local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-    client_capabilities.textDocument.completion.completionItem.snippetSupport = true
-    client_capabilities.textDocument.foldingRange = {
+    local client_caps = vim.lsp.protocol.make_client_capabilities()
+    client_caps.textDocument.completion.completionItem.snippetSupport = true
+    client_caps.textDocument.foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true,
     }
-    client_capabilities.textDocument.completion.completionItem.resolveSupport = {
+    client_caps.textDocument.completion.completionItem.resolveSupport = {
         properties = {
             "documentation",
             "detail",
@@ -20,13 +20,17 @@ local function capabilities()
     if not loaded then
         USER.loading_msg("cmp_nvim_lsp")
     end
-    client_capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
+    client_caps = cmp_nvim_lsp.default_capabilities(client_caps)
 
-    return client_capabilities
+    return client_caps
 end
 
 local function on_attach(client, bufnr)
-    if client.server_capabilities.documentFormattingProvider then
+    local server_caps = client.server_capabilities
+    -- if server_caps.semanticTokensProvider then
+    --     server_caps.semanticTokensProvider = false
+    -- end
+    if server_caps.documentFormattingProvider then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
     end
 end
@@ -66,7 +70,8 @@ local function setup_language_servers(lspconfig, servers, root_files)
             })
         elseif name == "sumneko_lua" then
             -- Make the server aware of Neovim runtime files when editing Neovim config
-            local library = vim.fn.getcwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true) or nil
+            local library = vim.fn.getcwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true)
+                or nil
             lspconfig[name].setup({
                 root_dir = lspconfig.util.root_pattern(root_files),
                 settings = {

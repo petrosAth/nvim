@@ -11,7 +11,6 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   - [x] Add "lazy" filetype in status-bars/tab-line tables
   - [x] Add "lazy.nvim" component in status-line
 - [ ] Configure statuscolumn
-- [ ] Disable lsp syntax highlighting
 - [ ] Add [neogen](https://github.com/danymat/neogen)
 - [ ] Add [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
 - [ ] Add debugger
@@ -20,6 +19,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## Reminders
 
+- lsp syntax highlighting (:h lsp-semantic_tokens )
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
 
 ## Plugins watch list
