@@ -8,7 +8,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   - [x] Change packer.nvim mappings to lazy.nvim
   - [x] Change packer.nvim to lazy.nvim on dashboard
   - [x] Configure lazy.nvim icons and highlights
-  - [ ] Add "lazy" filetype in status-bars/tab-line tables
+  - [x] Add "lazy" filetype in status-bars/tab-line tables
   - [ ] Add "lazy.nvim" component in status-line
 - [ ] Add [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
 - [ ] Add debugger
