@@ -1,42 +1,12 @@
 local function setup(gitsigns, icons, borders)
     gitsigns.setup({
         signs = {
-            add = {
-                hl = "GitSignsAdd",
-                text = icons.add,
-                numhl = "GitSignsAddNr",
-                linehl = "GitSignsAddLn",
-            },
-            change = {
-                hl = "GitSignsChange",
-                text = icons.change,
-                numhl = "GitSignsChangeNr",
-                linehl = "GitSignsChangeLn",
-            },
-            delete = {
-                hl = "GitSignsDelete",
-                text = icons.delete,
-                numhl = "GitSignsDeleteNr",
-                linehl = "GitSignsDeleteLn",
-            },
-            topdelete = {
-                hl = "GitSignsDelete",
-                text = icons.topdelete,
-                numhl = "GitSignsDeleteNr",
-                linehl = "GitSignsDeleteLn",
-            },
-            changedelete = {
-                hl = "GitSignsChange",
-                text = icons.changedelete,
-                numhl = "GitSignsChangeNr",
-                linehl = "GitSignsChangeLn",
-            },
-            untracked = {
-                hl = "GitSignsAdd",
-                text = icons.untracked,
-                numhl = "GitSignsAddNr",
-                linehl = "GitSignsAddLn",
-            },
+            add = { text = icons.add },
+            change = { text = icons.change },
+            delete = { text = icons.delete },
+            topdelete = { text = icons.topdelete },
+            changedelete = { text = icons.changedelete },
+            untracked = { text = icons.untracked },
         },
         signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
         numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
