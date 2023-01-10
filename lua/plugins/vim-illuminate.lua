@@ -24,6 +24,7 @@ return {
                 filetypes_denylist = {
                     "aerial",
                     "alpha",
+                    "lazy",
                     "lspinfo",
                     "mason",
                     "minimap",

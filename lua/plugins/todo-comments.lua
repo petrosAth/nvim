@@ -10,7 +10,7 @@ local function setup(todo_comments, icons)
                 alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
                 -- signs = false, -- configure signs for some keywords individually
             },
-            TODO = { icon = icons.todo[1], color = "info" },
+            TODO = { icon = icons.task[1], color = "info" },
             HACK = { icon = icons.hack[1], color = "warning" },
             WARN = { icon = icons.lsp.warn[1], color = "warning", alt = { "WARNING", "XXX" } },
             PERF = { icon = icons.performance[1], alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
