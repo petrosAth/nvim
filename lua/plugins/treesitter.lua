@@ -64,7 +64,7 @@ return {
         dependencies = {
             -- nvim-ts-rainbow
             -- Rainbow parentheses for neovim using tree-sitter.
-            "p00f/nvim-ts-rainbow",
+            "mrjones2014/nvim-ts-rainbow",
             -- nvim-treesitter-textobjects
             -- Syntax aware text-objects, select, move, swap, and peek support.
             "nvim-treesitter/nvim-treesitter-textobjects",
