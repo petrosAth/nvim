@@ -12,7 +12,7 @@ USER = {
         spell_dir    = "spell",                -- Spell local config directory
         vale_dir     = "styles/Vocab/Project", -- Vale local config directory
         vale_file    = ".vale.ini",            -- Vale config file name
-        templates    = vim.fn.stdpath("config") .. "/lua/project/templates", -- Directory within nvim config containing file templates
+        templates    = vim.fn.stdpath("config") .. "/templates", -- Directory within nvim config containing file templates
     },
 }
 
