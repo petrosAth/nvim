@@ -2,8 +2,8 @@ return {
     {
         "numToStr/Comment.nvim",
         keys = {
-            { "gc", mode = { "n", "v" } },
-            { "gb", mode = { "n", "v" } },
+            { "gc", mode = { "n", "v", "o" } },
+            { "gb", mode = { "n", "v", "o" } },
         },
         config = function()
             local loaded, Comment = pcall(require, "Comment")

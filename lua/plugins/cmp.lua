@@ -1,6 +1,9 @@
 return {
     {
         "hrsh7th/nvim-cmp",
+        event = {
+            "InsertEnter",
+        },
         dependencies = {
             -- nvim-cmp source for neovim Lua API
             { "hrsh7th/cmp-nvim-lua" },

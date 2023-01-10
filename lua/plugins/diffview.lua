@@ -1,6 +1,15 @@
 return {
     {
         "sindrets/diffview.nvim",
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewLog",
+            "DiffviewClose",
+            "DiffviewRefresh",
+            "DiffviewFocusFiles",
+            "DiffviewFileHistory",
+            "DiffviewToggleFiles",
+        },
         config = function()
             local loaded, diffview = pcall(require, "diffview")
             if not loaded then

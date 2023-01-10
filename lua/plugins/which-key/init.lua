@@ -1,7 +1,9 @@
 return {
     {
         "folke/which-key.nvim",
-        event = "VimEnter",
+        event = {
+            "VimEnter",
+        },
         config = function()
             local loaded, which_key = pcall(require, "which-key")
             if not loaded then

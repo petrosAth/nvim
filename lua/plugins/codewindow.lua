@@ -1,6 +1,9 @@
 return {
     {
         "gorbit99/codewindow.nvim",
+        keys = {
+            "<Space>m",
+        },
         config = function()
             local loaded, codewindow = pcall(require, "codewindow")
             if not loaded then

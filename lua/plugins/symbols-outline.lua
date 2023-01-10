@@ -1,6 +1,11 @@
 return {
     {
         "simrat39/symbols-outline.nvim",
+        cmd = {
+            "SymbolsOutline",
+            "SymbolsOutlineOpen",
+            "SymbolsOutlineClose",
+        },
         config = function()
             local loaded, symbols_outline = pcall(require, "symbols-outline")
             if not loaded then
