@@ -58,11 +58,12 @@ opt.number         = true               -- Show line numbers
 opt.relativenumber = true               -- Enable relative line numbers
 opt.signcolumn     = "yes"              -- Keep the sign column always visible
 opt.colorcolumn    = "120"              -- Show vertical line for text alignment
-opt.foldcolumn     = "auto:9"           -- Maximum fold column size of 1. Auto hide when there are no folds
+opt.foldcolumn     = "1"           -- Maximum fold column size of 1. Auto hide when there are no folds
 opt.foldmethod     = "expr"             -- Folding configuration
 opt.foldexpr       = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 99                 -- All folds below that level are closed on new buffers
 opt.foldminlines   = 1                  -- Fold even single line
+opt.statuscolumn   = '%=%{" "}%{v:relnum?v:relnum:v:lnum}%{" "}%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }'
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
 opt.listchars      = i.listchars.global
