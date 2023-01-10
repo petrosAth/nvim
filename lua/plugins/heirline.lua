@@ -31,7 +31,10 @@ return {
 
             local status_line = require("ui.status-bars.status-line").StatusLines
             local win_bar = require("ui.status-bars.win-bar").WinBars
-            heirline.setup(status_line, win_bar)
+            heirline.setup({
+                statusline = status_line,
+                winbar = win_bar,
+            })
         end,
     },
 }

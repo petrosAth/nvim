@@ -28,6 +28,7 @@ local StatusLineTerminal = {
         c.TerminalName,
         hl = hl,
     },
+    c.PluginUpdates,
     t.Align,
     {
         c.CursorPosition,
@@ -46,7 +47,7 @@ local StatusLineSpecial = {
 
     c.ViMode,
     c.SearchResults,
-
+    c.PluginUpdates,
     t.Align,
     {
         c.CursorLine,
@@ -70,7 +71,7 @@ local StatusLineMinimal = {
 
     c.ViMode,
     c.SearchResults,
-
+    c.PluginUpdates,
     t.Align,
 }
 
@@ -85,7 +86,6 @@ local StatusLine = {
     },
     c.LspBlock,
     c.Treesitter,
-    t.Align,
     c.PluginUpdates,
     t.Align,
     c.Spell,
