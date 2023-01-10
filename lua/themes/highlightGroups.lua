@@ -346,6 +346,9 @@ function M.get_highlight_groups(palette)
         IndentBlanklineSpaceChar = { fg = p.cFill2 },
         IndentBlanklineChar = { fg = p.cFill2 },
 
+        -- lazy.nvim
+        LazyH1 = { fg = g.editor.IncSearch.fg, bg = g.editor.IncSearch.bg },
+
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
         MiniCursorwordCurrent = { bold = true },
