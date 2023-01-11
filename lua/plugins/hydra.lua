@@ -86,18 +86,8 @@ local function setup(hydra, arrow, borders)
     hydra({
         name = "Next",
         hint = [[
-   _b_ ]]
-            .. arrow
-            .. [[ Next buffer     _d_ ]]
-            .. arrow
-            .. [[ Next lsp diagnostic    _t_ ]]
-            .. arrow
-            .. [[ Next tab
-   _c_ ]]
-            .. arrow
-            .. [[ Next git hunk   _s_ ]]
-            .. arrow
-            .. [[ Next misspelled word                  ]],
+   _b_ ]] .. arrow .. [[ Next buffer     _d_ ]] .. arrow .. [[ Next lsp diagnostic    _t_ ]] .. arrow .. [[ Next tab
+   _c_ ]] .. arrow .. [[ Next git hunk   _s_ ]] .. arrow .. [[ Next misspelled word                  ]],
         mode = { "n" },
         body = "]",
         config = {
@@ -125,10 +115,7 @@ local function setup(hydra, arrow, borders)
                 end,
                 { expr = true },
             },
-            {
-                "d",
-                "<CMD>lua vim.diagnostic.goto_next()<CR><CMD>lua vim.diagnostic.open_float()<CR>",
-            },
+            { "d", "<CMD>lua vim.diagnostic.goto_next()<CR><CMD>lua vim.diagnostic.open_float()<CR>", },
             { "s", "]s" },
             { "t", "<CMD>tabnext<CR>" },
 
@@ -139,18 +126,8 @@ local function setup(hydra, arrow, borders)
     hydra({
         name = "Previous",
         hint = [[
-   _b_ ]]
-            .. arrow
-            .. [[ Previous buffer     _d_ ]]
-            .. arrow
-            .. [[ Previous lsp diagnostic    _t_ ]]
-            .. arrow
-            .. [[ Previous tab
-   _c_ ]]
-            .. arrow
-            .. [[ Previous git hunk   _s_ ]]
-            .. arrow
-            .. [[ Previous misspelled word                      ]],
+   _b_ ]] .. arrow .. [[ Previous buffer     _d_ ]] .. arrow .. [[ Previous lsp diagnostic    _t_ ]] .. arrow .. [[ Previous tab
+   _c_ ]] .. arrow .. [[ Previous git hunk   _s_ ]] .. arrow .. [[ Previous misspelled word                      ]],
         mode = { "n" },
         body = "[",
         config = {
@@ -178,10 +155,7 @@ local function setup(hydra, arrow, borders)
                 end,
                 { expr = true },
             },
-            {
-                "d",
-                "<CMD>lua vim.diagnostic.goto_prev()<CR><CMD>lua vim.diagnostic.open_float()<CR>",
-            },
+            { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR><CMD>lua vim.diagnostic.open_float()<CR>", },
             { "s", "[s" },
             { "t", "<CMD>tabprevious<CR>" },
 
@@ -196,6 +170,9 @@ return {
         -- Hydra.nvim
         -- This is the Neovim implementation of the famous Emacs Hydra package.
         "anuvyklack/hydra.nvim",
+        event = {
+            "VimEnter",
+        },
         config = function()
             local loaded, hydra = pcall(require, "hydra")
             if not loaded then

@@ -61,7 +61,7 @@ local function setup(which_key, icons, borders)
             spacing = 5, -- spacing between columns
             align = "left", -- align columns left, center or right
         },
-        ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+        ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
         hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
         show_help = true, -- show help message on the command line when the popup is visible
         triggers = "auto", -- automatically setup triggers
