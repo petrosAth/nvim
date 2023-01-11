@@ -11,9 +11,20 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   - [x] Add "lazy" filetype in status-bars/tab-line tables
   - [x] Add "lazy.nvim" component in status-line
 - [ ] Configure statuscolumn
-- [ ] Add [neogen](https://github.com/danymat/neogen)
+- [ ] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
+      using lsp
+- [ ] Add lsp
+      [codelens](https://github.com/tjdevries/config_manager/blob/66d5262e1d142bfde5ebc19ba120ae86cb16d1d9/xdg_config/nvim/lua/tj/lsp/codelens.lua)
+- [ ] Add lsp
+      [inlay hints](https://github.com/tjdevries/config_manager/blob/66d5262e1d142bfde5ebc19ba120ae86cb16d1d9/xdg_config/nvim/lua/tj/lsp/inlay.lua)
+- [ ] Add
+      [snippet action key binding](https://alpha2phi.medium.com/neovim-for-beginners-snippets-using-lua-11e46c4d417c)
+- [ ] Improve code annotation with [neogen](https://github.com/danymat/neogen)
 - [ ] Add [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
 - [ ] Add debugger
+- [ ] Simplify mappings since which-key can pick up "desc" field
+- [ ] (Maybe) Rework nord theme based on
+      [16base theme](https://alpha2phi.medium.com/neovim-for-beginners-color-scheme-e880762c6cc6)
 - [ ] Add Dracula theme
 - [ ] Add Solarized theme
 
