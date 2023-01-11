@@ -264,25 +264,6 @@ return {
         -- you, including sidebars, floating windows, netrw split style, or all of them at once!
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
-        cmd = {
-            "Neotree",
-            "NeoTreeLogs",
-            "NeoTreeShow",
-            "NeoTreeClose",
-            "NeoTreeFloat",
-            "NeoTreeFocus",
-            "NeoTreeReveal",
-            "NeoTreeShowToggle",
-            "NeoTreeFloatToggle",
-            "NeoTreeFocusToggle",
-            "NeoTreePasteConfig",
-            "NeoTreeSetLogLevel",
-            "NeoTreeShowInSplit",
-            "NeoTreeRevealToggle",
-            "NeoTreeRevealInSplit",
-            "NeoTreeShowInSplitToggle",
-            "NeoTreeRevealInSplitToggle",
-        },
         dependencies = {
             -- plenary.nvim
             -- plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write
