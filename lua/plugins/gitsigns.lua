@@ -1,12 +1,12 @@
 local function setup(gitsigns, icons, borders)
     gitsigns.setup({
         signs = {
-            add = { text = icons.add },
-            change = { text = icons.change },
-            delete = { text = icons.delete },
-            topdelete = { text = icons.topdelete },
-            changedelete = { text = icons.changedelete },
-            untracked = { text = icons.untracked },
+            add = { text = icons.signs.add },
+            change = { text = icons.signs.change },
+            delete = { text = icons.signs.delete },
+            topdelete = { text = icons.signs.topdelete },
+            changedelete = { text = icons.signs.changedelete },
+            untracked = { text = icons.signs.untracked },
         },
         signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
         numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -19,14 +19,15 @@ local function setup(gitsigns, icons, borders)
             follow_files = true,
         },
         attach_to_untracked = true,
-        current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_opts = {
             virt_text = true,
             virt_text_pos = "eol", -- "eol" | "overlay" | "right_align"
-            delay = 500,
+            delay = 0,
             ignore_whitespace = false,
+            virt_text_priority = 0,
         },
-        current_line_blame_formatter = " <author>, <author_time:%Y-%m-%d> - <summary>",
+        current_line_blame_formatter = "    " .. icons.commit[1] .. " <author>, <author_time:%Y-%m-%d> - <summary>",
         sign_priority = 6,
         update_debounce = 100,
         status_formatter = nil, -- Use default
@@ -72,7 +73,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons.git.signs
+            local icons = USER.styling.icons.git
             local borders = USER.styling.borders.default
             setup(gitsigns, icons, borders)
         end,

@@ -308,7 +308,7 @@ function M.get_highlight_groups(palette)
         FidgetTask = { fg = g.syntax.Comment.fg, bg = g.editor.Normal.bg },
 
         -- gitsigns.nvim
-        GitSignsCurrentLineBlame = { fg = p.cMagenta, bold = true, italic = true },
+        GitSignsCurrentLineBlame = { fg = p.cFgDim, bold = true, italic = true },
         GitSignsAdd = { fg = p.cGreen },
         GitSignsAddNr = { fg = p.cGreen, bg = p.cFill2 },
         GitSignsAddLn = { bg = p.cGreenDark },
