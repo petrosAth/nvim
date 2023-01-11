@@ -86,16 +86,22 @@ USER.mappings = {
         ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", "Search word under cursor"          }, -- hlslens
         ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", "Search word under cursor backward" }, -- hlslens
         ["]"] = {
-            ["b"] = { nil, "Next buffer"         }, -- Assigned using Hydra.nvim
-            ["c"] = { nil, "Next git hunk"       }, -- Assigned using Hydra.nvim
-            ["d"] = { nil, "Next lsp diagnostic" }, -- Assigned using Hydra.nvim
-            ["t"] = { nil, "Next tab"            }, -- Assigned using Hydra.nvim
+            ["["] = { nil, "Next class start"    }, -- Assigned by nvim-treesitter-textobjects
+            ["]"] = { nil, "Next class end"      }, -- Assigned by nvim-treesitter-textobjects
+            ["a"] = { nil, "Next parameter"      }, -- Assigned by nvim-treesitter-textobjects
+            ["b"] = { nil, "Next buffer"         }, -- Assigned by Hydra.nvim
+            ["c"] = { nil, "Next git hunk"       }, -- Assigned by Hydra.nvim
+            ["d"] = { nil, "Next lsp diagnostic" }, -- Assigned by Hydra.nvim
+            ["t"] = { nil, "Next tab"            }, -- Assigned by Hydra.nvim
         },
         ["["] = {
-            ["b"] = { nil, "Previous buffer"         }, -- Assigned using Hydra.nvim
-            ["c"] = { nil, "Previous git hunk"       }, -- Assigned using Hydra.nvim
-            ["d"] = { nil, "Previous lsp diagnostic" }, -- Assigned using Hydra.nvim
-            ["t"] = { nil, "Previous tab"            }, -- Assigned using Hydra.nvim
+            ["["] = { nil, "Previous class start"    }, -- Assigned by nvim-treesitter-textobjects
+            ["]"] = { nil, "Previous class end"      }, -- Assigned by nvim-treesitter-textobjects
+            ["a"] = { nil, "Previous parameter"      }, -- Assigned by nvim-treesitter-textobjects
+            ["b"] = { nil, "Previous buffer"         }, -- Assigned by Hydra.nvim
+            ["c"] = { nil, "Previous git hunk"       }, -- Assigned by Hydra.nvim
+            ["d"] = { nil, "Previous lsp diagnostic" }, -- Assigned by Hydra.nvim
+            ["t"] = { nil, "Previous tab"            }, -- Assigned by Hydra.nvim
         },
         ["<F1>"]  = { "<CMD>setlocal spell!<CR>",     "Toggle spelling"                           },
         ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor", silent = false },

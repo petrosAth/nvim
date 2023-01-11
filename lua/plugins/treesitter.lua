@@ -34,6 +34,7 @@ local function setup(nvim_treesitter)
                 enable = true,
                 set_jumps = true, -- whether to set jumps in the jumplist
                 goto_next_start = {
+                    ["]a"] = "@parameter.inner",
                     ["]m"] = "@function.outer",
                     ["]]"] = "@class.outer",
                 },
@@ -42,6 +43,7 @@ local function setup(nvim_treesitter)
                     ["]["] = "@class.outer",
                 },
                 goto_previous_start = {
+                    ["[a"] = "@parameter.inner",
                     ["[m"] = "@function.outer",
                     ["[["] = "@class.outer",
                 },
