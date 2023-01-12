@@ -11,6 +11,7 @@ M.set_local_options = function()
     ol.cursorcolumn = false
     ol.relativenumber = true
     ol.statuscolumn = ""
+    ol.list = false
 end
 
 M.set_non_chars = function()
