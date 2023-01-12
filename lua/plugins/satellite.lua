@@ -2,7 +2,7 @@ return {
     {
         -- satellite.nvim
         -- satellite.nvim is a Neovim plugin that displays decorated scrollbars.
-        "petrosAth/satellite.nvim",
+        "git@github.com:petrosAth/satellite.nvim.git",
         config = function()
             local loaded, satellite = pcall(require, "satellite")
             if not loaded then
@@ -14,11 +14,6 @@ return {
                 current_only = true,
                 winblend = USER.styling.variables.transparency,
                 zindex = 40,
-                handlers = {
-                    marks = {
-                        enable = false,
-                    },
-                },
             })
         end,
     },
