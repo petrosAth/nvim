@@ -9,7 +9,6 @@ M.set_local_options = function()
     ol.foldcolumn = "1"
     ol.colorcolumn = ""
     ol.cursorcolumn = false
-    ol.number = true
     ol.relativenumber = true
     ol.statuscolumn = ""
 end
