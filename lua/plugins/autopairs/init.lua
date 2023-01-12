@@ -25,7 +25,6 @@ return {
             config_cmp()
 
             nvim_autopairs.setup({
-                -- disable_filetype = { "html", "TelescopePrompt" },
                 map_cr = true,
                 map_c_h = true,
                 map_c_w = true,

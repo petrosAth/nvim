@@ -9,7 +9,7 @@ local function get_vim_mode()
     if require("hydra.statusline").is_active() then
         return "h"
     else
-        return vim.fn.mode(1) -- :h mode()
+        return vim.api.nvim_get_mode()["mode"]
     end
 end
 
