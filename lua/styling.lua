@@ -158,12 +158,12 @@ M = {
             staged    = { "" },
             conflict  = { "" },
             signs = {
-                add          = "▐",
-                change       = "▐",
-                delete       = "🭬",
-                topdelete    = "🭬",
-                changedelete = "🭨",
-                untracked    = "🬠",
+                add          = "┃",
+                change       = "┃",
+                delete       = "╺",
+                topdelete    = "╺",
+                changedelete = "┣",
+                untracked    = "╏",
             },
         },
         OS = {
