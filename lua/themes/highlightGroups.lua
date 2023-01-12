@@ -30,7 +30,7 @@ function M.get_highlight_groups(palette)
         SpellRare = { sp = p.cFgLight, underdotted = true },
         Visual = { bg = p.cFill4 },
         VisualNOS = { bg = p.cFill4 },
-        Folded = { fg = p.cFgDim, bg = p.cFill1 },
+        Folded = { fg = p.cFgDim },
         FoldColumn = { fg = p.cFgDim },
         SignColumn = { fg = p.cFill2 },
         LineNrAbove = { link = "LineNr" },

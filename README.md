@@ -10,7 +10,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   - [x] Configure lazy.nvim icons and highlights
   - [x] Add "lazy" filetype in status-bars/tab-line tables
   - [x] Add "lazy.nvim" component in status-line
-- [ ] Configure statuscolumn
+- [x] Configure statuscolumn
 - [ ] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
       using lsp
 - [ ] Add lsp

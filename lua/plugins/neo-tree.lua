@@ -249,6 +249,7 @@ local function setup(neo_tree, icons, borders)
                     ol.colorcolumn = "" -- Hide vertical line for text alignment
                     ol.cursorcolumn = false
                     ol.relativenumber = true
+                    ol.statuscolumn = ""
                     ol.fillchars = icons.fillchars.global
                     ol.fillchars:append(icons.fillchars.custom) -- Remove eob character
                 end,

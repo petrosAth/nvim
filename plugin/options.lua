@@ -63,7 +63,58 @@ opt.foldmethod     = "expr"             -- Folding configuration
 opt.foldexpr       = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 99                 -- All folds below that level are closed on new buffers
 opt.foldminlines   = 1                  -- Fold even single line
-opt.statuscolumn   = '%=%{" "}%{v:relnum?v:relnum:v:lnum}%{" "}%s%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }'
+
+function _G.SClnum()
+    local v = vim.v
+    local mode = vim.api.nvim_get_mode()["mode"]
+    local winid = vim.api.nvim_get_current_win()
+    local curwin = tonumber(vim.g.actual_curwin)
+
+    if mode == "i" or winid ~= curwin then
+        return "  " .. v.lnum
+    end
+
+    if v.relnum == 0 then
+        local line_count_length = #tostring(vim.api.nvim_buf_line_count(0))
+        local relnum_length = #tostring(v.lnum)
+        local space_count = math.max(1, line_count_length - relnum_length)
+
+        return v.lnum .. string.rep(" ", space_count)
+    end
+
+    return v.relnum
+end
+
+function _G.SCfold()
+    local v = vim.v
+    local fn = vim.fn
+    local sign = "∙"
+
+    if fn.foldlevel(v.lnum) == 0 then
+        sign = " "
+    else
+        if fn.foldlevel(v.lnum) > fn.foldlevel(v.lnum - 1) then
+            if fn.foldclosed(v.lnum) == -1 then
+                sign = ""
+            else
+                sign = ""
+            end
+        end
+
+        if fn.foldlevel(v.lnum) > fn.foldlevel(v.lnum + 1) then
+            sign = "⁃"
+
+            if fn.foldlevel(v.lnum + 1) == 0 then
+                sign = "⁃"
+            end
+        end
+    end
+
+    return sign
+end
+
+opt.statuscolumn   = '%=%{v:lua.SClnum()}%s%#FoldColumn#%{v:lua.SCfold()} '
+
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
 opt.listchars      = i.listchars.global
