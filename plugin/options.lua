@@ -86,26 +86,27 @@ function _G.SClnum()
 end
 
 function _G.SCfold()
+    local icons = USER.styling.icons.fillchars
     local v = vim.v
     local fn = vim.fn
-    local sign = "∙"
+    local sign = icons.global.foldsep
 
     if fn.foldlevel(v.lnum) == 0 then
         sign = " "
     else
         if fn.foldlevel(v.lnum) > fn.foldlevel(v.lnum - 1) then
             if fn.foldclosed(v.lnum) == -1 then
-                sign = ""
+                sign = icons.global.foldopen
             else
-                sign = ""
+                sign = icons.global.foldclose
             end
         end
 
         if fn.foldlevel(v.lnum) > fn.foldlevel(v.lnum + 1) then
-            sign = "⁃"
+            sign = icons.extra.foldmid
 
             if fn.foldlevel(v.lnum + 1) == 0 then
-                sign = "⁃"
+                sign = icons.extra.foldend
             end
         end
     end

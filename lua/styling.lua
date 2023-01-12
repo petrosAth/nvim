@@ -200,13 +200,17 @@ M = {
                 verthoriz = "🮇", -- "█", "┼", "╋", "🬲", "🭼" overlapping vertical and horizontal
                 fold      = " ", -- filling 'foldtext'
                 foldopen  = "", -- mark the beginning of a fold
-                foldclose = "", -- show a closed fold
-                foldsep   = "·", -- open fold middle marker
+                foldclose = "⯈", -- show a closed fold
+                foldsep   = "∙", -- open fold middle marker
                 diff      = "╱", -- deleted lines of the 'diff' option
                 eob       = "─", -- empty lines at the end of a buffer
             },
             custom = {
-                eob = " ",
+                eob     = " ",
+            },
+            extra = {
+                foldmid = "⁃",
+                foldend = "‣", --"‣"
             },
         },
         listchars = {
