@@ -23,7 +23,7 @@ M = {
         window       = { ""                               },
         lock         = { ""                               },
         bug          = { ""                               },
-        task         = { ""                               },
+        task         = { ""                               },
         hack         = { ""                               },
         performance  = { "祥"                              },
         note         = { ""                               },
@@ -210,7 +210,7 @@ M = {
             },
             extra = {
                 foldmid = "⁃",
-                foldend = "‣", --"▸"
+                foldend = "‣", --"•""⁃""‣""▸"
             },
         },
         listchars = {
