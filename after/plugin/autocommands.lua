@@ -51,6 +51,13 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
     command = [[ if &nu | set nornu | endif ]],
 })
 
+local UpdateFolds = augroup("UpdateFolds", { clear = true })
+autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+    group = UpdateFolds,
+    desc = "Update buffer folds. Useful when using 'foldexpr'.",
+    command = [[ normal! zx ]],
+})
+
 local FormatOptions = augroup("FormatOptions", { clear = true })
 autocmd("BufEnter", {
     group = FormatOptions,
