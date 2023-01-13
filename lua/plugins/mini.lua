@@ -14,16 +14,19 @@ return {
                 -- Cursor path
                 cursor = {
                     enable = false,
+                    timing = animate.gen_timing.exponential({ easing = "out", duration = 600, unit = "total" }),
+                    path = animate.gen_path.line(),
                 },
                 -- Vertical scroll
                 scroll = {
                     enable = true,
-                    timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                    timing = animate.gen_timing.quadratic({ easing = "out", duration = 300, unit = "total" }),
+                    subscroll = animate.gen_subscroll.equal({ max_output_steps = 60 }),
                 },
                 -- Window resize
                 resize = {
                     enable = true,
-                    timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                    timing = animate.gen_timing.exponential({ easing = "out", duration = 150, unit = "total" }),
                 },
                 -- Window open
                 open = {
