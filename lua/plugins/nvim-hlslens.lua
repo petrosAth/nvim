@@ -1,20 +1,10 @@
 local function setup(hlslens, icons)
     hlslens.setup({
-        auto_enable = true,
-        enable_incsearch = true,
-        -- When the cursor is out of the position range of the matched instance
-        -- and calm_down is true, clear all lens,
-        calm_down = true,
         -- When to open the floating window for the nearest lens.
         -- 'auto': floating window will be opened if room isn't enough for virtual text;
         -- 'always': always use floating window instead of virtual text;
         -- 'never': never use floating window for the nearest lens,
         nearest_float_when = "never",
-        -- Winblend of the nearest floating window. `:h winbl` for more details,
-        float_shadow_blend = 50,
-        -- Priority of virtual text, set it lower to overlay others.
-        --     `:h nvim_buf_set_extmark` for more details,
-        virt_priority = 100,
         -- Hackable function for customizing the lens. If you like hacking, you
         --     should search `override_lens` and inspect the corresponding source code.
         --     There's no guarantee that this function will not be changed in the future. If it is
@@ -26,7 +16,7 @@ local function setup(hlslens, icons)
             if absRelIdx > 0 then
                 indicator = ("%d%s"):format(
                     absRelIdx,
-                    sfw ~= (relIdx > 0) and icons.arrow.hollow.u or icons.arrow.hollow.d
+                    sfw ~= (relIdx > 0) and icons.arrow.hollow.u or icons.arrow.hollow.b
                 )
             else
                 indicator = icons.arrow.hollow.r
