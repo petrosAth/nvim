@@ -62,9 +62,9 @@ local function setup(hydra, arrow, borders)
     hydra({
         name = "Resize Window",
         hint = [[
-   _+_ ]] .. arrow .. [[ Increase height   _>_ ]] .. arrow .. [[ Increase width
-   _-_ ]] .. arrow .. [[ Decrease height   _<_ ]] .. arrow .. [[ Decrease width   ]],
-        mode = { "n", "x" },
+   _+_ ]] .. arrow .. [[ Increase height by 3   _>_ ]] .. arrow .. [[ Increase width by 3
+   _-_ ]] .. arrow .. [[ Decrease height by 3   _<_ ]] .. arrow .. [[ Decrease width by 3   ]],
+        mode = { "n", "v" },
         body = "<C-w>",
         config = {
             hint = {
@@ -74,10 +74,10 @@ local function setup(hydra, arrow, borders)
             },
         },
         heads = {
-            { "+", "<C-w>+" },
-            { "-", "<C-w>-" },
-            { "<", "<C-w><" },
-            { ">", "<C-w>>" },
+            { "+", "<C-w>3+" },
+            { "-", "<C-w>3-" },
+            { "<", "<C-w>3<" },
+            { ">", "<C-w>3>" },
 
             { "q", nil, { exit = true, nowait = true, desc = false } },
             { "<Esc>", nil, { exit = true, nowait = true, desc = false } },
