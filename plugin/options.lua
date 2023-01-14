@@ -114,7 +114,7 @@ function _G.SCfold()
     return sign
 end
 
-opt.statuscolumn   = '%=%{v:lua.SClnum()}%s%#FoldColumn#%{v:lua.SCfold()} '
+opt.statuscolumn   = '%=%{v:lua.SClnum()} %s%#FoldColumn#%{v:lua.SCfold()} '
 
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
