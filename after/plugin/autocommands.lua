@@ -65,8 +65,8 @@ autocmd("BufEnter", {
     desc = "Set buffer local formatoptions.",
     callback = function()
         vim.opt_local.formatoptions:remove({
-            "r", -- r - Automatically insert the current comment leader after hitting <Enter> in Insert mode.
-            "o", -- o - Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+            "r", -- Automatically insert the current comment leader after hitting <Enter> in Insert mode.
+            "o", -- Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
         })
     end,
 })

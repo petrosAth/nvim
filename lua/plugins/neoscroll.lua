@@ -5,8 +5,8 @@ local t = {
     ["<C-d>"] = { "scroll", { "vim.wo.scroll",                     "false", "150"  } },
     ["<C-b>"] = { "scroll", { "-vim.api.nvim_win_get_height(0)",   "true",  "300"  } },
     ["<C-f>"] = { "scroll", { "vim.api.nvim_win_get_height(0)",    "true",  "300"  } },
-    ["G"]     = { "scroll", { "2*vim.api.nvim_buf_line_count(0)",  "true",  "1000" } },
-    ["gg"]    = { "scroll", { "-2*vim.api.nvim_buf_line_count(0)", "true",  "1000" } },
+    -- ["G"]     = { "scroll", { "2*vim.api.nvim_buf_line_count(0)",  "true",  "1000" } },
+    -- ["gg"]    = { "scroll", { "-2*vim.api.nvim_buf_line_count(0)", "true",  "1000" } },
     ["zt"]    = { "zt",     { "150"                                }                 },
     ["zz"]    = { "zz",     { "150"                                }                 },
     ["zb"]    = { "zb",     { "150"                                }                 },
@@ -17,7 +17,6 @@ return {
         -- Neoscroll
         -- Smooth scrolling neovim plugin written in lua
         "karb94/neoscroll.nvim",
-        enabled = false,
         config = function()
             local loaded, neoscroll = pcall(require, "neoscroll")
             if not loaded then
