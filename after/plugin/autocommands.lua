@@ -39,18 +39,6 @@ autocmd("FileType", {
     end,
 })
 
-local RelativeNumberToggle = augroup("RelativeNumberToggle", { clear = true })
-autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
-    group = RelativeNumberToggle,
-    desc = "Enable relative number.",
-    command = [[if &nu && mode() != "i" | set rnu | endif]],
-})
-autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
-    group = RelativeNumberToggle,
-    desc = "Disable relative number while in insert mode.",
-    command = [[if &nu | set nornu | endif]],
-})
-
 local UpdateFolds = augroup("UpdateFolds", { clear = true })
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
     group = UpdateFolds,
