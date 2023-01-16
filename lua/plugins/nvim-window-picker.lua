@@ -4,7 +4,7 @@ local function setup(window_picker)
     window_picker.setup({
         -- when you go to window selection mode, status bar will show one of
         -- following letters on them so you can use that letter to select the window
-        selection_chars = "ASDGHKLQWERTYUIOPZXCVBNMFJ",
+        selection_chars = "FJDKSLARUVMGHEIWOXQPBNZ",
 
         -- following filters are only applied when you are using the default filter
         -- defined by this plugin. if you pass in a function to "filter_func"
