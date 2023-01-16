@@ -10,6 +10,8 @@ function M.setup(icons, border)
     mason.setup({
         ui = {
             border = border,
+            width = 0.7,
+            height = 0.825,
             icons = {
                 package_installed = icons.done[1],
                 package_pending = icons.pending[1],
