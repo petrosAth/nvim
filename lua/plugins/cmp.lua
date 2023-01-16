@@ -1,4 +1,10 @@
-local function setup(cmp, luasnip, kinds)
+local function setup(cmp, kinds)
+    local loaded_luasnip, luasnip = pcall(require, "luasnip")
+    if not loaded_luasnip then
+        USER.loading_error_msg("LuaSnip")
+        return
+    end
+
     local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -203,14 +209,8 @@ return {
                 return
             end
 
-            local loaded_luasnip, luasnip = pcall(require, "luasnip")
-            if not loaded_luasnip then
-                USER.loading_error_msg("LuaSnip")
-                return
-            end
-
             local kinds = USER.styling.icons.lsp.kinds
-            setup(cmp, luasnip, kinds)
+            setup(cmp, kinds)
         end,
     },
 }
