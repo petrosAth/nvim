@@ -8,9 +8,6 @@ return {
             -- Snippets collection for a set of different programming languages for faster development.
             "rafamadriz/friendly-snippets",
         },
-        event = {
-            "InsertEnter",
-        },
         config = function()
             require("luasnip/loaders/from_vscode").lazy_load()
         end,
