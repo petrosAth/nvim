@@ -8,6 +8,15 @@ local function setup(nvim_treesitter)
             enable = true,
             additional_vim_regex_highlighting = false,
         },
+        incremental_selection = {
+            enable = true,
+            -- keymaps = {
+            --     init_selection = "<M-v>",
+            --     node_incremental = "<M-v>",
+            --     scope_incremental = "<M-V>",
+            --     node_decremental = "<BS>",
+            -- },
+        },
         indent = {
             enable = true,
         },
