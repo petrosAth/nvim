@@ -13,6 +13,9 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 - [x] Configure statuscolumn
 - [ ] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
       using lsp
+- [ ] Break lsp servers' config in separate files.
+      [on_attach ref github](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62)
+      [on_attach ref reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/)
 - [ ] Add lsp
       [codelens](https://github.com/tjdevries/config_manager/blob/66d5262e1d142bfde5ebc19ba120ae86cb16d1d9/xdg_config/nvim/lua/tj/lsp/codelens.lua)
 - [ ] Add lsp
