@@ -218,8 +218,6 @@ USER.mappings = {
                 ["E"] = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window",                      }, -- neo-tree.nvim
                 ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window",                            }, -- neo-tree.nvim
             },
-            ["f"] = { hop_key("AFTER"),  "Hop to", }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"), "Hop to", }, -- hop.nvim
             ["g"] = {
                 name = "Git & gitsigns",
                 ["B"] = {
@@ -315,8 +313,6 @@ USER.mappings = {
                     ["c"] = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope.nvim
                 },
             },
-            ["t"] = { hop_key("AFTER", -1),                           "Hop before",      }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1),                           "Hop before",      }, -- hop.nvim
             ["u"] = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 name = "Launch",
@@ -356,10 +352,6 @@ USER.mappings = {
             ["b"] = { nil, "Block comment" }, -- comment.nvim
         },
         ["<Space>"] = {
-            ["f"] = { hop_key("AFTER"),     "Hop to",     }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"),    "Hop to",     }, -- hop.nvim
-            ["t"] = { hop_key("AFTER", -1), "Hop before", }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), "Hop before", }, -- hop.nvim
             ["gh"] = {
                 name = "Git & gitsigns",
                 ["a"] = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
@@ -372,12 +364,6 @@ USER.mappings = {
     ["o"] = {
         ["i"] = {
             ["gh"] = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
-        },
-        ["<Space>"] = {
-            ["f"] = { hop_key("AFTER"),     "Hop to",     }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"),    "Hop to",     }, -- hop.nvim
-            ["t"] = { hop_key("AFTER", -1), "Hop before", }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), "Hop before", }, -- hop.nvim
         },
     },
     -- Insert mode mappints

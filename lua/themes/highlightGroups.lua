@@ -350,6 +350,13 @@ function M.get_highlight_groups(palette)
         -- lazy.nvim
         LazyH1 = { fg = g.editor.IncSearch.fg, bg = g.editor.IncSearch.bg },
 
+        -- leap.nvim
+        LeapMatch = { fg = p.cYellow, underline = true, nocombine = true },
+        LeapLabelPrimary = { fg = g.editor.Normal.bg, bg = g.editor.Normal.fg, nocombine = true },
+        LeapLabelSecondary = { fg = p.cBg, bg = p.cFgDim, bold = true, nocombine = true },
+        LeapLabelSelected = { fg = p.cBg, bg = p.cSelect },
+        LeapBackdrop = { fg = p.cFgDim },
+
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
         MiniCursorwordCurrent = { bold = true },

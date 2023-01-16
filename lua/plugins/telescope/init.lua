@@ -159,19 +159,6 @@ local function setup(telescope, icons, borders)
                     ["?"] = actions.which_key,
                     ["qF"] = trouble.smart_open_with_trouble,
                     ["p"] = actions_layout.toggle_preview,
-                    ["f"] = function(prompt_bufnr)
-                        local opts = {
-                            callback = actions.toggle_selection,
-                        }
-                        require("telescope").extensions.hop._hop(prompt_bufnr, opts)
-                    end,
-                    ["F"] = function(prompt_bufnr)
-                        local opts = {
-                            callback = actions.toggle_selection,
-                            loop_callback = trouble.smart_open_with_trouble,
-                        }
-                        require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
-                    end,
                     ["<C-x>"] = false,
                     ["<C-v>"] = false,
                     ["<C-t>"] = false,
@@ -259,69 +246,11 @@ local function setup(telescope, icons, borders)
                 override_file_sorter = true,
                 case_mode = "ignore_case",
             },
-            hop = {
-                -- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
-                keys = {
-                    "a",
-                    "s",
-                    "d",
-                    "f",
-                    "g",
-                    "h",
-                    "j",
-                    "k",
-                    "l",
-                    ";",
-                    "q",
-                    "w",
-                    "e",
-                    "r",
-                    "t",
-                    "y",
-                    "u",
-                    "i",
-                    "o",
-                    "p",
-                    "A",
-                    "S",
-                    "D",
-                    "F",
-                    "G",
-                    "H",
-                    "J",
-                    "K",
-                    "L",
-                    ":",
-                    "Q",
-                    "W",
-                    "E",
-                    "R",
-                    "T",
-                    "Y",
-                    "U",
-                    "I",
-                    "O",
-                    "P",
-                },
-                -- Highlight groups to link to signs and lines; the below configuration refers to demo
-                -- sign_hl typically only defines foreground to possibly be combined with line_hl
-                sign_hl = { "WarningMsg", "Title" },
-                -- optional, typically a table of two highlight groups that are alternated between
-                line_hl = { "CursorLine", "Normal" },
-                -- options specific to `hop_loop`
-                -- true temporarily disables Telescope selection highlighting
-                clear_selection_hl = false,
-                -- highlight hopped to entry with telescope selection highlight
-                -- note: mutually exclusive with `clear_selection_hl`
-                trace_entry = true,
-                -- jump to entry where hoop loop was started from
-                reset_selection = true,
-            },
         },
     })
 
     -- Load extensions
-    local extensions = { "dir", "file_browser", "frecency", "fzf", "hop", "luasnip", "possession" }
+    local extensions = { "dir", "file_browser", "frecency", "fzf", "luasnip", "possession" }
     pcall(function()
         for _, ext in ipairs(extensions) do
             telescope.load_extension(ext)
@@ -355,7 +284,7 @@ return {
             -- telescope-hop.nvim
             -- telescope-hop.nvim is an extension for telescope.nvim. It helps you navigate, select, and perform
             -- actions on results buffer with motions inspired by hop.nvim.
-            "nvim-telescope/telescope-hop.nvim",
+            -- "nvim-telescope/telescope-hop.nvim",
             -- telescope-file-browser.nvim
             -- telescope-file-browser.nvim is a file browser extension for telescope.nvim. It supports synchronized
             -- creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim
