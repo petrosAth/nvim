@@ -164,6 +164,11 @@ M = {
                 topdelete    = "╺",
                 changedelete = "┣",
                 untracked    = "╏",
+                satellite = {
+                    add    = "┃",
+                    change = "┃",
+                    delete = "╸",
+                }
             },
         },
         OS = {
