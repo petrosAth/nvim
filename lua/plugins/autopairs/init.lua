@@ -25,12 +25,14 @@ return {
             config_cmp()
 
             nvim_autopairs.setup({
+                -- disable_filetype = { "html", "TelescopePrompt" },
                 map_cr = true,
                 map_c_h = true,
                 map_c_w = true,
             })
 
             require("plugins.autopairs.rules").add_rules()
+            -- npairs.get_rule(">[%w%s]*$")[1].not_filetypes = { "html" }
         end,
     },
 }

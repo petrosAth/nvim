@@ -10,6 +10,7 @@ local function setup(nvim_treesitter)
         },
         incremental_selection = {
             enable = true,
+            -- NOTE: Delete if I can remember the default keymaps
             -- keymaps = {
             --     init_selection = "<M-v>",
             --     node_incremental = "<M-v>",
