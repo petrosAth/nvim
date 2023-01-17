@@ -11,7 +11,7 @@ return {
             end
 
             satellite.setup({
-                current_only = true,
+                current_only = false,
                 winblend = USER.styling.variables.transparency,
                 zindex = 40,
             })
