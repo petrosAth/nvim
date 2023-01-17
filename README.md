@@ -38,6 +38,8 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## Plugins watch list
 
+- [nvim-insx](https://github.com/hrsh7th/nvim-insx) Flexible insert-mode key
+  mapping manager (Auto complete).
 - [nvim-nonicons](https://github.com/yamatsum/nvim-nonicons) Icon set using
   Nonicons for Neovim plugins and settings.
 - [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) Not UFO in the sky, but
@@ -56,7 +58,6 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   cursor location in a file.
 - [Telescope-media-files](https://github.com/nvim-telescope/telescope-media-files.nvim)
   Telescope extension to preview media files using Ueberzug.
-- [Neogit](https://github.com/TimUntersberger/neogit) Magit for Neovim.
 - [pantran.nvim](https://github.com/potamides/pantran.nvim) Use your favorite
   machine translation engines without having to leave your favorite editor.
 
