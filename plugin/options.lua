@@ -15,7 +15,7 @@ opt.undofile       = true               -- Maintain undo history between session
 opt.sessionoptions = "blank,curdir,help,tabpages,winsize,winpos,terminal" -- mksession command's options list
 opt.completeopt    = "menu,menuone,noinsert,noselect" -- A comma-separated list of options for Insert mode completion
 opt.diffopt:append("vertical")          -- Start diff mode in vertical splits
-opt.spell          = true
+opt.spell          = false
 opt.spelllang      = "en_us"
 opt.spelloptions   = "camel"            -- Treat parts of camelCase words as separate words
 opt.encoding       = "utf-8"
