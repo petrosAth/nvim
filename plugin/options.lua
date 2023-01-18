@@ -54,11 +54,9 @@ opt.winblend       = t                  -- Transparency for floating windows
 opt.pumblend       = t                  -- Transparency for the popup-menu
 opt.cursorline     = true               -- Highlight the text line of the cursor
 opt.cursorcolumn   = true               -- Highlight the screen column of the cursor
-opt.number         = true               -- Show line numbers
-opt.relativenumber = true               -- Enable relative line numbers
+opt.number         = false              -- Show line numbers
+opt.relativenumber = false              -- Enable relative line numbers
 opt.signcolumn     = "yes"              -- Keep the sign column always visible
-opt.colorcolumn    = "120"              -- Show vertical line for text alignment
-opt.foldcolumn     = "1"           -- Maximum fold column size of 1. Auto hide when there are no folds
 opt.foldmethod     = "expr"             -- Folding configuration
 opt.foldexpr       = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 99                 -- All folds below that level are closed on new buffers
@@ -71,15 +69,15 @@ function _G.SClnum()
     local curwin = tonumber(vim.g.actual_curwin)
 
     if mode == "i" or winid ~= curwin then
-        return "  " .. v.lnum
+        return v.lnum
     end
 
     if v.relnum == 0 then
-        local line_count_length = #tostring(vim.api.nvim_buf_line_count(0))
-        local relnum_length = #tostring(v.lnum)
-        local space_count = math.max(1, line_count_length - relnum_length)
+        -- local line_count_length = #tostring(vim.api.nvim_buf_line_count(0))
+        -- local relnum_length = #tostring(v.lnum)
+        -- local space_count = math.max(1, line_count_length - relnum_length)
 
-        return v.lnum .. string.rep(" ", space_count)
+        return v.lnum--[[  .. string.rep(" ", space_count) ]]
     end
 
     return v.relnum
@@ -114,7 +112,7 @@ function _G.SCfold()
     return sign
 end
 
-opt.statuscolumn   = "%=%{v:lua.SClnum()}%#SignColumn# %s%#FoldColumn#%{v:lua.SCfold()}"
+opt.statuscolumn   = "%#SignColumn#%s%=%{v:lua.SClnum()}%#FoldColumn# %{v:lua.SCfold()}"
 
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
