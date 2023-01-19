@@ -138,12 +138,12 @@ _G.get_statuscol = function()
 
     local order = {
         "diagnostics",
-        -- "signcol",
         "space",
         "sep",
         "num",
-        "gitsigns",
+        "space",
         "fold",
+        "gitsigns",
     }
 
     for _, val in ipairs(order) do

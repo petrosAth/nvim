@@ -160,14 +160,14 @@ M = {
             signs = {
                 add          = "┃",
                 change       = "┃",
-                delete       = "╺",
-                topdelete    = "╺",
-                changedelete = "┣",
+                delete       = "",
+                topdelete    = "",
+                changedelete = "┃",
                 untracked    = "╏",
                 satellite = {
                     add    = "┃",
                     change = "┃",
-                    delete = "╸",
+                    delete = "",
                 }
             },
         },
