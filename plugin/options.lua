@@ -56,63 +56,18 @@ opt.cursorline     = true               -- Highlight the text line of the cursor
 opt.cursorcolumn   = true               -- Highlight the screen column of the cursor
 opt.number         = false              -- Show line numbers
 opt.relativenumber = false              -- Enable relative line numbers
-opt.signcolumn     = "yes"              -- Keep the sign column always visible
+opt.signcolumn     = "no"               -- Keep the sign column always visible
 opt.foldmethod     = "expr"             -- Folding configuration
 opt.foldexpr       = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 99                 -- All folds below that level are closed on new buffers
 opt.foldminlines   = 1                  -- Fold even single line
 
-function _G.SClnum()
-    local v = vim.v
-    local mode = vim.api.nvim_get_mode()["mode"]
-    local winid = vim.api.nvim_get_current_win()
-    local curwin = tonumber(vim.g.actual_curwin)
-
-    if mode == "i" or winid ~= curwin then
-        return v.lnum
-    end
-
-    if v.relnum == 0 then
-        -- local line_count_length = #tostring(vim.api.nvim_buf_line_count(0))
-        -- local relnum_length = #tostring(v.lnum)
-        -- local space_count = math.max(1, line_count_length - relnum_length)
-
-        return v.lnum--[[  .. string.rep(" ", space_count) ]]
-    end
-
-    return v.relnum
-end
-
-function _G.SCfold()
-    local icons = USER.styling.icons.fillchars
-    local v = vim.v
-    local fn = vim.fn
-    local sign = icons.global.foldsep
-
-    if fn.foldlevel(v.lnum) == 0 then
-        sign = " "
-    else
-        if fn.foldlevel(v.lnum) > fn.foldlevel(v.lnum - 1) then
-            if fn.foldclosed(v.lnum) == -1 then
-                sign = icons.global.foldopen
-            else
-                sign = icons.global.foldclose
-            end
-        end
-
-        if fn.foldlevel(v.lnum) > fn.foldlevel(v.lnum + 1) then
-            sign = icons.extra.foldmid
-
-            if fn.foldlevel(v.lnum + 1) == 0 then
-                sign = icons.extra.foldend
-            end
-        end
-    end
-
-    return sign
-end
-
-opt.statuscolumn   = "%#SignColumn#%s%=%{v:lua.SClnum()}%#FoldColumn# %{v:lua.SCfold()}"
+-- opt.statuscolumn   = "%#SignColumn#%s%=%{v:lua.SClnum()}%#FoldColumn# %{v:lua.SCfold()}"
+require("lua.ui.status-column")
+-- opt.statuscolumn   = "%!v:lua.get_statuscol()"
+-- opt.statuscolumn   = "%=%{v:lua.get_statuscol_num()}%{v:lua.get_statuscol_gitsign()}%{v:lua.get_statuscol_fold()}"
+-- opt.statuscolumn   = "%!(v:lua.SC_diag())%!(v:lua.SC_gitsigns())"
+opt.statuscolumn   = require("lua.ui.status-column")
 
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
