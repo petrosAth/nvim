@@ -63,7 +63,7 @@ opt.foldlevelstart = 99                 -- All folds below that level are closed
 opt.foldminlines   = 1                  -- Fold even single line
 
 -- opt.statuscolumn   = "%#SignColumn#%s%=%{v:lua.SClnum()}%#FoldColumn# %{v:lua.SCfold()}"
-require("lua.ui.status-column")
+-- require("lua.ui.status-column")
 -- opt.statuscolumn   = "%!v:lua.get_statuscol()"
 -- opt.statuscolumn   = "%=%{v:lua.get_statuscol_num()}%{v:lua.get_statuscol_gitsign()}%{v:lua.get_statuscol_fold()}"
 -- opt.statuscolumn   = "%!(v:lua.SC_diag())%!(v:lua.SC_gitsigns())"

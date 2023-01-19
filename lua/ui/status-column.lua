@@ -58,7 +58,7 @@ local function get_name_from_group(bufnum, lnum, group)
     return get_sign_name(cur_sign_tbl)
 end
 
-local function get_statuscol_gitsign(bufnum, lnum)
+function _G.get_statuscol_gitsign(bufnum, lnum)
     local cur_sign_nm = get_name_from_group(bufnum, lnum, "gitsigns_vimfn_signs_")
 
     if cur_sign_nm ~= nil then
@@ -68,39 +68,36 @@ local function get_statuscol_gitsign(bufnum, lnum)
     end
 end
 
-local function get_statuscol_diag(bufnum, lnum)
+function _G.get_statuscol_diag(bufnum, lnum)
     local cur_sign_nm = get_name_from_group(bufnum, lnum, "*")
 
     if cur_sign_nm ~= nil and vim.startswith(cur_sign_nm, "DiagnosticSign") then
         return mk_hl(cur_sign_nm, diag_signs_icons[cur_sign_nm])
+        -- return diag_signs_icons[cur_sign_nm]
     else
         return " "
     end
 end
 
-local function get_statuscol_num()
+function _G.get_statuscol_num()
     local v = vim.v
     local mode = vim.api.nvim_get_mode()["mode"]
     local winid = vim.api.nvim_get_current_win()
     local curwin = tonumber(vim.g.actual_curwin)
 
     if mode == "i" or winid ~= curwin then
-    -- if mode == "i" then
+        -- if mode == "i" then
         return v.lnum
     end
 
     if v.relnum == 0 then
-        -- local line_count_length = #tostring(vim.api.nvim_buf_line_count(0))
-        -- local relnum_length = #tostring(v.lnum)
-        -- local space_count = math.max(1, line_count_length - relnum_length)
-
-        return v.lnum--[[  .. string.rep(" ", space_count) ]]
+        return v.lnum
     end
 
     return v.relnum
 end
 
-local function get_statuscol_fold()
+function _G.get_statuscol_fold()
     local v = vim.v
     local fn = vim.fn
     local sign = icons.fillchars.global.foldsep
@@ -129,15 +126,13 @@ local function get_statuscol_fold()
 end
 
 _G.get_statuscol = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local lnum = vim.v.lnum
     local str_table = {}
 
     local parts = {
-        ["diagnostics"] = get_statuscol_diag(bufnr, lnum),
-        ["fold"] = get_statuscol_fold(),
-        ["gitsigns"] = get_statuscol_gitsign(bufnr, lnum),
-        ["num"] = get_statuscol_num(),
+        ["diagnostics"] = "%{%v:lua.get_statuscol_diag(bufnr(), v:lnum)%}",
+        ["fold"] = "%{v:lua.get_statuscol_fold()}",
+        ["gitsigns"] = "%{%v:lua.get_statuscol_gitsign(bufnr(), v:lnum)%}",
+        ["num"] = "%{v:lua.get_statuscol_num()}",
         ["sep"] = "%=",
         ["signcol"] = "%s",
         ["space"] = " ",
@@ -145,11 +140,11 @@ _G.get_statuscol = function()
 
     local order = {
         "diagnostics",
+        "space",
         "sep",
         "num",
         "gitsigns",
         "fold",
-        -- "space",
     }
 
     for _, val in ipairs(order) do
