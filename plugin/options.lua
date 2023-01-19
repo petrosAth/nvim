@@ -61,14 +61,7 @@ opt.foldmethod     = "expr"             -- Folding configuration
 opt.foldexpr       = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 99                 -- All folds below that level are closed on new buffers
 opt.foldminlines   = 1                  -- Fold even single line
-
--- opt.statuscolumn   = "%#SignColumn#%s%=%{v:lua.SClnum()}%#FoldColumn# %{v:lua.SCfold()}"
--- require("lua.ui.status-column")
--- opt.statuscolumn   = "%!v:lua.get_statuscol()"
--- opt.statuscolumn   = "%=%{v:lua.get_statuscol_num()}%{v:lua.get_statuscol_gitsign()}%{v:lua.get_statuscol_fold()}"
--- opt.statuscolumn   = "%!(v:lua.SC_diag())%!(v:lua.SC_gitsigns())"
-opt.statuscolumn   = require("lua.ui.status-column")
-
+opt.statuscolumn   = require("ui.status-column")
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global
 opt.listchars      = i.listchars.global
