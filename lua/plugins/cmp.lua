@@ -176,9 +176,7 @@ return {
         -- A completion engine plugin for neovim written in Lua. Completion sources are installed from external
         -- repositories and "sourced".
         "hrsh7th/nvim-cmp",
-        event = {
-            "InsertEnter",
-        },
+        event = "InsertEnter",
         dependencies = {
             -- cmp-nvim-lua
             -- nvim-cmp source for neovim Lua API.
