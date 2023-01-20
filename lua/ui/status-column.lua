@@ -85,11 +85,11 @@ function _G.get_statuscol_num(lnum, relnum)
         return lnum
     end
 
-    if mode == "i" then
+    if relnum == 0 then
         return lnum
     end
 
-    if relnum == 0 then
+    if mode == "i" then
         return lnum
     end
 
