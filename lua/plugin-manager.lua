@@ -1,6 +1,6 @@
 local M = {}
 
-local function install_plugin_manager()
+local function install()
     local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     if not vim.loop.fs_stat(lazy_path) then
         vim.fn.system({
@@ -15,7 +15,7 @@ local function install_plugin_manager()
     vim.opt.rtp:prepend(lazy_path)
 end
 
-local function setup_plugin_manager()
+local function setup()
     local icons = USER.styling.icons
     local borders = USER.styling.borders.default
 
@@ -52,20 +52,20 @@ local function setup_plugin_manager()
                 { borders.l, "FloatBorder" },
             },
             icons = {
-                loaded     = icons.done[1],
+                loaded = icons.done[1],
                 not_loaded = icons.pending[1],
-                cmd        = icons.terminal[1],
-                config     = icons.config[1],
-                event      = icons.lazy.event,
-                ft         = icons.file[1],
-                init       = icons.config[1],
-                keys       = icons.key[1],
-                plugin     = icons.plugin[1],
-                runtime    = icons.vim[1],
-                source     = icons.source[1],
-                start      = icons.lazy.start,
-                task       = icons.task[1],
-                lazy       = icons.lazy.lazy,
+                cmd = icons.terminal[1],
+                config = icons.config[1],
+                event = icons.lazy.event,
+                ft = icons.file[1],
+                init = icons.config[1],
+                keys = icons.key[1],
+                plugin = icons.plugin[1],
+                runtime = icons.vim[1],
+                source = icons.source[1],
+                start = icons.lazy.start,
+                task = icons.task[1],
+                lazy = icons.lazy.lazy,
                 list = {
                     icons.arrow.solid.r,
                     icons.arrow.hollow.r,
@@ -101,11 +101,9 @@ local function setup_plugin_manager()
     })
 end
 
-function M.setup()
-    -- Bootstrap plugin manager
-    install_plugin_manager()
-
-    setup_plugin_manager()
+function M.init()
+    install()
+    setup()
 end
 
 return M

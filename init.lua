@@ -20,4 +20,4 @@ USER = {
 vim.cmd.colorscheme(USER.theme)
 
 -- Initialize plugin-manager
-require("plugin-manager").setup()
+require("plugin-manager").init()
