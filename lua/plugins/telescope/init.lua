@@ -263,7 +263,7 @@ return {
         -- telescope.nvim
         -- Find, Filter, Preview, Pick. All lua, all the time.
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
+        version = false,
         dependencies = {
             -- plenary.nvim
             -- plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write
