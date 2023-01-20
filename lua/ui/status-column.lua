@@ -41,7 +41,7 @@ local function get_name_from_group(bufnum, lnum, group)
     return get_sign_name(cur_sign_tbl)
 end
 
-function _G.get_statuscol_gitsign(bufnum, lnum)
+function _G.status_column_gitsign(bufnum, lnum)
     local cur_sign_nm = get_name_from_group(bufnum, lnum, "gitsigns_vimfn_signs_")
     local gitsigns_icons = {
         GitSignsAdd = icons.git.signs.add,
@@ -59,7 +59,7 @@ function _G.get_statuscol_gitsign(bufnum, lnum)
     end
 end
 
-function _G.get_statuscol_diag(bufnum, lnum)
+function _G.status_column_diagnostics(bufnum, lnum)
     local cur_sign_nm = get_name_from_group(bufnum, lnum, "*")
     local diag_signs_icons = {
         DiagnosticSignError = icons.lsp.error[1],
@@ -76,7 +76,7 @@ function _G.get_statuscol_diag(bufnum, lnum)
     end
 end
 
-function _G.get_statuscol_num(lnum, relnum)
+function _G.status_column_number(lnum, relnum)
     local mode = vim.api.nvim_get_mode()["mode"]
     local winid = vim.api.nvim_get_current_win()
     local curwin = tonumber(vim.g.actual_curwin)
@@ -96,7 +96,7 @@ function _G.get_statuscol_num(lnum, relnum)
     return relnum
 end
 
-function _G.get_statuscol_fold(lnum)
+function _G.status_column_fold(lnum)
     local fn = vim.fn
     local sign = icons.fillchars.global.foldsep
 
@@ -123,14 +123,14 @@ function _G.get_statuscol_fold(lnum)
     return sign
 end
 
-_G.get_statuscol = function()
+_G.get_status_column = function()
     local str_table = {}
 
     local parts = {
-        ["diagnostics"] = "%{%v:lua.get_statuscol_diag(bufnr(), v:lnum)%}",
-        ["fold"] = "%{v:lua.get_statuscol_fold(v:lnum)}",
-        ["gitsigns"] = "%{%v:lua.get_statuscol_gitsign(bufnr(), v:lnum)%}",
-        ["num"] = "%{v:lua.get_statuscol_num(v:lnum, v:relnum)}",
+        ["diagnostics"] = "%{%v:lua.status_column_diagnostics(bufnr(), v:lnum)%}",
+        ["fold"] = "%{v:lua.status_column_fold(v:lnum)}",
+        ["gitsigns"] = "%{%v:lua.status_column_gitsign(bufnr(), v:lnum)%}",
+        ["num"] = "%{v:lua.status_column_number(v:lnum, v:relnum)}",
         ["sep"] = "%=",
         ["signcol"] = "%s",
         ["space"] = " ",
@@ -153,4 +153,4 @@ _G.get_statuscol = function()
     return table.concat(str_table)
 end
 
-return "%!v:lua.get_statuscol()"
+return "%!v:lua.get_status_column()"
