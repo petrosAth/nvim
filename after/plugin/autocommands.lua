@@ -40,9 +40,9 @@ autocmd("FileType", {
 })
 
 local UpdateFolds = augroup("UpdateFolds", { clear = true })
-autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+autocmd("BufAdd", {
     group = UpdateFolds,
-    desc = "Update buffer folds. Useful when using 'foldexpr'.",
+    desc = "Recalculate buffer folds. Useful when using 'foldexpr'.",
     command = [[normal! zx]],
 })
 
