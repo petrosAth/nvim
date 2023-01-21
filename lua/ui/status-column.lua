@@ -123,6 +123,14 @@ function _G.status_column_fold(lnum)
     return sign
 end
 
+function _G.status_column_pointer(relnum)
+    if relnum == 0 then
+        return icons.arrow.point.r[1]
+    end
+
+    return " "
+end
+
 _G.get_status_column = function()
     local str_table = {}
 
@@ -131,6 +139,7 @@ _G.get_status_column = function()
         ["fold"] = "%{v:lua.status_column_fold(v:lnum)}",
         ["gitsigns"] = "%{%v:lua.status_column_gitsign(bufnr(), v:lnum)%}",
         ["num"] = "%{v:lua.status_column_number(v:lnum, v:relnum)}",
+        ["pointer"] = "%{v:lua.status_column_pointer(v:relnum)}",
         ["sep"] = "%=",
         ["signcol"] = "%s",
         ["space"] = " ",
