@@ -30,6 +30,11 @@ local function on_attach(client, bufnr)
     -- if server_caps.semanticTokensProvider then
     --     server_caps.semanticTokensProvider = false
     -- end
+
+    if client.supports_method("textDocument/documentSymbol") then
+        require("plugins.lsp.navic").setup(client, bufnr)
+    end
+
     if server_caps.documentFormattingProvider then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
     end
