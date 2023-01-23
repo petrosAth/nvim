@@ -10,6 +10,7 @@ local function setup(indent_blankline, icons)
             "help",
             "man",
             "minimap",
+            "markdown",
             "neo-tree",
             "NvimTree",
             "Outline",
