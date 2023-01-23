@@ -54,6 +54,45 @@ local function setup_language_servers(lspconfig, servers, root_files)
                 on_attach = on_attach,
                 capabilities = capabilities(),
             })
+        elseif name == "eslint" then
+            lspconfig[name].setup({
+                root_dir = lspconfig.util.root_pattern(root_files),
+                on_attach = on_attach,
+                capabilities = capabilities(),
+                settings = {
+                    codeAction = {
+                        disableRuleComment = {
+                            enable = true,
+                            location = "separateLine",
+                        },
+                        showDocumentation = {
+                            enable = true,
+                        },
+                    },
+                    codeActionOnSave = {
+                        enable = false,
+                        mode = "all",
+                    },
+                    experimental = {
+                        useFlatConfig = false,
+                    },
+                    format = true,
+                    nodePath = "",
+                    onIgnoredFiles = "off",
+                    packageManager = "npm",
+                    problems = {
+                        shortenToSingleLine = false,
+                    },
+                    quiet = false,
+                    rulesCustomizations = {},
+                    run = "onType",
+                    useESLintClass = false,
+                    validate = "on",
+                    workingDirectory = {
+                        mode = "location",
+                    },
+                },
+            })
         elseif name == "omnisharp" then
             local install_path = vim.fn.stdpath("data") .. "/mason/packages"
             local cmd = USER.omni_mono and "mono" or "dotnet"

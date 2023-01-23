@@ -8,6 +8,7 @@ local servers = {
     "cssmodules_ls",
     "clangd",
     "emmet_ls",
+    "eslint",
     "omnisharp",
     "powershell_es",
     "pyright",
@@ -79,6 +80,8 @@ local root_files = {
     "Makefile",
     ".nvim",
     ".stylua.toml",
+    ".eslintrc.js",
+    "node_modules",
 }
 
 return {
