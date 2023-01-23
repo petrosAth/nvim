@@ -43,6 +43,7 @@ return {
         -- Indent Blankline
         -- This plugin adds indentation guides to all lines (including empty lines).
         "lukas-reineke/indent-blankline.nvim",
+        event = "BufReadPre",
         config = function()
             local loaded, indent_blankline = pcall(require, "indent_blankline")
             if not loaded then
