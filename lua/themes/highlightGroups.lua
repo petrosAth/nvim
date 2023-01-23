@@ -81,25 +81,26 @@ function M.get_highlight_groups(palette)
     g.syntax = {
         Comment = { fg = p.cFill5, italic = true },
 
-        Constant = { fg = p.cFgLight, bold = true },
+        Constant = { fg = p.cYellow, bold = true },
         String = { fg = p.cGreen, italic = true },
         Character = { fg = p.cGreen },
-        Number = { fg = p.cMagenta },
-        Boolean = { fg = p.cMagenta, italic = true },
-        Float = { fg = p.cMagenta },
+        Number = { fg = p.cOrange },
+        Boolean = { fg = p.cOrange, italic = true },
+        Float = { fg = p.cOrange },
 
-        Identifier = { link = "Normal" },
+        Identifier = { fg = p.cBlue },
         Function = { fg = p.cCyan, italic = true },
 
-        Statement = { fg = p.cBlue },
-        Conditional = { fg = p.cBlue, italic = true },
-        Repeat = { fg = p.cBlue },
-        Label = { fg = p.cBlue },
-        Operator = { fg = p.cBlue },
-        Keyword = { fg = p.cBlue, italic = true },
-        Exception = { fg = p.cBlue },
+        Statement = { fg = p.cMagenta },
+        Conditional = { fg = p.cMagenta },
+        Repeat = { fg = p.cMagenta },
+        Label = { fg = p.cMagenta },
 
-        PreProc = { fg = p.cSelect, bold = true },
+        Operator = { fg = p.cBlue },
+        Keyword = { fg = p.cFgLight, italic = true },
+        Exception = { link = "Keyword" },
+
+        PreProc = { fg = p.cSelect },
         Include = { link = "PreProc" },
         Define = { link = "PreProc" },
         Macro = { link = "PreProc" },
@@ -110,17 +111,17 @@ function M.get_highlight_groups(palette)
         Structure = { link = "Type" },
         Typedef = { link = "Type" },
 
-        Special = { fg = p.cFgLight },
-        SpecialChar = { fg = p.cYellow },
+        Special = { fg = p.cFgLight, bold = true, italic = true },
+        SpecialChar = { link = "Special" },
         Tag = { link = "Special" },
-        Delimiter = { fg = p.cFgLight, bold = true },
-        SpecialComment = { fg = p.cMagenta },
-        Debug = { fg = p.cOrange },
+        Delimiter = { link = "Special" },
+        SpecialComment = { link = "Special" },
+        Debug = { link = "Special" },
 
         Underlined = { underline = true },
-        Ignore = { fg = p.cFill2 },
+        Ignore = {},
         Error = { fg = p.cRed, bold = true, underline = true },
-        Todo = { fg = p.cYellow },
+        Todo = { fg = p.cFgLight },
     }
 
     g.lsp = {
@@ -184,7 +185,7 @@ function M.get_highlight_groups(palette)
         ["@function.builtin"]      = { fg = g.syntax.Function.fg, bold = true },
         ["@function.call"]         = { fg = g.syntax.Function.fg, bold = true },
         ["@function.macro"]        = { fg = g.syntax.Function.fg, bold = true },
-        ["@parameter"]             = g.syntax.Operator,
+        ["@parameter"]             = { fg = p.cSelect, bold = true },
         ["@structure"]             = g.syntax.Structure,
         ["@method"]                = { fg = g.syntax.Function.fg, bold = true },
         ["@method.call"]           = { fg = g.syntax.Function.fg, bold = true },
