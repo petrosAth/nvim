@@ -146,8 +146,9 @@ USER.mappings = {
                 name = "Buffer",
                 ["d"] = { "<CMD>Bdelete<CR>", "Delete buffer" },
             },
-            ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window" },
-            ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"    },
+            ["i"] = { "<CMD>lua vim.show_pos()<CR>",       "Show all the items at a given buffer position" },
+            ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window"                },
+            ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"                   },
             ["p"] = {
                 name = "Project",
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
