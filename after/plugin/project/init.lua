@@ -138,7 +138,10 @@ end, { desc = "Create vale config file in the project root, and place styles in 
 vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
     local cwd = vim.fn.getcwd()
     local templates_dir = USER.local_config.templates
-    local prettier_file = templates_dir .. "/" .. USER.local_config.prettier_file
+    local prettier_file = USER.local_config.prettier_file
 
-    os.execute("cp " .. prettier_file .. " " .. cwd)
+    if vim.fn.filereadable(cwd .. "/" .. prettier_file) == 1 then
+        local prettier_file_template = templates_dir .. "/" .. prettier_file
+        os.execute("cp " .. prettier_file_template .. " " .. cwd)
+    end
 end, { desc = "Create prettier config file in the project root." })
