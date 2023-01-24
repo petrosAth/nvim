@@ -154,11 +154,12 @@ USER.mappings = {
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
                 ["c"] = {
                     name = "Create local config files",
-                    ["c"] = { "<CMD>ProjectCreateConfig<CR>",  "Create config file" },
-                    ["s"] = { "<CMD>ProjectCreateSession<CR>", "Create session"     }, -- possession.nvim
-                    ["p"] = { "<CMD>ProjectCreatePalette<CR>", "Create palette"     }, -- hexokinase
+                    ["c"] = { "<CMD>ProjectCreatePalette<CR>",        "Create palette"         }, -- hexokinase
+                    ["s"] = { "<CMD>ProjectCreateSession<CR>",        "Create session"         }, -- possession.nvim
+                    ["p"] = { "<CMD>ProjectCreatePrettierConfig<CR>", "Create prettier config" },
                 },
-                ["D"] = { "<CMD>PossessionDelete<CR>", "Delete currently loaded session" }, -- possession.nvim
+                ["C"] = { "<CMD>ProjectCreateConfig<CR>", "Create local config file"              }, -- nvim-config-local
+                ["D"] = { "<CMD>PossessionDelete<CR>",    "Delete currently loaded session"       }, -- possession.nvim
                 ["L"] = { "<CMD>ProjectLoadSession<CR>",  "Load local session"                    }, -- possession.nvim
                 ["S"] = { ":PossessionSave ",             "Save session",          silent = false }, -- possession.nvim
             },

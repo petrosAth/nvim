@@ -5,14 +5,15 @@ USER = {
     theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
     mappings     = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
-        dir          = ".nvim",                -- Local config directory
-        file         = "init.local.lua",       -- Local config file
-        palettes_dir = "palettes",             -- Palettes local config directory
-        palette_file = "palette.json",         -- Pallette file name
-        spell_dir    = "spell",                -- Spell local config directory
-        vale_dir     = "styles/Vocab/Project", -- Vale local config directory
-        vale_file    = ".vale.ini",            -- Vale config file name
-        templates    = vim.fn.stdpath("config") .. "/templates", -- Directory within nvim config containing file templates
+        dir           = ".nvim",                 -- Local config directory
+        file          = "init.local.lua",        -- Local config file
+        palettes_dir  = "palettes",              -- Palettes local config directory
+        palette_file  = "palette.json",          -- Pallette file name
+        spell_dir     = "spell",                 -- Spell local config directory
+        vale_dir      = "styles/Vocab/Project",  -- Vale local config directory
+        vale_file     = ".vale.ini",             -- Vale config file name
+        prettier_file = ".prettierrc",           -- Prettier config file name
+        templates     = vim.fn.stdpath("config") .. "/templates", -- Directory within nvim config containing file templates
     },
 }
 

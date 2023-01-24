@@ -76,6 +76,9 @@ function USER.load_local_config(config)
     if config.use_palettes then
         vim.g.Hexokinase_palettes = get_palettes()
     end
+    if config.use_prettier then
+        vim.cmd.ProjectCreatePrettierConfig()
+    end
     if config.use_format_on_save then
         vim.cmd.LspToggleAutoFormat()
     end
@@ -131,3 +134,11 @@ vim.api.nvim_create_user_command("ProjectCreateValeConfig", function()
         os.execute("cp " .. vale_template .. " " .. cwd)
     end
 end, { desc = "Create vale config file in the project root, and place styles in the local config directory." })
+
+vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
+    local cwd = vim.fn.getcwd()
+    local templates_dir = USER.local_config.templates
+    local prettier_file = templates_dir .. "/" .. USER.local_config.prettier_file
+
+    os.execute("cp " .. prettier_file .. " " .. cwd)
+end, { desc = "Create prettier config file in the project root." })
