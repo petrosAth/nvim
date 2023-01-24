@@ -155,7 +155,7 @@ local function setup(hydra, arrow, borders)
                 end,
                 { expr = true },
             },
-            { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR><CMD>lua vim.diagnostic.open_float()<CR>", },
+            { "d", "<CMD>lua vim.diagnostic.goto_prev()<CR><CMD>lua vim.diagnostic.open_float()<CR>" },
             { "s", "[s" },
             { "t", "<CMD>tabprevious<CR>" },
 
@@ -170,9 +170,7 @@ return {
         -- Hydra.nvim
         -- This is the Neovim implementation of the famous Emacs Hydra package.
         "anuvyklack/hydra.nvim",
-        event = {
-            "VimEnter",
-        },
+        event = { "VimEnter" },
         config = function()
             local loaded, hydra = pcall(require, "hydra")
             if not loaded then
