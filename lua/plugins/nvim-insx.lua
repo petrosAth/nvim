@@ -3,7 +3,7 @@ return {
         -- nvim-insx
         -- Flexible insert-mode key mapping manager
         "hrsh7th/nvim-insx",
-        event = { "InsertEnter" },
+        event = { "InsertEnter", "CmdlineEnter" },
         config = function()
             local loaded, insx = pcall(require, "insx.preset.standard")
             if not loaded then
