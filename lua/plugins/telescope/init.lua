@@ -86,7 +86,12 @@ local function setup(telescope, icons, borders)
             },
             selection_strategy = "reset",
             sorting_strategy = "descending",
-            file_ignore_patterns = { "^.git", "tags" },
+            file_ignore_patterns = {
+                "^.git",
+                "^.nvim/",
+                "tags",
+                "node_modules",
+            },
             history = {
                 path = vim.fn.stdpath("data") .. "/databases/telescope_history",
                 limit = 100,
