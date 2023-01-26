@@ -19,7 +19,7 @@ function M.get_highlight_groups(palette)
         NonText = { fg = p.cFill3 },
         Conceal = {},
         Whitespace = { fg = p.cFill3 },
-        Pmenu = { fg = p.cFg, bg = p.cBgDim },
+        Pmenu = { fg = p.cFg, bg = p.cBgDark },
         PmenuSel = { fg = p.cCyan, bg = p.cFill4 },
         PmenuSbar = { fg = p.cFg, bg = p.cFill1 },
         PmenuThumb = { fg = p.cCyan, bg = p.cFill3 },
