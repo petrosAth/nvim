@@ -1,4 +1,4 @@
-local function setup(cmp, kinds)
+local function setup(cmp, borders, kinds)
     local loaded_luasnip, luasnip = pcall(require, "luasnip")
     if not loaded_luasnip then
         USER.loading_error_msg("LuaSnip")
@@ -19,6 +19,21 @@ local function setup(cmp, kinds)
             expand = function(args)
                 luasnip.lsp_expand(args.body) -- For `luasnip` users.
             end,
+        },
+        window = {
+            documentation = cmp.config.window.bordered({
+                border = {
+                    borders.tl,
+                    borders.t,
+                    borders.tr,
+                    borders.r,
+                    borders.br,
+                    borders.b,
+                    borders.bl,
+                    borders.l,
+                },
+                winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:None",
+            }),
         },
         mapping = cmp.mapping.preset.insert({
             ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
@@ -210,8 +225,9 @@ return {
                 return
             end
 
+            local borders = USER.styling.borders.default
             local kinds = USER.styling.icons.lsp.kinds
-            setup(cmp, kinds)
+            setup(cmp, borders, kinds)
         end,
     },
 }
