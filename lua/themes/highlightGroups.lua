@@ -96,7 +96,7 @@ function M.get_highlight_groups(palette)
         Repeat = { fg = p.cMagenta },
         Label = { fg = p.cMagenta },
 
-        Operator = { fg = p.cBlue },
+        Operator = { fg = p.cSelect },
         Keyword = { fg = p.cFgLight, italic = true },
         Exception = { link = "Keyword" },
 
@@ -469,10 +469,10 @@ function M.get_highlight_groups(palette)
         -- nvim-ts-rainbow
         rainbowcol1 = { fg = g.syntax.Special.fg },
         rainbowcol2 = { fg = p.cMagenta },
-        rainbowcol3 = { fg = p.cYellow },
+        rainbowcol3 = { fg = p.cOrange },
         rainbowcol4 = { fg = p.cSelect },
         rainbowcol5 = { fg = p.cFgLight },
-        rainbowcol6 = { fg = p.cOrange },
+        rainbowcol6 = { fg = p.cYellow },
         rainbowcol7 = { fg = p.cCyan },
 
         -- nvim-windowpicker
