@@ -83,7 +83,7 @@ autocmd("BufWritePre", {
     ]],
 })
 
-vim.api.nvim_create_autocmd("User", {
+autocmd("User", {
     pattern = "HeirlineInitWinbar",
     callback = function(args)
         local buf = args.buf
