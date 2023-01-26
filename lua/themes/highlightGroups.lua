@@ -347,6 +347,8 @@ function M.get_highlight_groups(palette)
         IndentBlanklineSpaceCharBlankline = { fg = p.cFill2 },
         IndentBlanklineSpaceChar = { fg = p.cFill2 },
         IndentBlanklineChar = { fg = p.cFill2 },
+        IndentBlanklineIndent1 = { bg = p.cBgDim, nocombine = true  },
+        IndentBlanklineIndent2 = { bg = p.cBg, nocombine = true  },
 
         -- lazy.nvim
         LazyH1 = { fg = g.editor.IncSearch.fg, bg = g.editor.IncSearch.bg },

@@ -92,8 +92,8 @@ M = {
             }
         },
         indentLine = {
-            char         = { "│", "┃" },
-            context_char = { "▏", "▍" },
+            char         = { "│", "╷" },
+            context_char = { "▏", "╷" },
         },
         lsp = {
             icon     = { "", "", ""                          },
