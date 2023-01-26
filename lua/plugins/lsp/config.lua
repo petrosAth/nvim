@@ -28,7 +28,7 @@ end
 local function on_attach(client, bufnr)
     local server_caps = client.server_capabilities
     -- if server_caps.semanticTokensProvider then
-    --     server_caps.semanticTokensProvider = false
+    --     server_caps.semanticTokensProvider = nil
     -- end
 
     if client.supports_method("textDocument/documentSymbol") then
