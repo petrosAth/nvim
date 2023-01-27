@@ -185,7 +185,7 @@ function M.get_highlight_groups(palette)
         ["@function.builtin"]      = { fg = g.syntax.Function.fg, bold = true },
         ["@function.call"]         = { fg = g.syntax.Function.fg, bold = true },
         ["@function.macro"]        = { fg = g.syntax.Function.fg, bold = true },
-        ["@parameter"]             = { fg = g.syntax.Constant.fg },
+        ["@parameter"]             = g.syntax.Type,
         ["@structure"]             = g.syntax.Structure,
         ["@method"]                = { fg = g.syntax.Function.fg, bold = true },
         ["@method.call"]           = { fg = g.syntax.Function.fg, bold = true },
