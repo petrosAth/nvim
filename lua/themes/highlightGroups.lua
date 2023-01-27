@@ -200,6 +200,7 @@ function M.get_highlight_groups(palette)
         ["@keyword"]               = g.syntax.Keyword,
         ["@keyword.function"]      = g.syntax.Function,
         ["@keyword.operator"]      = g.syntax.Operator,
+        ["@keyword.return"]        = { fg = p.cRed },
         ["@operator"]              = g.syntax.Operator,
         ["@exception"]             = g.syntax.Exception,
         ["@include"]               = g.syntax.Include,
