@@ -121,7 +121,7 @@ function M.get_highlight_groups(palette)
         Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
         Ignore = {}, -- (preferred) left blank, hidden  |hl-Ignore|
         Error = { fg = p.cRed, bold = true, underline = true }, -- (preferred) any erroneous construct
-        Todo = { fg = p.cFgLight }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        Todo = { fg = p.cViolet }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     }
 
     g.lsp = {
