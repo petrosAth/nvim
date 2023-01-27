@@ -76,20 +76,17 @@ function _G.status_column_diagnostics(bufnum, lnum)
     end
 end
 
+-- Source
+-- AstroNvim - https://github.com/AstroNvim/AstroNvim/blob/c3e9f4f82fb26a68436bb0f1db2a5f2bcf18862a/lua/core/utils/status.lua#L277-L291
 function _G.status_column_number(lnum, relnum)
-    local mode = vim.api.nvim_get_mode()["mode"]
-    local winid = vim.api.nvim_get_current_win()
-    local curwin = tonumber(vim.g.actual_curwin)
-
-    if winid ~= curwin then
-        return lnum
-    end
+    local nu_opt = vim.opt.number:get()
+    local rnu_opt = vim.opt.relativenumber:get()
 
     if relnum == 0 then
         return lnum
     end
 
-    if mode == "i" then
+    if nu_opt and not rnu_opt then
         return lnum
     end
 
@@ -147,7 +144,6 @@ _G.get_status_column = function()
 
     local order = {
         "diagnostics",
-        "space",
         "sep",
         "num",
         "space",
