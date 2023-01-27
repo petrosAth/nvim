@@ -1,5 +1,3 @@
--- Source
--- roku_remote - https://www.reddit.com/r/neovim/comments/10fpqbp/comment/j4y8sd3/?utm_source=share&utm_medium=web2x&context=3
 local icons = USER.styling.icons
 
 local function get_sign_name(cur_sign)
@@ -128,6 +126,8 @@ function _G.status_column_pointer(relnum)
     return " "
 end
 
+-- Source
+-- roku_remote - https://www.reddit.com/r/neovim/comments/10fpqbp/comment/j4y8sd3/?utm_source=share&utm_medium=web2x&context=3
 _G.get_status_column = function()
     local str_table = {}
 
@@ -144,6 +144,7 @@ _G.get_status_column = function()
 
     local order = {
         "diagnostics",
+        "space",
         "sep",
         "num",
         "space",
