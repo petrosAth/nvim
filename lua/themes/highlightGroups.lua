@@ -79,49 +79,49 @@ function M.get_highlight_groups(palette)
     }
 
     g.syntax = {
-        Comment = { fg = p.cFill5, italic = true },
+        Comment = { fg = p.cFill5, italic = true }, -- any comment
 
-        Constant = { fg = p.cYellow, bold = true },
-        String = { fg = p.cGreen, italic = true },
-        Character = { fg = p.cGreen },
-        Number = { fg = p.cOrange },
-        Boolean = { fg = p.cOrange, italic = true },
-        Float = { fg = p.cOrange },
+        Constant = { fg = p.cYellow, bold = true }, -- (preferred) any constant
+        String = { fg = p.cGreen, italic = true }, -- a string constant: "this is a string"
+        Character = { fg = p.cGreen }, -- a character constant: 'c', '\n'
+        Number = { fg = p.cOrange }, -- a number constant: 234, 0xff
+        Boolean = { fg = p.cOrange, italic = true }, -- a floating point constant: 2.3e10
+        Float = { fg = p.cOrange }, -- a boolean constant: TRUE, false
 
-        Identifier = { fg = p.cBlue },
-        Function = { fg = p.cCyan, italic = true },
+        Identifier = { fg = p.cBlue }, -- (preferred) any variable name
+        Function = { fg = p.cCyan, italic = true }, -- function name (also: methods for classes)
 
-        Statement = { fg = p.cMagenta },
-        Conditional = { fg = p.cMagenta },
-        Repeat = { fg = p.cMagenta },
-        Label = { fg = p.cMagenta },
+        Statement = { fg = p.cMagenta }, -- (preferred) any statement
+        Conditional = { fg = p.cMagenta }, -- if, then, else, endif, switch, etc.
+        Repeat = { link = "Conditional" }, -- for, do, while, etc.
+        Label = { link = "Conditional" }, -- case, default, etc.
 
-        Operator = { fg = p.cSelect },
-        Keyword = { fg = p.cFgLight, italic = true },
-        Exception = { link = "Keyword" },
+        Operator = { fg = p.cSelect }, -- "sizeof", "+", "*", etc.
+        Keyword = { fg = p.cFgLight, italic = true }, -- any other keyword
+        Exception = { link = "Keyword" }, -- try, catch, throw
 
-        PreProc = { fg = p.cSelect },
-        Include = { link = "PreProc" },
-        Define = { link = "PreProc" },
-        Macro = { link = "PreProc" },
-        PreCondit = { link = "PreProc" },
+        PreProc = { fg = p.cSelect }, -- (preferred) generic Preprocessor
+        Include = { link = "PreProc" }, -- preprocessor #include
+        Define = { link = "PreProc" }, -- preprocessor #define
+        Macro = { link = "PreProc" }, -- same as Define
+        PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
 
-        Type = { fg = p.cViolet },
-        StorageClass = { link = "Type" },
-        Structure = { link = "Type" },
-        Typedef = { link = "Type" },
+        Type = { fg = p.cViolet }, -- (preferred) int, long, char, etc.
+        StorageClass = { link = "Type" }, -- static, register, volatile, etc.
+        Structure = { link = "Type" }, -- struct, union, enum, etc.
+        Typedef = { link = "Type" }, -- A typedef
 
-        Special = { fg = p.cFgLight, bold = true, italic = true },
-        SpecialChar = { link = "Special" },
-        Tag = { link = "Special" },
-        Delimiter = { link = "Special" },
-        SpecialComment = { link = "Special" },
-        Debug = { link = "Special" },
+        Special = { fg = p.cFgLight, bold = true, italic = true }, -- (preferred) any special symbol
+        SpecialChar = { link = "Special" }, -- special character in a constant
+        Tag = { link = "Special" }, -- you can use CTRL-] on this
+        Delimiter = { link = "Special" }, -- character that needs attention
+        SpecialComment = { link = "Special" }, -- special things inside a comment
+        Debug = { link = "Special" }, -- debugging statements
 
-        Underlined = { underline = true },
-        Ignore = {},
-        Error = { fg = p.cRed, bold = true, underline = true },
-        Todo = { fg = p.cFgLight },
+        Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
+        Ignore = {}, -- (preferred) left blank, hidden  |hl-Ignore|
+        Error = { fg = p.cRed, bold = true, underline = true }, -- (preferred) any erroneous construct
+        Todo = { fg = p.cFgLight }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     }
 
     g.lsp = {
