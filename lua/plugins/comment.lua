@@ -61,7 +61,7 @@ local function setup(Comment)
 
         ---Pre-hook, called before commenting the line
         ---@type function
-        pre_hook = nil,
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 
         ---Post-hook, called after commenting is done
         ---@type function

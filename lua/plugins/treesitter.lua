@@ -3,6 +3,7 @@ local function setup(nvim_treesitter)
         ensure_installed = "all",
         context_commentstring = {
             enable = true,
+            enable_autocmd = false,
         },
         highlight = {
             enable = true,
@@ -81,6 +82,9 @@ return {
             -- nvim-treesitter-textobjects
             -- Syntax aware text-objects, select, move, swap, and peek support.
             "nvim-treesitter/nvim-treesitter-textobjects",
+            -- nvim-ts-context-commentstring
+            -- Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.
+            "JoosepAlviste/nvim-ts-context-commentstring",
         },
         config = function()
             local loaded, nvim_treesitter = pcall(require, "nvim-treesitter.configs")
