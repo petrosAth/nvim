@@ -144,11 +144,11 @@ USER.mappings = {
         ["<Leader>"] = {
             ["b"] = {
                 name = "Buffer",
-                ["d"] = { "<CMD>lua require('mini.bufremove').delete(0, false)<CR>", "Delete buffer" }, -- mini.bufremove
+                ["d"] = { "<CMD>Bdelete<CR>", "Delete buffer" }, -- bufdelete.nvim
             },
-            ["i"] = { "<CMD>lua vim.show_pos()<CR>",                                              "Show all the items at a given buffer position" },
-            ["q"] = { "<CMD>lua require('mini.bufremove').delete(0, false)<CR><CMD>quit<CR>",     "Delete buffer and close window"                }, -- mini.bufremove
-            ["Q"] = { "<CMD>lua require('mini.bufremove').delete(0, false)<CR><CMD>tabclose<CR>", "Delete buffer and close tab"                   }, -- mini.bufremove
+            ["i"] = { "<CMD>lua vim.show_pos()<CR>",       "Show all the items at a given buffer position" },
+            ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window"                }, -- bufdelete.nvim
+            ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"                   }, -- bufdelete.nvim
             ["p"] = {
                 name = "Project",
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
