@@ -5,6 +5,16 @@ local sources = function(null_ls)
     local diagnostics = null_ls.builtins.diagnostics
 
     return {
+        formatting.shfmt.with({
+            args = {
+                "--filename",
+                "$FILENAME",
+                "-i",
+                "4", -- 0 for tabs (default), >0 for number of spaces
+                "-bn", -- binary ops like && and | may start a line
+                "-sr", -- redirect operators will be followed by a space
+            },
+        }),
         formatting.stylua,
         formatting.prettierd.with({
             filetypes = {
