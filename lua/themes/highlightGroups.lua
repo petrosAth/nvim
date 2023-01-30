@@ -111,7 +111,7 @@ function M.get_highlight_groups(palette)
         Structure = { link = "Type" }, -- struct, union, enum, etc.
         Typedef = { link = "Type" }, -- A typedef
 
-        Special = { fg = p.cFgLight, bold = true, italic = true }, -- (preferred) any special symbol
+        Special = { fg = p.cFgLight, bold = true }, -- (preferred) any special symbol
         SpecialChar = { link = "Special" }, -- special character in a constant
         Tag = { link = "Special" }, -- you can use CTRL-] on this
         Delimiter = { link = "Special" }, -- character that needs attention
@@ -121,7 +121,7 @@ function M.get_highlight_groups(palette)
         Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
         Ignore = {}, -- (preferred) left blank, hidden  |hl-Ignore|
         Error = { fg = p.cRed, bold = true, underline = true }, -- (preferred) any erroneous construct
-        Todo = { fg = p.cViolet }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        Todo = { fg = p.cFgLight, bg = p.cCyan, bold = true }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     }
 
     g.lsp = {
@@ -231,7 +231,7 @@ function M.get_highlight_groups(palette)
         ["@text.todo.unchecked"]   = g.syntax.Todo,
         -- ["@text.environment"]      = {},
         -- ["@text.environment.name"] = {},
-        ["@text.reference"]        = g.syntax.SpecialComment,
+        ["@text.reference"]        = g.syntax.Label,
         ["@text.note"]             = g.diagnostic.DiagnosticHint,
         ["@text.warning"]          = g.diagnostic.DiagnosticWarn,
         ["@text.danger"]           = g.diagnostic.DiagnosticError,
@@ -470,11 +470,11 @@ function M.get_highlight_groups(palette)
         -- nvim-ts-rainbow
         rainbowcol1 = { fg = g.syntax.Special.fg },
         rainbowcol2 = { fg = p.cMagenta },
-        rainbowcol3 = { fg = p.cOrange },
-        rainbowcol4 = { fg = p.cSelect },
+        rainbowcol3 = { fg = p.cCyan },
+        rainbowcol4 = { fg = p.cYellow },
         rainbowcol5 = { fg = p.cFgLight },
-        rainbowcol6 = { fg = p.cYellow },
-        rainbowcol7 = { fg = p.cCyan },
+        rainbowcol6 = { fg = p.cSelect },
+        rainbowcol7 = { fg = p.cOrange },
 
         -- nvim-windowpicker
         WindowPicker = { fg = p.cBgDark, bg = p.cCyan, bold = true },
