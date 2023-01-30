@@ -52,7 +52,7 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
 })
 
 local UpdateFolds = augroup("UpdateFolds", { clear = true })
-autocmd("BufAdd", {
+autocmd("BufEnter", {
     group = UpdateFolds,
     desc = "Recalculate buffer folds. Useful when using 'foldexpr'.",
     command = [[normal! zx]],
