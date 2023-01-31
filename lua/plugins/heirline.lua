@@ -10,7 +10,7 @@ return {
             "anuvyklack/hydra.nvim",
             -- Nvim-web-devicons
             -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
             -- nvim-navic
             -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
             -- Indian satellite navigation system.

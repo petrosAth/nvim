@@ -272,7 +272,7 @@ return {
             "nvim-lua/plenary.nvim",
             -- Nvim-web-devicons
             -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-            "kyazdani42/nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
             -- nui.nvim
             -- UI Component Library for Neovim.
             "MunifTanjim/nui.nvim",
