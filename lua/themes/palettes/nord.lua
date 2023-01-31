@@ -29,17 +29,17 @@ M.base = {
     cBgDim       = u.adjustHSL(p.nord0, 0, 0, -2),
     cBg          = p.nord0,
 
-    cFgDim       = u.adjustHSL(p.nord3, 0, 0, 25),
-    cFg          = p.nord4,
-    cFgLight     = p.nord6,
-
-    cSelect      = p.nord10,
-
     cFill1       = u.adjustHSL(p.nord1, 0, 0, -3),
     cFill2       = p.nord1,
     cFill3       = p.nord2,
     cFill4       = p.nord3,
     cFill5       = u.adjustHSL(p.nord3, 0, 0, 10),
+
+    cFgDim       = u.adjustHSL(p.nord3, 0, 0, 25),
+    cFg          = p.nord4,
+    cFgLight     = p.nord6,
+
+    cSelect      = p.nord10,
 
     cYellowDark = u.blend(p.nord13, p.nord0, 0.1),
     cYellowDim  = u.blend(p.nord13, p.nord0, 0.2),
