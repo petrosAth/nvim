@@ -1,5 +1,14 @@
 local M = {}
 
+local mouse_scrolled = false
+for _, scroll in ipairs({ "Up", "Down" }) do
+    local key = "<ScrollWheel" .. scroll .. ">"
+    vim.keymap.set("", key, function()
+        mouse_scrolled = true
+        return key
+    end, { noremap = true, expr = true })
+end
+
 local function setup(animate)
     animate.setup({
         -- Cursor path
@@ -12,7 +21,15 @@ local function setup(animate)
         scroll = {
             enable = true,
             timing = animate.gen_timing.quadratic({ easing = "out", duration = 150, unit = "total" }),
-            subscroll = animate.gen_subscroll.equal({ max_output_steps = 60 }),
+            subscroll = animate.gen_subscroll.equal({
+                predicate = function(total_scroll)
+                    if mouse_scrolled then
+                        mouse_scrolled = false
+                        return false
+                    end
+                    return total_scroll > 1
+                end,
+            }),
         },
         -- Window resize
         resize = {
