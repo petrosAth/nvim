@@ -64,7 +64,7 @@ function M.get_highlight_groups(palette)
         TabLine = { fg = p.cFg, bg = p.cFill2 },
         TabLineSel = { fg = p.cFg, bg = p.cFill5 },
         TabLineFill = { fg = p.cFgDim, bg = p.cFill3 },
-        Title = { fg = p.cSelect },
+        Title = { fg = p.cCyan, bold = true },
         WinSeparator = { fg = p.cFill2, bg = p.cBg },
         VertSplit = { link = "WinSeparator" },
         QuickFixLine = { fg = p.cBg, bg = p.cCyan },
@@ -81,47 +81,47 @@ function M.get_highlight_groups(palette)
     g.syntax = {
         Comment = { fg = p.cFill5, italic = true }, -- any comment
 
-        Constant = { fg = p.cYellow, bold = true }, -- (preferred) any constant
+        Constant = { fg = p.cFg, bold = true }, -- (preferred) any constant
         String = { fg = p.cGreen, italic = true }, -- a string constant: "this is a string"
         Character = { fg = p.cGreen }, -- a character constant: 'c', '\n'
-        Number = { fg = p.cOrange }, -- a number constant: 234, 0xff
-        Boolean = { fg = p.cOrange, italic = true }, -- a floating point constant: 2.3e10
-        Float = { fg = p.cOrange }, -- a boolean constant: TRUE, false
+        Number = { fg = p.cMagenta }, -- a number constant: 234, 0xff
+        Boolean = { fg = p.cBlue, italic = true }, -- a floating point constant: 2.3e10
+        Float = { fg = p.cMagenta }, -- a boolean constant: TRUE, false
 
-        Identifier = { fg = p.cBlue }, -- (preferred) any variable name
+        Identifier = { fg = p.cFg }, -- (preferred) any variable name
         Function = { fg = p.cCyan, italic = true }, -- function name (also: methods for classes)
 
-        Statement = { fg = p.cMagenta }, -- (preferred) any statement
-        Conditional = { fg = p.cMagenta }, -- if, then, else, endif, switch, etc.
-        Repeat = { link = "Conditional" }, -- for, do, while, etc.
-        Label = { link = "Conditional" }, -- case, default, etc.
+        Statement = { fg = p.cBlue }, -- (preferred) any statement
+        Conditional = { fg = p.cBlue }, -- if, then, else, endif, switch, etc.
+        Repeat = { fg = p.cBlue }, -- for, do, while, etc.
+        Label = { fg = p.cBlue }, -- case, default, etc.
 
-        Operator = { fg = p.cSelect }, -- "sizeof", "+", "*", etc.
-        Keyword = { fg = p.cFgLight, italic = true }, -- any other keyword
-        Exception = { link = "Keyword" }, -- try, catch, throw
+        Operator = { fg = p.cBlue }, -- "sizeof", "+", "*", etc.
+        Keyword = { fg = p.cBlue, italic = true }, -- any other keyword
+        Exception = { fg = p.cBlue }, -- try, catch, throw
 
-        PreProc = { fg = p.cSelect }, -- (preferred) generic Preprocessor
-        Include = { link = "PreProc" }, -- preprocessor #include
-        Define = { link = "PreProc" }, -- preprocessor #define
-        Macro = { link = "PreProc" }, -- same as Define
+        PreProc = { fg = p.cBlue }, -- (preferred) generic Preprocessor
+        Include = { fg = p.cBlue }, -- preprocessor #include
+        Define = { fg = p.cBlue }, -- preprocessor #define
+        Macro = { link = "Define" }, -- same as Define
         PreCondit = { link = "PreProc" }, -- preprocessor #if, #else, #endif, etc.
 
-        Type = { fg = p.cViolet }, -- (preferred) int, long, char, etc.
-        StorageClass = { link = "Type" }, -- static, register, volatile, etc.
-        Structure = { link = "Type" }, -- struct, union, enum, etc.
-        Typedef = { link = "Type" }, -- A typedef
+        Type = { fg = p.cBlue }, -- (preferred) int, long, char, etc.
+        StorageClass = { fg = p.cBlue }, -- static, register, volatile, etc.
+        Structure = { fg = p.cBlue }, -- struct, union, enum, etc.
+        Typedef = { fg = p.cViolet }, -- A typedef
 
-        Special = { fg = p.cFgLight, bold = true }, -- (preferred) any special symbol
-        SpecialChar = { link = "Special" }, -- special character in a constant
-        Tag = { link = "Special" }, -- you can use CTRL-] on this
-        Delimiter = { link = "Special" }, -- character that needs attention
-        SpecialComment = { link = "Special" }, -- special things inside a comment
-        Debug = { link = "Special" }, -- debugging statements
+        Special = { fg = p.cFg, bold = true }, -- (preferred) any special symbol
+        SpecialChar = { fg = p.cYellow }, -- special character in a constant
+        Tag = { fg = p.cFg }, -- you can use CTRL-] on this
+        Delimiter = { fg = p.cFgLight }, -- character that needs attention
+        SpecialComment = { fg = p.cCyan }, -- special things inside a comment
+        Debug = { fg = p.cFg }, -- debugging statements
 
         Underlined = { underline = true }, -- (preferred) text that stands out, HTML links
         Ignore = {}, -- (preferred) left blank, hidden  |hl-Ignore|
         Error = { fg = p.cRed, bold = true, underline = true }, -- (preferred) any erroneous construct
-        Todo = { fg = p.cFgLight, bg = p.cCyan, bold = true }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        Todo = { fg = p.cYellow, bold = true }, -- (preferred) anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     }
 
     g.lsp = {
@@ -165,18 +165,19 @@ function M.get_highlight_groups(palette)
         -- ["@none"]                  = { },
         ["@preproc"]               = g.syntax.PreProc,
         ["@punctuation.delimiter"] = g.syntax.Delimiter,
-        ["@punctuation.bracket"]   = g.syntax.Special,
-        ["@punctuation.special"]   = { fg = p.cCyan },
+        ["@punctuation.bracket"]   = { fg = p.cCyan },
+        ["@punctuation.special"]   = { fg = p.cBlue },
 
         ["@constant"]              = g.syntax.Constant,
-        ["@constant.builtin"]      = g.syntax.Constant,
-        ["@constant.macro"]        = g.syntax.Constant,
+        ["@constant.git_rebase"]   = g.syntax.Constant,
+        ["@constant.builtin"]      = { fg = p.cBlue },
+        ["@constant.macro"]        = { fg = p.cBlue },
         ["@string"]                = g.syntax.String,
         ["@string.regex"]          = g.syntax.SpecialChar,
-        ["@string.escape"]         = { fg = p.cMagenta },
-        ["@string.special"]        = g.syntax.Special,
+        ["@string.escape"]         = g.syntax.SpecialChar,
+        ["@string.special"]        = g.syntax.SpecialChar,
         ["@character"]             = g.syntax.Character,
-        ["@character.special"]     = g.syntax.Special,
+        ["@character.special"]     = g.syntax.SpecialChar,
         ["@number"]                = g.syntax.Number,
         ["@boolean"]               = g.syntax.Boolean,
         ["@float"]                 = g.syntax.Float,
@@ -184,28 +185,29 @@ function M.get_highlight_groups(palette)
         ["@function"]              = { fg = g.syntax.Function.fg, bold = true },
         ["@function.builtin"]      = { fg = g.syntax.Function.fg, bold = true },
         ["@function.call"]         = { fg = g.syntax.Function.fg, bold = true },
-        ["@function.macro"]        = { fg = g.syntax.Function.fg, bold = true },
-        ["@parameter"]             = g.syntax.Type,
+        ["@function.macro"]        = { fg = p.cBlue },
+        ["@parameter"]             = { fg = g.syntax.Function.fg },
         ["@structure"]             = g.syntax.Structure,
         ["@method"]                = { fg = g.syntax.Function.fg, bold = true },
         ["@method.call"]           = { fg = g.syntax.Function.fg, bold = true },
         ["@field"]                 = g.syntax.Special,
+        ["@field.yaml"]            = { fg = p.cViolet },
         ["@field.lua"]             = { fg = g.editor.Normal.fg },
         ["@property"]              = g.syntax.Identifier,
         ["@constructor"]           = g.syntax.Keyword,
 
         ["@conditional"]           = g.syntax.Conditional,
         ["@repeat"]                = g.syntax.Repeat,
-        ["@label"]                 = g.syntax.Label,
+        ["@label"]                 = { fg = p.cViolet },
         ["@keyword"]               = g.syntax.Keyword,
-        ["@keyword.function"]      = g.syntax.Function,
-        ["@keyword.operator"]      = g.syntax.Operator,
-        ["@keyword.return"]        = { fg = p.cRed },
+        ["@keyword.function"]      = g.syntax.Keyword,
+        ["@keyword.operator"]      = g.syntax.Keyword,
+        ["@keyword.return"]        = { fg = p.cOrange },
         ["@operator"]              = g.syntax.Operator,
         ["@exception"]             = g.syntax.Exception,
         ["@include"]               = g.syntax.Include,
         ["@storageclass"]          = g.syntax.StorageClass,
-        ["@type"]                  = g.syntax.Type,
+        ["@type"]                  = { fg = p.cViolet },
         ["@type.builtin"]          = g.syntax.Type,
         ["@type.definition"]       = g.syntax.Typedef,
         ["@type.qualifier"]        = g.syntax.Type,
@@ -213,32 +215,34 @@ function M.get_highlight_groups(palette)
         ["@symbol"]                = g.syntax.Identifier,
         ["@attribute"]             = g.syntax.Constant,
 
-        ["@variable"]              = { fg = g.editor.Normal.fg },
-        ["@variable.builtin"]      = { fg = g.editor.Normal.fg, bold = true },
-        ["@variable.global"]       = { fg = g.editor.Normal.fg, bold = true },
+        ["@variable"]              = { fg = p.cFg },
+        ["@variable.builtin"]      = { fg = p.cBlue, bold = true },
+        ["@variable.global"]       = { fg = p.cFg, bold = true },
 
-        ["@text"]                  = { fg = g.editor.Normal.fg },
+        ["@text"]                  = { fg = p.cFg },
         ["@text.strong"]           = { bold = true },
         ["@text.emphasis"]         = { italic = true },
         ["@text.underline"]        = { underline = true },
         ["@text.strike"]           = { strikethrough = true },
         ["@text.title"]            = g.editor.Title,
-        ["@text.title.html"]       = { fg = g.editor.Normal.fg },
-        ["@text.literal"]          = g.syntax.Delimiter,
-        ["@text.uri"]              = { fg = p.cBlue, italic = true },
-        ["@text.math"]             = g.syntax.Number,
+        ["@text.title.html"]       = { fg = p.cFg },
+        ["@text.literal"]          = { fg = p.cViolet },
+        ["@text.uri"]              = { fg = p.cGreen, underline = true },
+        ["@text.math"]             = { fg = p.cViolet },
         ["@text.todo.checked"]     = { fg = p.cGreen },
         ["@text.todo.unchecked"]   = g.syntax.Todo,
-        -- ["@text.environment"]      = {},
-        -- ["@text.environment.name"] = {},
-        ["@text.reference"]        = g.syntax.Label,
+        ["@text.environment"]      = { fg = p.cViolet },
+        ["@text.environment.name"] = { fg = p.cBlue },
+        ["@text.reference"]        = { fg = p.cViolet },
         ["@text.note"]             = g.diagnostic.DiagnosticHint,
         ["@text.warning"]          = g.diagnostic.DiagnosticWarn,
         ["@text.danger"]           = g.diagnostic.DiagnosticError,
+        ["@text.diff.add"]         = { link = "DiffAdd" },
+        ["@text.diff.delete"]      = { link = "DiffDelete" },
         ["@todo"]                  = g.diagnostic.DiagnosticInfo,
-        ["@tag"]                   = g.syntax.Tag,
-        ["@tag.attribute"]         = g.syntax.Label,
-        -- ["@tag.delimiter"]         = g.syntax.Delimiter,
+        ["@tag"]                   = { fg = p.cBlue },
+        ["@tag.attribute"]         = { fg = p.cViolet },
+        ["@tag.delimiter"]         = { fg = p.cBlue },
     }
 
     g.StatusBars = {
@@ -468,13 +472,13 @@ function M.get_highlight_groups(palette)
         ScrollBarSearch = { link = "Search" },
 
         -- nvim-ts-rainbow
-        rainbowcol1 = { fg = g.syntax.Special.fg },
-        rainbowcol2 = { fg = p.cMagenta },
-        rainbowcol3 = { fg = p.cCyan },
-        rainbowcol4 = { fg = p.cYellow },
+        rainbowcol1 = { fg = p.cMagenta },
+        rainbowcol2 = { fg = p.cYellow },
+        rainbowcol3 = { fg = p.cRed },
+        rainbowcol4 = { fg = p.cViolet },
         rainbowcol5 = { fg = p.cFgLight },
-        rainbowcol6 = { fg = p.cSelect },
-        rainbowcol7 = { fg = p.cOrange },
+        rainbowcol6 = { fg = p.cMagenta },
+        rainbowcol7 = { fg = p.cYellow },
 
         -- nvim-windowpicker
         WindowPicker = { fg = p.cBgDark, bg = p.cCyan, bold = true },
