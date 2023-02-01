@@ -197,6 +197,7 @@ function M.get_highlight_groups(palette)
         ["@conditional"]           = g.syntax.Conditional,
         ["@repeat"]                = g.syntax.Repeat,
         ["@label"]                 = g.syntax.Label,
+        ["@label.json"]            = { link = "Normal" },
         ["@keyword"]               = g.syntax.Keyword,
         ["@keyword.function"]      = { fg = g.syntax.Keyword.fg, italic = true },
         ["@keyword.operator"]      = { fg = g.syntax.Keyword.fg, italic = true },
