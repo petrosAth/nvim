@@ -62,8 +62,8 @@ end, { nargs = 1, desc = "Open URL using the system internet browser" })
 -- https://github.com/ecosse3/nvim/blob/58559b65f0e15384c3ed76b41bb3636a43141a0e/lua/lsp/functions.lua#L3-L25
 
 ---Create augroup and enable auto format on save.
-local function enable_format_on_save()
-    local group = vim.api.nvim_create_augroup("format_on_save", { clear = false })
+local function enable_auto_format()
+    local group = vim.api.nvim_create_augroup("AutoFormat", { clear = false })
     vim.api.nvim_create_autocmd("BufWritePre", {
         callback = function()
             vim.lsp.buf.format({
@@ -79,14 +79,14 @@ end
 
 ---Delete augroup and disable auto format on save.
 local function disable_format_on_save()
-    vim.api.nvim_del_augroup_by_name("format_on_save")
+    vim.api.nvim_del_augroup_by_name("AutoFormat")
     vim.notify("Disabled format on save", "INFO", { title = "LSP" })
 end
 
 ---Toggle auto format on save.
 local function toggle_format_on_save()
-    if vim.fn.exists("#format_on_save#BufWritePre") == 0 then
-        enable_format_on_save()
+    if vim.fn.exists("#AutoFormat#BufWritePre") == 0 then
+        enable_auto_format()
     else
         disable_format_on_save()
     end
