@@ -215,7 +215,7 @@ function M.get_highlight_groups(palette)
         ["@attribute"]             = g.syntax.Constant,
 
         ["@global"]                = g.syntax.Constant,
-        ["@variable"]              = g.syntax.Identifier,
+        ["@variable"]              = { fg = g.syntax.Constant.fg },
         ["@variable.builtin"]      = { fg = p.cBlue },
         ["@variable.global"]       = { fg = g.syntax.Identifier.fg, bold = true },
 
