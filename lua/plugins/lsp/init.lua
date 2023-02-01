@@ -115,11 +115,22 @@ return {
             "j-hui/fidget.nvim",
             -- nvim-lightbulb
             -- VSCode bulb for neovim's built-in LSP.
-            "kosayoda/nvim-lightbulb",
+            { "kosayoda/nvim-lightbulb", enabled = false },
             -- nvim-navic
             -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
             -- Indian satellite navigation system.
             "SmiteshP/nvim-navic",
+            -- lspsaga.nvim
+            -- A lightweight LSP plugin based on Neovim's built-in LSP with a highly performant UI.
+            {
+                "glepnir/lspsaga.nvim",
+                event = "BufRead",
+                dependencies = {
+                    -- Nvim-web-devicons
+                    -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
+                    "nvim-tree/nvim-web-devicons",
+                },
+            },
         },
         config = function()
             -- Setup language servers and null-ls
@@ -131,6 +142,7 @@ return {
             require("plugins.lsp.lightbulb").setup(icons)
             require("plugins.lsp.fidget").setup(icons)
             require("plugins.lsp.inc-rename").setup()
+            require("plugins.lsp.lspsaga").setup(icons)
         end,
     },
 }
