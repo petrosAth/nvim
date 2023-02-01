@@ -116,10 +116,6 @@ return {
             -- nvim-lightbulb
             -- VSCode bulb for neovim's built-in LSP.
             { "kosayoda/nvim-lightbulb", enabled = false },
-            -- nvim-navic
-            -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
-            -- Indian satellite navigation system.
-            "SmiteshP/nvim-navic",
             -- lspsaga.nvim
             -- A lightweight LSP plugin based on Neovim's built-in LSP with a highly performant UI.
             {

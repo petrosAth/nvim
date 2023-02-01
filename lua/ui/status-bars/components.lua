@@ -170,7 +170,6 @@ local FileNameBlock = {
     init = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
-        self.navic = require("nvim-navic")
     end,
 }
 
@@ -213,13 +212,27 @@ local FileName = {
     end,
 }
 
-local Navic = {
-    condition = function(self)
-        return self.navic.is_available and conditions.is_active()
+local LspSymbol = {
+    condition = function()
+        local clients = vim.lsp.buf_get_clients()
+
+        return next(clients) ~= nil and conditions.is_active()
     end,
-    provider = function(self)
-        local context = self.navic.get_location()
-        return context ~= "" and " " .. i.arrow.hollow.r .. " " .. context or ""
+    provider = function()
+        local loaded, lsp_symbol = pcall(require, "lspsaga.symbolwinbar")
+        local symbol = ""
+        if not loaded then
+            return symbol
+        end
+
+        local context = lsp_symbol:get_winbar()
+        if context ~= nil then
+            if context ~= "" then
+                symbol = " " .. i.arrow.hollow.r .. " " .. context
+            end
+        end
+
+        return symbol
     end,
     update = "CursorMoved",
 }
@@ -229,7 +242,7 @@ M.FileNameBlock = utils.insert(
     { flexible = t.Hide.FilePath, { t.Separator.left }, { t.Null } },
     { flexible = t.Hide.FilePath, { FilePath }, { t.Null } },
     { flexible = t.Hide.FileName, { FileName }, { t.Null } },
-    { flexible = t.Hide.Navic, { Navic }, { t.Null } },
+    { flexible = t.Hide.LspSymbol, { LspSymbol }, { t.Null } },
     { flexible = t.Hide.FileName, { t.Separator.right }, { t.Null } }
 )
 
@@ -328,7 +341,7 @@ M.PluginUpdates = {
     },
     { flexible = t.Hide.PluginUpdates.value, { t.Separator.right }, { t.Null } },
 
-    hl = "StatusLinePluginUpdates"
+    hl = "StatusLinePluginUpdates",
 }
 
 M.CursorPosition = {
