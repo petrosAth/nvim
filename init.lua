@@ -20,5 +20,8 @@ USER = {
 -- Set colorscheme
 vim.cmd.colorscheme(USER.theme)
 
+-- Load utility functions
+require("utilities")
+
 -- Initialize plugin-manager
 require("plugin-manager").init()

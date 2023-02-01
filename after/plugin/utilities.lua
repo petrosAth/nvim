@@ -96,7 +96,3 @@ vim.api.nvim_create_user_command("LspToggleAutoFormat", function()
     toggle_format_on_save()
 end, { desc = "Toggle auto format on save" })
 ------------------------------------------------------------------------------------------------------------------------
-
-function USER.loading_error_msg(plugin_name)
-    vim.notify(plugin_name, "ERROR", { title = "Loading failed" })
-end
