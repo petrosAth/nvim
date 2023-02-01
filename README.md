@@ -30,7 +30,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 - [ ] (Maybe) Rework nord theme based on
       [16base theme](https://alpha2phi.medium.com/neovim-for-beginners-color-scheme-e880762c6cc6)
 - [ ] Add Dracula theme
-- [ ] Add Solarized theme
+- [ ] Add [Solarized](https://github.com/altercation/vim-colors-solarized) theme
 
 ## Reminders
 
