@@ -11,6 +11,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   - [x] Add "lazy" filetype in status-bars/tab-line tables
   - [x] Add "lazy.nvim" component in status-line
 - [x] Configure statuscolumn
+- [ ] Try [lspsaga.nvim](https://github.com/glepnir/lspsaga.nvim) again
 - [ ] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
       using lsp
 - [ ] Break lsp servers' config in separate files.
