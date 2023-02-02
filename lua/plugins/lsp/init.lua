@@ -132,7 +132,6 @@ return {
 
             -- Setup lsp utilities
             require("plugins.lsp.signature").setup(icons, border)
-            -- require("plugins.lsp.lightbulb").setup(icons)
             require("plugins.lsp.fidget").setup(icons)
             require("plugins.lsp.inc-rename").setup()
             require("plugins.lsp.lspsaga").setup(icons)

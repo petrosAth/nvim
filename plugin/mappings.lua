@@ -86,22 +86,22 @@ USER.mappings = {
         ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", "Search word under cursor"          }, -- hlslens
         ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", "Search word under cursor backward" }, -- hlslens
         ["]"] = {
-            ["["] = { nil, "Next class start"    }, -- Assigned by nvim-treesitter-textobjects
-            ["]"] = { nil, "Next class end"      }, -- Assigned by nvim-treesitter-textobjects
-            ["a"] = { nil, "Next parameter"      }, -- Assigned by nvim-treesitter-textobjects
-            ["b"] = { nil, "Next buffer"         }, -- Assigned by Hydra.nvim
-            ["c"] = { nil, "Next git hunk"       }, -- Assigned by Hydra.nvim
-            ["d"] = { nil, "Next lsp diagnostic" }, -- Assigned by Hydra.nvim
-            ["t"] = { nil, "Next tab"            }, -- Assigned by Hydra.nvim
+            ["["] = { nil,                                            "Next class start"                }, -- Assigned by nvim-treesitter-textobjects
+            ["]"] = { nil,                                            "Next class end"                  }, -- Assigned by nvim-treesitter-textobjects
+            ["a"] = { nil,                                            "Next parameter"                  }, -- Assigned by nvim-treesitter-textobjects
+            ["b"] = { "<CMD>bn<CR>",                                  "Next buffer"                     },
+            ["c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<cr>'", "Next git hunk",      expr = true }, -- gitsigns.nvim
+            ["d"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>",        "Next lsp diagnostic"             }, -- lspsaga.nvim
+            ["t"] = { "<CMD>tabnext<CR>",                             "Next tab"                        },
         },
         ["["] = {
-            ["["] = { nil, "Previous class start"    }, -- Assigned by nvim-treesitter-textobjects
-            ["]"] = { nil, "Previous class end"      }, -- Assigned by nvim-treesitter-textobjects
-            ["a"] = { nil, "Previous parameter"      }, -- Assigned by nvim-treesitter-textobjects
-            ["b"] = { nil, "Previous buffer"         }, -- Assigned by Hydra.nvim
-            ["c"] = { nil, "Previous git hunk"       }, -- Assigned by Hydra.nvim
-            ["d"] = { nil, "Previous lsp diagnostic" }, -- Assigned by Hydra.nvim
-            ["t"] = { nil, "Previous tab"            }, -- Assigned by Hydra.nvim
+            ["["] = { nil,                                            "Previous class start"                }, -- Assigned by nvim-treesitter-textobjects
+            ["]"] = { nil,                                            "Previous class end"                  }, -- Assigned by nvim-treesitter-textobjects
+            ["a"] = { nil,                                            "Previous parameter"                  }, -- Assigned by nvim-treesitter-textobjects
+            ["b"] = { "<CMD>bp<CR>",                                  "Previous buffer"                     },
+            ["c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<cr>'", "Previous git hunk",      expr = true }, -- gitsigns.nvim
+            ["d"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>",        "Previous lsp diagnostic"             }, -- lspsaga.nvim
+            ["t"] = { "<CMD>tabprevious<CR>",                         "Previous tab"                        }, -- Assigned by Hydra.nvim
         },
         ["<F1>"]  = { "<CMD>setlocal spell!<CR>",     "Toggle spelling"                           },
         ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor", silent = false },
@@ -257,7 +257,7 @@ USER.mappings = {
                 ["D"] = { "<CMD>Lspsaga peek_definition<CR>", "Peek defintion" },
                 ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
-                ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
+                ["h"] = { "<CMD>Lspsaga show_line_diagnostics<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
                 ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
                 ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signature help"                        }, -- nvim-lspconfig

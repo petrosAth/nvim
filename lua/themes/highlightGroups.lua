@@ -397,12 +397,21 @@ function M.get_highlight_groups(palette)
         FinderBorder = { link = "SagaBorder" },
         FinderPreviewBorder = { link = "SagaBorder" },
         -- definition
-        DefinitionBorder = { link = 'SagaBorder' },
-        DefinitionNormal = { link = 'SagaNormal' },
-        DefinitionSearch = { link = 'Search' },
+        DefinitionBorder = { link = "SagaBorder" },
+        DefinitionNormal = { link = "SagaNormal" },
+        DefinitionSearch = { link = "Search" },
         -- hover
-        HoverNormal = { link = 'SagaNormal' },
-        HoverBorder = { link = 'SagaBorder' },
+        HoverNormal = { link = "SagaNormal" },
+        HoverBorder = { link = "SagaBorder" },
+        DiagnosticBorder = { link = "SagaBorder" },
+        DiagnosticNormal = { link = "SagaNormal" },
+        DiagnosticSource = { link = "Comment" },
+        DiagnosticErrorBorder = { fg = g.diagnostic.DiagnosticError.fg, bg = g.editor.FloatBorder.bg },
+        DiagnosticWarnBorder = { fg = g.diagnostic.DiagnosticWarn.fg, bg = g.editor.FloatBorder.bg },
+        DiagnosticHintBorder = { fg = g.diagnostic.DiagnosticHint.fg, bg = g.editor.FloatBorder.bg },
+        DiagnosticInfoBorder = { fg = g.diagnostic.DiagnosticInfo.fg, bg = g.editor.FloatBorder.bg },
+        DiagnosticPos = { link = "TelescopePromptCounter" },
+        DiagnosticWord = { fg = g.editor.Normal.fg },
         -- lightbulb
         LspSagaLightBulb           = { link = "DiagnosticWarn"  },
         -- Float term
@@ -585,7 +594,7 @@ function M.get_highlight_groups(palette)
 
         -- telescope.nvim
         TelescopePromptPrefix = { fg = p.cFg, bold = true },
-        TelescopePromptCounter = { link = "LineNr" },
+        TelescopePromptCounter = { link = "Operator" },
 
         TelescopeNormal = { fg = p.cFg, bg = p.cBgDark },
         TelescopeResultsNormal = { fg = p.cBlue, bg = p.cBgDark },
