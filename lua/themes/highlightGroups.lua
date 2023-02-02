@@ -400,6 +400,9 @@ function M.get_highlight_groups(palette)
         DefinitionBorder = { link = 'SagaBorder' },
         DefinitionNormal = { link = 'SagaNormal' },
         DefinitionSearch = { link = 'Search' },
+        -- hover
+        HoverNormal = { link = 'SagaNormal' },
+        HoverBorder = { link = 'SagaBorder' },
         -- lightbulb
         LspSagaLightBulb           = { link = "DiagnosticWarn"  },
         -- Float term

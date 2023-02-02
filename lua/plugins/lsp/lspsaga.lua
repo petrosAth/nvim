@@ -29,7 +29,7 @@ local function opts(icons)
             diagnostic = "🐞",
             incoming = " ",
             outgoing = " ",
-            hover = " ",
+            hover = icons.lsp.hover[1],
             kind = {
                 Text = kinds.Text .. " ",
                 Method = kinds.Method .. " ",

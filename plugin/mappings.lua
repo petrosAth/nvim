@@ -258,7 +258,7 @@ USER.mappings = {
                 ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
                 ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
-                ["K"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
+                ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
                 ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signature help"                        }, -- nvim-lspconfig
                 ["t"] = { telescope_picker("lsp_type_definitions"),            "Type Definitions"                      }, -- nvim-lspconfig -- telescope.nvim
