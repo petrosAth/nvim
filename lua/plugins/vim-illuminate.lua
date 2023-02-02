@@ -27,6 +27,7 @@ return {
                     "alpha",
                     "lazy",
                     "lspinfo",
+                    "lspsagafinder",
                     "mason",
                     "minimap",
                     "neo-tree",

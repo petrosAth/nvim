@@ -126,9 +126,9 @@ function M.get_highlight_groups(palette)
 
     g.lsp = {
         -- DocumentHighlight
-        LspReferenceText = g.editor.Visual,
-        LspReferenceRead = g.editor.Visual,
-        LspReferenceWrite = g.editor.Visual,
+        LspReferenceText = { link = "Visual" },
+        LspReferenceRead = { link = "Visual" },
+        LspReferenceWrite = { link = "Visual" },
         -- Neovim LspSignatureHelp
         LspSignatureActiveParameter = { fg = g.syntax.Operator.fg, reverse = true },
         -- lspinfo window
@@ -218,6 +218,7 @@ function M.get_highlight_groups(palette)
         ["@variable"]              = { fg = g.syntax.Constant.fg },
         ["@variable.builtin"]      = { fg = p.cBlue },
         ["@variable.global"]       = { fg = g.syntax.Identifier.fg, bold = true },
+        ["@definition"]            = g.syntax.Keyword,
 
         ["@text"]                  = { fg = p.cFg },
         ["@text.strong"]           = { bold = true },
@@ -366,13 +367,32 @@ function M.get_highlight_groups(palette)
         LeapBackdrop = { fg = p.cFgDim },
 
         -- lspsaga.nvim
-        -- SagaShadow                 = { "" },
-        -- SagaNormal                 = { "" },
-        -- SagaExpand                 = { "" },
-        -- SagaBorder                 = { "" },
-        -- SagaBeacon                 = { "" },
-        -- SagaCollapse               = { "" },
+        TitleString = { link = "TelescopeResultsTitle" },
+        TitleIcon = { link = "TitleString" },
+        SagaBorder = { link = "FloatBorder" },
+        SagaNormal = { link = "NormalFloat" },
+        SagaExpand = { link = "FoldColumn" },
+        SagaCollapse = { link = "FoldColumn" },
+        SagaBeacon = { link = "Search" },
+        -- finder
+        FinderSelection = { link = "TelescopeSelection" },
+        FinderFileName = { link = "SagaNormal" },
+        FinderCount = { link = "TelescopePromptCounter" },
+        FinderIcon = { link = "FoldColumn" },
+        FinderType = { link = "Type" },
+        --finder spinner
+        FinderSpinnerTitle = { link = "Identifier" },
+        FinderSpinner = { link = "Comment" },
+        FinderPreviewSearch = { link = "Search" },
+        FinderVirtText = { link = "FoldColumn" },
+        FinderNormal = { link = "SagaNormal" },
+        FinderBorder = { link = "SagaBorder" },
+        FinderPreviewBorder = { link = "SagaBorder" },
+        -- lightbulb
         LspSagaLightBulb           = { link = "DiagnosticWarn"  },
+        -- Float term
+        TerminalBorder = { fg = g.editor.FloatBorder.fg },
+        TerminalNormal = { link = "Normal" },
 
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
@@ -550,7 +570,7 @@ function M.get_highlight_groups(palette)
 
         -- telescope.nvim
         TelescopePromptPrefix = { fg = p.cFg, bold = true },
-        TelescopePromptCounter = { fg = p.cViolet, bold = true },
+        TelescopePromptCounter = { link = "LineNr" },
 
         TelescopeNormal = { fg = p.cFg, bg = p.cBgDark },
         TelescopeResultsNormal = { fg = p.cBlue, bg = p.cBgDark },
@@ -561,14 +581,14 @@ function M.get_highlight_groups(palette)
         TelescopePreviewTitle = { fg = p.cBlue, bg = p.cFill3, bold = true },
         TelescopePromptTitle = { fg = p.cFg, bg = p.cFill3, bold = true },
 
-        TelescopeResultsBorder = { fg = p.cFill3, bg = p.cBgDark },
-        TelescopePreviewBorder = { fg = p.cFill3, bg = p.cBgDim },
-        TelescopePromptBorder = { fg = p.cFill3, bg = p.cBgDim },
+        TelescopeResultsBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDark },
+        TelescopePreviewBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
+        TelescopePromptBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
 
         TelescopeMultiSelection = { fg = p.cFgLight, bg = p.cFill3 },
         TelescopeMultiIcon = { fg = p.cFgLight, bg = p.cFill3 },
-        TelescopselectionCaret = { fg = p.cCyan, bg = p.cFill2 },
-        Telescopselection = { link = "Telescop.cSelectionCaret" },
+        TelescopeSelectionCaret = { link = "TelescopeSelectionCaret" },
+        TelescopeSelection = { fg = p.cCyan, bg = p.cFill2 },
         TelescopeMatching = { fg = p.cFgLight },
 
         -- todo-comments.nvim

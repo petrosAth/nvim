@@ -2,18 +2,28 @@ local M = {}
 
 local function opts(icons)
     local kinds = icons.lsp.kinds
+    local fillchars = USER.styling.icons.fillchars.global
 
     return {
+        preview = {
+            lines_above = 3,
+            lines_below = 7,
+        },
+        scroll_preview = {
+            scroll_down = "<C-d>",
+            scroll_up = "<C-u>",
+        },
+        request_timeout = 2000,
         ui = {
             -- Currently, only the round theme exists
             theme = "round",
             -- This option only works in Neovim 0.9
             title = true,
             -- Border type can be single, double, rounded, solid, shadow.
-            border = "solid",
-            winblend = 0,
-            expand = "",
-            collapse = "",
+            border = "rounded",
+            winblend = USER.styling.variables.transparency,
+            expand = fillchars.foldclose,
+            collapse = fillchars.foldopen,
             preview = " ",
             code_action = icons.lsp.action[1],
             diagnostic = "🐞",
@@ -71,6 +81,14 @@ local function opts(icons)
                 quit = "q",
                 go_action = "g",
             },
+        },
+        finder = {
+            jump_to = "p",
+            edit = { "<C-y>", "<CR>" },
+            vsplit = "<M-v>",
+            split = "<M-o>",
+            tabe = "<M-t>",
+            quit = { "q", "<ESC>" },
         },
         lightbulb = {
             enable = true,
