@@ -47,6 +47,7 @@ opt.winminheight   = 1
 opt.showmode       = false              -- Don't show mode in command line
 opt.autoread       = false              -- Ask before reloading a file changed outside of Neovim
 opt.lazyredraw     = true               -- No redraw during macro, regex execution
+opt.updatetime     = 100                -- If this many milliseconds nothing is typed the swap file will be written to disk. Also used for the |CursorHold| autocommand event
 opt.equalalways    = false              -- When on, all the windows are automatically made the same size after splitting or closing a window
 opt.scrolloff      = 3                  -- Minimal number of screen lines to keep above and below the cursor
 opt.sidescrolloff  = 10                 -- The minimal number of columns to scroll horizontally
