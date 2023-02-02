@@ -113,9 +113,6 @@ return {
             -- fidget.nvim
             -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
             "j-hui/fidget.nvim",
-            -- nvim-lightbulb
-            -- VSCode bulb for neovim's built-in LSP.
-            { "kosayoda/nvim-lightbulb", enabled = false },
             -- lspsaga.nvim
             -- A lightweight LSP plugin based on Neovim's built-in LSP with a highly performant UI.
             {
@@ -135,7 +132,7 @@ return {
 
             -- Setup lsp utilities
             require("plugins.lsp.signature").setup(icons, border)
-            require("plugins.lsp.lightbulb").setup(icons)
+            -- require("plugins.lsp.lightbulb").setup(icons)
             require("plugins.lsp.fidget").setup(icons)
             require("plugins.lsp.inc-rename").setup()
             require("plugins.lsp.lspsaga").setup(icons)
