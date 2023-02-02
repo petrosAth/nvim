@@ -254,6 +254,7 @@ USER.mappings = {
                 name = "LSP",
                 ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",            "Code actions"                          }, -- nvim-lspconfig
                 ["d"] = { "<CMD>Lspsaga lsp_finder<CR>", "Show defintion/references/implementations" },
+                ["D"] = { "<CMD>Lspsaga peek_definition<CR>", "Peek defintion" },
                 ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
                 ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig

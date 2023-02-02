@@ -388,6 +388,10 @@ function M.get_highlight_groups(palette)
         FinderNormal = { link = "SagaNormal" },
         FinderBorder = { link = "SagaBorder" },
         FinderPreviewBorder = { link = "SagaBorder" },
+        -- definition
+        DefinitionBorder = { link = 'SagaBorder' },
+        DefinitionNormal = { link = 'SagaNormal' },
+        DefinitionSearch = { link = 'Search' },
         -- lightbulb
         LspSagaLightBulb           = { link = "DiagnosticWarn"  },
         -- Float term

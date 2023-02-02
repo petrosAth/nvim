@@ -90,6 +90,14 @@ local function opts(icons)
             tabe = "<M-t>",
             quit = { "q", "<ESC>" },
         },
+        definition = {
+            edit = "<C-y>",
+            vsplit = "<M-v>",
+            split = "<M-o>",
+            tabe = "<M-t>",
+            quit = "q",
+            close = "<Esc>",
+        },
         lightbulb = {
             enable = true,
             enable_in_insert = false,
