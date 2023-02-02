@@ -374,6 +374,14 @@ function M.get_highlight_groups(palette)
         SagaExpand = { link = "FoldColumn" },
         SagaCollapse = { link = "FoldColumn" },
         SagaBeacon = { link = "Search" },
+        -- code action
+        ActionPreviewNormal = { link = "SagaNormal" },
+        ActionPreviewBorder = { link = "SagaBorder" },
+        ActionPreviewTitle = { link = "TelescopePreviewTitle" },
+        CodeActionNormal = { link = "SagaNormal" },
+        CodeActionBorder = { link = "SagaBorder" },
+        CodeActionText = { link = "Operator" },
+        CodeActionNumber = { link = "Delimiter" },
         -- finder
         FinderSelection = { link = "TelescopeSelection" },
         FinderFileName = { link = "SagaNormal" },

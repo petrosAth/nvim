@@ -28,6 +28,7 @@ return {
                     "lazy",
                     "lspinfo",
                     "lspsagafinder",
+                    "sagacodeaction",
                     "mason",
                     "minimap",
                     "neo-tree",

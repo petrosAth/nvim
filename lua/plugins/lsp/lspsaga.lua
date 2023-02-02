@@ -98,6 +98,13 @@ local function opts(icons)
             quit = "q",
             close = "<Esc>",
         },
+        code_action = {
+            num_shortcut = true,
+            keys = {
+                quit = { "q", "<ESC>" },
+                exec = { "<C-y>", "<CR>"  },
+            },
+        },
         lightbulb = {
             enable = true,
             enable_in_insert = false,
