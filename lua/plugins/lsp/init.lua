@@ -44,7 +44,7 @@ vim.diagnostic.config({
     virtual_text = {
         source = "if_many", --"always" "if_many"
         spacing = 4,
-        prefix = icons.lsp.virtText[1],
+        prefix = icons.lsp.diagnostics[1],
     },
     signs = true,
     underline = true,
