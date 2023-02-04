@@ -5,30 +5,21 @@ local function opts(icons)
     local fillchars = USER.styling.icons.fillchars.global
 
     return {
-        preview = {
-            lines_above = 3,
-            lines_below = 7,
-        },
-        scroll_preview = {
-            scroll_down = "<C-d>",
-            scroll_up = "<C-u>",
-        },
-        request_timeout = 2000,
         ui = {
             -- Currently, only the round theme exists
             theme = "round",
             -- This option only works in Neovim 0.9
-            title = true,
+            title = false,
             -- Border type can be single, double, rounded, solid, shadow.
-            border = "rounded",
+            border = "solid",
             winblend = USER.styling.variables.transparency,
             expand = fillchars.foldclose,
             collapse = fillchars.foldopen,
             preview = icons.preview[1],
             code_action = icons.lsp.action[1],
-            incoming = " ",
-            outgoing = " ",
             diagnostic = icons.bug[1] .. " ",
+            incoming = icons.lsp.callIn[1],
+            outgoing = icons.lsp.callOut[1],
             hover = icons.hover[1],
             kind = {
                 Text = kinds.Text .. " ",
@@ -68,27 +59,26 @@ local function opts(icons)
                 Macro = kinds.Function .. " ",
             },
         },
-        finder = {
-            jump_to = "p",
-            edit = { "<C-y>", "<CR>" },
-            vsplit = "<M-v>",
-            split = "<M-o>",
-            tabe = "<M-t>",
-            quit = { "q", "<ESC>" },
-        },
-        definition = {
-            edit = "<C-y>",
-            vsplit = "<M-v>",
-            split = "<M-o>",
-            tabe = "<M-t>",
-            quit = "q",
-            close = "<Esc>",
+        diagnostic = {
+            show_code_action = true,
+            show_source = true,
+            jump_num_shortcut = false,
+            max_width = 1,
+            custom_fix = icons.lsp.action[1] .. " Code Actions",
+            custom_msg = icons.lsp.diagnostics[1] .. " Diagnostics",
+            text_hl_follow = false,
+            border_follow = false,
+            keys = {
+                exec_action = "o",
+                quit = "q",
+                go_action = "g",
+            },
         },
         code_action = {
             num_shortcut = true,
             keys = {
                 quit = { "q", "<ESC>" },
-                exec = { "<C-y>", "<CR>"  },
+                exec = { "<C-y>", "<CR>" },
             },
         },
         lightbulb = {
@@ -98,19 +88,34 @@ local function opts(icons)
             sign_priority = 40,
             virtual_text = true,
         },
-        diagnostic = {
-            show_code_action = true,
-            show_source = true,
-            jump_num_shortcut = true,
-            max_width = 0.7,
-            custom_fix = "Code Actions",
-            custom_msg = "Diagnostics",
-            text_hl_follow = false,
+        preview = {
+            lines_above = 3,
+            lines_below = 10,
+        },
+        scroll_preview = {
+            scroll_down = "<C-d>",
+            scroll_up = "<C-u>",
+        },
+        request_timeout = 2000,
+        finder = {
+            max_height = 1,
             keys = {
-                exec_action = "o",
-                quit = "q",
-                go_action = "g",
+                jump_to = "p",
+                edit = { "<C-y>", "<CR>" },
+                vsplit = "<M-v>",
+                split = "<M-o>",
+                tabe = "<M-t>",
+                quit = { "q", "<ESC>" },
+                close_in_preview = "<ESC>",
             },
+        },
+        definition = {
+            edit = "<C-y>",
+            vsplit = "<M-v>",
+            split = "<M-o>",
+            tabe = "<M-t>",
+            quit = "q",
+            close = "<Esc>",
         },
         symbol_in_winbar = {
             enable = false,
@@ -120,6 +125,21 @@ local function opts(icons)
             folder_level = 2,
             respect_root = false,
             color_mode = true,
+        },
+        outline = {
+            win_position = "right",
+            win_with = "",
+            win_width = 40,
+            show_detail = true,
+            auto_preview = true,
+            auto_refresh = true,
+            auto_close = true,
+            custom_sort = nil,
+            keys = {
+                jump = "<CR>",
+                expand_collapse = "za",
+                quit = "q",
+            },
         },
     }
 end
@@ -169,6 +189,7 @@ local function set_hl_groups()
 
     for hl_group, hl in pairs(hl_groups) do
         vim.api.nvim_set_hl(0, "LspSagaWinbar" .. hl_group, { fg = hl.fg, bg = getHl("WinBar").bg })
+        vim.api.nvim_set_hl(0, "LSOutline" .. hl_group, { fg = hl.fg })
     end
 end
 
