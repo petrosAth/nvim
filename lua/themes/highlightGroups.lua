@@ -403,6 +403,7 @@ function M.get_highlight_groups(palette)
         -- hover
         HoverNormal = { link = "SagaNormal" },
         HoverBorder = { link = "SagaBorder" },
+        -- diagnostic
         DiagnosticBorder = { link = "SagaBorder" },
         DiagnosticNormal = { link = "SagaNormal" },
         DiagnosticSource = { link = "Comment" },
@@ -413,7 +414,11 @@ function M.get_highlight_groups(palette)
         DiagnosticPos = { link = "TelescopePromptCounter" },
         DiagnosticWord = { fg = g.editor.Normal.fg },
         -- lightbulb
-        LspSagaLightBulb           = { link = "DiagnosticWarn"  },
+        LspSagaLightBulb = { link = "DiagnosticWarn"  },
+        -- Outline
+        OutlineIndent = { link = "FoldColumn" },
+        OutlinePreviewBorder = { link = "SagaNormal" },
+        OutlinePreviewNormal = { link = "SagaBorder" },
         -- Float term
         TerminalBorder = { fg = g.editor.FloatBorder.fg },
         TerminalNormal = { link = "Normal" },
