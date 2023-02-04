@@ -252,13 +252,15 @@ USER.mappings = {
             },
             ["l"] = {
                 name = "LSP",
-                ["a"] = { "<CMD>Lspsaga code_action<CR>",            "Code actions"                          }, -- nvim-lspconfig
-                ["d"] = { "<CMD>Lspsaga lsp_finder<CR>", "Show defintion/references/implementations" },
-                ["D"] = { "<CMD>Lspsaga peek_definition<CR>", "Peek defintion" },
+                ["a"] = { "<CMD>Lspsaga code_action<CR>",                      "Code actions"                          }, -- lspsaga.nvim
+                ["d"] = { telescope_picker("lsp_definitions"),                 "Definitions"                           }, -- nvim-lspconfig -- telescope.nvim
+                ["D"] = { "<CMD>Lspsaga peek_definition<CR>",                  "Peek defintion"                        }, -- lspsaga.nvim
                 ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
-                ["h"] = { "<CMD>Lspsaga show_line_diagnostics<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
-                ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
+                ["h"] = { "<CMD>Lspsaga show_line_diagnostics<CR>",            "Line diagnostics"                      }, -- lspsaga.nvim
+                ["i"] = { telescope_picker("lsp_implementations"),             "Implementations"                       }, -- nvim-lspconfig -- telescope.nvim
+                ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                        "Hover symbol"                          }, -- lspsaga.nvim
+                ["r"] = { telescope_picker("lsp_references"),                  "References"                            }, -- nvim-lspconfig -- telescope.nvim
                 ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signature help"                        }, -- nvim-lspconfig
                 ["t"] = { telescope_picker("lsp_type_definitions"),            "Type Definitions"                      }, -- nvim-lspconfig -- telescope.nvim
