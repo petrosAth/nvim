@@ -89,7 +89,7 @@ local function opts(icons)
             virtual_text = true,
         },
         preview = {
-            lines_above = 3,
+            lines_above = 0,
             lines_below = 10,
         },
         scroll_preview = {

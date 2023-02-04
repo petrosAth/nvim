@@ -21,7 +21,7 @@ M.window_size = {
             min = 100,
             max = 130,
         },
-        large = 0.9
+        large = 0.9,
     },
     height = {
         tiny = {
@@ -39,8 +39,8 @@ M.window_size = {
             min = 40,
             max = 50,
         },
-        large = 0.9
-    }
+        large = 0.9,
+    },
 }
 local ws = M.window_size
 
@@ -51,66 +51,68 @@ M.borderchars = {
     results = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
 --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
     preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
-    }
+}
 
 function M.frecency()
-    telescope.extensions.frecency.frecency {
+    telescope.extensions.frecency.frecency({
         prompt_title = "Frecent Files",
-    }
+    })
 end
 
 function M.oldFiles()
-    builtin.oldfiles {
+    builtin.oldfiles({
         prompt_title = "Recent Files",
-    }
+    })
 end
 
 function M.notify()
-    telescope.extensions.notify.notify{
+    telescope.extensions.notify.notify({
         results_title = "Results",
         prompt_title = "Notifications",
         layout_strategy = "vertical",
         layout_config = {
             prompt_position = "bottom",
         },
-        borderchars = M.borderchars
-    }
+        borderchars = M.borderchars,
+    })
 end
 
 function M.possession()
-    telescope.extensions.possession.list {
+    telescope.extensions.possession.list({
         previewer = false,
         layout_strategy = "vertical",
         layout_config = {
             width = ws.width.tiny,
             height = ws.height.tiny,
-        }
-    }
+        },
+    })
 end
 
 function M.luasnip()
-    telescope.extensions.luasnip.luasnip {
+    telescope.extensions.luasnip.luasnip({
         layout_config = {
             preview_width = 0.3,
             width = ws.width.large,
             height = ws.height.large,
-        }
-    }
+        },
+    })
 end
 
 function M.file_browser()
-    telescope.extensions.file_browser.file_browser {
-        path = "%:p:h"
-    }
+    telescope.extensions.file_browser.file_browser({
+        path = "%:p:h",
+    })
 end
 
 local lsp_layout = {
-        jump_type = 'never',
-        layout_strategy = "vertical",
-        layout_config = {
-            prompt_position = "bottom",
-        },
-        borderchars = M.borderchars
+    jump_type = "never",
+    layout_strategy = "vertical",
+    show_line = false,
+    fname_width = 100,
+    layout_config = {
+        prompt_position = "bottom",
+    },
+    borderchars = M.borderchars,
 }
 
 function M.lsp_references()
