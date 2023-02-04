@@ -16,6 +16,8 @@ local Labels = {
     ["DiffviewFiles"]        = i.diffview[1]     .. " Diffview files",
     ["lazy"]                 = i.lazy.lazy       .. " Lazy status",
     ["lspinfo"]              = i.info[1]         .. " LSP info",
+    ["lspsagafinder"]        = i.preview[1]      .. " LSP Saga finder",
+    ["lspsagaoutline"]       = i.codeOutline[1]  .. " Code outline",
     ["man"]                  = i.help[1]         .. " Man page",
     ["mason"]                = i.info[1]         .. " Mason status",
     ["minimap"]              = i.minimap[1]      .. " Minimap",
@@ -23,6 +25,7 @@ local Labels = {
     ["NvimTree"]             = i.fileExplorer[1] .. " File explorer",
     ["Outline"]              = i.codeOutline[1]  .. " Code outline",
     ["packer"]               = i.info[1]         .. " Packer status",
+    ["sagacodeaction"]       = i.lsp.action[1]   .. " Code action",
     ["Trouble"]              = i.list[1]         .. " List",
     ["TelescopePrompt"]      = i.telescope[1]    .. " Telescope",
     ["undotree"]             = i.undoTree[1]     .. " Undotree",
@@ -90,7 +93,6 @@ function M.get_buf_label(path, buftype, filetype)
         return get_cmdwin_label()
     end
 
-    -- if USER.is_diffview > 0 then
     if vim.api.nvim_win_get_option(0, "diff") then
         return get_diffview_label(path)
     end
