@@ -219,13 +219,13 @@ local LspSymbol = {
         return next(clients) ~= nil and conditions.is_active()
     end,
     provider = function()
-        local loaded, lsp_symbol = pcall(require, "lspsaga.symbolwinbar")
+        local loaded, navic = pcall(require, "nvim-navic")
         local symbol = ""
         if not loaded then
             return symbol
         end
 
-        local context = lsp_symbol:get_winbar()
+        local context = navic.get_location()
         if context ~= nil then
             if context ~= "" then
                 symbol = " " .. i.arrow.hollow.r .. " " .. context

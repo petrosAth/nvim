@@ -28,6 +28,10 @@ end
 local function on_attach(client, bufnr)
     local server_caps = client.server_capabilities
 
+    if client.supports_method("textDocument/documentSymbol") then
+        require("plugins.lsp.nvim-navic").setup(client, bufnr)
+    end
+
     if server_caps.documentFormattingProvider then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
     end
