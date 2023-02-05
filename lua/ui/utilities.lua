@@ -14,6 +14,7 @@ local Labels = {
     ["diff"]                 = i.diffview[1]     .. " Diff Panel",
     ["DiffviewFileHistory"]  = i.diffview[1]     .. " Diffview history",
     ["DiffviewFiles"]        = i.diffview[1]     .. " Diffview files",
+    ["Glance"]               = i.preview[1]      .. " Glance",
     ["lazy"]                 = i.lazy.lazy       .. " Lazy status",
     ["lspinfo"]              = i.info[1]         .. " LSP info",
     ["lspsagafinder"]        = i.preview[1]      .. " LSP Saga finder",

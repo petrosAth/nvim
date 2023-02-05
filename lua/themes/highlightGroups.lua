@@ -462,6 +462,29 @@ function M.get_highlight_groups(palette)
         CmpItemKindUnit = { link = "@number" },
         CmpItemKindText = { link = "@text" },
 
+        -- glance.nvim
+        GlancePreviewNormal = { fg = p.cFg, bg = p.cBgDim },
+        GlancePreviewMatch = { bg = p.cFill2 },
+        GlancePreviewCursorLine = { link = "CursorLine" },
+        GlancePreviewSignColumn = { link = "SignColumn" },
+        GlancePreviewEndOfBuffer = { fg = g.editor.EndOfBuffer.fg, bg = p.cBgDim },
+        GlancePreviewLineNr = { link = "LineNr" },
+        GlancePreviewBorderBottom = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
+        GlanceWinBarFilename = { fg = p.cFg, bg = p.cFill2, bold = true },
+        GlanceWinBarFilepath = { fg = p.cBlue, bg = p.cFill2 },
+        GlanceWinBarTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
+        GlanceListNormal = { fg = p.cFg, bg = p.cBgDark },
+        GlanceListFilename = { link = "Define" },
+        GlanceListFilepath = { link = "Comment" },
+        GlanceListCount = { link = "Number" },
+        GlanceListMatch = { fg = p.cCyan, bg = p.cFill1 },
+        GlanceListCursorLine = { link = "CursorLine" },
+        GlanceListEndOfBuffer = { fg = p.cBlue, bg = p.cBgDark },
+        GlanceListBorderBottom = { fg = g.editor.FloatBorder.fg, bg = p.cBgDark },
+        GlanceFoldIcon = { link = "FoldColumn" },
+        GlanceIndent = { link = "FoldColumn" },
+        GlanceBorderTop = { link = "FloatBorder" },
+
         -- nvim-hlslens
         HlSearchNear = { link = "IncSearch" },
         HlSearchLensNear = { fg = p.cFg, reverse = true },
@@ -599,7 +622,7 @@ function M.get_highlight_groups(palette)
 
         -- telescope.nvim
         TelescopePromptPrefix = { fg = p.cFg, bold = true },
-        TelescopePromptCounter = { link = "Operator" },
+        TelescopePromptCounter = { link = "Number" },
 
         TelescopeNormal = { fg = p.cFg, bg = p.cBgDark },
         TelescopeResultsNormal = { fg = p.cBlue, bg = p.cBgDark },

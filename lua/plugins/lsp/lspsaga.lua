@@ -2,7 +2,7 @@ local M = {}
 
 local function opts(icons)
     local kinds = icons.lsp.kinds
-    local fillchars = USER.styling.icons.fillchars.global
+    local fillchars = icons.fillchars.global
 
     return {
         ui = {

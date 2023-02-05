@@ -25,6 +25,7 @@ return {
                 filetypes_denylist = {
                     "aerial",
                     "alpha",
+                    "Glance",
                     "lazy",
                     "lspinfo",
                     "lspsagafinder",

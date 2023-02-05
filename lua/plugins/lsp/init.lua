@@ -124,6 +124,9 @@ return {
                     "nvim-tree/nvim-web-devicons",
                 },
             },
+            -- glance.nvim
+            -- A pretty window for previewing, navigating and editing your LSP locations
+            { "DNLHC/glance.nvim" },
         },
         config = function()
             -- Setup language servers and null-ls
@@ -135,6 +138,7 @@ return {
             require("plugins.lsp.fidget").setup(icons)
             require("plugins.lsp.inc-rename").setup()
             require("plugins.lsp.lspsaga").setup(icons)
+            require("plugins.lsp.glance").setup(icons, borders)
         end,
     },
 }
