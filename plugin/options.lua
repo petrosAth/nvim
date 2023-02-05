@@ -65,6 +65,7 @@ opt.foldexpr       = "nvim_treesitter#foldexpr()"
 opt.foldlevelstart = 99                 -- All folds below that level are closed on new buffers
 opt.foldminlines   = 1                  -- Fold even single line
 opt.statuscolumn   = require("ui.status-column")
+opt.colorcolumn    = "120"
 opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global -- Characters to fill the statuslines, vertical separators and special lines in the window
 opt.listchars      = i.listchars.global -- Strings to use in 'list' mode
