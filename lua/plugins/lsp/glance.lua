@@ -43,11 +43,11 @@ function M.setup(icons, borders)
                 ["<C-u>"] = actions.preview_scroll_win(5),
                 ["<C-d>"] = actions.preview_scroll_win(-5),
                 ["v"] = actions.jump_vsplit,
-                ["s"] = actions.jump_split,
+                ["s"] = false,
                 ["t"] = actions.jump_tab,
                 ["<CR>"] = actions.jump,
                 ["o"] = actions.jump_split,
-                ["<leader>l"] = actions.enter_win("preview"), -- Focus preview window
+                ["<leader>l"] = false, -- Use <C-w>W
                 ["q"] = actions.close,
                 ["Q"] = actions.close,
                 ["<Esc>"] = actions.close,
@@ -56,7 +56,7 @@ function M.setup(icons, borders)
                 ["Q"] = actions.close,
                 ["<C-n>"] = actions.next_location,
                 ["<C-p>"] = actions.previous_location,
-                ["<leader>l"] = actions.enter_win("list"), -- Focus list window
+                ["<leader>l"] = false, -- Use <C-w>w / <C-w>p
             },
         },
         hooks = {},
