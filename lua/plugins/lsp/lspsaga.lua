@@ -182,7 +182,7 @@ local function set_hl_groups()
         Text = getHl("@text"),
         Null = getHl("@comment"),
         File = getHl("Directory"),
-        Enum = getHl("@field"),
+        Enum = getHl("@structure"),
         Key = getHl("@keyword"),
         Sep = getHl("WinBar"),
     }

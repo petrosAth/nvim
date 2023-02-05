@@ -1,4 +1,4 @@
--- symbols-outline.nvim
+-- aerial.nvim
 local sp = require("ui.side-panels")
 
 sp.set_local_options()

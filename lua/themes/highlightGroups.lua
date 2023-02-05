@@ -288,6 +288,10 @@ function M.get_highlight_groups(palette)
     }
 
     g.plugins = {
+        -- aerial.nvim
+        AerialLine = { bg = p.cFill2 },
+        AerialLineNC = { bg = p.cFill3 },
+
         -- alpha-nvim
         AlphaButtons = { fg = p.cFg },
         AlphaButtonShortcuts = { fg = p.cCyan },

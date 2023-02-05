@@ -235,7 +235,7 @@ USER.mappings = {
                 ["w"] = { "<CMD>windo diffthis<CR>", "Compare the visible files",                                                },
             },
             ["e"] = {
-                name = "File buffer and git explorer",
+                name = "File, buffer and git explorer",
                 ["b"] = { "<CMD>Neotree buffers left focus reveal toggle<CR>",     "Toggle a list of currently open buffers",                           }, -- neo-tree.nvim
                 ["B"] = { "<CMD>Neotree buffers current<CR>",                      "Toggle a list of currently open buffers within the current window", }, -- neo-tree.nvim
                 ["e"] = { "<CMD>Neotree filesystem left focus reveal toggle<CR>",  "Toggle file explorer",                                              }, -- neo-tree.nvim
@@ -301,7 +301,8 @@ USER.mappings = {
                 ["c"] = { "<CMD>lua require('codewindow').close_minimap()<CR>",  "Close minimap"         }, -- codewindow.nvim
                 ["f"] = { "<CMD>lua require('codewindow').toggle_focus()<CR>",   "Focus/unfocus minimap" }, -- codewindow.nvim
             },
-            ["o"] = { "<CMD>SymbolsOutline<CR>", "Toggle Code outline" }, -- symbols-outline.nvim
+            ["o"] = { "<CMD>AerialToggle<CR>",  "Toggle Code outline"                  }, -- aerial.nvim
+            ["O"] = { "<CMD>AerialToggle!<CR>", "Toggle Code outline without focusing" }, -- aerial.nvim
             ["q"] = {
                 name = "Trouble",
                 ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"                 }, -- trouble.nvim
