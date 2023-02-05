@@ -1,3 +1,30 @@
+local function setup(heirline)
+    local status_line = require("ui.status-bars.status-line").StatusLines
+    local win_bar = require("ui.status-bars.win-bar").WinBars
+
+    heirline.setup({
+        statusline = status_line,
+        winbar = win_bar,
+    })
+end
+
+local function add_autocmd()
+    local autocmd = vim.api.nvim_create_autocmd
+
+    autocmd("User", {
+        pattern = "HeirlineInitWinbar",
+        callback = function(args)
+            local buf = args.buf
+            local table = require("ui.status-bars.tables").Disable.winBar
+            local buftype = vim.tbl_contains(table.buftype, vim.bo[buf].buftype)
+            local filetype = vim.tbl_contains(table.filetype, vim.bo[buf].filetype)
+            if vim.api.nvim_win_get_config(0).relative ~= "" or buftype or filetype then
+                vim.opt_local.winbar = nil
+            end
+        end,
+    })
+end
+
 return {
     {
         -- heirline.nvim
@@ -28,26 +55,8 @@ return {
                 return
             end
 
-            local status_line = require("ui.status-bars.status-line").StatusLines
-            local win_bar = require("ui.status-bars.win-bar").WinBars
-            heirline.setup({
-                statusline = status_line,
-                winbar = win_bar,
-            })
-
-            local autocmd = vim.api.nvim_create_autocmd
-            autocmd("User", {
-                pattern = "HeirlineInitWinbar",
-                callback = function(args)
-                    local buf = args.buf
-                    local table = require("ui.status-bars.tables").Disable.winBar
-                    local buftype = vim.tbl_contains(table.buftype, vim.bo[buf].buftype)
-                    local filetype = vim.tbl_contains(table.filetype, vim.bo[buf].filetype)
-                    if vim.api.nvim_win_get_config(0).relative ~= "" or buftype or filetype then
-                        vim.opt_local.winbar = nil
-                    end
-                end,
-            })
+            setup(heirline)
+            add_autocmd()
         end,
     },
 }
