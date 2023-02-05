@@ -147,6 +147,29 @@ USER.mappings = {
                 ["d"] = { "<CMD>Bdelete<CR>", "Delete buffer" }, -- bufdelete.nvim
             },
             ["i"] = { "<CMD>lua vim.show_pos()<CR>",       "Show all the items at a given buffer position" },
+            ["l"] = {
+                name = "LSP alternative",
+                ["d"] = {
+                    name = "Definitions",
+                    ["t"] = { telescope_picker("lsp_definitions"), "Telescope" }, -- nvim-lspconfig -- telescope.nvim
+                    ["q"] = { "<CMD>Trouble lsp_definitions<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
+                },
+                ["i"] = {
+                    name = "Implementations",
+                    ["t"] = { telescope_picker("implementations"),    "Telescope" }, -- nvim-lspconfig -- telescope.nvim
+                    ["q"] = { "<CMD>Trouble lsp_implementations<CR>", "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
+                },
+                ["r"] = {
+                    name = "References",
+                    ["t"] = { telescope_picker("lsp_references"), "Telescope" }, -- nvim-lspconfig -- telescope.nvim
+                    ["q"] = { "<CMD>Trouble lsp_references<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
+                },
+                ["t"] = {
+                    name = "Type Definitions",
+                    ["t"] = { telescope_picker("lsp_type_definitions"), "Telescope" }, -- nvim-lspconfig -- telescope.nvim
+                    ["q"] = { "<CMD>Trouble lsp_type_definitions<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
+                },
+            },
             ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window"                }, -- bufdelete.nvim
             ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"                   }, -- bufdelete.nvim
             ["p"] = {
@@ -252,18 +275,19 @@ USER.mappings = {
             },
             ["l"] = {
                 name = "LSP",
-                ["a"] = { "<CMD>Lspsaga code_action<CR>",                      "Code actions"                          }, -- lspsaga.nvim
-                ["d"] = { telescope_picker("lsp_definitions"),                 "Definitions"                           }, -- nvim-lspconfig -- telescope.nvim
-                ["D"] = { "<CMD>Lspsaga peek_definition<CR>",                  "Peek defintion"                        }, -- lspsaga.nvim
+                ["a"] = { "<CMD>Lspsaga code_action<CR>",                      "Code actions"                          }, -- nvim-lspconfig -- lspsaga.nvim
+                ["d"] = { "<CMD>Glance definitions<CR>",                       "Definitions"                           }, -- nvim-lspconfig -- glance.nvim
                 ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
-                ["h"] = { "<CMD>Lspsaga show_line_diagnostics<CR>",            "Line diagnostics"                      }, -- lspsaga.nvim
-                ["i"] = { telescope_picker("lsp_implementations"),             "Implementations"                       }, -- nvim-lspconfig -- telescope.nvim
-                ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                        "Hover symbol"                          }, -- lspsaga.nvim
-                ["r"] = { telescope_picker("lsp_references"),                  "References"                            }, -- nvim-lspconfig -- telescope.nvim
+                ["h"] = { "<CMD>Lspsaga show_line_diagnostics<CR>",            "Line diagnostics"                      }, -- nvim-lspconfig -- lspsaga.nvim
+                ["i"] = { "<CMD>Glance implementations<CR>",                   "Implementations"                       }, -- nvim-lspconfig -- glance.nvim
+                ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                        "Hover symbol"                          }, -- nvim-lspconfig -- lspsaga.nvim
+                ["q"] = { "<CMD>Trouble document_diagnostics<CR>",             "Document diagnostics"                  }, -- nvim-lspconfig -- trouble.nvim
+                ["Q"] = { "<CMD>Trouble workspace_diagnostics<CR>",            "Workspace diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
+                ["r"] = { "<CMD>Glance references<CR>",                        "References"                            }, -- nvim-lspconfig -- glance.nvim
                 ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signature help"                        }, -- nvim-lspconfig
-                ["t"] = { telescope_picker("lsp_type_definitions"),            "Type Definitions"                      }, -- nvim-lspconfig -- telescope.nvim
+                ["t"] = { "<CMD>Glance type_definitions<CR>",                  "Type Definitions"                      }, -- nvim-lspconfig -- glance.nvim
             },
             ["m"] = {
                 name = "Minimap",
@@ -276,8 +300,6 @@ USER.mappings = {
             ["q"] = {
                 name = "Trouble",
                 ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"                 }, -- trouble.nvim
-                ["d"] = { "<CMD>Trouble document_diagnostics<CR>",  "Document diagnostics"  }, -- nvim-lspconfig -- trouble.nvim
-                ["D"] = { "<CMD>Trouble workspace_diagnostics<CR>", "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["f"] = { "<CMD>Trouble quickfix<CR>",              "Quickfix"              }, -- trouble.nvim
                 ["l"] = { "<CMD>Trouble loclist<CR>",               "Loclist"               }, -- trouble.nvim
                 ["o"] = { "<CMD>Trouble<CR>",                       "Open"                  }, -- trouble.nvim
