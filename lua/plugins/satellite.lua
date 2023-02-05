@@ -15,6 +15,18 @@ local function setup(satellite, icons)
     })
 end
 
+local function add_autocmd()
+    local augroup = vim.api.nvim_create_augroup
+    local autocmd = vim.api.nvim_create_autocmd
+
+    local RefreshScrollBar = augroup("RefreshScrollBar", { clear = true })
+    autocmd({ "BufEnter", "BufLeave", "FocusGained", "FocusLost", "WinEnter", "WinLeave" }, {
+        group = RefreshScrollBar,
+        desc = "Refresh satellite while navigating through Neovim.",
+        command = "SatelliteRefresh",
+    })
+end
+
 return {
     {
         -- satellite.nvim
@@ -29,6 +41,7 @@ return {
 
             local icons = USER.styling.icons.git.signs.satellite
             setup(satellite, icons)
+            add_autocmd()
         end,
     },
 }
