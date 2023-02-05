@@ -330,10 +330,10 @@ function M.get_highlight_groups(palette)
         GitSignsDeleteInline = { bg = p.cRedDim },
 
         -- hop.nvim
-        HopNextKey = { fg = p.cCyan, bold = true },
-        HopNextKey1 = { fg = p.cCyan },
-        HopNextKey2 = { fg = p.cFg },
-        HopUnmatched = { fg = p.cFill4 },
+        HopNextKey = { fg = p.cCyan, bold = true, nocombine = true },
+        HopNextKey1 = { fg = p.cCyan, nocombine = true },
+        HopNextKey2 = { fg = p.cFg, nocombine = true },
+        HopUnmatched = { fg = p.cFill4, nocombine = true },
 
         -- hydra.nvim
         HydraHint = { link = "NormalFloat" },
