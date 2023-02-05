@@ -246,31 +246,36 @@ USER.mappings = {
             ["f"] = { hop_key("AFTER"),  "Hop to", }, -- hop.nvim
             ["F"] = { hop_key("BEFORE"), "Hop to", }, -- hop.nvim
             ["g"] = {
-                name = "Git & gitsigns",
-                ["B"] = {
-                    name = "Git blame",
-                    ["l"] = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns
-                    ["w"] = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns
-                },
+                name = "Git",
                 ["b"] = {
-                    name = "Buffer actions",
-                    ["a"] = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"   }, -- gitsigns
-                    ["r"] = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"   }, -- gitsigns
-                    ["u"] = { "<CMD>Gitsigns reset_buffer_index<CR>", "Unstage buffer" }, -- gitsigns
+                    name = "Git blame",
+                    ["l"] = { "<CMD>Gitsigns toggle_current_line_blame<CR>",            "Toggle line blame" }, -- gitsigns.nvim
+                    ["w"] = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", "Show blame window" }, -- gitsigns.nvim
                 },
-                ["h"] = {
-                    name = "Hunk actions",
-                    ["a"] = { "<CMD>Gitsigns stage_hunk<CR>",      "Stage hunk"      }, -- gitsigns
-                    ["p"] = { "<CMD>Gitsigns preview_hunk<CR>",    "Preview hunk"    }, -- gitsigns
-                    ["r"] = { "<CMD>Gitsigns reset_hunk<CR>",      "Reset hunk"      }, -- gitsigns
-                    ["u"] = { "<CMD>Gitsigns undo_stage_hunk<CR>", "Undo stage hunk" }, -- gitsigns
+                ["c"] = { "<CMD>Telescope git_commits<CR>",  "Commits"        }, -- telescope.nvim
+                ["C"] = { "<CMD>Telescope git_bcommits<CR>", "Buffer commits" }, -- telescope.nvim
+                ["g"] = {
+                    name = "Git actions",
+                    ["a"] = { "<CMD>Gitsigns stage_hunk<CR>",         "Stage hunk"      }, -- gitsigns.nvim
+                    ["A"] = { "<CMD>Gitsigns stage_buffer<CR>",       "Stage buffer"    }, -- gitsigns.nvim
+                    ["r"] = { "<CMD>Gitsigns reset_hunk<CR>",         "Reset hunk"      }, -- gitsigns.nvim
+                    ["R"] = { "<CMD>Gitsigns reset_buffer<CR>",       "Reset buffer"    }, -- gitsigns.nvim
+                    ["u"] = { "<CMD>Gitsigns reset_buffer_index<CR>", "Unstage buffer"  }, -- gitsigns.nvim
+                    ["U"] = { "<CMD>Gitsigns undo_stage_hunk<CR>",    "Undo stage hunk" }, -- gitsigns.nvim
                 },
+                ["G"] = {
+                    name = "Misc",
+                    ["b"] = { "<CMD>Telescope git_branches<CR>", "Branches"  }, -- telescope.nvim
+                    ["S"] = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope.nvim
+                },
+                ["p"] = { "<CMD>Gitsigns preview_hunk_inline<CR>", "Preview hunk" }, -- gitsigns.nvim
+                ["s"] = { "<CMD>Telescope git_status<CR>",         "Status"       }, -- telescope.nvim
                 ["v"] = {
                     name = "Diff highlighting",
-                    ["l"] = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"     }, -- gitsigns
-                    ["n"] = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting"   }, -- gitsigns
-                    ["w"] = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"     }, -- gitsigns
-                    ["d"] = { "<CMD>Gitsigns toggle_deleted<CR>",   "Toggle deleted lines highlighting" }, -- gitsigns
+                    ["l"] = { "<CMD>Gitsigns toggle_linehl<CR>",    "Toggle line diff highlighting"     }, -- gitsigns.nvim
+                    ["n"] = { "<CMD>Gitsigns toggle_numhl<CR>",     "Toggle number diff highlighting"   }, -- gitsigns.nvim
+                    ["w"] = { "<CMD>Gitsigns toggle_word_diff<CR>", "Toggle word diff highlighting"     }, -- gitsigns.nvim
+                    ["d"] = { "<CMD>Gitsigns toggle_deleted<CR>",   "Toggle deleted lines highlighting" }, -- gitsigns.nvim
                 },
             },
             ["l"] = {
@@ -315,16 +320,8 @@ USER.mappings = {
                     ["g"] = { "<CMD>Telescope dir live_grep<CR>",  "ripGREP"     }, -- telescope.nvim -- dir-telescope.nvim
                     ["f"] = { "<CMD>Telescope dir find_files<CR>", "File search" }, -- telescope.nvim -- dir-telescope.nvim
                 },
-                ["f"] = { "<CMD>Telescope find_files<CR>",   "File search"  }, -- telescope.nvim
-                ["g"] = { "<CMD>Telescope live_grep<CR>",    "ripGREP"      }, -- telescope.nvim
-                ["G"] = {
-                    name = "Git",
-                    ["f"] = { "<CMD>Telescope git_files<CR>",    "Git files" }, -- telescope.nvim
-                    ["c"] = { "<CMD>Telescope git_commits<CR>",  "Commits"   }, -- telescope.nvim
-                    ["b"] = { "<CMD>Telescope git_branches<CR>", "Branches"  }, -- telescope.nvim
-                    ["s"] = { "<CMD>Telescope git_status<CR>",   "Status"    }, -- telescope.nvim
-                    ["S"] = { "<CMD>Telescope git_stash<CR>",    "Stash"     }, -- telescope.nvim
-                },
+                ["f"] = { "<CMD>Telescope find_files<CR>",  "File search"             }, -- telescope.nvim
+                ["g"] = { "<CMD>Telescope live_grep<CR>",   "ripGREP"                 }, -- telescope.nvim
                 ["H"] = { "<CMD>Telescope highlights<CR>",  "Highlight groups"        }, -- telescope.nvim
                 ["h"] = { "<CMD>Telescope help_tags<CR>",   "Vim help"                }, -- telescope.nvim
                 ["n"] = { telescope_picker("notify"),       "Notify history"          }, -- telescope.nvimnvim -- notify
