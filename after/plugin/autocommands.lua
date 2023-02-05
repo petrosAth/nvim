@@ -94,16 +94,3 @@ autocmd("BufWritePre", {
         silent! call setpos(".", current_pos)
     ]],
 })
-
-autocmd("User", {
-    pattern = "HeirlineInitWinbar",
-    callback = function(args)
-        local buf = args.buf
-        local table = require("ui.status-bars.tables").Disable.winBar
-        local buftype = vim.tbl_contains(table.buftype, vim.bo[buf].buftype)
-        local filetype = vim.tbl_contains(table.filetype, vim.bo[buf].filetype)
-        if vim.api.nvim_win_get_config(0).relative ~= "" or buftype or filetype then
-            vim.opt_local.winbar = nil
-        end
-    end,
-})
