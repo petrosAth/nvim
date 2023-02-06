@@ -140,7 +140,7 @@ vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
     local templates_dir = USER.local_config.templates
     local prettier_file = USER.local_config.prettier_file
 
-    if vim.fn.filereadable(cwd .. "/" .. prettier_file) == 1 then
+    if vim.fn.filereadable(cwd .. "/" .. prettier_file) == 0 then
         local prettier_file_template = templates_dir .. "/" .. prettier_file
         os.execute("cp " .. prettier_file_template .. " " .. cwd)
     end
