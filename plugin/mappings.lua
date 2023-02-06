@@ -34,11 +34,11 @@ local function set_keymap(mappings, mode, prefix)
     if type(mappings[1]) == "string" then
         local tree_opts = {
             noremap = mappings.noremap,
-            silent  = mappings.silent,
-            expr    = mappings.expr,
-            nowait  = mappings.nowait,
-            script  = mappings.script,
-            unique  = mappings.unique,
+            silent = mappings.silent,
+            expr = mappings.expr,
+            nowait = mappings.nowait,
+            script = mappings.script,
+            unique = mappings.unique,
         }
         local opts = vim.tbl_deep_extend("force", default_opts, tree_opts)
         vim.api.nvim_set_keymap(mode, prefix, mappings[1], opts)
@@ -114,7 +114,7 @@ USER.mappings = {
                 name = "Align",
                 ["T"] = {
                     [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]],
-                    "Lua tables",
+                    "Lua tables"
                 }, -- Tabularize
                 ["t"] = { ":Tabularize ", "Tabularize", silent = false }, -- Tabularize
             },
@@ -146,7 +146,7 @@ USER.mappings = {
                 name = "Buffer",
                 ["d"] = { "<CMD>Bdelete<CR>", "Delete buffer" }, -- bufdelete.nvim
             },
-            ["i"] = { "<CMD>lua vim.show_pos()<CR>",       "Show all the items at a given buffer position" },
+            ["i"] = { "<CMD>lua vim.show_pos()<CR>", "Show all the items at a given buffer position" },
             ["l"] = {
                 name = "LSP alternative",
                 ["d"] = {
@@ -170,8 +170,8 @@ USER.mappings = {
                     ["q"] = { "<CMD>Trouble lsp_type_definitions<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
                 },
             },
-            ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window"                }, -- bufdelete.nvim
-            ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"                   }, -- bufdelete.nvim
+            ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window" }, -- bufdelete.nvim
+            ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", "Delete buffer and close tab"    }, -- bufdelete.nvim
             ["p"] = {
                 name = "Project",
                 ["."] = { "<CMD>PossessionLoad<CR>", "Load last closed" }, -- possession.nvim
@@ -228,23 +228,23 @@ USER.mappings = {
             ["D"] = {
                 name = "Diff mode",
                 ["p"] = { ":diffpatch ",             "Patch the buffer with the requested file on a new buffer", silent = false, },
-                ["q"] = { "<CMD>diffoff<CR>",        "Revert and quit",                                                          },
-                ["R"] = { "<CMD>diffupdate<CR>",     "Updated the differences",                                                  },
-                ["t"] = { "<CMD>diffthis<CR>",       "Make the current window part of the diff windows",                         },
+                ["q"] = { "<CMD>diffoff<CR>",        "Revert and quit"                                                           },
+                ["R"] = { "<CMD>diffupdate<CR>",     "Updated the differences"                                                   },
+                ["t"] = { "<CMD>diffthis<CR>",       "Make the current window part of the diff windows"                          },
                 ["v"] = { ":vertical diffsplit ",    "Open the requested file in a split",                       silent = false, },
-                ["w"] = { "<CMD>windo diffthis<CR>", "Compare the visible files",                                                },
+                ["w"] = { "<CMD>windo diffthis<CR>", "Compare the visible files"                                                 },
             },
             ["e"] = {
                 name = "File, buffer and git explorer",
-                ["b"] = { "<CMD>Neotree buffers left focus reveal toggle<CR>",     "Toggle a list of currently open buffers",                           }, -- neo-tree.nvim
-                ["B"] = { "<CMD>Neotree buffers current<CR>",                      "Toggle a list of currently open buffers within the current window", }, -- neo-tree.nvim
-                ["e"] = { "<CMD>Neotree filesystem left focus reveal toggle<CR>",  "Toggle file explorer",                                              }, -- neo-tree.nvim
-                ["f"] = { "<CMD>NeoTreeFocus<CR>",                                 "Open or focus on file explorer",                                    }, -- neo-tree.nvim
-                ["E"] = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window",                      }, -- neo-tree.nvim
-                ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window",                            }, -- neo-tree.nvim
+                ["b"] = { "<CMD>Neotree buffers left focus reveal toggle<CR>",     "Toggle a list of currently open buffers"                           }, -- neo-tree.nvim
+                ["B"] = { "<CMD>Neotree buffers current<CR>",                      "Toggle a list of currently open buffers within the current window" }, -- neo-tree.nvim
+                ["e"] = { "<CMD>Neotree filesystem left focus reveal toggle<CR>",  "Toggle file explorer"                                              }, -- neo-tree.nvim
+                ["f"] = { "<CMD>NeoTreeFocus<CR>",                                 "Open or focus on file explorer"                                    }, -- neo-tree.nvim
+                ["E"] = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window"                      }, -- neo-tree.nvim
+                ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window"                            }, -- neo-tree.nvim
             },
-            ["f"] = { hop_key("AFTER"),  "Hop to", }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"), "Hop to", }, -- hop.nvim
+            ["f"] = { hop_key("AFTER"),  "Hop to" }, -- hop.nvim
+            ["F"] = { hop_key("BEFORE"), "Hop to" }, -- hop.nvim
             ["g"] = {
                 name = "Git",
                 ["b"] = {
@@ -305,12 +305,12 @@ USER.mappings = {
             ["O"] = { "<CMD>AerialToggle!<CR>", "Toggle Code outline without focusing" }, -- aerial.nvim
             ["q"] = {
                 name = "Trouble",
-                ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"                 }, -- trouble.nvim
-                ["f"] = { "<CMD>Trouble quickfix<CR>",              "Quickfix"              }, -- trouble.nvim
-                ["l"] = { "<CMD>Trouble loclist<CR>",               "Loclist"               }, -- trouble.nvim
-                ["o"] = { "<CMD>Trouble<CR>",                       "Open"                  }, -- trouble.nvim
-                ["q"] = { "<CMD>TroubleToggle<CR>",                 "Toggle"                }, -- trouble.nvim
-                ["R"] = { "<CMD>TroubleRefresh<CR>",                "Refresh"               }, -- trouble.nvim
+                ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"    }, -- trouble.nvim
+                ["f"] = { "<CMD>Trouble quickfix<CR>",              "Quickfix" }, -- trouble.nvim
+                ["l"] = { "<CMD>Trouble loclist<CR>",               "Loclist"  }, -- trouble.nvim
+                ["o"] = { "<CMD>Trouble<CR>",                       "Open"     }, -- trouble.nvim
+                ["q"] = { "<CMD>TroubleToggle<CR>",                 "Toggle"   }, -- trouble.nvim
+                ["R"] = { "<CMD>TroubleRefresh<CR>",                "Refresh"  }, -- trouble.nvim
             },
             ["r"] = { "<CMD>Telescope registers<CR>", "Registers" },
             ["s"] = {
@@ -338,14 +338,14 @@ USER.mappings = {
                     ["c"] = { "<CMD>Telescope command_history<CR>", "Command history"   }, -- telescope.nvim
                 },
             },
-            ["t"] = { hop_key("AFTER", -1),                           "Hop before",      }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1),                           "Hop before",      }, -- hop.nvim
+            ["t"] = { hop_key("AFTER", -1),                           "Hop before"       }, -- hop.nvim
+            ["T"] = { hop_key("BEFORE", 1),                           "Hop before"       }, -- hop.nvim
             ["u"] = { "<CMD>NeoTreeClose<CR><CMD>UndotreeToggle<CR>", "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 name = "Launch",
-                ["e"] = { "<CMD>LaunchDir dolphin<CR>",           "Open cwd in system file browser",        },
-                ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", "Open URL under cursor in browser",       },
-                ["t"] = { "<CMD>term<CR>i",                       "Start a terminal session within Neovim", },
+                ["e"] = { "<CMD>LaunchDir dolphin<CR>",           "Open cwd in system file browser"        },
+                ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", "Open URL under cursor in browser"       },
+                ["t"] = { "<CMD>Lspsaga term_toggle<CR>",         "Start a terminal session within Neovim" },
             },
         },
     },
@@ -379,10 +379,10 @@ USER.mappings = {
             ["b"] = { nil, "Block comment" }, -- comment.nvim
         },
         ["<Space>"] = {
-            ["f"] = { hop_key("AFTER"),     "Hop to",     }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"),    "Hop to",     }, -- hop.nvim
-            ["t"] = { hop_key("AFTER", -1), "Hop before", }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), "Hop before", }, -- hop.nvim
+            ["f"] = { hop_key("AFTER"),     "Hop to"     }, -- hop.nvim
+            ["F"] = { hop_key("BEFORE"),    "Hop to"     }, -- hop.nvim
+            ["t"] = { hop_key("AFTER", -1), "Hop before" }, -- hop.nvim
+            ["T"] = { hop_key("BEFORE", 1), "Hop before" }, -- hop.nvim
             ["gh"] = {
                 name = "Git & gitsigns",
                 ["a"] = { ":Gitsigns stage_hunk<CR>",       "Stage hunk"      }, -- gitsigns
@@ -397,10 +397,10 @@ USER.mappings = {
             ["gh"] = { ":<C-U>Gitsigns select_hunk<CR>", "Select git hunk" }, -- gitsigns
         },
         ["<Space>"] = {
-            ["f"] = { hop_key("AFTER"),     "Hop to",     }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"),    "Hop to",     }, -- hop.nvim
-            ["t"] = { hop_key("AFTER", -1), "Hop before", }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), "Hop before", }, -- hop.nvim
+            ["f"] = { hop_key("AFTER"),     "Hop to"     }, -- hop.nvim
+            ["F"] = { hop_key("BEFORE"),    "Hop to"     }, -- hop.nvim
+            ["t"] = { hop_key("AFTER", -1), "Hop before" }, -- hop.nvim
+            ["T"] = { hop_key("BEFORE", 1), "Hop before" }, -- hop.nvim
         },
     },
     -- Insert mode mappints
