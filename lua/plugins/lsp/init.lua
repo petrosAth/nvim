@@ -9,6 +9,7 @@ local servers = {
     "clangd",
     "emmet_ls",
     "eslint",
+    "jsonls",
     "omnisharp",
     "powershell_es",
     "pyright",
