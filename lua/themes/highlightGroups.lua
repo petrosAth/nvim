@@ -9,7 +9,7 @@ function M.get_highlight_groups(palette)
         NormalNC = { fg = p.cFg, bg = p.cBg },
         NormalFloat = { fg = p.cFg, bg = p.cBgDark },
         FloatBorder = { fg = p.cFill1, bg = p.cBgDark },
-        ColorColumn = { bg = p.cBgDim },
+        ColorColumn = { bg = p.cGreenDark },
         Cursor = { reverse = true },
         lCursor = { link = "Cursor" },
         CursorIM = { link = "Cursor" },
@@ -36,8 +36,8 @@ function M.get_highlight_groups(palette)
         LineNrAbove = { link = "LineNr" },
         LineNr = { fg = p.cFill5 },
         LineNrBelow = { link = "LineNr" },
-        CursorLineNr = { fg = p.cFg, bg = p.cFill1 },
-        CursorLine = { bg = p.cFill1 },
+        CursorLineNr = { fg = p.cFg, bg = p.cBgDim },
+        CursorLine = { bg = p.cBgDim },
         CursorColumn = { link = "CursorLine" },
         CursorLineSign = { link = "SignColumn" },
         CursorLineFold = { link = "FoldColumn" },
@@ -289,8 +289,8 @@ function M.get_highlight_groups(palette)
 
     g.plugins = {
         -- aerial.nvim
-        AerialLine = { bg = p.cFill2 },
-        AerialLineNC = { bg = p.cFill3 },
+        AerialLine = { bg = p.cFill3 },
+        AerialLineNC = { bg = p.cFill2 },
 
         -- alpha-nvim
         AlphaButtons = { fg = p.cFg },
@@ -577,6 +577,7 @@ function M.get_highlight_groups(palette)
         NeoTreeFloatBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
         NeoTreeFloatTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
         NeoTreeWinSeparator = { link = "SidePanelWinSeparator" },
+        NeoTreeCursorLine = { bg = p.cFill3 },
 
         NeoTreeTabActive = { fg = p.cFg, bg = p.cFill5 },
         NeoTreeTabInactive = { fg = p.cFg, bg = p.cFill3 },
