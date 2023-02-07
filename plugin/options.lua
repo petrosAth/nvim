@@ -56,7 +56,6 @@ opt.autoread       = false              -- Ask before reloading a file changed o
 opt.lazyredraw     = true               -- No redraw during macro, regex execution
 opt.updatetime     = 100                -- If this many milliseconds nothing is typed the swap file will be written to disk. Also used for the |CursorHold| autocommand event
 opt.cursorline     = true               -- Highlight the text line of the cursor
-opt.cursorcolumn   = true               -- Highlight the screen column of the cursor
 opt.number         = true               -- Show line numbers
 opt.relativenumber = true               -- Enable relative line numbers
 opt.signcolumn     = "no"               -- Keep the sign column always visible

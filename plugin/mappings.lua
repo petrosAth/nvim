@@ -103,10 +103,10 @@ USER.mappings = {
             ["d"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>",        "Previous lsp diagnostic"             }, -- lspsaga.nvim
             ["t"] = { "<CMD>tabprevious<CR>",                         "Previous tab"                        }, -- Assigned by Hydra.nvim
         },
-        ["<F1>"]  = { "<CMD>setlocal spell!<CR>",     "Toggle spelling"                           },
-        ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],        "Replace word under cursor", silent = false },
-        ["<F3>"]  = { "<CMD>set relativenumber!<CR>", "Toggle relative number"                    },
-        ["<F11>"] = { "<CMD>set wrap!<CR>",           "Toggle wrap"                               },
+        ["<F1>"]  = { "<CMD>setlocal spell!<CR>",   "Toggle spelling"                           },
+        ["<F2>"]  = { [[:%s/\<<C-r><C-w>\>/]],      "Replace word under cursor", silent = false },
+        ["<F3>"]  = { "<CMD>set cursorcolumn!<CR>", "Toggle cursorcolumn"                       },
+        ["<F11>"] = { "<CMD>set wrap!<CR>",         "Toggle wrap"                               },
         ["g"] = {
             ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", "Search word under cursor"          }, -- hlslens
             ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", "Search word under cursor backward" }, -- hlslens
@@ -405,9 +405,10 @@ USER.mappings = {
     },
     -- Insert mode mappints
     ["i"] = {
-        ["<C-j>"] = { "<CR>",                                   "Carriage return",              noremap = false }, -- nvim-autopairs
+        ["<F1>"]  = { "<CMD>setlocal spell!<CR>",               "Toggle spelling"                               },
+        ["<F3>"]  = { "<CMD>set cursorcolumn!<CR>",             "Toggle cursorcolumn"                           },
+        ["<C-j>"] = { "<CR>",                                   "Carriage return",              noremap = false }, -- Helpful with autopair plugins
         ["<M-p>"] = { [[<C-r><C-o>+]],                          "Paste and stay in insert mode"                 },
-        ["<M-a>"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>", "Code actions"                                  }, -- nvim-lspconfig -- nvim-lightbulb
     },
     -- Command-line mode mappings
     ["c"] = {
