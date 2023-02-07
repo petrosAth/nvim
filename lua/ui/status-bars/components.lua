@@ -221,7 +221,7 @@ local LspSymbol = {
     provider = function()
         local loaded, navic = pcall(require, "nvim-navic")
         local symbol = ""
-        if not loaded then
+        if not loaded or not require("nvim-navic").is_available() then
             return symbol
         end
 
