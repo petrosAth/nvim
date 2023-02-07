@@ -279,12 +279,6 @@ function M.get_highlight_groups(palette)
         TabLineIndicatorIsModified = { fg = p.cYellow, bg = p.cFill2 },
         TabLineIndicatorIsModifiedSel = { fg = p.cYellow, bg = p.cFill4 },
     }
-
-    g.SidePanel = {
-        SidePanelNormal       = { fg = g.editor.NormalFloat.fg,  bg = p.cBgDim },
-        SidePanelNormalNC     = { link = "SidePanelNormal" },
-        SidePanelWinSeparator = { fg = g.editor.WinSeparator.fg, bg = p.cBgDim },
-        SidePanelNonText      = { fg = g.editor.NonText.fg,      bg = p.cBgDim }
     }
 
     g.plugins = {
@@ -308,11 +302,11 @@ function M.get_highlight_groups(palette)
         CodewindowUnderline = { underline = true, sp = p.cCyan },
 
         -- diffview.nvim
-        DiffviewNormal = { link = "SidePanelNormal" },
-        DiffviewWinSeparator = { link = "SidePanelWinSeparator" },
-        DiffviewVertSplit = { link = "SidePanelWinSeparator" },
-        DiffviewEndOfBuffer = { fg = g.SidePanel.SidePanelNormal.bg },
-        DiffviewNonText = { link = "SidePanelNonText" },
+        DiffviewNormal = { link = "Normal" },
+        DiffviewWinSeparator = { link = "WinSeparator" },
+        DiffviewVertSplit = { link = "WinSeparator" },
+        DiffviewEndOfBuffer = { link = "EndOfBuffer" },
+        DiffviewNonText = { link = "NonText" },
 
         -- fidget.nvim
         FidgetTitle = { fg = p.cFgDim },
@@ -570,14 +564,14 @@ function M.get_highlight_groups(palette)
         WindowPickerNC = { link = "WindowPicker" },
 
         -- neo-tree.nvim
-        NeoTreeNormal = { link = "SidePanelNormal" },
-        NeoTreeNormalNC = { link = "SidePanelNormalNC" },
+        NeoTreeNormal = { link = "Normal" },
+        NeoTreeNormalNC = { link = "NormalNC" },
         NeoTreePreview = { fg = p.cFg, bg = p.cFill5 },
         NeoTreeFloatNormal = { fg = g.editor.Normal.fg, bg = p.cBgDim },
         NeoTreeFloatBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
         NeoTreeFloatTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
-        NeoTreeWinSeparator = { link = "SidePanelWinSeparator" },
         NeoTreeCursorLine = { bg = p.cFill3 },
+        NeoTreeWinSeparator = { link = "WinSeparator" },
 
         NeoTreeTabActive = { fg = p.cFg, bg = p.cFill5 },
         NeoTreeTabInactive = { fg = p.cFg, bg = p.cFill3 },
@@ -669,7 +663,7 @@ function M.get_highlight_groups(palette)
         TodoSignHACK = { link = "DiagnosticWarn" },
 
         -- trouble.nvim
-        TroubleNormal = { link = "SidePanelNormal" },
+        TroubleNormal = { link = "Normal" },
         TroubleFoldIcon = { link = "FoldColumn" },
         TroubleIndent = { link = "FoldColumn" },
 
