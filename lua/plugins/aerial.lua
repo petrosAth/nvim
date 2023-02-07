@@ -26,7 +26,7 @@ local function setup(aerial, icons, borders)
             --   window - open aerial to the right/left of the current window
             placement = "edge",
             -- Preserve window size equality with (:help CTRL-W_=)
-            preserve_equality = false,
+            preserve_equality = true,
         },
         -- Determines how the aerial window decides which buffer to display symbols for
         --   window - aerial window will display symbols for the buffer in the window from which it was opened
