@@ -20,9 +20,9 @@ function M.get_highlight_groups(palette)
         Conceal = {},
         Whitespace = { fg = p.cFill3 },
         Pmenu = { fg = p.cFg, bg = p.cBgDark },
-        PmenuSel = { fg = p.cCyan, bg = p.cFill4 },
+        PmenuSel = { fg = p.cCyan, bg = p.cFill2 },
         PmenuSbar = { fg = p.cFg, bg = p.cFill1 },
-        PmenuThumb = { fg = p.cCyan, bg = p.cFill3 },
+        PmenuThumb = { fg = p.cCyan, bg = p.cFill4 },
         SpecialKey = { fg = p.cFill4 },
         SpellBad = { sp = p.cRed, underdotted = true },
         SpellCap = { sp = p.cYellow, underdotted = true },
@@ -54,8 +54,8 @@ function M.get_highlight_groups(palette)
         StatusLineNC = { fg = p.cFgDim, bg = p.cFill2 },
         StatusLineTerm = { link = "StatusLine" },
         StatusLineTermNC = { link = "StatusLineNC" },
-        WinBar = { fg = p.cFg, bg = p.cFill2 },
-        WinBarNC = { fg = p.cFgDim, bg = p.cFill2 },
+        WinBar = { fg = p.cFg, bg = p.cFill1 },
+        WinBarNC = { fg = p.cFill5, bg = p.cFill1 },
         WildMenu = { fg = p.cFill2, bg = p.cCyan },
         Search = { fg = p.cCyan, bg = p.cBg, reverse = true },
         IncSearch = { fg = p.cFgLight, bg = p.cSelect, underline = true },
@@ -257,9 +257,9 @@ function M.get_highlight_groups(palette)
         ModeHydra = { fg = p.cFill2, bg = p.cMagenta },
         StatusLineLight = { fg = p.cFg, bg = p.cFill4 },
         StatusLinePluginUpdates = { fg = p.cViolet },
-        WinBarLight = { fg = g.editor.WinBar.fg, bg = p.cFill4 },
+        WinBarLight = { fg = g.editor.WinBar.fg, bg = p.cFill3 },
         WinBarLightNC = { link = "WinBarLight" },
-        WinBarFile = { fg = p.cFgLight, bg = p.cFill4 },
+        WinBarFile = { fg = p.cFgLight, bg = p.cFill3 },
         WinBarFileNC = { fg = g.editor.WinBarNC.fg },
         WinBarSpecial = { fg = p.cFgLight },
         WinBarSpecialNC = { fg = g.editor.WinBarNC.fg },
@@ -387,7 +387,7 @@ function M.get_highlight_groups(palette)
         CodeActionText = { link = "Operator" },
         CodeActionNumber = { link = "Delimiter" },
         -- finder
-        FinderSelection = { link = "TelescopeSelection" },
+        FinderSelection = { link = "PmenuSel" },
         FinderFileName = { link = "SagaNormal" },
         FinderCount = { link = "TelescopePromptCounter" },
         FinderIcon = { link = "FoldColumn" },
@@ -621,7 +621,7 @@ function M.get_highlight_groups(palette)
         QuickScopeSecondary = { fg = p.cMagenta, bg = p.cBg, bold = true, nocombine = true },
 
         -- satellite.nvim
-        ScrollView = { bg = p.cFill3 },
+        ScrollView = { bg = p.cFill4 },
         SearchSV = { fg = p.cCyan },
 
         -- telescope.nvim
@@ -644,7 +644,7 @@ function M.get_highlight_groups(palette)
         TelescopeMultiSelection = { fg = p.cFgLight, bg = p.cFill3 },
         TelescopeMultiIcon = { fg = p.cFgLight, bg = p.cFill3 },
         TelescopeSelectionCaret = { link = "TelescopeSelectionCaret" },
-        TelescopeSelection = { fg = p.cCyan, bg = p.cFill2 },
+        TelescopeSelection = { link = "PmenuSel" },
         TelescopeMatching = { fg = p.cFgLight },
 
         -- todo-comments.nvim
