@@ -202,8 +202,8 @@ end
 M.win_label = function(win_id)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
     local fullPath = vim.api.nvim_buf_get_name(buf_id)
-    local filetype = vim.api.nvim_buf_get_option(buf_id, "filetype")
-    local buftype = vim.api.nvim_buf_get_option(buf_id, "buftype")
+    local filetype = vim.bo[buf_id].filetype
+    local buftype = vim.bo[buf_id].buftype
     local buf_label = u.get_buf_label(fullPath, buftype, filetype)
     local name = filename.unique(win_id)
     local label = name
