@@ -1,5 +1,13 @@
 local icons = USER.styling.icons
 
+local function show_simple_status_column()
+    local buftype = vim.tbl_contains({ "nofile" }, vim.bo.buftype)
+    local filetype = vim.tbl_contains({ "vim" }, vim.bo.filetype)
+    local cmdwin = vim.fn.getcmdwintype() ~= ""
+
+    return buftype or filetype or cmdwin and true or false
+end
+
 local function get_sign_name(cur_sign)
     if cur_sign == nil then
         return nil
@@ -133,6 +141,11 @@ end
 -- Source
 -- roku_remote - https://www.reddit.com/r/neovim/comments/10fpqbp/comment/j4y8sd3/?utm_source=share&utm_medium=web2x&context=3
 _G.get_status_column = function()
+    if show_simple_status_column() then
+        vim.opt_local.statuscolumn = ""
+        return
+    end
+
     local str_table = {}
 
     local parts = {
