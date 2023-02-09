@@ -143,7 +143,6 @@ end
 _G.get_status_column = function()
     if show_simple_status_column() then
         vim.opt_local.statuscolumn = ""
-        return
     end
 
     local str_table = {}
