@@ -217,7 +217,7 @@ M = {
             },
             extra = {
                 foldmid = "⁃",
-                foldend = "", --"•""⁃""‣""▸"""
+                foldend = "", --"•""⁃""▸"""
             },
         },
         listchars = {
