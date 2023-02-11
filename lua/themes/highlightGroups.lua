@@ -354,7 +354,8 @@ function M.get_highlight_groups(palette)
         IndentBlanklineIndent2 = { bg = p.cBg, nocombine = true  },
 
         -- lazy.nvim
-        LazyH1 = { fg = g.editor.IncSearch.fg, bg = g.editor.IncSearch.bg },
+        LazyButton = { link = "Tabline" },
+        LazyH1 = { link = "Search" },
 
         -- leap.nvim
         LeapMatch = { fg = p.cYellow, underline = true, nocombine = true },
