@@ -13,7 +13,7 @@ local servers = {
     "omnisharp",
     "powershell_es",
     "pyright",
-    "sumneko_lua",
+    "lua_ls",
     "tsserver",
     "vimls",
     "yamlls",

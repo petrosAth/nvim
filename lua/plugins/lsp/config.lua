@@ -109,7 +109,7 @@ local function setup_language_servers(lspconfig, servers, root_files)
                 on_attach = on_attach,
                 capabilities = capabilities(),
             })
-        elseif name == "sumneko_lua" then
+        elseif name == "lua_ls" then
             -- Make the server aware of Neovim runtime files when editing Neovim config
             local library = vim.fn.getcwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true)
                 or nil
