@@ -93,7 +93,7 @@ M = {
             }
         },
         indentLine = {
-            char         = { "╵", "╷" },
+            char         = { "╎", "╷" },
             context_char = { "▏", "╷" },
         },
         lsp = {
