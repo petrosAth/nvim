@@ -198,13 +198,13 @@ M = {
                 stl       = " ", -- statusline of the current window
                 stlnc     = " ", -- statusline of the non-current windows
                 wbr       = " ", -- window bar
-                horiz     = "─", -- "█", "─", "━", "🬭", "🬭", "▁" horizontal separators |:split|
-                horizup   = "┴", -- "█", "┴", "┻", "🬲", "🬷", " " upwards facing horizontal separator
-                horizdown = "┬", -- "█", "┬", "┳", "🬲", "🬷", "🭼" downwards facing horizontal separator
-                vert      = "│", -- "█", "│", "┃", "▌", "▐", "▏" vertical separators |:vsplit|
-                vertleft  = "┤", -- "█", "┤", "┫", "▌", "🬷", "▏" left facing vertical separator
-                vertright = "├", -- "█", "├", "┣", "🬲", "🬷", "🭼" right facing vertical separator
-                verthoriz = "┼", -- "█", "┼", "╋", "🬲", "🬷", "🭼" overlapping vertical and horizontal
+                horiz     = "═", -- "█", "─", "━", "🬭", "🬭", "▁" horizontal separators |:split|
+                horizup   = "╩", -- "█", "┴", "┻", "🬲", "🬷", " " upwards facing horizontal separator
+                horizdown = "╦", -- "█", "┬", "┳", "🬲", "🬷", "🭼" downwards facing horizontal separator
+                vert      = "║", -- "█", "│", "┃", "▌", "▐", "▏" vertical separators |:vsplit|
+                vertleft  = "╣", -- "█", "┤", "┫", "▌", "🬷", "▏" left facing vertical separator
+                vertright = "╠", -- "█", "├", "┣", "🬲", "🬷", "🭼" right facing vertical separator
+                verthoriz = "╬", -- "█", "┼", "╋", "🬲", "🬷", "🭼" overlapping vertical and horizontal
                 fold      = " ", -- filling 'foldtext'
                 foldopen  = "", -- mark the beginning of a fold
                 foldclose = "", -- show a closed fold
@@ -217,7 +217,7 @@ M = {
             },
             extra = {
                 foldmid = "⁃",
-                foldend = "", --"•""⁃""▸"""
+                foldend = "", --"•""⁃"""
             },
         },
         listchars = {
