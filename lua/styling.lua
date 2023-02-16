@@ -5,7 +5,7 @@ M = {
         transparency = 0,
     },
     icons = {
-        alphaCursor  = { "▒"                               },
+        alphaCursor  = { "░"                               },
         line         = { ""                               },
         column       = { ""                               },
         linesTotal   = { ""                               },
