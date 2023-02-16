@@ -27,7 +27,7 @@ local p = {
 M.base = {
     cBgDark      = u.adjustHSL(p.nord0, 0, 0, -5),
     cBgDim       = u.adjustHSL(p.nord0, 0, 0, -2),
-    cBg          = p.nord0,
+    cBg          = "NONE",
 
     cFill1       = u.adjustHSL(p.nord1, 0, 0, -3),
     cFill2       = p.nord1,
