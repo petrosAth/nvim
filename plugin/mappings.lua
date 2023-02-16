@@ -345,7 +345,7 @@ USER.mappings = {
                 name = "Launch",
                 ["e"] = { "<CMD>LaunchDir dolphin<CR>",           "Open cwd in system file browser"        },
                 ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", "Open URL under cursor in browser"       },
-                ["t"] = { "<CMD>Lspsaga term_toggle<CR>",         "Start a terminal session within Neovim" },
+                ["t"] = { "<CMD>terminal<CR>i",                   "Start a terminal session within Neovim" },
             },
         },
     },
