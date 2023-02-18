@@ -1,26 +1,26 @@
 local function setup(nvim_treesitter)
     nvim_treesitter.setup({
         ensure_installed = "all",
-        context_commentstring = {
-            enable = true,
-            enable_autocmd = false,
-        },
+        ignore_install = { "comment" },
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
         },
+        indent = {
+            enable = true,
+        },
+        context_commentstring = {
+            enable = true,
+            enable_autocmd = false,
+        },
         incremental_selection = {
             enable = true,
-            -- NOTE: Delete if I can remember the default keymaps
             keymaps = {
                 init_selection = "<CR>",
                 node_incremental = "<CR>",
                 scope_incremental = "<S-CR>",
                 node_decremental = "<BS>",
             },
-        },
-        indent = {
-            enable = true,
         },
         rainbow = {
             enable = true,

@@ -53,10 +53,6 @@ function M.setup(icons)
         --       ignore = false,         -- Ignore notifications from this source
         --     },
         -- },
-        debug = {
-            logging = false, -- whether to enable logging, for debugging
-            strict = false, -- whether to interpret LSP strictly
-        },
     })
 end
 
