@@ -91,7 +91,7 @@ USER.mappings = {
             ["a"] = { nil,                                            "Next parameter"                  }, -- Assigned by nvim-treesitter-textobjects
             ["b"] = { "<CMD>bn<CR>",                                  "Next buffer"                     },
             ["c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<cr>'", "Next git hunk",      expr = true }, -- gitsigns.nvim
-            ["d"] = { "<CMD>Lspsaga diagnostic_jump_next<CR>",        "Next lsp diagnostic"             }, -- lspsaga.nvim
+            ["d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next lsp diagnostic"             }, -- nvim-lspconfig
             ["t"] = { "<CMD>tabnext<CR>",                             "Next tab"                        },
         },
         ["["] = {
@@ -100,7 +100,7 @@ USER.mappings = {
             ["a"] = { nil,                                            "Previous parameter"                  }, -- Assigned by nvim-treesitter-textobjects
             ["b"] = { "<CMD>bp<CR>",                                  "Previous buffer"                     },
             ["c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<cr>'", "Previous git hunk",      expr = true }, -- gitsigns.nvim
-            ["d"] = { "<CMD>Lspsaga diagnostic_jump_prev<CR>",        "Previous lsp diagnostic"             }, -- lspsaga.nvim
+            ["d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous lsp diagnostic"             }, -- nvim-lspconfig
             ["t"] = { "<CMD>tabprevious<CR>",                         "Previous tab"                        }, -- Assigned by Hydra.nvim
         },
         ["<F1>"]  = { "<CMD>setlocal spell!<CR>",   "Toggle spelling"                           },
@@ -280,13 +280,13 @@ USER.mappings = {
             },
             ["l"] = {
                 name = "LSP",
-                ["a"] = { "<CMD>Lspsaga code_action<CR>",                      "Code actions"                          }, -- nvim-lspconfig -- lspsaga.nvim
+                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>",            "Code actions"                          }, -- nvim-lspconfig
                 ["d"] = { "<CMD>Glance definitions<CR>",                       "Definitions"                           }, -- nvim-lspconfig -- glance.nvim
                 ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", "Format document"                       }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>",                      "Toggle auto formatting"                }, -- nvim-lspconfig
-                ["h"] = { "<CMD>Lspsaga show_line_diagnostics<CR>",            "Line diagnostics"                      }, -- nvim-lspconfig -- lspsaga.nvim
+                ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
                 ["i"] = { "<CMD>Glance implementations<CR>",                   "Implementations"                       }, -- nvim-lspconfig -- glance.nvim
-                ["K"] = { "<CMD>Lspsaga hover_doc<CR>",                        "Hover symbol"                          }, -- nvim-lspconfig -- lspsaga.nvim
+                ["K"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
                 ["q"] = { "<CMD>Trouble document_diagnostics<CR>",             "Document diagnostics"                  }, -- nvim-lspconfig -- trouble.nvim
                 ["Q"] = { "<CMD>Trouble workspace_diagnostics<CR>",            "Workspace diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
                 ["r"] = { "<CMD>Glance references<CR>",                        "References"                            }, -- nvim-lspconfig -- glance.nvim

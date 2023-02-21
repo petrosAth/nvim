@@ -35,7 +35,8 @@ local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
     opts = opts or {}
     opts = {
-        border = opts.border or border,
+        border = border,
+        width = 80,
     }
     return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
@@ -118,20 +119,9 @@ return {
             -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
             -- Indian satellite navigation system.
             "SmiteshP/nvim-navic",
-            -- lspsaga.nvim
-            -- A lightweight LSP plugin based on Neovim's built-in LSP with a highly performant UI.
-            {
-                "glepnir/lspsaga.nvim",
-                event = "BufRead",
-                dependencies = {
-                    -- Nvim-web-devicons
-                    -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-                    "nvim-tree/nvim-web-devicons",
-                },
-            },
             -- glance.nvim
             -- A pretty window for previewing, navigating and editing your LSP locations
-            { "DNLHC/glance.nvim" },
+            "DNLHC/glance.nvim",
         },
         config = function()
             -- Setup language servers and null-ls
@@ -142,7 +132,6 @@ return {
             require("plugins.lsp.signature").setup(icons, border)
             require("plugins.lsp.fidget").setup(icons)
             require("plugins.lsp.inc-rename").setup()
-            require("plugins.lsp.lspsaga").setup(icons)
             require("plugins.lsp.glance").setup(icons, borders)
         end,
     },
