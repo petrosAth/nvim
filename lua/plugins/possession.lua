@@ -57,7 +57,6 @@ local function setup(possession)
                         "neo-tree",
                         "Outline",
                         "qf",
-                        "lspsagaoutline",
                         "Trouble",
                         "undotree",
                     },

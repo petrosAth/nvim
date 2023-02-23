@@ -79,10 +79,6 @@ function _G.status_column_diagnostics(bufnum, lnum)
         return mk_hl(cur_sign_nm, diag_signs_icons[cur_sign_nm])
     end
 
-    if cur_sign_nm == "LspSagaLightBulb" then
-        return mk_hl(cur_sign_nm, icons.lsp.action[1])
-    end
-
     return " "
 end
 

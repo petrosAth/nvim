@@ -44,9 +44,6 @@ return {
             -- gitsigns.nvim
             -- Super fast git decorations implemented purely in lua/teal.
             "lewis6991/gitsigns.nvim",
-            -- lspsaga.nvim
-            -- A lightweight LSP plugin based on Neovim's built-in LSP with a highly performant UI.
-            "glepnir/lspsaga.nvim",
         },
         config = function()
             local loaded, heirline = pcall(require, "heirline")
