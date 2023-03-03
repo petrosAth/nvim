@@ -67,6 +67,7 @@ end
 
 function _G.status_column_diagnostics(bufnum, lnum)
     local cur_sign_nm = get_name_from_group(bufnum, lnum, "*")
+
     local diag_signs_icons = {
         DiagnosticSignError = icons.lsp.error[1],
         DiagnosticSignWarn = icons.lsp.warn[1],
@@ -74,9 +75,21 @@ function _G.status_column_diagnostics(bufnum, lnum)
         DiagnosticSignHint = icons.lsp.hint[1],
         DiagnosticSignOk = icons.lsp.ok[1],
     }
-
     if cur_sign_nm ~= nil and vim.startswith(cur_sign_nm, "DiagnosticSign") then
         return mk_hl(cur_sign_nm, diag_signs_icons[cur_sign_nm])
+    end
+
+    local todo_signs_icons = {
+        ["FIX"] = icons.bug[1],
+        ["TODO"] = icons.task[1],
+        ["HACK"] = icons.hack[1],
+        ["WARN"] = icons.lsp.warn[1],
+        ["PERF"] = icons.performance[1],
+        ["NOTE"] = icons.note[1],
+    }
+    if cur_sign_nm ~= nil and vim.startswith(cur_sign_nm, "todo-sign-") then
+        cur_sign_nm = string.sub(cur_sign_nm, 11)
+        return mk_hl("TodoSign" .. cur_sign_nm, todo_signs_icons[cur_sign_nm])
     end
 
     return " "
