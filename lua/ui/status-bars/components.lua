@@ -726,17 +726,17 @@ M.TerminalName = {
 M.ViMode = {
     init = function(self)
         self.mode = get_vim_mode()
-
-        -- execute this only once, this is required if you want the ViMode
-        -- component to be updated on operator pending mode
-        if not self.once then
-            vim.api.nvim_create_autocmd("ModeChanged", {
-                pattern = "*:*o",
-                command = "redrawstatus",
-            })
-            self.once = true
-        end
     end,
+
+    -- Re-evaluate the component only on ModeChanged event!
+    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
+    update = {
+        "ModeChanged",
+        pattern = "*:*",
+        callback = vim.schedule_wrap(function()
+            vim.cmd("redrawstatus")
+        end),
+    },
 
     provider = function(self)
         return t.Separator.left.provider .. "%2(" .. t.ModeNames[self.mode] .. "%)"
