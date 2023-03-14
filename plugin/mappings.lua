@@ -138,9 +138,9 @@ USER.mappings = {
             ["h"] = { nil, "Scroll the screen to the left"  }, -- Assigned using Hydra.nvim
             ["l"] = { nil, "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
-        ["<M-J>"] = { ":m .+1<CR>==",                                        "Move line up"            },
-        ["<M-K>"] = { ":m .-2<CR>==",                                        "Move line down"          },
-        ["<Esc>"] = { [[:noh<CR>:lua require("notify").dismiss()<CR><CR>:lua require("luasnip").unlink_current()<CR><Esc>]], "Clear search highlight", },
+        ["<M-J>"] = { ":m .+1<CR>==", "Move line up"   },
+        ["<M-K>"] = { ":m .-2<CR>==", "Move line down" },
+        ["<Esc>"] = { [[:noh<CR>:lua require("notify").dismiss()<CR>:lua require("luasnip").unlink_current()<CR><Esc>]], "Clear search highlight" },
         ["<Leader>"] = {
             ["b"] = {
                 name = "Buffer",
