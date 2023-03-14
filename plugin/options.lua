@@ -12,7 +12,7 @@ g.neovide_cursor_vfx_mode = "wireframe" -- Cursor Particles ( railgun torpedo pi
 -- Neovim options
 opt.swapfile       = false              -- Don't keep swap file
 opt.undofile       = true               -- Maintain undo history between sessions
-opt.sessionoptions = "blank,curdir,help,tabpages,winsize,winpos,terminal" -- mksession command's options list
+opt.sessionoptions = "curdir,help,tabpages,winsize,winpos,terminal" -- mksession command's options list
 opt.completeopt    = "menu,menuone,noinsert,noselect" -- A comma-separated list of options for Insert mode completion
 opt.diffopt:append("vertical")          -- Start diff mode in vertical splits
 opt.spell          = false
