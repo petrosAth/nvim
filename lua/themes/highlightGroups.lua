@@ -556,7 +556,7 @@ function M.get_highlight_groups(palette)
 
         -- quickscope.lua
         QuickScopePrimary = { fg = p.cYellow, bg = p.cBg, underline = true, nocombine = true },
-        QuickScopeSecondary = { fg = p.cMagenta, bg = p.cBg, bold = true, nocombine = true },
+        QuickScopeSecondary = { fg = p.cMagenta, bg = p.cBg, underline = true, nocombine = true },
 
         -- satellite.nvim
         ScrollView = { bg = p.cFill4 },
