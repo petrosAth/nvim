@@ -4,11 +4,18 @@ local function setup(satellite, icons)
         winblend = USER.styling.variables.transparency,
         zindex = 40,
         handlers = {
+            diagnostic = {
+                signs = {
+                    icons.lsp.diagnostics[1],
+                    icons.lsp.diagnostics[1],
+                    icons.lsp.diagnostics[1],
+                },
+            },
             gitsigns = {
                 signs = {
-                    add = icons.add,
-                    change = icons.change,
-                    delete = icons.delete,
+                    add = icons.git.signs.add,
+                    change = icons.git.signs.change,
+                    delete = icons.git.signs.delete,
                 },
             },
         },
@@ -39,7 +46,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons.git.signs.satellite
+            local icons = USER.styling.icons
             setup(satellite, icons)
             add_autocmd()
         end,
