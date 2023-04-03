@@ -1,15 +1,15 @@
 local M = {}
 
-local mouse_scrolled = false
-for _, scroll in ipairs({ "Up", "Down" }) do
-    local key = "<ScrollWheel" .. scroll .. ">"
-    vim.keymap.set("", key, function()
-        mouse_scrolled = true
-        return key
-    end, { noremap = true, expr = true })
-end
-
 local function setup(animate)
+    local mouse_scrolled = false
+    for _, scroll in ipairs({ "Up", "Down" }) do
+        local key = "<ScrollWheel" .. scroll .. ">"
+        vim.keymap.set("", key, function()
+            mouse_scrolled = true
+            return key
+        end, { noremap = true, expr = true })
+    end
+
     animate.setup({
         -- Cursor path
         cursor = {
