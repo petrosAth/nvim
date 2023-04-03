@@ -54,7 +54,7 @@ function M.adjustHSL(color, H, S, L)
 end
 
 ---Convert a highlight group rgb decimal value to hexadecimal
----@param value number A decimal rgb value
+---@param value number | string A decimal rgb value
 ---@return string color A hex color code
 local function decToHex(value)
     -- Source: rebelot/heirline.nvim
@@ -72,13 +72,10 @@ end
 function M.getHl(highlightName)
     -- Source: rebelot/heirline.nvim
     -- https://github.com/rebelot/heirline.nvim/blob/9179b71d9967057814e5920ecb3c8322073825ea/lua/heirline/utils.lua#L3-L23
-    local hl = vim.api.nvim_get_hl_by_name(highlightName, true)
-    hl.fg = decToHex(hl.foreground)
-    hl.bg = decToHex(hl.background)
-    hl.sp = hl.special
-    hl.foreground = nil
-    hl.background = nil
-    hl.special = nil
+    local hl = vim.api.nvim_get_hl(0, { name = highlightName, link = false })
+    hl.fg = decToHex(hl.fg)
+    hl.bg = decToHex(hl.bg)
+    hl.sp = decToHex(hl.sp)
 
     return hl
 end
