@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup(icons)
+function M.setup(icons, borders)
     local loaded, fidget = pcall(require, "fidget")
     if not loaded then
         USER.loading_error_msg("fidget.nvim")
@@ -25,9 +25,18 @@ function M.setup(icons)
         },
         window = {
             relative = "editor", -- where to anchor, either "win" or "editor"
-            blend = 0, -- &winblend for the window
+            blend = USER.styling.variables.transparency, -- &winblend for the window
             zindex = nil, -- the zindex value for the window
-            border = "none", -- style of border for the fidget window
+            border = {
+                { borders.tl, "FloatBorder" },
+                { borders.t, "FloatBorder" },
+                { borders.tr, "FloatBorder" },
+                { borders.r, "FloatBorder" },
+                { borders.br, "FloatBorder" },
+                { borders.b, "FloatBorder" },
+                { borders.bl, "FloatBorder" },
+                { borders.l, "FloatBorder" },
+            }, -- style of border for the fidget window
         },
         fmt = {
             leftpad = true, -- right-justify text in fidget box
@@ -35,12 +44,12 @@ function M.setup(icons)
             max_width = 0, -- maximum width of the fidget box
             -- function to format fidget title
             fidget = function(fidget_name, spinner)
-                return string.format("%s %s %s ", spinner, fidget_name, icons.arrow.hollow.l)
+                return string.format("%s %s %s", spinner, fidget_name, icons.arrow.hollow.l)
             end,
             -- function to format each task line
             task = function(task_name, message, percentage)
                 return string.format(
-                    "%s%s [%s] %s ",
+                    "%s%s [%s] %s",
                     message,
                     percentage and string.format(" (%s%%)", percentage) or "",
                     task_name,
