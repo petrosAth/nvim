@@ -136,26 +136,33 @@ function M.get_highlight_groups(palette)
     }
 
     g.diagnostic = {
+        DiagnosticUnnecessary = { link = "Comment" },
+        DiagnosticDeprecated = { fg = p.cRed, strikethrough = true },
         DiagnosticError = { fg = p.cRed },
         DiagnosticWarn = { fg = p.cYellow },
         DiagnosticInfo = { fg = p.cCyan },
         DiagnosticHint = { fg = p.cSelect },
+        DiagnosticOk = { fg = p.cGreen },
         DiagnosticSignError = { link = "DiagnosticError" },
         DiagnosticSignWarn = { link = "DiagnosticWarn" },
         DiagnosticSignInfo = { link = "DiagnosticInfo" },
         DiagnosticSignHint = { link = "DiagnosticHint" },
+        DiagnosticSignOk = { link = "DiagnosticOk" },
         DiagnosticFloatingWarn = { link = "DiagnosticError" },
         DiagnosticFloatingError = { link = "DiagnosticWarn" },
         DiagnosticFloatingInfo = { link = "DiagnosticInfo" },
         DiagnosticFloatingHint = { link = "DiagnosticHint" },
+        DiagnosticFloatingOk = { link = "DiagnosticOk" },
         DiagnosticUnderlineError = { undercurl = true, sp = p.cRed },
         DiagnosticUnderlineWarn = { undercurl = true, sp = p.cYellow },
         DiagnosticUnderlineInfo = { undercurl = true, sp = p.cCyan },
         DiagnosticUnderlineHint = { undercurl = true, sp = p.cSelect },
+        DiagnosticUnderlineOk = { undercurl = true, sp = p.cGreen },
         DiagnosticVirtualTextError = { fg = p.cRed, bold = true, italic = true },
         DiagnosticVirtualTextWarn = { fg = p.cYellow, bold = true, italic = true },
         DiagnosticVirtualTextInfo = { fg = p.cCyan, bold = true, italic = true },
         DiagnosticVirtualTextHint = { fg = p.cSelect, bold = true, italic = true },
+        DiagnosticVirtualTextOk = { fg = p.cGreen, bold = true, italic = true },
     }
 
     g.treesitter = {
@@ -374,7 +381,7 @@ function M.get_highlight_groups(palette)
         CmpItemMenu = { fg = p.cFill5 },
 
         CmpItemAbbr = { fg = p.cFg },
-        CmpItemAbbrDeprecated = { fg = p.cRed, strikethrough = true },
+        CmpItemAbbrDeprecated = { link = "DiagnosticDeprecated" },
         CmpItemAbbrMatch = { fg = p.cSelect, bold = true },
         CmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
 
