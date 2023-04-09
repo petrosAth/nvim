@@ -137,7 +137,7 @@ function M.get_highlight_groups(palette)
 
     g.diagnostic = {
         DiagnosticUnnecessary = { link = "Comment" },
-        DiagnosticDeprecated = { fg = p.cRed, strikethrough = true },
+        DiagnosticDeprecated = { fg = g.syntax.Comment.fg, strikethrough = true },
         DiagnosticError = { fg = p.cRed },
         DiagnosticWarn = { fg = p.cYellow },
         DiagnosticInfo = { fg = p.cCyan },
