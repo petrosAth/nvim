@@ -132,8 +132,8 @@ USER.mappings = {
         },
         ["j"]     = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines", expr = true },
         ["k"]     = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines", expr = true },
-        ["n"]     = { "<CMD>execute('normal! ' . v:count1 . 'nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'"           }, -- hlslens
-        ["N"]     = { "<CMD>execute('normal! ' . v:count1 . 'Nzzzv')<CR><CMD>lua require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backwards" }, -- hlslens
+        ["n"]     = { "<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua MiniAnimate.execute_after('scroll', 'normal! zvzz'); require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?'"           }, -- hlslens
+        ["N"]     = { "<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua MiniAnimate.execute_after('scroll', 'normal! zvzz'); require('hlslens').start()<CR><CMD>if &nu | set rnu | endif<CR>", "Repeat the latest '/' or '?' backwards" }, -- hlslens
         ["z"] = {
             ["h"] = { nil, "Scroll the screen to the left"  }, -- Assigned using Hydra.nvim
             ["l"] = { nil, "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
