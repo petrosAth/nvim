@@ -14,6 +14,8 @@ function M.setup(icons, borders)
         },
         timer = {
             spinner_rate = 125, -- frame rate of spinner animation, in ms
+            fidget_decay = 2000, -- how long to keep around empty fidget, in ms
+            task_decay = 1000, -- how long to keep around completed task, in ms
         },
         window = {
             relative = "editor", -- where to anchor, either "win" or "editor"
