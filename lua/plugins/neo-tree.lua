@@ -28,11 +28,23 @@ local function setup(neo_tree, icons, borders)
             statusline = true, -- toggle to show selector on statusline
             show_scrolled_off_parent_node = false, -- this will replace the tabs with the parent path
             -- of the top visible node when scrolled down.
-            tab_labels = { -- falls back to source_name if nil
-                filesystem = " " .. icons.fileExplorer[1] .. " Files ",
-                buffers = icons.buffers[1] .. " Buffers ",
-                git_status = icons.git.repo[1] .. " Git ",
-                diagnostics = icons.lsp.icon[1] .. " Diagnostics ",
+            sources = {
+                {
+                    source = "filesystem",
+                    display_name = " " .. icons.fileExplorer[1] .. " Files ",
+                },
+                {
+                    source = "buffers",
+                    display_name = icons.buffers[1] .. " Buffers ",
+                },
+                {
+                    source = "git_status",
+                    display_name = icons.git.repo[1] .. " Git ",
+                },
+                {
+                    source = "diagnostics",
+                    display_name = icons.lsp.icon[1] .. " Diagnostics ",
+                },
             },
             content_layout = "start", -- only with `tabs_layout` = "equal", "focus"
             --                start  : |/ 裡 bufname     \/...
