@@ -39,6 +39,14 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## Plugins watch list
 
+- [smart-splits.nvim](`https://github.com/mrjones2014/smart-splits.nvim`) Smart,
+  seamless, directional navigation and resizing of Neovim + terminal multiplexer
+  splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of
+  "up/down/left/right".
+- [wezterm.nvim](`https://github.com/willothy/wezterm.nvim/`) Utilities for
+  interacting with Wezterm from within Neovim
+- [colorful-winsep](`https://github.com/nvim-zh/colorful-winsep.nvim`) Make your
+  nvim window separators colorful
 - [nvim-insx](https://github.com/hrsh7th/nvim-insx) Flexible insert-mode key
   mapping manager (Auto complete).
 - [nvim-nonicons](https://github.com/yamatsum/nvim-nonicons) Icon set using
