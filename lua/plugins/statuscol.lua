@@ -1,8 +1,8 @@
 local function setup(statuscol)
     local builtin = require("statuscol.builtin")
     statuscol.setup({
-        ft_ignore = nil, -- lua table with filetypes for which 'statuscolumn' will be unset
-        bt_ignore = nil, -- lua table with 'buftype' values for which 'statuscolumn' will be unset
+        ft_ignore = { "vim" },
+        bt_ignore = { "nofile" },
         segments = {
             {
                 sign = {
