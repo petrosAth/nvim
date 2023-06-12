@@ -114,7 +114,10 @@ return {
             "smjonas/inc-rename.nvim",
             -- fidget.nvim
             -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
-            "j-hui/fidget.nvim",
+            {
+                "j-hui/fidget.nvim",
+                tag = "legacy",
+            },
             -- nvim-navic
             -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
             -- Indian satellite navigation system.
