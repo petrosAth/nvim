@@ -12,7 +12,7 @@ local function setup(todo_comments, icons)
             },
             TODO = { icon = icons.task[1], color = "info" },
             HACK = { icon = icons.hack[1], color = "warning" },
-            WARN = { icon = icons.lsp.warn[1], color = "warning", alt = { "WARNING", "XXX" } },
+            WARN = { icon = icons.lsp.warn[1], color = "warning", alt = { "WARNING", "DEBUG" } },
             PERF = { icon = icons.performance[1], alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
             NOTE = { icon = icons.note[1], color = "hint", alt = { "INFO" } },
         },
