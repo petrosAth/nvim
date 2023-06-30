@@ -59,7 +59,7 @@ function M.get_highlight_groups(palette)
         WildMenu = { fg = p.cFill2, bg = p.cCyan },
         Search = { fg = p.cCyan, bg = p.cBg, reverse = true },
         IncSearch = { fg = p.cFgLight, bg = p.cSelect, underline = true },
-        CurSearch = { fg = p.cFgLight, bg = p.cSelect, underline = true },
+        CurSearch = { fg = p.cFgLight, bg = p.cSelect },
         Substitute = { fg = p.cFgLight, bg = p.cBg, reverse = true },
         TabLine = { fg = p.cFg, bg = p.cFill2 },
         TabLineSel = { fg = p.cFg, bg = p.cFill5 },
@@ -163,6 +163,15 @@ function M.get_highlight_groups(palette)
         DiagnosticVirtualTextInfo = { fg = p.cCyan, bold = true, italic = true },
         DiagnosticVirtualTextHint = { fg = p.cSelect, bold = true, italic = true },
         DiagnosticVirtualTextOk = { fg = p.cGreen, bold = true, italic = true },
+    }
+
+    g.flash = {
+        FlashPromptIcon    = { fg = g.editor.MoreMsg.fg, bg = g.editor.StatusLine.bg },
+        FlashBackdrop      = { link = "Comment" },
+        FlashCurrent       = { link = "IncSearch" },
+        FlashPrompt        = { link = "MsgArea" },
+        FlashMatch         = { link = "Search" },
+        FlashLabel         = { link = "Substitute" },
     }
 
     g.treesitter = {
