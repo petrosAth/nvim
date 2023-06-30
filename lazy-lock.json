@@ -52,7 +52,7 @@
   "possession.nvim": { "branch": "master", "commit": "b83e37492e34538aa85aa70d8171f3f86f69b3b4" },
   "pretty-fold.nvim": { "branch": "master", "commit": "a7d8b424abe0eedf50116c460fbe6dfd5783b1d5" },
   "quick-scope": { "branch": "master", "commit": "a147fe0b180479249a6770eac332e2cd8f35b673" },
-  "satellite.nvim": { "branch": "main", "commit": "022c884978b888d5b5812052c64d0d243092155e" },
+  "satellite.nvim": { "branch": "main", "commit": "18c3b4d581cb0eb1a81c00a7f0d268aab842d404" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },
   "statuscol.nvim": { "branch": "main", "commit": "9f1ff2dcf614544c5022e876d83b4894c1944e87" },
   "tabby.nvim": { "branch": "main", "commit": "8bbd8b15c15b69057260170355b8e7adcca1c11a" },
