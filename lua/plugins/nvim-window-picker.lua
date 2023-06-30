@@ -51,16 +51,16 @@ local function setup(window_picker)
             file_name_contains = {},
         },
 
-        -- the foreground (text) color of the picker
-        fg_color = getHl("WindowPicker").fg,
-
-        -- if you have include_current_win == true, then current_win_hl_color will
-        -- be highlighted using this background color
-        current_win_hl_color = getHl("WindowPicker").bg,
-
-        -- all the windows except the curren window will be highlighted using this
-        -- color
-        other_win_hl_color = getHl("WindowPickerNC").bg,
+        highlights = {
+            statusline = {
+                focused = getHl("WindowPicker"),
+                unfocused = getHl("WindowPicker"),
+            },
+            winbar = {
+                focused = getHl("WindowPicker"),
+                unfocused = getHl("WindowPicker"),
+            },
+        },
     })
 end
 
@@ -69,6 +69,7 @@ return {
         -- nvim-window-picker
         -- This plugins prompts the user to pick a window and returns the window id of the picked window
         "s1n7ax/nvim-window-picker",
+        event = "VeryLazy",
         config = function()
             local loaded, window_picker = pcall(require, "window-picker")
             if not loaded then
