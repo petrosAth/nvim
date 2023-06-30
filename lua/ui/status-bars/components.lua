@@ -282,11 +282,12 @@ M.Spell = {
         flexible = t.Hide.Spell.icon,
         {
             provider = function()
-                return "暈"
+                return i.spelling[1]
             end,
         },
         { t.Null },
     },
+    { flexible = t.Hide.Spell.icon, { t.Separator.mid }, { t.Null } },
     {
         flexible = t.Hide.Spell.value,
         {
