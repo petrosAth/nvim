@@ -13,8 +13,8 @@ local function setup(animate)
     animate.setup({
         -- Cursor path
         cursor = {
-            enable = false,
-            timing = animate.gen_timing.exponential({ easing = "out", duration = 300, unit = "total" }),
+            enable = true,
+            timing = animate.gen_timing.exponential({ easing = "out", duration = 150, unit = "total" }),
             path = animate.gen_path.line(),
         },
         -- Vertical scroll
