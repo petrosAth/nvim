@@ -568,6 +568,7 @@ function M.get_highlight_groups(palette)
         -- satellite.nvim
         ScrollView = { bg = p.cFill4 },
         SearchSV = { fg = p.cCyan },
+        MarkSV = { fg = p.cFgDim },
 
         -- telescope.nvim
         TelescopePromptPrefix = { fg = p.cFg, bold = true },
