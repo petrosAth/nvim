@@ -36,7 +36,10 @@ local function setup(window_picker)
                 },
 
                 -- if the buffer type is one of following, the window will be ignored
-                buftype = { "terminal" },
+                buftype = {
+                    "nofile",
+                    "terminal"
+                },
             },
 
             -- filter using window options
