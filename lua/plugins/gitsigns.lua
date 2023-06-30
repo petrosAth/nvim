@@ -13,7 +13,6 @@ local function setup(gitsigns, icons, borders)
         linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
         show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`
         word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-        keymaps = {},
         watch_gitdir = {
             interval = 1000,
             follow_files = true,
