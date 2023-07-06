@@ -576,8 +576,17 @@ function M.get_highlight_groups(palette)
 
         -- satellite.nvim
         ScrollView = { bg = p.cFill4 },
-        SearchSV = { fg = p.cCyan },
-        MarkSV = { fg = p.cFgDim },
+        SatelliteDiagnosticError = { link = "DiagnosticSignError" },
+        SatelliteDiagnosticWarn = { link = "DiagnosticWarn" },
+        SatelliteDiagnosticInfo = { link = "DiagnosticInfo" },
+        SatelliteDiagnosticHint = { link = "DiagnosticHint" },
+        SatelliteGitSignsDelete = { link = "GitSignsDelete" },
+        SatelliteGitSignsChange = { link = "GitSignsChange" },
+        SatelliteGitSignsAdd = { link = "GitSignsAdd" },
+        SatelliteQuickfix = { link = "WarningMsg" },
+        SatelliteSearch = { fg = p.cCyan },
+        SatelliteCursor = { fg = p.cFg },
+        SatelliteMark = { fg = p.cFgDim },
 
         -- telescope.nvim
         TelescopePromptPrefix = { fg = p.cFg, bold = true },
