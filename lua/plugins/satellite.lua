@@ -13,9 +13,9 @@ local function setup(satellite, icons)
             },
             gitsigns = {
                 signs = {
-                    add = icons.git.signs.add,
-                    change = icons.git.signs.change,
-                    delete = icons.git.signs.delete,
+                    add = icons.git.signs.satellite.add,
+                    change = icons.git.signs.satellite.change,
+                    delete = icons.git.signs.satellite.delete,
                 },
             },
         },

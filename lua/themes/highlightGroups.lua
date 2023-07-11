@@ -575,7 +575,7 @@ function M.get_highlight_groups(palette)
         QuickScopeSecondary = { fg = p.cMagenta, bg = p.cBg, underline = true, nocombine = true },
 
         -- satellite.nvim
-        ScrollView = { bg = p.cFill4 },
+        SatelliteBar = { bg = p.cFill4 },
         SatelliteDiagnosticError = { link = "DiagnosticSignError" },
         SatelliteDiagnosticWarn = { link = "DiagnosticWarn" },
         SatelliteDiagnosticInfo = { link = "DiagnosticInfo" },
