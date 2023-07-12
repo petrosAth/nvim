@@ -509,14 +509,12 @@ function M.get_highlight_groups(palette)
         ScrollBarMisc = { fg = p.cFg },
         ScrollBarSearch = { link = "Search" },
 
-        -- nvim-ts-rainbow
-        rainbowcol1 = { fg = p.cMagenta },
-        rainbowcol2 = { fg = p.cYellow },
-        rainbowcol3 = { fg = p.cRed },
-        rainbowcol4 = { fg = p.cViolet },
-        rainbowcol5 = { fg = p.cFgLight },
-        rainbowcol6 = { fg = p.cMagenta },
-        rainbowcol7 = { fg = p.cYellow },
+        -- nvim-ts-rainbow2
+        rainbowclr1 = { fg = p.cMagenta },
+        rainbowclr2 = { fg = p.cYellow },
+        rainbowclr3 = { fg = p.cRed },
+        rainbowclr4 = { fg = p.cViolet },
+        rainbowclr5 = { fg = p.cFgLight },
 
         -- nvim-windowpicker
         WindowPicker = { fg = p.cBgDark, bg = p.cCyan, bold = true },

@@ -24,8 +24,13 @@ local function setup(nvim_treesitter)
         },
         rainbow = {
             enable = true,
-            extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-            max_file_lines = nil, -- Do not enable for files with more than n lines, int
+            hlgroups = {
+                "rainbowclr1",
+                "rainbowclr2",
+                "rainbowclr3",
+                "rainbowclr4",
+                "rainbowclr5",
+            },
         },
         textobjects = {
             select = {
@@ -76,9 +81,9 @@ return {
         event = { "BufReadPost" },
         build = ":TSUpdate",
         dependencies = {
-            -- nvim-ts-rainbow
-            -- Rainbow parentheses for neovim using tree-sitter.
-            "mrjones2014/nvim-ts-rainbow",
+            -- nvim-ts-rainbow2
+            -- Rainbow delimiters for Neovim through Tree-sitter
+            "HiPhish/nvim-ts-rainbow2",
             -- nvim-treesitter-textobjects
             -- Syntax aware text-objects, select, move, swap, and peek support.
             "nvim-treesitter/nvim-treesitter-textobjects",
