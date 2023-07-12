@@ -15,7 +15,6 @@ local function setup(window_picker)
                 -- if the file type is one of following, the window will be ignored
                 filetype = {
                     "aerial",
-                    "alpha",
                     "Codewindow",
                     "diff",
                     "DiffviewFileHistory",
@@ -37,8 +36,7 @@ local function setup(window_picker)
 
                 -- if the buffer type is one of following, the window will be ignored
                 buftype = {
-                    "nofile",
-                    "terminal"
+                    "terminal",
                 },
             },
 
