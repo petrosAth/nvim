@@ -24,6 +24,10 @@ local function setup(nvim_treesitter)
         },
         rainbow = {
             enable = true,
+            query = {
+                "rainbow-parens",
+                html = "rainbow-tags",
+            },
             hlgroups = {
                 "rainbowclr1",
                 "rainbowclr2",
