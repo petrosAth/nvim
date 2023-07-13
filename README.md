@@ -35,7 +35,6 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 - lsp syntax highlighting (:h lsp-semantic_tokens )
 - [trouble.nvim zo/zc implementation](https://github.com/folke/trouble.nvim/pull/117)
-- [nvim-ts-rainbow2](https://gitlab.com/HiPhish/nvim-ts-rainbow2)
 
 ## Plugins watch list
 

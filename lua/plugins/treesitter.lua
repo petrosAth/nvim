@@ -22,20 +22,6 @@ local function setup(nvim_treesitter)
                 node_decremental = "<BS>",
             },
         },
-        rainbow = {
-            enable = true,
-            query = {
-                "rainbow-parens",
-                html = "rainbow-tags",
-            },
-            hlgroups = {
-                "rainbowclr1",
-                "rainbowclr2",
-                "rainbowclr3",
-                "rainbowclr4",
-                "rainbowclr5",
-            },
-        },
         textobjects = {
             select = {
                 enable = true,
@@ -85,9 +71,6 @@ return {
         event = { "BufReadPost" },
         build = ":TSUpdate",
         dependencies = {
-            -- nvim-ts-rainbow2
-            -- Rainbow delimiters for Neovim through Tree-sitter
-            "HiPhish/nvim-ts-rainbow2",
             -- nvim-treesitter-textobjects
             -- Syntax aware text-objects, select, move, swap, and peek support.
             "nvim-treesitter/nvim-treesitter-textobjects",
