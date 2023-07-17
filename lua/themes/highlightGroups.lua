@@ -533,7 +533,7 @@ function M.get_highlight_groups(palette)
         NeoTreeTabActive = { fg = p.cFg, bg = p.cFill5 },
         NeoTreeTabInactive = { fg = p.cFg, bg = p.cFill3 },
         NeoTreeTabBarBackground = { link = "StatusLine" },
-        NeoTreeTabSeparatorActive = { fg = p.cFill4, bg = p.cFill5 },
+        NeoTreeTabSeparatorActive = { fg = p.cFill2, bg = p.cFill5 },
         NeoTreeTabSeparatorInactive = { fg = p.cFill2, bg = p.cFill3 },
 
         NeoTreeRootName = { fg = p.cFgLight, bold = true, italic = true },

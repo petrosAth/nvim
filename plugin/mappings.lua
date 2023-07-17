@@ -239,9 +239,10 @@ USER.mappings = {
                 ["b"] = { "<CMD>Neotree buffers left focus reveal toggle<CR>",     "Toggle a list of currently open buffers"                           }, -- neo-tree.nvim
                 ["B"] = { "<CMD>Neotree buffers current<CR>",                      "Toggle a list of currently open buffers within the current window" }, -- neo-tree.nvim
                 ["e"] = { "<CMD>Neotree filesystem left focus reveal toggle<CR>",  "Toggle file explorer"                                              }, -- neo-tree.nvim
-                ["f"] = { "<CMD>NeoTreeFocus<CR>",                                 "Open or focus on file explorer"                                    }, -- neo-tree.nvim
                 ["E"] = { "<CMD>Neotree filesystem current<CR>",                   "Open file explorer within the current window"                      }, -- neo-tree.nvim
-                ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status in a floating window"                            }, -- neo-tree.nvim
+                ["f"] = { "<CMD>NeoTreeFocus<CR>",                                 "Open or focus on file explorer"                                    }, -- neo-tree.nvim
+                ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", "Toggle git status panel"                                           }, -- neo-tree.nvim
+                ["o"] = { "<CMD>Neotree document_symbols<CR>",                     "Toggle document symbols panel"                                     }, -- neo-tree.nvim
             },
             ["f"] = { hop_key("AFTER"),  "Hop to" }, -- hop.nvim
             ["F"] = { hop_key("BEFORE"), "Hop to" }, -- hop.nvim
