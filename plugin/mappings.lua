@@ -305,8 +305,6 @@ USER.mappings = {
                 ["c"] = { "<CMD>lua require('codewindow').close_minimap()<CR>",  "Close minimap"         }, -- codewindow.nvim
                 ["f"] = { "<CMD>lua require('codewindow').toggle_focus()<CR>",   "Focus/unfocus minimap" }, -- codewindow.nvim
             },
-            ["o"] = { "<CMD>AerialToggle<CR>",  "Toggle Code outline"                  }, -- aerial.nvim
-            ["O"] = { "<CMD>AerialToggle!<CR>", "Toggle Code outline without focusing" }, -- aerial.nvim
             ["q"] = {
                 name = "Trouble",
                 ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"    }, -- trouble.nvim
