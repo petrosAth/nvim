@@ -45,6 +45,7 @@ local function setup(nvim_treesitter)
                     ["]]"] = "@class.outer",
                 },
                 goto_next_end = {
+                    ["]A"] = "@parameter.outer",
                     ["]M"] = "@function.outer",
                     ["]["] = "@class.outer",
                 },
@@ -54,6 +55,7 @@ local function setup(nvim_treesitter)
                     ["[["] = "@class.outer",
                 },
                 goto_previous_end = {
+                    ["[A"] = "@parameter.inner",
                     ["[M"] = "@function.outer",
                     ["[]"] = "@class.outer",
                 },
