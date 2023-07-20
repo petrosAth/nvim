@@ -7,7 +7,7 @@ local servers = {
     "cssls",
     "cssmodules_ls",
     "clangd",
-    "emmet_ls",
+    "emmet_language_server",
     "eslint",
     "jsonls",
     "omnisharp",
