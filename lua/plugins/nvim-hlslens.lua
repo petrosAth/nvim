@@ -1,4 +1,6 @@
-local function setup(hlslens, icons)
+local function setup(hlslens)
+    local icons = USER.styling.icons
+
     hlslens.setup({
         -- When to open the floating window for the nearest lens.
         -- 'auto': floating window will be opened if room isn't enough for virtual text;
@@ -52,8 +54,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            setup(hlslens, icons)
+            setup(hlslens)
         end,
     },
 }

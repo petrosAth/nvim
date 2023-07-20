@@ -1,4 +1,5 @@
-local function setup(diffview, icons)
+local function setup(diffview)
+    local icons = USER.styling.icons
     local actions = require("diffview.config").actions
 
     diffview.setup({
@@ -155,8 +156,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            setup(diffview, icons)
+            setup(diffview)
         end,
     },
 }

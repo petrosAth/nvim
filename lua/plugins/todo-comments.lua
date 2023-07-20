@@ -1,4 +1,6 @@
-local function setup(todo_comments, icons)
+local function setup(todo_comments)
+    local icons = USER.styling.icons
+
     todo_comments.setup({
         signs = true, -- show icons in the signs column
         sign_priority = 8, -- sign priority
@@ -40,8 +42,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            setup(todo_comments, icons)
+            setup(todo_comments)
         end,
     },
 }

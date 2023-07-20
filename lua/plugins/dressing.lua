@@ -1,4 +1,7 @@
-local function setup(dressing, borders, winblend)
+local function setup(dressing)
+    local winblend = USER.styling.variables.transparency
+    local borders = USER.styling.borders
+
     dressing.setup({
         input = {
             -- Set to false to disable the vim.ui.input implementation
@@ -108,9 +111,7 @@ return {
                 return
             end
 
-            local winblend = USER.styling.variables.transparency
-            local borders = USER.styling.borders
-            setup(dressing, borders, winblend)
+            setup(dressing)
         end,
     },
 }

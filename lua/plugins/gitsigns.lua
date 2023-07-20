@@ -1,4 +1,7 @@
-local function setup(gitsigns, icons, borders)
+local function setup(gitsigns)
+    local icons = USER.styling.icons.git
+    local borders = USER.styling.borders.default
+
     gitsigns.setup({
         signs = {
             add = { text = icons.signs.add },
@@ -73,9 +76,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons.git
-            local borders = USER.styling.borders.default
-            setup(gitsigns, icons, borders)
+            setup(gitsigns)
         end,
     },
 }

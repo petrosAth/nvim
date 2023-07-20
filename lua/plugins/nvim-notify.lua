@@ -1,4 +1,7 @@
-local function setup(notify, icons, borders)
+local function setup(notify)
+    local icons = USER.styling.icons
+    local borders = USER.styling.borders.default
+
     notify.setup({
         -- Animation style (see below for details)
         stages = "slide",
@@ -54,9 +57,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            local borders = USER.styling.borders.default
-            setup(notify, icons, borders)
+            setup(notify)
 
             vim.notify = notify
         end,

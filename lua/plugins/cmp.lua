@@ -1,4 +1,6 @@
-local function setup(cmp, borders, kinds)
+local function setup(cmp)
+    local borders = USER.styling.borders.default
+    local kinds = USER.styling.icons.lsp.kinds
     local loaded_luasnip, luasnip = pcall(require, "luasnip")
     if not loaded_luasnip then
         USER.loading_error_msg("LuaSnip")
@@ -225,9 +227,7 @@ return {
                 return
             end
 
-            local borders = USER.styling.borders.default
-            local kinds = USER.styling.icons.lsp.kinds
-            setup(cmp, borders, kinds)
+            setup(cmp)
         end,
     },
 }

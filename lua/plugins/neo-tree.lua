@@ -1,4 +1,7 @@
-local function setup(neo_tree, icons, borders)
+local function setup(neo_tree)
+    local icons = USER.styling.icons
+    local borders = USER.styling.borders.default
+
     neo_tree.setup({
         sources = {
             "filesystem",
@@ -268,9 +271,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            local borders = USER.styling.borders.default
-            setup(neo_tree, icons, borders)
+            setup(neo_tree)
         end,
     },
 }

@@ -1,4 +1,6 @@
-local function setup(indent_blankline, icons)
+local function setup(indent_blankline)
+    local icons = USER.styling.icons.indentLine
+
     indent_blankline.setup({
         char_list = { icons.char[1], icons.char[2] },
         context_char_list = { icons.context_char[1] },
@@ -57,8 +59,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons.indentLine
-            setup(indent_blankline, icons)
+            setup(indent_blankline)
         end,
     },
 }

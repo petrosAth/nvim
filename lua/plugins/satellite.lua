@@ -1,4 +1,6 @@
-local function setup(satellite, icons)
+local function setup(satellite)
+    local icons = USER.styling.icons
+
     satellite.setup({
         current_only = false,
         winblend = USER.styling.variables.transparency,
@@ -37,8 +39,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            setup(satellite, icons)
+            setup(satellite)
         end,
     },
 }

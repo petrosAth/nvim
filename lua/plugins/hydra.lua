@@ -1,4 +1,6 @@
-local function setup(hydra, arrow, borders)
+local function setup(hydra)
+    local arrow = USER.styling.icons.arrow.hollow.r
+    local borders = USER.styling.borders.default
     local border = {
         borders.tl,
         borders.t,
@@ -98,9 +100,7 @@ return {
                 return
             end
 
-            local arrow = USER.styling.icons.arrow.hollow.r
-            local borders = USER.styling.borders.default
-            setup(hydra, arrow, borders)
+            setup(hydra)
         end,
     },
 }

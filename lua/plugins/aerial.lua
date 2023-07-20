@@ -1,4 +1,6 @@
-local function setup(aerial, icons, borders)
+local function setup(aerial)
+    local icons = USER.styling.icons
+    local borders = USER.styling.borders.default
     local kinds = icons.lsp.kinds
     local fillchars = icons.fillchars.global
 
@@ -360,9 +362,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            local borders = USER.styling.borders.default
-            setup(aerial, icons, borders)
+            setup(aerial)
             set_kinds_hl_groups()
         end,
     },

@@ -1,4 +1,6 @@
-local function setup(alpha, icons)
+local function setup(alpha)
+    local icons = USER.styling.icons
+
     local function button(shortcut, description)
         return {
             type = "button",
@@ -67,7 +69,10 @@ local function setup(alpha, icons)
         type = "group",
         val = {
             button("LDR u u l", string.format("%s %s Update external tooling", icons.alphaCursor[1], icons.update[1])),
-            button("LDR u u p", string.format("%s %s Check for plugins updates", icons.alphaCursor[1], icons.preview[1])),
+            button(
+                "LDR u u p",
+                string.format("%s %s Check for plugins updates", icons.alphaCursor[1], icons.preview[1])
+            ),
             button("LDR u u P", string.format("%s %s Update plugins", icons.alphaCursor[1], icons.update[1])),
         },
         opts = {
@@ -143,8 +148,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            setup(alpha, icons)
+            setup(alpha)
         end,
     },
 }

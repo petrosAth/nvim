@@ -1,4 +1,6 @@
-local function setup(trouble, fillchars)
+local function setup(trouble)
+    local fillchars = USER.styling.icons.fillchars.global
+
     trouble.setup({
         position = "bottom", -- position of the list can be: bottom, top, left, right
         height = 10, -- height of the trouble list when position is top or bottom
@@ -54,8 +56,7 @@ return {
                 return
             end
 
-            local fillchars = USER.styling.icons.fillchars.global
-            setup(trouble, fillchars)
+            setup(trouble)
         end,
     },
 }
