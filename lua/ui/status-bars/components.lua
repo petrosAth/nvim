@@ -225,7 +225,8 @@ local LspSymbol = {
             return symbol
         end
 
-        local context = navic.get_location()
+        local data = navic.get_data()
+        local context = navic.format_data(data)
         if context ~= nil and context ~= "" then
             symbol = " " .. i.arrow.hollow.r .. " " .. context
         end
