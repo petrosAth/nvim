@@ -25,7 +25,7 @@ local function capabilities()
     return client_caps
 end
 
-local function on_attach(client, bufnr)
+local on_attach = function(client, bufnr)
     local server_caps = client.server_capabilities
 
     if client.supports_method("textDocument/documentSymbol") then
@@ -34,6 +34,10 @@ local function on_attach(client, bufnr)
 
     if server_caps.documentFormattingProvider then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+    end
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint(bufnr, false)
     end
 end
 
@@ -130,6 +134,26 @@ local function setup_language_servers(lspconfig, servers, root_files)
                 },
                 on_attach = on_attach,
                 capabilities = capabilities(),
+            })
+        elseif name == "tsserver" then
+            lspconfig[name].setup({
+                init_options = {
+                    preferences = {
+                        includeInlayParameterNameHints = "all",
+                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                        includeInlayFunctionParameterTypeHints = true,
+                        includeInlayVariableTypeHints = true,
+                        includeInlayPropertyDeclarationTypeHints = true,
+                        includeInlayFunctionLikeReturnTypeHints = true,
+                        includeInlayEnumMemberValueHints = true,
+                        importModuleSpecifierPreference = "non-relative",
+                    },
+                },
+                on_attach = function(client, bufnr)
+                    client.server_capabilities.document_formatting = false
+                    client.server_capabilities.document_range_formatting = false
+                    on_attach(client, bufnr)
+                end,
             })
         else
             lspconfig[name].setup({
