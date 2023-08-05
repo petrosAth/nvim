@@ -69,7 +69,6 @@ opt.list           = true               -- Display whitespace characters
 opt.fillchars      = i.fillchars.global -- Characters to fill the statuslines, vertical separators and special lines in the window
 opt.listchars      = i.listchars.global -- Strings to use in 'list' mode
 opt.clipboard      = "unnamedplus"      -- Use system clipboard for copy/paste
-opt.pastetoggle    = "<F12>"            -- Toggle paste mode
 opt.keywordprg     = ":help"            -- Program to use for the K command
 opt.startofline    = true               -- Keep cursor at place if possible
 opt.mouse          = "a"                -- Enable mouse for normal and visual modes
