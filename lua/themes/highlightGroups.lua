@@ -361,13 +361,9 @@ function M.get_highlight_groups(palette)
         InclineNormalNC = { link = "InclineNormal" },
 
         -- indent-blankline.nvim
-        IndentBlanklineContextChar = { fg = p.cViolet },
-        IndentBlanklineContextStart = { underline = true, sp = p.cViolet },
-        IndentBlanklineSpaceCharBlankline = { fg = p.cFill2 },
-        IndentBlanklineSpaceChar = { fg = p.cFill2 },
-        IndentBlanklineChar = { fg = p.cFill2 },
-        IndentBlanklineIndent1 = { bg = p.cBgDim, nocombine = true },
-        IndentBlanklineIndent2 = { bg = p.cBg, nocombine = true },
+        IblIndent = { fg = p.cFill2 },
+        IblWhitespace = { link = "Whitespace" },
+        IblScope = { fg = p.cViolet },
 
         -- lazy.nvim
         LazyButton = { link = "Tabline" },
