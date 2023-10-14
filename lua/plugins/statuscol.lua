@@ -28,7 +28,7 @@ local function setup(statuscol)
             },
             {
                 sign = {
-                    name = { "GitSigns" },
+                    namespace = { "gitsigns" },
                     colwidth = 1,
                 },
                 click = "v:lua.ScSa",
