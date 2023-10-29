@@ -283,10 +283,6 @@ return {
             -- A telescope.nvim extension that offers intelligent prioritization when selecting files from your editing
             -- history.
             "nvim-telescope/telescope-frecency.nvim",
-            -- sqlite.lua
-            -- SQLite/LuaJIT binding and a highly opinionated wrapper for storing, retrieving, caching, and persisting
-            -- SQLite databases.
-            "tami5/sqlite.lua",
             -- telescope-hop.nvim
             -- telescope-hop.nvim is an extension for telescope.nvim. It helps you navigate, select, and perform
             -- actions on results buffer with motions inspired by hop.nvim.
