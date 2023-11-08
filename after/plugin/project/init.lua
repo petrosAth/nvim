@@ -67,11 +67,8 @@ function USER.load_local_config(config)
     if config.use_session then
         vim.cmd.ProjectCreateSession()
     end
-    if config.use_spellfile or config.use_vale then
+    if config.use_spellfile then
         vim.opt.spellfile = get_spell_file()
-    end
-    if config.use_vale then
-        vim.cmd.ProjectCreateValeConfig()
     end
     if config.use_palettes then
         vim.g.Hexokinase_palettes = get_palettes()
@@ -113,27 +110,6 @@ vim.api.nvim_create_user_command("ProjectCreatePalette", function()
 
     create_buffer(palette_file, { 3, 5 })
 end, { desc = "Create a palette template in the local project's configuration directory" })
-
-vim.api.nvim_create_user_command("ProjectCreateValeConfig", function()
-    local cwd = vim.fn.getcwd()
-    local templates_dir = USER.local_config.templates
-    local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
-    local vale_dir = local_cfg_dir .. "/" .. USER.local_config.vale_dir
-    local vale_file = USER.local_config.vale_file
-    local spell_file_path = get_spell_file()
-
-    vim.fn.mkdir(vale_dir, "p")
-    if vim.fn.filereadable(vale_dir .. "/accept.txt") == 0 then
-        os.execute("ln -s " .. spell_file_path .. " " .. vale_dir .. "/accept.txt")
-    end
-    if vim.fn.filereadable(vale_dir .. "/reject.txt") == 0 then
-        os.execute("touch " .. vale_dir .. "/reject.txt")
-    end
-    if vim.fn.filereadable(vale_dir .. "/" .. vale_file) == 0 then
-        local vale_template = templates_dir .. "/" .. vale_file
-        os.execute("cp " .. vale_template .. " " .. cwd)
-    end
-end, { desc = "Create vale config file in the project root, and place styles in the local config directory." })
 
 vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
     local cwd = vim.fn.getcwd()

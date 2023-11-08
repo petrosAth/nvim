@@ -38,7 +38,6 @@ local sources = function(null_ls)
             command = "prettierd",
         }),
         diagnostics.selene,
-        diagnostics.vale,
         diagnostics.zsh,
     }
 end
