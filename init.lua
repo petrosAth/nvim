@@ -6,7 +6,6 @@ USER = {
     mappings     = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
         dir           = ".nvim",                 -- Local config directory
-        file          = "init.local.lua",        -- Local config file
         palettes_dir  = "palettes",              -- Palettes local config directory
         palette_file  = "palette.json",          -- Pallette file name
         spell_dir     = "spell",                 -- Spell local config directory

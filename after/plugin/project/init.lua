@@ -85,15 +85,15 @@ vim.api.nvim_create_user_command("ProjectCreateConfig", function()
     local cwd = vim.fn.getcwd()
     local templates_dir = USER.local_config.templates
     local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
-    local local_cfg_file = USER.local_config.file
+    local local_cfg_file = ".nvim.lua"
 
     create_gitignore()
 
     vim.fn.mkdir(local_cfg_dir, "p")
     local local_cfg_template_file = templates_dir .. "/" .. local_cfg_file
-    os.execute("cp " .. local_cfg_template_file .. " " .. local_cfg_dir)
+    os.execute("cp " .. local_cfg_template_file .. " " .. cwd)
 
-    create_buffer(local_cfg_dir .. "/" .. local_cfg_file, { 2, 25 })
+    create_buffer(cwd .. "/" .. local_cfg_file, { 2, 25 })
     vim.cmd.redraw()
 end, { desc = "Create a project local config file, and open it in the current window" })
 

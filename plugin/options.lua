@@ -10,6 +10,7 @@ g.neovide_transparency    = 0.90        -- Setting the value between 0.0 and 1.0
 g.neovide_cursor_vfx_mode = "wireframe" -- Cursor Particles ( railgun torpedo pixiedust sonicboom ripple wireframe )
 
 -- Neovim options
+opt.exrc           = true               -- Load local configuration file (.nvim.lua, .nvimrc and .exrc files)
 opt.swapfile       = false              -- Don't keep swap file
 opt.undofile       = true               -- Maintain undo history between sessions
 opt.sessionoptions = "curdir,help,tabpages,winsize,winpos,terminal" -- mksession command's options list
