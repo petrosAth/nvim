@@ -212,10 +212,10 @@ USER.mappings = {
             },
         },
         ["<Space>"] = {
-            ["?"] = { "<CMD>WhichKey<CR>",          "Show available hotkeys" }, -- which-key
-            ["."] = { "<CMD>Telescope resume<CR>",  "Reopen Telescope"       }, -- telescope.nvim
-            ["b"] = { "<CMD>Telescope buffers<CR>", "Buffer list"            }, -- telescope.nvim
-            ["c"] = { "<CMD>HexokinaseToggle<CR>",  "Color codes preview"    }, -- hexokinase
+            ["?"] = { "<CMD>WhichKey<CR>",             "Show available hotkeys" }, -- which-key
+            ["."] = { "<CMD>Telescope resume<CR>",     "Reopen Telescope"       }, -- telescope.nvim
+            ["b"] = { "<CMD>Telescope buffers<CR>",    "Buffer list"            }, -- telescope.nvim
+            ["c"] = { "<CMD>CccHighlighterToggle<CR>", "Color codes preview"    }, -- ccc.nvim
             ["d"] = {
                 name = "Diffview",
                 ["q"] = { "<CMD>DiffviewClose<CR>",         "Quit"                              }, -- diffview

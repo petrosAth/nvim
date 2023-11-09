@@ -20,7 +20,7 @@ local function create_gitignore()
     vim.fn.writefile(gitignore_template, gitignore_file, "a")
 end
 
----Load custom hexokinase palettes from the project's local configuration
+---Load custom palettes from the project's local configuration
 ---directory. If the current working directory is the Neovim config path, load
 ---the currently active theme palette as well.
 ---@return table palettes Table containing the palettes.
@@ -31,17 +31,14 @@ local function get_palettes()
     local palettes = {}
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
-        local current_theme_palette = vim.fn.stdpath("config")
-            .. "/lua/plugins/hexokinase/theme-palettes/"
-            .. USER.theme
-            .. ".json"
-        table.insert(palettes, current_theme_palette)
+        palettes = require("themes.palettes." .. USER.theme).base
     end
 
     vim.fn.mkdir(palettes_dir, "p")
 
     for _, palette in pairs(vim.fn.readdir(palettes_dir)) do
-        table.insert(palettes, palettes_dir .. "/" .. palette)
+        palette = dofile(palettes_dir .. "/" .. palette)
+        palettes = vim.tbl_deep_extend("error", palettes, palette)
     end
 
     return palettes
@@ -71,7 +68,8 @@ function USER.load_local_config(config)
         vim.opt.spellfile = get_spell_file()
     end
     if config.use_palettes then
-        vim.g.Hexokinase_palettes = get_palettes()
+        local ccc = require("ccc")
+        ccc.setup({ pickers = { ccc.picker.custom_entries(get_palettes()) } })
     end
     if config.use_prettier then
         vim.cmd.ProjectCreatePrettierConfig()
