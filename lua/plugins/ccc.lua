@@ -1,6 +1,11 @@
 local function setup(ccc)
     ccc.setup({
-        highlighter = { auto_enable = true },
+        highlighter = {
+            auto_enable = true,
+            filetypes = {
+                "css",
+            },
+        },
     })
 end
 
