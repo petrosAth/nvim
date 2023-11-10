@@ -51,6 +51,8 @@ function M.setup(icons, borders)
                 ["q"] = actions.close,
                 ["Q"] = actions.close,
                 ["<Esc>"] = actions.close,
+                ["<M-q>F"] = actions.quickfix,
+                ["<C-q>"] = false,
             },
             preview = {
                 ["Q"] = actions.close,
