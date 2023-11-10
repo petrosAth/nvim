@@ -105,9 +105,9 @@ return {
             -- lsp_signature.nvim
             -- Show function signature when you type
             "ray-x/lsp_signature.nvim",
-            -- null-ls.nvim
-            -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
-            "jose-elias-alvarez/null-ls.nvim",
+            -- none-ls.nvim
+            -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+            "nvimtools/none-ls.nvim",
             -- inc-rename.nvim
             -- A small Neovim plugin that provides a command for LSP renaming with immediate visual feedback thanks to
             -- Neovim's command preview feature.
