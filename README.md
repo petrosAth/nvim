@@ -38,6 +38,16 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## Plugins watch list
 
+- [conform.nvim](https://github.com/stevearc/conform.nvim) Wait for
+  [Issue](https://github.com/mfussenegger/nvim-lint/issues/366)
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint) Wait for
+  [Issue](https://github.com/mfussenegger/nvim-lint/issues/366)
+- [edgy.nvim](https://github.com/folke/edgy.nvim) Easily create and manage
+  predefined window layouts, bringing a new edge to your workflow
+- [persistence.nvim](https://github.com/folke/persistence.nvim) Simple session
+  management for Neovim
+- [flash.nvim](https://github.com/folke/flash.nvim) Navigate your code with
+  search labels, enhanced character motions and Treesitter integration
 - [smart-splits.nvim](`https://github.com/mrjones2014/smart-splits.nvim`) Smart,
   seamless, directional navigation and resizing of Neovim + terminal multiplexer
   splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of
