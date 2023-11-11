@@ -13,9 +13,9 @@ function M.setup(icons, border)
             width = 0.7,
             height = 0.825,
             icons = {
-                package_installed = icons.done[1],
-                package_pending = icons.pending[1],
-                package_uninstalled = icons.pending[1],
+                package_installed = icons.done[1] .. " ",
+                package_pending = icons.pending[1] .. " ",
+                package_uninstalled = icons.pending[1] .. " ",
             },
             keymaps = {
                 -- Keymap to expand a package
