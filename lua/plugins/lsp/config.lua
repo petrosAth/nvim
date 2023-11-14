@@ -94,6 +94,12 @@ local function setup_language_servers(lspconfig, servers, root_files)
                     },
                 },
             })
+        elseif name == "intelephense" then
+            lspconfig[name].setup({
+                init_options = {
+                    licenceKey = vim.fn.expand("$HOME/intelephense/licence.txt")
+                }
+            })
         elseif name == "omnisharp" then
             local install_path = vim.fn.stdpath("data") .. "/mason/packages"
             local cmd = USER.omni_mono and "mono" or "dotnet"
