@@ -324,8 +324,9 @@ function M.get_highlight_groups(palette)
         DiffviewNonText = { link = "NonText" },
 
         -- fidget.nvim
-        FidgetTitle = { fg = p.cFgDim },
-        FidgetTask = { fg = g.syntax.Comment.fg, bg = g.editor.NormalFloat.bg },
+        FidgetProgress = { fg = p.cFill5 },
+        FidgetDone = { fg = p.cFgDim },
+        FidgetNormal = { fg = g.syntax.Comment.fg, bg = g.editor.NormalFloat.bg },
 
         -- gitsigns.nvim
         GitSignsCurrentLineBlame = { fg = p.cFgDim, bold = true, italic = true },

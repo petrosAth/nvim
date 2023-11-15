@@ -8,50 +8,35 @@ function M.setup(icons, borders)
     end
 
     fidget.setup({
-        text = {
-            spinner = icons.loading.sphere, -- animation shown when tasks are ongoing
-            done = icons.lsp.loaded[1], -- character shown when all tasks are complete
+        progress = {
+            display = {
+                done_icon = icons.lsp.loaded[1],
+                done_style = "FidgetDone",
+                progress_icon = { pattern = icons.loading.sphere },
+                progress_style = "FidgetProgress",
+            },
         },
-        timer = {
-            spinner_rate = 125, -- frame rate of spinner animation, in ms
-            fidget_decay = 2000, -- how long to keep around empty fidget, in ms
-            task_decay = 1000, -- how long to keep around completed task, in ms
+        notification = {
+            view = {
+                icon_separator = " ",
+                group_separator = "╴╴╴╴╴╴╴╴╴╴",
+                group_separator_hl = "Comment",
+            },
+            window = {
+                normal_hl = "FidgetNormal",
+                winblend = USER.styling.variables.transparency,
+                border = {
+                    { borders.tl, "FloatBorder" },
+                    { borders.t, "FloatBorder" },
+                    { borders.tr, "FloatBorder" },
+                    { borders.r, "FloatBorder" },
+                    { borders.br, "FloatBorder" },
+                    { borders.b, "FloatBorder" },
+                    { borders.bl, "FloatBorder" },
+                    { borders.l, "FloatBorder" },
+                },
+            },
         },
-        window = {
-            relative = "editor", -- where to anchor, either "win" or "editor"
-            blend = USER.styling.variables.transparency, -- &winblend for the window
-            border = {
-                { borders.tl, "FloatBorder" },
-                { borders.t, "FloatBorder" },
-                { borders.tr, "FloatBorder" },
-                { borders.r, "FloatBorder" },
-                { borders.br, "FloatBorder" },
-                { borders.b, "FloatBorder" },
-                { borders.bl, "FloatBorder" },
-                { borders.l, "FloatBorder" },
-            }, -- style of border for the fidget window
-        },
-        fmt = {
-            -- function to format fidget title
-            fidget = function(fidget_name, spinner)
-                return string.format("%s %s %s", spinner, fidget_name, icons.arrow.hollow.l)
-            end,
-            -- function to format each task line
-            task = function(task_name, message, percentage)
-                return string.format(
-                    "%s%s [%s] %s",
-                    message,
-                    percentage and string.format(" (%s%%)", percentage) or "",
-                    task_name,
-                    icons.arrow.hollow.l
-                )
-            end,
-        },
-        -- sources = { -- Sources to configure
-        --     * = {                     -- Name of source
-        --       ignore = false,         -- Ignore notifications from this source
-        --     },
-        -- },
     })
 end
 
