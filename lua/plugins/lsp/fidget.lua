@@ -35,6 +35,7 @@ function M.setup(icons, borders)
                     { borders.bl, "FloatBorder" },
                     { borders.l, "FloatBorder" },
                 },
+                x_padding = 0,
             },
         },
     })
