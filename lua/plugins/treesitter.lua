@@ -10,10 +10,6 @@ local function setup(nvim_treesitter)
         indent = {
             enable = true,
         },
-        context_commentstring = {
-            enable = true,
-            enable_autocmd = false,
-        },
         incremental_selection = {
             enable = true,
             keymaps = {
@@ -63,6 +59,14 @@ local function setup(nvim_treesitter)
             },
         },
     })
+
+    local loaded, context_commentstring = pcall(require, "ts_context_commentstring")
+    if not loaded then
+        USER.loading_error_msg("ts_context_commentstring")
+        return
+    end
+
+    context_commentstring.setup()
 end
 
 return {
