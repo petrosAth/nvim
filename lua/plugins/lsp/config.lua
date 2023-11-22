@@ -51,7 +51,7 @@ local function setup_language_servers(lspconfig, servers, root_files)
             })
         elseif name == "emmet_language_server" then
             lspconfig[name].setup({
-                filetypes = { "html" },
+                filetypes = { "html", "php" },
                 on_attach = on_attach,
                 capabilities = capabilities(),
             })
