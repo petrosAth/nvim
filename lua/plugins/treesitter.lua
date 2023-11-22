@@ -1,8 +1,7 @@
 local function setup(nvim_treesitter)
     nvim_treesitter.setup({
-        -- ensure_installed = { "all" },
         -- ignore_install = { "comment" },
-        auto_install = true,
+        ensure_installed = "all",
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
