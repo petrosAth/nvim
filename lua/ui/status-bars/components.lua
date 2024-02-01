@@ -5,16 +5,8 @@ local t = require("ui.status-bars.tables")
 local i = USER.styling.icons
 local M = {}
 
-local function get_vim_mode()
-    if require("hydra.statusline").is_active() then
-        return "h"
-    else
-        return vim.api.nvim_get_mode()["mode"]
-    end
-end
-
 local function get_vim_mode_color(mode)
-    mode = mode or get_vim_mode()
+    mode = mode or vim.api.nvim_get_mode()["mode"]
     mode = mode:sub(1, 1) -- get only the first mode character
     local mode_colors = t.ModeHighlightGroups
     local highlight = utils.get_highlight(mode_colors[mode])
@@ -726,7 +718,7 @@ M.TerminalName = {
 
 M.ViMode = {
     init = function(self)
-        self.mode = get_vim_mode()
+        self.mode = vim.api.nvim_get_mode()["mode"]
     end,
 
     -- Re-evaluate the component only on ModeChanged event!

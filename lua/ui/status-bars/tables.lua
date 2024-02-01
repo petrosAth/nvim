@@ -106,7 +106,6 @@ M.ModeNames = {
     ["r?"] = "CONFIRM",
     ["!"] = "SHELL",
     ["t"] = "TERMINAL",
-    ["h"] = "HYDRA",
 }
 
 M.ModeHighlightGroups = {
@@ -123,7 +122,6 @@ M.ModeHighlightGroups = {
     ["r"] = "ModeReplace",
     ["!"] = "ModeTerminal",
     ["t"] = "ModeTerminal",
-    ["h"] = "ModeHydra",
 }
 
 return M
