@@ -42,7 +42,7 @@ return {
         -- statuscol.nvim
         -- Status column plugin that provides a configurable 'statuscolumn' and click handlers.
         "luukvbaal/statuscol.nvim",
-        enabled = true,
+        branch = "0.10",
         config = function()
             local loaded, statuscol = pcall(require, "statuscol")
             if not loaded then
