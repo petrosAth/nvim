@@ -16,6 +16,7 @@ USER = {
 
 -- Set colorscheme
 vim.cmd.colorscheme(USER.theme)
+vim.cmd('echo " "') -- Fix Neovim flicker in wezterm
 
 -- Load utility functions
 require("utilities")
