@@ -6,11 +6,14 @@ local function setup(heirline)
         -- the args parameter corresponds to the table argument passed to autocommand callbacks. :h nvim_lua_create_autocmd()
         disable_winbar_cb = function(args)
             local buf = args.buf
+            local fileName = vim.api.nvim_buf_get_name(0)
+            local fullPath = vim.fn.fnamemodify(fileName, ":p")
+            local buf_label = require("ui.utilities").get_buf_label(fullPath, vim.bo.buftype, vim.bo.filetype)
             local table = require("ui.status-bars.tables").Disable.winBar
             local buftype = vim.tbl_contains(table.buftype, vim.bo[buf].buftype)
             local filetype = vim.tbl_contains(table.filetype, vim.bo[buf].filetype)
 
-            return buftype or filetype
+            return (buftype and (buf_label == "" or buf_label == nil)) or filetype
         end,
     }
 

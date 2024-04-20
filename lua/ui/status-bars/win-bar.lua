@@ -13,7 +13,7 @@ local DisableWinBar = {
             })
     end,
     init = function()
-        vim.opt_local.winbar = nil
+        vim.opt_local.winbar = ""
     end,
 }
 
@@ -118,7 +118,7 @@ local WinBar = {
 M.WinBars = {
     fallthrough = false,
 
-    DisableWinBar,
+    -- DisableWinBar,
     WinBarSpecialNC,
     WinBarNC,
     WinBarSpecial,

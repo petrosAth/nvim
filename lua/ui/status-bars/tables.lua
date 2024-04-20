@@ -53,10 +53,13 @@ M.Hide = {
 M.Disable = {
     winBar = {
         buftype = {
+            "nofile",
             "prompt",
         },
         filetype = {
             "alpha",
+            "lazy",
+            "mason",
         },
     },
     statusLine = {
