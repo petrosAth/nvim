@@ -10,7 +10,6 @@ local function setup(neo_tree)
             "document_symbols",
         },
         close_if_last_window = false,
-        enable_normal_mode_for_inputs = true,
         popup_border_style = {
             borders.tl,
             borders.t,
@@ -24,6 +23,7 @@ local function setup(neo_tree)
         use_popups_for_input = false,
         use_default_mappings = false,
         source_selector = {
+            wingbar = true,
             statusline = true,
             sources = {
                 {
@@ -61,7 +61,6 @@ local function setup(neo_tree)
                     ol.colorcolumn = "" -- Hide vertical line for text alignment
                     ol.cursorcolumn = false
                     ol.relativenumber = true
-                    ol.statuscolumn = ""
                     ol.fillchars = icons.fillchars.global
                     ol.fillchars:append(icons.fillchars.custom) -- Remove eob character
                 end,
@@ -85,7 +84,7 @@ local function setup(neo_tree)
                 folder_empty_open = icons.diropen[1],
             },
             modified = {
-                symbol = icons.edit[1],
+                symbol = icons.edit[1] .. "  ",
             },
             name = {
                 highlight_opened_files = "all",
@@ -101,6 +100,14 @@ local function setup(neo_tree)
                     unstaged = icons.git.unstaged[1],
                     staged = icons.git.staged[1],
                     conflict = icons.git.conflict[1],
+                },
+            },
+            diagnostics = {
+                symbols = {
+                    hint = icons.lsp.hint[1] .. "  ",
+                    info = icons.lsp.info[1] .. "  ",
+                    warn = icons.lsp.warn[1] .. "  ",
+                    error = icons.lsp.error[1] .. "  ",
                 },
             },
         },
