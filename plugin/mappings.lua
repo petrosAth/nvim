@@ -91,7 +91,6 @@ USER.mappings = {
             ["a"] = { nil,                                            "Next parameter"                  }, -- Assigned by nvim-treesitter-textobjects
             ["b"] = { "<CMD>bn<CR>",                                  "Next buffer"                     },
             ["c"] = { "&diff ? ']c' : '<cmd>Gitsigns next_hunk<cr>'", "Next git hunk",      expr = true }, -- gitsigns.nvim
-            ["d"] = { "<CMD>lua vim.diagnostic.goto_next()<CR>",      "Next lsp diagnostic"             }, -- nvim-lspconfig
             ["t"] = { "<CMD>tabnext<CR>",                             "Next tab"                        },
         },
         ["["] = {
@@ -100,7 +99,6 @@ USER.mappings = {
             ["a"] = { nil,                                            "Previous parameter"                  }, -- Assigned by nvim-treesitter-textobjects
             ["b"] = { "<CMD>bp<CR>",                                  "Previous buffer"                     },
             ["c"] = { "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<cr>'", "Previous git hunk",      expr = true }, -- gitsigns.nvim
-            ["d"] = { "<CMD>lua vim.diagnostic.goto_prev()<CR>",      "Previous lsp diagnostic"             }, -- nvim-lspconfig
             ["t"] = { "<CMD>tabprevious<CR>",                         "Previous tab"                        }, -- Assigned by Hydra.nvim
         },
         ["<F1>"]  = { "<CMD>setlocal spell!<CR>",   "Toggle spelling"                           },
