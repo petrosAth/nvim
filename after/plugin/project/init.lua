@@ -68,8 +68,7 @@ function USER.load_local_config(config)
         vim.opt.spellfile = get_spell_file()
     end
     if config.use_palettes then
-        local ccc = require("ccc")
-        ccc.setup({ pickers = { ccc.picker.custom_entries(get_palettes()) } })
+        USER.local_config.palettes = get_palettes()
     end
     if config.use_prettier then
         vim.cmd.ProjectCreatePrettierConfig()

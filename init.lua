@@ -8,6 +8,7 @@ USER = {
         dir           = ".nvim",                 -- Local config directory
         palettes_dir  = "palettes",              -- Palettes local config directory
         palette_file  = "palette.lua",           -- Palette file name
+        palettes      = {},                       -- Local palettes
         spell_dir     = "spell",                 -- Spell local config directory
         prettier_file = ".prettierrc",           -- Prettier config file name
         templates     = vim.fn.stdpath("config") .. "/templates", -- Directory within nvim config containing file templates

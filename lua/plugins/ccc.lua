@@ -1,12 +1,17 @@
 local function setup(ccc)
-    ccc.setup({
+    local cfg = {
         highlighter = {
             auto_enable = true,
-            filetypes = {
-                "css",
-            },
         },
-    })
+    }
+
+    if next(USER.local_config.palettes) ~= nil then
+        cfg.pickers = {
+            ccc.picker.custom_entries(USER.local_config.palettes),
+        }
+    end
+
+    ccc.setup(cfg)
 end
 
 return {
@@ -14,6 +19,17 @@ return {
         -- ccc.nvim
         -- Super powerful color picker / colorizer plugin.
         "uga-rosa/ccc.nvim",
+        -- lazy = true,
+        cmd = {
+            "CccPick",
+            "CccConvert",
+            "CccHighlighterEnable",
+            "CccHighlighterToggle",
+            "CccHighlighterDisable",
+        },
+        ft = {
+            "css",
+        },
         config = function()
             local loaded, ccc = pcall(require, "ccc")
             if not loaded then
