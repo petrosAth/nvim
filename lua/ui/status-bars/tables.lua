@@ -60,6 +60,7 @@ M.Disable = {
             "alpha",
             "lazy",
             "mason",
+            "notify",
         },
     },
     statusLine = {
