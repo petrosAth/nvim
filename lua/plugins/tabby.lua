@@ -10,14 +10,14 @@ return {
             "nvim-web-devicons",
         },
         config = function()
-            local loaded, tabby = pcall(require, "tabby.tabline")
+            local loaded, tabby = pcall(require, "tabby")
             if not loaded then
                 USER.loading_error_msg("tabby.nvim")
                 return
             end
 
             local tab_line = require("ui.tab-line").setup
-            tabby.set(tab_line)
+            tabby.setup(tab_line)
         end,
     },
 }
