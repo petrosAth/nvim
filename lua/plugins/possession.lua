@@ -42,7 +42,9 @@ local function setup(possession)
             before_load = function(name, user_data)
                 return user_data
             end,
-            after_load = function(name, user_data) end,
+            after_load = function(name, user_data)
+                vim.cmd.nohlsearch()
+            end,
         },
         plugins = {
             close_windows = {
