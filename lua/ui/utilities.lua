@@ -24,7 +24,7 @@ local Labels = {
     ["NvimTree"]                  = i.fileExplorer[1] .. " File explorer",
     ["Outline"]                   = i.codeOutline[1]  .. " Code outline",
     ["packer"]                    = i.info[1]         .. " Packer status",
-    ["Trouble"]                   = i.list[1]         .. " List",
+    ["trouble"]                   = i.list[1]         .. " List",
     ["TelescopePrompt"]           = i.telescope[1]    .. " Telescope",
     ["undotree"]                  = i.undoTree[1]     .. " Undotree",
     -- path matches

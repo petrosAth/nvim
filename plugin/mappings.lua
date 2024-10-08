@@ -151,22 +151,20 @@ USER.mappings = {
                 ["d"] = {
                     name = "Definitions",
                     ["t"] = { telescope_picker("lsp_definitions"), "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                    ["q"] = { "<CMD>Trouble lsp_definitions<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
                 },
                 ["i"] = {
                     name = "Implementations",
                     ["t"] = { telescope_picker("implementations"),    "Telescope" }, -- nvim-lspconfig -- telescope.nvim
                     ["q"] = { "<CMD>Trouble lsp_implementations<CR>", "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
                 },
+                ["q"] = { "<CMD>Trouble lsp toggle focus=false win.position=right<CR>", "Trouble" }, -- nvim-lspconfig -- trouble.nvim
                 ["r"] = {
                     name = "References",
                     ["t"] = { telescope_picker("lsp_references"), "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                    ["q"] = { "<CMD>Trouble lsp_references<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
                 },
                 ["t"] = {
                     name = "Type Definitions",
                     ["t"] = { telescope_picker("lsp_type_definitions"), "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                    ["q"] = { "<CMD>Trouble lsp_type_definitions<CR>",  "Trouble"   }, -- nvim-lspconfig -- trouble.nvim
                 },
             },
             ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>",     "Delete buffer and close window" }, -- bufdelete.nvim
@@ -290,8 +288,8 @@ USER.mappings = {
                 ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>",          "Line diagnostics"                      }, -- nvim-lspconfig
                 ["i"] = { "<CMD>Glance implementations<CR>",                   "Implementations"                       }, -- nvim-lspconfig -- glance.nvim
                 ["K"] = { "<CMD>lua vim.lsp.buf.hover()<CR>",                  "Hover symbol"                          }, -- nvim-lspconfig
-                ["q"] = { "<CMD>Trouble document_diagnostics<CR>",             "Document diagnostics"                  }, -- nvim-lspconfig -- trouble.nvim
-                ["Q"] = { "<CMD>Trouble workspace_diagnostics<CR>",            "Workspace diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
+                ["q"] = { "<CMD>Trouble diagnostics toggle filter.buf=0<CR>",  "Document diagnostics"                  }, -- nvim-lspconfig -- trouble.nvim
+                ["Q"] = { "<CMD>Trouble diagnostics toggle<CR>",               "Workspace diagnostics"                 }, -- nvim-lspconfig -- trouble.nvim
                 ["r"] = { "<CMD>Glance references<CR>",                        "References"                            }, -- nvim-lspconfig -- glance.nvim
                 ["R"] = { ":IncRename ",                                       "Rename symbol",         silent = false }, -- nvim-lspconfig -- inc-rename
                 ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>",         "Signature help"                        }, -- nvim-lspconfig
@@ -308,12 +306,11 @@ USER.mappings = {
             ["O"] = { "<CMD>AerialToggle!<CR>", "Toggle Code outline without focusing" }, -- aerial.nvim
             ["q"] = {
                 name = "Trouble",
-                ["c"] = { "<CMD>TroubleClose<CR>",                  "Close"    }, -- trouble.nvim
-                ["f"] = { "<CMD>Trouble quickfix<CR>",              "Quickfix" }, -- trouble.nvim
-                ["l"] = { "<CMD>Trouble loclist<CR>",               "Loclist"  }, -- trouble.nvim
-                ["o"] = { "<CMD>Trouble<CR>",                       "Open"     }, -- trouble.nvim
-                ["q"] = { "<CMD>TroubleToggle<CR>",                 "Toggle"   }, -- trouble.nvim
-                ["R"] = { "<CMD>TroubleRefresh<CR>",                "Refresh"  }, -- trouble.nvim
+                ["c"] = { "<CMD>lua require('trouble').close()<CR>",   "Close"    }, -- trouble.nvim
+                ["f"] = { "<CMD>Trouble qflist toggle<CR>",            "Quickfix" }, -- trouble.nvim
+                ["l"] = { "<CMD>Trouble loclist toggle<CR>",           "Loclist"  }, -- trouble.nvim
+                ["q"] = { "<CMD>lua require('trouble').focus()<CR>",   "Focus"    }, -- trouble.nvim
+                ["R"] = { "<CMD>lua require('trouble').refresh()<CR>", "Refresh"  }, -- trouble.nvim
             },
             ["r"] = { "<CMD>Telescope registers<CR>", "Registers" },
             ["s"] = {

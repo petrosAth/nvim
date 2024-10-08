@@ -628,6 +628,7 @@ function M.get_highlight_groups(palette)
 
         -- trouble.nvim
         TroubleNormal = { link = "Normal" },
+        TroubleNormalNC = { link = "NormalNC" },
         TroubleFoldIcon = { link = "FoldColumn" },
         TroubleIndent = { link = "FoldColumn" },
 

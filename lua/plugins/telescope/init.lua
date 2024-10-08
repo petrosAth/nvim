@@ -1,7 +1,6 @@
 local function setup(telescope, icons, borders)
     local actions = require("telescope.actions")
     local actions_layout = require("telescope.actions.layout")
-    local trouble = require("trouble.providers.telescope")
     local fb_actions = require("telescope").extensions.file_browser.actions
     local pickers = require("plugins.telescope.pickers").window_size
 
@@ -124,7 +123,7 @@ local function setup(telescope, icons, borders)
                     ["<PageDown>"] = actions.results_scrolling_down,
                     ["<C-l>"] = actions.complete_tag,
                     ["<C-_>"] = actions.which_key,
-                    ["<M-q>F"] = trouble.smart_open_with_trouble,
+                    ["<M-q>F"] = require("trouble.sources.telescope").open,
                     ["<M-p>"] = actions_layout.toggle_preview,
                     ["<C-x>"] = false,
                     ["<C-q>"] = false,
@@ -162,7 +161,7 @@ local function setup(telescope, icons, borders)
                     ["<PageUp>"] = actions.results_scrolling_up,
                     ["<PageDown>"] = actions.results_scrolling_down,
                     ["?"] = actions.which_key,
-                    ["qF"] = trouble.smart_open_with_trouble,
+                    ["qF"] = require("trouble.sources.telescope").open,
                     ["p"] = actions_layout.toggle_preview,
                     ["<C-x>"] = false,
                     ["<C-v>"] = false,
