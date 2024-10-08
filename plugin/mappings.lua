@@ -116,6 +116,17 @@ USER.mappings = {
                 }, -- Tabularize
                 ["t"] = { ":Tabularize ", "Tabularize", silent = false }, -- Tabularize
             },
+            ["c"] = {
+                name = "Line comment",
+                ["A"] = { nil, "Add comment at the end of line" }, -- comment.nvim
+                ["c"] = { nil, "Comment out"                    }, -- comment.nvim
+                ["o"] = { nil, "Add comment on the line below"  }, -- comment.nvim
+                ["O"] = { nil, "Add comment on the line above"  }, -- comment.nvim
+            },
+            ["b"] = {
+                name = "Block comment",
+                ["c"] = { nil, "Comment out" }, -- comment.nvim
+            },
         },
         ["j"]     = { "v:count == 0 ? 'gj' : 'j'", "Move using displayed lines", expr = true },
         ["k"]     = { "v:count == 0 ? 'gk' : 'k'", "Move using displayed lines", expr = true },
@@ -367,6 +378,8 @@ USER.mappings = {
                 }, -- Tabularize
                 ["t"] = { ":Tabularize ", "Tabularize", silent = false }, -- Tabularize
             },
+            ["c"] = { nil, "Line comment"  }, -- comment.nvim
+            ["b"] = { nil, "Block comment" }, -- comment.nvim,
         },
         ["i"] = {
             ["g"] = {
