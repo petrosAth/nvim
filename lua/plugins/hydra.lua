@@ -93,7 +93,6 @@ return {
         -- This is the Neovim implementation of the famous Emacs Hydra package.
         "anuvyklack/hydra.nvim",
         event = { "VimEnter" },
-        enabled = false,
         config = function()
             local loaded, hydra = pcall(require, "hydra")
             if not loaded then
