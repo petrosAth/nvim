@@ -1,5 +1,7 @@
 local M = {}
 
+local show_inlay_hints = false
+
 local function capabilities()
     local client_caps = vim.lsp.protocol.make_client_capabilities()
     client_caps.textDocument.completion.completionItem.snippetSupport = true
@@ -37,7 +39,7 @@ local on_attach = function(client, bufnr)
     end
 
     if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint(bufnr, false)
+        vim.lsp.inlay_hint.enable(show_inlay_hints)
     end
 end
 
@@ -133,6 +135,9 @@ local function setup_language_servers(lspconfig, servers, root_files)
                         format = {
                             enable = false,
                         },
+                        hint = {
+                            enable = show_inlay_hints,
+                        },
                         workspace = {
                             library = library,
                         },
@@ -141,7 +146,7 @@ local function setup_language_servers(lspconfig, servers, root_files)
                 on_attach = on_attach,
                 capabilities = capabilities(),
             })
-        elseif name == "tsserver" then
+        elseif name == "ts_ls" then
             lspconfig[name].setup({
                 init_options = {
                     preferences = {
