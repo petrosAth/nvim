@@ -16,7 +16,7 @@ local servers = {
     "pyright",
     "lua_ls",
     "sqlls",
-    "tsserver",
+    "ts_ls",
     "vimls",
     "yamlls",
     "taplo",
