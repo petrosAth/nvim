@@ -44,7 +44,8 @@ return {
         -- Pretty Fold
         -- Pretty Fold is a lua plugin for Neovim which provides framework for easy foldtext customization. Filetype
         -- specific and foldmethod specific configuration is supported.
-        "anuvyklack/pretty-fold.nvim",
+        -- "anuvyklack/pretty-fold.nvim",
+        "bbjornstad/pretty-fold.nvim", -- fork
         config = function()
             local loaded, pretty_fold = pcall(require, "pretty-fold")
             if not loaded then

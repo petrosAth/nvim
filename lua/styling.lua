@@ -207,8 +207,8 @@ M = {
                 vertright = "┣", -- "█", "├", "┣", "🬲", "🬷", "🭼" right facing vertical separator
                 verthoriz = "╋", -- "█", "┼", "╋", "🬲", "🬷", "🭼" overlapping vertical and horizontal
                 fold      = " ", -- filling 'foldtext'
-                foldopen  = "󰅀", -- mark the beginning of a fold
-                foldclose = "", -- show a closed fold
+                foldopen  = "", -- mark the beginning of a fold
+                foldclose = "󰅂", -- show a closed fold
                 foldsep   = "∙", -- open fold middle marker
                 diff      = "╱", -- deleted lines of the 'diff' option
                 eob       = "─", -- empty lines at the end of a buffer
@@ -244,15 +244,15 @@ M = {
         },
     },
     borders = {
-        default   = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
-        outline   = { tl = "🭽",  t = "▔", tr = "🭾",  r = "▕", br = "🭿",  b = "▁", bl = "🭼",  l = "▏", ml = "▏", mr = "▕",           },
-        single    = { tl = "┌",  t = "─", tr = "┐",  r = "│", br = "┘",  b = "─", bl = "└",  l = "│", ml = "├", mr = "┤",           },
-        singlefat = { tl = "┏",  t = "━", tr = "┓",  r = "┃", br = "┛",  b = "━", bl = "┗",  l = "┃", ml = "┣", mr = "┫",           },
-        round     = { tl = "╭",  t = "─", tr = "╮",  r = "│", br = "╯",  b = "─", bl = "╰",  l = "│", ml = "├", mr = "┤",           },
-        double    = { tl = "╔",  t = "═", tr = "╗",  r = "║", br = "╝",  b = "═", bl = "╚",  l = "║", ml = "╟", mr = "╢", "╠", "╣", },
-        box       = { tl = "🬕",  t = "🬂", tr = "🬨",  r = "▐", br = "🬷",  b = "🬭", bl = "🬲",  l = "▌", ml = "🬛", mr = "🬫",           },
-        boxfat    = { tl = "▛",  t = "▀", tr = "▜",  r = "▐", br = "▟",  b = "▄", bl = "▙",  l = "▌"                                },
-        none      = { tl = " ",  t = " ", tr = " ",  r = " ", br = " ",  b = " ", bl = " ",  l = " ", ml = " ", mr = " "            },
+        default   = { tl = "🭽", t = "▔", tr = "🭾", r = "▕", br = "🭿", b = "▁", bl = "🭼", l = "▏", ml = "▏", mr = "▕", },
+        outline   = { tl = "🭽", t = "▔", tr = "🭾", r = "▕", br = "🭿", b = "▁", bl = "🭼", l = "▏", ml = "▏", mr = "▕", },
+        single    = { tl = "┌", t = "─", tr = "┐", r = "│", br = "┘", b = "─", bl = "└", l = "│", ml = "├", mr = "┤", },
+        singlefat = { tl = "┏", t = "━", tr = "┓", r = "┃", br = "┛", b = "━", bl = "┗", l = "┃", ml = "┣", mr = "┫", },
+        round     = { tl = "╭", t = "─", tr = "╮", r = "│", br = "╯", b = "─", bl = "╰", l = "│", ml = "├", mr = "┤", },
+        double    = { tl = "╔", t = "═", tr = "╗", r = "║", br = "╝", b = "═", bl = "╚", l = "║", ml = "╟", mr = "╢", }, --  "╠", "╣",
+        box       = { tl = "🬕", t = "🬂", tr = "🬨", r = "▐", br = "🬷", b = "🬭", bl = "🬲", l = "▌", ml = "🬛", mr = "🬫", },
+        boxfat    = { tl = "▛", t = "▀", tr = "▜", r = "▐", br = "▟", b = "▄", bl = "▙", l = "▌"                      },
+        none      = { tl = " ", t = " ", tr = " ", r = " ", br = " ", b = " ", bl = " ", l = " ", ml = " ", mr = " "  },
     },
     separators = {
         default       = { "█",  "█",  " ",  " "  },
