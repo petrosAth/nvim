@@ -11,9 +11,6 @@ local function add_desc(which_key, mappings, mode, prefix)
 
     if mappings["group"] then
         which_key.add({ prefix, mode = mode, group = mappings.group })
-        if next(mappings) == "group" then
-            return
-        end
     end
 
     if mappings["desc"] then
