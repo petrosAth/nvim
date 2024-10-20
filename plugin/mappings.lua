@@ -430,8 +430,8 @@ USER.mappings = {
                 }, -- Tabularize
                 ["t"] = { ":Tabularize ", desc = "Tabularize", silent = false }, -- Tabularize
             },
-            ["c"] = { "", desc = "Line comment" }, -- comment.nvim
-            ["b"] = { "", desc = "Block comment" }, -- comment.nvim,
+            ["c"] = { desc = "Line comment" }, -- comment.nvim
+            ["b"] = { desc = "Block comment" }, -- comment.nvim,
         },
         ["i"] = {
             ["g"] = {

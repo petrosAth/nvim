@@ -1,5 +1,9 @@
 local M = {}
 
+local timing = function(animate)
+    return animate.gen_timing.linear({ duration = 50, unit = "total" })
+end
+
 local function setup(animate)
     local mouse_scrolled = false
     for _, scroll in ipairs({ "Up", "Down" }) do
@@ -14,13 +18,13 @@ local function setup(animate)
         -- Cursor path
         cursor = {
             enable = true,
-            timing = animate.gen_timing.exponential({ easing = "out", duration = 150, unit = "total" }),
+            timing = timing(animate),
             path = animate.gen_path.line(),
         },
         -- Vertical scroll
         scroll = {
             enable = true,
-            timing = animate.gen_timing.quadratic({ easing = "out", duration = 150, unit = "total" }),
+            timing = timing(animate),
             subscroll = animate.gen_subscroll.equal({
                 predicate = function(total_scroll)
                     if mouse_scrolled then
@@ -33,8 +37,8 @@ local function setup(animate)
         },
         -- Window resize
         resize = {
-            enable = false, -- NOTE: enable when mini.animate becomes compatible with hydra.nvim
-            timing = animate.gen_timing.exponential({ easing = "out", duration = 150, unit = "total" }),
+            enable = true,
+            timing = timing(animate),
         },
         -- Window open
         open = {

@@ -381,6 +381,9 @@ function M.get_highlight_groups(palette)
         MiniCursorword = { link = "Visual" },
         MiniCursorwordCurrent = { bold = true },
 
+        -- mini.animate
+        MiniAnimateNormalFloat = { fg = g.editor.Normal.fg, bg = g.editor.SignColumn.fg },
+
         -- nvim-cmp
         CmpGhostText = { fg = p.cFill5, bold = true },
 
