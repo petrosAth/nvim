@@ -44,12 +44,10 @@ end
 
 return {
     {
-        -- gitsigns.nvim
         -- Super fast git decorations implemented purely in lua/teal.
         "lewis6991/gitsigns.nvim",
         event = { "BufReadPre" },
         dependencies = {
-            -- plenary.nvim
             -- plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write
             -- twice.
             "nvim-lua/plenary.nvim",

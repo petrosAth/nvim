@@ -343,7 +343,6 @@ end
 
 return {
     {
-        -- aerial.nvim
         -- Neovim plugin for a code outline window
         "stevearc/aerial.nvim",
         cmd = {

@@ -251,23 +251,18 @@ end
 
 return {
     {
-        -- Neo-tree.nvim
         -- Neo-tree is a Neovim plugin to browse the file system and other tree like structures in whatever style suits
         -- you, including sidebars, floating windows, netrw split style, or all of them at once!
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = {
-            -- plenary.nvim
             -- plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write
             -- twice.
             "nvim-lua/plenary.nvim",
-            -- Nvim-web-devicons
             -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
             "nvim-tree/nvim-web-devicons",
-            -- nui.nvim
             -- UI Component Library for Neovim.
             "MunifTanjim/nui.nvim",
-            -- nvim-window-picker
             -- This plugins prompts the user to pick a window and returns the window id of the picked window
             "s1n7ax/nvim-window-picker",
         },

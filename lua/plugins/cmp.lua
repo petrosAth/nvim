@@ -201,34 +201,25 @@ end
 
 return {
     {
-        -- nvim-cmp
         -- A completion engine plugin for neovim written in Lua. Completion sources are installed from external
         -- repositories and "sourced".
         "hrsh7th/nvim-cmp",
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
-            -- cmp-nvim-lua
             -- nvim-cmp source for neovim Lua API.
             "hrsh7th/cmp-nvim-lua",
-            -- cmp-nvim-lsp
             -- nvim-cmp source for neovim's built-in language server client.
             "hrsh7th/cmp-nvim-lsp",
-            -- cmp-buffer
             -- nvim-cmp source for buffer words.
             "hrsh7th/cmp-buffer",
-            -- cmp-spell
             -- spell source for nvim-cmp based on vim's spellsuggest.
             "f3fora/cmp-spell",
-            -- cmp-path
             -- nvim-cmp source for filesystem paths.
             "hrsh7th/cmp-path",
-            -- cmp-cmdline
             -- nvim-cmp source for vim's cmdline.
             "hrsh7th/cmp-cmdline",
-            -- LuaSnip
             -- Snippet Engine for Neovim written in Lua.
             "L3MON4D3/LuaSnip",
-            -- cmp_luasnip
             -- luasnip completion source for nvim-cmp
             "saadparwaiz1/cmp_luasnip",
         },

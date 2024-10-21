@@ -70,16 +70,13 @@ end
 
 return {
     {
-        -- nvim-treesitter
         -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in
         -- Neovim and to provide some basic functionality such as highlighting based on it
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         dependencies = {
-            -- nvim-treesitter-textobjects
             -- Syntax aware text-objects, select, move, swap, and peek support.
             "nvim-treesitter/nvim-treesitter-textobjects",
-            -- nvim-ts-context-commentstring
             -- Neovim treesitter plugin for setting the commentstring based on the cursor location in a file.
             "JoosepAlviste/nvim-ts-context-commentstring",
         },

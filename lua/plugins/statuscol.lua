@@ -39,7 +39,6 @@ end
 
 return {
     {
-        -- statuscol.nvim
         -- Status column plugin that provides a configurable 'statuscolumn' and click handlers.
         "luukvbaal/statuscol.nvim",
         config = function()

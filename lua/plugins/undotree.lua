@@ -1,6 +1,5 @@
 return {
     {
-        -- undotree.vim
         -- Display your undo history in a graph.
         "mbbill/undotree",
         cmd = {

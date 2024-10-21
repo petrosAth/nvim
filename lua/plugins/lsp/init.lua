@@ -50,39 +50,30 @@ local root_files = {
 
 return {
     {
-        -- nvim-lspconfig
         -- Configs for the Nvim LSP client (:help lsp).
         "neovim/nvim-lspconfig",
         dependencies = {
-            -- mason.nvim
             -- Portable package manager for Neovim that runs everywhere Neovim runs. Easily install and manage LSP
             -- servers, DAP servers, linters, and formatters. :help mason.nvim
             "williamboman/mason.nvim",
-            -- mason-tool-installer
             -- Install or upgrade all of your third-party tools.
             "WhoIsSethDaniel/mason-tool-installer.nvim",
-            -- mason-lspconfig.nvim
             -- mason-lspconfig bridges mason.nvim with the lspconfig plugin - making it easier to use both plugins
             -- together. :help mason-lspconfig.nvim
             "williamboman/mason-lspconfig.nvim",
-            -- lsp_signature.nvim
             -- Show function signature when you type
             "ray-x/lsp_signature.nvim",
-            -- none-ls.nvim
-            -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+            -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP diagnostics, code actions, and more
+            -- via Lua.
             "nvimtools/none-ls.nvim",
-            -- inc-rename.nvim
             -- A small Neovim plugin that provides a command for LSP renaming with immediate visual feedback thanks to
             -- Neovim's command preview feature.
             "smjonas/inc-rename.nvim",
-            -- fidget.nvim
             -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
             "j-hui/fidget.nvim",
-            -- nvim-navic
             -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
             -- Indian satellite navigation system.
             "SmiteshP/nvim-navic",
-            -- glance.nvim
             -- A pretty window for previewing, navigating and editing your LSP locations
             "DNLHC/glance.nvim",
         },

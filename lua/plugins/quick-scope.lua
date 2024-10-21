@@ -1,6 +1,5 @@
 return {
     {
-        -- quick-scope
         -- An always-on highlight for a unique character in every word on a line to help you use f, F and family.
         "unblevable/quick-scope",
         -- enabled = false,

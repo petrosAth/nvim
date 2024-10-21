@@ -23,12 +23,10 @@ local function setup(rainbow_delimiters)
 end
 
 return {
-    -- rainbow-delimiters.nvim
     -- Rainbow delimiters for Neovim with Tree-sitter
     "hiphish/rainbow-delimiters.nvim",
     event = { "BufReadPost" },
     dependencies = {
-        -- nvim-treesitter
         -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in
         -- Neovim and to provide some basic functionality such as highlighting based on it
         "nvim-treesitter/nvim-treesitter",

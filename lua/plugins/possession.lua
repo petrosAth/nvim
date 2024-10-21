@@ -81,7 +81,6 @@ end
 
 return {
     {
-        -- possession.nvim
         -- Flexible session management for Neovim.
         "jedrzejboczar/possession.nvim",
         config = function()

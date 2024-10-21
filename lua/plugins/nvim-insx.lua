@@ -41,7 +41,6 @@ end
 
 return {
     {
-        -- nvim-insx
         -- Flexible insert-mode key mapping manager
         "hrsh7th/nvim-insx",
         event = { "InsertEnter", "CmdlineEnter" },

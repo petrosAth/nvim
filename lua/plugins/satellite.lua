@@ -29,7 +29,6 @@ end
 
 return {
     {
-        -- satellite.nvim
         -- satellite.nvim is a Neovim plugin that displays decorated scrollbars.
         "lewis6991/satellite.nvim",
         config = function()

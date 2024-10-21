@@ -44,7 +44,6 @@ end
 
 return {
     {
-        -- nvim-hlslens
         -- nvim-hlslens helps you better glance at matched information, seamlessly jump between matched instances.
         "kevinhwang91/nvim-hlslens",
         config = function()

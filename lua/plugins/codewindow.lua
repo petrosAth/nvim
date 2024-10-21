@@ -37,7 +37,6 @@ end
 
 return {
     {
-        -- Codewindow.nvim
         -- Codewindow.nvim is a minimap plugin for neovim, that is closely integrated with treesitter and the builtin
         -- LSP to display more information to the user.
         "gorbit99/codewindow.nvim",

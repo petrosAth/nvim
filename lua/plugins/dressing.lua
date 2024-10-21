@@ -83,7 +83,6 @@ end
 
 return {
     {
-        -- Dressing.nvim
         -- Neovim plugin to improve the default vim.ui interfaces
         "stevearc/dressing.nvim",
         config = function()

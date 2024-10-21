@@ -47,7 +47,6 @@ end
 
 return {
     {
-        -- nvim-notify
         -- A fancy, configurable, notification manager for NeoVim
         "rcarriga/nvim-notify",
         config = function()

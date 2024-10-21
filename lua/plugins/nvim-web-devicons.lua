@@ -1,6 +1,5 @@
 return {
     {
-        -- Nvim-web-devicons
         -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
         "nvim-tree/nvim-web-devicons",
         config = function()

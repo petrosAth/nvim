@@ -264,36 +264,28 @@ end
 
 return {
     {
-        -- telescope.nvim
         -- Find, Filter, Preview, Pick. All lua, all the time.
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         version = false,
         dependencies = {
-            -- plenary.nvim
             -- plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write
             -- twice.
             "nvim-lua/plenary.nvim",
-            -- telescope-fzf-native.nvim
             -- fzf-native is a c port of fzf. It only covers the algorithm and implements few functions to support
             -- calculating the score.
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-            -- telescope-frecency.nvim
             -- A telescope.nvim extension that offers intelligent prioritization when selecting files from your editing
             -- history.
             "nvim-telescope/telescope-frecency.nvim",
-            -- telescope-hop.nvim
             -- telescope-hop.nvim is an extension for telescope.nvim. It helps you navigate, select, and perform
             -- actions on results buffer with motions inspired by hop.nvim.
             -- "nvim-telescope/telescope-hop.nvim",
-            -- telescope-file-browser.nvim
             -- telescope-file-browser.nvim is a file browser extension for telescope.nvim. It supports synchronized
             -- creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim
             "nvim-telescope/telescope-file-browser.nvim",
-            -- telescope-luasnip
             -- This plugin adds a LuaSnip snippet picker to the already-awesome Neovim Telescope plugin.
             "benfowler/telescope-luasnip.nvim",
-            -- dir-telescope.nvim
             -- Perform telescope.nvim functions in selected directories
             "princejoogie/dir-telescope.nvim",
         },

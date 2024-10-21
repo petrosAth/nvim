@@ -137,7 +137,6 @@ end
 
 return {
     {
-        -- alpha-nvim
         -- alpha is a fast and fully programmable greeter for neovim.
         "goolord/alpha-nvim",
         event = { "VimEnter" },
