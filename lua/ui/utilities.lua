@@ -11,6 +11,7 @@ local Labels = {
     ["aerial"]                    = i.codeOutline[1]  .. " Code outline",
     ["alpha"]                     = i.dashboard[1]    .. " Dashboard",
     ["Codewindow"]                = i.minimap[1]      .. " Minimap",
+    ["ccc-ui"]                    = i.palette[1]      .. " Color picker",
     ["diff"]                      = i.diffview[1]     .. " Diff Panel",
     ["DiffviewFileHistory"]       = i.diffview[1]     .. " Diffview history",
     ["DiffviewFiles"]             = i.diffview[1]     .. " Diffview files",

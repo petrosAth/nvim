@@ -1,6 +1,17 @@
 local icons = USER.styling.icons
 local borders = USER.styling.borders.default
 
+local border = {
+    { borders.tl, "FloatBorder" },
+    { borders.t, "FloatBorder" },
+    { borders.tr, "FloatBorder" },
+    { borders.r, "FloatBorder" },
+    { borders.br, "FloatBorder" },
+    { borders.b, "FloatBorder" },
+    { borders.bl, "FloatBorder" },
+    { borders.l, "FloatBorder" },
+}
+
 -- List of servers for installation
 local servers = {
     "bashls",
@@ -20,17 +31,6 @@ local servers = {
     "vimls",
     "yamlls",
     "taplo",
-}
-
-local border = {
-    { borders.tl, "FloatBorder" },
-    { borders.t, "FloatBorder" },
-    { borders.tr, "FloatBorder" },
-    { borders.r, "FloatBorder" },
-    { borders.br, "FloatBorder" },
-    { borders.b, "FloatBorder" },
-    { borders.bl, "FloatBorder" },
-    { borders.l, "FloatBorder" },
 }
 
 -- Files to look for when searching for project root dir

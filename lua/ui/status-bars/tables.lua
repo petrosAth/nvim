@@ -58,6 +58,7 @@ M.Disable = {
         },
         filetype = {
             "alpha",
+            "ccc-ui",
             "lazy",
             "mason",
             "notify",

@@ -181,6 +181,12 @@ USER.mappings = {
                 group = "Buffer manipulation",
                 ["d"] = { "<CMD>Bdelete<CR>", desc = "Delete buffer" }, -- bufdelete.nvim
             },
+            ["c"] = {
+                group = "Color tools",
+                ["n"] = { "<CMD>CccConvert<CR>", desc = "Convert color to the next color format" }, -- ccc.nvim
+                ["c"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Color codes preview" }, -- ccc.nvim
+                ["p"] = { "<CMD>CccPick<CR>", desc = "Color picker" }, -- ccc.nvim
+            },
             ["i"] = { "<CMD>lua vim.show_pos()<CR>", desc = "Show all the items at a given buffer position" },
             ["l"] = {
                 group = "LSP alternative",
@@ -248,7 +254,6 @@ USER.mappings = {
             ["?"] = { "<CMD>WhichKey<CR>", desc = "Show available hotkeys" }, -- which-key
             ["."] = { "<CMD>Telescope resume<CR>", desc = "Reopen Telescope" }, -- telescope.nvim
             ["b"] = { "<CMD>Telescope buffers<CR>", desc = "Buffer list" }, -- telescope.nvim
-            ["c"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Color codes preview" }, -- ccc.nvim
             ["d"] = {
                 group = "Diffview",
                 ["q"] = { "<CMD>DiffviewClose<CR>", desc = "Quit" }, -- diffview
