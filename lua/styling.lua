@@ -5,63 +5,64 @@ M = {
         transparency = 0,
     },
     icons = {
-        alphaCursor  = { "░"                          },
-        line         = { ""                          },
-        column       = { ""                          },
-        linesTotal   = { ""                          },
-        close        = { "󰅖", "󰅗", "󰅖", ""           },
-        delete       = { "", "󰅘"                     },
-        pending      = { "", "󰄱"                     },
-        done         = { "", "󰄵", "󰄲"                },
-        edit         = { ""                          },
+        alphaCursor  = { "░" },
+        line         = { "" },
+        column       = { "" },
+        linesTotal   = { "" },
+        close        = { "󰅖", "󰅗", "󰅖", "" },
+        delete       = { "", "󰅘" },
+        pending      = { "", "󰄱" },
+        done         = { "", "󰄵", "󰄲" },
+        edit         = { "" },
         prompt       = { "❯", "", "", "", "❯", "›" },
-        search       = { ""                          },
-        grep         = { "󰈞"                          },
-        select       = { "›", "", "›"                },
-        point        = { "", "", "›"                },
-        location     = { "", "󰆋", "󰆌", ""           },
-        window       = { ""                          },
-        lock         = { ""                          },
-        bug          = { ""                          },
-        task         = { ""                          },
-        hack         = { ""                          },
-        performance  = { "󰓅"                          },
-        note         = { ""                          },
-        root_dir     = { ""                          },
-        dir          = { ""                          },
-        diropen      = { ""                          },
-        file         = { ""                          },
-        terminal     = { ""                          },
-        buffer       = { ""                          },
-        buffers      = { ""                          },
-        info         = { ""                          },
-        fileExplorer = { ""                          },
-        list         = { ""                          },
-        help         = { ""                          },
-        plugin       = { ""                          },
-        source       = { ""                          },
-        config       = { ""                          },
-        codeOutline  = { ""                          },
-        minimap      = { ""                          },
-        dashboard    = { ""                          },
-        telescope    = { ""                          },
-        undoTree     = { ""                          },
-        diffview     = { ""                          },
-        preview      = { ""                          },
-        hover        = { ""                          },
-        history      = { ""                          },
-        lastSession  = { ""                          },
-        sessions     = { ""                          },
-        windows      = { ""                          },
-        update       = { ""                          },
-        save         = { ""                          },
-        load         = { ""                          },
-        key          = { ""                          },
-        vim          = { ""                          },
-        treesiter    = { ""                          },
-        spelling     = { "󰓆"                          },
-        palette      = { "󰸌"                          },
-        slider       = { "", ""                     },
+        search       = { "" },
+        grep         = { "󰈞" },
+        select       = { "›", "", "›" },
+        point        = { "", "", "›" },
+        location     = { "", "󰆋", "󰆌", "" },
+        window       = { "" },
+        lock         = { "" },
+        bug          = { "" },
+        task         = { "" },
+        hack         = { "" },
+        performance  = { "󰓅" },
+        note         = { "" },
+        root_dir     = { "" },
+        dir          = { "" },
+        diropen      = { "" },
+        file         = { "" },
+        terminal     = { "" },
+        buffer       = { "" },
+        buffers      = { "" },
+        info         = { "" },
+        fileExplorer = { "" },
+        list         = { "" },
+        help         = { "" },
+        plugin       = { "" },
+        source       = { "" },
+        config       = { "" },
+        codeOutline  = { "" },
+        minimap      = { "" },
+        dashboard    = { "" },
+        telescope    = { "" },
+        undoTree     = { "" },
+        diffview     = { "" },
+        preview      = { "" },
+        hover        = { "" },
+        history      = { "" },
+        lastSession  = { "" },
+        sessions     = { "" },
+        windows      = { "" },
+        update       = { "" },
+        save         = { "" },
+        load         = { "" },
+        key          = { "" },
+        vim          = { "" },
+        treesiter    = { "" },
+        spelling     = { "󰓆" },
+        palette      = { "󰸌" },
+        slider       = { "", "" },
+        health       = { "󰩂", "", "", "󰓙" },
         arrow = {
             point = {
                 u  = { "", "󰁝" },
@@ -74,17 +75,17 @@ M = {
                 ul = { "", "󰁛" },
             },
             solid = {
-                u  = "",
-                r  = "",
-                b  = "",
-                l  = "",
+                u = "",
+                r = "",
+                b = "",
+                l = "",
             },
             hollow = {
-                u  = "",
-                r  = "",
-                b  = "",
-                l  = "",
-            }
+                u = "",
+                r = "",
+                b = "",
+                l = "",
+            },
         },
         lazy = {
             lazy  = "󰒲",
@@ -93,25 +94,25 @@ M = {
             list = {
                 tree = "",
                 dash = "",
-            }
+            },
         },
         indentLine = {
             char         = { "╎", "╷" },
             context_char = { "▏", "╷" },
         },
         lsp = {
-            icon        = { "", "", ""                          },
-            null_ls     = { ""                                    },
-            loaded      = { ""                                    },
-            diagnostics = { "", "󰝥", "●", "", "▌", ""           },
+            icon        = { "", "", "" },
+            null_ls     = { "" },
+            loaded      = { "" },
+            diagnostics = { "", "󰝥", "●", "", "▌", "" },
             error       = { "", "", "", "󰇷", "󰆇", "󰅚", "", "" },
             warn        = { "", "", "", "󰇴", "󰅾", "", "", "" },
             hint        = { "󱩎", "", "", "󰇳", "󰆆", "", "", "" },
             info        = { "", "", "", "󰇵", "󰆅", "", "", "" },
-            action      = { "", "", "", "󰝥", "󰆃", "", "󰉁"      },
-            ok          = { "", "", "", "", ""                },
-            callIn      = { ""                                    },
-            callOut     = { ""                                    },
+            action      = { "", "", "", "󰝥", "󰆃", "", "󰉁" },
+            ok          = { "", "", "", "", "" },
+            callIn      = { "" },
+            callOut     = { "" },
             kinds = {
                 Text          = "",
                 Method        = "",
@@ -173,7 +174,7 @@ M = {
                     add    = "┃",
                     change = "┃",
                     delete = "",
-                }
+                },
             },
         },
         OS = {
@@ -182,18 +183,9 @@ M = {
             mac     = { "" },
         },
         loading = {
-            circle = {
-                "◝", "◞", "◟", "◜",
-            },
-            braille = {
-                "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾",
-            },
-            sphere = {
-                "", "", "", "", "", "", "",
-                "", "", "", "", "", "", "",
-                "", "", "", "", "", "", "",
-                "", "", "", "", "", "", "",
-            },
+            circle  = { "◝", "◞", "◟", "◜" },
+            braille = { "⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾" },
+            sphere  = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", },
         },
         -- Fillchar and listchar icons
         fillchars = {
@@ -216,7 +208,7 @@ M = {
                 eob       = "─", -- empty lines at the end of a buffer
             },
             custom = {
-                eob     = " ",
+                eob = " ",
             },
             extra = {
                 foldmid = "⁃",
@@ -225,17 +217,17 @@ M = {
         },
         listchars = {
             global = {
-                eol            = "↴",  -- Character to show at the end of each line.
+                eol            = "↴", -- Character to show at the end of each line.
                 tab            = "──", -- Two or three characters to be used to show a tab.
-                space          = " ",  -- Character to show for a space.
-                multispace     = " ",  -- One or more characters to use cyclically to show for multiple consecutive spaces
-                lead           = " ",  -- Character to show for leading spaces.
-                leadmultispace = " ",  -- One or more characters to use cyclically to show for multiple consecutive leading spaces.
-                trail          = "-",  -- Character to show for trailing spaces.
-                extends        = "",  -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen.
-                precedes       = "",  -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
-                conceal        = " ",  -- Character to show in place of concealed text.
-                nbsp           = "␣",  -- Character to show for a non-breakable space character.
+                space          = " ", -- Character to show for a space.
+                multispace     = " ", -- One or more characters to use cyclically to show for multiple consecutive spaces
+                lead           = " ", -- Character to show for leading spaces.
+                leadmultispace = " ", -- One or more characters to use cyclically to show for multiple consecutive leading spaces.
+                trail          = "-", -- Character to show for trailing spaces.
+                extends        = "", -- Character to show in the last column, when 'wrap' is off and the line continues beyond the right of the screen.
+                precedes       = "", -- Character to show in the first visible column of the physical line, when there is text preceding the character visible in the first column
+                conceal        = " ", -- Character to show in place of concealed text.
+                nbsp           = "␣", -- Character to show for a non-breakable space character.
             },
             custom = {
                 eol   = " ",
@@ -251,25 +243,25 @@ M = {
         single    = { tl = "┌", t = "─", tr = "┐", r = "│", br = "┘", b = "─", bl = "└", l = "│", ml = "├", mr = "┤", },
         singlefat = { tl = "┏", t = "━", tr = "┓", r = "┃", br = "┛", b = "━", bl = "┗", l = "┃", ml = "┣", mr = "┫", },
         round     = { tl = "╭", t = "─", tr = "╮", r = "│", br = "╯", b = "─", bl = "╰", l = "│", ml = "├", mr = "┤", },
-        double    = { tl = "╔", t = "═", tr = "╗", r = "║", br = "╝", b = "═", bl = "╚", l = "║", ml = "╟", mr = "╢", }, --  "╠", "╣",
+        double    = { tl = "╔", t = "═", tr = "╗", r = "║", br = "╝", b = "═", bl = "╚", l = "║", ml = "╠", mr = "╣", }, --  "╟", "╢",
         box       = { tl = "🬕", t = "🬂", tr = "🬨", r = "▐", br = "🬷", b = "🬭", bl = "🬲", l = "▌", ml = "🬛", mr = "🬫", },
-        boxfat    = { tl = "▛", t = "▀", tr = "▜", r = "▐", br = "▟", b = "▄", bl = "▙", l = "▌"                      },
-        none      = { tl = " ", t = " ", tr = " ", r = " ", br = " ", b = " ", bl = " ", l = " ", ml = " ", mr = " "  },
+        boxfat    = { tl = "▛", t = "▀", tr = "▜", r = "▐", br = "▟", b = "▄", bl = "▙", l = "▌", },
+        none      = { tl = " ", t = " ", tr = " ", r = " ", br = " ", b = " ", bl = " ", l = " ", ml = " ", mr = " " },
     },
     separators = {
-        default       = { "█",  "█",  " ",  " "  },
-        block         = { "█",  "█",  "▏",  "▕"  },
-        half_block    = { "▐",  "▌",  "▏",  "▕"  },
-        arrow         = { "",  "",  "",  ""  },
-        round         = { "",  "",  "",  ""  },
+        default       = { "█",  "█",  " ",  " " },
+        block         = { "█",  "█",  "▏",  "▕" },
+        half_block    = { "▐",  "▌",  "▏",  "▕" },
+        arrow         = { "",  "",  "",  "" },
+        round         = { "",  "",  "",  "" },
         flame         = { " ", " ", " ", " " },
-        triangle_top  = { "",  "",  "",  ""  },
-        triangle_bot  = { "",  "",  "",  ""  },
-        waveform      = { " ", " "             },
-        squares_big   = { " ", " "             },
-        squares_small = { " ", " "             },
-        trapezoid     = { "",  ""              },
-    }
+        triangle_top  = { "",  "",  "",  "" },
+        triangle_bot  = { "",  "",  "",  "" },
+        waveform      = { " ", " " },
+        squares_big   = { " ", " " },
+        squares_small = { " ", " " },
+        trapezoid     = { "",  "" },
+    },
 }
 
 return M
