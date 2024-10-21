@@ -129,14 +129,8 @@ USER.mappings = {
         ["g"] = {
             ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
             ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
-            ["a"] = {
-                group = "Align",
-                ["T"] = {
-                    [[:'<,'>Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|},\s--\s<CR>]],
-                    desc = "Format Lua tables",
-                }, -- Tabularize
-                ["t"] = { ":Tabularize ", desc = "Tabularize", silent = false }, -- Tabularize
-            },
+            ["A"] = { desc = "Align with preview" }, -- mini.align
+            ["a"] = { desc = "Align" }, -- mini.align
             ["c"] = {
                 group = "Line comment",
                 ["A"] = { desc = "Add comment at the end of line" }, -- comment.nvim
@@ -247,7 +241,7 @@ USER.mappings = {
                 group = "Utilities",
                 ["s"] = {
                     group = "Status",
-                    ["l"] = { "<CMD>LspInfo<CR>", desc = "LSP info" }, -- lsp-config
+                    ["l"] = { "<CMD>checkhealth lspconfig<CR>", desc = "LSP info" }, -- lsp-config
                     ["m"] = { "<CMD>Mason<CR>", desc = "Mason status" }, -- mason.nvim
                     ["n"] = { "<CMD>NullLsInfo<CR>", desc = "Null-ls info" }, -- null-ls.nvim
                     ["p"] = { "<CMD>Lazy<CR>", desc = "Plugins status" }, -- lazy.nvim
@@ -437,16 +431,10 @@ USER.mappings = {
     -- Visual mode mappings
     ["x"] = {
         ["g"] = {
-            ["a"] = {
-                group = "Align",
-                ["T"] = {
-                    [[:Tabularize /^[^=]*\zs=<CR>:'<,'>GTabularize /\[\[\(.*\)\]\],\?\|"\([^"]*\)",\?\|--\s.*\zs\|.*{\slink\s=.*\zs\|\S\+/l0l1<CR>:'<,'>Tabularize /},\?$\|}\?$\|},\s--\s\S\+\|}\s--\s\S\+<CR>]],
-                    desc = "Lua tables",
-                }, -- Tabularize
-                ["t"] = { ":Tabularize ", desc = "Tabularize", silent = false }, -- Tabularize
-            },
+            ["A"] = { desc = "Align with preview" }, -- mini.align
+            ["a"] = { desc = "Align" }, -- mini.align
             ["c"] = { desc = "Line comment" }, -- comment.nvim
-            ["b"] = { desc = "Block comment" }, -- comment.nvim,
+            ["b"] = { desc = "Block comment" }, -- comment.nvim
         },
         ["i"] = {
             ["g"] = {
