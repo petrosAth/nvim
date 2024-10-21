@@ -22,7 +22,6 @@ local servers = {
     "taplo",
 }
 
--- Borders for LSP floating windows
 local border = {
     { borders.tl, "FloatBorder" },
     { borders.t, "FloatBorder" },
@@ -33,44 +32,6 @@ local border = {
     { borders.bl, "FloatBorder" },
     { borders.l, "FloatBorder" },
 }
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-    opts = opts or {}
-    opts = {
-        border = border,
-        width = 80,
-    }
-    return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
--- Configure lsp handlers
-vim.diagnostic.config({
-    virtual_text = {
-        source = "if_many", --"always" "if_many"
-        spacing = 4,
-        prefix = icons.lsp.diagnostics[1],
-    },
-    signs = true,
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-})
-
--- Set diagnostic signs
-local signs = {
-    Error = icons.lsp.error[1],
-    Warn = icons.lsp.warn[1],
-    Hint = icons.lsp.hint[1],
-    Info = icons.lsp.info[1],
-}
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {
-        text = icon,
-        texthl = hl,
-        numhl = hl,
-    })
-end
 
 -- Files to look for when searching for project root dir
 local root_files = {
