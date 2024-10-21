@@ -63,6 +63,7 @@ M.Disable = {
             "lazy",
             "mason",
             "notify",
+            "null-ls-info",
         },
     },
     statusLine = {
