@@ -6,7 +6,7 @@ local function setup(statuscol)
         segments = {
             {
                 sign = {
-                    name = { "Diagnostic" },
+                    namespace = { "diagnostic/signs" },
                     maxwidth = 1,
                     colwidth = 2,
                 },
@@ -42,7 +42,6 @@ return {
         -- statuscol.nvim
         -- Status column plugin that provides a configurable 'statuscolumn' and click handlers.
         "luukvbaal/statuscol.nvim",
-        branch = "0.10",
         config = function()
             local loaded, statuscol = pcall(require, "statuscol")
             if not loaded then
