@@ -179,7 +179,12 @@ USER.mappings = {
             },
             ["b"] = {
                 group = "Buffer manipulation",
-                ["d"] = { "<CMD>Bdelete<CR>", desc = "Delete buffer" }, -- bufdelete.nvim
+                ["d"] = {
+                    function()
+                        vim.cmd.lua("MiniBufremove.delete()")
+                    end,
+                    desc = "Delete buffer",
+                }, -- mini.bufremove
             },
             ["c"] = {
                 group = "Color tools",
@@ -209,8 +214,13 @@ USER.mappings = {
                     ["t"] = { telescope_picker("lsp_type_definitions"), desc = "Telescope" }, -- nvim-lspconfig -- telescope.nvim
                 },
             },
-            ["q"] = { "<CMD>Bdelete<CR><CMD>quit<CR>", desc = "Delete buffer and close window" }, -- bufdelete.nvim
-            ["Q"] = { "<CMD>Bdelete<CR><CMD>tabclose<CR>", desc = "Delete buffer and close tab" }, -- bufdelete.nvim
+            ["q"] = {
+                function()
+                    vim.cmd.lua("MiniBufremove.delete()")
+                    vim.cmd.quit()
+                end,
+                desc = "Delete buffer and close window",
+            }, -- mini.bufremove
             ["p"] = {
                 group = "Project",
                 ["."] = { "<CMD>PossessionLoad<CR>", desc = "Load last closed" }, -- possession.nvim
