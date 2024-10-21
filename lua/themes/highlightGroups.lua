@@ -131,8 +131,6 @@ function M.get_highlight_groups(palette)
         LspReferenceWrite = { link = "Visual" },
         -- Neovim LspSignatureHelp
         LspSignatureActiveParameter = { fg = g.syntax.Operator.fg, reverse = true },
-        -- lspinfo window
-        LspInfoBorder = { link = "FloatBorder" },
     }
 
     g.diagnostic = {

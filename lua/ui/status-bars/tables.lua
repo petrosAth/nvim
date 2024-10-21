@@ -59,6 +59,7 @@ M.Disable = {
         filetype = {
             "alpha",
             "ccc-ui",
+            "checkhealth",
             "lazy",
             "mason",
             "notify",

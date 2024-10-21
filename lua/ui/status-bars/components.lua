@@ -206,7 +206,7 @@ local FileName = {
 
 local LspSymbol = {
     condition = function()
-        local clients = vim.lsp.buf_get_clients()
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
 
         return next(clients) ~= nil and conditions.is_active()
     end,
@@ -541,7 +541,7 @@ local LspBlock = {
     condition = conditions.lsp_attached,
     init = function(self)
         -- LspClients
-        self.Clients = vim.lsp.buf_get_clients()
+        self.Clients = vim.lsp.get_clients({ bufnr = 0 })
         self.Sources = require("null-ls.sources").get_available(vim.bo.filetype)
         -- LspDiagnostics
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })

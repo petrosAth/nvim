@@ -11,7 +11,6 @@ local function setup(window_picker)
                     "diff",
                     "DiffviewFileHistory",
                     "DiffviewFiles",
-                    "lspinfo",
                     "man",
                     "mason",
                     "minimap",

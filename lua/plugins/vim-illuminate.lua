@@ -14,7 +14,6 @@ local function setup(illuminate)
             "alpha",
             "Glance",
             "lazy",
-            "lspinfo",
             "mason",
             "minimap",
             "neo-tree",
