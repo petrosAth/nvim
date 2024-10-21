@@ -476,7 +476,6 @@ USER.mappings = {
     ["i"] = {
         ["<F1>"] = { "<CMD>setlocal spell!<CR>", desc = "Toggle spelling" },
         ["<F3>"] = { "<CMD>set cursorcolumn!<CR>", desc = "Toggle cursorcolumn" },
-        ["<C-j>"] = { "<CR>", desc = "Carriage return", noremap = false }, -- Helpful with autopair plugins
         ["<M-p>"] = { [[<C-r><C-o>+]], desc = "Paste and stay in insert mode" },
     },
     -- Command-line mode mappings
