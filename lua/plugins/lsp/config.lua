@@ -28,14 +28,12 @@ local function capabilities()
 end
 
 local on_attach = function(client, bufnr)
-    local server_caps = client.server_capabilities
-
     if client.supports_method("textDocument/documentSymbol") then
         require("plugins.lsp.nvim-navic").setup(client, bufnr)
     end
 
-    if server_caps.documentFormattingProvider then
-        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+    if client.server_capabilities.documentFormattingProvider then
+        vim.api.nvim_set_option_value("formatexpr", "v:lua.vim.lsp.formatexpr()", { buf = bufnr })
     end
 
     if client.server_capabilities.inlayHintProvider then
