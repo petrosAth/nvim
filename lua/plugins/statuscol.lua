@@ -22,16 +22,16 @@ local function setup(statuscol)
                 click = "v:lua.ScLa",
             },
             {
-                text = { builtin.foldfunc },
-                condition = { true, builtin.not_empty },
-                click = "v:lua.ScFa",
-            },
-            {
                 sign = {
                     namespace = { "gitsigns" },
-                    colwidth = 1,
+                    colwidth = 2,
                 },
                 click = "v:lua.ScSa",
+            },
+            {
+                text = { builtin.foldfunc, " " },
+                condition = { true, builtin.not_empty },
+                click = "v:lua.ScFa",
             },
         },
     })
