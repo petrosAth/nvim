@@ -14,7 +14,8 @@ local function setup(hydra)
 
     hydra.setup({
         hint = {
-            position = "bottom",
+            position = "top",
+            offset = 2,
             float_opts = {
                 border = border,
             },
