@@ -25,9 +25,7 @@ end
 local function set_keymap(mappings, mode, prefix)
     -- Source: echasnovski/nvim
     -- https://github.com/echasnovski/nvim/blob/47eb53792a1ff1e1c482c19fbae8ac035e352e2d/lua/ec/mappings-leader.lua#L198-L220
-    if type(mappings) ~= "table" then
-        return
-    end
+    if type(mappings) ~= "table" then return end
 
     prefix = prefix or ""
 
@@ -47,9 +45,7 @@ local function set_keymap(mappings, mode, prefix)
     end
 
     for key, t in pairs(mappings) do
-        if key ~= "group" then
-            set_keymap(t, mode, prefix .. key)
-        end
+        if key ~= "group" then set_keymap(t, mode, prefix .. key) end
     end
 end
 
@@ -92,12 +88,12 @@ USER.mappings = {
             ["]"] = { desc = "Next class end" }, -- Assigned by nvim-treesitter-textobjects
             ["A"] = { desc = "Next end of parameter" }, -- Assigned by nvim-treesitter-textobjects
             ["a"] = { desc = "Next parameter" }, -- Assigned by nvim-treesitter-textobjects
-            ["b"] = { "<CMD>bn<CR>", desc = "Next buffer" },
+            ["b"] = { function() vim.cmd.bn() end, desc = "Next buffer" },
             ["c"] = { go_to_change("next"), desc = "Next git hunk" }, -- gitsigns.nvim
             ["d"] = { desc = "Next diagnostic" }, -- lsp-config
             ["M"] = { desc = "Next end of function" }, -- Assigned by nvim-treesitter-textobjects
             ["m"] = { desc = "Next function" }, -- Assigned by nvim-treesitter-textobjects
-            ["t"] = { "<CMD>tabnext<CR>", desc = "Next tab" },
+            ["t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" },
         },
         ["["] = {
             group = "Previous",
@@ -105,17 +101,17 @@ USER.mappings = {
             ["]"] = { desc = "Previous class end" }, -- Assigned by nvim-treesitter-textobjects
             ["A"] = { desc = "Previous end of parameter" }, -- Assigned by nvim-treesitter-textobjects
             ["a"] = { desc = "Previous parameter" }, -- Assigned by nvim-treesitter-textobjects
-            ["b"] = { "<CMD>bp<CR>", desc = "Previous buffer" },
+            ["b"] = { function() vim.cmd.bp() end, desc = "Previous buffer" },
             ["c"] = { go_to_change("prev"), desc = "Previous git hunk" }, -- gitsigns.nvim
             ["d"] = { desc = "Previous diagnostic" }, -- lsp-config
             ["M"] = { desc = "Previous end of function" }, -- Assigned by nvim-treesitter-textobjects
             ["m"] = { desc = "Previous function" }, -- Assigned by nvim-treesitter-textobjects
-            ["t"] = { "<CMD>tabprevious<CR>", desc = "Previous tab" }, -- Assigned by Hydra.nvim
+            ["t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }, -- Assigned by Hydra.nvim
         },
-        ["<F1>"] = { "<CMD>setlocal spell!<CR>", desc = "Toggle spelling" },
+        ["<F1>"] = { function() vim.cmd.setlocal("spell!") end, desc = "Toggle spelling" },
         ["<F2>"] = { [[:%s/\<<C-r><C-w>\>/]], desc = "Replace word under cursor", silent = false },
-        ["<F3>"] = { "<CMD>set cursorcolumn!<CR>", desc = "Toggle cursorcolumn" },
-        ["<F11>"] = { "<CMD>set wrap!<CR>", desc = "Toggle wrap" },
+        ["<F3>"] = { function() vim.cmd.set("cursorcolumn!") end, desc = "Toggle cursorcolumn" },
+        ["<F11>"] = { function() vim.cmd.set("wrap!") end, desc = "Toggle wrap" },
         ["g"] = {
             ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
             ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
@@ -156,20 +152,10 @@ USER.mappings = {
             desc = "Clear search highlight",
         },
         ["<Leader>"] = {
-            ["?"] = {
-                function()
-                    require("which-key").show()
-                end,
-                desc = "Buffer Local Keymaps (which-key)",
-            },
+            ["?"] = { function() require("which-key").show() end, desc = "Buffer Local Keymaps (which-key)" },
             ["b"] = {
                 group = "Buffer manipulation",
-                ["d"] = {
-                    function()
-                        vim.cmd.lua("MiniBufremove.delete()")
-                    end,
-                    desc = "Delete buffer",
-                }, -- mini.bufremove
+                ["d"] = { function() vim.cmd.lua("MiniBufremove.delete()") end, desc = "Delete buffer" }, -- mini.bufremove
             },
             ["c"] = {
                 group = "Color tools",
@@ -287,10 +273,7 @@ USER.mappings = {
                     desc = "Open file explorer within the current window",
                 }, -- neo-tree.nvim
                 ["f"] = { "<CMD>Neotree focus<CR>", desc = "Open or focus on file explorer" }, -- neo-tree.nvim
-                ["g"] = {
-                    "<CMD>Neotree git_status left focus reveal toggle <CR>",
-                    desc = "Toggle git status panel",
-                }, -- neo-tree.nvim
+                ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", desc = "Toggle git status panel" }, -- neo-tree.nvim
                 ["o"] = { "<CMD>Neotree document_symbols<CR>", desc = "Toggle document symbols panel" }, -- neo-tree.nvim
             },
             ["g"] = {
@@ -298,10 +281,7 @@ USER.mappings = {
                 ["b"] = {
                     group = "Git blame",
                     ["l"] = { "<CMD>Gitsigns toggle_current_line_blame<CR>", desc = "Toggle line blame" }, -- gitsigns.nvim
-                    ["w"] = {
-                        "<CMD>lua require('gitsigns').blame_line{full=true}<CR>",
-                        desc = "Show blame window",
-                    }, -- gitsigns.nvim
+                    ["w"] = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", desc = "Show blame window" }, -- gitsigns.nvim
                 },
                 ["c"] = { "<CMD>Telescope git_commits<CR>", desc = "Commits" }, -- telescope.nvim
                 ["C"] = { "<CMD>Telescope git_bcommits<CR>", desc = "Buffer commits" }, -- telescope.nvim
