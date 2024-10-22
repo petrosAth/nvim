@@ -278,9 +278,6 @@ return {
             -- A telescope.nvim extension that offers intelligent prioritization when selecting files from your editing
             -- history.
             "nvim-telescope/telescope-frecency.nvim",
-            -- telescope-hop.nvim is an extension for telescope.nvim. It helps you navigate, select, and perform
-            -- actions on results buffer with motions inspired by hop.nvim.
-            -- "nvim-telescope/telescope-hop.nvim",
             -- telescope-file-browser.nvim is a file browser extension for telescope.nvim. It supports synchronized
             -- creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim
             "nvim-telescope/telescope-file-browser.nvim",

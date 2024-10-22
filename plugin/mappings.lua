@@ -71,16 +71,6 @@ local function telescope_picker(picker)
     return lua_cmd(config_path, picker)
 end
 
-local function hop_key(direction, offset, char_num)
-    offset = offset and (", hint_offset = " .. offset) or ""
-    char_num = char_num or 1
-
-    local plugin = [[require('hop')]]
-    local modules = "hint_char" .. char_num
-    local opts = [[{ direction = require("hop.hint").HintDirection.]] .. direction .. "_CURSOR" .. offset .. " }"
-    return lua_cmd(plugin, modules, opts)
-end
-
 local go_to_change = function(direction)
     return function()
         if vim.wo.diff then
@@ -157,6 +147,7 @@ USER.mappings = {
             ["h"] = { desc = "Scroll the screen to the left" }, -- Assigned using Hydra.nvim
             ["l"] = { desc = "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
+        ["<C-s"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
         ["<M-J>"] = { ":m .+1<CR>==", desc = "Move line up" },
         ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line down" },
         ["<M-X>"] = { ":x<CR>", desc = "Save and quit only if there are changes in the file" },
@@ -302,8 +293,6 @@ USER.mappings = {
                 }, -- neo-tree.nvim
                 ["o"] = { "<CMD>Neotree document_symbols<CR>", desc = "Toggle document symbols panel" }, -- neo-tree.nvim
             },
-            ["f"] = { hop_key("AFTER"), desc = "Hop to" }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"), desc = "Hop to" }, -- hop.nvim
             ["g"] = {
                 group = "Git",
                 ["b"] = {
@@ -402,8 +391,6 @@ USER.mappings = {
                     ["c"] = { "<CMD>Telescope command_history<CR>", desc = "Command history" }, -- telescope.nvim
                 },
             },
-            ["t"] = { hop_key("AFTER", -1), desc = "Hop before" }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), desc = "Hop before" }, -- hop.nvim
             ["u"] = { "<CMD>Neotree close<CR><CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 group = "Launch",
@@ -442,11 +429,8 @@ USER.mappings = {
                 ["h"] = { ":<C-U>Gitsigns select_hunk<CR>", desc = "Git hunk" }, -- gitsigns
             },
         },
+        ["<C-s"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
         ["<Space>"] = {
-            ["f"] = { hop_key("AFTER"), desc = "Hop to" }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"), desc = "Hop to" }, -- hop.nvim
-            ["t"] = { hop_key("AFTER", -1), desc = "Hop before" }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), desc = "Hop before" }, -- hop.nvim
             ["gh"] = {
                 group = "Git & gitsigns",
                 ["a"] = { ":Gitsigns stage_hunk<CR>", desc = "Stage hunk" }, -- gitsigns
@@ -463,12 +447,7 @@ USER.mappings = {
                 ["h"] = { ":<C-U>Gitsigns select_hunk<CR>", desc = "Git hunk" }, -- gitsigns
             },
         },
-        ["<Space>"] = {
-            ["f"] = { hop_key("AFTER"), desc = "Hop to" }, -- hop.nvim
-            ["F"] = { hop_key("BEFORE"), desc = "Hop to" }, -- hop.nvim
-            ["t"] = { hop_key("AFTER", -1), desc = "Hop before" }, -- hop.nvim
-            ["T"] = { hop_key("BEFORE", 1), desc = "Hop before" }, -- hop.nvim
-        },
+        ["<C-s"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
     },
     -- Insert mode mappints
     ["i"] = {
@@ -482,6 +461,7 @@ USER.mappings = {
         ["<M-L>"] = { "<Right>", desc = "Cursor right", silent = false },
         ["<M-h>"] = { "<S-Left>", desc = "Cursor one word left", silent = false },
         ["<M-l>"] = { "<S-Right>", desc = "Cursor one word right", silent = false },
+        ["<F12>"] = { function() require("flash").toggle() end, desc = "Toggle flash search", silent = false }, -- flash.nvim
     },
     -- Terminal mode mappings
     ["t"] = {
