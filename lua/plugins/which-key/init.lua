@@ -75,7 +75,7 @@ return {
             end
 
             setup(which_key)
-            require("plugins.which-key.utils").add_map_desc(which_key)
+            require("plugins.which-key.utils").get_maps_add_descriptions(which_key)
             -- require("plugins.which-key.utils").enable_hydra(which_key)
         end,
     },

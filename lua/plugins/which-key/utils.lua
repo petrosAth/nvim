@@ -1,6 +1,6 @@
 local M = {}
 
-local function add_desc(which_key, mappings, mode, prefix)
+local function add_description(which_key, mappings, mode, prefix)
     -- Source: echasnovski/nvim
     -- https://github.com/echasnovski/nvim/blob/47eb53792a1ff1e1c482c19fbae8ac035e352e2d/lua/ec/mappings-leader.lua#L198-L220
     if type(mappings) ~= "table" then
@@ -19,14 +19,14 @@ local function add_desc(which_key, mappings, mode, prefix)
     end
 
     for key, t in pairs(mappings) do
-        add_desc(which_key, t, mode, prefix .. key)
+        add_description(which_key, t, mode, prefix .. key)
     end
 end
 
-function M.add_map_desc(which_key)
+function M.get_maps_add_descriptions(which_key)
     local mappings = vim.deepcopy(USER.mappings)
     for mode, mapping in pairs(mappings) do
-        add_desc(which_key, mapping, mode)
+        add_description(which_key, mapping, mode)
     end
 end
 
