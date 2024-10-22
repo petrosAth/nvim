@@ -1,6 +1,6 @@
 local M = {}
 
-local c = require("ui.tab-line.components")
+local c = require("plugins.tabby.components")
 local i = USER.styling.icons
 
 M.setup = {

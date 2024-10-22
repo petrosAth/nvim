@@ -14,8 +14,8 @@ return {
                 return
             end
 
-            local tab_line = require("ui.tab-line").setup
-            tabby.setup(tab_line)
+            local tabline = require("plugins.tabby.tabline").setup
+            tabby.setup(tabline)
         end,
     },
 }

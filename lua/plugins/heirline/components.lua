@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local u = require("ui.utilities")
-local t = require("ui.status-bars.tables")
+local t = require("plugins.heirline.tables")
 local i = USER.styling.icons
 local M = {}
 

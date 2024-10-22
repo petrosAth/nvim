@@ -1,6 +1,6 @@
 local function setup(heirline)
-    local status_line = require("ui.status-bars.status-line").StatusLines
-    local win_bar = require("ui.status-bars.win-bar").WinBars
+    local status_line = require("plugins.heirline.status-line").StatusLines
+    local win_bar = require("plugins.heirline.winbar").WinBars
     local opts = {
         -- if the callback returns true, the winbar will be disabled for that window
         -- the args parameter corresponds to the table argument passed to autocommand callbacks. :h nvim_lua_create_autocmd()
@@ -9,7 +9,7 @@ local function setup(heirline)
             local fileName = vim.api.nvim_buf_get_name(0)
             local fullPath = vim.fn.fnamemodify(fileName, ":p")
             local buf_label = require("ui.utilities").get_buf_label(fullPath, vim.bo.buftype, vim.bo.filetype)
-            local table = require("ui.status-bars.tables").Disable.winBar
+            local table = require("plugins.heirline.tables").Disable.winBar
             local buftype = vim.tbl_contains(table.buftype, vim.bo[buf].buftype)
             local filetype = vim.tbl_contains(table.filetype, vim.bo[buf].filetype)
 
