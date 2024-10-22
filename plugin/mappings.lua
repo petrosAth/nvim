@@ -154,8 +154,8 @@ USER.mappings = {
             desc = "Repeat the latest '/' or '?' backwards",
         }, -- hlslens
         ["z"] = {
-            ["h"] = { "", desc = "Scroll the screen to the left" }, -- Assigned using Hydra.nvim
-            ["l"] = { "", desc = "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
+            ["h"] = { desc = "Scroll the screen to the left" }, -- Assigned using Hydra.nvim
+            ["l"] = { desc = "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
         ["<M-J>"] = { ":m .+1<CR>==", desc = "Move line up" },
         ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line down" },

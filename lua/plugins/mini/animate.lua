@@ -37,7 +37,7 @@ local function setup(animate)
         },
         -- Window resize
         resize = {
-            enable = true,
+            enable = false, -- NOTE: enable when mini.animate becomes compatible with hydra.nvim
             timing = timing(animate),
         },
         -- Window open

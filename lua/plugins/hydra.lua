@@ -12,6 +12,15 @@ local function setup(hydra)
         borders.l,
     }
 
+    hydra.setup({
+        hint = {
+            position = "bottom",
+            float_opts = {
+                border = border,
+            },
+        },
+    })
+
     hydra({
         name = "Side scroll",
         hint = [[
@@ -19,13 +28,6 @@ local function setup(hydra)
    _l_ ]] .. arrow .. [[ Scroll right   _L_ ]] .. arrow .. [[ Scroll half screen right   ]],
         mode = { "n", "x" },
         body = "z",
-        config = {
-            hint = {
-                position = "top",
-                offset = 2,
-                border = border,
-            },
-        },
         heads = {
             { "h", "zh" },
             { "l", "zl" },
@@ -37,6 +39,7 @@ local function setup(hydra)
             { "<Esc>", nil, { exit = true, nowait = true, desc = false } },
         },
     })
+
     hydra({
         name = "Manipulate folds",
         hint = [[
@@ -44,13 +47,6 @@ local function setup(hydra)
    _r_ ]] .. arrow .. [[ Fold less   _k_ ]] .. arrow .. [[ Previous fold   ]],
         mode = { "n", "x" },
         body = "z",
-        config = {
-            hint = {
-                position = "top",
-                offset = 2,
-                border = border,
-            },
-        },
         heads = {
             { "m", "zm" },
             { "r", "zr" },
@@ -61,6 +57,7 @@ local function setup(hydra)
             { "<Esc>", nil, { exit = true, nowait = true, desc = false } },
         },
     })
+
     hydra({
         name = "Resize Window",
         hint = [[
@@ -68,13 +65,6 @@ local function setup(hydra)
    _-_ ]] .. arrow .. [[ Decrease height by 3   _<_ ]] .. arrow .. [[ Decrease width by 3   ]],
         mode = { "n", "v" },
         body = "<C-w>",
-        config = {
-            hint = {
-                position = "top",
-                offset = 2,
-                border = border,
-            },
-        },
         heads = {
             { "+", "<C-w>3+" },
             { "-", "<C-w>3-" },
@@ -90,7 +80,7 @@ end
 return {
     {
         -- This is the Neovim implementation of the famous Emacs Hydra package.
-        "anuvyklack/hydra.nvim",
+        "nvimtools/hydra.nvim",
         event = { "VimEnter" },
         config = function()
             local loaded, hydra = pcall(require, "hydra")
