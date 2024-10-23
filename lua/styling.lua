@@ -179,7 +179,7 @@ M = {
         },
         OS = {
             windows = { "󰍲" },
-            linux   = { "" },
+            linux   = { "" },
             mac     = { "" },
         },
         loading = {

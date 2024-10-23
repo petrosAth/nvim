@@ -57,6 +57,8 @@ M.Disable = {
             "prompt",
         },
         filetype = {
+            "aerial",
+            "aerial-nav",
             "alpha",
             "ccc-ui",
             "checkhealth",
