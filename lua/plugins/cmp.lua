@@ -1,21 +1,11 @@
-local function setup(cmp)
-    local borders = USER.styling.borders.default
-    local kinds = USER.styling.icons.lsp.kinds
-    local loaded_luasnip, luasnip = pcall(require, "luasnip")
-    if not loaded_luasnip then
-        USER.loading_error_msg("LuaSnip")
-        return
-    end
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
-    local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-    end
+local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
 
-    local t = function(str)
-        return vim.api.nvim_replace_termcodes(str, true, true, true)
-    end
-
+local function stylize_markdown()
     vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
         contents = vim.lsp.util._normalize_markdown(contents, {
             width = vim.lsp.util._make_floating_popup_size(contents, opts),
@@ -26,6 +16,47 @@ local function setup(cmp)
         vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, contents)
 
         return contents
+    end
+end
+
+-- Source: LazyVim/LazyVim
+-- https://github.com/LazyVim/LazyVim/blob/7c7c196a78e936a1bc4cf28e7908e9bd96d75607/lua/lazyvim/util/cmp.lua#L154C1-L156C7
+local function snippet_replace(snippet, fn)
+    return snippet:gsub("%$%b{}", function(m)
+        local n, name = m:match("^%${(%d+):(.+)}$")
+        return n and fn({ n = n, text = name }) or m
+    end) or snippet
+end
+
+local function snippet_preview(snippet)
+    local ok, parsed = pcall(function() return vim.lsp._snippet_grammar.parse(snippet) end)
+    return ok and tostring(parsed)
+        or snippet_replace(snippet, function(placeholder) return snippet_preview(placeholder.text) end):gsub("%$0", "")
+end
+
+local function add_missing_snippet_docs(cmp, window)
+    local Kind = cmp.lsp.CompletionItemKind
+    local entries = window:get_entries()
+    for _, entry in ipairs(entries) do
+        if entry:get_kind() == Kind.Snippet then
+            local item = entry:get_completion_item()
+            if not item.documentation and item.insertText then
+                item.documentation = {
+                    kind = cmp.lsp.MarkupKind.Markdown,
+                    value = string.format("```%s\n%s\n```", vim.bo.filetype, snippet_preview(item.insertText)),
+                }
+            end
+        end
+    end
+end
+
+local function setup(cmp)
+    local borders = USER.styling.borders.default
+    local kinds = USER.styling.icons.lsp.kinds
+    local loaded_luasnip, luasnip = pcall(require, "luasnip")
+    if not loaded_luasnip then
+        USER.loading_error_msg("LuaSnip")
+        return
     end
 
     cmp.setup({
@@ -197,6 +228,11 @@ local function setup(cmp)
             { name = "cmdline" },
         }),
     })
+
+    cmp.event:on("menu_opened", function(event)
+        add_missing_snippet_docs(cmp, event.window)
+        stylize_markdown()
+    end)
 end
 
 return {

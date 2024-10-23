@@ -2,9 +2,7 @@ local function setup(satellite)
     local icons = USER.styling.icons
 
     satellite.setup({
-        current_only = false,
         winblend = USER.styling.variables.transparency,
-        zindex = 40,
         handlers = {
             cursor = {
                 enable = false,
