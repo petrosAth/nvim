@@ -165,11 +165,11 @@ function M.get_highlight_groups(palette)
 
     g.flash = {
         FlashPromptIcon    = { fg = g.editor.MoreMsg.fg, bg = g.editor.StatusLine.bg },
-        FlashBackdrop      = { link = "Comment" },
-        FlashCurrent       = { link = "IncSearch" },
         FlashPrompt        = { link = "MsgArea" },
-        FlashMatch         = { link = "Search" },
-        FlashLabel         = { link = "Substitute" },
+        FlashCurrent       = { fg = p.cYellow, bold = true, nocombine = true, reverse = true },
+        FlashMatch         = { fg = p.cCyan, nocombine = true },
+        FlashLabel         = { fg = p.cFg, nocombine = true },
+        FlashBackdrop      = { link = "Comment" },
     }
 
     g.treesitter = {
