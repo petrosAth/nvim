@@ -143,7 +143,7 @@ USER.mappings = {
             ["h"] = { desc = "Scroll the screen to the left" }, -- Assigned using Hydra.nvim
             ["l"] = { desc = "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
-        ["<C-s"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
+        ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
         ["<M-J>"] = { ":m .+1<CR>==", desc = "Move line up" },
         ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line down" },
         ["<M-X>"] = { ":x<CR>", desc = "Save and quit only if there are changes in the file" },
@@ -409,7 +409,7 @@ USER.mappings = {
                 ["h"] = { ":<C-U>Gitsigns select_hunk<CR>", desc = "Git hunk" }, -- gitsigns
             },
         },
-        ["<C-s"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
+        ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
         ["<Space>"] = {
             ["gh"] = {
                 group = "Git & gitsigns",
@@ -427,7 +427,7 @@ USER.mappings = {
                 ["h"] = { ":<C-U>Gitsigns select_hunk<CR>", desc = "Git hunk" }, -- gitsigns
             },
         },
-        ["<C-s"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
+        ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
     },
     -- Insert mode mappints
     ["i"] = {
