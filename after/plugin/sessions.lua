@@ -16,7 +16,7 @@ local function get_session_name(cwd)
 end
 
 vim.api.nvim_create_user_command("ProjectCreateSession", function()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local session, available = get_session_name(cwd)
 
     if not available then
@@ -25,7 +25,7 @@ vim.api.nvim_create_user_command("ProjectCreateSession", function()
 end, { desc = "Save the local session, using the name of the current working directory" })
 
 vim.api.nvim_create_user_command("ProjectLoadSession", function()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local session, available = get_session_name(cwd)
 
     if not available then

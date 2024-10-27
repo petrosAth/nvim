@@ -11,7 +11,7 @@ end
 
 ---Create and populate .gitignore file
 local function create_gitignore()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
     local gitignore_file = cwd .. "/.gitignore"
 
@@ -25,7 +25,7 @@ end
 ---the currently active theme palette as well.
 ---@return table palettes Table containing the palettes.
 local function get_palettes()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
     local palettes_dir = local_cfg_dir .. "/" .. USER.local_config.palettes_dir
     local palettes = {}
@@ -48,7 +48,7 @@ end
 ---"spell" directory is created if it doesn't exist.
 ---@return string path Spell file's path.
 local function get_spell_file()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
     local spell_dir = local_cfg_dir .. "/" .. USER.local_config.spell_dir
     local spell_file = spell_dir .. "/en.utf-8.add"
@@ -79,7 +79,7 @@ function USER.load_local_config(config)
 end
 
 vim.api.nvim_create_user_command("ProjectCreateConfig", function()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
     local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
     local local_cfg_file = ".nvim.lua"
@@ -95,7 +95,7 @@ vim.api.nvim_create_user_command("ProjectCreateConfig", function()
 end, { desc = "Create a project local config file, and open it in the current window" })
 
 vim.api.nvim_create_user_command("ProjectCreatePalette", function()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
     local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
     local palettes_dir = local_cfg_dir .. "/" .. USER.local_config.palettes_dir
@@ -109,7 +109,7 @@ vim.api.nvim_create_user_command("ProjectCreatePalette", function()
 end, { desc = "Create a palette template in the local project's configuration directory" })
 
 vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
-    local cwd = vim.fn.getcwd()
+    local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
     local prettier_file = USER.local_config.prettier_file
 

@@ -4,7 +4,11 @@ base: lua51
 globals:
   vim:
     any: true
+  loop:
+    any: true
   use:
+    any: true
+  uv:
     any: true
   USER:
     any: true
