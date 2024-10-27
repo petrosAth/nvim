@@ -13,6 +13,11 @@ local function setup(flash)
         jump = {
             autojump = true,
         },
+        modes = {
+            char = {
+                enabled = false,
+            },
+        },
         prompt = {
             prefix = { { "󰉁 ", "FlashPromptIcon" } },
         },
