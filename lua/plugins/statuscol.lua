@@ -27,6 +27,7 @@ local function setup(statuscol)
                     colwidth = 2,
                 },
                 click = "v:lua.ScSa",
+                condition = { USER.is_git_repo(vim.uv.cwd()) },
             },
             {
                 text = { builtin.foldfunc, " " },
