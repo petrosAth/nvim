@@ -3,9 +3,7 @@
 ---https://github.com/Neelfrost/nvim-config/blob/634cf9db1ee5000e3e8d0bdad5050986caa3a057/lua/user/utils.lua#L23-L28
 ---@param program string Any system program with terminal functionality
 ---@vararg string args Arguments for program
-local function launch_with_system_program(program, ...)
-    vim.fn.system(program .. " " .. table.concat({ ... }, " "))
-end
+local function launch_with_system_program(program, ...) vim.fn.system(program .. " " .. table.concat({ ... }, " ")) end
 
 vim.api.nvim_create_user_command("LaunchFile", function(args)
     local program = args.args
@@ -67,9 +65,7 @@ local function enable_auto_format()
     vim.api.nvim_create_autocmd("BufWritePre", {
         callback = function()
             vim.lsp.buf.format({
-                filter = function(client)
-                    return client.name == "null-ls"
-                end,
+                filter = function(client) return client.name == "null-ls" end,
             })
         end,
         group = group,
@@ -92,7 +88,9 @@ local function toggle_format_on_save()
     end
 end
 
-vim.api.nvim_create_user_command("LspToggleAutoFormat", function()
-    toggle_format_on_save()
-end, { desc = "Toggle auto format on save" })
+vim.api.nvim_create_user_command(
+    "LspToggleAutoFormat",
+    function() toggle_format_on_save() end,
+    { desc = "Toggle auto format on save" }
+)
 ------------------------------------------------------------------------------------------------------------------------
