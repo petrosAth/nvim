@@ -14,6 +14,9 @@ local function setup(flash)
             autojump = true,
         },
         modes = {
+            search = {
+                enabled = true,
+            },
             char = {
                 enabled = false,
             },
