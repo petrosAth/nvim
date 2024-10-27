@@ -58,6 +58,7 @@ M = {
         load         = { "" },
         key          = { "" },
         vim          = { "" },
+        neovim       = { "", "" },
         treesiter    = { "" },
         spelling     = { "󰓆" },
         palette      = { "󰸌" },
