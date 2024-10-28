@@ -1,21 +1,12 @@
 local M = {}
 
 local sources = function(null_ls)
-    local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
+    local formatting = null_ls.builtins.formatting
 
     return {
-        formatting.shfmt.with({
-            args = {
-                "--filename",
-                "$FILENAME",
-                "-i",
-                "4", -- 0 for tabs (default), >0 for number of spaces
-                "-bn", -- binary ops like && and | may start a line
-                "-sr", -- redirect operators will be followed by a space
-            },
-        }),
-        formatting.stylua,
+        diagnostics.selene,
+        diagnostics.zsh,
         formatting.prettierd.with({
             filetypes = {
                 "javascript",
@@ -37,8 +28,21 @@ local sources = function(null_ls)
             },
             command = "prettierd",
         }),
-        diagnostics.selene,
-        diagnostics.zsh,
+        formatting.shfmt.with({
+            args = {
+                "--filename",
+                "$FILENAME",
+                "-i",
+                "4", -- 0 for tabs (default), >0 for number of spaces
+                "-bn", -- binary ops like && and | may start a line
+                "-sr", -- redirect operators will be followed by a space
+            },
+            filetypes = {
+                "sh",
+                "zsh",
+            },
+        }),
+        formatting.stylua,
     }
 end
 
