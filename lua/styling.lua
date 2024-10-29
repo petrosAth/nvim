@@ -167,15 +167,23 @@ M = {
             signs = {
                 add          = "┃",
                 change       = "┃",
-                delete       = "", -- "" "▁"
-                topdelete    = "", -- "" "▔"
+                delete       = "", --  ▁ 🬽
+                topdelete    = "", --  ▔ 🭘
                 changedelete = "┃",
-                untracked    = "╻",
+                untracked    = "┋",
                 satellite = {
                     add    = "┃",
                     change = "┃",
                     delete = "",
                 },
+            },
+            signs_staged = {
+                add          = "┃",
+                change       = "┃",
+                delete       = "", --  ▁ 🬽
+                topdelete    = "", --  ▔ 🭘
+                changedelete = "┃",
+                untracked    = "┋",
             },
         },
         OS = {

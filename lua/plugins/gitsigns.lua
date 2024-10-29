@@ -12,12 +12,12 @@ local function setup(gitsigns)
             untracked = { text = icons.signs.untracked },
         },
         signs_staged = {
-            add = { text = icons.signs.add },
-            change = { text = icons.signs.change },
-            delete = { text = icons.signs.delete },
-            topdelete = { text = icons.signs.topdelete },
-            changedelete = { text = icons.signs.changedelete },
-            untracked = { text = icons.signs.untracked },
+            add = { text = icons.signs_staged.add },
+            change = { text = icons.signs_staged.change },
+            delete = { text = icons.signs_staged.delete },
+            topdelete = { text = icons.signs_staged.topdelete },
+            changedelete = { text = icons.signs_staged.changedelete },
+            untracked = { text = icons.signs_staged.untracked },
         },
         numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
         linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
