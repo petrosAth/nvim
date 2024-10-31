@@ -1,7 +1,7 @@
 local M = {}
 
 local function install()
-    local lazy_path = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    local lazy_path = string.format("%s/lazy/lazy.nvim", vim.fn.stdpath("data"))
     if not vim.loop.fs_stat(lazy_path) then
         vim.fn.system({
             "git",
@@ -20,7 +20,7 @@ local function setup()
     local borders = USER.styling.borders.default
 
     require("lazy").setup({
-        root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
+        root = string.format("%s/lazy", vim.fn.stdpath("data")), -- directory where plugins will be installed
         -- leave nil when passing the spec as the first argument to setup()
         spec = {
             { import = "plugins" },

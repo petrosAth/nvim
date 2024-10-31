@@ -28,19 +28,19 @@ local function setup(neo_tree)
             sources = {
                 {
                     source = "filesystem",
-                    display_name = icons.fileExplorer[1] .. " Files ",
+                    display_name = string.format("%s Files ", icons.fileExplorer[1]),
                 },
                 {
                     source = "buffers",
-                    display_name = icons.buffers[1] .. " Buffers ",
+                    display_name = string.format("%s Buffers ", icons.buffers[1]),
                 },
                 {
                     source = "git_status",
-                    display_name = icons.git.repo[1] .. " Git ",
+                    display_name = string.format("%s Git ", icons.git.repo[1]),
                 },
                 {
                     source = "document_symbols",
-                    display_name = icons.codeOutline[1] .. " Code outline ",
+                    display_name = string.format("%s Code outline", icons.codeOutline[1]),
                 },
             },
             tabs_layout = "active",
@@ -84,7 +84,7 @@ local function setup(neo_tree)
                 folder_empty_open = icons.diropen[1],
             },
             modified = {
-                symbol = icons.edit[1] .. "  ",
+                symbol = string.format("%s  ", icons.edit[1]),
             },
             name = {
                 highlight_opened_files = "all",
@@ -104,10 +104,10 @@ local function setup(neo_tree)
             },
             diagnostics = {
                 symbols = {
-                    hint = icons.lsp.hint[1] .. "  ",
-                    info = icons.lsp.info[1] .. "  ",
-                    warn = icons.lsp.warn[1] .. "  ",
-                    error = icons.lsp.error[1] .. "  ",
+                    hint = string.format("%s  ", icons.lsp.hint[1]),
+                    info = string.format("%s  ", icons.lsp.info[1]),
+                    warn = string.format("%s  ", icons.lsp.warn[1]),
+                    error = string.format("%s  ", icons.lsp.error[1]),
                 },
             },
         },

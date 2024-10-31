@@ -3,7 +3,9 @@
 ---https://github.com/Neelfrost/nvim-config/blob/634cf9db1ee5000e3e8d0bdad5050986caa3a057/lua/user/utils.lua#L23-L28
 ---@param program string Any system program with terminal functionality
 ---@vararg string args Arguments for program
-local function launch_with_system_program(program, ...) vim.fn.system(program .. " " .. table.concat({ ... }, " ")) end
+local function launch_with_system_program(program, ...)
+    vim.fn.system(string.format("%s %s", program, table.concat({ ... }, " ")))
+end
 
 vim.api.nvim_create_user_command("LaunchFile", function(args)
     local program = args.args
@@ -28,7 +30,7 @@ local function extract_url(url)
         url = string.gsub(string.gsub(url:gsub(",$", ""), "^['\"]", ""), "['\",]$", "")
 
         if string.match(url, "^%w[%w-]*/[%w-_.]+$") then
-            return "https://github.com/" .. url
+            return string.format("https://github.com/%s", url)
         elseif string.match(url, "^ftps?://.*") then
             return url
         elseif string.match(url, "^https?://.*") then

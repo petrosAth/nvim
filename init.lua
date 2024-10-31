@@ -1,17 +1,17 @@
 -- Create custom table to store my functions, tables, variables etc
 USER = {
-    omni_mono    = false, -- Make omnisharp change cmd between mono/dotnet
-    styling      = require("styling"), -- Table with variables and icons used for neovim styling
-    theme        = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
-    mappings     = {}, -- Table for all the key bindings
+    omni_mono = false, -- Make omnisharp change cmd between mono/dotnet
+    styling = require("styling"), -- Table with variables and icons used for neovim styling
+    theme = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
+    mappings = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
-        dir           = ".nvim",                 -- Local config directory
-        palettes_dir  = "palettes",              -- Palettes local config directory
-        palette_file  = "palette.lua",           -- Palette file name
-        palettes      = {},                       -- Local palettes
-        spell_dir     = "spell",                 -- Spell local config directory
-        prettier_file = ".prettierrc",           -- Prettier config file name
-        templates     = vim.fn.stdpath("config") .. "/templates", -- Directory within nvim config containing file templates
+        dir = ".nvim", -- Local config directory
+        palettes_dir = "palettes", -- Palettes local config directory
+        palette_file = "palette.lua", -- Palette file name
+        palettes = {}, -- Local palettes
+        spell_dir = "spell", -- Spell local config directory
+        prettier_file = ".prettierrc", -- Prettier config file name
+        templates = string.format("%s/templates", vim.fn.stdpath("config")), -- Directory within nvim config containing file templates
     },
 }
 

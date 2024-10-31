@@ -13,9 +13,9 @@ end
 local function create_gitignore()
     local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
-    local gitignore_file = cwd .. "/.gitignore"
+    local gitignore_file = string.format("%s/.gitignore", cwd )
 
-    local gitignore_template = vim.fn.readfile(templates_dir .. "/.gitignore")
+    local gitignore_template = vim.fn.readfile(string.format("%s/.gitignore", templates_dir))
 
     vim.fn.writefile(gitignore_template, gitignore_file, "a")
 end
@@ -26,18 +26,18 @@ end
 ---@return table palettes Table containing the palettes.
 local function get_palettes()
     local cwd = vim.uv.cwd()
-    local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
-    local palettes_dir = local_cfg_dir .. "/" .. USER.local_config.palettes_dir
+    local local_cfg_dir = string.format("%s/%s", cwd, USER.local_config.dir)
+    local palettes_dir = string.format("%s/%s", local_cfg_dir, USER.local_config.palettes_dir)
     local palettes = {}
 
     if vim.fn.fnamemodify(cwd, ":t") == "nvim" then
-        palettes = require("themes.palettes." .. USER.theme).base
+        palettes = require(string.format("themes.palettes.%s", USER.theme)).base
     end
 
     vim.fn.mkdir(palettes_dir, "p")
 
     for _, palette in pairs(vim.fn.readdir(palettes_dir)) do
-        palette = dofile(palettes_dir .. "/" .. palette)
+        palette = dofile(string.format("%s/%s", palettes_dir, palette))
         palettes = vim.tbl_deep_extend("error", palettes, palette)
     end
 
@@ -49,9 +49,9 @@ end
 ---@return string path Spell file's path.
 local function get_spell_file()
     local cwd = vim.uv.cwd()
-    local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
-    local spell_dir = local_cfg_dir .. "/" .. USER.local_config.spell_dir
-    local spell_file = spell_dir .. "/en.utf-8.add"
+    local local_cfg_dir = string.format("%s/%s", cwd, USER.local_config.dir)
+    local spell_dir = string.format("%s/%s", local_cfg_dir, USER.local_config.spell_dir)
+    local spell_file = string.format("%s/en.utf-8.add", spell_dir)
 
     vim.fn.mkdir(spell_dir, "p")
 
@@ -81,29 +81,29 @@ end
 vim.api.nvim_create_user_command("ProjectCreateConfig", function()
     local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
-    local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
+    local local_cfg_dir = string.format("%s/%s", cwd, USER.local_config.dir)
     local local_cfg_file = ".nvim.lua"
 
     create_gitignore()
 
     vim.fn.mkdir(local_cfg_dir, "p")
-    local local_cfg_template_file = templates_dir .. "/" .. local_cfg_file
-    os.execute("cp " .. local_cfg_template_file .. " " .. cwd)
+    local local_cfg_template_file = string.format("%s/%s", templates_dir, local_cfg_file)
+    os.execute(string.format("cp %s %s", local_cfg_template_file, cwd))
 
-    create_buffer(cwd .. "/" .. local_cfg_file, { 2, 25 })
+    create_buffer(string.format("%s/%s", cwd, local_cfg_file), { 2, 25 })
     vim.cmd.redraw()
 end, { desc = "Create a project local config file, and open it in the current window" })
 
 vim.api.nvim_create_user_command("ProjectCreatePalette", function()
     local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
-    local local_cfg_dir = cwd .. "/" .. USER.local_config.dir
-    local palettes_dir = local_cfg_dir .. "/" .. USER.local_config.palettes_dir
-    local palette_file = palettes_dir .. "/" .. USER.local_config.palette_file
+    local local_cfg_dir = string.format("%s/%s", cwd, USER.local_config.dir)
+    local palettes_dir = string.format("%s/%s", local_cfg_dir, USER.local_config.palettes_dir)
+    local palette_file = string.format("%s/%s", palettes_dir, USER.local_config.palette_file)
 
     vim.fn.mkdir(palettes_dir, "p")
-    local palette_template_file = templates_dir .. "/" .. USER.local_config.palette_file
-    os.execute("cp " .. palette_template_file .. " " .. palettes_dir)
+    local palette_template_file = string.format("%s/%s", templates_dir, USER.local_config.palette_file)
+    os.execute(string.format("cp %s %s", palette_template_file, palettes_dir))
 
     create_buffer(palette_file, { 3, 5 })
 end, { desc = "Create a palette template in the local project's configuration directory" })
@@ -113,8 +113,8 @@ vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
     local templates_dir = USER.local_config.templates
     local prettier_file = USER.local_config.prettier_file
 
-    if vim.fn.filereadable(cwd .. "/" .. prettier_file) == 0 then
-        local prettier_file_template = templates_dir .. "/" .. prettier_file
-        os.execute("cp " .. prettier_file_template .. " " .. cwd)
+    if vim.fn.filereadable(string.format("%s/%s", cwd, prettier_file)) == 0 then
+        local prettier_file_template = string.format("%s/%s", templates_dir, prettier_file)
+        os.execute(string.format("cp %s %s", prettier_file_template, cwd))
     end
 end, { desc = "Create prettier config file in the project root." })

@@ -13,9 +13,9 @@ function M.setup(icons, border)
             width = 0.7,
             height = 0.825,
             icons = {
-                package_installed = icons.done[1] .. " ",
-                package_pending = icons.pending[1] .. " ",
-                package_uninstalled = icons.pending[1] .. " ",
+                package_installed = string.format("%s ", icons.done[1]),
+                package_pending = string.format("%s ", icons.pending[1]),
+                package_uninstalled = string.format("%s ", icons.pending[1]),
             },
             keymaps = {
                 -- Keymap to expand a package
@@ -38,7 +38,7 @@ function M.setup(icons, border)
                 apply_language_filter = "<C-f>",
             },
         },
-        install_root_dir = vim.fn.stdpath("data") .. "/mason",
+        install_root_dir = string.format("%s/mason", vim.fn.stdpath("data")),
     })
 end
 

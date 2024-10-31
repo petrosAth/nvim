@@ -30,7 +30,7 @@ local function config_diagnostics(icons)
     }
 
     for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
+        local hl = string.format("DiagnosticSign%s", type)
         vim.fn.sign_define(hl, {
             text = icon,
             texthl = hl,
@@ -73,9 +73,7 @@ local function on_attach(client, bufnr)
         vim.api.nvim_set_option_value("formatexpr", "v:lua.vim.lsp.formatexpr()", { buf = bufnr })
     end
 
-    if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(show_inlay_hints)
-    end
+    if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(show_inlay_hints) end
 end
 
 local function setup_language_servers(lspconfig, servers, handler_opts, root_files)
@@ -144,10 +142,10 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
                 handlers = handler_opts,
             })
         elseif name == "omnisharp" then
-            local install_path = vim.fn.stdpath("data") .. "/mason/packages"
+            local install_path = string.format("%s/mason/packages", vim.fn.stdpath("data"))
             local cmd = USER.omni_mono and "mono" or "dotnet"
-            local path = USER.omni_mono and install_path .. "/omnisharp-mono/omnisharp/OmniSharp.exe"
-                or install_path .. "/omnisharp/OmniSharp.dll"
+            local path = USER.omni_mono and string.format("%s/omnisharp-mono/omnisharp/OmniSharp.exe", install_path)
+                or string.format("%s/omnisharp/OmniSharp.dll", install_path)
             lspconfig[name].setup({
                 -- use_modern_net = user.omni_mono == false and true or false
                 on_new_config = function(config)
@@ -165,8 +163,7 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
             })
         elseif name == "lua_ls" then
             -- Make the server aware of Neovim runtime files when editing Neovim config
-            local library = vim.uv.cwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true)
-                or nil
+            local library = vim.uv.cwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true) or nil
             lspconfig[name].setup({
                 root_dir = lspconfig.util.root_pattern(root_files),
                 settings = {

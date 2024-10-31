@@ -14,12 +14,12 @@ local function setup(trouble)
                 top = "  ",
                 middle = "  ",
                 last = "  ",
-                fold_open = fillchars.foldopen .. " ",
-                fold_closed = fillchars.foldclose .. " ",
+                fold_open = string.format("%s ", fillchars.foldopen),
+                fold_closed = string.format("%s ", fillchars.foldclose),
                 ws = "  ",
             },
-            folder_closed = icons.dir[1] .. " ",
-            folder_open = icons.diropen[1] .. " ",
+            folder_closed = string.format("%s ", icons.dir[1]),
+            folder_open = string.format("%s ", icons.diropen[1]),
         },
     })
 end

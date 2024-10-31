@@ -92,7 +92,7 @@ local function setup(telescope, icons, borders)
                 "node_modules",
             },
             history = {
-                path = vim.fn.stdpath("data") .. "/databases/telescope_history",
+                path = string.format("%s/databases/telescope_history", vim.fn.stdpath("data")),
                 limit = 100,
             },
             file_sorter = require("telescope.sorters").get_fuzzy_file,
@@ -233,7 +233,7 @@ local function setup(telescope, icons, borders)
                 },
             },
             frecency = {
-                db_root = vim.fn.stdpath("data") .. "/databases",
+                db_root = string.format("%s/databases", vim.fn.stdpath("data")),
                 show_scores = true,
                 show_unindexed = true,
                 ignore_patterns = { "*.git/*", "*/tmp/*" },

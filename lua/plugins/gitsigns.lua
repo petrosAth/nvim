@@ -24,7 +24,7 @@ local function setup(gitsigns)
         show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`
         word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_formatter = "    " .. icons.commit[1] .. " <author>, <author_time:%Y-%m-%d> - <summary>",
+        current_line_blame_formatter = string.format("    %s <author>, <author_time:%%Y-%%m-%%d> - <summary>", icons.commit[1]),
         update_debounce = 100,
         preview_config = {
             border = {

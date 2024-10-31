@@ -10,7 +10,7 @@ function M.setup(icons, border)
     local config = {
         floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
         hint_enable = false, -- virtual hint enable
-        hint_prefix = icons.lsp.hint[1] .. " ",
+        hint_prefix = string.format("%s ", icons.lsp.hint[1]),
         handler_opts = {
             border = border,
         },

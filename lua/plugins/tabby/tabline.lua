@@ -43,7 +43,7 @@ M.setup = {
                         win_count > 1 and line.sep(c.set_sep_all("tab", "split", tab.is_current(), tab.id)) or "",
                         c.tab_win_count(tab.id),
                         line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), tab.id)),
-                        { tab.close_btn(" " .. i.close[1]), hl = hl_indicator },
+                        { tab.close_btn(string.format(" %s", i.close[1])), hl = hl_indicator },
                         line.sep(c.set_sep_all("tab", "right", tab.is_current(), tab.id)),
                         hl = hl,
                         margin = "",

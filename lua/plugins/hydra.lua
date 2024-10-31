@@ -24,9 +24,10 @@ local function setup(hydra)
 
     hydra({
         name = "Side scroll",
-        hint = [[
-   _h_ ]] .. arrow .. [[ Scroll left    _H_ ]] .. arrow .. [[ Scroll half screen left
-   _l_ ]] .. arrow .. [[ Scroll right   _L_ ]] .. arrow .. [[ Scroll half screen right   ]],
+        -- stylua: ignore
+        hint = string.format([[
+   _h_ %s Scroll left    _H_ %s Scroll half screen left
+   _l_ %s Scroll right   _L_ %s Scroll half screen right   ]], arrow, arrow, arrow, arrow),
         mode = { "n", "x" },
         body = "z",
         heads = {
@@ -43,9 +44,10 @@ local function setup(hydra)
 
     hydra({
         name = "Manipulate folds",
-        hint = [[
-   _m_ ]] .. arrow .. [[ Fold more   _j_ ]] .. arrow .. [[ Next fold
-   _r_ ]] .. arrow .. [[ Fold less   _k_ ]] .. arrow .. [[ Previous fold   ]],
+        -- stylua: ignore
+        hint = string.format([[
+   _m_ %s Fold more   _j_ %s Next fold
+   _r_ %s Fold less   _k_ %s Previous fold   ]], arrow, arrow, arrow, arrow),
         mode = { "n", "x" },
         body = "z",
         heads = {
@@ -61,9 +63,10 @@ local function setup(hydra)
 
     hydra({
         name = "Resize Window",
-        hint = [[
-   _+_ ]] .. arrow .. [[ Increase height by 3   _>_ ]] .. arrow .. [[ Increase width by 3
-   _-_ ]] .. arrow .. [[ Decrease height by 3   _<_ ]] .. arrow .. [[ Decrease width by 3   ]],
+        -- stylua: ignore
+        hint = string.format([[
+   _+_ %s Increase height by 3   _>_ %s Increase width by 3
+   _-_ %s Decrease height by 3   _<_ %s Decrease width by 3   ]], arrow, arrow, arrow, arrow),
         mode = { "n", "v" },
         body = "<C-w>",
         heads = {

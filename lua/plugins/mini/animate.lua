@@ -7,7 +7,7 @@ end
 local function setup(animate)
     local mouse_scrolled = false
     for _, scroll in ipairs({ "Up", "Down" }) do
-        local key = "<ScrollWheel" .. scroll .. ">"
+        local key = string.format("<ScrollWheel%s>", scroll)
         vim.keymap.set("", key, function()
             mouse_scrolled = true
             return key

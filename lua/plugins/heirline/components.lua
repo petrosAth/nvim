@@ -30,7 +30,7 @@ local FileTypeBlock = {
 
 local FileTypeIcon = {
     provider = function(self)
-        return self.icon and self.icon .. t.Separator.mid.provider
+        return self.icon and string.format("%s%s", self.icon, t.Separator.mid.provider)
     end,
 }
 
@@ -151,7 +151,7 @@ M.CustomTitle = {
     provider = function(self)
         local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
         if buf_label then
-            return t.Separator.left.provider .. buf_label .. t.Separator.right.provider
+            return string.format("%s%s%s", t.Separator.left.provider, buf_label, t.Separator.right.provider)
         end
 
         return ""
@@ -177,13 +177,13 @@ local FilePath = {
             filePath = vim.fn.pathshorten(self.filePath)
         end
 
-        filePath = vim.fn.fnamemodify(filePath, ":.:h") .. "/"
+        filePath = string.format("%s/", vim.fn.fnamemodify(filePath, ":.:h"))
 
         if filePath == "./" then
             filePath = ""
         end
 
-        return "%<" .. i.root_dir[1] .. " /" .. filePath .. t.Separator.mid.provider
+        return string.format("%%<%s /%s%s", i.root_dir[1], filePath, t.Separator.mid.provider)
     end,
 }
 
@@ -195,7 +195,7 @@ local FileName = {
             return "[No Name]"
         end
 
-        return t.Separator.mid.provider .. i.file[1] .. " " .. fileName .. t.Separator.mid.provider
+        return string.format("%s%s %s%s", t.Separator.mid.provider, i.file[1], fileName, t.Separator.mid.provider)
     end,
     hl = function()
         if conditions.is_active() then
@@ -219,7 +219,7 @@ local LspSymbol = {
 
         local context = navic.get_location()
         if context ~= nil and context ~= "" then
-            symbol = " " .. i.arrow.hollow.r .. " " .. context
+            symbol = string.format(" %s %s", i.arrow.hollow.r, context)
         end
 
         return symbol
@@ -340,7 +340,7 @@ M.CursorPosition = {
     {
         flexible = t.Hide.CursorPosition,
         {
-            provider = i.line[1] .. " %l" .. " : " .. i.column[1] .. " %c",
+            provider = string.format("%s %%l : %s %%c", i.line[1], i.column[1]),
         },
         {
             provider = "%l:%c",
@@ -351,13 +351,13 @@ M.CursorPosition = {
 
 M.CursorLine = {
     { t.Separator.left },
-    { provider = i.line[1] .. " %l" },
+    { provider = string.format("%s %%l", i.line[1]) },
     { t.Separator.right },
 }
 
 M.LinesTotal = {
     { t.Separator.left },
-    { provider = i.linesTotal[1] .. " %L" },
+    { provider = string.format("%s %%L", i.linesTotal[1]) },
     { t.Separator.right },
 
     hl = function(self)
@@ -369,7 +369,7 @@ M.WindowNumber = {
     { t.Separator.left },
     {
         provider = function(self)
-            return i.window[1] .. " " .. self.winnr
+            return string.format("%s %s", i.window[1], self.winnr)
         end,
     },
     { t.Separator.right },
@@ -449,7 +449,7 @@ M.GitStatus = {
         },
         {
             provider = function()
-                return i.git.repo[1] .. " "
+                return string.format("%s ", i.git.repo[1])
             end,
             hl = { bold = true },
         },
@@ -459,7 +459,7 @@ M.GitStatus = {
         flexible = t.Hide.GitSigns.icon,
         {
             provider = function(self)
-                return self.countAdded > 0 and (t.Separator.mid.provider .. i.git.added[1])
+                return self.countAdded > 0 and string.format("%s%s", t.Separator.mid.provider, i.git.added[1])
             end,
             -- hl = { fg = utils.get_highlight("GitSignsAdd").fg },
             hl = "GitSignsAdd",
@@ -473,7 +473,7 @@ M.GitStatus = {
         flexible = t.Hide.GitSigns.value,
         {
             provider = function(self)
-                return self.countAdded > 0 and (" " .. self.countAdded)
+                return self.countAdded > 0 and string.format(" %s", self.countAdded)
             end,
             hl = "GitSignsAdd",
         },
@@ -486,7 +486,7 @@ M.GitStatus = {
         flexible = t.Hide.GitSigns.icon,
         {
             provider = function(self)
-                return self.countRemoved > 0 and (t.Separator.mid.provider .. i.git.deleted[1])
+                return self.countRemoved > 0 and string.format("%s%s", t.Separator.mid.provider, i.git.deleted[1])
             end,
             hl = "GitSignsDelete",
         },
@@ -499,7 +499,7 @@ M.GitStatus = {
         flexible = t.Hide.GitSigns.value,
         {
             provider = function(self)
-                return self.countRemoved > 0 and (" " .. self.countRemoved)
+                return self.countRemoved > 0 and string.format(" %s", self.countRemoved)
             end,
             hl = "GitSignsDelete",
         },
@@ -512,7 +512,7 @@ M.GitStatus = {
         flexible = t.Hide.GitSigns.icon,
         {
             provider = function(self)
-                return self.countChanged > 0 and (t.Separator.mid.provider .. i.git.changed[1])
+                return self.countChanged > 0 and string.format("%s%s", t.Separator.mid.provider, i.git.changed[1])
             end,
             hl = "GitSignsChange",
         },
@@ -525,7 +525,7 @@ M.GitStatus = {
         flexible = t.Hide.GitSigns.value,
         {
             provider = function(self)
-                return self.countChanged > 0 and (" " .. self.countChanged)
+                return self.countChanged > 0 and string.format(" %s", self.countChanged)
             end,
             hl = "GitSignsChange",
         },
@@ -559,7 +559,7 @@ local LspClients = {
     {
         flexible = t.Hide.lspIcon,
         {
-            provider = i.lsp.icon[1] .. " ",
+            provider = string.format("%s ", i.lsp.icon[1])
         },
         {
             t.Null,
@@ -575,7 +575,7 @@ local LspClients = {
                 table.insert(lsp_servers, client.name)
             end
 
-            return "[" .. table.concat(lsp_servers, " ") .. "]"
+            return string.format("[%s]", table.concat(lsp_servers, " "))
         end,
     },
 }
@@ -596,7 +596,7 @@ local NullLsSources = {
     {
         flexible = t.Hide.nullLsIcon,
         {
-            provider = i.lsp.null_ls[1] .. " ",
+            provider = string.format("%s ", i.lsp.null_ls[1]),
         },
         {
             t.Null,
@@ -610,7 +610,7 @@ local NullLsSources = {
                 table.insert(null_ls_sources, source.name)
             end
 
-            return "[" .. table.concat(null_ls_sources, " ") .. "]"
+            return string.format("[%s]", table.concat(null_ls_sources, " "))
         end,
     },
 }
@@ -635,7 +635,7 @@ local LspDiagnostics = {
         },
         {
             provider = function(self)
-                return self.errors > 0 and (t.Separator.mid.provider .. self.errors)
+                return self.errors > 0 and string.format("%s%s", t.Separator.mid.provider, self.errors)
             end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
@@ -652,7 +652,7 @@ local LspDiagnostics = {
         },
         {
             provider = function(self)
-                return self.warnings > 0 and (t.Separator.mid.provider .. self.warnings)
+                return self.warnings > 0 and string.format("%s%s", t.Separator.mid.provider, self.warnings)
             end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
@@ -668,7 +668,7 @@ local LspDiagnostics = {
         },
         {
             provider = function(self)
-                return self.info > 0 and (t.Separator.mid.provider .. self.info)
+                return self.info > 0 and string.format("%s%s", t.Separator.mid.provider, self.info)
             end,
             hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
         },
@@ -684,7 +684,7 @@ local LspDiagnostics = {
         },
         {
             provider = function(self)
-                return self.hints > 0 and (t.Separator.mid.provider .. self.hints)
+                return self.hints > 0 and string.format("%s%s", t.Separator.mid.provider, self.hints)
             end,
             hl = { fg = utils.get_highlight("DiagnosticHint").fg },
         },
@@ -732,7 +732,7 @@ M.ViMode = {
     },
 
     provider = function(self)
-        return t.Separator.left.provider .. "%2(" .. t.ModeNames[self.mode] .. "%)"
+        return string.format("%s%%2(%s%%)", t.Separator.left.provider, t.ModeNames[self.mode])
     end,
 
     t.Separator.right,

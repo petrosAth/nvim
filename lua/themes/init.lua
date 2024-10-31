@@ -13,7 +13,7 @@ function M.loadHighlightGroups(palette)
 end
 
 function M.load(themeName)
-    local palette = require("themes.palettes." .. themeName)
+    local palette = require(string.format("themes.palettes.%s", themeName))
 
     -- reset colors
     if vim.g.colors_name then

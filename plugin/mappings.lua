@@ -13,7 +13,7 @@ local default_opts = {
 
 local function set_undo_break_points(break_points)
     for _, point in pairs(break_points) do
-        USER.mappings.i[point] = { point .. "<C-g>u" }
+        USER.mappings.i[point] = { string.format("%s<C-g>u", point) }
     end
 end
 
@@ -45,7 +45,7 @@ local function set_keymap(mappings, mode, prefix)
     end
 
     for key, t in pairs(mappings) do
-        if key ~= "group" then set_keymap(t, mode, prefix .. key) end
+        if key ~= "group" then set_keymap(t, mode, string.format("%s%s", prefix, key)) end
     end
 end
 

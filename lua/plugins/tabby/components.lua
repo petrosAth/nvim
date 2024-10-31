@@ -71,7 +71,7 @@ local function set_sep_icon(type, position, is_current, tab_id, win_id)
                 icon = " "
             end
             if is_first_win(win_id) then
-                icon = M.right_sep_icon .. " "
+                icon = string.format("%s ", M.right_sep_icon)
             end
         end
         if position == "right" then
@@ -211,7 +211,7 @@ M.win_label = function(win_id)
         label = buf_label
     end
 
-    return label .. "  "
+    return string.format("%s  ", label)
 end
 
 M.modified_flag = function(win_id, is_current)
@@ -223,7 +223,8 @@ M.modified_flag = function(win_id, is_current)
         hl = is_current and "TabLineIndicatorIsModifiedSel" or "TabLineIndicatorIsModified"
     end
 
-    return { i.edit[1] .. " ", hl = hl }
+    return { string.format("%s ", i.edit[1]), hl = hl
+    }
 end
 
 local function tab_top_window(tab_id)
@@ -261,7 +262,7 @@ M.tab_label = function(tab_id, is_current)
         label = custom_label
     end
 
-    return { " " .. label, hl = hl }
+    return { string.format(" %s", label), hl = hl }
 end
 
 M.tab_win_count = function(tab_id)

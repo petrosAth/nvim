@@ -231,8 +231,8 @@ hsluv.rgb_to_hex = function(tuple)
     local digit2 = math.fmod(c, 16)
     local x = (c - digit2) / 16
     local digit1 = math.floor(x)
-    h = h .. string.sub(hexChars, digit1 + 1, digit1 + 1)
-    h = h .. string.sub(hexChars, digit2 + 1, digit2 + 1)
+    h = string.format("%s%s", h, string.sub(hexChars, digit1 + 1, digit1 + 1))
+    h = string.format("%s%s", h, string.sub(hexChars, digit2 + 1, digit2 + 1))
   end
   return h
 end

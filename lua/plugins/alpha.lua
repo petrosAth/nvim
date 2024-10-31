@@ -7,7 +7,7 @@ local function setup(alpha)
             val = description,
             on_press = function()
                 local sc_ = shortcut:gsub("%s", ""):gsub("SPC", "<space>"):gsub("LDR", "<leader>")
-                local key = vim.api.nvim_replace_termcodes(sc_ .. "<Ignore>", true, false, true)
+                local key = vim.api.nvim_replace_termcodes(string.format("%s<Ignore>", sc_), true, false, true)
 
                 vim.api.nvim_feedkeys(key, "normal", false)
             end,

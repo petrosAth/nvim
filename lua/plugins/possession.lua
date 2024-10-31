@@ -1,6 +1,6 @@
 local function setup(possession)
     possession.setup({
-        session_dir = vim.fn.stdpath("data") .. "/sessions/",
+        session_dir = string.format("%s/sessions/", vim.fn.stdpath("data")),
         silent = false,
         load_silent = true,
         debug = false,

@@ -3,7 +3,7 @@ local M = {}
 local navic_kinds = function(icons)
     local lsp_kinds = vim.deepcopy(icons.lsp.kinds)
     for kind, icon in pairs(lsp_kinds) do
-        lsp_kinds[kind] = icon .. " "
+        lsp_kinds[kind] = string.format("%s ", icon)
     end
     return lsp_kinds
 end

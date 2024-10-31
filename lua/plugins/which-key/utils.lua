@@ -19,7 +19,7 @@ local function add_description(which_key, mappings, mode, prefix)
     end
 
     for key, t in pairs(mappings) do
-        add_description(which_key, t, mode, prefix .. key)
+        add_description(which_key, t, mode, string.format("%s%s", prefix, key))
     end
 end
 
