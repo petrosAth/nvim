@@ -369,6 +369,17 @@ USER.mappings = {
                     ["c"] = { "<CMD>Telescope command_history<CR>", desc = "Command history" }, -- telescope.nvim
                 },
             },
+            ["t"] = {
+                group = "Send to terminal",
+                ["e"] = {
+                    function()
+                        require("yeet").execute(nil, { clear_before_yeet = false, interrupt_before_yeet = true })
+                    end,
+                    desc = "Execute command",
+                }, -- yeet.nvim
+
+                ["T"] = { function() require("yeet").toggle_post_write() end, desc = "Toggle execution on write" }, -- yeet.nvim
+            },
             ["u"] = { "<CMD>Neotree close<CR><CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
                 group = "Launch",

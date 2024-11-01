@@ -28,6 +28,7 @@ local Labels = {
     ["trouble"]                   = string.format("%s List",                 i.list[1]),
     ["TelescopePrompt"]           = string.format("%s Telescope",            i.telescope[1]),
     ["undotree"]                  = string.format("%s Undotree",             i.undoTree[1]),
+    ["yeet-cache"]                = string.format("%s Command Cache",        i.terminal[1]),
     -- path matches                                %s
     ["DiffviewOriginalFile"]      = string.format("%s Original file",        i.file[1]),
     ["DiffviewCommit"]            = string.format("%s ",                     i.git.commit[1]),

@@ -66,6 +66,7 @@ M.Disable = {
             "mason",
             "notify",
             "null-ls-info",
+            "yeet-cache",
         },
     },
     statusLine = {

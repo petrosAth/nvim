@@ -646,7 +646,10 @@ function M.get_highlight_groups(palette)
         WhichKeySeparator = { fg = p.cFill4 },
         WhichKeyValue = { link = "Comment" },
         WhichKeyFloat = { link = "NormalFloat" },
-    }
+
+        -- yeet.nvim
+        YeetTitle = { fg = g.editor.Title.fg, bg = p.cFill3, bold = g.editor.Title.bold },
+ }
 
     return g
 end
