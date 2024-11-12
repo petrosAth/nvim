@@ -65,15 +65,15 @@ local function setup(hydra)
         name = "Resize Window",
         -- stylua: ignore
         hint = string.format([[
-   _+_ %s Increase height by 3   _>_ %s Increase width by 3
-   _-_ %s Decrease height by 3   _<_ %s Decrease width by 3   ]], arrow, arrow, arrow, arrow),
+   _+_ %s Increase height by 3   _>_ %s Increase width by 5
+   _-_ %s Decrease height by 3   _<_ %s Decrease width by 5   ]], arrow, arrow, arrow, arrow),
         mode = { "n", "v" },
         body = "<C-w>",
         heads = {
             { "+", "<C-w>3+" },
             { "-", "<C-w>3-" },
-            { "<", "<C-w>3<" },
-            { ">", "<C-w>3>" },
+            { "<", "<C-w>5<" },
+            { ">", "<C-w>5>" },
 
             { "q", nil, { exit = true, nowait = true, desc = false } },
             { "<Esc>", nil, { exit = true, nowait = true, desc = false } },
