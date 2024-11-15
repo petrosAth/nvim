@@ -1,4 +1,4 @@
-local filename = require("tabby.module.filename")
+local win_name = require('tabby.feature.win_name')
 local tab_name = require("tabby.feature.tab_name")
 local u = require("ui.utilities")
 local i = USER.styling.icons
@@ -204,14 +204,32 @@ M.win_label = function(win_id)
     local filetype = vim.bo[buf_id].filetype
     local buftype = vim.bo[buf_id].buftype
     local buf_label = u.get_buf_label(fullPath, buftype, filetype)
-    local name = filename.unique(win_id)
-    local label = name
+    local label = win_name.get(win_id, { mode = 'unique' })
 
     if buf_label then
         label = buf_label
     end
 
     return string.format("%s  ", label)
+end
+
+M.file_icon = function(type, id, bg)
+    local win_id = type == "win" and id or vim.api.nvim_tabpage_get_win(id)
+    local buf_id = vim.api.nvim_win_get_buf(win_id)
+    local fullPath = vim.api.nvim_buf_get_name(buf_id)
+    local name = vim.fn.fnamemodify(fullPath, ':t')
+    local extension = vim.fn.fnamemodify(name, ':e')
+    local icon, fg = require('nvim-web-devicons').get_icon_color(name, extension, { default = true })
+    local filetype = vim.bo[buf_id].filetype
+    local buftype = vim.bo[buf_id].buftype
+    local buf_label = u.get_buf_label(fullPath, buftype, filetype)
+
+    if buf_label then
+        return ""
+    end
+
+    return { string.format("%s ", icon), hl = { fg = fg, bg = bg } }
+    -- return win_id
 end
 
 M.modified_flag = function(win_id, is_current)
@@ -233,7 +251,7 @@ local function tab_top_window(tab_id)
     local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf_id })
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = buf_id })
     local buf_label = u.get_buf_label(fullPath, buftype, filetype)
-    local name = filename.unique(vim.api.nvim_tabpage_get_win(tab_id))
+    local name = win_name.get(vim.api.nvim_tabpage_get_win(tab_id), { mode = 'unique' })
     local label = name
 
     if buf_label then
@@ -262,7 +280,7 @@ M.tab_label = function(tab_id, is_current)
         label = custom_label
     end
 
-    return { string.format(" %s", label), hl = hl }
+    return { string.format("%s", label), hl = hl }
 end
 
 M.tab_win_count = function(tab_id)

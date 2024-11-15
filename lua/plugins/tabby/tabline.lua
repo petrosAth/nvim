@@ -1,6 +1,7 @@
 local M = {}
 
 local c = require("plugins.tabby.components")
+local getHl = require("themes.utilities").getHl
 local i = USER.styling.icons
 
 M.setup = {
@@ -20,6 +21,7 @@ M.setup = {
                 return {
                     line.sep(c.set_sep_all("win", "left", win.is_current(), tab_id, win.id)),
                     c.modified_flag(win.id, win.is_current()),
+                    c.file_icon("win", win.id, getHl(hl).bg),
                     c.win_label(win.id),
                     line.sep(c.set_sep_all("win", "right", win.is_current(), tab_id, win.id)),
                     hl = hl,
@@ -39,6 +41,8 @@ M.setup = {
                         line.sep(c.set_sep_all("tab", "left", tab.is_current(), tab.id)),
                         { tab.number(), hl = hl_indicator },
                         line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), tab.id)),
+                        " ",
+                        c.file_icon("tab", tab.id, getHl(hl).bg),
                         c.tab_label(tab.id, tab.is_current()),
                         win_count > 1 and line.sep(c.set_sep_all("tab", "split", tab.is_current(), tab.id)) or "",
                         c.tab_win_count(tab.id),
