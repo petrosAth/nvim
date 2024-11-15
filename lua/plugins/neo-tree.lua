@@ -23,8 +23,8 @@ local function setup(neo_tree)
         use_popups_for_input = false,
         use_default_mappings = false,
         source_selector = {
-            wingbar = true,
-            statusline = true,
+            winbar = true,
+            statusline = false,
             sources = {
                 {
                     source = "filesystem",
@@ -40,7 +40,7 @@ local function setup(neo_tree)
                 },
                 {
                     source = "document_symbols",
-                    display_name = string.format("%s Code outline", icons.codeOutline[1]),
+                    display_name = string.format("%s Code outline ", icons.codeOutline[1]),
                 },
             },
             tabs_layout = "active",
@@ -112,7 +112,7 @@ local function setup(neo_tree)
             },
         },
         window = {
-            width = 51,
+            width = "13%",
             popup = {
                 size = {
                     width = 49,
@@ -126,8 +126,7 @@ local function setup(neo_tree)
                 ["o"] = "split_with_window_picker",
                 ["v"] = "vsplit_with_window_picker",
                 ["t"] = "open_tabnew",
-                ["p"] = { "toggle_preview", config = { use_float = true } },
-                ["P"] = "open",
+                ["P"] = { "toggle_preview", config = { use_float = true } },
                 ["h"] = "close_node",
                 ["zM"] = "close_all_nodes",
                 ["zR"] = "expand_all_nodes",
@@ -141,6 +140,7 @@ local function setup(neo_tree)
                 },
                 ["d"] = "add_directory", -- also accepts the optional config.show_path option like "add".
                 ["D"] = "delete",
+                ["K"] = "show_file_details",
                 ["R"] = "rename",
                 ["mc"] = "copy_to_clipboard",
                 ["mm"] = "cut_to_clipboard",

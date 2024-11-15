@@ -521,9 +521,7 @@ function M.get_highlight_groups(palette)
         -- neo-tree.nvim
         NeoTreeNormal = { link = "Normal" },
         NeoTreeNormalNC = { link = "NormalNC" },
-        NeoTreePreview = { fg = p.cFg, bg = p.cFill5 },
-        NeoTreeFloatNormal = { fg = g.editor.Normal.fg, bg = p.cBgDim },
-        NeoTreeFloatBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDim },
+        NeoTreeFloatBorder = { fg = g.editor.FloatBorder.fg, bg = p.cBgDark },
         NeoTreeFloatTitle = { fg = p.cCyan, bg = p.cFill3, bold = true },
         NeoTreeWinSeparator = { link = "WinSeparator" },
         NeoTreeCursorLine = { link = "CursorLine" },
