@@ -27,7 +27,7 @@ local function setup(yeet)
 end
 
 return {
-    "petrosAth/yeet.nvim",
+    "samharju/yeet.nvim",
     dependencies = {
         -- Neovim plugin to improve the default vim.ui interfaces
         "stevearc/dressing.nvim",
