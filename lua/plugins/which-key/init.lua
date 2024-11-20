@@ -26,7 +26,8 @@ local function setup(which_key)
             separator = icons.arrow.hollow.r,
             group = string.format("%s ", icons.key[1]),
             ellipsis = "…",
-            mappings = false,
+            mappings = true,
+            rules = false,
             keys = {
                 Up = string.format("%s ", icons.arrow.hollow.u),
                 Down = string.format("%s ", icons.arrow.hollow.b),

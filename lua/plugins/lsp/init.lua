@@ -69,8 +69,6 @@ return {
             -- A small Neovim plugin that provides a command for LSP renaming with immediate visual feedback thanks to
             -- Neovim's command preview feature.
             "smjonas/inc-rename.nvim",
-            -- Standalone UI for nvim-lsp progress. Eye candy for the impatient.
-            "j-hui/fidget.nvim",
             -- A simple statusline/winbar component that uses LSP to show your current code context. Named after the
             -- Indian satellite navigation system.
             "SmiteshP/nvim-navic",
@@ -84,7 +82,6 @@ return {
 
             -- Setup lsp utilities
             require("plugins.lsp.signature").setup(icons, border)
-            require("plugins.lsp.fidget").setup(icons, borders)
             require("plugins.lsp.inc-rename").setup()
             require("plugins.lsp.glance").setup(icons, borders)
         end,

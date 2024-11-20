@@ -108,10 +108,8 @@ USER.mappings = {
             ["m"] = { desc = "Previous function" }, -- Assigned by nvim-treesitter-textobjects
             ["t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }, -- Assigned by Hydra.nvim
         },
-        ["<F1>"] = { function() vim.cmd.setlocal("spell!") end, desc = "Toggle spelling" },
+        ["<F1>"] = { group = "Toggle" },
         ["<F2>"] = { [[:%s/\<<C-r><C-w>\>/]], desc = "Replace word under cursor", silent = false },
-        ["<F3>"] = { function() vim.cmd.set("cursorcolumn!") end, desc = "Toggle cursorcolumn" },
-        ["<F11>"] = { function() vim.cmd.set("wrap!") end, desc = "Toggle wrap" },
         ["g"] = {
             ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
             ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
@@ -148,7 +146,7 @@ USER.mappings = {
         ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line down" },
         ["<M-X>"] = { ":x<CR>", desc = "Save and quit only if there are changes in the file" },
         ["<Esc>"] = {
-            [[:noh<CR>:lua require("notify").dismiss()<CR>:lua require("luasnip").unlink_current()<CR><Esc>]],
+            [[:noh<CR>:lua require("snacks").notifier.hide()<CR>:lua require("luasnip").unlink_current()<CR><Esc>]],
             desc = "Clear search highlight",
         },
         ["<Leader>"] = {
@@ -358,7 +356,7 @@ USER.mappings = {
                 ["g"] = { "<CMD>Telescope live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim
                 ["H"] = { "<CMD>Telescope highlights<CR>", desc = "Highlight groups" }, -- telescope.nvim
                 ["h"] = { "<CMD>Telescope help_tags<CR>", desc = "Vim help" }, -- telescope.nvim
-                ["n"] = { telescope_picker("notify"), desc = "Notify history" }, -- telescope.nvimnvim -- notify
+                ["n"] = { function() require("snacks").notifier.show_history() end, desc = "Notify history" }, -- snacks.nvim
                 ["o"] = { "<CMD>Telescope vim_options<CR>", desc = "Vim options" }, -- telescope.nvim
                 ["R"] = { telescope_picker("frecency"), desc = "Frecency" }, -- telescope.nvim
                 ["r"] = { telescope_picker("oldFiles"), desc = "Recent files" }, -- telescope.nvim
@@ -388,6 +386,7 @@ USER.mappings = {
                 ["e"] = { "<CMD>LaunchDir dolphin<CR>", desc = "Open cwd in system file browser" },
                 ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", desc = "Open URL under cursor in browser" },
                 ["t"] = { "<CMD>terminal<CR>i", desc = "Start a terminal session within Neovim" },
+                ["g"] = { function() require("snacks").gitbrowse() end, desc = "Git Browse" }, -- snacks.nvim
             },
         },
     },

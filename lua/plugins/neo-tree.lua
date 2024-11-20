@@ -65,6 +65,14 @@ local function setup(neo_tree)
                     ol.fillchars:append(icons.fillchars.custom) -- Remove eob character
                 end,
             },
+            {
+                event = "file_moved",
+                handler = function(data) require("snacks").rename.on_rename_file(data.source, data.destination) end,
+            },
+            {
+                event = "file_renamed",
+                handler = function(data) require("snacks").rename.on_rename_file(data.source, data.destination) end,
+            },
         },
         default_component_configs = {
             container = {
@@ -265,6 +273,8 @@ return {
             "MunifTanjim/nui.nvim",
             -- This plugins prompts the user to pick a window and returns the window id of the picked window
             "s1n7ax/nvim-window-picker",
+            -- A collection of small QoL plugins for Neovim
+            "folke/snacks.nvim",
         },
         config = function()
             local loaded, neo_tree = pcall(require, "neo-tree")

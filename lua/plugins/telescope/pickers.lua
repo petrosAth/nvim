@@ -65,18 +65,6 @@ function M.oldFiles()
     })
 end
 
-function M.notify()
-    telescope.extensions.notify.notify({
-        results_title = "Results",
-        prompt_title = "Notifications",
-        layout_strategy = "vertical",
-        layout_config = {
-            prompt_position = "bottom",
-        },
-        borderchars = M.borderchars,
-    })
-end
-
 function M.possession()
     telescope.extensions.possession.list({
         previewer = false,
