@@ -9,6 +9,11 @@ local function setup(trouble)
                 colorcolumn = "",
             },
         },
+        keys = {
+            o = "jump_split",
+            v = "jump_vsplit",
+            D = { action = "delete" }
+        },
         icons = {
             indent = {
                 top = "  ",
