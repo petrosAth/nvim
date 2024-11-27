@@ -31,8 +31,6 @@ return {
         -- to be exceptionally fast and versatile.
         "rebelot/heirline.nvim",
         dependencies = {
-            -- This is the Neovim implementation of the famous Emacs Hydra package.
-            "anuvyklack/hydra.nvim",
             -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
             "nvim-tree/nvim-web-devicons",
             -- Configs for the Nvim LSP client (:help lsp).

@@ -239,6 +239,20 @@ M.FileNameBlock = utils.insert(
 )
 
 M.Paste = {
+    init = function(self)
+        self.mode = vim.api.nvim_get_mode()["mode"]
+    end,
+
+    -- Re-evaluate the component only on ModeChanged event!
+    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
+    update = {
+        "ModeChanged",
+        pattern = "*:*",
+        callback = vim.schedule_wrap(function()
+            vim.cmd("redrawstatus")
+        end),
+    },
+
     condition = function()
         return vim.o.paste
     end,
@@ -253,6 +267,20 @@ M.Paste = {
 }
 
 M.Wrap = {
+    init = function(self)
+        self.mode = vim.api.nvim_get_mode()["mode"]
+    end,
+
+    -- Re-evaluate the component only on ModeChanged event!
+    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
+    update = {
+        "ModeChanged",
+        pattern = "*:*",
+        callback = vim.schedule_wrap(function()
+            vim.cmd("redrawstatus")
+        end),
+    },
+
     condition = function()
         return vim.o.wrap
     end,
@@ -358,6 +386,20 @@ M.CursorLine = {
 }
 
 M.LinesTotal = {
+    init = function(self)
+        self.mode = vim.api.nvim_get_mode()["mode"]
+    end,
+
+    -- Re-evaluate the component only on ModeChanged event!
+    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
+    update = {
+        "ModeChanged",
+        pattern = "*:*",
+        callback = vim.schedule_wrap(function()
+            vim.cmd("redrawstatus")
+        end),
+    },
+
     { t.Separator.left },
     { provider = string.format("%s %%L", i.linesTotal[1]) },
     { t.Separator.right },
