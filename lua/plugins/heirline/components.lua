@@ -183,7 +183,9 @@ local FilePath = {
             filePath = ""
         end
 
-        return string.format("%%<%s /%s%s", i.root_dir[1], filePath, t.Separator.mid.provider)
+        filePath = string.format("%%<%s /%s", i.root_dir[1], filePath)
+
+        return string.gsub(filePath, "/", string.format(" %s ", i.arrow.hollow.r))
     end,
 }
 
