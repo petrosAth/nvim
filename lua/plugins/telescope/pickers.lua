@@ -4,46 +4,6 @@ local b = USER.styling.borders.default
 local bn = USER.styling.borders.none
 local M = {}
 
-M.window_size = {
-    width = {
-        tiny = {
-            0.3,
-            min = 40,
-            max = 60,
-        },
-        small = {
-            0.6,
-            min = 90,
-            max = 110,
-        },
-        medium = {
-            0.6,
-            min = 100,
-            max = 130,
-        },
-        large = 0.9,
-    },
-    height = {
-        tiny = {
-            0.3,
-            min = 20,
-            max = 40,
-        },
-        small = {
-            0.5,
-            min = 20,
-            max = 40,
-        },
-        medium = {
-            0.8,
-            min = 40,
-            max = 50,
-        },
-        large = 0.9,
-    },
-}
-local ws = M.window_size
-
 M.borderchars = {
 --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
     prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
@@ -68,23 +28,18 @@ end
 function M.possession()
     telescope.extensions.possession.list({
         previewer = false,
+        results_title = false,
+        sorting_strategy = "ascending",
         layout_strategy = "vertical",
         layout_config = {
-            width = ws.width.tiny,
-            height = ws.height.tiny,
+            prompt_position = "top",
+            width = { 0.3, max = 80 },
+            height = { 0.3, max = 50 },
         },
     })
 end
 
-function M.luasnip()
-    telescope.extensions.luasnip.luasnip({
-        layout_config = {
-            preview_width = 0.3,
-            width = ws.width.large,
-            height = ws.height.large,
-        },
-    })
-end
+function M.luasnip() telescope.extensions.luasnip.luasnip() end
 
 function M.file_browser()
     telescope.extensions.file_browser.file_browser({
@@ -103,20 +58,12 @@ local lsp_layout = {
     borderchars = M.borderchars,
 }
 
-function M.lsp_references()
-    builtin.lsp_references(lsp_layout)
-end
+function M.lsp_references() builtin.lsp_references(lsp_layout) end
 
-function M.lsp_definitions()
-    builtin.lsp_definitions(lsp_layout)
-end
+function M.lsp_definitions() builtin.lsp_definitions(lsp_layout) end
 
-function M.lsp_type_definitions()
-    builtin.lsp_type_definitions(lsp_layout)
-end
+function M.lsp_type_definitions() builtin.lsp_type_definitions(lsp_layout) end
 
-function M.lsp_implementations()
-    builtin.lsp_implementations(lsp_layout)
-end
+function M.lsp_implementations() builtin.lsp_implementations(lsp_layout) end
 
 return M

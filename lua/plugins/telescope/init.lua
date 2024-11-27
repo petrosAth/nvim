@@ -1,49 +1,27 @@
-local function setup(telescope, icons, borders)
+local function setup(telescope)
+    local i = USER.styling.icons
+    local b = USER.styling.borders.default
+    local bn = USER.styling.borders.none
     local actions = require("telescope.actions")
     local actions_layout = require("telescope.actions.layout")
     local fb_actions = require("telescope").extensions.file_browser.actions
-    local pickers = require("plugins.telescope.pickers").window_size
 
     telescope.setup({
         defaults = {
-            prompt_prefix = " " .. icons.search[1] .. "  ",
-            selection_caret = icons.point[1] .. " ",
-            multi_icon = " " .. icons.select[1],
+            prompt_prefix = string.format(" %s  ", i.search[1]),
+            selection_caret = string.format("%s ", i.point[1]),
+            multi_icon = string.format(" %s", i.select[1]),
             entry_prefix = "  ",
             winblend = USER.styling.variables.transparency,
             color_devicons = true,
             border = true,
             borderchars = {
-                prompt = {
-                    borders.none.t,
-                    borders.default.r,
-                    borders.default.b,
-                    borders.default.l,
-                    borders.default.l,
-                    borders.default.r,
-                    borders.default.br,
-                    borders.default.bl,
-                },
-                results = {
-                    borders.default.t,
-                    borders.default.r,
-                    borders.default.b,
-                    borders.default.l,
-                    borders.default.tl,
-                    borders.default.tr,
-                    borders.default.br,
-                    borders.default.bl,
-                },
-                preview = {
-                    borders.default.t,
-                    borders.default.r,
-                    borders.default.b,
-                    borders.default.l,
-                    borders.default.tl,
-                    borders.default.tr,
-                    borders.default.br,
-                    borders.default.bl,
-                },
+            --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "▐",   "▌"   }
+                prompt  = { bn.t,  b.r,   b.b,   b.l,   b.l,   b.r,   b.br,  b.bl, },
+            --  results = { "🬂",   "▐",   "🬭",   "▌",   "🬛",   "🬫",   "🬷",   "🬲"   },
+                results = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl, },
+            --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+                preview = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl, },
             },
             initial_mode = "insert",
             path_display = {
@@ -72,15 +50,17 @@ local function setup(telescope, icons, borders)
             layout_config = {
                 horizontal = {
                     mirror = false,
-                    preview_width = 0.6,
-                    width = pickers.width.large,
-                    height = pickers.height.large,
+                    preview_cutoff = 20,
+                    preview_width = { 0.6, max = 140 },
+                    width = { 0.9, max = 260 },
+                    height = { 0.9, max = 60 },
                 },
                 vertical = {
-                    mirror = false,
+                    mirror = true,
+                    preview_cutoff = 20,
                     preview_height = 0.4,
-                    width = pickers.width.medium,
-                    height = pickers.height.medium,
+                    width = { 0.8, max = 140 },
+                    height = { 0.8, max = 80 },
                 },
             },
             selection_strategy = "reset",
@@ -180,7 +160,7 @@ local function setup(telescope, icons, borders)
             file_browser = {
                 grouped = true,
                 depth = 1,
-                dir_icon = icons.dir[1],
+                dir_icon = i.dir[1],
                 dir_icon_hl = "Directory",
                 -- disables netrw and use telescope-file-browser in its place
                 hijack_netrw = false,
@@ -293,9 +273,7 @@ return {
                 return
             end
 
-            local icons = USER.styling.icons
-            local borders = USER.styling.borders
-            setup(telescope, icons, borders)
+            setup(telescope)
         end,
     },
 }
