@@ -6,6 +6,15 @@ local function setup(statuscol)
         segments = {
             {
                 sign = {
+                    name = { ".*" },
+                    namespace = { ".*" },
+                    maxwidth = 2,
+                    colwidth = 1,
+                },
+                click = "v:lua.ScSa",
+            },
+            {
+                sign = {
                     namespace = { "diagnostic/signs" },
                     maxwidth = 1,
                     colwidth = 2,

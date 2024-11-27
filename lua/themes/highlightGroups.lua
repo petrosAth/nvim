@@ -376,6 +376,13 @@ function M.get_highlight_groups(palette)
         LeapLabelSelected = { fg = p.cBg, bg = p.cSelect },
         LeapBackdrop = { fg = p.cFgDim },
 
+        -- nvim-lightbulb
+        LightBulbSign = { fg = p.cYellow },
+        LightBulbVirtualText = { fg = p.cYellow },
+        LightBulbFloatWin = { fg = p.cYellow },
+        LightBulbNumber = { fg = p.cYellow },
+        LightBulbLine = { fg = p.cYellow },
+
         -- mini.nvim
         MiniCursorword = { link = "Visual" },
         MiniCursorwordCurrent = { bold = true },

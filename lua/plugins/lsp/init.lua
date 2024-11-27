@@ -74,6 +74,8 @@ return {
             "SmiteshP/nvim-navic",
             -- A pretty window for previewing, navigating and editing your LSP locations
             "DNLHC/glance.nvim",
+            -- VSCode 💡 for neovim's built-in LSP.
+            "kosayoda/nvim-lightbulb",
         },
         config = function()
             -- Setup language servers and null-ls
@@ -84,6 +86,7 @@ return {
             require("plugins.lsp.signature").setup(icons, border)
             require("plugins.lsp.inc-rename").setup()
             require("plugins.lsp.glance").setup(icons, borders)
+            require("plugins.lsp.nvim-lightbulb").setup()
         end,
     },
 }
