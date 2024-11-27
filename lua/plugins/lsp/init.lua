@@ -76,6 +76,8 @@ return {
             "DNLHC/glance.nvim",
             -- VSCode 💡 for neovim's built-in LSP.
             "kosayoda/nvim-lightbulb",
+            -- Fully customizable previewer for LSP code actions
+            "aznhe21/actions-preview.nvim",
         },
         config = function()
             -- Setup language servers and null-ls
@@ -87,6 +89,7 @@ return {
             require("plugins.lsp.inc-rename").setup()
             require("plugins.lsp.glance").setup(icons, borders)
             require("plugins.lsp.nvim-lightbulb").setup()
+            require("plugins.lsp.actions-preview").setup()
         end,
     },
 }

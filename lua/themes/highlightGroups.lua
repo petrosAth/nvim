@@ -69,6 +69,9 @@ function M.get_highlight_groups(palette)
         WinSeparator = { fg = p.cFill2, bg = p.cBg },
         VertSplit = { link = "WinSeparator" },
         QuickFixLine = { fg = p.cBg, bg = p.cCyan },
+        Added = { link = "DiffAdd" },
+        Changed = { link = "DiffChange" },
+        Removed = { link = "DiffDelete" },
         DiffText = { sp = p.cYellowDim, underdashed = true },
         DiffAdd = { bg = p.cGreenDim },
         DiffChange = { bg = p.cYellowDim },
@@ -259,6 +262,10 @@ function M.get_highlight_groups(palette)
         ["@tag"] = { fg = p.cBlue },
         ["@tag.attribute"] = { fg = p.cViolet },
         ["@tag.delimiter"] = { fg = p.cBlue },
+
+        ["@diff.minus"] = { link = "DiffAdd" },
+        ["@diff.delta"] = { link = "DiffChange" },
+        ["@diff.plus"] = { link = "DiffDelete" },
     }
 
     g.StatusBars = {
@@ -590,7 +597,7 @@ function M.get_highlight_groups(palette)
         SnacksNotifierBorderTrace = { fg = p.cSelect, bg = g.editor.Normal.bg },
         SnacksNotifierError = { link = "Normal" },
         SnacksNotifierWarn = { link = "Normal" },
-        SnacksNotifierInfo = { fg = g.syntax.Comment.fg, bg = g.editor.Normal.bg },
+        SnacksNotifierInfo = { link = "Normal" },
         SnacksNotifierDebug = { link = "Normal" },
         SnacksNotifierTrace = { link = "Normal" },
 

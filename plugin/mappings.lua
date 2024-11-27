@@ -166,6 +166,7 @@ USER.mappings = {
             ["i"] = { "<CMD>lua vim.show_pos()<CR>", desc = "Show all the items at a given buffer position" },
             ["l"] = {
                 group = "LSP alternative",
+                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions" }, -- nvim-lspconfig
                 ["d"] = {
                     group = "Definitions",
                     ["t"] = { telescope_picker("lsp_definitions"), desc = "Telescope" }, -- nvim-lspconfig -- telescope.nvim
@@ -314,18 +315,18 @@ USER.mappings = {
             },
             ["l"] = {
                 group = "LSP",
-                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions" }, -- nvim-lspconfig
+                ["a"] = { function() require("actions-preview").code_actions() end, desc = "Code actions" }, -- nvim-lspconfig
                 ["d"] = { "<CMD>Glance definitions<CR>", desc = "Definitions" }, -- nvim-lspconfig -- glance.nvim
-                ["f"] = { "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", desc = "Format document" }, -- nvim-lspconfig
+                ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
-                ["h"] = { "<CMD>lua vim.diagnostic.open_float()<CR>", desc = "Line diagnostics" }, -- nvim-lspconfig
+                ["h"] = { function() vim.diagnostic.open_float() end, desc = "Line diagnostics" }, -- nvim-lspconfig
                 ["i"] = { "<CMD>Glance implementations<CR>", desc = "Implementations" }, -- nvim-lspconfig -- glance.nvim
-                ["K"] = { "<CMD>lua vim.lsp.buf.hover()<CR>", desc = "Hover symbol" }, -- nvim-lspconfig
+                ["K"] = { function() vim.lsp.buf.hover() end, desc = "Hover symbol" }, -- nvim-lspconfig
                 ["q"] = { "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["Q"] = { "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["r"] = { "<CMD>Glance references<CR>", desc = "References" }, -- nvim-lspconfig -- glance.nvim
                 ["R"] = { ":IncRename ", desc = "Rename symbol", silent = false }, -- nvim-lspconfig -- inc-rename
-                ["s"] = { "<CMD>lua vim.lsp.buf.signature_help()<CR>", desc = "Signature help" }, -- nvim-lspconfig
+                ["s"] = { function() vim.lsp.buf.signature_help() end, desc = "Signature help" }, -- nvim-lspconfig
                 ["t"] = { "<CMD>Glance type_definitions<CR>", desc = "Type Definitions" }, -- nvim-lspconfig -- glance.nvim
             },
             ["m"] = {
