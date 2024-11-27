@@ -212,18 +212,6 @@ local function setup(telescope)
                     },
                 },
             },
-            frecency = {
-                db_root = string.format("%s/databases", vim.fn.stdpath("data")),
-                show_scores = true,
-                show_unindexed = true,
-                ignore_patterns = { "*.git/*", "*/tmp/*" },
-                disable_devicons = false,
-                workspaces = {
-                    ["Win petrosAth"] = "/mnt/c/Users/petrosAth",
-                    [".config"] = "$HOME/.config",
-                    ["Projects"] = "$HOME/Develop",
-                },
-            },
             fzf = {
                 fuzzy = true,
                 override_generic_sorter = true,
@@ -234,7 +222,7 @@ local function setup(telescope)
     })
 
     -- Load extensions
-    local extensions = { "dir", "file_browser", "frecency", "fzf", "luasnip", "possession" }
+    local extensions = { "dir", "file_browser", "fzf", "luasnip", "possession" }
     pcall(function()
         for _, ext in ipairs(extensions) do
             telescope.load_extension(ext)
@@ -255,9 +243,6 @@ return {
             -- fzf-native is a c port of fzf. It only covers the algorithm and implements few functions to support
             -- calculating the score.
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-            -- A telescope.nvim extension that offers intelligent prioritization when selecting files from your editing
-            -- history.
-            "nvim-telescope/telescope-frecency.nvim",
             -- telescope-file-browser.nvim is a file browser extension for telescope.nvim. It supports synchronized
             -- creation, deletion, renaming, and moving of files and folders powered by telescope.nvim and plenary.nvim
             "nvim-telescope/telescope-file-browser.nvim",

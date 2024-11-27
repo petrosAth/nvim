@@ -360,8 +360,6 @@ USER.mappings = {
                 ["h"] = { "<CMD>Telescope help_tags<CR>", desc = "Vim help" }, -- telescope.nvim
                 ["n"] = { function() require("snacks").notifier.show_history() end, desc = "Notify history" }, -- snacks.nvim
                 ["o"] = { "<CMD>Telescope vim_options<CR>", desc = "Vim options" }, -- telescope.nvim
-                ["R"] = { telescope_picker("frecency"), desc = "Frecency" }, -- telescope.nvim
-                ["r"] = { telescope_picker("oldFiles"), desc = "Recent files" }, -- telescope.nvim
                 ["s"] = { telescope_picker("possession"), desc = "Search sessions" }, -- telescope.nvim -- possession.nvim
                 ["S"] = { telescope_picker("luasnip"), desc = "List available snippets" }, -- telescope-luasnip.nvim
                 ["T"] = { "<CMD>TodoTelescope<CR>", desc = "Show TODO comments" }, -- todo-comments

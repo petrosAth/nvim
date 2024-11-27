@@ -13,18 +13,6 @@ M.borderchars = {
     preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
 }
 
-function M.frecency()
-    telescope.extensions.frecency.frecency({
-        prompt_title = "Frecent Files",
-    })
-end
-
-function M.oldFiles()
-    builtin.oldfiles({
-        prompt_title = "Recent Files",
-    })
-end
-
 function M.possession()
     telescope.extensions.possession.list({
         previewer = false,

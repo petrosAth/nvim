@@ -55,8 +55,6 @@ local function setup(alpha)
     local buttons_navigation = {
         type = "group",
         val = {
-            button("SPC s r", string.format("%s %s Recent files", icons.alphaCursor[1], icons.history[1])),
-            button("SPC s R", string.format("%s %s Frecent files", icons.alphaCursor[1], icons.history[1])),
             button("SPC s f", string.format("%s %s File search", icons.alphaCursor[1], icons.search[1])),
             button("SPC s g", string.format("%s %s ripGREP search", icons.alphaCursor[1], icons.grep[1])),
         },
