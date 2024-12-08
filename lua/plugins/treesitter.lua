@@ -58,7 +58,9 @@ local function setup(nvim_treesitter)
             },
         },
     })
+end
 
+local function setup_context_commentstring()
     local loaded, context_commentstring = pcall(require, "ts_context_commentstring")
     if not loaded then
         USER.loading_error_msg("ts_context_commentstring")
@@ -88,6 +90,7 @@ return {
             end
 
             setup(nvim_treesitter)
+            setup_context_commentstring()
         end,
     },
 }
