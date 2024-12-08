@@ -34,6 +34,7 @@ local function lsp_notification_config()
                 title = client.name,
                 opts = function(notif)
                     notif.icon = #progress[client.id] == 0 and icons.lsp.loaded[1]
+                        ---@diagnostic disable-next-line: undefined-field
                         or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
                 end,
             })
@@ -76,22 +77,7 @@ local function setup(snacks)
         rename = { enabled = true },
         statuscolumn = { enabled = false },
         terminal = { enabled = false },
-        toggle = {
-            enabled = true,
-            map = vim.keymap.set, -- keymap.set function to use
-            which_key = true, -- integrate with which-key to show enabled/disabled icons and colors
-            notify = true, -- show a notification when toggling
-            -- icons for enabled/disabled states
-            icon = {
-                enabled = " ",
-                disabled = " ",
-            },
-            -- colors for enabled/disabled states
-            color = {
-                enabled = "green",
-                disabled = "yellow",
-            },
-        },
+        toggle = { enabled = true },
         win = { enabled = false },
         words = { enabled = false },
         styles = {
@@ -107,7 +93,6 @@ local function setup(snacks)
                     { borders.l, "FloatBorder" },
                 },
                 minimal = true,
-                title = " Notification History ",
                 width = 100,
                 height = 0.6,
                 wo = {
@@ -126,16 +111,30 @@ local function setup(snacks)
     })
 end
 
+local function create_autocmd(snacks)
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "VeryLazy",
+        callback = function()
+            snacks.toggle.option("spell", { name = "Spelling" }):map("<F1>s")
+            snacks.toggle.option("wrap", { name = "Wrap" }):map("<F1>w")
+            snacks.toggle.option("cursorcolumn", { name = "Cursor column" }):map("<F1>c")
+            snacks.toggle.diagnostics():map("<F1>d")
+            snacks.toggle
+                .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+                :map("<F1>C")
+            snacks.toggle.treesitter():map("<F1>t")
+            snacks.toggle.inlay_hints():map("<F1>h")
+            snacks.toggle.profiler():map("<F1>pp")
+            snacks.toggle.profiler_highlights():map("<F1>ph")
+        end,
+    })
+end
+
 return {
     -- A collection of small QoL plugins for Neovim
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    dependencies = {
-        -- (Neo)Vim plugin for automatically highlighting other uses of the word under the cursor using either LSP,
-        -- Tree-sitter, or regex matching.
-        "RRethy/vim-illuminate",
-    },
     config = function()
         local loaded, snacks = pcall(require, "snacks")
         if not loaded then
@@ -144,22 +143,7 @@ return {
         end
 
         setup(snacks)
+        create_autocmd(snacks)
         lsp_notification_config()
-    end,
-    init = function()
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "VeryLazy",
-            callback = function()
-                require("snacks").toggle.option("spell", { name = "Spelling" }):map("<F1>s")
-                require("snacks").toggle.option("wrap", { name = "Wrap" }):map("<F1>w")
-                require("snacks").toggle.option("cursorcolumn", { name = "Cursor column" }):map("<F1>c")
-                require("snacks").toggle.diagnostics():map("<F1>d")
-                require("snacks").toggle
-                    .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-                    :map("<F1>C")
-                require("snacks").toggle.treesitter():map("<F1>t")
-                require("snacks").toggle.inlay_hints():map("<F1>h")
-            end,
-        })
     end,
 }

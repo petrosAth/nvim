@@ -74,7 +74,6 @@ return {
     {
         -- This plugin adds indentation guides to all lines (including empty lines).
         "lukas-reineke/indent-blankline.nvim",
-        -- commit = "9637670896b68805430e2f72cf5d16be5b97a22a",
         dependencies = {
             -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter
             -- in Neovim and to provide some basic functionality such as highlighting based on it

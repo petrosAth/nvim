@@ -6,6 +6,7 @@ end
 local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
 
 local function stylize_markdown()
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.lsp.util.stylize_markdown = function(bufnr, contents, opts)
         contents = vim.lsp.util._normalize_markdown(contents, {
             width = vim.lsp.util._make_floating_popup_size(contents, opts),
