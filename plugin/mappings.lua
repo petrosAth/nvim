@@ -93,7 +93,7 @@ USER.mappings = {
             ["d"] = { desc = "Next diagnostic" }, -- lsp-config
             ["M"] = { desc = "Next end of function" }, -- Assigned by nvim-treesitter-textobjects
             ["m"] = { desc = "Next function" }, -- Assigned by nvim-treesitter-textobjects
-            ["r"] = { function() require("illuminate").goto_next_reference("wrap") end, desc = "Next Reference" }, -- snacks.nvim
+            ["r"] = { function() require("illuminate").goto_next_reference("wrap") end, desc = "Next Reference" }, -- vim-illuminate
             ["t"] = { function() vim.cmd.tabnext() end, desc = "Next tab" },
         },
         ["["] = {
@@ -107,7 +107,7 @@ USER.mappings = {
             ["d"] = { desc = "Previous diagnostic" }, -- lsp-config
             ["M"] = { desc = "Previous end of function" }, -- Assigned by nvim-treesitter-textobjects
             ["m"] = { desc = "Previous function" }, -- Assigned by nvim-treesitter-textobjects
-            ["r"] = { function() require("illuminate").goto_prev_reference("wrap") end, desc = "Previous Reference" }, -- snacks.nvim
+            ["r"] = { function() require("illuminate").goto_prev_reference("wrap") end, desc = "Previous Reference" }, -- vim-illuminate
             ["t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }, -- Assigned by Hydra.nvim
         },
         ["<F1>"] = { group = "Toggle" },
