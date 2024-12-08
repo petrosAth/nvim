@@ -76,21 +76,34 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(show_inlay_hints) end
 end
 
-local function setup_language_servers(lspconfig, servers, handler_opts, root_files)
+local function setup_language_servers(lspconfig, servers, handlers, root_files)
     for _, name in ipairs(servers) do
         if name == "bashls" then
             lspconfig[name].setup({
                 filetypes = { "makefile", "sh", "zsh" },
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         elseif name == "emmet_language_server" then
             lspconfig[name].setup({
-                filetypes = { "html", "php" },
+                filetypes = {
+                    "css",
+                    "eruby",
+                    "html",
+                    "htmldjango",
+                    "javascriptreact",
+                    "less",
+                    "php",
+                    "pug",
+                    "sass",
+                    "scss",
+                    "typescriptreact",
+                    "htmlangular",
+                },
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         elseif name == "eslint" then
             lspconfig[name].setup({
@@ -130,7 +143,7 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
                 },
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         elseif name == "intelephense" then
             lspconfig[name].setup({
@@ -139,7 +152,7 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
                 },
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         elseif name == "omnisharp" then
             local install_path = string.format("%s/mason/packages", vim.fn.stdpath("data"))
@@ -159,7 +172,7 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
                 end,
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         elseif name == "lua_ls" then
             -- Make the server aware of Neovim runtime files when editing Neovim config
@@ -184,7 +197,7 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
                 },
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         elseif name == "ts_ls" then
             lspconfig[name].setup({
@@ -206,13 +219,13 @@ local function setup_language_servers(lspconfig, servers, handler_opts, root_fil
                     on_attach(client, bufnr)
                 end,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         else
             lspconfig[name].setup({
                 on_attach = on_attach,
                 capabilities = capabilities(),
-                handlers = handler_opts,
+                handlers = handlers,
             })
         end
     end
