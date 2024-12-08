@@ -1,14 +1,6 @@
 local M = {}
 
-function M.setup()
-    local loaded, nvim_lightbulb = pcall(require, "nvim-lightbulb")
-    if not loaded then
-        USER.loading_error_msg("nvim-lightbulb")
-        return
-    end
-
-    local icons = USER.styling.icons
-
+local function setup(nvim_lightbulb, icons)
     nvim_lightbulb.setup({
         code_lenses = true,
         sign = {
@@ -29,6 +21,16 @@ function M.setup()
             ft = {},
         },
     })
+end
+
+function M.init(icons)
+    local loaded, nvim_lightbulb = pcall(require, "nvim-lightbulb")
+    if not loaded then
+        USER.loading_error_msg("nvim-lightbulb")
+        return
+    end
+
+    setup(nvim_lightbulb, icons)
 end
 
 return M

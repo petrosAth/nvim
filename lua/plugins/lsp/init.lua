@@ -85,11 +85,11 @@ return {
             require("plugins.lsp.install").setup(servers)
 
             -- Setup lsp utilities
-            require("plugins.lsp.signature").setup(icons, border)
-            require("plugins.lsp.inc-rename").setup()
-            require("plugins.lsp.glance").setup(icons, borders)
-            require("plugins.lsp.nvim-lightbulb").setup()
-            require("plugins.lsp.actions-preview").setup()
+            require("plugins.lsp.signature").init(icons, border)
+            require("plugins.lsp.inc-rename").init()
+            require("plugins.lsp.glance").init(icons, borders)
+            require("plugins.lsp.nvim-lightbulb").init(icons)
+            require("plugins.lsp.actions-preview").init(icons, borders)
         end,
     },
 }

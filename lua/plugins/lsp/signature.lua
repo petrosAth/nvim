@@ -1,12 +1,6 @@
 local M = {}
 
-function M.setup(icons, border)
-    local loaded, lsp_signature = pcall(require, "lsp_signature")
-    if not loaded then
-        USER.loading_error_msg("lsp_signature.nvim")
-        return
-    end
-
+local function setup(lsp_signature, icons, border)
     local config = {
         floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
         hint_enable = false, -- virtual hint enable
@@ -27,6 +21,16 @@ function M.setup(icons, border)
             lsp_signature.on_attach(config, bufnr)
         end,
     })
+end
+
+function M.init(icons, border)
+    local loaded, lsp_signature = pcall(require, "lsp_signature")
+    if not loaded then
+        USER.loading_error_msg("lsp_signature.nvim")
+        return
+    end
+
+    setup(lsp_signature, icons, border)
 end
 
 return M

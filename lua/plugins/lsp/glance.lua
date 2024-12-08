@@ -1,14 +1,9 @@
 local M = {}
 
-function M.setup(icons, borders)
-    local loaded, glance = pcall(require, "glance")
-    if not loaded then
-        USER.loading_error_msg("glance.nvim")
-        return
-    end
-
+local function setup(glance, icons, borders)
     local actions = glance.actions
     local fillchars = icons.fillchars.global
+
     glance.setup({
         -- height = 18, -- Height of the window
         height = 20, -- Height of the window
@@ -75,6 +70,16 @@ function M.setup(icons, borders)
             enable = true, -- Available strating from nvim-0.8+
         },
     })
+end
+
+function M.init(icons, borders)
+    local loaded, glance = pcall(require, "glance")
+    if not loaded then
+        USER.loading_error_msg("glance.nvim")
+        return
+    end
+
+    setup(glance, icons, borders)
 end
 
 return M

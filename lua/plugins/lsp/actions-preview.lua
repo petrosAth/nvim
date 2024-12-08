@@ -1,14 +1,7 @@
 local M = {}
 
-function M.setup()
-    local loaded, actions_preview = pcall(require, "actions-preview")
-    if not loaded then
-        USER.loading_error_msg("actions-preview.nvim")
-        return
-    end
-
-    local i = USER.styling.icons
-    local b = USER.styling.borders.default
+local function setup(actions_preview, icons, borders)
+    local b = borders
     local bn = USER.styling.borders.none
 
     actions_preview.setup({
@@ -22,7 +15,7 @@ function M.setup()
             sorting_strategy = "ascending",
             layout_strategy = "vertical",
             -- show_line = false,
-            prompt_prefix = string.format(" %s  ", i.lsp.action[1]),
+            prompt_prefix = string.format(" %s  ", icons.lsp.action[1]),
             layout_config = {
                 mirror = false,
                 prompt_position = "top",
@@ -32,15 +25,25 @@ function M.setup()
                 preview_height = function(_, _, max_lines) return max_lines - 15 end,
             },
             borderchars = {
-            --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   }
-                prompt  = { b.t,   b.r,   b.b,   b.l,   b.tl,  b.tr,  b.br,  b.bl  },
-            --  results = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
-                results = { bn.t,  b.r,   b.b,   b.l,   b.l,   b.r,   b.br,  b.bl  },
-            --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
-                preview = { b.t,   b.r,   bn.b,  b.l,   b.tl,  b.tr,  b.r,   b.l   },
+                --  prompt  = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   }
+                prompt = { b.t, b.r, b.b, b.l, b.tl, b.tr, b.br, b.bl },
+                --  results = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+                results = { bn.t, b.r, b.b, b.l, b.l, b.r, b.br, b.bl },
+                --  preview = { "🬂",   "▐",   "🬭",   "▌",   "🬕",   "🬨",   "🬷",   "🬲"   },
+                preview = { b.t, b.r, bn.b, b.l, b.tl, b.tr, b.r, b.l },
             },
         },
     })
+end
+
+function M.init(icons, borders)
+    local loaded, actions_preview = pcall(require, "actions-preview")
+    if not loaded then
+        USER.loading_error_msg("actions-preview.nvim")
+        return
+    end
+
+    setup(actions_preview, icons, borders)
 end
 
 return M
