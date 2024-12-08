@@ -5,8 +5,7 @@ local function setup(which_key)
     which_key.setup({
         preset = "modern",
         win = {
-            no_overlap = true,
-            width = { max = 240 },
+            width = { max = 160 },
             border = {
                 borders.tl,
                 borders.t,
@@ -26,7 +25,6 @@ local function setup(which_key)
             separator = icons.arrow.hollow.r,
             group = string.format("%s ", icons.key[1]),
             ellipsis = "…",
-            mappings = true,
             rules = false,
             keys = {
                 Up = string.format("%s ", icons.arrow.hollow.u),
