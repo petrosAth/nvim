@@ -49,6 +49,10 @@ local function setup(snacks)
     snacks.setup({
         bigfile = {
             setup = function(ctx)
+                vim.cmd("NoMatchParen")
+                vim.cmd("SatelliteDisable")
+                vim.cmd("Gitsigns detach")
+                snacks.util.wo(0, { foldmethod = "manual", statuscolumn = "", conceallevel = 0 })
                 vim.b.minianimate_disable = true
                 vim.schedule(function() vim.bo[ctx.buf].syntax = ctx.ft end)
                 require("illuminate").pause()
