@@ -12,9 +12,7 @@ local DisableWinBar = {
                 filetype = t.Disable.winBar.filetype,
             })
     end,
-    init = function()
-        vim.opt_local.winbar = ""
-    end,
+    init = function() vim.opt_local.winbar = "" end,
 }
 
 local WinBarSpecialNC = {
@@ -46,9 +44,7 @@ local WinBarSpecialNC = {
 }
 
 local WinBarNC = {
-    condition = function()
-        return not conditions.is_active()
-    end,
+    condition = function() return not conditions.is_active() end,
     {
         {
             c.FileReadOnly,
@@ -95,9 +91,7 @@ local WinBarSpecial = {
 }
 
 local WinBar = {
-    condition = function()
-        return conditions.is_active()
-    end,
+    condition = function() return conditions.is_active() end,
     {
         {
             c.FileReadOnly,
