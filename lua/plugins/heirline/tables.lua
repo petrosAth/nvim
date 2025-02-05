@@ -22,9 +22,12 @@ M.Hide = {
     FileEncoding = 30,
     FileReadOnly = 70,
     FileModified = 70,
-    FilePath = 50,
-    FileName = 60,
-    LspSymbol = 55,
+    FileNameBlock = {
+        path = 30,
+        icon = 50,
+        name = 60,
+        symbol = 40
+    },
     Spell = {
         icon = 20,
         value = 40,

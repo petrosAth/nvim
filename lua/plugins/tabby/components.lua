@@ -187,9 +187,8 @@ M.file_icon = function(type, id, bg)
     local win_id = type == "win" and id or vim.api.nvim_tabpage_get_win(id)
     local buf_id = vim.api.nvim_win_get_buf(win_id)
     local fullPath = vim.api.nvim_buf_get_name(buf_id)
-    local name = vim.fn.fnamemodify(fullPath, ":t")
-    local extension = vim.fn.fnamemodify(name, ":e")
-    local icon, fg = require("nvim-web-devicons").get_icon_color(name, extension, { default = true })
+    local extension = vim.fn.fnamemodify(fullPath, ":e")
+    local icon, fg = require("nvim-web-devicons").get_icon_color(fullPath, extension, { default = true })
     local filetype = vim.bo[buf_id].filetype
     local buftype = vim.bo[buf_id].buftype
     local buf_label = u.get_buf_label(fullPath, buftype, filetype)

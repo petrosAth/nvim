@@ -20,17 +20,19 @@ local FileTypeBlock = {
     end,
     init = function(self)
         -- FileTypeIcon
-        local fileName = vim.api.nvim_buf_get_name(0)
-        local extension = vim.fn.fnamemodify(fileName, ":e")
-        self.icon = require("nvim-web-devicons").get_icon(fileName, extension)
-        -- FileType
+        local fullPath = vim.api.nvim_buf_get_name(0)
+        local extension = vim.fn.fnamemodify(fullPath, ":e")
+        self.icon, self.icon_fg = require("nvim-web-devicons").get_icon_color(fullPath, extension, { default = true })
         self.fileType = vim.bo.filetype
     end,
 }
 
-local FileTypeIcon = {
+local FileIcon = {
     provider = function(self)
         return self.icon and string.format("%s%s", self.icon, t.Separator.mid.provider)
+    end,
+    hl = function(self)
+        return { fg = self.icon_fg }
     end,
 }
 
@@ -43,7 +45,7 @@ local FileType = {
 M.FileTypeBlock = utils.insert(
     FileTypeBlock,
     { flexible = t.Hide.FileTypeBlock.value, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.FileTypeBlock.icon, { FileTypeIcon }, { t.Null } },
+    { flexible = t.Hide.FileTypeBlock.icon, { FileIcon }, { t.Null } },
     { flexible = t.Hide.FileTypeBlock.icon, { t.Null } },
     { flexible = t.Hide.FileTypeBlock.value, { FileType }, { t.Null } },
     { flexible = t.Hide.FileTypeBlock.value, { t.Separator.right }, { t.Null } }
@@ -162,6 +164,8 @@ local FileNameBlock = {
     init = function(self)
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
+        local extension = vim.fn.fnamemodify(self.fileName, ":e")
+        self.icon, self.icon_fg = require("nvim-web-devicons").get_icon_color(self.fileName, extension, { default = true })
     end,
 }
 
@@ -197,7 +201,7 @@ local FileName = {
             return "[No Name]"
         end
 
-        return string.format("%s%s %s%s", t.Separator.mid.provider, i.file[1], fileName, t.Separator.mid.provider)
+        return string.format("%s", fileName)
     end,
     hl = function()
         if conditions.is_active() then
@@ -221,7 +225,7 @@ local LspSymbol = {
 
         local context = navic.get_location()
         if context ~= nil and context ~= "" then
-            symbol = string.format(" %s %s", i.arrow.hollow.r, context)
+            symbol = string.format("%s %s", i.arrow.hollow.r, context)
         end
 
         return symbol
@@ -231,11 +235,13 @@ local LspSymbol = {
 
 M.FileNameBlock = utils.insert(
     FileNameBlock,
-    { flexible = t.Hide.FilePath, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.FilePath, { FilePath }, { t.Null } },
-    { flexible = t.Hide.FileName, { FileName }, { t.Null } },
-    { flexible = t.Hide.LspSymbol, { LspSymbol }, { t.Null } },
-    { flexible = t.Hide.FileName, { t.Separator.right }, { t.Null } }
+    { flexible = t.Hide.FileNameBlock.name, { t.Separator.left }, { t.Null } },
+    { flexible = t.Hide.FileNameBlock.path, { FilePath }, { t.Null } },
+    { flexible = t.Hide.FileNameBlock.icon, { FileIcon }, { t.Null } },
+    { flexible = t.Hide.FileNameBlock.name, { FileName }, { t.Null } },
+    { flexible = t.Hide.FileNameBlock.name, { t.Separator.right }, { t.Null } },
+    { flexible = t.Hide.FileNameBlock.symbol, { LspSymbol }, { t.Null } },
+    { flexible = t.Hide.FileNameBlock.name, { t.Separator.right }, { t.Null } }
 )
 
 M.Paste = {
