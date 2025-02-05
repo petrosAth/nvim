@@ -97,7 +97,10 @@ local function setup(snacks)
         terminal = { enabled = false },
         toggle = { enabled = true },
         win = { enabled = false },
-        words = { enabled = false },
+        words = {
+            debounce = 500,
+            modes = { "n", "i", "c" },
+        },
         styles = {
             ["notification.history"] = {
                 border = {
