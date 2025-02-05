@@ -7,15 +7,7 @@ local function setup(statuscol)
             {
                 sign = {
                     name = { ".*" },
-                    namespace = { ".*" },
-                    maxwidth = 2,
-                    colwidth = 1,
-                },
-                click = "v:lua.ScSa",
-            },
-            {
-                sign = {
-                    namespace = { "diagnostic/signs" },
+                    namespace = { "diagnostic/signs", ".*" },
                     maxwidth = 1,
                     colwidth = 2,
                 },
@@ -35,8 +27,8 @@ local function setup(statuscol)
                     namespace = { "gitsigns" },
                     colwidth = 2,
                 },
-                click = "v:lua.ScSa",
                 condition = { USER.is_git_repo() },
+                click = "v:lua.ScSa",
             },
             {
                 text = { builtin.foldfunc, " " },
