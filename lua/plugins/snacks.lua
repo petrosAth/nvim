@@ -79,6 +79,7 @@ local function setup(snacks)
         },
         quickfile = { enabled = false },
         rename = { enabled = true },
+        scroll = { enabled = true },
         statuscolumn = { enabled = false },
         terminal = { enabled = false },
         toggle = { enabled = true },

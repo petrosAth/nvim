@@ -132,11 +132,11 @@ USER.mappings = {
         ["j"] = { "v:count == 0 ? 'gj' : 'j'", desc = "Move using displayed lines", expr = true },
         ["k"] = { "v:count == 0 ? 'gk' : 'k'", desc = "Move using displayed lines", expr = true },
         ["n"] = {
-            "<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua MiniAnimate.execute_after('scroll', 'normal! zvzz'); require('hlslens').start()<CR>",
+            "<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>",
             desc = "Repeat the latest '/' or '?'",
         }, -- hlslens
         ["N"] = {
-            "<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua MiniAnimate.execute_after('scroll', 'normal! zvzz'); require('hlslens').start()<CR>",
+            "<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua require('hlslens').start()<CR>",
             desc = "Repeat the latest '/' or '?' backwards",
         }, -- hlslens
         ["z"] = {

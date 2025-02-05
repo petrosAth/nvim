@@ -7,8 +7,6 @@ return {
         config = function()
             -- Align text interactively
             require("plugins.mini.align").load()
-            -- Animate common Neovim actions
-            require("plugins.mini.animate").load()
             -- Buffer removing (unshow, delete, wipeout), which saves window layout
             require("plugins.mini.bufremove").load()
         end,
