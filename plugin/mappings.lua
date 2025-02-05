@@ -281,8 +281,14 @@ USER.mappings = {
                 group = "Git",
                 ["b"] = {
                     group = "Git blame",
-                    ["l"] = { function() require("gitsigns").toggle_current_line_blame() end, desc = "Toggle line blame" }, -- gitsigns.nvim
-                    ["w"] = { "<CMD>lua require('gitsigns').blame_line{full=true}<CR>", desc = "Show blame window" }, -- gitsigns.nvim
+                    ["b"] = {
+                        function() require("gitsigns").toggle_current_line_blame() end,
+                        desc = "Toggle line blame",
+                    }, -- gitsigns.nvim
+                    ["w"] = {
+                        function() require("gitsigns").blame_line({ full = true }) end,
+                        desc = "Show blame window",
+                    }, -- gitsigns.nvim
                 },
                 ["c"] = { "<CMD>Telescope git_commits<CR>", desc = "Commits" }, -- telescope.nvim
                 ["C"] = { "<CMD>Telescope git_bcommits<CR>", desc = "Buffer commits" }, -- telescope.nvim
@@ -290,7 +296,10 @@ USER.mappings = {
                     group = "Git buffer actions",
                     ["<Space>"] = { function() require("gitsigns").stage_buffer() end, desc = "Stage buffer" }, -- gitsigns.nvim
                     ["r"] = { function() require("gitsigns").reset_buffer() end, desc = "Reset buffer" }, -- gitsigns.nvim
-                    ["R"] = { function() require("gitsigns").reset_buffer_index() end, desc = "`git reset` on current buffer" }, -- gitsigns.nvim
+                    ["R"] = {
+                        function() require("gitsigns").reset_buffer_index() end,
+                        desc = "`git reset` on current buffer",
+                    }, -- gitsigns.nvim
                 },
                 ["G"] = {
                     group = "Misc",
@@ -307,9 +316,30 @@ USER.mappings = {
                 ["s"] = { "<CMD>Telescope git_status<CR>", desc = "Status" }, -- telescope.nvim
                 ["v"] = {
                     group = "Diff highlighting",
-                    ["l"] = { function() require("gitsigns").toggle_linehl() end, desc = "Toggle line diff highlighting" }, -- gitsigns.nvim
-                    ["n"] = { function() require("gitsigns").toggle_numhl() end, desc = "Toggle number diff highlighting" }, -- gitsigns.nvim
-                    ["w"] = { function() require("gitsigns").toggle_word_diff() end, desc = "Toggle word diff highlighting" }, -- gitsigns.nvim
+                    ["d"] = {
+                        function() require("gitsigns").toggle_deleted() end,
+                        desc = "Toggle deleted highlighting",
+                    }, -- gitsigns.nvim
+                    ["H"] = {
+                        function() require("gitsigns").preview_hunk_inline() end,
+                        desc = "Preview current hunk in a floating window",
+                    }, -- gitsigns.nvim
+                    ["h"] = {
+                        function() require("gitsigns").preview_hunk_inline() end,
+                        desc = "Preview current hunk inline",
+                    }, -- gitsigns.nvim
+                    ["l"] = {
+                        function() require("gitsigns").toggle_linehl() end,
+                        desc = "Toggle line diff highlighting",
+                    }, -- gitsigns.nvim
+                    ["n"] = {
+                        function() require("gitsigns").toggle_numhl() end,
+                        desc = "Toggle number diff highlighting",
+                    }, -- gitsigns.nvim
+                    ["w"] = {
+                        function() require("gitsigns").toggle_word_diff() end,
+                        desc = "Toggle word diff highlighting",
+                    }, -- gitsigns.nvim
                 },
             },
             ["l"] = {
