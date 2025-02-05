@@ -21,7 +21,6 @@ local function setup(gitsigns)
         },
         numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
         linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-        show_deleted = false, -- Toggle with `:Gitsigns toggle_deleted`
         word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_formatter = string.format("    %s <author>, <author_time:%%Y-%%m-%%d> - <summary>", icons.commit[1]),
