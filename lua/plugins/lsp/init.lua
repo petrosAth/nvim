@@ -61,8 +61,6 @@ return {
             -- mason-lspconfig bridges mason.nvim with the lspconfig plugin - making it easier to use both plugins
             -- together. :help mason-lspconfig.nvim
             "williamboman/mason-lspconfig.nvim",
-            -- Show function signature when you type
-            "ray-x/lsp_signature.nvim",
             -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP diagnostics, code actions, and more
             -- via Lua.
             "nvimtools/none-ls.nvim",
@@ -85,7 +83,6 @@ return {
             require("plugins.lsp.install").setup(servers)
 
             -- Setup lsp utilities
-            require("plugins.lsp.signature").init(icons, border)
             require("plugins.lsp.inc-rename").init()
             require("plugins.lsp.glance").init(icons, borders)
             require("plugins.lsp.nvim-lightbulb").init(icons)

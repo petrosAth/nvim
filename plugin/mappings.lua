@@ -321,12 +321,10 @@ USER.mappings = {
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
                 ["h"] = { function() vim.diagnostic.open_float() end, desc = "Line diagnostics" }, -- nvim-lspconfig
                 ["i"] = { "<CMD>Glance implementations<CR>", desc = "Implementations" }, -- nvim-lspconfig -- glance.nvim
-                ["K"] = { function() vim.lsp.buf.hover() end, desc = "Hover symbol" }, -- nvim-lspconfig
                 ["q"] = { "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["Q"] = { "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["r"] = { "<CMD>Glance references<CR>", desc = "References" }, -- nvim-lspconfig -- glance.nvim
                 ["R"] = { ":IncRename ", desc = "Rename symbol", silent = false }, -- nvim-lspconfig -- inc-rename
-                ["s"] = { function() vim.lsp.buf.signature_help() end, desc = "Signature help" }, -- nvim-lspconfig
                 ["t"] = { "<CMD>Glance type_definitions<CR>", desc = "Type Definitions" }, -- nvim-lspconfig -- glance.nvim
             },
             ["m"] = {
@@ -445,6 +443,7 @@ USER.mappings = {
         ["<F1>"] = { "<CMD>setlocal spell!<CR>", desc = "Toggle spelling" },
         ["<F3>"] = { "<CMD>set cursorcolumn!<CR>", desc = "Toggle cursorcolumn" },
         ["<M-p>"] = { [[<C-r><C-o>+]], desc = "Paste and stay in insert mode" },
+        ["<C-s>"] = { function() vim.lsp.buf.signature_help() end, desc = "Signature help" }, -- nvim-lspconfig
     },
     -- Command-line mode mappings
     ["c"] = {
