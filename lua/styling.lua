@@ -99,7 +99,7 @@ M = {
         },
         indentLine = {
             char         = { "╎", "╷" },
-            context_char = { "▏", "╷" },
+            context_char = { "▏", "│" },
         },
         lsp = {
             icon        = { "", "", "" },

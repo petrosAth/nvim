@@ -63,6 +63,19 @@ local function setup(snacks)
         debug = { enabled = false },
         git = { enabled = false },
         gitbrowse = { enabled = true },
+        indent = {
+            indent = {
+                char = icons.indentLine.char[2],
+                hl = {
+                    "SnacksIndent1",
+                    "SnacksIndent2",
+                },
+            },
+            scope = {
+                char = icons.indentLine.context_char[1],
+                underline = false,
+            },
+        },
         lazygit = { enabled = false },
         notify = { enabled = true },
         notifier = {

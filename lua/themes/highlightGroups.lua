@@ -600,6 +600,17 @@ function M.get_highlight_groups(palette)
         SnacksNotifierInfo = { link = "Normal" },
         SnacksNotifierDebug = { link = "Normal" },
         SnacksNotifierTrace = { link = "Normal" },
+        SnacksIndent = { fg = p.cFill2 },
+        SnacksIndent1 = { fg = p.cFill2 },
+        SnacksIndent2 = { fg = p.cFill4 },
+        SnacksIndent3 = { fg = p.cFill2 },
+        SnacksIndent4 = { fg = p.cFill4 },
+        SnacksIndent5 = { fg = p.cFill2 },
+        SnacksIndent6 = { fg = p.cFill4 },
+        SnacksIndent7 = { fg = p.cFill2 },
+        SnacksIndent8 = { fg = p.cFill4 },
+        SnacksIndentBlank = { link = "Whitespace" },
+        SnacksIndentScope = { fg = p.cViolet },
 
         -- quickscope.lua
         QuickScopePrimary = { fg = p.cYellow, bg = p.cBg, underline = true, nocombine = true },
