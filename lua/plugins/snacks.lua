@@ -65,14 +65,14 @@ local function setup(snacks)
         gitbrowse = { enabled = true },
         indent = {
             indent = {
-                char = icons.indentLine.char[2],
+                char = icons.indent.char[2],
                 hl = {
                     "SnacksIndent1",
                     "SnacksIndent2",
                 },
             },
             scope = {
-                char = icons.indentLine.context_char[1],
+                char = icons.indent.context_char[1],
                 underline = false,
             },
         },

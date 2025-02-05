@@ -97,8 +97,8 @@ M = {
                 dash = "",
             },
         },
-        indentLine = {
-            char         = { "╎", "╷" },
+        indent = {
+            char         = { "╎", "┊" },
             context_char = { "▏", "│" },
         },
         lsp = {

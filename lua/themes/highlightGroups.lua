@@ -602,7 +602,7 @@ function M.get_highlight_groups(palette)
         SnacksNotifierTrace = { link = "Normal" },
         SnacksIndent = { fg = p.cFill2 },
         SnacksIndent1 = { fg = p.cFill2 },
-        SnacksIndent2 = { fg = p.cFill4 },
+        SnacksIndent2 = { fg = p.cFill3 },
         SnacksIndent3 = { fg = p.cFill2 },
         SnacksIndent4 = { fg = p.cFill4 },
         SnacksIndent5 = { fg = p.cFill2 },
