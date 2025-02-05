@@ -61,6 +61,7 @@ local function setup(snacks)
         bufdelete = { enabled = false },
         dashboard = { enabled = false },
         debug = { enabled = false },
+        dim = { enabled = false },
         git = { enabled = false },
         gitbrowse = { enabled = true },
         indent = {
@@ -102,7 +103,7 @@ local function setup(snacks)
             modes = { "n", "i", "c" },
         },
         styles = {
-            ["notification.history"] = {
+            notification_history = {
                 border = {
                     { borders.tl, "FloatBorder" },
                     { borders.t, "FloatBorder" },
@@ -127,6 +128,7 @@ local function setup(snacks)
                     q = "close",
                     ["<Esc>"] = "close",
                 },
+                backdrop = 100,
             },
         },
     })
