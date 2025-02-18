@@ -51,7 +51,7 @@ local function setup()
                 { borders.bl, "FloatBorder" },
                 { borders.l, "FloatBorder" },
             },
-            backdrop = 100,
+            backdrop = USER.styling.variables.backdrop,
             icons = {
                 loaded = icons.done[1],
                 not_loaded = icons.pending[1],

@@ -1,15 +1,10 @@
 local M = {}
 
-function M.setup(icons, border)
-    local loaded, mason = pcall(require, "mason")
-    if not loaded then
-        USER.loading_error_msg("mason.nvim")
-        return
-    end
-
+local function setup(mason, icons, border)
     mason.setup({
         ui = {
             border = border,
+            backdrop = USER.styling.variables.backdrop,
             width = 0.7,
             height = 0.825,
             icons = {
@@ -40,6 +35,16 @@ function M.setup(icons, border)
         },
         install_root_dir = string.format("%s/mason", vim.fn.stdpath("data")),
     })
+end
+
+function M.setup(icons, border)
+    local loaded, mason = pcall(require, "mason")
+    if not loaded then
+        USER.loading_error_msg("mason.nvim")
+        return
+    end
+
+    setup(mason, icons, border)
 end
 
 return M

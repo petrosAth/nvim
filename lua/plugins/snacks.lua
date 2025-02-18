@@ -128,7 +128,7 @@ local function setup(snacks)
                     q = "close",
                     ["<Esc>"] = "close",
                 },
-                backdrop = 100,
+                backdrop = USER.styling.variables.backdrop,
             },
         },
     })

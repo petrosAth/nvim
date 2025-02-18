@@ -3,6 +3,7 @@ local M = {}
 M = {
     variables = {
         transparency = 0,
+        backdrop = 90,
     },
     icons = {
         alphaCursor  = { "░" },
