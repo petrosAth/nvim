@@ -16,12 +16,13 @@ local function setup(codewindow)
             "qf",
             "TelescopePrompt",
             "terminal",
-            "Trouble",
+            "trouble",
             "undotree",
         },
-        minimap_width = 10, -- The width of the text part of the minimap
-        width_multiplier = 8, -- How many characters one dot represents
+        minimap_width = 15, -- The width of the text part of the minimap
+        width_multiplier = 4, -- How many characters one dot represents
         z_index = 45, -- The z-index the floating window will be on
+        screen_bounds = "background",
         window_border = { -- The border style of the floating window (accepts all usual options)
             borders.tl,
             borders.t,
