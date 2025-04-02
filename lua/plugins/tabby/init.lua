@@ -5,7 +5,7 @@ return {
         "nanozuki/tabby.nvim",
         dependencies = {
             -- A lua fork of vim-devicons. This plugin provides the same icons as well as colors for each icon.
-            "nvim-web-devicons",
+            "nvim-tree/nvim-web-devicons",
         },
         config = function()
             local loaded, tabby = pcall(require, "tabby")
@@ -14,7 +14,7 @@ return {
                 return
             end
 
-            local tabline = require("plugins.tabby.tabline").setup
+            local tabline = require("plugins.tabby.tabline")
             tabby.setup(tabline)
         end,
     },

@@ -1,8 +1,27 @@
+local themes = {
+    "nord",
+    "solarized-osaka",
+    "selenized-black",
+    "selenized-dark",
+    "dracula",
+    "gruvbox",
+    "onedark-darker",
+    "onedark-dark",
+    "onedark-cool",
+    "onedark-deep",
+    "onedark-warm",
+    "onedark-warmer",
+    "everforest-dark",
+    "everforest-medium",
+    "everforest-soft",
+}
+
 -- Create custom table to store my functions, tables, variables etc
 USER = {
     omni_mono = false, -- Make omnisharp change cmd between mono/dotnet
     styling = require("styling"), -- Table with variables and icons used for neovim styling
-    theme = vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
+    theme = themes[0] or vim.env.SYSTEM_THEME, -- Get theme name from SYSTEM_THEME environment variable
+    transparent_bg = true,
     mappings = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration
         dir = ".nvim", -- Local config directory

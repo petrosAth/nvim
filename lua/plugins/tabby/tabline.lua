@@ -1,62 +1,66 @@
-local M = {}
-
 local c = require("plugins.tabby.components")
 local getHl = require("themes.utilities").getHl
-local i = USER.styling.icons
+local utils = require("plugins.tabby.utilities")
+local icons = USER.styling.icons
+local sep = USER.styling.separators.bars
 
-M.setup = {
+return {
     line = function(line)
         return {
             {
-                line.sep(c.left_sep_icon, "TabLineTabSeparatorSel", "TabLine"),
-                line.api.get_current_tab(),
-                hl = "TabLineTabIndicatorSel",
+                line.sep(sep.left, "TabLineIndicatorSel", "TabLineFill"),
+                ("%s "):format(line.api.get_current_tab()),
+                hl = "TabLineIndicatorSel",
                 margin = "",
             },
             line.truncate_point(),
             line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-                local hl = win.is_current() and "TabLineBuffer" or "TabLineBufferNC"
+                local hl = win.is_current() and "TabLineSel" or "TabLine"
                 local tab_id = line.api.get_current_tab()
 
                 return {
-                    line.sep(c.set_sep_all("win", "left", win.is_current(), tab_id, win.id)),
+                    line.sep("▏", "TabLineFill", hl),
                     c.modified_flag(win.id, win.is_current()),
                     c.file_icon("win", win.id, getHl(hl).bg),
                     c.win_label(win.id),
-                    line.sep(c.set_sep_all("win", "right", win.is_current(), tab_id, win.id)),
+                    utils.is_last_win(tab_id, win.id) and line.sep(sep.right, hl, "TabLineFill") or " ",
                     hl = hl,
                     margin = "",
                 }
             end),
             line.spacer(),
             line.tabs().foreach(function(tab)
-                local hl = tab.is_current() and "TabLineSel" or "TabLineFill"
-                local hl_indicator = tab.is_current() and "TabLineTabIndicatorSel" or "TabLineTabIndicator"
+                local hl = tab.is_current() and "TabLineSel" or "TabLine"
+                local hl_indicator = tab.is_current() and "TabLineIndicatorSel" or "TabLineIndicator"
                 local tab_count = #vim.api.nvim_list_tabpages()
-                local win_count = c.get_win_count(tab.id)
+                local win_count = utils.get_win_count(tab.id)
 
                 return tab_count == 1 and ""
                     or {
-                        { " ", hl = "TabLine" },
-                        line.sep(c.set_sep_all("tab", "left", tab.is_current(), tab.id)),
-                        { tab.number(), hl = hl_indicator },
-                        line.sep(c.set_sep_all("tab", "inner_right", tab.is_current(), tab.id)),
-                        " ",
+                        line.sep(sep.left, hl_indicator, "TabLineFill"),
+                        { ("%s "):format(tab.number()), hl = hl_indicator },
+                        { " ", hl = hl },
                         c.file_icon("tab", tab.id, getHl(hl).bg),
                         c.tab_label(tab.id, tab.is_current()),
-                        win_count > 1 and line.sep(c.set_sep_all("tab", "split", tab.is_current(), tab.id)) or "",
+                        win_count == 1 and "" or line.sep((" %s "):format(sep.sep), hl_indicator, hl),
                         c.tab_win_count(tab.id),
-                        line.sep(c.set_sep_all("tab", "inner_left", tab.is_current(), tab.id)),
-                        { tab.close_btn(string.format(" %s", i.close[1])), hl = hl_indicator },
-                        line.sep(c.set_sep_all("tab", "right", tab.is_current(), tab.id)),
+                        line.sep((" %s "):format(sep.sep), hl_indicator, hl),
+                        { tab.close_btn(("%s"):format(icons.close[1])), hl = hl },
+                        line.sep(sep.right, hl, "TabLineFill"),
                         hl = hl,
                         margin = "",
+                        { " ", hl = "TabLineFill" },
                     }
             end),
+            {
+                line.sep(sep.left, "TabLineIndicatorSel", "TabLineFill"),
+                ("%s Neovim"):format(icons.neovim[1]),
+                line.sep(sep.right, "TabLineIndicatorSel", "TabLineFill"),
+                hl = "TabLineIndicatorSel",
+                margin = "",
+            },
             { "%<" },
             hl = "TabLineFill",
         }
     end,
 }
-
-return M

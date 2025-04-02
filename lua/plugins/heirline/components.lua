@@ -1,25 +1,17 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local u = require("ui.utilities")
-local t = require("plugins.heirline.tables")
-local i = USER.styling.icons
+local uiUtils = require("ui.utilities")
+local props = require("plugins.heirline.properties")
+local get_vim_mode_color = require("plugins.heirline.utilities").get_vim_mode_color
+local icons = USER.styling.icons
+local Sep = USER.styling.separators.bars
+local Null = { provider = "" }
+
 local M = {}
 
-local function get_vim_mode_color(mode)
-    mode = mode or vim.api.nvim_get_mode()["mode"]
-    mode = mode:sub(1, 1) -- get only the first mode character
-    local mode_colors = t.ModeHighlightGroups
-    local highlight = utils.get_highlight(mode_colors[mode])
-
-    return { fg = highlight.fg, bg = highlight.bg, bold = true }
-end
-
 local FileTypeBlock = {
-    condition = function()
-        return vim.bo.filetype ~= ""
-    end,
+    condition = function() return vim.bo.filetype ~= "" end,
     init = function(self)
-        -- FileTypeIcon
         local fullPath = vim.api.nvim_buf_get_name(0)
         local extension = vim.fn.fnamemodify(fullPath, ":e")
         self.icon, self.icon_fg = require("nvim-web-devicons").get_icon_color(fullPath, extension, { default = true })
@@ -28,44 +20,35 @@ local FileTypeBlock = {
 }
 
 local FileIcon = {
-    provider = function(self)
-        return self.icon and string.format("%s%s", self.icon, t.Separator.mid.provider)
-    end,
-    hl = function(self)
-        return { fg = self.icon_fg }
-    end,
+    provider = function(self) return self.icon and ("%s "):format(self.icon) end,
+    hl = function(self) return { fg = self.icon_fg } end,
 }
 
 local FileType = {
-    provider = function(self)
-        return string.upper(self.fileType)
-    end,
+    provider = function(self) return string.upper(self.fileType) end,
 }
 
 M.FileTypeBlock = utils.insert(
     FileTypeBlock,
-    { flexible = t.Hide.FileTypeBlock.value, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.FileTypeBlock.icon, { FileIcon }, { t.Null } },
-    { flexible = t.Hide.FileTypeBlock.icon, { t.Null } },
-    { flexible = t.Hide.FileTypeBlock.value, { FileType }, { t.Null } },
-    { flexible = t.Hide.FileTypeBlock.value, { t.Separator.right }, { t.Null } }
+    { flexible = props.Hide.FileTypeBlock.value, { provider = Sep.gap }, Null },
+    { flexible = props.Hide.FileTypeBlock.icon, FileIcon, Null },
+    { flexible = props.Hide.FileTypeBlock.value, FileType, Null },
+    { flexible = props.Hide.FileTypeBlock.value, { provider = Sep.gap }, Null }
 )
 
 local FileFormatBlock = {
-    init = function(self)
-        self.fileFormat = vim.bo.fileformat
-    end,
+    init = function(self) self.fileFormat = vim.bo.fileformat end,
 }
 
 local FileFormatIcon = {
     provider = function(self)
         local icon
         if self.fileFormat == "dos" then
-            icon = i.OS.windows[1]
+            icon = icons.OS.windows[1]
         elseif self.fileFormat == "unix" then
-            icon = i.OS.linux[1]
+            icon = icons.OS.linux[1]
         elseif self.fileFormat == "mac" then
-            icon = i.OS.mac[1]
+            icon = icons.OS.mac[1]
         end
         return icon
     end,
@@ -87,60 +70,59 @@ local FileFormat = {
 
 M.FileFormatBlock = utils.insert(
     FileFormatBlock,
-    { flexible = t.Hide.FileFormatBlock.value, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.FileFormatBlock.icon, { FileFormatIcon }, { t.Null } },
-    { flexible = t.Hide.FileFormatBlock.icon, { t.Separator.mid }, { t.Null } },
-    { flexible = t.Hide.FileFormatBlock.value, { FileFormat }, { t.Null } },
-    { flexible = t.Hide.FileFormatBlock.value, { t.Separator.right }, { t.Null } }
+    { flexible = props.Hide.FileFormatBlock.value, { provider = Sep.gap }, Null },
+    { flexible = props.Hide.FileFormatBlock.icon, FileFormatIcon, Null },
+    { flexible = props.Hide.FileFormatBlock.icon, { provider = " " }, Null },
+    { flexible = props.Hide.FileFormatBlock.value, FileFormat, Null },
+    { flexible = props.Hide.FileFormatBlock.value, { provider = Sep.gap }, Null }
 )
 
 M.FileEncoding = {
-    init = function(self)
-        self.fileEncoding = vim.bo.fileencoding
-    end,
-
-    { flexible = t.Hide.FileEncoding, { t.Separator.left }, { t.Null } },
+    init = function(self) self.fileEncoding = vim.bo.fileencoding end,
+    { flexible = props.Hide.FileEncoding, { provider = Sep.gap }, Null },
     {
-        flexible = t.Hide.FileEncoding,
+        flexible = props.Hide.FileEncoding,
+        { provider = function(self) return string.upper(self.fileEncoding) end },
+        Null,
+    },
+    { flexible = props.Hide.FileEncoding, { provider = Sep.gap }, Null },
+}
+
+M.FileSize = {
+    { flexible = props.Hide.FileSize, { provider = Sep.gap }, Null },
+    {
+        flexible = props.Hide.FileSize,
         {
-            provider = function(self)
-                return string.upper(self.fileEncoding)
+            provider = function()
+                -- stackoverflow, compute human readable file size
+                local suffix = { "b", "kb", "Mb", "Gb", "Tb", "Pb", "Eb" }
+                local fsize = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
+                fsize = (fsize < 0 and 0) or fsize
+                if fsize < 1024 then return fsize .. suffix[1] end
+                local i = math.floor((math.log(fsize) / math.log(1024)))
+                return ("%.2g%s"):format(fsize / math.pow(1024, i), suffix[i + 1])
             end,
         },
-        { t.Null },
+        Null,
     },
-    { flexible = t.Hide.FileEncoding, { t.Separator.right }, { t.Null } },
+    { flexible = props.Hide.FileSize, { provider = Sep.gap }, Null },
 }
 
 M.FileReadOnly = {
-    condition = function()
-        return not vim.bo.modifiable or vim.bo.readonly
-    end,
-
-    {
-        flexible = t.Hide.FileReadOnly,
-        {
-            { t.Separator.left },
-            { provider = i.lock[1] },
-            { t.Separator.right },
-        },
-        { t.Null },
-    },
+    condition = function() return not vim.bo.modifiable or vim.bo.readonly end,
+    { flexible = props.Hide.FileReadOnly, { provider = icons.lock[2] }, Null },
 }
 
 M.FileModified = {
-    condition = function()
-        return vim.bo.modified
-    end,
-
+    condition = function() return not (not vim.bo.modifiable or vim.bo.readonly) end,
+    init = function(self) self.modified = vim.bo.modified end,
     {
-        flexible = t.Hide.FileModified,
+        flexible = props.Hide.FileModified,
         {
-            { t.Separator.left },
-            { provider = i.edit[1] },
-            { t.Separator.right },
+            { provider = icons.edit[1] },
+            hl = function(self) return self.modified and { fg = utils.get_highlight("BarModified").fg } or {} end,
         },
-        { t.Null },
+        Null,
     },
 }
 
@@ -149,15 +131,14 @@ M.CustomTitle = {
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
     end,
+    {
+        provider = function(self)
+            local buf_label = uiUtils.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
+            if buf_label then return (" %s"):format(buf_label) end
 
-    provider = function(self)
-        local buf_label = u.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
-        if buf_label then
-            return string.format("%s%s%s", t.Separator.left.provider, buf_label, t.Separator.right.provider)
-        end
-
-        return ""
-    end,
+            return ""
+        end,
+    },
 }
 
 local FileNameBlock = {
@@ -165,7 +146,8 @@ local FileNameBlock = {
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.filePath = vim.fn.fnamemodify(self.fileName, ":.")
         local extension = vim.fn.fnamemodify(self.fileName, ":e")
-        self.icon, self.icon_fg = require("nvim-web-devicons").get_icon_color(self.fileName, extension, { default = true })
+        self.icon, self.icon_fg =
+            require("nvim-web-devicons").get_icon_color(self.fileName, extension, { default = true })
     end,
 }
 
@@ -173,159 +155,95 @@ local FilePath = {
     provider = function(self)
         local filePath = self.filePath
 
-        if filePath == "" then
-            return ""
-        end
+        if filePath == "" then return "" end
 
         if not conditions.width_percent_below(#self.filePath, 0.40) then
             filePath = vim.fn.pathshorten(self.filePath)
         end
 
-        filePath = string.format("%s/", vim.fn.fnamemodify(filePath, ":.:h"))
+        filePath = ("%s/"):format(vim.fn.fnamemodify(filePath, ":.:h"))
 
-        if filePath == "./" then
-            filePath = ""
-        end
+        if filePath == "./" then filePath = "" end
 
-        filePath = string.format("%%<%s /%s", i.root_dir[1], filePath)
+        filePath = ("%%<%s /%s"):format(icons.root_dir[1], filePath)
 
-        return string.gsub(filePath, "/", string.format(" %s ", i.arrow.hollow.r))
+        return (filePath):gsub("/", (" %s "):format(icons.arrow.hollow.r))
     end,
 }
 
 local FileName = {
     provider = function(self)
         local fileName = vim.fn.fnamemodify(self.fileName, ":t")
+        if fileName == "" then return "[No Name]" end
 
-        if fileName == "" then
-            return "[No Name]"
-        end
-
-        return string.format("%s", fileName)
+        return ("%s"):format(fileName)
     end,
-    hl = function()
-        if conditions.is_active() then
-            return "WinBarFile"
-        end
-    end,
-}
-
-local LspSymbol = {
-    condition = function()
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
-
-        return next(clients) ~= nil and conditions.is_active()
-    end,
-    provider = function()
-        local loaded, navic = pcall(require, "nvim-navic")
-        local symbol = ""
-        if not loaded or not require("nvim-navic").is_available() then
-            return symbol
-        end
-
-        local context = navic.get_location()
-        if context ~= nil and context ~= "" then
-            symbol = string.format("%s %s", i.arrow.hollow.r, context)
-        end
-
-        return symbol
-    end,
-    update = "CursorMoved",
 }
 
 M.FileNameBlock = utils.insert(
     FileNameBlock,
-    { flexible = t.Hide.FileNameBlock.name, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.FileNameBlock.path, { FilePath }, { t.Null } },
-    { flexible = t.Hide.FileNameBlock.icon, { FileIcon }, { t.Null } },
-    { flexible = t.Hide.FileNameBlock.name, { FileName }, { t.Null } },
-    { flexible = t.Hide.FileNameBlock.name, { t.Separator.right }, { t.Null } },
-    { flexible = t.Hide.FileNameBlock.symbol, { LspSymbol }, { t.Null } },
-    { flexible = t.Hide.FileNameBlock.name, { t.Separator.right }, { t.Null } }
+    { flexible = props.Hide.FileNameBlock.name, { provider = Sep.gap }, Null },
+    { flexible = props.Hide.FileNameBlock.path, FilePath, Null },
+    { flexible = props.Hide.FileNameBlock.icon, FileIcon, Null },
+    { flexible = props.Hide.FileNameBlock.name, FileName, Null }
 )
 
-M.Paste = {
-    init = function(self)
-        self.mode = vim.api.nvim_get_mode()["mode"]
-    end,
+M.LspSymbol = {
+    condition = function(self)
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        local is_navic_loaded, navic = pcall(require, "nvim-navic")
+        self.navic = navic
 
-    -- Re-evaluate the component only on ModeChanged event!
-    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
+        return next(clients) ~= nil and conditions.is_active() and is_navic_loaded and self.navic.is_available()
+    end,
+    update = "CursorMoved",
+    { flexible = props.Hide.FileNameBlock.symbol, { provider = Sep.gap }, Null },
+    {
+        flexible = props.Hide.FileNameBlock.symbol,
+        {
+            provider = function(self)
+                local context = self.navic.get_location()
+                return (context ~= nil and context ~= "") and ("%s"):format(context)
+            end,
+        },
+        Null,
+    },
+    { flexible = props.Hide.FileNameBlock.symbol, { provider = Sep.gap }, Null },
+}
+
+M.Paste = {
+    init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
     update = {
         "ModeChanged",
         pattern = "*:*",
-        callback = vim.schedule_wrap(function()
-            vim.cmd("redrawstatus")
-        end),
+        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
     },
-
-    condition = function()
-        return vim.o.paste
-    end,
-
-    { t.Separator.left },
+    condition = function() return vim.o.paste end,
+    { provider = (" %s "):format(Sep.sep) },
     { provider = "PASTE" },
-    { t.Separator.right },
-
-    hl = function(self)
-        return get_vim_mode_color(self.mode)
-    end,
+    hl = function(self) return get_vim_mode_color(self.mode) end,
 }
 
 M.Wrap = {
-    init = function(self)
-        self.mode = vim.api.nvim_get_mode()["mode"]
-    end,
-
-    -- Re-evaluate the component only on ModeChanged event!
-    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
+    init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
     update = {
         "ModeChanged",
         pattern = "*:*",
-        callback = vim.schedule_wrap(function()
-            vim.cmd("redrawstatus")
-        end),
+        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
     },
-
-    condition = function()
-        return vim.o.wrap
-    end,
-
-    { t.Separator.left },
+    condition = function() return vim.o.wrap end,
+    { provider = (" %s "):format(Sep.sep) },
     { provider = "WRAP" },
-    { t.Separator.right },
-
-    hl = function(self)
-        return get_vim_mode_color(self.mode)
-    end,
+    hl = function(self) return get_vim_mode_color(self.mode) end,
 }
 
 M.Spell = {
-    condition = function()
-        return vim.wo.spell
-    end,
-
-    { flexible = t.Hide.Spell.value, { t.Separator.left }, { t.Null } },
-    {
-        flexible = t.Hide.Spell.icon,
-        {
-            provider = function()
-                return i.spelling[1]
-            end,
-        },
-        { t.Null },
-    },
-    { flexible = t.Hide.Spell.icon, { t.Separator.mid }, { t.Null } },
-    {
-        flexible = t.Hide.Spell.value,
-        {
-            provider = function()
-                return vim.bo.spelllang
-            end,
-        },
-        { t.Null },
-    },
-    { flexible = t.Hide.Spell.value, { t.Separator.right }, { t.Null } },
+    condition = function() return vim.wo.spell end,
+    { flexible = props.Hide.Spell.value, { provider = Sep.gap }, Null },
+    { flexible = props.Hide.Spell.icon, { provider = function() return icons.spelling[1] end }, Null },
+    { flexible = props.Hide.Spell.icon, { provider = " " }, Null },
+    { flexible = props.Hide.Spell.value, { provider = function() return vim.bo.spelllang end }, Null },
+    { flexible = props.Hide.Spell.value, { provider = Sep.gap }, Null },
 }
 
 M.Treesitter = {
@@ -337,12 +255,11 @@ M.Treesitter = {
 
         return is_active
     end,
-
-    { flexible = t.Hide.Treesitter.value, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.Treesitter.icon, { provider = i.treesiter[1] }, { t.Null } },
-    { flexible = t.Hide.Treesitter.icon, { t.Separator.mid }, { t.Null } },
-    { flexible = t.Hide.Treesitter.value, { provider = "TS" }, { t.Null } },
-    { flexible = t.Hide.Treesitter.value, { t.Separator.right }, { t.Null } },
+    { flexible = props.Hide.Treesitter.value, { provider = Sep.gap }, Null },
+    { flexible = props.Hide.Treesitter.icon, { provider = icons.treesitter[1] }, Null },
+    { flexible = props.Hide.Treesitter.icon, { provider = " " }, Null },
+    { flexible = props.Hide.Treesitter.value, { provider = "TS" }, Null },
+    { flexible = props.Hide.Treesitter.value, { provider = Sep.gap }, Null },
 }
 
 M.PluginUpdates = {
@@ -353,238 +270,162 @@ M.PluginUpdates = {
 
         return #self.Checker.updated > 0
     end,
-
-    { flexible = t.Hide.PluginUpdates.value, { t.Separator.left }, { t.Null } },
-    { flexible = t.Hide.PluginUpdates.icon, { provider = i.plugin[1] }, { t.Null } },
-    { flexible = t.Hide.PluginUpdates.icon, { t.Separator.mid }, { t.Null } },
+    { flexible = props.Hide.PluginUpdates.value, { provider = Sep.gap }, Null },
     {
-        flexible = t.Hide.PluginUpdates.value,
-        {
-            provider = function(self)
-                return #self.Checker.updated
-            end,
-        },
-        { t.Null },
+        flexible = props.Hide.PluginUpdates.icon,
+        { provider = icons.plugin[1], hl = "BarUpdates" },
+        Null,
     },
-    { flexible = t.Hide.PluginUpdates.value, { t.Separator.right }, { t.Null } },
-
-    hl = "StatusLinePluginUpdates",
+    { flexible = props.Hide.PluginUpdates.icon, { provider = " " }, Null },
+    {
+        flexible = props.Hide.PluginUpdates.value,
+        { provider = function(self) return #self.Checker.updated end, hl = "BarUpdates" },
+        Null,
+    },
+    { flexible = props.Hide.PluginUpdates.value, { provider = Sep.gap }, Null },
 }
 
 M.CursorPosition = {
-    { flexible = t.Hide.CursorPosition, { t.Separator.left }, { t.Null } },
     {
-        flexible = t.Hide.CursorPosition,
-        {
-            provider = string.format("%s %%l : %s %%c", i.line[1], i.column[1]),
-        },
-        {
-            provider = "%l:%c",
-        },
+        flexible = props.Hide.CursorPosition,
+        { provider = ("%s %%l : %s %%c "):format(icons.line[1], icons.column[1]) },
+        { provider = "%l:%c " },
     },
-    { flexible = t.Hide.CursorPosition, { t.Separator.right }, { t.Null } },
 }
 
 M.CursorLine = {
-    { t.Separator.left },
-    { provider = string.format("%s %%l", i.line[1]) },
-    { t.Separator.right },
+    provider = ("%s %%l "):format(icons.line[1]),
 }
 
 M.LinesTotal = {
-    init = function(self)
-        self.mode = vim.api.nvim_get_mode()["mode"]
-    end,
-
+    init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
     -- Re-evaluate the component only on ModeChanged event!
     -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
     update = {
         "ModeChanged",
         pattern = "*:*",
-        callback = vim.schedule_wrap(function()
-            vim.cmd("redrawstatus")
-        end),
+        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
     },
-
-    { t.Separator.left },
-    { provider = string.format("%s %%L", i.linesTotal[1]) },
-    { t.Separator.right },
-
-    hl = function(self)
-        return get_vim_mode_color(self.mode)
-    end,
+    provider = ("%s %%L"):format(icons.linesTotal[1]),
+    hl = function(self) return get_vim_mode_color(self.mode) end,
 }
 
 M.WindowNumber = {
-    { t.Separator.left },
-    {
-        provider = function(self)
-            return string.format("%s %s", i.window[1], self.winnr)
-        end,
-    },
-    { t.Separator.right },
-}
-
-M.CloseButton = {
-    { t.Separator.left },
-    { provider = i.close[1] },
-    on_click = {
-        callback = function()
-            vim.cmd.quit()
-        end,
-        name = "heirline_closeButton",
-    },
-    { t.Separator.right },
+    { provider = function(self) return ("%s %s"):format(icons.window[1], self.winnr) end },
+    { provider = Sep.gap },
 }
 
 -- Source
 -- Neelfrost - https://github.com/Neelfrost/nvim-config/blob/df89fdcb49ce9080ccf1c54d33a939f341017be2/lua/user/plugins/config/heirline/components.lua#L255-L291
 M.SearchResults = {
     condition = function(self)
-        if vim.api.nvim_buf_line_count(0) > 50000 then
-            return
-        end
+        if vim.api.nvim_buf_line_count(0) > 50000 then return end
 
         local query = vim.fn.getreg("/")
-        if query == "" or query:find("@") then
-            return
-        end
+        if query == "" or query:find("@") then return end
 
         local active = false
         local search_count = vim.fn.searchcount({ recompute = 1, maxcount = -1 })
 
-        if vim.v.hlsearch and vim.v.hlsearch == 1 and search_count.total > 0 then
-            active = true
-        end
+        if vim.v.hlsearch and vim.v.hlsearch == 1 and search_count.total > 0 then active = true end
 
-        if not active then
-            return
-        end
+        if not active then return end
 
         self.count = search_count
 
         return true
     end,
-
-    { t.Separator.left },
+    init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
+    { provider = (" %s "):format(Sep.sep) },
     {
         provider = function(self)
-            return table.concat({ i.search[1], " ", self.count.current, "/", self.count.total })
+            return table.concat({ icons.search[1], " ", self.count.current, "/", self.count.total })
         end,
     },
-    { t.Separator.right },
-
-    hl = "HlSearchLensNear",
+    hl = function(self) return { fg = get_vim_mode_color(self.mode).fg, bg = get_vim_mode_color(self.mode).bg } end,
 }
 
 M.GitStatus = {
     condition = conditions.is_git_repo,
-
     init = function(self)
-        self.status_dict = vim.b.gitsigns_status_dict
+        self.status_dict = vim.b.gitsigns_status_dict or ""
         self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
         self.countAdded = self.status_dict.added or 0
         self.countRemoved = self.status_dict.removed or 0
         self.countChanged = self.status_dict.changed or 0
     end,
-
-    { t.Separator.left },
+    { flexible = props.Hide.GitBranch, { provider = Sep.gap }, Null },
     {
-        flexible = t.Hide.GitBranch,
-        { -- git branch name
+        flexible = props.Hide.GitBranch,
+        {
             provider = function(self)
-                return string.format("%s %s %s", i.git.repo[1], i.git.branch[1], self.status_dict.head)
+                return ("%s %s %s"):format(icons.git.repo[1], icons.git.branch[1], self.status_dict.head)
             end,
             hl = { bold = true },
         },
         {
-            provider = function()
-                return string.format("%s ", i.git.repo[1])
-            end,
+            provider = function() return ("%s "):format(icons.git.repo[1]) end,
             hl = { bold = true },
         },
     },
-
     {
-        flexible = t.Hide.GitSigns.icon,
+        flexible = props.Hide.GitSigns.icon,
         {
-            provider = function(self)
-                return self.countAdded > 0 and string.format("%s%s", t.Separator.mid.provider, i.git.added[1])
-            end,
-            -- hl = { fg = utils.get_highlight("GitSignsAdd").fg },
+            provider = function(self) return self.countAdded > 0 and (" %s"):format(icons.git.added[1]) end,
             hl = "GitSignsAdd",
         },
-        {
-            t.Null,
-        },
+        Null,
     },
-
     {
-        flexible = t.Hide.GitSigns.value,
+        flexible = props.Hide.GitSigns.value,
         {
-            provider = function(self)
-                return self.countAdded > 0 and string.format(" %s", self.countAdded)
-            end,
+            provider = function(self) return self.countAdded > 0 and (" %s"):format(self.countAdded) end,
             hl = "GitSignsAdd",
         },
-        {
-            t.Null,
-        },
+        Null,
     },
-
     {
-        flexible = t.Hide.GitSigns.icon,
+        flexible = props.Hide.GitSigns.icon,
         {
-            provider = function(self)
-                return self.countRemoved > 0 and string.format("%s%s", t.Separator.mid.provider, i.git.deleted[1])
-            end,
+            provider = function(self) return self.countRemoved > 0 and (" %s"):format(icons.git.deleted[1]) end,
             hl = "GitSignsDelete",
         },
-        {
-            t.Null,
-        },
+        Null,
     },
-
     {
-        flexible = t.Hide.GitSigns.value,
+        flexible = props.Hide.GitSigns.value,
         {
-            provider = function(self)
-                return self.countRemoved > 0 and string.format(" %s", self.countRemoved)
-            end,
+            provider = function(self) return self.countRemoved > 0 and (" %s"):format(self.countRemoved) end,
             hl = "GitSignsDelete",
         },
-        {
-            t.Null,
-        },
+        Null,
     },
-
     {
-        flexible = t.Hide.GitSigns.icon,
+        flexible = props.Hide.GitSigns.icon,
         {
-            provider = function(self)
-                return self.countChanged > 0 and string.format("%s%s", t.Separator.mid.provider, i.git.changed[1])
-            end,
+            provider = function(self) return self.countChanged > 0 and (" %s"):format(icons.git.changed[1]) end,
             hl = "GitSignsChange",
         },
-        {
-            t.Null,
-        },
+        Null,
     },
-
     {
-        flexible = t.Hide.GitSigns.value,
+        flexible = props.Hide.GitSigns.value,
         {
-            provider = function(self)
-                return self.countChanged > 0 and string.format(" %s", self.countChanged)
-            end,
+            provider = function(self) return self.countChanged > 0 and (" %s"):format(self.countChanged) end,
             hl = "GitSignsChange",
         },
-        {
-            t.Null,
-        },
+        Null,
     },
+}
 
-    { t.Separator.right },
+M.TerminalName = {
+    condition = function() return conditions.buffer_matches({ buftype = { "terminal" } }) end,
+    {
+        provider = function()
+            local terminalName, _ = vim.api.nvim_buf_get_name(0):gsub(".*:/bin/", "")
+            return ("%s %s"):format(icons.terminal[1], terminalName)
+        end,
+    },
 }
 
 local LspBlock = {
@@ -602,18 +443,14 @@ local LspBlock = {
 }
 
 local LspClients = {
-    condition = function(self)
-        return next(self.Clients) ~= nil
-    end,
+    condition = function(self) return next(self.Clients) ~= nil end,
     update = { "LspAttach", "LspDetach", "BufEnter" },
     {
-        flexible = t.Hide.lspIcon,
+        flexible = props.Hide.lspIcon,
         {
-            provider = string.format("%s ", i.lsp.icon[1])
+            provider = ("%s "):format(icons.lsp.icon[1]),
         },
-        {
-            t.Null,
-        },
+        Null,
     },
     {
         provider = function(self)
@@ -625,32 +462,26 @@ local LspClients = {
                 table.insert(lsp_servers, client.name)
             end
 
-            return string.format("[%s]", table.concat(lsp_servers, " "))
+            return ("[%s]"):format(table.concat(lsp_servers, " "))
         end,
     },
 }
 
 local LspNullLsGap = {
-    condition = function(self)
-        return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil)
-    end,
+    condition = function(self) return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil) end,
     update = { "LspAttach", "LspDetach", "BufEnter" },
-    provider = t.Separator.mid.provider,
+    provider = Sep.gap,
 }
 
 local NullLsSources = {
-    condition = function(self)
-        return next(self.Sources) ~= nil
-    end,
+    condition = function(self) return next(self.Sources) ~= nil end,
     update = { "LspAttach", "LspDetach", "BufEnter" },
     {
-        flexible = t.Hide.nullLsIcon,
+        flexible = props.Hide.nullLsIcon,
         {
-            provider = string.format("%s ", i.lsp.null_ls[1]),
+            provider = ("%s "):format(icons.lsp.null_ls[1]),
         },
-        {
-            t.Null,
-        },
+        Null,
     },
     {
         provider = function(self)
@@ -660,7 +491,7 @@ local NullLsSources = {
                 table.insert(null_ls_sources, source.name)
             end
 
-            return string.format("[%s]", table.concat(null_ls_sources, " "))
+            return ("[%s] "):format(table.concat(null_ls_sources, " "))
         end,
     },
 }
@@ -669,127 +500,97 @@ local LspDiagnostics = {
     condition = conditions.has_diagnostics,
     update = { "DiagnosticChanged", "BufEnter" },
     static = {
-        errorIcon = i.lsp.error[1],
-        warnIcon = i.lsp.warn[1],
-        infoIcon = i.lsp.info[1],
-        hintIcon = i.lsp.hint[1],
+        errorIcon = icons.lsp.error[1],
+        warnIcon = icons.lsp.warn[1],
+        infoIcon = icons.lsp.info[1],
+        hintIcon = icons.lsp.hint[1],
     },
     {
-        flexible = t.Hide.lspDiagnosticIcons,
+        flexible = props.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.errors > 0
-                    and string.format("%s%s %s", t.Separator.mid.provider, self.errorIcon, self.errors)
+                return self.errors > 0 and ("%s%s %s"):format(Sep.gap, self.errorIcon, self.errors)
             end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
         {
-            provider = function(self)
-                return self.errors > 0 and string.format("%s%s", t.Separator.mid.provider, self.errors)
-            end,
+            provider = function(self) return self.errors > 0 and ("%s%s"):format(Sep.gap, self.errors) end,
             hl = { fg = utils.get_highlight("DiagnosticError").fg },
         },
     },
-
     {
-        flexible = t.Hide.lspDiagnosticIcons,
+        flexible = props.Hide.lspDiagnosticIcons,
         {
             provider = function(self)
-                return self.warnings > 0
-                    and string.format("%s%s %s", t.Separator.mid.provider, self.warnIcon, self.warnings)
+                return self.warnings > 0 and ("%s%s %s"):format(Sep.gap, self.warnIcon, self.warnings)
             end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
         {
-            provider = function(self)
-                return self.warnings > 0 and string.format("%s%s", t.Separator.mid.provider, self.warnings)
-            end,
+            provider = function(self) return self.warnings > 0 and ("%s%s"):format(Sep.gap, self.warnings) end,
             hl = { fg = utils.get_highlight("DiagnosticWarn").fg },
         },
     },
-
     {
-        flexible = t.Hide.lspDiagnosticIcons,
+        flexible = props.Hide.lspDiagnosticIcons,
         {
-            provider = function(self)
-                return self.info > 0 and string.format("%s%s %s", t.Separator.mid.provider, self.infoIcon, self.info)
-            end,
+            provider = function(self) return self.info > 0 and ("%s%s %s"):format(Sep.gap, self.infoIcon, self.info) end,
             hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
         },
         {
-            provider = function(self)
-                return self.info > 0 and string.format("%s%s", t.Separator.mid.provider, self.info)
-            end,
+            provider = function(self) return self.info > 0 and ("%s%s"):format(Sep.gap, self.info) end,
             hl = { fg = utils.get_highlight("DiagnosticInfo").fg },
         },
     },
-
     {
-        flexible = t.Hide.lspDiagnosticIcons,
+        flexible = props.Hide.lspDiagnosticIcons,
         {
-            provider = function(self)
-                return self.hints > 0 and string.format("%s%s %s", t.Separator.mid.provider, self.hintIcon, self.hints)
-            end,
+            provider = function(self) return self.hints > 0 and ("%s%s %s"):format(Sep.gap, self.hintIcon, self.hints) end,
             hl = { fg = utils.get_highlight("DiagnosticHint").fg },
         },
         {
-            provider = function(self)
-                return self.hints > 0 and string.format("%s%s", t.Separator.mid.provider, self.hints)
-            end,
+            provider = function(self) return self.hints > 0 and ("%s%s"):format(Sep.gap, self.hints) end,
             hl = { fg = utils.get_highlight("DiagnosticHint").fg },
         },
     },
+    { flexible = props.Hide.LspDiagnostics, { provider = Sep.gap }, Null },
 }
 
 M.LspBlock = utils.insert(
     LspBlock,
-
-    { t.Separator.left },
-    { flexible = t.Hide.lspClients, LspClients, { t.Null } },
-    { flexible = math.min(t.Hide.lspClients, t.Hide.nullLsSources), LspNullLsGap, { t.Null } },
-    { flexible = t.Hide.nullLsSources, NullLsSources, { t.Null } },
-    { LspDiagnostics },
-    { t.Separator.right }
+    { flexible = props.Hide.lspClients, { provider = Sep.gap }, Null },
+    { flexible = props.Hide.lspClients, LspClients, Null },
+    { flexible = props.Hide.lspClients, { provider = Sep.gap }, Null },
+    { flexible = math.min(props.Hide.lspClients, props.Hide.nullLsSources), LspNullLsGap, Null },
+    { flexible = props.Hide.nullLsSources, NullLsSources, Null },
+    LspDiagnostics
 )
 
-M.TerminalName = {
-    condition = function()
-        return conditions.buffer_matches({ buftype = { "terminal" } })
-    end,
-    { t.Separator.left },
+M.CloseButton = {
+    update = { "WinNew", "WinClosed", "BufEnter" },
     {
-        provider = function()
-            local terminalName, _ = vim.api.nvim_buf_get_name(0):gsub(".*:/bin/", "")
-            return string.format("%s %s", i.terminal[1], terminalName)
-        end,
+        provider = icons.close[1],
+        on_click = {
+            minwid = function() return vim.api.nvim_get_current_win() end,
+            callback = function(_, minwid) vim.api.nvim_win_close(minwid, true) end,
+            name = "heirline_winbar_close_button",
+        },
     },
-    { t.Separator.right },
 }
 
 M.ViMode = {
-    init = function(self)
-        self.mode = vim.api.nvim_get_mode()["mode"]
-    end,
-
+    init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
     -- Re-evaluate the component only on ModeChanged event!
     -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
     update = {
         "ModeChanged",
         pattern = "*:*",
-        callback = vim.schedule_wrap(function()
-            vim.cmd("redrawstatus")
-        end),
+        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
     },
-
-    provider = function(self)
-        return string.format("%s%%2(%s%%)", t.Separator.left.provider, t.ModeNames[self.mode])
-    end,
-
-    t.Separator.right,
-
-    hl = function(self)
-        return get_vim_mode_color(self.mode)
-    end,
+    {
+        provider = function(self) return ("%%2(%s%%)"):format(props.ModeNames[self.mode]) end,
+    },
+    hl = function(self) return get_vim_mode_color(self.mode) end,
 }
 
 return M

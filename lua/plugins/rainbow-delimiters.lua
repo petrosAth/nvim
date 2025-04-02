@@ -17,7 +17,6 @@ local function setup(rainbow_delimiters)
             "rainbowclr2",
             "rainbowclr3",
             "rainbowclr4",
-            "rainbowclr5",
         },
     }
 end

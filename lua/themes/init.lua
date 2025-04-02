@@ -3,13 +3,13 @@ local M = {}
 function M.loadTerminalColors(palette)
     local terminalColors = require("themes.terminal")
 
-    terminalColors.load(palette.terminal)
+    terminalColors.load(palette)
 end
 
 function M.loadHighlightGroups(palette)
     local highlightGroups = require("themes.highlightGroups")
 
-    highlightGroups.load(palette.base)
+    highlightGroups.load(palette)
 end
 
 function M.load(themeName)
@@ -22,8 +22,8 @@ function M.load(themeName)
 
     vim.g.colors_name = themeName
 
-    M.loadTerminalColors(palette)
-    M.loadHighlightGroups(palette)
+    M.loadTerminalColors(palette.terminal)
+    M.loadHighlightGroups(palette.base)
 end
 
 return M

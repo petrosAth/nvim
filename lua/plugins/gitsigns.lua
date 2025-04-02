@@ -21,10 +21,9 @@ local function setup(gitsigns)
         },
         numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
         linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-        word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
+        culhl = true,
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_formatter = string.format("    %s <author>, <author_time:%%Y-%%m-%%d> - <summary>", icons.commit[1]),
-        update_debounce = 100,
+        current_line_blame_formatter = (" %s <author>, <author_time:%%Y-%%m-%%d> - <summary>"):format(icons.commit[1]),
         preview_config = {
             border = {
                 borders.tl,

@@ -1,15 +1,5 @@
 local M = {}
 
-M.Align = { provider = "%=" }
-
-M.Null = { provider = "" }
-
-M.Separator = {
-    left = { provider = " " },
-    mid = { provider = " " },
-    right = { provider = " " },
-}
-
 M.Hide = {
     FileTypeBlock = {
         icon = 20,
@@ -20,13 +10,14 @@ M.Hide = {
         value = 30,
     },
     FileEncoding = 30,
+    FileSize = 30,
     FileReadOnly = 70,
     FileModified = 70,
     FileNameBlock = {
         path = 30,
         icon = 50,
         name = 60,
-        symbol = 40
+        symbol = 40,
     },
     Spell = {
         icon = 20,

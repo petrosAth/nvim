@@ -13,6 +13,7 @@ local function setup(satellite)
                     icons.lsp.diagnostics[1],
                     icons.lsp.diagnostics[1],
                 },
+                min_severity = vim.diagnostic.severity.WARN,
             },
             gitsigns = {
                 signs = {
