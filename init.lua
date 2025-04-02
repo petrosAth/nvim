@@ -13,6 +13,10 @@ USER = {
         prettier_file = ".prettierrc", -- Prettier config file name
         templates = string.format("%s/templates", vim.fn.stdpath("config")), -- Directory within nvim config containing file templates
     },
+    lsp = {
+        show_inlay_hints = false,
+        enable_semantic_tokens = true,
+    },
 }
 
 -- Set colorscheme

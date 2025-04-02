@@ -69,11 +69,15 @@ local function on_attach(client, bufnr)
         require("plugins.lsp.nvim-navic").setup(client, bufnr)
     end
 
+    if client.server_capabilities.semanticTokensProvider and not USER.lsp.enable_semantic_tokens then
+        client.server_capabilities.semanticTokensProvider = nil
+    end
+
     if client.server_capabilities.documentFormattingProvider then
         vim.api.nvim_set_option_value("formatexpr", "v:lua.vim.lsp.formatexpr()", { buf = bufnr })
     end
 
-    if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(show_inlay_hints) end
+    if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(USER.lsp.show_inlay_hints) end
 end
 
 local function setup_language_servers(lspconfig, servers, handlers, root_files)
@@ -154,6 +158,31 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                 capabilities = capabilities(),
                 handlers = handlers,
             })
+        elseif name == "lua_ls" then
+            -- Make the server aware of Neovim runtime files when editing Neovim config
+            local library = vim.uv.cwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true) or nil
+            lspconfig[name].setup({
+                root_dir = lspconfig.util.root_pattern(root_files),
+                settings = {
+                    Lua = {
+                        telemetry = {
+                            enable = false,
+                        },
+                        format = {
+                            enable = false,
+                        },
+                        hint = {
+                            enable = true,
+                        },
+                        workspace = {
+                            library = library,
+                        },
+                    },
+                },
+                on_attach = on_attach,
+                capabilities = capabilities(),
+                handlers = handlers,
+            })
         elseif name == "omnisharp" then
             local install_path = string.format("%s/mason/packages", vim.fn.stdpath("data"))
             local cmd = USER.omni_mono and "mono" or "dotnet"
@@ -174,30 +203,11 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                 capabilities = capabilities(),
                 handlers = handlers,
             })
-        elseif name == "lua_ls" then
-            -- Make the server aware of Neovim runtime files when editing Neovim config
-            local library = vim.uv.cwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true) or nil
             lspconfig[name].setup({
-                root_dir = lspconfig.util.root_pattern(root_files),
                 settings = {
-                    Lua = {
-                        telemetry = {
-                            enable = false,
-                        },
-                        format = {
-                            enable = false,
-                        },
-                        hint = {
-                            enable = show_inlay_hints,
-                        },
-                        workspace = {
-                            library = library,
                         },
                     },
                 },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
             })
         elseif name == "ts_ls" then
             lspconfig[name].setup({
