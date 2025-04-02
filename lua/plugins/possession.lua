@@ -59,7 +59,7 @@ local function setup(possession)
                         "neo-tree",
                         "Outline",
                         "qf",
-                        "Trouble",
+                        "trouble",
                         "undotree",
                     },
                     custom = false, -- or fun(win): boolean

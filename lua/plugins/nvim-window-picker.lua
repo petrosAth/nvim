@@ -22,7 +22,7 @@ local function setup(window_picker)
                     "Outline",
                     "packer",
                     "qf",
-                    "Trouble",
+                    "trouble",
                     "undotree",
                 },
                 buftype = {

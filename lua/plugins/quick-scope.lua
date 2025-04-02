@@ -22,7 +22,7 @@ return {
                 "packer",
                 "qf",
                 "TelescopePrompt",
-                "Trouble",
+                "trouble",
                 "undotree",
             }
         end,
