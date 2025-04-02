@@ -7,6 +7,7 @@ local sources = function(null_ls)
     return {
         diagnostics.selene,
         diagnostics.zsh,
+        formatting.black,
         formatting.prettierd.with({
             filetypes = {
                 "javascript",
@@ -43,6 +44,7 @@ local sources = function(null_ls)
             },
         }),
         formatting.stylua,
+        formatting.djlint
     }
 end
 
