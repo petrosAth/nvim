@@ -202,6 +202,14 @@ USER.mappings = {
                     ["s"] = { "<CMD>ProjectCreateSession<CR>", desc = "Create session" }, -- possession.nvim
                     ["p"] = { "<CMD>ProjectCreatePrettierConfig<CR>", desc = "Create prettier config file" },
                     ["e"] = { "<CMD>ProjectCreateEditorConfig<CR>", desc = "Create EditorConfig file" },
+                    ["g"] = {
+                        group = "Create or update .gitignore file",
+                        ["g"] = { "<CMD>ProjectCreateGitignore<CR>", desc = "Create or update the .gitignore file" },
+                        ["d"] = {
+                            "<CMD>ProjectAppendGitignoreDjango<CR>",
+                            desc = "Create or update the .gitignore file with Django-specific rules.",
+                        },
+                    },
                 },
                 ["C"] = { "<CMD>ProjectCreateConfig<CR>", desc = "Create local config file" }, -- nvim-config-local
                 ["D"] = { "<CMD>PossessionDelete<CR>", desc = "Delete currently loaded session" }, -- possession.nvim

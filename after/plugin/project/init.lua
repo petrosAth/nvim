@@ -10,12 +10,17 @@ local function create_buffer(file, cursor)
 end
 
 ---Create and populate .gitignore file
-local function create_gitignore()
+local function create_gitignore(type)
+    local legal_types = {
+        django = ".django",
+    }
     local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
     local gitignore_file = string.format("%s/.gitignore", cwd)
+    local gitignore_template_file = string.format("%s/.gitignore", templates_dir)
+    if type then gitignore_template_file = string.format("%s%s", gitignore_template_file, legal_types[type]) end
 
-    local gitignore_template = vim.fn.readfile(string.format("%s/.gitignore", templates_dir))
+    local gitignore_template = vim.fn.readfile(gitignore_template_file)
 
     vim.fn.writefile(gitignore_template, gitignore_file, "a")
 end
@@ -120,3 +125,15 @@ vim.api.nvim_create_user_command("ProjectCreateEditorConfig", function()
         os.execute(string.format("cp %s %s", editorconfig_file_template, cwd))
     end
 end, { desc = "Create EditorConfig file in the project root." })
+
+vim.api.nvim_create_user_command(
+    "ProjectCreateGitignore",
+    function() create_gitignore() end,
+    { desc = "Create or update the .gitignore file." }
+)
+
+vim.api.nvim_create_user_command(
+    "ProjectAppendGitignoreDjango",
+    function() create_gitignore("django") end,
+    { desc = "Create or update the .gitignore file with Django-specific rules." }
+)
