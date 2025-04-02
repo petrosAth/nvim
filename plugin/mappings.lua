@@ -405,8 +405,8 @@ USER.mappings = {
                     end,
                     desc = "Execute command",
                 }, -- yeet.nvim
-
-                ["T"] = { function() require("yeet").toggle_post_write() end, desc = "Toggle execution on write" }, -- yeet.nvim
+                ["E"] = { function() require("yeet").toggle_post_write() end, desc = "Toggle execution on write" }, -- yeet.nvim
+                ["l"] = { function() require("yeet").list_cmd() end, desc = "List previous commands" }, -- yeet.nvim
             },
             ["u"] = { "<CMD>Neotree close<CR><CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" }, -- undotree
             ["<Space>"] = {
@@ -426,6 +426,11 @@ USER.mappings = {
         ["<M-K>"] = { ":m '<-2<CR>gv-gv", desc = "Move line up" },
         ["<Space>"] = {
             ["p"] = { '"_dP', desc = "Keep yanked text after paste" },
+            ["l"] = {
+                group = "LSP",
+                ["a"] = { function() require("actions-preview").code_actions() end, desc = "Code actions" }, -- nvim-lspconfig
+                ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
+            },
         },
     },
     -- Select mode mappings

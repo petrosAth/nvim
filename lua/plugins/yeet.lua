@@ -4,6 +4,7 @@ local function setup(yeet)
     local height = math.min(math.ceil(0.8 * vim.o.lines), 20)
 
     yeet.setup({
+        clear_before_yeet = false,
         cache_window_opts = {
             relative = "editor",
             row = (vim.o.lines - height) * 0.5,
