@@ -1,42 +1,50 @@
 local M = {}
 
-local show_inlay_hints = false
-
 local function handler_opts(border)
-    return {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    local opts = {
+        max_width = 100,
+        max_height = 14,
+        border = border,
     }
+
+    local hover, signature_help = vim.lsp.buf.hover, vim.lsp.buf.signature_help
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.lsp.buf.hover = function() return hover(opts) end
+    ---@diagnostic disable-next-line: duplicate-set-field
+    vim.lsp.buf.signature_help = function() return signature_help(opts) end
 end
 
 local function config_diagnostics(icons)
     vim.diagnostic.config({
+        severity_sort = true,
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = icons.lsp.error[1],
+                [vim.diagnostic.severity.HINT] = icons.lsp.hint[1],
+                [vim.diagnostic.severity.INFO] = icons.lsp.info[1],
+                [vim.diagnostic.severity.WARN] = icons.lsp.warn[1],
+            },
+            texthl = {
+                [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+                [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            },
+            numhl = {
+                [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+                [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+                [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+                [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            },
+        },
+        underline = true,
+        update_in_insert = false,
         virtual_text = {
             source = "if_many", --"always" "if_many"
             spacing = 4,
             prefix = icons.lsp.diagnostics[1],
         },
-        signs = true,
-        underline = true,
-        update_in_insert = false,
-        severity_sort = true,
     })
-
-    local signs = {
-        Error = icons.lsp.error[1],
-        Warn = icons.lsp.warn[1],
-        Hint = icons.lsp.hint[1],
-        Info = icons.lsp.info[1],
-    }
-
-    for type, icon in pairs(signs) do
-        local hl = string.format("DiagnosticSign%s", type)
-        vim.fn.sign_define(hl, {
-            text = icon,
-            texthl = hl,
-            numhl = hl,
-        })
-    end
 end
 
 local function capabilities()
