@@ -2,12 +2,12 @@ local function setup(rainbow_delimiters)
     vim.g.rainbow_delimiters = {
         strategy = {
             [""] = function()
-                if vim.fn.line("$") > 10000 then
-                    return nil
-                end
+                if vim.fn.line("$") > 10000 then return nil end
 
                 return rainbow_delimiters.strategy["global"]
             end,
+            html = function() return nil end,
+            htmldjango = function() return nil end,
         },
         query = {
             [""] = "rainbow-delimiters",
