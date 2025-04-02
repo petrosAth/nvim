@@ -2,6 +2,7 @@ local function setup(flash)
     flash.setup({
         labels = "fjdkslaruvmgheiwoxqpbnz",
         search = {
+            multi_window = false,
             exclude = {
                 "notify",
                 "cmp_menu",
