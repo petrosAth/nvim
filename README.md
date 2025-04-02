@@ -9,17 +9,13 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 - [ ] Break lsp servers' config in separate files.
       [on_attach ref github](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62)
       [on_attach ref reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/)
-- [ ] Add lsp
-      [codelens](https://github.com/tjdevries/config_manager/blob/66d5262e1d142bfde5ebc19ba120ae86cb16d1d9/xdg_config/nvim/lua/tj/lsp/codelens.lua)
+- [ ] Add
+      [lsp codelens](https://github.com/tjdevries/config_manager/blob/66d5262e1d142bfde5ebc19ba120ae86cb16d1d9/xdg_config/nvim/lua/tj/lsp/codelens.lua)
 - [ ] Add
       [snippet action key binding](https://alpha2phi.medium.com/neovim-for-beginners-snippets-using-lua-11e46c4d417c)
 - [ ] Improve code annotation with [neogen](https://github.com/danymat/neogen)
 - [ ] Add [refactoring.nvim](https://github.com/ThePrimeagen/refactoring.nvim)
 - [ ] Add debugger
-- [ ] (Maybe) Rework nord theme based on
-      [16base theme](https://alpha2phi.medium.com/neovim-for-beginners-color-scheme-e880762c6cc6)
-- [ ] Add Dracula theme
-- [ ] Add [Solarized](https://github.com/altercation/vim-colors-solarized) theme
 
 ## Plugins watch list
 
@@ -31,14 +27,10 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   predefined window layouts, bringing a new edge to your workflow
 - [persistence.nvim](https://github.com/folke/persistence.nvim) Simple session
   management for Neovim
-- [flash.nvim](https://github.com/folke/flash.nvim) Navigate your code with
-  search labels, enhanced character motions and Treesitter integration
 - [smart-splits.nvim](`https://github.com/mrjones2014/smart-splits.nvim`) Smart,
   seamless, directional navigation and resizing of Neovim + terminal multiplexer
   splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of
   "up/down/left/right".
-- [wezterm.nvim](`https://github.com/willothy/wezterm.nvim/`) Utilities for
-  interacting with Wezterm from within Neovim
 - [colorful-winsep](`https://github.com/nvim-zh/colorful-winsep.nvim`) Make your
   nvim window separators colorful
 - [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) Neovim plugin for
@@ -47,13 +39,10 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   for Vim
 - [vim-dadbod-ui](https://github.com/kristijanhusak/vim-dadbod-ui) Simple UI for
   vim-dadbod
-
-### Themes
-
-- [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) Dracula color scheme
-  for Neovim written in Lua.
-- [nvim-solarized-lua](https://github.com/ishan9299/nvim-solarized-lua)
-  Solarized color scheme in Lua for nvim 0.5.
+- [symbols.nvim](https://github.com/oskarrrrrrr/symbols.nvim) Code navigation
+  sidebar for Neovim.
+- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+  AI-powered coding, seamlessly in Neovim
 
 ### Debugging
 
