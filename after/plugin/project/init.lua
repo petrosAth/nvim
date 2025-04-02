@@ -13,7 +13,7 @@ end
 local function create_gitignore()
     local cwd = vim.uv.cwd()
     local templates_dir = USER.local_config.templates
-    local gitignore_file = string.format("%s/.gitignore", cwd )
+    local gitignore_file = string.format("%s/.gitignore", cwd)
 
     local gitignore_template = vim.fn.readfile(string.format("%s/.gitignore", templates_dir))
 
@@ -61,21 +61,12 @@ end
 ---Load the project's local config files.
 ---@param config table Table containing the loading options.
 function USER.load_local_config(config)
-    if config.use_session then
-        vim.cmd.ProjectCreateSession()
-    end
-    if config.use_spellfile then
-        vim.opt.spellfile = get_spell_file()
-    end
-    if config.use_palettes then
-        USER.local_config.palettes = get_palettes()
-    end
-    if config.use_prettier then
-        vim.cmd.ProjectCreatePrettierConfig()
-    end
-    if config.use_format_on_save then
-        vim.cmd.LspToggleAutoFormat()
-    end
+    if config.use_session then vim.cmd.ProjectCreateSession() end
+    if config.use_spellfile then vim.opt.spellfile = get_spell_file() end
+    if config.use_palettes then USER.local_config.palettes = get_palettes() end
+    if config.use_prettier then vim.cmd.ProjectCreatePrettierConfig() end
+    if config.use_editorconfig then vim.cmd.ProjectCreateEditorConfig() end
+    if config.use_format_on_save then vim.cmd.LspToggleAutoFormat() end
 end
 
 vim.api.nvim_create_user_command("ProjectCreateConfig", function()
@@ -118,3 +109,14 @@ vim.api.nvim_create_user_command("ProjectCreatePrettierConfig", function()
         os.execute(string.format("cp %s %s", prettier_file_template, cwd))
     end
 end, { desc = "Create prettier config file in the project root." })
+
+vim.api.nvim_create_user_command("ProjectCreateEditorConfig", function()
+    local cwd = vim.uv.cwd()
+    local templates_dir = USER.local_config.templates
+    local editorconfig_file = ".editorconfig"
+
+    if vim.fn.filereadable(string.format("%s/%s", cwd, editorconfig_file)) == 0 then
+        local editorconfig_file_template = string.format("%s/%s", templates_dir, editorconfig_file)
+        os.execute(string.format("cp %s %s", editorconfig_file_template, cwd))
+    end
+end, { desc = "Create EditorConfig file in the project root." })

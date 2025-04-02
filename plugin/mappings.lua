@@ -200,7 +200,8 @@ USER.mappings = {
                     group = "Create local config files",
                     ["c"] = { "<CMD>ProjectCreatePalette<CR>", desc = "Create palette" }, -- ccc.nvim
                     ["s"] = { "<CMD>ProjectCreateSession<CR>", desc = "Create session" }, -- possession.nvim
-                    ["p"] = { "<CMD>ProjectCreatePrettierConfig<CR>", desc = "Create prettier config" },
+                    ["p"] = { "<CMD>ProjectCreatePrettierConfig<CR>", desc = "Create prettier config file" },
+                    ["e"] = { "<CMD>ProjectCreateEditorConfig<CR>", desc = "Create EditorConfig file" },
                 },
                 ["C"] = { "<CMD>ProjectCreateConfig<CR>", desc = "Create local config file" }, -- nvim-config-local
                 ["D"] = { "<CMD>PossessionDelete<CR>", desc = "Delete currently loaded session" }, -- possession.nvim
