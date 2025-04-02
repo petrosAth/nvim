@@ -1,5 +1,6 @@
 local function setup(hlslens)
     local icons = USER.styling.icons
+    local sep = USER.styling.separators.bars
 
     hlslens.setup({
         -- When to open the floating window for the nearest lens.
@@ -11,31 +12,44 @@ local function setup(hlslens)
         --     should search `override_lens` and inspect the corresponding source code.
         --     There's no guarantee that this function will not be changed in the future. If it is
         --     changed, it will be listed in the CHANGES file.,
+        virt_priority = 90,
         override_lens = function(render, posList, nearest, idx, relIdx)
             local sfw = vim.v.searchforward == 1
-            local indicator, text, chunks
+            local indicator, chunks
             local absRelIdx = math.abs(relIdx)
             if absRelIdx > 0 then
                 indicator = ("%d%s"):format(
                     absRelIdx,
-                    sfw ~= (relIdx > 0) and icons.arrow.hollow.u or icons.arrow.hollow.b
+                    sfw ~= (relIdx > 0) and icons.arrow.point.u[1] or icons.arrow.point.b[1]
                 )
             else
-                indicator = icons.arrow.hollow.r
+                indicator = icons.search[4]
             end
 
             local lnum, col = unpack(posList[idx])
             if nearest then
                 local cnt = #posList
                 if indicator ~= "" then
-                    text = (" %s▕ %d/%d "):format(indicator, idx, cnt)
+                    chunks = {
+                        { sep.left, "HlSearchLensNearMotionEdge" },
+                        { ("%s "):format(indicator), "HlSearchLensNearMotion" },
+                        { (" %d/%d"):format(idx, cnt), "HlSearchLensNearIndex" },
+                        { sep.right, "HlSearchLensNearIndexEdge" },
+                    }
                 else
-                    text = (" %d/%d "):format(idx, cnt)
+                    chunks = {
+                        { sep.left, "HlSearchLensNearMotionEdge" },
+                        { ("%d/%d"):format(idx, cnt), "HlSearchLensNearMotion" },
+                        { sep.right, "HlSearchLensNearMotionEdge" },
+                    }
                 end
-                chunks = { { " ", "Ignore" }, { text, "HlSearchLensNear" } }
             else
-                text = (" %s▕ %d "):format(indicator, idx)
-                chunks = { { " ", "Ignore" }, { text, "HlSearchLens" } }
+                chunks = {
+                    { sep.left, "HlSearchLensMotionEdge" },
+                    { ("%s "):format(indicator), "HlSearchLensMotion" },
+                    { (" %d"):format(idx), "HlSearchLensIndex" },
+                    { sep.right, "HlSearchLensIndexEdge" },
+                }
             end
             render.setVirt(0, lnum - 1, col - 1, chunks, nearest)
         end,
