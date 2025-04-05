@@ -144,6 +144,12 @@ USER.mappings = {
             ["l"] = { desc = "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
         },
         ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
+        ["<C-w>"] = {
+            ["<Space>"] = {
+                function() require("which-key").show({ keys = "<c-w>", loop = true }) end,
+                desc = "Window Hydra Mode (which-key)",
+            },
+        }, -- which-key.nvim
         ["<M-J>"] = { ":m .+1<CR>==", desc = "Move line up" },
         ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line down" },
         ["<M-X>"] = { ":x<CR>", desc = "Save and quit only if there are changes in the file" },
