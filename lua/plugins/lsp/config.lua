@@ -14,7 +14,7 @@ local function handler_opts(border)
     vim.lsp.buf.signature_help = function() return signature_help(opts) end
 end
 
-local function config_diagnostics(icons)
+local function config_diagnostics(icons, border)
     vim.diagnostic.config({
         severity_sort = true,
         signs = {
@@ -40,9 +40,14 @@ local function config_diagnostics(icons)
         underline = true,
         update_in_insert = false,
         virtual_text = {
-            source = "if_many", --"always" "if_many"
+            source = true,
             spacing = 4,
             prefix = icons.lsp.diagnostics[1],
+        },
+        float = {
+            source = true,
+            prefix = string.format("%s ", icons.lsp.diagnostics[1]),
+            border = border,
         },
     })
 end
@@ -258,7 +263,7 @@ function M.setup(icons, border, root_files, servers)
 
     require("plugins.lsp.mason").setup(icons, border)
     require("plugins.lsp.mason-lspconfig").setup()
-    config_diagnostics(icons)
+    config_diagnostics(icons, border)
     setup_language_servers(lspconfig, servers, handler_opts(border), root_files)
     require("plugins.lsp.null-ls").setup(border, root_files)
 end

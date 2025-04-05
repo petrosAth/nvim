@@ -138,33 +138,38 @@ function M.get_highlight_groups(palette)
     }
 
     g.diagnostic = {
-        DiagnosticError            = { fg = p.red_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-        DiagnosticWarn             = { fg = p.yellow_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-        DiagnosticInfo             = { fg = p.cyan_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-        DiagnosticHint             = { fg = p.blue_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
-        DiagnosticOk               = { fg = p.green_2 },
-        DiagnosticUnnecessary      = { fg = p.base_04 },
-        DiagnosticDeprecated       = { fg = p.base_04, strikethrough = true },
-        DiagnosticSignError        = { link = "DiagnosticError" },
-        DiagnosticSignWarn         = { link = "DiagnosticWarn" },
-        DiagnosticSignInfo         = { link = "DiagnosticInfo" },
-        DiagnosticSignHint         = { link = "DiagnosticHint" },
-        DiagnosticSignOk           = { link = "DiagnosticOk" },
-        DiagnosticFloatingWarn     = { link = "DiagnosticError" },
-        DiagnosticFloatingError    = { link = "DiagnosticWarn" },
-        DiagnosticFloatingInfo     = { link = "DiagnosticInfo" },
-        DiagnosticFloatingHint     = { link = "DiagnosticHint" },
-        DiagnosticFloatingOk       = { link = "DiagnosticOk" },
-        DiagnosticUnderlineError   = { undercurl = true, sp = p.red_2 },
-        DiagnosticUnderlineWarn    = { undercurl = true, sp = p.yellow_2 },
-        DiagnosticUnderlineInfo    = { undercurl = true, sp = p.cyan_2 },
-        DiagnosticUnderlineHint    = { undercurl = true, sp = p.blue_2 },
-        DiagnosticUnderlineOk      = { undercurl = true, sp = p.green_2 },
-        DiagnosticVirtualTextError = { fg = p.red_2, bg = p.red_0, bold = true },
-        DiagnosticVirtualTextWarn  = { fg = p.yellow_2, bg = p.yellow_0, bold = true },
-        DiagnosticVirtualTextInfo  = { fg = p.cyan_2, bg = p.cyan_0, bold = true },
-        DiagnosticVirtualTextHint  = { fg = p.blue_2, bg = p.blue_0, bold = true },
-        DiagnosticVirtualTextOk    = { fg = p.green_2, bg = p.green_0, bold = true },
+        DiagnosticError             = { fg = p.red_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+        DiagnosticWarn              = { fg = p.yellow_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+        DiagnosticInfo              = { fg = p.cyan_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+        DiagnosticHint              = { fg = p.blue_2 }, -- Used as the base highlight group. Other Diagnostic highlights link to this by default
+        DiagnosticOk                = { fg = p.green_2 },
+        DiagnosticUnnecessary       = { fg = p.base_04 },
+        DiagnosticDeprecated        = { fg = p.base_04, strikethrough = true },
+        DiagnosticSignError         = { link = "DiagnosticError" },
+        DiagnosticSignWarn          = { link = "DiagnosticWarn" },
+        DiagnosticSignInfo          = { link = "DiagnosticInfo" },
+        DiagnosticSignHint          = { link = "DiagnosticHint" },
+        DiagnosticSignOk            = { link = "DiagnosticOk" },
+        DiagnosticFloatingWarn      = { link = "DiagnosticError" },
+        DiagnosticFloatingError     = { link = "DiagnosticWarn" },
+        DiagnosticFloatingInfo      = { link = "DiagnosticInfo" },
+        DiagnosticFloatingHint      = { link = "DiagnosticHint" },
+        DiagnosticFloatingOk        = { link = "DiagnosticOk" },
+        DiagnosticUnderlineError    = { undercurl = true, sp = p.red_2 },
+        DiagnosticUnderlineWarn     = { undercurl = true, sp = p.yellow_2 },
+        DiagnosticUnderlineInfo     = { undercurl = true, sp = p.cyan_2 },
+        DiagnosticUnderlineHint     = { undercurl = true, sp = p.blue_2 },
+        DiagnosticUnderlineOk       = { undercurl = true, sp = p.green_2 },
+        DiagnosticVirtualLinesError = { fg = p.red_2, bg = p.red_0, bold = true },
+        DiagnosticVirtualLinesWarn  = { fg = p.yellow_2, bg = p.yellow_0, bold = true },
+        DiagnosticVirtualLinesInfo  = { fg = p.cyan_2, bg = p.cyan_0, bold = true },
+        DiagnosticVirtualLinesHint  = { fg = p.blue_2, bg = p.blue_0, bold = true },
+        DiagnosticVirtualLinesOk    = { fg = p.green_2, bg = p.green_0, bold = true },
+        DiagnosticVirtualTextError  = { fg = p.red_2, bg = p.red_0, bold = true },
+        DiagnosticVirtualTextWarn   = { fg = p.yellow_2, bg = p.yellow_0, bold = true },
+        DiagnosticVirtualTextInfo   = { fg = p.cyan_2, bg = p.cyan_0, bold = true },
+        DiagnosticVirtualTextHint   = { fg = p.blue_2, bg = p.blue_0, bold = true },
+        DiagnosticVirtualTextOk     = { fg = p.green_2, bg = p.green_0, bold = true },
     }
 
     g.flash = {

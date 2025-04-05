@@ -357,7 +357,6 @@ USER.mappings = {
                 ["d"] = { "<CMD>Glance definitions<CR>", desc = "Definitions" }, -- nvim-lspconfig -- glance.nvim
                 ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
-                ["h"] = { function() vim.diagnostic.open_float() end, desc = "Line diagnostics" }, -- nvim-lspconfig
                 ["i"] = { "<CMD>Glance implementations<CR>", desc = "Implementations" }, -- nvim-lspconfig -- glance.nvim
                 ["q"] = { "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["Q"] = { "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim

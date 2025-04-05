@@ -96,7 +96,12 @@ local function setup(snacks)
         scroll = { enabled = true },
         statuscolumn = { enabled = false },
         terminal = { enabled = false },
-        toggle = { enabled = true },
+        toggle = {
+            wk_desc = {
+                enabled = " ",
+                disabled = " ",
+            },
+        },
         win = { enabled = false },
         words = {
             debounce = 500,
@@ -141,7 +146,6 @@ local function create_autocmd(snacks)
             snacks.toggle.option("spell", { name = "Spelling" }):map("<F1>s")
             snacks.toggle.option("wrap", { name = "Wrap" }):map("<F1>w")
             snacks.toggle.option("cursorcolumn", { name = "Cursor column" }):map("<F1>c")
-            snacks.toggle.diagnostics():map("<F1>d")
             snacks.toggle
                 .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
                 :map("<F1>C")
@@ -149,6 +153,16 @@ local function create_autocmd(snacks)
             snacks.toggle.inlay_hints():map("<F1>h")
             snacks.toggle.profiler():map("<F1>pp")
             snacks.toggle.profiler_highlights():map("<F1>ph")
+            snacks
+                .toggle({
+                    name = "Toggle Virtual line/text diagnostics",
+                    get = function() return vim.diagnostic.config().virtual_lines end,
+                    set = function(state)
+                        vim.diagnostic.config({ virtual_lines = state and true or false })
+                        vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_lines })
+                    end,
+                })
+                :map("<F1>d")
         end,
     })
 end
