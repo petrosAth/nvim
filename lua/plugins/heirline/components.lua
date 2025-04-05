@@ -212,13 +212,13 @@ M.LspSymbol = {
 }
 
 M.Paste = {
+    condition = function() return vim.o.paste end,
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
     update = {
         "ModeChanged",
         pattern = "*:*",
         callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
     },
-    condition = function() return vim.o.paste end,
     { provider = (" %s "):format(Sep.sep) },
     { provider = "PASTE" },
     hl = function(self) return get_vim_mode_color(self.mode) end,
@@ -343,6 +343,22 @@ M.SearchResults = {
         end,
     },
     hl = function(self) return { fg = get_vim_mode_color(self.mode).fg, bg = get_vim_mode_color(self.mode).bg } end,
+}
+
+M.GitBlame = {
+    condition = conditions.is_git_repo,
+    init = function(self) self.blame_line = vim.b.gitsigns_blame_line or "" end,
+    update = {
+        "CursorHold",
+        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
+    },
+    { flexible = props.Hide.GitBlame, { provider = Sep.gap }, Null },
+    {
+        flexible = props.Hide.GitBlame,
+        {
+            provider = function(self) return self.blame_line end,
+        },
+    },
 }
 
 M.GitStatus = {

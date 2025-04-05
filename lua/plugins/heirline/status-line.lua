@@ -202,6 +202,8 @@ local StatusLine = {
     c.LspBlock,
     c.PluginUpdates,
     Align,
+    c.GitBlame,
+    Align,
     c.Spell,
     c.Treesitter,
     c.FileEncoding,

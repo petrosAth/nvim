@@ -23,7 +23,11 @@ local function setup(gitsigns)
         linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
         culhl = true,
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-        current_line_blame_formatter = (" %s <author>, <author_time:%%Y-%%m-%%d> - <summary>"):format(icons.commit[1]),
+        current_line_blame_opts = {
+            virt_text = false,
+            delay = 100,
+        },
+        current_line_blame_formatter = ("%s <author> (<author_time:%%Y-%%m-%%d>) - <summary>"):format(icons.commit[1]),
         preview_config = {
             border = {
                 borders.tl,

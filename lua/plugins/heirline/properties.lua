@@ -37,6 +37,7 @@ M.Hide = {
         icon = 20,
         value = 40,
     },
+    GitBlame = 20,
     nullLsIcon = 50,
     nullLsSources = 20,
     lspIcon = 50,
