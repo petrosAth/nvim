@@ -491,9 +491,9 @@ function M.get_highlight_groups(palette)
         MiniAnimateNormalFloat        = { fg = g.editor.Normal.fg, bg = g.editor.SignColumn.fg },
 
         -- nvim-cmp
-        CmpGhostText                  = { fg = p.cFill5, bold = true },
+        CmpGhostText                  = { fg = p.base_04, bold = true },
 
-        CmpItemMenu                   = { fg = p.cFill5 },
+        CmpItemMenu                   = { fg = p.base_04 },
 
         CmpItemAbbr                   = { fg = p.base_fg },
         CmpItemAbbrDeprecated         = { link = "DiagnosticDeprecated" },
@@ -540,7 +540,7 @@ function M.get_highlight_groups(palette)
         GlanceListFilename            = { link = "Define" },
         GlanceListFilepath            = { link = "Comment" },
         GlanceListCount               = { link = "Number" },
-        GlanceListMatch               = { fg = p.cyan_2, bg = p.cFill1 },
+        GlanceListMatch               = { fg = p.cyan_2, bg = p.base_1 },
         GlanceListCursorLine          = { link = "CursorLine" },
         GlanceListEndOfBuffer         = { fg = p.blue_3, bg = p.base_0 },
         GlanceListBorderBottom        = { fg = g.editor.FloatBorder.fg, bg = p.base_0 },
@@ -646,17 +646,17 @@ function M.get_highlight_groups(palette)
         NeoTreeWinSeparator           = { link = "WinSeparator" },
         NeoTreeCursorLine             = { link = "CursorLine" },
 
-        NeoTreeTabActive              = { fg = p.base_fg, bg = p.cFill5 },
+        NeoTreeTabActive              = { fg = p.base_fg, bg = p.base_4 },
         NeoTreeTabInactive            = { fg = p.base_fg, bg = p.base_3 },
         NeoTreeTabBarBackground       = { link = "StatusLine" },
-        NeoTreeTabSeparatorActive     = { fg = p.base_2, bg = p.cFill5 },
+        NeoTreeTabSeparatorActive     = { fg = p.base_2, bg = p.base_4 },
         NeoTreeTabSeparatorInactive   = { fg = p.base_2, bg = p.base_3 },
 
         NeoTreeRootName               = { fg = p.base_00, bold = true, italic = true },
         NeoTreeIndentMarker           = { link = "FoldColumn" },
         NeoTreeFileNameOpened         = { bold = true, nocombine = true },
         NeoTreeBufferNumber           = { fg = p.base_00 },
-        NeoTreeDotfile                = { fg = p.cFill5 },
+        NeoTreeDotfile                = { fg = p.base_04 },
         NeoTreeSymbolicLinkTarget     = { fg = p.violet_2, bold = true },
 
         NeoTreeMessage                = { fg = p.magenta_2 },
