@@ -216,11 +216,22 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                 capabilities = capabilities(),
                 handlers = handlers,
             })
+        elseif name == "ruff" then
             lspconfig[name].setup({
-                settings = {
+                init_options = {
+                    settings = {
+                        lint = {
+                            preview = true,
                         },
                     },
                 },
+                on_attach = function(client, bufnr)
+                    client.server_capabilities.document_formatting = false
+                    client.server_capabilities.document_range_formatting = false
+                    on_attach(client, bufnr)
+                end,
+                capabilities = capabilities(),
+                handlers = handlers,
             })
         elseif name == "ts_ls" then
             lspconfig[name].setup({

@@ -25,6 +25,7 @@ local servers = {
     "omnisharp",
     "powershell_es",
     "pyright",
+    "ruff",
     "lemminx",
     "lua_ls",
     "sqlls",
