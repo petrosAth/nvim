@@ -491,7 +491,7 @@ function M.get_highlight_groups(palette)
         MiniAnimateNormalFloat        = { fg = g.editor.Normal.fg, bg = g.editor.SignColumn.fg },
 
         -- nvim-cmp
-        CmpGhostText                  = { fg = p.base_04, bold = true },
+        CmpGhostText                  = { fg = p.base_04 },
 
         CmpItemMenu                   = { fg = p.base_04 },
 
