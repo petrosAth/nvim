@@ -27,7 +27,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   predefined window layouts, bringing a new edge to your workflow
 - [persistence.nvim](https://github.com/folke/persistence.nvim) Simple session
   management for Neovim
-- [smart-splits.nvim](`https://github.com/mrjones2014/smart-splits.nvim`) Smart,
+- [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) Smart,
   seamless, directional navigation and resizing of Neovim + terminal multiplexer
   splits. Supports tmux, Wezterm, and Kitty. Think about splits in terms of
   "up/down/left/right".

@@ -4,46 +4,37 @@ local M = {}
 vim.o.background = "dark"
 vim.o.termguicolors = true
 
--- Original palette
--- This code was [copied/inspired/adapted] from:
--- https://github.com/morhetz/gruvbox
 local p = {
-    dark0   = "#1d2021",
-    dark1   = "#282828",
-    dark2   = "#32302f",
-    dark3   = "#3c3836",
-    dark4   = "#504945",
-    light0  = "#928374",
-    light1  = "#bdae93",
-    light2  = "#ebdbb2",
-    light3  = "#fbf1c7",
-    light4  = "#f9f5d7",
-    red     = "#cc241d",
-    orange  = "#d65d0e",
-    yellow  = "#d79921",
-    green   = "#98971a",
-    cyan    = "#689d6a",
-    blue    = "#458588",
-    violet  = "#6662b2",
-    magenta = "#b16286",
+    dark1   = "#272822",
+    dark4   = "#75715e",
+    light1  = "#f8f8f2",
+    red     = "#ff4f4f",
+    orange  = "#fd971f",
+    yellow  = "#e6db74",
+    green   = "#a6e22e",
+    cyan    = "#66d9ef",
+    blue    = "#5fafff",
+    violet  = "#ae81ff",
+    magenta = "#f92672"
 }
 
 local bg = p.dark1
-local fg = p.light2
+local fg = u.blend(p.light1, p.dark4, 0.7)
 
 M.base = {
+
     base_fg   = fg,
     base_bg   = USER.transparent_bg and "NONE" or bg,
-    base_0    = p.dark0,
+    base_0    = u.adjustHSL(bg, 0, 0, -2),
     base_1    = p.dark1,
-    base_2    = p.dark2,
-    base_3    = p.dark3,
+    base_2    = u.blend(p.dark4, bg, 0.2),
+    base_3    = u.blend(p.dark4, bg, 0.4),
     base_4    = p.dark4,
-    base_04   = p.light0,
-    base_03   = p.light1,
-    base_02   = p.light2,
-    base_01   = p.light3,
-    base_00   = p.light4,
+    base_04   = u.blend(p.light1, p.dark4, 0.2),
+    base_03   = u.blend(p.light1, p.dark4, 0.4),
+    base_02   = fg,
+    base_01   = u.blend(p.light1, p.dark4, 0.9),
+    base_00   = p.light1,
     red_0     = u.blend(p.red, bg, 0.15),
     red_1     = u.blend(p.red, bg, 0.5),
     red_2     = p.red,
