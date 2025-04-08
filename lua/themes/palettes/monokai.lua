@@ -6,8 +6,8 @@ vim.o.termguicolors = true
 
 local p = {
     dark1   = "#272822",
-    dark4   = "#75715e",
-    light1  = "#f8f8f2",
+    light0  = "#75715e",
+    light3  = "#f8f8f2",
     red     = "#ff4f4f",
     orange  = "#fd971f",
     yellow  = "#e6db74",
@@ -19,22 +19,21 @@ local p = {
 }
 
 local bg = p.dark1
-local fg = u.blend(p.light1, p.dark4, 0.7)
+local fg = u.blend(p.light3, p.light0, 0.8)
 
 M.base = {
-
     base_fg   = fg,
     base_bg   = USER.transparent_bg and "NONE" or bg,
     base_0    = u.adjustHSL(bg, 0, 0, -2),
     base_1    = p.dark1,
-    base_2    = u.blend(p.dark4, bg, 0.2),
-    base_3    = u.blend(p.dark4, bg, 0.4),
-    base_4    = p.dark4,
-    base_04   = u.blend(p.light1, p.dark4, 0.2),
-    base_03   = u.blend(p.light1, p.dark4, 0.4),
+    base_2    = u.blend(p.light0, bg, 0.2),
+    base_3    = u.blend(p.light0, bg, 0.4),
+    base_4    = u.blend(p.light0, bg, 0.7),
+    base_04   = p.light0,
+    base_03   = u.blend(p.light0, fg, 0.25),
     base_02   = fg,
-    base_01   = u.blend(p.light1, p.dark4, 0.9),
-    base_00   = p.light1,
+    base_01   = p.light3,
+    base_00   = u.adjustHSL(fg, 0, 0, 15),
     red_0     = u.blend(p.red, bg, 0.15),
     red_1     = u.blend(p.red, bg, 0.5),
     red_2     = p.red,
