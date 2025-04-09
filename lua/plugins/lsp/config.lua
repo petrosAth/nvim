@@ -42,7 +42,7 @@ local function config_diagnostics(icons, border)
         virtual_text = {
             source = true,
             spacing = 4,
-            prefix = icons.lsp.diagnostics[1],
+            prefix = icons.lsp.diagnostics[5],
         },
         float = {
             source = true,
