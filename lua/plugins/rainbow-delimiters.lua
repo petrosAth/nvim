@@ -24,6 +24,7 @@ end
 return {
     -- Rainbow delimiters for Neovim with Tree-sitter
     "hiphish/rainbow-delimiters.nvim",
+    submodules = false,
     event = { "BufReadPost" },
     dependencies = {
         -- The goal of nvim-treesitter is both to provide a simple and easy way to use the interface for tree-sitter in
