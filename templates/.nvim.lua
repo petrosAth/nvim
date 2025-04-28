@@ -1,3 +1,6 @@
+-- stylua: ignore
+-- selene: allow(undefined_variable)
+---@diagnostic disable-next-line: undefined-global
 USER.load_local_config({
     use_session        = false, -- Use local session
     use_spellfile      = false, -- Use local spell file
