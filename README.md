@@ -43,6 +43,8 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
   sidebar for Neovim.
 - [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
   AI-powered coding, seamlessly in Neovim
+- [overseer.nvim](https://github.com/stevearc/overseer.nvim) A task runner and
+  job management plugin for Neovim
 
 ### Debugging
 
