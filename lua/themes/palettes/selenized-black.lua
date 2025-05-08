@@ -84,7 +84,7 @@ M.base = {
 
 M.terminal = {
     black        = M.base.base_1,
-    blackLight   = M.base.base_3,
+    blackLight   = M.base.base_04,
     red          = M.base.red_2,
     redLight     = M.base.red_3,
     green        = M.base.green_2,
