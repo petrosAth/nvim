@@ -1,7 +1,7 @@
 local M = {}
 
 local function get_lsp_servers(servers)
-    local remap = require("mason-lspconfig.mappings.server").lspconfig_to_package
+    local remap = require("mason-lspconfig.mappings").get_mason_map().lspconfig_to_package
     local mapped_servers = {}
 
     for _, server in ipairs(servers) do
@@ -16,9 +16,7 @@ local function get_null_ls_sources()
     local sources = {}
 
     for _, source in ipairs(sources_table) do
-        if source["name"] ~= "zsh" then
-            table.insert(sources, source["name"])
-        end
+        if source["name"] ~= "zsh" then table.insert(sources, source["name"]) end
     end
 
     return sources
