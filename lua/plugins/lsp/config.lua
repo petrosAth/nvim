@@ -175,8 +175,6 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                 handlers = handlers,
             })
         elseif name == "lua_ls" then
-            -- Make the server aware of Neovim runtime files when editing Neovim config
-            local library = vim.uv.cwd() == vim.fn.stdpath("config") and vim.api.nvim_get_runtime_file("", true) or nil
             vim.lsp.config(name, {
                 root_dir = function(bufnr, on_dir)
                     local fname = vim.api.nvim_buf_get_name(bufnr)
@@ -193,31 +191,8 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                         hint = {
                             enable = true,
                         },
-                        workspace = {
-                            library = library,
-                        },
                     },
                 },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "omnisharp" then
-            local install_path = string.format("%s/mason/packages", vim.fn.stdpath("data"))
-            local cmd = USER.omni_mono and "mono" or "dotnet"
-            local path = USER.omni_mono and string.format("%s/omnisharp-mono/omnisharp/OmniSharp.exe", install_path)
-                or string.format("%s/omnisharp/OmniSharp.dll", install_path)
-            vim.lsp.config(name, {
-                -- use_modern_net = user.omni_mono == false and true or false
-                on_new_config = function(config)
-                    config.cmd = {
-                        cmd,
-                        path,
-                        "--languageserver",
-                        "--hostPID",
-                        tostring(vim.fn.getpid()),
-                    }
-                end,
                 on_attach = on_attach,
                 capabilities = capabilities(),
                 handlers = handlers,

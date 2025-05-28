@@ -19,7 +19,6 @@ local themes = {
 
 -- Create custom table to store my functions, tables, variables etc
 USER = {
-    omni_mono = false, -- Make omnisharp change cmd between mono/dotnet
     styling = require("styling"), -- Table with variables and icons used for neovim styling
     theme = themes[0] or vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
     transparent_bg = true,

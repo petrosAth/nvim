@@ -22,7 +22,6 @@ local servers = {
     "eslint",
     "intelephense",
     "jsonls",
-    "omnisharp",
     "powershell_es",
     "pyright",
     "ruff",
