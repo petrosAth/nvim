@@ -263,7 +263,7 @@ function M.get_highlight_groups(palette)
         ["@punctuation.delimiter"]        = { link = "Delimiter" }, -- For delimiters ie: `.`
         ["@punctuation.special"]          = { fg = p.orange_2 }, -- For special symbols (e.g. `{}` in string interpolation)
         ["@punctuation.special.markdown"] = { fg = p.orange_2, bold = true }, -- For special symbols (e.g. `{}` in string interpolation)
-        ["@spell"]                        = { link = "SpellBad" },
+        -- ["@spell"]                        = { link = "SpellBad" },
         ["@string"]                       = { link = "String" }, -- string literals
         ["@string.documentation"]         = { fg = p.yellow_1 }, -- string documenting code (e.g. Python docstrings)
         ["@string.escape"]                = { link = "Delimiter" }, -- For escape characters within a string.

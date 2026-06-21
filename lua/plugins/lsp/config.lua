@@ -115,8 +115,9 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                     "pug",
                     "sass",
                     "scss",
+                    "smarty",
                     "typescriptreact",
-                    "htmlangular",
+                    "vue",
                 },
                 on_attach = on_attach,
                 capabilities = capabilities(),
@@ -166,9 +167,37 @@ local function setup_language_servers(lspconfig, servers, handlers, root_files)
                 handlers = handlers,
             })
         elseif name == "intelephense" then
+            local intelephense = {
+                telemetry = { enabled = false },
+                format = { enable = false },
+            }
+
+            -- When the cwd maps to a docker container, target that container's PHP version.
+            local cwd = vim.fn.getcwd()
+            for host_path, container in pairs(USER.lsp.intelephense_docker or {}) do
+                local root = vim.fn.expand(host_path)
+                if cwd == root or vim.startswith(cwd, root .. "/") then
+                    local out = vim.fn.system({
+                        "docker",
+                        "exec",
+                        container,
+                        "php",
+                        "-r",
+                        "echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;",
+                    })
+                    if vim.v.shell_error == 0 and vim.trim(out) ~= "" then
+                        intelephense.environment = { phpVersion = vim.trim(out) }
+                    end
+                    break
+                end
+            end
+
             vim.lsp.config(name, {
                 init_options = {
                     licenceKey = vim.fn.expand("$HOME/intelephense/licence.txt"),
+                },
+                settings = {
+                    intelephense = intelephense,
                 },
                 on_attach = on_attach,
                 capabilities = capabilities(),

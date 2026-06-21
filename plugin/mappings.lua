@@ -234,7 +234,7 @@ USER.mappings = {
                 group = "Utilities",
                 ["s"] = {
                     group = "Status",
-                    ["l"] = { "<CMD>checkhealth lspconfig<CR>", desc = "LSP info" }, -- lsp-config
+                    ["l"] = { "<CMD>checkhealth vim.lsp<CR>", desc = "LSP info" }, -- lsp-config
                     ["m"] = { "<CMD>Mason<CR>", desc = "Mason status" }, -- mason.nvim
                     ["n"] = { "<CMD>NullLsInfo<CR>", desc = "Null-ls info" }, -- null-ls.nvim
                     ["p"] = { "<CMD>Lazy<CR>", desc = "Plugins status" }, -- lazy.nvim

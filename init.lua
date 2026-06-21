@@ -35,6 +35,11 @@ USER = {
     lsp = {
         show_inlay_hints = false,
         enable_semantic_tokens = true,
+        -- host project root -> docker container whose PHP version intelephense should target.
+        intelephense_docker = {
+            ["$HOME/code/epignosis/efront"] = "php8.0",
+            -- add more projects here
+        },
     },
 }
 
