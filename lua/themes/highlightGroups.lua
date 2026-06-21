@@ -185,6 +185,7 @@ function M.get_highlight_groups(palette)
     g.treesitter = {
         ["@annotation"]                   = { fg = g.syntax.Type.fg, italic = true },
         ["@attribute"]                    = { link = "@annotation" }, -- attribute annotations (e.g. Python decorators, Rust lifetimes)
+        ["@attribute.css"]                = { link = "@property" },
         ["@boolean"]                      = { link = "Boolean" }, -- boolean literals
         ["@character"]                    = { link = "Character" }, -- character literals
         ["@character.printf"]             = { link = "SpecialChar" },
@@ -262,6 +263,7 @@ function M.get_highlight_groups(palette)
         ["@punctuation.delimiter"]        = { link = "Delimiter" }, -- For delimiters ie: `.`
         ["@punctuation.special"]          = { fg = p.orange_2 }, -- For special symbols (e.g. `{}` in string interpolation)
         ["@punctuation.special.markdown"] = { fg = p.orange_2, bold = true }, -- For special symbols (e.g. `{}` in string interpolation)
+        ["@spell"]                        = { link = "SpellBad" },
         ["@string"]                       = { link = "String" }, -- string literals
         ["@string.documentation"]         = { fg = p.yellow_1 }, -- string documenting code (e.g. Python docstrings)
         ["@string.escape"]                = { link = "Delimiter" }, -- For escape characters within a string.
@@ -278,6 +280,7 @@ function M.get_highlight_groups(palette)
         ["@tag.delimiter.tsx"]            = { link = "Delimiter" },
         ["@tag.delimiter.html"]           = { fg = p.dark_4 },
         ["@tag.html"]                     = { link = "Tag" },
+        ["@tag.css"]                      = { link = "@function" },
         ["@tag.javascript"]               = { link = "Tag" },
         ["@tag.tsx"]                      = { link = "Tag" },
         ["@type"]                         = { link = "Type" }, -- type or class definitions and annotations
