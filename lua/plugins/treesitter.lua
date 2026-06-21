@@ -1,6 +1,6 @@
 local function setup(nvim_treesitter)
     nvim_treesitter.setup({
-        ensure_installed = "all",
+        auto_install = true,
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
