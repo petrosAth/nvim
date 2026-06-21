@@ -78,7 +78,7 @@ local function capabilities()
 end
 
 local function on_attach(client, bufnr)
-    if client.supports_method("textDocument/documentSymbol") then
+    if client:supports_method("textDocument/documentSymbol") then
         require("plugins.lsp.nvim-navic").setup(client, bufnr)
     end
 
