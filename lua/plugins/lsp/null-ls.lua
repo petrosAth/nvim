@@ -5,9 +5,12 @@ local sources = function(null_ls)
     local formatting = null_ls.builtins.formatting
 
     return {
+        diagnostics.phpcs,
+        diagnostics.phpstan,
         diagnostics.selene,
         diagnostics.zsh,
         formatting.black,
+        formatting.phpcsfixer,
         formatting.prettierd.with({
             filetypes = {
                 "javascript",
