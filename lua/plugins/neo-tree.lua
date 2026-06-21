@@ -1,6 +1,13 @@
 local function setup(neo_tree)
     local icons = USER.styling.icons
     local borders = USER.styling.borders.default
+    local neotree_window_width = function()
+        if vim.api.nvim_win_get_width(0) > 200 then
+            return "17%"
+        else
+            return "25%"
+        end
+    end
 
     neo_tree.setup({
         sources = {
@@ -120,7 +127,7 @@ local function setup(neo_tree)
             },
         },
         window = {
-            width = "13%",
+            width = neotree_window_width(),
             popup = {
                 size = {
                     width = 49,
