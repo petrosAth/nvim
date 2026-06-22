@@ -359,7 +359,7 @@ USER.mappings = {
             },
             ["l"] = {
                 group = "LSP",
-                ["a"] = { function() require("actions-preview").code_actions() end, desc = "Code actions" }, -- nvim-lspconfig
+                ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
                 ["d"] = { "<CMD>Glance definitions<CR>", desc = "Definitions" }, -- nvim-lspconfig -- glance.nvim
                 ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
                 ["F"] = { "<CMD>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
@@ -442,7 +442,7 @@ USER.mappings = {
             ["p"] = { '"_dP', desc = "Keep yanked text after paste" },
             ["l"] = {
                 group = "LSP",
-                ["a"] = { function() require("actions-preview").code_actions() end, desc = "Code actions" }, -- nvim-lspconfig
+                ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
                 ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
             },
         },
