@@ -75,8 +75,8 @@ return {
             "DNLHC/glance.nvim",
             -- VSCode 💡 for neovim's built-in LSP.
             "kosayoda/nvim-lightbulb",
-            -- Fully customizable previewer for LSP code actions
-            "aznhe21/actions-preview.nvim",
+            -- A simple way to run and visualize code actions with diff preview
+            "rachartier/tiny-code-action.nvim",
         },
         config = function()
             -- Setup language servers and null-ls
@@ -87,7 +87,7 @@ return {
             require("plugins.lsp.inc-rename").init()
             require("plugins.lsp.glance").init(icons, borders)
             require("plugins.lsp.nvim-lightbulb").init(icons)
-            require("plugins.lsp.actions-preview").init(icons, borders)
+            require("plugins.lsp.tiny-code-action").init(icons, borders)
         end,
     },
 }
