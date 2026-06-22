@@ -22,6 +22,7 @@
   "hydra.nvim": { "branch": "main", "commit": "8c4a9f621ec7cdc30411a1f3b6d5eebb12b469dc" },
   "inc-rename.nvim": { "branch": "main", "commit": "0074b551a17338ccdcd299bd86687cc651bcb33d" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
+  "lensline.nvim": { "branch": "release/2.x", "commit": "4fafcfaeedac2d20bd5902213393982c4218bc3a" },
   "let-it-snow.nvim": { "branch": "main", "commit": "15ad478c8f903f8c2addad08fed1d8429bc01bde" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "21c5b3ebeaa0412e28096bb0701434c51c1fbf76" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc" },
