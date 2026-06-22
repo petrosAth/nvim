@@ -170,12 +170,12 @@ local StatusLineMinimal = {
         self.fileName = vim.api.nvim_buf_get_name(0)
         self.fullPath = vim.fn.fnamemodify(self.fileName, ":p")
         local buf_label = uiUtils.get_buf_label(self.fullPath, vim.bo.buftype, vim.bo.filetype)
-        local in_diffview = string.match(self.fileName, "^diffview:///[^(panels)]") -- in diffview but not in diffview panels
+        local in_codediff = string.match(self.fileName, "^codediff:///") -- in a codediff diff buffer
         local is_disabled = conditions.buffer_matches({
             buftype = props.Disable.statusLine.buftype,
             filetype = props.Disable.statusLine.filetype,
         })
-        return is_disabled or (buf_label and not in_diffview)
+        return is_disabled or (buf_label and not in_codediff)
     end,
 
     border_edge_2,

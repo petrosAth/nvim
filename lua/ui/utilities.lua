@@ -14,8 +14,8 @@ local Labels = {
     ["ccc-ui"]                    = string.format("%s Color picker",         i.palette[1]),
     ["checkhealth"]               = string.format("%s Checkhealth",          i.health[1]),
     ["diff"]                      = string.format("%s Diff Panel",           i.diffview[1]),
-    ["DiffviewFileHistory"]       = string.format("%s Diffview history",     i.diffview[1]),
-    ["DiffviewFiles"]             = string.format("%s Diffview files",       i.diffview[1]),
+    ["codediff-history"]          = string.format("%s Diff history",         i.diffview[1]),
+    ["codediff-explorer"]         = string.format("%s Diff files",           i.diffview[1]),
     ["Glance"]                    = string.format("%s Glance",               i.preview[1]),
     ["lazy"]                      = string.format("%s Lazy status",          i.lazy.lazy),
     ["man"]                       = string.format("%s Man page",             i.help[1]),
@@ -30,8 +30,8 @@ local Labels = {
     ["undotree"]                  = string.format("%s Undotree",             i.undoTree[1]),
     ["yeet-cache"]                = string.format("%s Command Cache",        i.terminal[1]),
     -- path matches
-    ["DiffviewOriginalFile"]      = string.format("%s Original file",        i.file[1]),
-    ["DiffviewCommit"]            = string.format("%s ",                     i.git.commit[1]),
+    ["CodeDiffOriginalFile"]      = string.format("%s Original file",        i.file[1]),
+    ["CodeDiffCommit"]            = string.format("%s ",                     i.git.commit[1]),
     ["neo-tree filesystem"]       = string.format("%s File explorer",        i.fileExplorer[1]),
     ["neo-tree git_status"]       = string.format("%s Git status",           i.git.repo[1]),
     ["neo-tree buffers"]          = string.format("%s Open buffers",         i.buffers[1]),
@@ -47,22 +47,17 @@ local function get_neo_tree_label(path)
     if match then return Labels[match] end
 end
 
-local function get_diffview_label(path)
-    local Matches = {
-        "^(diffview):.+/null$", -- DiffviewOpen Original untracked file
-        "^(diffview):.+/:0:/", -- DiffviewOpen Original file
-        "^diffview:.+/%.git.*/([a-z0-9]+[0-9]+[a-z0-9]+)/", -- DiffviewFileHistory
-    }
+local function get_codediff_label(path)
+    -- codediff:///<git-root>///<commit>/<filepath>
+    local commit = string.match(path, "^codediff:///.-///([^/]+)/")
 
-    for _, pattern in pairs(Matches) do
-        local match = string.match(path, pattern)
+    if not commit then return end
 
-        if match then
-            if match == "diffview" then return Labels["DiffviewOriginalFile"] end
+    if commit:match("^:%d+:?$") then return Labels["CodeDiffOriginalFile"] end -- index / staged
 
-            return Labels["DiffviewCommit"] .. match
-        end
-    end
+    if #commit > 7 and commit:match("^%x+$") then commit = commit:sub(1, 7) end -- shorten SHA
+
+    return Labels["CodeDiffCommit"] .. commit
 end
 
 local function get_cmdwin_label()
@@ -80,7 +75,7 @@ function M.get_buf_label(path, buftype, filetype)
 
     if buftype == "nofile" then return get_cmdwin_label() end
 
-    if vim.api.nvim_win_get_option(0, "diff") then return get_diffview_label(path) end
+    return get_codediff_label(path)
 end
 
 return M

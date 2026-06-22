@@ -1,3 +1,23 @@
+local function wipe_codediff_buffers()
+    -- codediff's virtual (codediff://) and panel buffers cannot be reconstructed from a
+    -- session and reload as a broken half-diff. codediff does NOT use Neovim's native
+    -- `&diff`, so detect by buffer name / filetype instead of the diff window option.
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_valid(buf) then
+            local bname = vim.api.nvim_buf_get_name(buf)
+            local ft = vim.bo[buf].filetype
+            if
+                bname:match("^codediff://")
+                or bname:match("^CodeDiff ")
+                or ft == "codediff-explorer"
+                or ft == "codediff-history"
+            then
+                pcall(vim.api.nvim_buf_delete, buf, { force = true })
+            end
+        end
+    end
+end
+
 local function setup(possession)
     possession.setup({
         session_dir = string.format("%s/sessions/", vim.fn.stdpath("data")),
@@ -23,18 +43,7 @@ local function setup(possession)
         },
         hooks = {
             before_save = function(name)
-                local diff = false
-                local wins = vim.api.nvim_list_wins()
-
-                for _, win_nr in ipairs(wins) do
-                    if vim.api.nvim_win_get_option(win_nr, "diff") then
-                        diff = true
-                    end
-                end
-
-                if diff then
-                    vim.cmd.tabdo("DiffviewClose")
-                end
+                wipe_codediff_buffers()
 
                 return {}
             end,
@@ -43,6 +52,7 @@ local function setup(possession)
                 return user_data
             end,
             after_load = function(name, user_data)
+                wipe_codediff_buffers()
                 vim.cmd.nohlsearch()
             end,
         },
