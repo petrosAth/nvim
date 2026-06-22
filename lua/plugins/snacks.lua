@@ -163,6 +163,19 @@ local function create_autocmd(snacks)
                     end,
                 })
                 :map("<F1>d")
+            snacks
+                .toggle({
+                    name = "Lensline",
+                    get = function() return require("lensline").is_visible() end,
+                    set = function(state)
+                        if state then
+                            require("lensline").show()
+                        else
+                            require("lensline").hide()
+                        end
+                    end,
+                })
+                :map("<F1>L")
         end,
     })
 end
