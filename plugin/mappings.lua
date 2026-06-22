@@ -252,13 +252,10 @@ USER.mappings = {
             ["."] = { "<CMD>Telescope resume<CR>", desc = "Reopen Telescope" }, -- telescope.nvim
             ["b"] = { "<CMD>Telescope buffers<CR>", desc = "Buffer list" }, -- telescope.nvim
             ["d"] = {
-                group = "Diffview",
-                ["q"] = { "<CMD>DiffviewClose<CR>", desc = "Quit" }, -- diffview
-                ["e"] = { "<CMD>DiffviewToggleFiles<CR>", desc = "Toggle file tree" }, -- diffview
-                ["h"] = { "<CMD>DiffviewFileHistory %<CR>", desc = "Show history log for current file" }, -- diffview
-                ["H"] = { "<CMD>DiffviewFileHistory<CR>", desc = "Show history log" }, -- diffview
-                ["o"] = { "<CMD>DiffviewOpen<CR>", desc = "Open" }, -- diffview
-                ["R"] = { "<CMD>DiffviewRefresh<CR>", desc = "Refresh stats and entries" }, -- diffview
+                group = "CodeDiff",
+                ["o"] = { "<CMD>CodeDiff<CR>", desc = "Open status / diff" }, -- codediff.nvim
+                ["h"] = { "<CMD>CodeDiff history %<CR>", desc = "File history" }, -- codediff.nvim
+                ["H"] = { "<CMD>CodeDiff history<CR>", desc = "Repo history" }, -- codediff.nvim
             },
             ["D"] = {
                 group = "Diff mode",

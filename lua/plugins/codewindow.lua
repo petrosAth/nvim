@@ -5,8 +5,8 @@ local function setup(codewindow)
         exclude_filetypes = { -- Choose certain filetypes to not show minimap on
             "aerial",
             "alpha",
-            "DiffviewFileHistory",
-            "DiffviewFiles",
+            "codediff-history",
+            "codediff-explorer",
             "diff",
             "help",
             "minimap",
