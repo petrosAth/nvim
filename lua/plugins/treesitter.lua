@@ -10,16 +10,23 @@ local ensure_installed = {
     "json",
     "lua",
     "markdown",
-    "markdown_inline",
     "php",
     "python",
-    "query",
-    "regex",
     "tsx",
     "typescript",
     "vim",
     "vimdoc",
     "yaml",
+
+    -- Embedded / utility parsers: these are not filetypes so the FileType
+    -- autocmd will never trigger for them — they must be listed here explicitly.
+    "comment",         -- TODO/FIXME highlights overlaid on any buffer
+    "jsdoc",           -- embedded inside JavaScript
+    "luadoc",          -- embedded inside Lua
+    "markdown_inline", -- embedded inside Markdown
+    "phpdoc",          -- embedded inside PHP
+    "query",           -- Tree-sitter query files (.scm); filetype detection is unreliable
+    "regex",           -- embedded inside JS/TS/Lua and others
 }
 
 -- Enable treesitter features for a buffer: highlighting (Neovim), folds
