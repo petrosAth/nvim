@@ -41,15 +41,25 @@ server installation automatically.
 
 ## To-do
 
+- [ ] Audit and rework key mappings to better align with Vim's mapping
+      philosophy
 - [ ] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
       using LSP
+  - Use LSP as the primary fold provider with treesitter as a fallback
+  - Recover the previous ufo implementation from git history (predates the
+    satellite.nvim switch) and reuse its styling
 - [ ] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope
       replacement
+  - Audit plugins that delegate to Telescope as a picker and wire up fzf-lua
+    equivalents
+  - Match existing Telescope functionality where possible; skip if the fzf-lua
+    equivalent requires excessive boilerplate
 - [ ] Migrate to [persistence.nvim](https://github.com/folke/persistence.nvim)
       over [possession.nvim](https://github.com/jedrzejboczar/possession.nvim)
 - [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
+  - Surface active formatters/linters in the heirline statusline if feasible
 - [ ] Break LSP server configs into separate files
       ([on_attach ref — GitHub](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62),
       [on_attach ref — Reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/))
@@ -61,10 +71,16 @@ server installation automatically.
 
 - [persistence.nvim](https://github.com/folke/persistence.nvim) — Simple session
   management
-- [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) — Obsidian
-  integration
+- [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) — ✨ AI Coding, Vim
+  Style
 - [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) —
   AI-powered coding
+- [avante.nvim](https://github.com/yetone/avante.nvim) — Use your Neovim like
+  using Cursor AI IDE!
+- [mcphub.nvim](https://github.com/ravitemer/mcphub.nvim) — An MCP client for
+  Neovim that seamlessly integrates MCP servers into your editing workflow with
+  an intuitive interface for managing, testing, and using MCP servers with your
+  favorite chat plugins.
 - [overseer.nvim](https://github.com/stevearc/overseer.nvim) — Task runner and
   job management
 
