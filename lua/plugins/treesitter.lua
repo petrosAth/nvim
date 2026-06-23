@@ -1,3 +1,27 @@
+-- Parsers to install eagerly. Any other language is installed on demand the
+-- first time a matching buffer is opened (see the FileType autocommand below),
+-- preserving the old `auto_install = true` behaviour.
+local ensure_installed = {
+    "bash",
+    "c",
+    "css",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "php",
+    "python",
+    "query",
+    "regex",
+    "tsx",
+    "typescript",
+    "vim",
+    "vimdoc",
+    "yaml",
+}
+
 -- Enable treesitter features for a buffer: highlighting (Neovim), folds
 -- (Neovim) and indentation (nvim-treesitter).
 local function enable_features(bufnr)
@@ -215,6 +239,8 @@ return {
                 USER.loading_error_msg("nvim-treesitter")
                 return
             end
+
+            nvim_treesitter.install(ensure_installed)
 
             setup_features(nvim_treesitter)
             setup_incremental_selection()
