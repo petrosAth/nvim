@@ -39,6 +39,41 @@ server installation automatically.
 4. Install a [Nerd Font](https://www.nerdfonts.com/) and configure your terminal
    to use it (required for icons to render correctly).
 
+## Working on this config
+
+This repo carries machine-readable guidance so AI agents (and humans) can find
+their way around quickly.
+
+### Documentation map
+
+[`AGENTS.md`](AGENTS.md) is the canonical architecture map: startup/load order,
+the global `USER` table, conventions, task recipes, and the commit +
+`lazy-lock.json` policy. Subdirectories carry their own `AGENTS.md` with local
+detail — `lua/plugins/`, `lua/plugins/lsp/`, `lua/themes/`, and `plugin/`. Each
+of those sits next to a tiny `CLAUDE.md` that imports it (`@AGENTS.md`), and the
+root `CLAUDE.md` does the same, so Claude Code loads the nearest guidance on
+demand while `AGENTS.md` stays the single source of truth.
+
+### Claude Code skills
+
+On-demand workflows live in `.claude/skills/`. The recipe skills auto-activate
+when you edit files in their area; all can be invoked manually with `/<name>`.
+
+| Skill                            | What it does                                                                                                                                       |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/nvim-add-plugin <author/repo>` | Add (or replace/remove) a plugin — fetches the GitHub "About" tagline and docs, generates the spec, handles the lockfile and scattered touchpoints |
+| `/nvim-lsp`                      | Add or configure an LSP server / null-ls source (auto-applies under `lua/plugins/lsp/`)                                                            |
+| `/nvim-theme`                    | Add or edit a colorscheme / palette (auto-applies under `lua/themes/`, `colors/`)                                                                  |
+| `/nvim-keymaps`                  | Add or edit keybindings in `USER.mappings` (auto-applies on `plugin/mappings.lua`)                                                                 |
+| `/nvim-verify`                   | Format-check (`stylua`), lint (`selene`), and a headless smoke-load                                                                                |
+
+### Verifying changes
+
+There is no test suite. Run `/nvim-verify`, or do it by hand: `stylua --check`
+and `selene` on the files you changed, plus a headless load
+(`nvim --headless "+qa!"`) to confirm nothing errors on startup. `stylua` and
+`selene` are installed via Mason (`~/.local/share/nvim/mason/bin`).
+
 ## To-do
 
 - [ ] Audit and rework key mappings to better align with Vim's mapping
