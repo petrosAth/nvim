@@ -13,8 +13,8 @@ local function setup(lensline)
                     },
                 },
                 style = {
-                    highlight = "SpecialComment",
-                    prefix = "  ",
+                    highlight = "LensLine",
+                    prefix = ("%s  "):format(USER.styling.icons.lsp.refs[1]),
                 },
             },
         },

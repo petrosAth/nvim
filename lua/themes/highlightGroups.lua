@@ -474,6 +474,9 @@ function M.get_highlight_groups(palette)
         LeapLabelSelected             = { fg = p.base_0, bg = p.blue_2 },
         LeapBackdrop                  = { fg = p.base_03 },
 
+        -- lensline.nvim
+        LensLine                      = { fg = p.base_00, bold = true },
+
         -- nvim-lightbulb
         LightBulbSign                 = { fg = p.yellow_2 },
         LightBulbVirtualText          = { fg = p.yellow_2 },
