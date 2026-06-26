@@ -85,7 +85,7 @@ and `selene` on the files you changed, plus a headless load
   - Use LSP as the primary fold provider with treesitter as a fallback
   - Recover the previous ufo implementation from git history (predates the
     satellite.nvim switch) and reuse its styling
-- [ ] Break LSP server configs into separate files
+- [x] Break LSP server configs into separate files
       ([on_attach ref — GitHub](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62),
       [on_attach ref — Reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/))
 - [ ] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope
