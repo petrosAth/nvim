@@ -80,26 +80,24 @@ and `selene` on the files you changed, plus a headless load
       philosophy
 - [x] Add [code-preview.nvim](https://github.com/Cannon07/code-preview.nvim) to
       preview AI coding agent edits as a native diff before they're applied
-- [ ] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
+- [x] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
       using LSP
   - Use LSP as the primary fold provider with treesitter as a fallback
   - Recover the previous ufo implementation from git history (predates the
     satellite.nvim switch) and reuse its styling
+- [ ] Break LSP server configs into separate files
+      ([on_attach ref — GitHub](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62),
+      [on_attach ref — Reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/))
 - [ ] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope
       replacement
   - Audit plugins that delegate to Telescope as a picker and wire up fzf-lua
     equivalents
   - Match existing Telescope functionality where possible; skip if the fzf-lua
     equivalent requires excessive boilerplate
-- [ ] Migrate to [persistence.nvim](https://github.com/folke/persistence.nvim)
-      over [possession.nvim](https://github.com/jedrzejboczar/possession.nvim)
 - [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
   - Surface active formatters/linters in the heirline statusline if feasible
-- [ ] Break LSP server configs into separate files
-      ([on_attach ref — GitHub](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62),
-      [on_attach ref — Reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/))
 - [ ] Add debugger: [nvim-dap](https://github.com/mfussenegger/nvim-dap),
       [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui),
       [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
