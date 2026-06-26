@@ -6,7 +6,10 @@ local function setup(alpha)
             type = "button",
             val = description,
             on_press = function()
-                local sc_ = shortcut:gsub("%s", ""):gsub("SPC", "<space>"):gsub("LDR", "<leader>")
+                -- SPC = <Space>, LDR = <Leader> (Space), LLDR = <LocalLeader> ("\").
+                -- Replace LLDR before LDR so the shared "LDR" substring is not clobbered.
+                local sc_ =
+                    shortcut:gsub("%s", ""):gsub("SPC", "<space>"):gsub("LLDR", "<localleader>"):gsub("LDR", "<leader>")
                 local key = vim.api.nvim_replace_termcodes(string.format("%s<Ignore>", sc_), true, false, true)
 
                 vim.api.nvim_feedkeys(key, "normal", false)
@@ -43,8 +46,8 @@ local function setup(alpha)
     local buttons_session = {
         type = "group",
         val = {
-            button("LDR p .", string.format("%s %s Load last session", icons.alphaCursor[1], icons.lastSession[1])),
-            button("LDR p L", string.format("%s %s Load local session", icons.alphaCursor[1], icons.lastSession[1])),
+            button("LLDR p .", string.format("%s %s Load last session", icons.alphaCursor[1], icons.lastSession[1])),
+            button("LLDR p L", string.format("%s %s Load local session", icons.alphaCursor[1], icons.lastSession[1])),
             button("SPC s s", string.format("%s %s Search sessions", icons.alphaCursor[1], icons.sessions[1])),
         },
         opts = {
@@ -66,12 +69,12 @@ local function setup(alpha)
     local buttons_utility = {
         type = "group",
         val = {
-            button("LDR u u l", string.format("%s %s Update external tooling", icons.alphaCursor[1], icons.update[1])),
+            button("LLDR u u l", string.format("%s %s Update external tooling", icons.alphaCursor[1], icons.update[1])),
             button(
-                "LDR u u p",
+                "LLDR u u p",
                 string.format("%s %s Check for plugins updates", icons.alphaCursor[1], icons.preview[1])
             ),
-            button("LDR u u P", string.format("%s %s Update plugins", icons.alphaCursor[1], icons.update[1])),
+            button("LLDR u u P", string.format("%s %s Update plugins", icons.alphaCursor[1], icons.update[1])),
         },
         opts = {
             spacing = 0,

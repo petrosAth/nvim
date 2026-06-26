@@ -38,6 +38,15 @@ USER = {
     },
 }
 
+-- Leader keys. Set here (not in plugin/options.lua) because lazy.nvim sources
+-- this config's plugin/ files in alphabetical order, so plugin/mappings.lua
+-- loads *before* plugin/options.lua. mapleader is captured when each map is
+-- defined, so it must be set before mappings.lua runs — i.e. before
+-- require("plugin-manager").init() below. Space is the primary <Leader>; the
+-- legacy "\" group lives on <LocalLeader>.
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 -- Set colorscheme
 vim.cmd.colorscheme(USER.theme)
 vim.cmd('echo " "') -- Fix Neovim flicker in wezterm
