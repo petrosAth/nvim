@@ -69,9 +69,10 @@ local function capabilities()
 
     -- Use lsp to populate cmp completions
     local loaded, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if not loaded then
-        USER.loading_msg("cmp_nvim_lsp")
+    if loaded then
         client_capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
+    else
+        USER.loading_error_msg("cmp_nvim_lsp")
     end
 
     return client_capabilities
@@ -93,170 +94,47 @@ local function on_attach(client, bufnr)
     if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(USER.lsp.show_inlay_hints) end
 end
 
+-- Build the set of servers that ship a dedicated config under `servers/`. Each
+-- such file returns `function(shared) -> config_table`; servers without one
+-- fall through to the shared default below. Discovery walks the runtimepath so
+-- a syntax error in a server file surfaces loudly instead of being swallowed.
+local function override_servers()
+    local overrides = {}
+    for _, path in ipairs(vim.api.nvim_get_runtime_file("lua/plugins/lsp/servers/*.lua", true)) do
+        overrides[vim.fn.fnamemodify(path, ":t:r")] = true
+    end
+    return overrides
+end
+
 local function setup_language_servers(lspconfig, servers, handlers, root_files)
+    local shared = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        handlers = handlers,
+        lspconfig = lspconfig,
+        root_files = root_files,
+    }
+    local overrides = override_servers()
+
     for _, name in ipairs(servers) do
-        if name == "bashls" then
-            vim.lsp.config(name, {
-                filetypes = { "makefile", "sh", "zsh" },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "emmet_language_server" then
-            vim.lsp.config(name, {
-                filetypes = {
-                    "css",
-                    "eruby",
-                    "html",
-                    "htmldjango",
-                    "javascriptreact",
-                    "less",
-                    "php",
-                    "pug",
-                    "sass",
-                    "scss",
-                    "smarty",
-                    "typescriptreact",
-                    "vue",
-                },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "eslint" then
-            vim.lsp.config(name, {
-                root_dir = function(bufnr, on_dir)
-                    local fname = vim.api.nvim_buf_get_name(bufnr)
-                    on_dir(lspconfig.util.root_pattern(root_files)(fname))
-                end,
-                settings = {
-                    codeAction = {
-                        disableRuleComment = {
-                            enable = true,
-                            location = "separateLine",
-                        },
-                        showDocumentation = {
-                            enable = true,
-                        },
-                    },
-                    codeActionOnSave = {
-                        enable = false,
-                        mode = "all",
-                    },
-                    experimental = {
-                        useFlatConfig = false,
-                    },
-                    format = true,
-                    nodePath = "",
-                    onIgnoredFiles = "off",
-                    packageManager = "npm",
-                    problems = {
-                        shortenToSingleLine = false,
-                    },
-                    quiet = false,
-                    rulesCustomizations = {},
-                    run = "onType",
-                    useESLintClass = false,
-                    validate = "on",
-                    workingDirectory = {
-                        mode = "location",
-                    },
-                },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "intelephense" then
-            vim.lsp.config(name, {
-                init_options = {
-                    licenceKey = vim.fn.expand("$HOME/intelephense/licence.txt"),
-                },
-                settings = {
-                    intelephense = {
-                        telemetry = { enabled = false },
-                        format = { enable = false },
-                    },
-                },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "lua_ls" then
-            vim.lsp.config(name, {
-                root_dir = function(bufnr, on_dir)
-                    local fname = vim.api.nvim_buf_get_name(bufnr)
-                    on_dir(lspconfig.util.root_pattern(root_files)(fname))
-                end,
-                settings = {
-                    Lua = {
-                        telemetry = {
-                            enable = false,
-                        },
-                        format = {
-                            enable = false,
-                        },
-                        hint = {
-                            enable = true,
-                        },
-                    },
-                },
-                on_attach = on_attach,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "ruff" then
-            vim.lsp.config(name, {
-                init_options = {
-                    settings = {
-                        lint = {
-                            preview = true,
-                        },
-                    },
-                },
-                on_attach = function(client, bufnr)
-                    client.server_capabilities.document_formatting = false
-                    client.server_capabilities.document_range_formatting = false
-                    on_attach(client, bufnr)
-                end,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
-        elseif name == "ts_ls" then
-            vim.lsp.config(name, {
-                init_options = {
-                    preferences = {
-                        includeInlayParameterNameHints = "all",
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                        includeInlayFunctionParameterTypeHints = true,
-                        includeInlayVariableTypeHints = true,
-                        includeInlayPropertyDeclarationTypeHints = true,
-                        includeInlayFunctionLikeReturnTypeHints = true,
-                        includeInlayEnumMemberValueHints = true,
-                        importModuleSpecifierPreference = "non-relative",
-                    },
-                },
-                on_attach = function(client, bufnr)
-                    client.server_capabilities.document_formatting = false
-                    client.server_capabilities.document_range_formatting = false
-                    on_attach(client, bufnr)
-                end,
-                capabilities = capabilities(),
-                handlers = handlers,
-            })
+        local config
+        if overrides[name] then
+            config = require("plugins.lsp.servers." .. name)(shared)
         else
-            vim.lsp.config(name, {
+            config = {
                 on_attach = on_attach,
                 capabilities = capabilities(),
                 handlers = handlers,
-            })
+            }
         end
+        vim.lsp.config(name, config)
     end
 end
 
 function M.setup(icons, border, root_files, servers)
     local loaded, lspconfig = pcall(require, "lspconfig")
     if not loaded then
-        USER.loading_msg("lspconfig")
+        USER.loading_error_msg("lspconfig")
         return
     end
 
