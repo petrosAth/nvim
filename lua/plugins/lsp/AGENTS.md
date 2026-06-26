@@ -13,11 +13,20 @@ or `init` function. See the root `AGENTS.md` for global conventions.
   `tiny-code-action`).
 - **`config.lua`** — client setup. `M.setup()` wires mason + mason-lspconfig,
   configures diagnostics, then `setup_language_servers()` registers each server
-  via `vim.lsp.config(name, {...})`. Most servers use a shared default branch;
-  servers needing special settings (`bashls`, `emmet_language_server`, `eslint`,
-  `intelephense`, `lua_ls`, `ruff`, `ts_ls`) have their own `if`/`elseif`
-  branch. Also defines the shared `on_attach` (navic, semantic-token gating,
-  formatexpr, inlay hints) and `capabilities`.
+  via `vim.lsp.config(name, {...})`. It auto-discovers per-server config files
+  under `servers/` (via the runtimepath); a server with a matching
+  `servers/<name>.lua` uses that file, all others get a shared default of
+  `{ on_attach, capabilities(), handlers }`. Also defines the shared `on_attach`
+  (navic, semantic-token gating, formatexpr, inlay hints) and `capabilities`,
+  which it hands to each server file through a `shared` context table.
+- **`servers/<name>.lua`** — one file per server that needs non-default settings
+  (`bashls`, `emmet_language_server`, `eslint`, `intelephense`, `lua_ls`,
+  `ruff`, `ts_ls`). Each returns `function(shared) -> config_table`, where
+  `shared` is `{ on_attach, capabilities, handlers, lspconfig, root_files }` —
+  use `shared.capabilities()` (it's the function, called per server), wrap
+  `shared.on_attach` to extend it (see `ruff`/`ts_ls`), and build `root_dir`
+  from `shared.lspconfig.util.root_pattern(shared.root_files)` (see
+  `eslint`/`lua_ls`).
 - **`install.lua`** — auto-derives the mason install list from `servers` plus
   the active null-ls sources, then drives `mason-tool-installer`. The
   `null_ls_to_mason` table maps source names whose mason package differs (or
@@ -33,10 +42,11 @@ or `init` function. See the root `AGENTS.md` for global conventions.
 **Companion skill:** `/nvim-lsp` applies this recipe and runs `/nvim-verify`.
 
 1. Add the **lspconfig server name** to the `servers` list in `init.lua`.
-2. If it needs non-default settings, add an `elseif name == "<server>"` branch
-   in `setup_language_servers()` in `config.lua` (copy an existing branch; keep
-   `on_attach`, `capabilities()`, `handlers`). Otherwise the shared default
-   branch covers it.
+2. If it needs non-default settings, create `servers/<name>.lua` returning
+   `function(shared) return { ... } end` (copy an existing file; keep
+   `on_attach = shared.on_attach`, `capabilities = shared.capabilities()`,
+   `handlers = shared.handlers`). The file is auto-discovered — no edit to
+   `config.lua` needed. Otherwise the shared default covers it with no file.
 3. `install.lua` installs it automatically via mason-tool-installer. Only touch
    it if the mason package name differs from the lspconfig name — then extend
    `null_ls_to_mason` (for null-ls sources) or adjust the mapping logic.
