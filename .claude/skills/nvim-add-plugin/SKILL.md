@@ -9,6 +9,7 @@ description:
 argument-hint: <author/repo>
 allowed-tools:
   mcp__plugin_github_github__search_repositories
+  mcp__plugin_github_github__get_file_contents
   mcp__plugin_context7_context7__resolve-library-id
   mcp__plugin_context7_context7__query-docs
 ---
@@ -55,8 +56,11 @@ Consult the plugin's documentation via Context7: `resolve-library-id`
 - the exact `require("<module>")` name and whether it exposes `.setup()`;
 - recommended **default options** (and keymaps if it ships them) — you will
   pre-fill `setup()` with these;
-- a sensible lazy-load trigger. If Context7 is thin, read the repo's README via
-  the GitHub MCP / WebFetch.
+- a sensible lazy-load trigger. If Context7 is thin, use the GitHub MCP
+  `get_file_contents` to look for a `docs/` directory (or similar: `doc/`,
+  `documentation/`, `wiki/`) in the repo and read relevant files there. If no
+  dedicated docs directory exists, fall back to the repo's README via the GitHub
+  MCP / WebFetch.
 
 ## 5. Generate `lua/plugins/<name>.lua`
 
