@@ -143,16 +143,24 @@ local function create_autocmd(snacks)
     vim.api.nvim_create_autocmd("User", {
         pattern = "VeryLazy",
         callback = function()
-            snacks.toggle.option("spell", { name = "Spelling" }):map("<F1>s")
-            snacks.toggle.option("wrap", { name = "Wrap" }):map("<F1>w")
-            snacks.toggle.option("cursorcolumn", { name = "Cursor column" }):map("<F1>c")
+            -- Toggle hub: a single <F4> prefix, available in normal, insert and
+            -- visual. The matching "Toggle" which-key group label lives in
+            -- plugin/mappings.lua for each of these modes.
+            -- NOTE: Toggle:map() sets `opts.mode = nil` on the table it is given,
+            -- so each call needs its own fresh table — reusing one would strip the
+            -- modes from every call after the first.
+            local function modes() return { mode = { "n", "i", "v" } } end
+            snacks.toggle.option("spell", { name = "Spelling" }):map("<F4>s", modes())
+            snacks.toggle.option("wrap", { name = "Wrap" }):map("<F4>w", modes())
+            snacks.toggle.option("cursorcolumn", { name = "Cursor column" }):map("<F4>c", modes())
+            snacks.toggle.option("relativenumber", { name = "Relative number" }):map("<F4>r", modes())
             snacks.toggle
                 .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-                :map("<F1>C")
-            snacks.toggle.treesitter():map("<F1>t")
-            snacks.toggle.inlay_hints():map("<F1>h")
-            snacks.toggle.profiler():map("<F1>pp")
-            snacks.toggle.profiler_highlights():map("<F1>ph")
+                :map("<F4>C", modes())
+            snacks.toggle.treesitter():map("<F4>t", modes())
+            snacks.toggle.inlay_hints():map("<F4>h", modes())
+            snacks.toggle.profiler():map("<F4>pp", modes())
+            snacks.toggle.profiler_highlights():map("<F4>ph", modes())
             snacks
                 .toggle({
                     name = "Toggle Virtual line/text diagnostics",
@@ -162,7 +170,7 @@ local function create_autocmd(snacks)
                         vim.diagnostic.config({ virtual_text = not vim.diagnostic.config().virtual_lines })
                     end,
                 })
-                :map("<F1>d")
+                :map("<F4>d", modes())
             snacks
                 .toggle({
                     name = "Lensline",
@@ -175,7 +183,7 @@ local function create_autocmd(snacks)
                         end
                     end,
                 })
-                :map("<F1>L")
+                :map("<F4>L", modes())
         end,
     })
 end
