@@ -4,6 +4,14 @@ local function setup(which_key)
     local transparency = USER.styling.variables.transparency
     which_key.setup({
         preset = "modern",
+        -- which-key's default auto-trigger modes are "nxso" (no insert). The
+        -- <F4> toggle hub (lua/plugins/snacks.lua) is mapped in insert mode too,
+        -- so add a scoped insert-mode trigger: without it, a lone <F4> in insert
+        -- mode never opens the popup and times out into the literal text "<F4>".
+        triggers = {
+            { "<auto>", mode = "nxso" },
+            { "<F4>", mode = "i" },
+        },
         win = {
             width = { max = 160 },
             border = {
