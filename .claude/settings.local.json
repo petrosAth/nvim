@@ -1,0 +1,29 @@
+{
+    "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "Edit|Write|MultiEdit|Bash|PowerShell",
+                "hooks": [
+                    {
+                        "command": "/Users/pathanasoulis/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh claudecode pre",
+                        "type": "command"
+                    }
+                ]
+            }
+        ],
+        "PostToolUse": [
+            {
+                "matcher": "Edit|Write|MultiEdit|Bash|PowerShell",
+                "hooks": [
+                    {
+                        "command": "/Users/pathanasoulis/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh claudecode post",
+                        "type": "command"
+                    }
+                ]
+            }
+        ]
+    },
+    "permissions": {
+        "allow": ["Bash(pbcopy)"]
+    }
+}
