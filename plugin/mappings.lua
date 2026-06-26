@@ -59,7 +59,7 @@ local function lua_cmd(plugin, modules, opts)
     modules = modules or ""
     opts = opts or ""
 
-    return string.format([[<CMD>lua %s.%s(%s)<CR>]], plugin, modules, opts)
+    return string.format([[<Cmd>lua %s.%s(%s)<CR>]], plugin, modules, opts)
 end
 
 local function telescope_picker(picker)
@@ -80,8 +80,8 @@ end
 USER.mappings = {
     -- Normal mode mappings
     ["n"] = {
-        ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
-        ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
+        ["*"] = { "*<Cmd>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
+        ["#"] = { "#<Cmd>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
         ["]"] = {
             group = "Next",
             ["["] = { desc = "Next class start" }, -- Assigned by nvim-treesitter-textobjects
@@ -110,11 +110,11 @@ USER.mappings = {
             ["r"] = { function() require("snacks").words.jump(-vim.v.count1) end, desc = "Previous Reference" }, -- snacks.nvim
             ["t"] = { function() vim.cmd.tabprevious() end, desc = "Previous tab" }, -- Assigned by Hydra.nvim
         },
-        ["<F1>"] = { group = "Toggle" },
+        ["<F4>"] = { group = "Toggle" }, -- toggle hub leaves assigned in lua/plugins/snacks.lua
         ["<F2>"] = { [[:%s/\<<C-r><C-w>\>/]], desc = "Replace word under cursor", silent = false },
         ["g"] = {
-            ["*"] = { "*<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
-            ["#"] = { "#<CMD>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
+            ["*"] = { "*<Cmd>lua require('hlslens').start()<CR>", desc = "Search word under cursor" }, -- hlslens
+            ["#"] = { "#<Cmd>lua require('hlslens').start()<CR>", desc = "Search word under cursor backward" }, -- hlslens
             ["A"] = { desc = "Align with preview" }, -- mini.align
             ["a"] = { desc = "Align" }, -- mini.align
             ["c"] = {
@@ -132,11 +132,11 @@ USER.mappings = {
         ["j"] = { "v:count == 0 ? 'gj' : 'j'", desc = "Move using displayed lines", expr = true },
         ["k"] = { "v:count == 0 ? 'gk' : 'k'", desc = "Move using displayed lines", expr = true },
         ["n"] = {
-            "<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>",
+            "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
             desc = "Repeat the latest '/' or '?'",
         }, -- hlslens
         ["N"] = {
-            "<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua require('hlslens').start()<CR>",
+            "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
             desc = "Repeat the latest '/' or '?' backwards",
         }, -- hlslens
         ["z"] = {
@@ -150,112 +150,23 @@ USER.mappings = {
                 desc = "Window Hydra Mode (which-key)",
             },
         }, -- which-key.nvim
-        ["<M-J>"] = { ":m .+1<CR>==", desc = "Move line up" },
-        ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line down" },
-        ["<M-X>"] = { ":x<CR>", desc = "Save and quit only if there are changes in the file" },
+        ["<M-J>"] = { ":m .+1<CR>==", desc = "Move line down" },
+        ["<M-K>"] = { ":m .-2<CR>==", desc = "Move line up" },
+        ["<M-X>"] = { "<Cmd>x<CR>", desc = "Save and quit only if there are changes in the file" },
         ["<Esc>"] = {
             [[:noh<CR>:lua require("snacks").notifier.hide()<CR>:lua require("luasnip").unlink_current()<CR><Esc>]],
             desc = "Clear search highlight",
         },
+        -- Primary leader namespace (<Leader> = <Space>): act on code / project.
         ["<Leader>"] = {
             ["?"] = { function() require("which-key").show() end, desc = "Buffer Local Keymaps (which-key)" },
-            ["b"] = {
-                group = "Buffer manipulation",
-                ["d"] = { function() vim.cmd.lua("MiniBufremove.delete()") end, desc = "Delete buffer" }, -- mini.bufremove
-            },
-            ["c"] = {
-                group = "Color tools",
-                ["n"] = { "<CMD>CccConvert<CR>", desc = "Convert color to the next color format" }, -- ccc.nvim
-                ["c"] = { "<CMD>CccHighlighterToggle<CR>", desc = "Color codes preview" }, -- ccc.nvim
-                ["p"] = { "<CMD>CccPick<CR>", desc = "Color picker" }, -- ccc.nvim
-            },
-            ["i"] = { "<CMD>lua vim.show_pos()<CR>", desc = "Show all the items at a given buffer position" },
-            ["l"] = {
-                group = "LSP alternative",
-                ["a"] = { "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions" }, -- nvim-lspconfig
-                ["d"] = {
-                    group = "Definitions",
-                    ["t"] = { telescope_picker("lsp_definitions"), desc = "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                },
-                ["i"] = {
-                    group = "Implementations",
-                    ["t"] = { telescope_picker("implementations"), desc = "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                    ["q"] = { "<CMD>Trouble lsp_implementations<CR>", desc = "Trouble" }, -- nvim-lspconfig -- trouble.nvim
-                },
-                ["q"] = { "<CMD>Trouble lsp toggle focus=false win.position=right<CR>", desc = "Trouble" }, -- nvim-lspconfig -- trouble.nvim
-                ["r"] = {
-                    group = "References",
-                    ["t"] = { telescope_picker("lsp_references"), desc = "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                },
-                ["t"] = {
-                    group = "Type Definitions",
-                    ["t"] = { telescope_picker("lsp_type_definitions"), desc = "Telescope" }, -- nvim-lspconfig -- telescope.nvim
-                },
-            },
-            ["q"] = {
-                function()
-                    vim.cmd.lua("MiniBufremove.delete()")
-                    vim.cmd.quit()
-                end,
-                desc = "Delete buffer and close window",
-            }, -- mini.bufremove
-            ["p"] = {
-                group = "Project",
-                ["."] = { "<CMD>PossessionLoad<CR>", desc = "Load last closed" }, -- possession.nvim
-                ["c"] = {
-                    group = "Create local config files",
-                    ["c"] = { "<CMD>ProjectCreatePalette<CR>", desc = "Create palette" }, -- ccc.nvim
-                    ["s"] = { "<CMD>ProjectCreateSession<CR>", desc = "Create session" }, -- possession.nvim
-                    ["p"] = { "<CMD>ProjectCreatePrettierConfig<CR>", desc = "Create prettier config file" },
-                    ["e"] = { "<CMD>ProjectCreateEditorConfig<CR>", desc = "Create EditorConfig file" },
-                    ["g"] = {
-                        group = "Create or update .gitignore file",
-                        ["g"] = { "<CMD>ProjectCreateGitignore<CR>", desc = "Create or update the .gitignore file" },
-                        ["d"] = {
-                            "<CMD>ProjectAppendGitignoreDjango<CR>",
-                            desc = "Create or update the .gitignore file with Django-specific rules.",
-                        },
-                    },
-                },
-                ["C"] = { "<CMD>ProjectCreateConfig<CR>", desc = "Create local config file" }, -- nvim-config-local
-                ["D"] = { "<CMD>PossessionDelete<CR>", desc = "Delete currently loaded session" }, -- possession.nvim
-                ["L"] = { "<CMD>ProjectLoadSession<CR>", desc = "Load local session" }, -- possession.nvim
-                ["S"] = { ":PossessionSave ", desc = "Save session", silent = false }, -- possession.nvim
-            },
-            ["t"] = {
-                group = "Tab",
-                ["}"] = { ":+tabmove<CR>", desc = "Move tab right" },
-                ["{"] = { ":-tabmove<CR>", desc = "Move tab left" },
-                ["a"] = { "<CMD>tabnew<CR>", desc = "Create new tab" },
-                ["c"] = { "<CMD>tabclose<CR>", desc = "Close tab" },
-                ["R"] = { ":TabRename ", desc = "Rename tab", silent = false }, -- tabby.nvim
-            },
-            ["u"] = {
-                group = "Utilities",
-                ["s"] = {
-                    group = "Status",
-                    ["l"] = { "<CMD>checkhealth vim.lsp<CR>", desc = "LSP info" }, -- lsp-config
-                    ["m"] = { "<CMD>Mason<CR>", desc = "Mason status" }, -- mason.nvim
-                    ["n"] = { "<CMD>NullLsInfo<CR>", desc = "Null-ls info" }, -- null-ls.nvim
-                    ["p"] = { "<CMD>Lazy<CR>", desc = "Plugins status" }, -- lazy.nvim
-                },
-                ["u"] = {
-                    group = "Update",
-                    ["l"] = { "<CMD>Mason<CR><CMD>MasonToolsUpdate<CR>", desc = "Update LSP packages" }, -- mason-tool-installer.nvim
-                    ["P"] = { "<CMD>Lazy update<CR>", desc = "Update plugins" }, -- lazy.nvim
-                    ["p"] = { "<CMD>Lazy check<CR>", desc = "Check for plugins updates" }, -- lazy.nvim
-                },
-            },
-        },
-        ["<Space>"] = {
-            ["?"] = { "<CMD>WhichKey<CR>", desc = "Show available hotkeys" }, -- which-key
-            ["."] = { "<CMD>Telescope resume<CR>", desc = "Reopen Telescope" }, -- telescope.nvim
-            ["b"] = { "<CMD>Telescope buffers<CR>", desc = "Buffer list" }, -- telescope.nvim
+            ["."] = { "<Cmd>Telescope resume<CR>", desc = "Reopen Telescope" }, -- telescope.nvim
+            ["b"] = { "<Cmd>Telescope buffers<CR>", desc = "Buffer list" }, -- telescope.nvim
             ["d"] = {
                 group = "CodeDiff",
-                ["o"] = { "<CMD>CodeDiff<CR>", desc = "Open status / diff" }, -- codediff.nvim
-                ["h"] = { "<CMD>CodeDiff history %<CR>", desc = "File history" }, -- codediff.nvim
-                ["H"] = { "<CMD>CodeDiff history<CR>", desc = "Repo history" }, -- codediff.nvim
+                ["o"] = { "<Cmd>CodeDiff<CR>", desc = "Open status / diff" }, -- codediff.nvim
+                ["h"] = { "<Cmd>CodeDiff history %<CR>", desc = "File history" }, -- codediff.nvim
+                ["H"] = { "<Cmd>CodeDiff history<CR>", desc = "Repo history" }, -- codediff.nvim
             },
             ["D"] = {
                 group = "Diff mode",
@@ -264,30 +175,30 @@ USER.mappings = {
                     desc = "Patch the buffer with the requested file on a new buffer",
                     silent = false,
                 },
-                ["q"] = { "<CMD>diffoff<CR>", desc = "Revert and quit" },
-                ["R"] = { "<CMD>diffupdate<CR>", desc = "Updated the differences" },
-                ["t"] = { "<CMD>diffthis<CR>", desc = "Make the current window part of the diff windows" },
+                ["q"] = { "<Cmd>diffoff<CR>", desc = "Revert and quit" },
+                ["R"] = { "<Cmd>diffupdate<CR>", desc = "Updated the differences" },
+                ["t"] = { "<Cmd>diffthis<CR>", desc = "Make the current window part of the diff windows" },
                 ["v"] = { ":vertical diffsplit ", desc = "Open the requested file in a split", silent = false },
-                ["w"] = { "<CMD>windo diffthis<CR>", desc = "Compare the visible files" },
+                ["w"] = { "<Cmd>windo diffthis<CR>", desc = "Compare the visible files" },
             },
             ["e"] = {
                 group = "File, buffer and git explorer",
                 ["b"] = {
-                    "<CMD>Neotree buffers left focus reveal toggle<CR>",
+                    "<Cmd>Neotree buffers left focus reveal toggle<CR>",
                     desc = "Toggle a list of currently open buffers",
                 }, -- neo-tree.nvim
                 ["B"] = {
-                    "<CMD>Neotree buffers current<CR>",
+                    "<Cmd>Neotree buffers current<CR>",
                     desc = "Toggle a list of currently open buffers within the current window",
                 }, -- neo-tree.nvim
-                ["e"] = { "<CMD>Neotree filesystem left focus reveal toggle<CR>", desc = "Toggle file explorer" }, -- neo-tree.nvim
+                ["e"] = { "<Cmd>Neotree filesystem left focus reveal toggle<CR>", desc = "Toggle file explorer" }, -- neo-tree.nvim
                 ["E"] = {
-                    "<CMD>Neotree filesystem current<CR>",
+                    "<Cmd>Neotree filesystem current<CR>",
                     desc = "Open file explorer within the current window",
                 }, -- neo-tree.nvim
-                ["f"] = { "<CMD>Neotree focus<CR>", desc = "Open or focus on file explorer" }, -- neo-tree.nvim
-                ["g"] = { "<CMD>Neotree git_status left focus reveal toggle <CR>", desc = "Toggle git status panel" }, -- neo-tree.nvim
-                ["o"] = { "<CMD>Neotree document_symbols<CR>", desc = "Toggle document symbols panel" }, -- neo-tree.nvim
+                ["f"] = { "<Cmd>Neotree focus<CR>", desc = "Open or focus on file explorer" }, -- neo-tree.nvim
+                ["g"] = { "<Cmd>Neotree git_status left focus reveal toggle <CR>", desc = "Toggle git status panel" }, -- neo-tree.nvim
+                ["o"] = { "<Cmd>Neotree document_symbols<CR>", desc = "Toggle document symbols panel" }, -- neo-tree.nvim
             },
             ["g"] = {
                 group = "Git",
@@ -302,8 +213,8 @@ USER.mappings = {
                         desc = "Show blame window",
                     }, -- gitsigns.nvim
                 },
-                ["c"] = { "<CMD>Telescope git_commits<CR>", desc = "Commits" }, -- telescope.nvim
-                ["C"] = { "<CMD>Telescope git_bcommits<CR>", desc = "Buffer commits" }, -- telescope.nvim
+                ["c"] = { "<Cmd>Telescope git_commits<CR>", desc = "Commits" }, -- telescope.nvim
+                ["C"] = { "<Cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" }, -- telescope.nvim
                 ["g"] = {
                     group = "Git buffer actions",
                     ["<Space>"] = { function() require("gitsigns").stage_buffer() end, desc = "Stage buffer" }, -- gitsigns.nvim
@@ -315,8 +226,8 @@ USER.mappings = {
                 },
                 ["G"] = {
                     group = "Misc",
-                    ["b"] = { "<CMD>Telescope git_branches<CR>", desc = "Branches" }, -- telescope.nvim
-                    ["S"] = { "<CMD>Telescope git_stash<CR>", desc = "Stash" }, -- telescope.nvim
+                    ["b"] = { "<Cmd>Telescope git_branches<CR>", desc = "Branches" }, -- telescope.nvim
+                    ["S"] = { "<Cmd>Telescope git_stash<CR>", desc = "Stash" }, -- telescope.nvim
                 },
                 ["h"] = {
                     group = "Git hunk actions",
@@ -325,7 +236,7 @@ USER.mappings = {
                     ["u"] = { function() require("gitsigns").undo_stage_hunk() end, desc = "Undo stage hunk" }, -- gitsigns.nvim
                 },
                 ["p"] = { function() require("gitsigns").preview_hunk_inline() end, desc = "Preview hunk" }, -- gitsigns.nvim
-                ["s"] = { "<CMD>Telescope git_status<CR>", desc = "Status" }, -- telescope.nvim
+                ["s"] = { "<Cmd>Telescope git_status<CR>", desc = "Status" }, -- telescope.nvim
                 ["v"] = {
                     group = "Diff highlighting",
                     ["d"] = {
@@ -357,55 +268,68 @@ USER.mappings = {
             ["l"] = {
                 group = "LSP",
                 ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
-                ["d"] = { "<CMD>Glance definitions<CR>", desc = "Definitions" }, -- nvim-lspconfig -- glance.nvim
+                ["d"] = { "<Cmd>Glance definitions<CR>", desc = "Definitions" }, -- nvim-lspconfig -- glance.nvim
                 ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
-                ["F"] = { "<CMD>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
-                ["i"] = { "<CMD>Glance implementations<CR>", desc = "Implementations" }, -- nvim-lspconfig -- glance.nvim
-                ["q"] = { "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document diagnostics" }, -- nvim-lspconfig -- trouble.nvim
-                ["Q"] = { "<CMD>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
-                ["r"] = { "<CMD>Glance references<CR>", desc = "References" }, -- nvim-lspconfig -- glance.nvim
+                ["F"] = { "<Cmd>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
+                ["i"] = { "<Cmd>Glance implementations<CR>", desc = "Implementations" }, -- nvim-lspconfig -- glance.nvim
+                ["q"] = { "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document diagnostics" }, -- nvim-lspconfig -- trouble.nvim
+                ["Q"] = { "<Cmd>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
+                ["r"] = { "<Cmd>Glance references<CR>", desc = "References" }, -- nvim-lspconfig -- glance.nvim
                 ["R"] = { ":IncRename ", desc = "Rename symbol", silent = false }, -- nvim-lspconfig -- inc-rename
-                ["t"] = { "<CMD>Glance type_definitions<CR>", desc = "Type Definitions" }, -- nvim-lspconfig -- glance.nvim
+                ["t"] = { "<Cmd>Glance type_definitions<CR>", desc = "Type Definitions" }, -- nvim-lspconfig -- glance.nvim
+                ["T"] = {
+                    group = "Telescope / Trouble",
+                    ["a"] = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions (builtin)" }, -- nvim-lspconfig
+                    ["d"] = { telescope_picker("lsp_definitions"), desc = "Definitions (Telescope)" }, -- telescope.nvim
+                    ["i"] = { telescope_picker("implementations"), desc = "Implementations (Telescope)" }, -- telescope.nvim
+                    ["I"] = { "<Cmd>Trouble lsp_implementations<CR>", desc = "Implementations (Trouble)" }, -- trouble.nvim
+                    ["q"] = {
+                        "<Cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+                        desc = "LSP results (Trouble)",
+                    }, -- trouble.nvim
+                    ["r"] = { telescope_picker("lsp_references"), desc = "References (Telescope)" }, -- telescope.nvim
+                    ["t"] = { telescope_picker("lsp_type_definitions"), desc = "Type Definitions (Telescope)" }, -- telescope.nvim
+                },
             },
             ["m"] = {
                 group = "Minimap",
-                ["m"] = { "<CMD>lua require('codewindow').toggle_minimap()<CR>", desc = "Toggle minimap" }, -- codewindow.nvim
-                ["o"] = { "<CMD>lua require('codewindow').open_minimap()<CR>", desc = "Open minimap" }, -- codewindow.nvim
-                ["c"] = { "<CMD>lua require('codewindow').close_minimap()<CR>", desc = "Close minimap" }, -- codewindow.nvim
-                ["f"] = { "<CMD>lua require('codewindow').toggle_focus()<CR>", desc = "Focus/unfocus minimap" }, -- codewindow.nvim
+                ["m"] = { "<Cmd>lua require('codewindow').toggle_minimap()<CR>", desc = "Toggle minimap" }, -- codewindow.nvim
+                ["o"] = { "<Cmd>lua require('codewindow').open_minimap()<CR>", desc = "Open minimap" }, -- codewindow.nvim
+                ["c"] = { "<Cmd>lua require('codewindow').close_minimap()<CR>", desc = "Close minimap" }, -- codewindow.nvim
+                ["f"] = { "<Cmd>lua require('codewindow').toggle_focus()<CR>", desc = "Focus/unfocus minimap" }, -- codewindow.nvim
             },
-            ["o"] = { "<CMD>Outline<CR>", desc = "Toggle Code outline" }, -- outline.nvim
-            ["O"] = { "<CMD>Outline!<CR>", desc = "Toggle Code outline without focusing" }, -- outline.nvim
+            ["o"] = { "<Cmd>Outline<CR>", desc = "Toggle Code outline" }, -- outline.nvim
+            ["O"] = { "<Cmd>Outline!<CR>", desc = "Toggle Code outline without focusing" }, -- outline.nvim
             ["q"] = {
                 group = "Trouble",
-                ["c"] = { "<CMD>lua require('trouble').close()<CR>", desc = "Close" }, -- trouble.nvim
-                ["f"] = { "<CMD>Trouble qflist toggle<CR>", desc = "Quickfix" }, -- trouble.nvim
-                ["l"] = { "<CMD>Trouble loclist toggle<CR>", desc = "Loclist" }, -- trouble.nvim
-                ["q"] = { "<CMD>lua require('trouble').focus()<CR>", desc = "Focus" }, -- trouble.nvim
-                ["R"] = { "<CMD>lua require('trouble').refresh()<CR>", desc = "Refresh" }, -- trouble.nvim
+                ["c"] = { "<Cmd>lua require('trouble').close()<CR>", desc = "Close" }, -- trouble.nvim
+                ["f"] = { "<Cmd>Trouble qflist toggle<CR>", desc = "Quickfix" }, -- trouble.nvim
+                ["l"] = { "<Cmd>Trouble loclist toggle<CR>", desc = "Loclist" }, -- trouble.nvim
+                ["q"] = { "<Cmd>lua require('trouble').focus()<CR>", desc = "Focus" }, -- trouble.nvim
+                ["R"] = { "<Cmd>lua require('trouble').refresh()<CR>", desc = "Refresh" }, -- trouble.nvim
             },
-            ["r"] = { "<CMD>Telescope registers<CR>", desc = "Registers" },
+            ["r"] = { "<Cmd>Telescope registers<CR>", desc = "Registers" },
             ["s"] = {
                 group = "Search",
                 ["b"] = { telescope_picker("file_browser"), desc = "File Browser" }, -- telescope.nvim
                 ["d"] = {
                     group = "Search in Directory",
-                    ["g"] = { "<CMD>Telescope dir live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim -- dir-telescope.nvim
-                    ["f"] = { "<CMD>Telescope dir find_files<CR>", desc = "File search" }, -- telescope.nvim -- dir-telescope.nvim
+                    ["g"] = { "<Cmd>Telescope dir live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim -- dir-telescope.nvim
+                    ["f"] = { "<Cmd>Telescope dir find_files<CR>", desc = "File search" }, -- telescope.nvim -- dir-telescope.nvim
                 },
-                ["f"] = { "<CMD>Telescope find_files<CR>", desc = "File search" }, -- telescope.nvim
-                ["g"] = { "<CMD>Telescope live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim
-                ["H"] = { "<CMD>Telescope highlights<CR>", desc = "Highlight groups" }, -- telescope.nvim
-                ["h"] = { "<CMD>Telescope help_tags<CR>", desc = "Vim help" }, -- telescope.nvim
+                ["f"] = { "<Cmd>Telescope find_files<CR>", desc = "File search" }, -- telescope.nvim
+                ["g"] = { "<Cmd>Telescope live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim
+                ["H"] = { "<Cmd>Telescope highlights<CR>", desc = "Highlight groups" }, -- telescope.nvim
+                ["h"] = { "<Cmd>Telescope help_tags<CR>", desc = "Vim help" }, -- telescope.nvim
                 ["n"] = { function() require("snacks").notifier.show_history() end, desc = "Notify history" }, -- snacks.nvim
-                ["o"] = { "<CMD>Telescope vim_options<CR>", desc = "Vim options" }, -- telescope.nvim
+                ["o"] = { "<Cmd>Telescope vim_options<CR>", desc = "Vim options" }, -- telescope.nvim
                 ["s"] = { telescope_picker("possession"), desc = "Search sessions" }, -- telescope.nvim -- possession.nvim
                 ["S"] = { telescope_picker("luasnip"), desc = "List available snippets" }, -- telescope-luasnip.nvim
-                ["T"] = { "<CMD>TodoTelescope<CR>", desc = "Show TODO comments" }, -- todo-comments
+                ["T"] = { "<Cmd>TodoTelescope<CR>", desc = "Show TODO comments" }, -- todo-comments
                 ["t"] = {
                     group = "Telescope",
-                    ["b"] = { "<CMD>Telescope builtin<CR>", desc = "Telescope builtin" }, -- telescope.nvim
-                    ["c"] = { "<CMD>Telescope command_history<CR>", desc = "Command history" }, -- telescope.nvim
+                    ["b"] = { "<Cmd>Telescope builtin<CR>", desc = "Telescope builtin" }, -- telescope.nvim
+                    ["c"] = { "<Cmd>Telescope command_history<CR>", desc = "Command history" }, -- telescope.nvim
                 },
             },
             ["t"] = {
@@ -419,28 +343,81 @@ USER.mappings = {
                 ["E"] = { function() require("yeet").toggle_post_write() end, desc = "Toggle execution on write" }, -- yeet.nvim
                 ["l"] = { function() require("yeet").list_cmd() end, desc = "List previous commands" }, -- yeet.nvim
             },
-            ["u"] = { "<CMD>Neotree close<CR><CMD>UndotreeToggle<CR>", desc = "Toggle undo tree" }, -- undotree
-            ["<Space>"] = {
+            ["u"] = { "<Cmd>Neotree close<CR><Cmd>UndotreeToggle<CR>", desc = "Toggle undo tree" }, -- undotree
+            ["<Leader>"] = {
                 group = "Launch",
-                ["e"] = { "<CMD>LaunchDir dolphin<CR>", desc = "Open cwd in system file browser" },
-                ["l"] = { "<CMD>LaunchURL firefox --new-tab<CR>", desc = "Open URL under cursor in browser" },
-                ["t"] = { "<CMD>terminal<CR>i", desc = "Start a terminal session within Neovim" },
+                ["e"] = { "<Cmd>LaunchDir dolphin<CR>", desc = "Open cwd in system file browser" },
+                ["l"] = { "<Cmd>LaunchURL firefox --new-tab<CR>", desc = "Open URL under cursor in browser" },
+                ["t"] = { "<Cmd>terminal<CR>i", desc = "Start a terminal session within Neovim" },
                 ["g"] = { function() require("snacks").gitbrowse() end, desc = "Git Browse" }, -- snacks.nvim
             },
         },
-    },
-    -- Visual and select mode mappings
-    ["v"] = {
-        ["<F2>"] = { [[y:%s/\V<C-r>"/]], desc = "Replace word under cursor", silent = false },
-        ["<F3>"] = { "<CMD>set relativenumber!<CR>", desc = "Toggle relative number" },
-        ["<M-J>"] = { ":m '>+1<CR>gv-gv", desc = "Move line up" },
-        ["<M-K>"] = { ":m '<-2<CR>gv-gv", desc = "Move line up" },
-        ["<Space>"] = {
-            ["p"] = { '"_dP', desc = "Keep yanked text after paste" },
-            ["l"] = {
-                group = "LSP",
-                ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
-                ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
+        -- Secondary leader namespace (<LocalLeader> = "\"): manage the workspace.
+        ["<LocalLeader>"] = {
+            ["b"] = {
+                group = "Buffer manipulation",
+                ["d"] = { function() vim.cmd.lua("MiniBufremove.delete()") end, desc = "Delete buffer" }, -- mini.bufremove
+            },
+            ["c"] = {
+                group = "Color tools",
+                ["n"] = { "<Cmd>CccConvert<CR>", desc = "Convert color to the next color format" }, -- ccc.nvim
+                ["c"] = { "<Cmd>CccHighlighterToggle<CR>", desc = "Color codes preview" }, -- ccc.nvim
+                ["p"] = { "<Cmd>CccPick<CR>", desc = "Color picker" }, -- ccc.nvim
+            },
+            ["i"] = { "<Cmd>lua vim.show_pos()<CR>", desc = "Show all the items at a given buffer position" },
+            ["q"] = {
+                function()
+                    vim.cmd.lua("MiniBufremove.delete()")
+                    vim.cmd.quit()
+                end,
+                desc = "Delete buffer and close window",
+            }, -- mini.bufremove
+            ["p"] = {
+                group = "Project",
+                ["."] = { "<Cmd>PossessionLoad<CR>", desc = "Load last closed" }, -- possession.nvim
+                ["c"] = {
+                    group = "Create local config files",
+                    ["c"] = { "<Cmd>ProjectCreatePalette<CR>", desc = "Create palette" }, -- ccc.nvim
+                    ["s"] = { "<Cmd>ProjectCreateSession<CR>", desc = "Create session" }, -- possession.nvim
+                    ["p"] = { "<Cmd>ProjectCreatePrettierConfig<CR>", desc = "Create prettier config file" },
+                    ["e"] = { "<Cmd>ProjectCreateEditorConfig<CR>", desc = "Create EditorConfig file" },
+                    ["g"] = {
+                        group = "Create or update .gitignore file",
+                        ["g"] = { "<Cmd>ProjectCreateGitignore<CR>", desc = "Create or update the .gitignore file" },
+                        ["d"] = {
+                            "<Cmd>ProjectAppendGitignoreDjango<CR>",
+                            desc = "Create or update the .gitignore file with Django-specific rules.",
+                        },
+                    },
+                },
+                ["C"] = { "<Cmd>ProjectCreateConfig<CR>", desc = "Create local config file" }, -- nvim-config-local
+                ["D"] = { "<Cmd>PossessionDelete<CR>", desc = "Delete currently loaded session" }, -- possession.nvim
+                ["L"] = { "<Cmd>ProjectLoadSession<CR>", desc = "Load local session" }, -- possession.nvim
+                ["S"] = { ":PossessionSave ", desc = "Save session", silent = false }, -- possession.nvim
+            },
+            ["t"] = {
+                group = "Tab",
+                ["}"] = { "<Cmd>tabmove +1<CR>", desc = "Move tab right" },
+                ["{"] = { "<Cmd>tabmove -1<CR>", desc = "Move tab left" },
+                ["a"] = { "<Cmd>tabnew<CR>", desc = "Create new tab" },
+                ["c"] = { "<Cmd>tabclose<CR>", desc = "Close tab" },
+                ["R"] = { ":TabRename ", desc = "Rename tab", silent = false }, -- tabby.nvim
+            },
+            ["u"] = {
+                group = "Utilities",
+                ["s"] = {
+                    group = "Status",
+                    ["l"] = { "<Cmd>checkhealth vim.lsp<CR>", desc = "LSP info" }, -- lsp-config
+                    ["m"] = { "<Cmd>Mason<CR>", desc = "Mason status" }, -- mason.nvim
+                    ["n"] = { "<Cmd>NullLsInfo<CR>", desc = "Null-ls info" }, -- null-ls.nvim
+                    ["p"] = { "<Cmd>Lazy<CR>", desc = "Plugins status" }, -- lazy.nvim
+                },
+                ["u"] = {
+                    group = "Update",
+                    ["l"] = { "<Cmd>Mason<CR><Cmd>MasonToolsUpdate<CR>", desc = "Update LSP packages" }, -- mason-tool-installer.nvim
+                    ["P"] = { "<Cmd>Lazy update<CR>", desc = "Update plugins" }, -- lazy.nvim
+                    ["p"] = { "<Cmd>Lazy check<CR>", desc = "Check for plugins updates" }, -- lazy.nvim
+                },
             },
         },
     },
@@ -449,8 +426,13 @@ USER.mappings = {
         ["<BS>"] = { [[<BS>i]], desc = "Delete selection" }, -- Helpful when editing snippet placeholders
         ["<C-h>"] = { [[<C-h>i]], desc = "Delete selection" }, -- Helpful when editing snippet placeholders
     },
-    -- Visual mode mappings
+    -- Visual mode mappings (Visual-only; Select-mode lives in the "s" table above)
     ["x"] = {
+        ["<F2>"] = { [[y:%s/\V<C-r>"/]], desc = "Replace word under cursor", silent = false },
+        ["<F4>"] = { group = "Toggle" }, -- toggle hub leaves assigned in lua/plugins/snacks.lua
+        ["<M-J>"] = { ":m '>+1<CR>gv-gv", desc = "Move line down" },
+        ["<M-K>"] = { ":m '<-2<CR>gv-gv", desc = "Move line up" },
+        ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
         ["g"] = {
             ["A"] = { desc = "Align with preview" }, -- mini.align
             ["a"] = { desc = "Align" }, -- mini.align
@@ -463,8 +445,13 @@ USER.mappings = {
                 ["h"] = { ":<C-U>Gitsigns select_hunk<CR>", desc = "Git hunk" }, -- gitsigns
             },
         },
-        ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
-        ["<Space>"] = {
+        ["<Leader>"] = {
+            ["p"] = { '"_dP', desc = "Keep yanked text after paste" },
+            ["l"] = {
+                group = "LSP",
+                ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
+                ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
+            },
             ["gh"] = {
                 group = "Git & gitsigns",
                 ["a"] = { ":Gitsigns stage_hunk<CR>", desc = "Stage hunk" }, -- gitsigns
@@ -483,10 +470,9 @@ USER.mappings = {
         },
         ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
     },
-    -- Insert mode mappints
+    -- Insert mode mappings
     ["i"] = {
-        ["<F1>"] = { "<CMD>setlocal spell!<CR>", desc = "Toggle spelling" },
-        ["<F3>"] = { "<CMD>set cursorcolumn!<CR>", desc = "Toggle cursorcolumn" },
+        ["<F4>"] = { group = "Toggle" }, -- toggle hub leaves assigned in lua/plugins/snacks.lua
         ["<M-p>"] = { [[<C-r><C-o>+]], desc = "Paste and stay in insert mode" },
         ["<C-s>"] = { function() vim.lsp.buf.signature_help() end, desc = "Signature help" }, -- nvim-lspconfig
     },
