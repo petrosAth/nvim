@@ -76,7 +76,7 @@ and `selene` on the files you changed, plus a headless load
 
 ## To-do
 
-- [ ] Audit and rework key mappings to better align with Vim's mapping
+- [x] Audit and rework key mappings to better align with Vim's mapping
       philosophy
 - [ ] Add [code-preview.nvim](https://github.com/Cannon07/code-preview.nvim) to
       preview AI coding agent edits as a native diff before they're applied
