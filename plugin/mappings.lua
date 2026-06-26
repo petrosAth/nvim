@@ -142,6 +142,11 @@ USER.mappings = {
         ["z"] = {
             ["h"] = { desc = "Scroll the screen to the left" }, -- Assigned using Hydra.nvim
             ["l"] = { desc = "Scroll the screen to the right" }, -- Assigned using Hydra.nvim
+            ["M"] = { function() require("ufo").closeAllFolds() end, desc = "Close all folds" }, -- nvim-ufo
+            ["R"] = { function() require("ufo").openAllFolds() end, desc = "Open all folds" }, -- nvim-ufo
+            ["m"] = { function() require("ufo").closeFoldsWith() end, desc = "Close folds with" }, -- nvim-ufo
+            ["p"] = { function() require("ufo").peekFoldedLinesUnderCursor() end, desc = "Peek fold" }, -- nvim-ufo
+            ["r"] = { function() require("ufo").openFoldsExceptKinds() end, desc = "Open folds except kinds" }, -- nvim-ufo
         },
         ["<C-s>"] = { function() require("flash").jump() end, desc = "Flash" }, -- flash.nvim
         ["<C-w>"] = {
