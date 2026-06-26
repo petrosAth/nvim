@@ -42,7 +42,7 @@ return {
         -- LSP to display more information to the user.
         "gorbit99/codewindow.nvim",
         keys = {
-            "<Space>m",
+            "<Leader>m",
         },
         config = function()
             local loaded, codewindow = pcall(require, "codewindow")
