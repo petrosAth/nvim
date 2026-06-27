@@ -37,6 +37,36 @@ or `init` function. See the root `AGENTS.md` for global conventions.
 - **UI helpers** — `glance.lua`, `inc-rename.lua`, `nvim-lightbulb.lua`,
   `tiny-code-action.lua`, `nvim-navic.lua`.
 
+## Tool provisioning — Mason, not the system
+
+**Every LSP server, formatter, and linter this config uses is installed and
+managed by [Mason](https://github.com/mason-org/mason.nvim) — none are expected
+on the login-shell `PATH`.** A tool that doesn't resolve is a Mason package that
+hasn't installed yet, **not** a reason to `brew`/`apt`/`npm -g` it.
+
+- **Where they live:** binaries in `$HOME/.local/share/nvim/mason/bin`, packages
+  under `$HOME/.local/share/nvim/mason/packages/`.
+- **How the install list is derived:** `install.lua` builds `ensure_installed`
+  from the `servers` list (lspconfig→mason via `mason-lspconfig.mappings`) **plus**
+  the live none-ls sources (`require("null-ls").get_sources()`), then drives
+  `mason-tool-installer` with `run_on_start = true`. So adding a server to
+  `servers` (in `init.lua`) or a source to `null-ls.lua` is all it takes — the
+  install follows on the next Neovim start. Interactive: `:Mason`,
+  `:MasonToolsUpdate` (`<space>ul`), `:NullLsInfo` (`<space>sn`).
+- **Name mismatches:** a mason package name can differ from the lspconfig /
+  none-ls source name → mapped in `null_ls_to_mason` in `install.lua`
+  (e.g. `phpcsfixer` → `php-cs-fixer`).
+- **The one system exception:** `zsh` (mapped `false`; `zsh -n` uses the login
+  shell, no mason package).
+- **Running a Mason tool from a shell** (verify / CI / manual `stylua`,
+  `prettierd`, `shfmt`, `black`, …): prepend Mason's bin to `PATH` —
+
+  ```sh
+  export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+  ```
+
+  The `/nvim-verify` skill relies on exactly this for `stylua`/`selene`.
+
 ## Recipe — add an LSP server
 
 **Companion skill:** `/nvim-lsp` applies this recipe and runs `/nvim-verify`.
