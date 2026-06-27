@@ -13,16 +13,23 @@ allowed-tools: Bash(nvim *) Bash(stylua *) Bash(selene *)
 This config has no test suite; verification is "does it lint, format-check, and
 load cleanly". Run all three checks from the repo root, then report results.
 
-`stylua` and `selene` are installed via **Mason**, not the login-shell `PATH`.
-Prepend Mason's bin so the bare commands resolve:
+`stylua`, `selene`, and **every LSP server / formatter / linter** this config
+uses are installed via **Mason**, not the login-shell `PATH`. Prepend Mason's bin
+so the bare commands resolve:
 
 ```sh
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 ```
 
 (Run that in the same command as each tool, or rely on the pre-approved
-`stylua`/`selene` names; if a tool is genuinely absent, report that rather than
-silently skipping the check.)
+`stylua`/`selene` names.) A tool that doesn't resolve — `prettierd`, `shfmt`,
+`black`, `djlint`, `phpcs`, `phpstan`, `php-cs-fixer`, any LSP server — is a
+Mason package that hasn't installed yet, **not** a prompt to `brew`/`apt`/`npm -g`
+it: prepend the path above, or let the next Neovim start install it via
+`mason-tool-installer` (`run_on_start`). The lone system tool is `zsh`, so an
+absent `zsh` is the real exception. See `lua/plugins/lsp/AGENTS.md` → "Tool
+provisioning — Mason, not the system" for the why; if a tool is genuinely absent,
+report that rather than silently skipping the check.
 
 **Scope format/lint to the files this change touched, not the whole repo.** The
 repo is not fully stylua-formatted (column-aligned assignments) and carries some

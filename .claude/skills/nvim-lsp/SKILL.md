@@ -26,3 +26,9 @@ Thin orchestrator — read the canonical steps, don't duplicate them.
    `null_ls_to_mason`).
 4. **Verify:** run the `nvim-verify` skill. (mason installs run on next start;
    `:Mason` / `:checkhealth lsp` confirm interactively.)
+
+The binaries are **Mason-provisioned, never system-installed** — a new server,
+formatter, or linter installs on the next Neovim start via `mason-tool-installer`
+(`run_on_start`); don't `brew`/`npm -g` it. See `lua/plugins/lsp/AGENTS.md` →
+"Tool provisioning — Mason, not the system", and `/nvim-verify` for the `PATH`
+snippet when a tool must run from a shell.
