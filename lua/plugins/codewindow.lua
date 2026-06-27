@@ -14,7 +14,7 @@ local function setup(codewindow)
             "NvimTree",
             "Outline",
             "qf",
-            "TelescopePrompt",
+            "fzf",
             "terminal",
             "trouble",
             "undotree",

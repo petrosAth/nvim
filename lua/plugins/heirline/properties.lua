@@ -57,6 +57,7 @@ M.Disable = {
             "Codewindow",
             "ccc-ui",
             "checkhealth",
+            "fzf",
             "lazy",
             "man",
             "mason",
@@ -72,6 +73,7 @@ M.Disable = {
         },
         filetype = {
             "alpha",
+            "fzf",
         },
     },
 }
