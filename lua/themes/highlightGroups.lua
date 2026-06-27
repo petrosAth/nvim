@@ -741,28 +741,42 @@ function M.get_highlight_groups(palette)
         SatelliteCursor               = { fg = p.base_fg },
         SatelliteMark                 = { fg = p.base_03 },
 
-        -- telescope.nvim
-        TelescopePromptPrefix         = { fg = p.base_fg, bold = true },
-        TelescopePromptCounter        = { link = "Number" },
+        -- fzf-lua
+        FzfLuaNormal                  = { fg = p.base_fg, bg = p.base_0 },
+        FzfLuaBorder                  = { fg = g.editor.FloatBorder.fg, bg = p.base_0 },
+        FzfLuaTitle                   = { fg = p.base_fg, bg = g.editor.FloatBorder.fg, bold = true },
+        FzfLuaBackdrop                = { bg = p.base_00 },
 
-        TelescopeNormal               = { fg = p.base_fg, bg = p.base_0 },
-        TelescopeResultsNormal        = { fg = p.blue_3, bg = p.base_0 },
-        TelescopePreviewNormal        = { fg = p.base_fg, bg = p.base_0 },
-        TelescopePromptNormal         = { fg = p.base_00, bg = p.base_2 },
+        FzfLuaPreviewNormal           = { fg = p.base_fg, bg = p.base_0 },
+        FzfLuaPreviewBorder           = { fg = g.editor.FloatBorder.fg, bg = p.base_0 },
+        FzfLuaPreviewTitle            = { fg = p.blue_3, bg = g.editor.FloatBorder.fg, bold = true },
 
-        TelescopeResultsTitle         = { fg = p.cyan_2, bg = g.editor.FloatBorder.fg, bold = true },
-        TelescopePreviewTitle         = { fg = p.blue_3, bg = g.editor.FloatBorder.fg, bold = true },
-        TelescopePromptTitle          = { fg = p.base_fg, bg = g.editor.FloatBorder.fg, bold = true },
+        FzfLuaCursor                  = { link = "Cursor" },
+        FzfLuaCursorLine              = { link = "PmenuSel" },
+        FzfLuaCursorLineNr            = { link = "CursorLineNr" },
 
-        TelescopeResultsBorder        = { fg = g.editor.FloatBorder.fg, bg = p.base_0 },
-        TelescopePreviewBorder        = { fg = g.editor.FloatBorder.fg, bg = p.base_0 },
-        TelescopePromptBorder         = { fg = g.editor.FloatBorder.fg, bg = p.base_2 },
+        FzfLuaScrollBorderEmpty       = { fg = g.editor.FloatBorder.fg },
+        FzfLuaScrollBorderFull        = { fg = g.editor.FloatBorder.fg },
+        FzfLuaScrollFloatEmpty        = { bg = p.base_0 },
+        FzfLuaScrollFloatFull         = { bg = p.base_3 },
 
-        TelescopeMultiSelection       = { fg = p.base_00, bg = p.base_3 },
-        TelescopeMultiIcon            = { fg = p.base_00, bg = p.base_3 },
-        TelescopeSelectionCaret       = { link = "TelescopeSelectionCaret" },
-        TelescopeSelection            = { link = "PmenuSel" },
-        TelescopeMatching             = { fg = p.base_00 },
+        FzfLuaHeaderBind              = { fg = p.cyan_2 },
+        FzfLuaHeaderText              = { fg = p.blue_3 },
+
+        FzfLuaPathColNr               = { link = "Number" },
+        FzfLuaPathLineNr              = { link = "Number" },
+        FzfLuaBufName                 = { fg = p.blue_3 },
+        FzfLuaBufNr                   = { fg = p.base_fg },
+
+        -- fzf results window (terminal) colors
+        FzfLuaFzfNormal               = { fg = p.base_fg, bg = p.base_0 },
+        FzfLuaFzfMatch                = { fg = p.base_00, bold = true },
+        FzfLuaFzfPrompt               = { fg = p.base_fg, bold = true },
+        FzfLuaFzfPointer              = { fg = p.base_00 },
+        FzfLuaFzfMarker               = { fg = p.base_00 },
+        FzfLuaFzfCursorLine           = { link = "PmenuSel" },
+        FzfLuaFzfInfo                 = { fg = p.base_03 },
+        FzfLuaFzfBorder               = { fg = g.editor.FloatBorder.fg },
 
         -- todo-comments.nvim
         TodoBgFIX                     = { fg = p.base_0, bg = g.diagnostic.DiagnosticError.fg, bold = true },

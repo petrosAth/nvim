@@ -21,7 +21,7 @@ return {
                 "Outline",
                 "packer",
                 "qf",
-                "TelescopePrompt",
+                "fzf",
                 "trouble",
                 "undotree",
             }

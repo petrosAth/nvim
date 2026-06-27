@@ -26,7 +26,7 @@ local Labels = {
     ["Outline"]                   = string.format("%s Code outline",         i.codeOutline[1]),
     ["packer"]                    = string.format("%s Packer status",        i.info[1]),
     ["trouble"]                   = string.format("%s List",                 i.list[1]),
-    ["TelescopePrompt"]           = string.format("%s Telescope",            i.telescope[1]),
+    ["fzf"]                       = string.format("%s fzf-lua",              i.fzf[1]),
     ["undotree"]                  = string.format("%s Undotree",             i.undoTree[1]),
     ["yeet-cache"]                = string.format("%s Command Cache",        i.terminal[1]),
     -- path matches
