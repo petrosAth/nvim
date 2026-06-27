@@ -94,6 +94,9 @@ and `selene` on the files you changed, plus a headless load
     equivalents
   - Match existing Telescope functionality where possible; skip if the fzf-lua
     equivalent requires excessive boilerplate
+- [ ] Investigate the migration to vim.pack for plugin management
+- [ ] Fix LaunchURL to work with the default system browser under while being
+      system agnostic
 - [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
