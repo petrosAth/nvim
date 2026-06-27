@@ -56,26 +56,27 @@ see [Consulting documentation](#consulting-documentation).)
 
 Where things live and where to add them:
 
-| Path                     | What it holds                                                                                                                              |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `init.lua`               | `USER` table, theme selection, top-level load order.                                                                                       |
-| `lua/plugins/`           | One lazy.nvim spec per file; auto-discovered. See `lua/plugins/AGENTS.md`.                                                                 |
+| Path                     | What it holds                                                                                                                            |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `init.lua`               | `USER` table, theme selection, top-level load order.                                                                                     |
+| `lua/plugins/`           | One lazy.nvim spec per file; auto-discovered. See `lua/plugins/AGENTS.md`.                                                               |
 | `lua/plugins/<dir>/`     | Complex plugins: `init.lua` is the spec, siblings are helper modules (`lsp/`, `heirline/`, `fzf-lua/`, `tabby/`, `which-key/`, `mini/`). |
-| `lua/plugins/lsp/`       | LSP ecosystem (servers, mason, null-ls, UI helpers). See `lua/plugins/lsp/AGENTS.md`.                                                      |
-| `lua/themes/`            | Palette-based theme engine. See `lua/themes/AGENTS.md`.                                                                                    |
-| `lua/ui/`                | UI helpers: side-panel options, buffer labels.                                                                                             |
-| `lua/styling.lua`        | Design system: icons, borders, separators, fillchars/listchars, styling variables.                                                         |
-| `lua/utilities.lua`      | Core `USER` helpers (`loading_error_msg`, `is_git_repo`).                                                                                  |
-| `lua/local-config.lua`   | `.nvim.lua` loader + `:Project*` scaffolding commands.                                                                                     |
-| `lua/plugin-manager.lua` | lazy.nvim bootstrap + `setup()` options.                                                                                                   |
-| `plugin/options.lua`     | All `vim.opt.*` settings. See `plugin/AGENTS.md`.                                                                                          |
-| `plugin/mappings.lua`    | The `USER.mappings` table (all keybindings). See `plugin/AGENTS.md`.                                                                       |
-| `after/plugin/`          | Final-word autocommands (`autocommands.lua`), user commands (`utilities.lua`), sessions.                                                   |
-| `after/ftplugin/`        | Per-filetype option overrides (one file per filetype).                                                                                     |
-| `colors/`                | One-line colorscheme entry points (`require("themes").load("<name>")`).                                                                    |
-| `ftdetect/`              | Custom filetype detection.                                                                                                                 |
-| `templates/`             | File templates copied by the `:Project*` commands.                                                                                         |
-| `spell/`                 | Custom spell dictionary.                                                                                                                   |
+| `lua/plugins/lsp/`       | LSP ecosystem (servers, mason, null-ls, UI helpers). See `lua/plugins/lsp/AGENTS.md`.                                                    |
+| `lua/plugins/heirline/`  | Statusline + winbar (tabline is tabby's). See `lua/plugins/heirline/AGENTS.md`.                                                          |
+| `lua/themes/`            | Palette-based theme engine. See `lua/themes/AGENTS.md`.                                                                                  |
+| `lua/ui/`                | UI helpers: side-panel options, buffer labels.                                                                                           |
+| `lua/styling.lua`        | Design system: icons, borders, separators, fillchars/listchars, styling variables.                                                       |
+| `lua/utilities.lua`      | Core `USER` helpers (`loading_error_msg`, `is_git_repo`).                                                                                |
+| `lua/local-config.lua`   | `.nvim.lua` loader + `:Project*` scaffolding commands.                                                                                   |
+| `lua/plugin-manager.lua` | lazy.nvim bootstrap + `setup()` options.                                                                                                 |
+| `plugin/options.lua`     | All `vim.opt.*` settings. See `plugin/AGENTS.md`.                                                                                        |
+| `plugin/mappings.lua`    | The `USER.mappings` table (all keybindings). See `plugin/AGENTS.md`.                                                                     |
+| `after/plugin/`          | Final-word autocommands (`autocommands.lua`), user commands (`utilities.lua`), sessions.                                                 |
+| `after/ftplugin/`        | Per-filetype option overrides (one file per filetype).                                                                                   |
+| `colors/`                | One-line colorscheme entry points (`require("themes").load("<name>")`).                                                                  |
+| `ftdetect/`              | Custom filetype detection.                                                                                                               |
+| `templates/`             | File templates copied by the `:Project*` commands.                                                                                       |
+| `spell/`                 | Custom spell dictionary.                                                                                                                 |
 
 ## Global conventions
 
@@ -146,10 +147,10 @@ Config-only, no build:
 - `.luarc.json`, `.editorconfig` — language-server and editor settings.
 
 **Claude Code skills** (`.claude/skills/`) wrap the recipes below as on-demand
-workflows: `/nvim-add-plugin`, `/nvim-lsp`, `/nvim-theme`, `/nvim-keymaps` (the
-last three auto-activate when you edit their area), plus `/nvim-verify` for the
-check loop. The skills apply the recipes documented here; the docs stay the
-source of truth.
+workflows: `/nvim-add-plugin`, `/nvim-lsp`, `/nvim-theme`, `/nvim-keymaps`,
+`/nvim-statusline` (the last four auto-activate when you edit their area), plus
+`/nvim-verify` for the check loop. The skills apply the recipes documented here;
+the docs stay the source of truth.
 
 ## Consulting documentation
 
