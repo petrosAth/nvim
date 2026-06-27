@@ -45,7 +45,7 @@ native loader) during `require("plugin-manager").init()` — see the root
    ```lua
    ["<lhs>"] = { <rhs>, desc = "Human readable description" },
    ```
-   where `<rhs>` is a command string (`"<CMD>Telescope resume<CR>"`) or a Lua
+   where `<rhs>` is a command string (`"<CMD>FzfLua resume<CR>"`) or a Lua
    function. For a new prefix, nest a table with `group = "..."`.
 3. which-key picks up the `desc`/`group` automatically — no separate
    registration. Restart Neovim (or re-source) and verify with `:WhichKey`.
