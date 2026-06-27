@@ -27,7 +27,7 @@ return {
         -- in your code base.
         "folke/todo-comments.nvim",
         event = { "BufReadPost" },
-        cmd = { "TodoTrouble", "TodoTelescope" },
+        cmd = { "TodoTrouble", "TodoFzfLua" },
         dependencies = {
             -- plenary: full; complete; entire; absolute; unqualified. All the lua functions I don't want to write
             -- twice.
