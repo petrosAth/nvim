@@ -2,8 +2,7 @@ local M = {}
 
 local function fzf() return require("fzf-lua") end
 
--- Shared layout for the LSP location pickers: vertical preview, and never auto-jump on a single
--- result (matches the old Telescope `jump_type = "never"`).
+-- Shared layout for the LSP location pickers: vertical preview, never auto-jump on a single result.
 local lsp_opts = {
     jump1 = false,
     winopts = {
@@ -19,8 +18,7 @@ function M.lsp_type_definitions() fzf().lsp_typedefs(lsp_opts) end
 
 function M.lsp_implementations() fzf().lsp_implementations(lsp_opts) end
 
--- Sessions: list possession sessions, load on <Enter>, delete on <C-d>. Replaces the old
--- telescope-possession extension picker.
+-- Sessions: list possession sessions, load on <Enter>, delete on <C-d>.
 function M.sessions()
     local ok, query = pcall(require, "possession.query")
     if not ok then
@@ -47,9 +45,8 @@ function M.sessions()
     })
 end
 
--- Snippets: list LuaSnip snippets for the current filetype and expand the selection. Replaces the
--- old telescope-luasnip extension picker; the preview pane renders the snippet body via a custom
--- builtin previewer.
+-- Snippets: list LuaSnip snippets for the current filetype and expand the selection; the preview
+-- pane renders the snippet body via a custom builtin previewer.
 function M.snippets()
     local ok, luasnip = pcall(require, "luasnip")
     if not ok then
@@ -110,7 +107,7 @@ function M.snippets()
     })
 end
 
--- Dir-scoped search: pick a directory, then scope files/live_grep to it. Replaces dir-telescope.
+-- Dir-scoped search: pick a directory, then scope files/live_grep to it.
 local function pick_dir(callback)
     fzf().fzf_exec("fd --type d --hidden --exclude .git", {
         prompt = "Directory> ",

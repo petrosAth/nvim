@@ -13,13 +13,11 @@ local function setup(fzf)
             row = 0.5,
             col = 0.5,
             border = border,
-            -- Telescope did not dim the editor; disable the backdrop to match (100 = off).
             backdrop = 100,
             preview = {
                 border = border,
                 layout = "flex",
-                -- Switch to a vertical preview on narrow windows, horizontal otherwise (matches the old
-                -- horizontal/vertical layout_strategy split).
+                -- Switch to a vertical preview on narrow windows, horizontal otherwise.
                 flip_columns = 120,
                 horizontal = "right:60%",
                 vertical = "down:45%",
@@ -51,7 +49,6 @@ local function setup(fzf)
             files = {
                 true, -- inherit defaults (ctrl-s/ctrl-v/ctrl-t splits, alt-q to quickfix, …)
                 ["enter"] = actions.file_edit_or_qf,
-                -- Mirror Telescope's Alt-based open verbs.
                 ["alt-o"] = actions.file_split,
                 ["alt-v"] = actions.file_vsplit,
                 ["alt-t"] = actions.file_tabedit,
