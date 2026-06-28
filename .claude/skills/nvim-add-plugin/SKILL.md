@@ -166,7 +166,7 @@ Same scattered touchpoints (see the map in `lua/plugins/AGENTS.md`) — but you
 6. **Sessions** — clear possession filetype exclusions / `sessions.lua` /
    `.nvim.lua` references.
 7. **Cross-file `require("<module>")` integrations** (heirline/tabby/neo-tree/
-   snacks/comment/dressing/telescope/lsp) — fix any so none dangle; the grep
+   snacks/comment/dressing/fzf-lua/lsp) — fix any so none dangle; the grep
    sweep above confirms nothing is left.
 8. Bundle the `lazy-lock.json` removal; run the `nvim-verify` skill — a dangling
    `require` surfaces as a load error.

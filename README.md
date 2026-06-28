@@ -12,9 +12,9 @@ The following tools must be available on your `PATH`:
 | Dependency                                | Purpose                             |
 | ----------------------------------------- | ----------------------------------- |
 | `git`                                     | Plugin installation via lazy.nvim   |
-| `make`                                    | Build step for telescope-fzf-native |
-| `ripgrep` (`rg`)                          | Live grep inside Telescope          |
-| `fd`                                      | File finding inside Telescope       |
+| `fzf`                                     | Fuzzy finder backend for fzf-lua    |
+| `ripgrep` (`rg`)                          | Live grep inside fzf-lua            |
+| `fd`                                      | File finding inside fzf-lua         |
 | A [Nerd Font](https://www.nerdfonts.com/) | Icons and UI symbols throughout     |
 
 **Optional** — only needed for specific language support. Mason handles LSP
@@ -88,12 +88,13 @@ and `selene` on the files you changed, plus a headless load
 - [x] Break LSP server configs into separate files
       ([on_attach ref — GitHub](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62),
       [on_attach ref — Reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/))
-- [ ] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope
+- [x] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope
       replacement
   - Audit plugins that delegate to Telescope as a picker and wire up fzf-lua
     equivalents
   - Match existing Telescope functionality where possible; skip if the fzf-lua
     equivalent requires excessive boilerplate
+  - [x] Add a previewer to the fzf-lua snippet picker
 - [ ] Investigate the migration to vim.pack for plugin management
 - [ ] Fix LaunchURL to work with the default system browser under while being
       system agnostic

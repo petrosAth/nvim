@@ -26,49 +26,7 @@ local function setup(dressing)
         },
         select = {
             enabled = true,
-            backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
-            telescope = require("telescope.themes").get_dropdown({
-                previewer = false,
-                results_title = false,
-                layout_strategy = "vertical",
-                layout_config = {
-                    prompt_position = "top",
-                    width = { 0.6, max = 140 },
-                    height = { 0.8, max = 50 },
-                },
-                borderchars = {
-                    prompt = {
-                        borders.default.t,
-                        borders.default.r,
-                        borders.none.b,
-                        borders.default.l,
-                        borders.default.tl,
-                        borders.default.tr,
-                        borders.default.r,
-                        borders.default.l,
-                    },
-                    results = {
-                        borders.default.t,
-                        borders.default.r,
-                        borders.default.b,
-                        borders.default.l,
-                        borders.default.tl,
-                        borders.default.tr,
-                        borders.default.br,
-                        borders.default.bl,
-                    },
-                    preview = {
-                        borders.default.t,
-                        borders.default.r,
-                        borders.none.b,
-                        borders.default.l,
-                        borders.default.tl,
-                        borders.default.tr,
-                        borders.default.r,
-                        borders.default.l,
-                    },
-                },
-            }),
+            backend = { "fzf_lua", "builtin", "nui" },
         },
     })
 end

@@ -62,8 +62,8 @@ local function lua_cmd(plugin, modules, opts)
     return string.format([[<Cmd>lua %s.%s(%s)<CR>]], plugin, modules, opts)
 end
 
-local function telescope_picker(picker)
-    local config_path = [[require("plugins.telescope.pickers")]]
+local function fzf_picker(picker)
+    local config_path = [[require("plugins.fzf-lua.pickers")]]
     return lua_cmd(config_path, picker)
 end
 
@@ -165,8 +165,8 @@ USER.mappings = {
         -- Primary leader namespace (<Leader> = <Space>): act on code / project.
         ["<Leader>"] = {
             ["?"] = { function() require("which-key").show() end, desc = "Buffer Local Keymaps (which-key)" },
-            ["."] = { "<Cmd>Telescope resume<CR>", desc = "Reopen Telescope" }, -- telescope.nvim
-            ["b"] = { "<Cmd>Telescope buffers<CR>", desc = "Buffer list" }, -- telescope.nvim
+            ["."] = { "<Cmd>FzfLua resume<CR>", desc = "Reopen last picker" }, -- fzf-lua
+            ["b"] = { "<Cmd>FzfLua buffers<CR>", desc = "Buffer list" }, -- fzf-lua
             ["d"] = {
                 group = "CodeDiff",
                 ["o"] = { "<Cmd>CodeDiff<CR>", desc = "Open status / diff" }, -- codediff.nvim
@@ -218,8 +218,8 @@ USER.mappings = {
                         desc = "Show blame window",
                     }, -- gitsigns.nvim
                 },
-                ["c"] = { "<Cmd>Telescope git_commits<CR>", desc = "Commits" }, -- telescope.nvim
-                ["C"] = { "<Cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" }, -- telescope.nvim
+                ["c"] = { "<Cmd>FzfLua git_commits<CR>", desc = "Commits" }, -- fzf-lua
+                ["C"] = { "<Cmd>FzfLua git_bcommits<CR>", desc = "Buffer commits" }, -- fzf-lua
                 ["g"] = {
                     group = "Git buffer actions",
                     ["<Space>"] = { function() require("gitsigns").stage_buffer() end, desc = "Stage buffer" }, -- gitsigns.nvim
@@ -231,8 +231,8 @@ USER.mappings = {
                 },
                 ["G"] = {
                     group = "Misc",
-                    ["b"] = { "<Cmd>Telescope git_branches<CR>", desc = "Branches" }, -- telescope.nvim
-                    ["S"] = { "<Cmd>Telescope git_stash<CR>", desc = "Stash" }, -- telescope.nvim
+                    ["b"] = { "<Cmd>FzfLua git_branches<CR>", desc = "Branches" }, -- fzf-lua
+                    ["S"] = { "<Cmd>FzfLua git_stash<CR>", desc = "Stash" }, -- fzf-lua
                 },
                 ["h"] = {
                     group = "Git hunk actions",
@@ -241,7 +241,7 @@ USER.mappings = {
                     ["u"] = { function() require("gitsigns").undo_stage_hunk() end, desc = "Undo stage hunk" }, -- gitsigns.nvim
                 },
                 ["p"] = { function() require("gitsigns").preview_hunk_inline() end, desc = "Preview hunk" }, -- gitsigns.nvim
-                ["s"] = { "<Cmd>Telescope git_status<CR>", desc = "Status" }, -- telescope.nvim
+                ["s"] = { "<Cmd>FzfLua git_status<CR>", desc = "Status" }, -- fzf-lua
                 ["v"] = {
                     group = "Diff highlighting",
                     ["d"] = {
@@ -283,17 +283,17 @@ USER.mappings = {
                 ["R"] = { ":IncRename ", desc = "Rename symbol", silent = false }, -- nvim-lspconfig -- inc-rename
                 ["t"] = { "<Cmd>Glance type_definitions<CR>", desc = "Type Definitions" }, -- nvim-lspconfig -- glance.nvim
                 ["T"] = {
-                    group = "Telescope / Trouble",
+                    group = "fzf-lua / Trouble",
                     ["a"] = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", desc = "Code actions (builtin)" }, -- nvim-lspconfig
-                    ["d"] = { telescope_picker("lsp_definitions"), desc = "Definitions (Telescope)" }, -- telescope.nvim
-                    ["i"] = { telescope_picker("implementations"), desc = "Implementations (Telescope)" }, -- telescope.nvim
+                    ["d"] = { fzf_picker("lsp_definitions"), desc = "Definitions (fzf-lua)" }, -- fzf-lua
+                    ["i"] = { fzf_picker("lsp_implementations"), desc = "Implementations (fzf-lua)" }, -- fzf-lua
                     ["I"] = { "<Cmd>Trouble lsp_implementations<CR>", desc = "Implementations (Trouble)" }, -- trouble.nvim
                     ["q"] = {
                         "<Cmd>Trouble lsp toggle focus=false win.position=right<CR>",
                         desc = "LSP results (Trouble)",
                     }, -- trouble.nvim
-                    ["r"] = { telescope_picker("lsp_references"), desc = "References (Telescope)" }, -- telescope.nvim
-                    ["t"] = { telescope_picker("lsp_type_definitions"), desc = "Type Definitions (Telescope)" }, -- telescope.nvim
+                    ["r"] = { fzf_picker("lsp_references"), desc = "References (fzf-lua)" }, -- fzf-lua
+                    ["t"] = { fzf_picker("lsp_type_definitions"), desc = "Type Definitions (fzf-lua)" }, -- fzf-lua
                 },
             },
             ["m"] = {
@@ -313,28 +313,26 @@ USER.mappings = {
                 ["q"] = { "<Cmd>lua require('trouble').focus()<CR>", desc = "Focus" }, -- trouble.nvim
                 ["R"] = { "<Cmd>lua require('trouble').refresh()<CR>", desc = "Refresh" }, -- trouble.nvim
             },
-            ["r"] = { "<Cmd>Telescope registers<CR>", desc = "Registers" },
+            ["r"] = { "<Cmd>FzfLua registers<CR>", desc = "Registers" }, -- fzf-lua
             ["s"] = {
                 group = "Search",
-                ["b"] = { telescope_picker("file_browser"), desc = "File Browser" }, -- telescope.nvim
                 ["d"] = {
                     group = "Search in Directory",
-                    ["g"] = { "<Cmd>Telescope dir live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim -- dir-telescope.nvim
-                    ["f"] = { "<Cmd>Telescope dir find_files<CR>", desc = "File search" }, -- telescope.nvim -- dir-telescope.nvim
+                    ["g"] = { fzf_picker("dir_grep"), desc = "ripGREP" }, -- fzf-lua
+                    ["f"] = { fzf_picker("dir_files"), desc = "File search" }, -- fzf-lua
                 },
-                ["f"] = { "<Cmd>Telescope find_files<CR>", desc = "File search" }, -- telescope.nvim
-                ["g"] = { "<Cmd>Telescope live_grep<CR>", desc = "ripGREP" }, -- telescope.nvim
-                ["H"] = { "<Cmd>Telescope highlights<CR>", desc = "Highlight groups" }, -- telescope.nvim
-                ["h"] = { "<Cmd>Telescope help_tags<CR>", desc = "Vim help" }, -- telescope.nvim
+                ["f"] = { "<Cmd>FzfLua files<CR>", desc = "File search" }, -- fzf-lua
+                ["g"] = { "<Cmd>FzfLua live_grep<CR>", desc = "ripGREP" }, -- fzf-lua
+                ["H"] = { "<Cmd>FzfLua highlights<CR>", desc = "Highlight groups" }, -- fzf-lua
+                ["h"] = { "<Cmd>FzfLua help_tags<CR>", desc = "Vim help" }, -- fzf-lua
                 ["n"] = { function() require("snacks").notifier.show_history() end, desc = "Notify history" }, -- snacks.nvim
-                ["o"] = { "<Cmd>Telescope vim_options<CR>", desc = "Vim options" }, -- telescope.nvim
-                ["s"] = { telescope_picker("possession"), desc = "Search sessions" }, -- telescope.nvim -- possession.nvim
-                ["S"] = { telescope_picker("luasnip"), desc = "List available snippets" }, -- telescope-luasnip.nvim
-                ["T"] = { "<Cmd>TodoTelescope<CR>", desc = "Show TODO comments" }, -- todo-comments
+                ["s"] = { fzf_picker("sessions"), desc = "Search sessions" }, -- fzf-lua -- possession.nvim
+                ["S"] = { fzf_picker("snippets"), desc = "List available snippets" }, -- fzf-lua -- LuaSnip
+                ["T"] = { "<Cmd>TodoFzfLua<CR>", desc = "Show TODO comments" }, -- todo-comments
                 ["t"] = {
-                    group = "Telescope",
-                    ["b"] = { "<Cmd>Telescope builtin<CR>", desc = "Telescope builtin" }, -- telescope.nvim
-                    ["c"] = { "<Cmd>Telescope command_history<CR>", desc = "Command history" }, -- telescope.nvim
+                    group = "fzf-lua",
+                    ["b"] = { "<Cmd>FzfLua builtin<CR>", desc = "fzf-lua builtin" }, -- fzf-lua
+                    ["c"] = { "<Cmd>FzfLua command_history<CR>", desc = "Command history" }, -- fzf-lua
                 },
             },
             ["t"] = {

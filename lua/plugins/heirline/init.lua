@@ -4,6 +4,9 @@ local function setup(heirline)
         -- the args parameter corresponds to the table argument passed to autocommand callbacks. :h nvim_lua_create_autocmd()
         disable_winbar_cb = function(args)
             local file_name = vim.api.nvim_buf_get_name(args.buf)
+            -- fzf-lua's <F1> help float is a scratch buffer named "_FzfLuaHelp";
+            -- a real ":help" buffer (buftype=help) should still keep its winbar.
+            if vim.fn.fnamemodify(file_name, ":t") == "_FzfLuaHelp" then return true end
             local full_path = vim.fn.fnamemodify(file_name, ":p")
             local buf_label = require("ui.utilities").get_buf_label(full_path, vim.bo.buftype, vim.bo.filetype)
             local props = require("plugins.heirline.properties").Disable.winBar

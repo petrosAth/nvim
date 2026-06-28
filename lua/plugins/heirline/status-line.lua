@@ -117,7 +117,10 @@ local StatusLineInactive = {
 }
 
 local StatusLineTerminal = {
-    condition = function() return conditions.buffer_matches({ buftype = { "terminal" } }) end,
+    condition = function()
+        return conditions.buffer_matches({ buftype = { "terminal" } })
+            and not conditions.buffer_matches({ filetype = { "fzf" } })
+    end,
 
     border_edge_2,
     c.ViMode,
