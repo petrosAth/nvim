@@ -12,9 +12,9 @@ The following tools must be available on your `PATH`:
 | Dependency                                | Purpose                             |
 | ----------------------------------------- | ----------------------------------- |
 | `git`                                     | Plugin installation via lazy.nvim   |
-| `make`                                    | Build step for telescope-fzf-native |
-| `ripgrep` (`rg`)                          | Live grep inside Telescope          |
-| `fd`                                      | File finding inside Telescope       |
+| `fzf`                                     | Fuzzy finder backend for fzf-lua    |
+| `ripgrep` (`rg`)                          | Live grep inside fzf-lua            |
+| `fd`                                      | File finding inside fzf-lua         |
 | A [Nerd Font](https://www.nerdfonts.com/) | Icons and UI symbols throughout     |
 
 **Optional** — only needed for specific language support. Mason handles LSP

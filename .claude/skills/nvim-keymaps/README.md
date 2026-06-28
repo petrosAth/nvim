@@ -25,7 +25,7 @@ Add <leader>td to toggle diagnostics virtual text.
 
 ```
 /nvim-keymaps
-Move the Telescope find-files key from <leader>ff to <leader>sf.
+Move the fzf-lua find-files key from <leader>ff to <leader>sf.
 ```
 
 **Create a which-key group:**
