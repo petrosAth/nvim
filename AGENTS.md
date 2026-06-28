@@ -60,7 +60,7 @@ Where things live and where to add them:
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `init.lua`               | `USER` table, theme selection, top-level load order.                                                                                       |
 | `lua/plugins/`           | One lazy.nvim spec per file; auto-discovered. See `lua/plugins/AGENTS.md`.                                                                 |
-| `lua/plugins/<dir>/`     | Complex plugins: `init.lua` is the spec, siblings are helper modules (`lsp/`, `heirline/`, `telescope/`, `tabby/`, `which-key/`, `mini/`). |
+| `lua/plugins/<dir>/`     | Complex plugins: `init.lua` is the spec, siblings are helper modules (`lsp/`, `heirline/`, `fzf-lua/`, `tabby/`, `which-key/`, `mini/`). |
 | `lua/plugins/lsp/`       | LSP ecosystem (servers, mason, null-ls, UI helpers). See `lua/plugins/lsp/AGENTS.md`.                                                      |
 | `lua/themes/`            | Palette-based theme engine. See `lua/themes/AGENTS.md`.                                                                                    |
 | `lua/ui/`                | UI helpers: side-panel options, buffer labels.                                                                                             |
