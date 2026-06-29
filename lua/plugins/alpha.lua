@@ -92,7 +92,7 @@ local function setup(alpha)
                 return
             end
             local message = "This information is only available in nightly versions"
-            vim.notify(message, "warn", { title = "Alpha" })
+            vim.notify(message, vim.log.levels.WARN, { title = "Alpha" })
         end,
         opts = {
             position = "center",

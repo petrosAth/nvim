@@ -33,7 +33,7 @@ local function setup(ufo)
 
     ufo.setup({
         open_fold_hl_timeout = 150,
-        provider_selector = function(bufnr, _filetype, buftype)
+        provider_selector = function(bufnr, _, buftype)
             if buftype ~= "" then return "" end
             local ok, parser = pcall(vim.treesitter.get_parser, bufnr)
             local has_folds = ok and parser and vim.treesitter.query.get(parser:lang(), "folds") ~= nil

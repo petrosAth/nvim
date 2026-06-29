@@ -8,9 +8,7 @@ local function get_session_name(cwd)
     local saved = string.format("%s/sessions/", vim.fn.stdpath("data"))
     local session = vim.fn.fnamemodify(cwd, ":t")
 
-    if vim.fn.filereadable(string.format("%s%s.json", saved, session)) == 1 then
-        return session, true
-    end
+    if vim.fn.filereadable(string.format("%s%s.json", saved, session)) == 1 then return session, true end
 
     return session, false
 end
@@ -19,18 +17,20 @@ vim.api.nvim_create_user_command("ProjectCreateSession", function()
     local cwd = vim.uv.cwd()
     local session, available = get_session_name(cwd)
 
-    if not available then
-        vim.cmd.PossessionSave(session)
-    end
+    if not available then vim.cmd.PossessionSave(session) end
 end, { desc = "Save the local session, using the name of the current working directory" })
 
-vim.api.nvim_create_user_command("ProjectLoadSession", function()
-    local cwd = vim.uv.cwd()
-    local session, available = get_session_name(cwd)
+vim.api.nvim_create_user_command(
+    "ProjectLoadSession",
+    function()
+        local cwd = vim.uv.cwd()
+        local session, available = get_session_name(cwd)
 
-    if not available then
-        vim.notify("Cannot find local session", "error")
-    else
-        vim.cmd.PossessionLoad(session)
-    end
-end, { desc = "Load the local session based on the current working directory. If it doesn't exist throw a notification" })
+        if not available then
+            vim.notify("Cannot find local session", vim.log.levels.ERROR)
+        else
+            vim.cmd.PossessionLoad(session)
+        end
+    end,
+    { desc = "Load the local session based on the current working directory. If it doesn't exist throw a notification" }
+)
