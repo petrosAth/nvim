@@ -29,11 +29,11 @@ native loader) during `require("plugin-manager").init()` — see the root
   Select — see `:help map-modes`).
 - **`<Cmd>` over `:`** for non-interactive maps (no mode change, no `<C-U>`).
   Keep `:` only for interactive maps (`silent = false` / trailing space) and
-  Visual range maps that rely on `:` injecting `'<,'>` (e.g. `:Gitsigns
-  stage_hunk`).
-- **Toggles** live in a single `<F4>` hub registered in
-  `lua/plugins/snacks.lua` (multi-mode `{ "n", "i", "v" }`); the `<F4>` "Toggle"
-  which-key group label is declared here in the `n`/`i`/`x` tables.
+  Visual range maps that rely on `:` injecting `'<,'>` (e.g.
+  `:Gitsigns stage_hunk`).
+- **Toggles** live in a single `<F4>` hub registered in `lua/plugins/snacks.lua`
+  (multi-mode `{ "n", "i", "v" }`); the `<F4>` "Toggle" which-key group label is
+  declared here in the `n`/`i`/`x` tables.
 
 ## Recipe — add a keymap
 
