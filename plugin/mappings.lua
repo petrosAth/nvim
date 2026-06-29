@@ -322,6 +322,11 @@ USER.mappings = {
                     ["f"] = { fzf_picker("dir_files"), desc = "File search" }, -- fzf-lua
                 },
                 ["f"] = { "<Cmd>FzfLua files<CR>", desc = "File search" }, -- fzf-lua
+                ["F"] = {
+                    group = "fzf-lua",
+                    ["b"] = { "<Cmd>FzfLua builtin<CR>", desc = "fzf-lua builtin" }, -- fzf-lua
+                    ["c"] = { "<Cmd>FzfLua command_history<CR>", desc = "Command history" }, -- fzf-lua
+                },
                 ["g"] = { "<Cmd>FzfLua live_grep<CR>", desc = "ripGREP" }, -- fzf-lua
                 ["H"] = { "<Cmd>FzfLua highlights<CR>", desc = "Highlight groups" }, -- fzf-lua
                 ["h"] = { "<Cmd>FzfLua help_tags<CR>", desc = "Vim help" }, -- fzf-lua
@@ -329,11 +334,6 @@ USER.mappings = {
                 ["s"] = { fzf_picker("sessions"), desc = "Search sessions" }, -- fzf-lua -- possession.nvim
                 ["S"] = { fzf_picker("snippets"), desc = "List available snippets" }, -- fzf-lua -- LuaSnip
                 ["T"] = { "<Cmd>TodoFzfLua<CR>", desc = "Show TODO comments" }, -- todo-comments
-                ["t"] = {
-                    group = "fzf-lua",
-                    ["b"] = { "<Cmd>FzfLua builtin<CR>", desc = "fzf-lua builtin" }, -- fzf-lua
-                    ["c"] = { "<Cmd>FzfLua command_history<CR>", desc = "Command history" }, -- fzf-lua
-                },
             },
             ["t"] = {
                 group = "Send to terminal",
@@ -349,8 +349,8 @@ USER.mappings = {
             ["u"] = { "<Cmd>Neotree close<CR><Cmd>UndotreeToggle<CR>", desc = "Toggle undo tree" }, -- undotree
             ["<Leader>"] = {
                 group = "Launch",
-                ["e"] = { "<Cmd>LaunchDir dolphin<CR>", desc = "Open cwd in system file browser" },
-                ["l"] = { "<Cmd>LaunchURL firefox --new-tab<CR>", desc = "Open URL under cursor in browser" },
+                ["e"] = { "<Cmd>LaunchDir<CR>", desc = "Open cwd in system file browser" },
+                ["l"] = { "<Cmd>LaunchURL<CR>", desc = "Open URL under cursor in browser" },
                 ["t"] = { "<Cmd>terminal<CR>i", desc = "Start a terminal session within Neovim" },
                 ["g"] = { function() require("snacks").gitbrowse() end, desc = "Git Browse" }, -- snacks.nvim
             },
