@@ -26,7 +26,6 @@ local Labels = {
     ["Outline"]                   = string.format("%s Code outline",         i.codeOutline[1]),
     ["packer"]                    = string.format("%s Packer status",        i.info[1]),
     ["trouble"]                   = string.format("%s List",                 i.list[1]),
-    ["fzf"]                       = string.format("%s fzf-lua",              i.fzf[1]),
     ["undotree"]                  = string.format("%s Undotree",             i.undoTree[1]),
     ["yeet-cache"]                = string.format("%s Command Cache",        i.terminal[1]),
     -- path matches
@@ -66,14 +65,35 @@ local function get_cmdwin_label()
     if match ~= "" then return Labels[match] end
 end
 
-function M.get_buf_label(path, buftype, filetype)
+local function get_code_preview_label(buf_id)
+    if not buf_id then return end
+
+    local loaded, diff = pcall(require, "code-preview.diff")
+    if not loaded then return end
+
+    for file_path, entry in pairs(diff._active_diffs()) do
+        for idx, b in ipairs(entry.bufs or {}) do
+            if b == buf_id then
+                local name = vim.fn.fnamemodify(file_path, ":t")
+                local role = (#entry.bufs == 2) and (idx == 1 and "current" or "proposed") or "diff"
+                return string.format("%s %s (%s)", i.preview[1], name, role)
+            end
+        end
+    end
+end
+
+function M.get_buf_label(path, buftype, filetype, buf_id)
     if Labels[buftype] then return Labels[buftype] end
 
     if Labels[filetype] then return Labels[filetype] end
 
     if filetype == "neo-tree" then return get_neo_tree_label(path) end
 
-    if buftype == "nofile" then return get_cmdwin_label() end
+    if buftype == "nofile" then
+        local code_preview = get_code_preview_label(buf_id)
+        if code_preview then return code_preview end
+        return get_cmdwin_label()
+    end
 
     return get_codediff_label(path)
 end

@@ -17,7 +17,7 @@ M.win_label = function(win_id)
     local fullPath = vim.api.nvim_buf_get_name(buf_id)
     local filetype = vim.bo[buf_id].filetype
     local buftype = vim.bo[buf_id].buftype
-    local buf_label = uiUtils.get_buf_label(fullPath, buftype, filetype)
+    local buf_label = uiUtils.get_buf_label(fullPath, buftype, filetype, buf_id)
     local label = win_name.get(win_id, { mode = "unique" })
 
     if buf_label then label = buf_label end
@@ -33,7 +33,7 @@ M.file_icon = function(type, id, bg)
     local icon, fg = require("nvim-web-devicons").get_icon_color(fullPath, extension, { default = true })
     local filetype = vim.bo[buf_id].filetype
     local buftype = vim.bo[buf_id].buftype
-    local buf_label = uiUtils.get_buf_label(fullPath, buftype, filetype)
+    local buf_label = uiUtils.get_buf_label(fullPath, buftype, filetype, buf_id)
 
     if buf_label then return "" end
 
@@ -58,7 +58,7 @@ local tab_top_window = function(tab_id)
     local fullPath = vim.api.nvim_buf_get_name(buf_id)
     local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf_id })
     local buftype = vim.api.nvim_get_option_value("buftype", { buf = buf_id })
-    local buf_label = uiUtils.get_buf_label(fullPath, buftype, filetype)
+    local buf_label = uiUtils.get_buf_label(fullPath, buftype, filetype, buf_id)
     local name = win_name.get(vim.api.nvim_tabpage_get_win(tab_id), { mode = "unique" })
     local label = name
 
