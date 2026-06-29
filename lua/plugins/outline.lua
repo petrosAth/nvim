@@ -4,21 +4,13 @@ local function setup(outline)
     local fillchars = icons.fillchars.global
     local borders = USER.styling.borders.default
     local transparency = USER.styling.variables.transparency
-    local outline_window_width = function()
-        if vim.api.nvim_win_get_width(0) > 200 then
-            return 12
-        else
-            return 25
-        end
-    end
-
     outline.setup({
         outline_window = {
             -- Where to open the split window: right/left
             position = "right",
 
             -- Percentage or integer of columns
-            width = outline_window_width(),
+            width = USER.editor_scale("cols", 0.20, 10, 25),
             -- Whether width is relative to the total width of nvim
             -- When relative_width = true, this means take 25% of the total
             -- screen width for outline window.

@@ -7,26 +7,28 @@ local function setup(fzf)
     local border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
     fzf.setup({
-        winopts = {
-            height = 0.9,
-            width = 0.9,
-            row = 0.5,
-            col = 0.5,
-            border = border,
-            backdrop = 100,
-            preview = {
+        winopts = function()
+            return {
+                width = USER.editor_scale("cols", 0.85, 50, 400),
+                height = USER.editor_scale("lines", 0.85, 30, 100),
+                row = 0.5,
+                col = 0.5,
                 border = border,
-                layout = "flex",
-                -- Switch to a vertical preview on narrow windows, horizontal otherwise.
-                flip_columns = 120,
-                horizontal = "right:60%",
-                vertical = "down:45%",
-                scrollbar = "float",
-                title = true,
-                title_pos = "center",
-                delay = 20,
-            },
-        },
+                backdrop = 100,
+                preview = {
+                    border = border,
+                    layout = "flex",
+                    -- Switch to a vertical preview on narrow windows, horizontal otherwise.
+                    flip_columns = 120,
+                    horizontal = "right:60%",
+                    vertical = "down:45%",
+                    scrollbar = "float",
+                    title = true,
+                    title_pos = "center",
+                    delay = 20,
+                },
+            }
+        end,
         fzf_opts = {
             ["--pointer"] = i.point[1],
             ["--marker"] = i.select[1],
