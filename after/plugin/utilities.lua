@@ -1,25 +1,12 @@
----Open file or directory with a system program
----Source: Neelfrost Neovim config
----https://github.com/Neelfrost/nvim-config/blob/634cf9db1ee5000e3e8d0bdad5050986caa3a057/lua/user/utils.lua#L23-L28
----@param program string Any system program with terminal functionality
----@vararg string args Arguments for program
-local function launch_with_system_program(program, ...)
-    vim.fn.system(string.format("%s %s", program, table.concat({ ... }, " ")))
-end
+vim.api.nvim_create_user_command("LaunchFile", function()
+    local _, err = vim.ui.open(vim.fn.expand("%:p"))
+    if err then vim.notify(err, vim.log.levels.ERROR) end
+end, { nargs = 0, desc = "Open the current file with the system default handler" })
 
-vim.api.nvim_create_user_command("LaunchFile", function(args)
-    local program = args.args
-    local path = vim.fn.expand("%:p")
-
-    launch_with_system_program(program, path)
-end, { nargs = "*", desc = "Open file using a system program" })
-
-vim.api.nvim_create_user_command("LaunchDir", function(args)
-    local program = args.args
-    local path = vim.fn.expand("%:p:h")
-
-    launch_with_system_program(program, path)
-end, { nargs = "*", desc = "Open directory using a system program" })
+vim.api.nvim_create_user_command("LaunchDir", function()
+    local _, err = vim.ui.open(vim.fn.expand("%:p:h"))
+    if err then vim.notify(err, vim.log.levels.ERROR) end
+end, { nargs = 0, desc = "Open the current directory with the system default handler" })
 
 ---Extract url from the word under the cursor.
 ---@param url string Any string.
@@ -47,16 +34,15 @@ local function extract_url(url)
     return ""
 end
 
-vim.api.nvim_create_user_command("LaunchURL", function(args)
-    local program = args.args
+vim.api.nvim_create_user_command("LaunchURL", function()
     local url = extract_url(vim.fn.expand("<cWORD>"))
-
-    if url ~= "" then
-        launch_with_system_program(program, url)
-    else
-        print("No URL found!")
+    if url == "" then
+        vim.notify("No URL found under cursor", vim.log.levels.WARN)
+        return
     end
-end, { nargs = 1, desc = "Open URL using the system internet browser" })
+    local _, err = vim.ui.open(url)
+    if err then vim.notify(err, vim.log.levels.ERROR) end
+end, { nargs = 0, desc = "Open the URL under the cursor with the system default browser" })
 
 ---- Source: Ecovim ----------------------------------------------------------------------------------------------------
 -- https://github.com/ecosse3/nvim/blob/58559b65f0e15384c3ed76b41bb3636a43141a0e/lua/lsp/functions.lua#L3-L25
@@ -72,13 +58,13 @@ local function enable_auto_format()
         end,
         group = group,
     })
-    vim.notify("Enabled format on save", "INFO", { title = "LSP" })
+    vim.notify("Enabled format on save", vim.log.levels.INFO, { title = "LSP" })
 end
 
 ---Delete augroup and disable auto format on save.
 local function disable_format_on_save()
     vim.api.nvim_del_augroup_by_name("AutoFormat")
-    vim.notify("Disabled format on save", "INFO", { title = "LSP" })
+    vim.notify("Disabled format on save", vim.log.levels.INFO, { title = "LSP" })
 end
 
 ---Toggle auto format on save.
