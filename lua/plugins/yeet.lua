@@ -1,7 +1,7 @@
 local function setup(yeet)
     local borders = USER.styling.borders.default
-    local width = math.min(math.ceil(0.8 * vim.o.columns), 200)
-    local height = math.min(math.ceil(0.8 * vim.o.lines), 20)
+    local width = USER.editor_scale("cols", 0.8, 20, 200)
+    local height = USER.editor_scale("lines", 0.8, 7, 50)
 
     yeet.setup({
         clear_before_yeet = false,
