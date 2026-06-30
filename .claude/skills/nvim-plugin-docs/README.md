@@ -8,8 +8,8 @@ Investigates a Neovim plugin's documentation through a 3-tier priority chain.
 /nvim-plugin-docs <author/repo>
 ```
 
-The `author/repo` argument is required (e.g. `folke/flash.nvim`). Also accepts
-a bare repo name or `require` module name when the author is unknown.
+The `author/repo` argument is required (e.g. `folke/flash.nvim`). Also accepts a
+bare repo name or `require` module name when the author is unknown.
 
 ## Priority chain
 
@@ -21,16 +21,16 @@ a bare repo name or `require` module name when the author is unknown.
    → `lua/` source in that order. **If the clone exists it is authoritative and
    stops the chain** — it is the same repo as tier 3 checked out at the pinned
    commit, so going online would only re-fetch identical docs.
-3. **Online GitHub repo** — GitHub MCP `get_file_contents` / `search_repositories`,
-   WebFetch fallback. Reached **only when the plugin is not installed locally**
-   (a new plugin not yet added).
+3. **Online GitHub repo** — GitHub MCP `get_file_contents` /
+   `search_repositories`, WebFetch fallback. Reached **only when the plugin is
+   not installed locally** (a new plugin not yet added).
 
 ## What it returns
 
 - The answer to your question (setup options, API, keymaps, lazy-load events).
 - Which tier the answer came from.
-- The exact `require("<module>")` name (module name ≠ repo name — always
-  stated explicitly to avoid load errors).
+- The exact `require("<module>")` name (module name ≠ repo name — always stated
+  explicitly to avoid load errors).
 
 ## Examples
 

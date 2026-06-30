@@ -34,7 +34,8 @@ Run `:colorscheme <name>` in Neovim, or start with `SYSTEM_THEME=<name> nvim`.
 
 ## What it touches
 
-- `lua/themes/palettes/<name>.lua` — the palette definition (`.base` + `.terminal`)
+- `lua/themes/palettes/<name>.lua` — the palette definition (`.base` +
+  `.terminal`)
 - `colors/<name>.lua` — the one-line colorscheme entry point
 - `lua/themes/init.lua` — registers the theme in the themes list
 - Runs `/nvim-verify` after changes
