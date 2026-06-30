@@ -43,25 +43,6 @@ local function setup(hydra)
     })
 
     hydra({
-        name = "Manipulate folds",
-        -- stylua: ignore
-        hint = string.format([[
-   _m_ %s Fold more   _j_ %s Next fold
-   _r_ %s Fold less   _k_ %s Previous fold   ]], arrow, arrow, arrow, arrow),
-        mode = { "n", "x" },
-        body = "z",
-        heads = {
-            { "m", "zm" },
-            { "r", "zr" },
-            { "j", "zj" },
-            { "k", "zk" },
-
-            { "q", nil, { exit = true, nowait = true, desc = false } },
-            { "<Esc>", nil, { exit = true, nowait = true, desc = false } },
-        },
-    })
-
-    hydra({
         name = "Resize Window",
         -- stylua: ignore
         hint = string.format([[

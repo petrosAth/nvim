@@ -30,11 +30,4 @@ function M.get_maps_add_descriptions(which_key)
     end
 end
 
-function M.enable_hydra(which_key)
-    which_key.show({
-        keys = "<C-W>",
-        loop = true,
-    })
-end
-
 return M
