@@ -681,12 +681,6 @@ function M.get_highlight_groups(palette)
         NeoTreeGitStaged              = { link = "NeoTreeGitAdded" },
         NeoTreeGitConflict            = { fg = p.orange_2 },
 
-        -- null-ls.nvim
-        NullLsInfoSources             = { link = "Title" },
-        NullLsInfoHeader              = { link = "Label" },
-        NullLsInfoBorder              = { link = "FloatBorder" },
-        NullLsInfoTitle               = { link = "Type" },
-
         -- symbols-outline.nvim
         SymbolsOutlineConnector       = { link = "FoldColumn" },
 
