@@ -50,17 +50,10 @@ with `-- ` (see `lua/plugins/comment.lua` for a wrapped two-line comment).
 
 ## 4. Fetch recommended config from the plugin's docs
 
-Consult the plugin's documentation via Context7: `resolve-library-id`
-(libraryName `<author>/<repo>`), then `query-docs` for setup/usage. Determine:
-
-- the exact `require("<module>")` name and whether it exposes `.setup()`;
-- recommended **default options** (and keymaps if it ships them) — you will
-  pre-fill `setup()` with these;
-- a sensible lazy-load trigger. If Context7 is thin, use the GitHub MCP
-  `get_file_contents` to look for a `docs/` directory (or similar: `doc/`,
-  `documentation/`, `wiki/`) in the repo and read relevant files there. If no
-  dedicated docs directory exists, fall back to the repo's README via the GitHub
-  MCP / WebFetch.
+Run the `nvim-plugin-docs` skill with `<author>/<repo>` to get the module
+name, setup defaults, and lazy-load trigger. The skill runs the full 3-tier
+lookup — Context7 first, then the local lazy clone, then the GitHub repo —
+so no manual fallback is needed here.
 
 ## 5. Generate `lua/plugins/<name>.lua`
 

@@ -80,4 +80,6 @@ hasn't installed yet, **not** a reason to `brew`/`apt`/`npm -g` it.
 3. `install.lua` installs it automatically via mason-tool-installer. Only touch
    it if the mason package name differs from the lspconfig name — then extend
    `null_ls_to_mason` (for null-ls sources) or adjust the mapping logic.
-4. Confirm the server's settings against `/neovim/nvim-lspconfig` on Context7.
+4. Confirm the server's settings against `/neovim/nvim-lspconfig`; run the
+   `nvim-plugin-docs` skill for the full 3-tier lookup (Context7 → local clone
+   → GitHub repo) if coverage is thin.

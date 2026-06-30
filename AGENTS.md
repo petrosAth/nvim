@@ -156,8 +156,11 @@ the full story.
 **Claude Code skills** (`.claude/skills/`) wrap the recipes below as on-demand
 workflows: `/nvim-add-plugin`, `/nvim-lsp`, `/nvim-theme`, `/nvim-keymaps`,
 `/nvim-statusline` (the last four auto-activate when you edit their area), plus
-`/nvim-verify` for the check loop. The skills apply the recipes documented here;
-the docs stay the source of truth.
+`/nvim-verify` for the check loop, and `/nvim-plugin-docs` for the 3-tier
+plugin-doc lookup. The skills apply the recipes documented here; the docs stay
+the source of truth. The `.claude/agents/nvim-plugin-doc-investigator` subagent
+wraps the same lookup for broad investigations you want kept out of the main
+context.
 
 ## Consulting documentation
 
@@ -166,19 +169,30 @@ rewrite). **Verify behavior against current docs rather than training data
 before changing config** — this caught a real load-order error while this very
 file was being written.
 
-- **Prefer Context7** for Neovim, Vim, and plugin documentation. Known-good
-  library IDs:
-  - `/neovim/neovim` — Neovim runtime docs (`starting.txt`, `lua.txt`,
-    `options.txt`, `syntax.txt`, `editing.txt`, …).
-  - `/folke/lazy.nvim` — lazy.nvim (spec format, startup sequence,
-    lazy-loading).
-  - `/neovim/nvim-lspconfig` — per-server LSP config defaults.
-  - For any other plugin under `lua/plugins/`, resolve its repo with
-    `resolve-library-id` first.
-- **Consult before** relying on startup/load-order, runtime-directory, `exrc`/
-  trust, LSP, or treesitter behavior, and before adding or upgrading a plugin.
-- **Fallback:** if Context7 lacks coverage, use web search; for CLI tools, also
-  `man <cmd>`. In-editor, `:help <topic>` and `:Lazy help` remain authoritative.
+### Plugin documentation
+
+For any third-party plugin's docs (setup options, require-module name, API,
+keymaps, lazy-load triggers), use the **`/nvim-plugin-docs` skill** — or the
+**`nvim-plugin-doc-investigator`** subagent for broad investigations. It owns
+the priority chain (Context7 → local lazy clone → GitHub repo) and the
+short-circuit rules; this file does not restate them.
+
+Known-good Context7 IDs (skip `resolve-library-id` for these):
+
+- `/neovim/neovim` — Neovim runtime docs (`starting.txt`, `lua.txt`,
+  `options.txt`, `syntax.txt`, `editing.txt`, …).
+- `/folke/lazy.nvim` — lazy.nvim (spec format, startup sequence,
+  lazy-loading).
+- `/neovim/nvim-lspconfig` — per-server LSP config defaults.
+- `/rebelot/heirline.nvim` — heirline component/condition/util API.
+- For any other plugin under `lua/plugins/`, let the skill resolve it.
+
+**Consult before** relying on startup/load-order, runtime-directory, `exrc`/
+trust, LSP, or treesitter behavior, and before adding or upgrading a plugin.
+
+**For Neovim-core / CLI tools:** Context7 (`/neovim/neovim`) directly; also
+`:help <topic>`, `:Lazy help`, and `man <cmd>`. In-editor help remains
+authoritative. WebSearch as final fallback when Context7 coverage is thin.
 
 ## Commit conventions
 

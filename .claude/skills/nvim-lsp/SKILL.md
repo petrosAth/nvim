@@ -16,8 +16,10 @@ Thin orchestrator — read the canonical steps, don't duplicate them.
    an LSP server" recipe (`servers` list in `init.lua`; optional per-server
    file `servers/<name>.lua`, auto-discovered by `setup_language_servers()` in
    `config.lua`; `install.lua` auto-derives the mason package).
-2. **Verify the server's options against Context7** `/neovim/nvim-lspconfig`
-   before adding a custom config — names and defaults change.
+2. **Verify the server's options** against `/neovim/nvim-lspconfig` before
+   adding a custom config — names and defaults change. Run the
+   `nvim-plugin-docs` skill for the full 3-tier lookup (Context7 → local
+   clone → GitHub repo) if coverage is thin.
 3. **Apply** the change: add the lspconfig name to `servers`; create
    `servers/<name>.lua` returning `function(shared) return { ... } end` only if
    it needs non-default settings (keep `on_attach = shared.on_attach`,

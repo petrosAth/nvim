@@ -69,8 +69,8 @@ return {
 3. Launch Neovim; lazy installs it and updates `lazy-lock.json`. **Bundle that
    lockfile change into the same commit** as the new spec file (see the root
    `AGENTS.md` lockfile policy).
-4. Check the plugin's current docs via Context7 before wiring options (resolve
-   its repo with `resolve-library-id`).
+4. Investigate the plugin's docs via the `nvim-plugin-docs` skill (Context7 →
+   local lazy clone → GitHub repo) before wiring options.
 
 ## Where a plugin's config is scattered
 
