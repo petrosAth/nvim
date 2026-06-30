@@ -214,11 +214,7 @@ M.LspSymbol = {
 M.Paste = {
     condition = function() return vim.o.paste end,
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     { provider = (" %s "):format(Sep.sep) },
     { provider = "PASTE" },
     hl = function(self) return get_vim_mode_color(self.mode) end,
@@ -226,11 +222,7 @@ M.Paste = {
 
 M.Wrap = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     condition = function() return vim.o.wrap end,
     { provider = (" %s "):format(Sep.sep) },
     { provider = "WRAP" },
@@ -299,13 +291,7 @@ M.CursorLine = {
 
 M.LinesTotal = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    -- Re-evaluate the component only on ModeChanged event!
-    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     provider = ("%s %%L"):format(icons.linesTotal[1]),
     hl = function(self) return get_vim_mode_color(self.mode) end,
 }
@@ -365,9 +351,13 @@ M.GitStatus = {
     condition = conditions.is_git_repo,
     init = function(self)
         self.status_dict = vim.b.gitsigns_status_dict or ""
+        ---@diagnostic disable-next-line: undefined-field
         self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
+        ---@diagnostic disable-next-line: undefined-field
         self.countAdded = self.status_dict.added or 0
+        ---@diagnostic disable-next-line: undefined-field
         self.countRemoved = self.status_dict.removed or 0
+        ---@diagnostic disable-next-line: undefined-field
         self.countChanged = self.status_dict.changed or 0
     end,
     { flexible = props.Hide.GitBranch, { provider = Sep.gap }, Null },
@@ -596,13 +586,7 @@ M.CloseButton = {
 
 M.ViMode = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    -- Re-evaluate the component only on ModeChanged event!
-    -- Also allorws the statusline to be re-evaluated when entering operator-pending mode
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     {
         provider = function(self) return ("%%2(%s%%)"):format(props.ModeNames[self.mode]) end,
     },
