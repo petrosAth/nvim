@@ -97,6 +97,18 @@ and `selene` on the files you changed, plus a headless load
   - [x] Add a previewer to the fzf-lua snippet picker
 - [x] Fix LaunchURL to work with the default system browser while being system
       agnostic
+- [x] Create a skill that reads plugin documentation and add instructions to
+      invoke it before any installation or config modification. Sources to
+      cover:
+  - Context7
+  - Online on the git repo
+  - Local in the codebase in `.local/share/nvim/lazy`
+- [x] Fix the send to quickfix actions in fzf-lua like `file_tabedit` and
+      `file_edit_or_qf` to forward the files to trouble.nvim instead of the
+      quickfix list. Consult the following plugins' documentation:
+  - [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+  - [snacks.nvim](https://github.com/folke/snacks.nvim/)
+  - [trouble.nvim](https://github.com/folke/trouble.nvim/)
 - [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
@@ -107,7 +119,8 @@ and `selene` on the files you changed, plus a headless load
 - [ ] Revisit migration to [vim.pack](https://neovim.io/doc/user/pack/) for
       plugin management (investigated 2026-06; defer until dependencies land)
   - Staying on lazy.nvim: this config relies on `dependencies`, declarative
-    lazy-load triggers, and lazy-specific integrations vim.pack doesn't match yet
+    lazy-load triggers, and lazy-specific integrations vim.pack doesn't yet
+    support
   - Revisit when vim.pack adds lockfile-based dependency resolution and
     graduates from experimental
 
