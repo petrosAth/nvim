@@ -28,12 +28,16 @@ or `init` function. See the root `AGENTS.md` for global conventions.
   from `shared.lspconfig.util.root_pattern(shared.root_files)` (see
   `eslint`/`lua_ls`).
 - **`install.lua`** — auto-derives the mason install list from `servers` plus
-  the active null-ls sources, then drives `mason-tool-installer`. The
-  `null_ls_to_mason` table maps source names whose mason package differs (or
-  `false` to skip). New servers usually need **no** edit here.
+  the configured conform formatters and nvim-lint linters, then drives
+  `mason-tool-installer`. The `tool_to_mason` table maps tool names whose mason
+  package differs (or `false` to skip). New servers usually need **no** edit
+  here.
 - **`mason.lua` / `mason-lspconfig.lua`** — mason UI + the mason↔lspconfig
   bridge.
-- **`null-ls.lua`** — none-ls formatters/linters/diagnostics.
+- **`conform.lua`** — [conform.nvim](https://github.com/stevearc/conform.nvim)
+  formatters (`formatters_by_ft`, `lsp_format = "fallback"`).
+- **`nvim-lint.lua`** — [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+  linters (`linters_by_ft` + the `try_lint` autocmd).
 - **UI helpers** — `glance.lua`, `inc-rename.lua`, `nvim-lightbulb.lua`,
   `tiny-code-action.lua`, `nvim-navic.lua`.
 
@@ -47,15 +51,16 @@ hasn't installed yet, **not** a reason to `brew`/`apt`/`npm -g` it.
 - **Where they live:** binaries in `$HOME/.local/share/nvim/mason/bin`, packages
   under `$HOME/.local/share/nvim/mason/packages/`.
 - **How the install list is derived:** `install.lua` builds `ensure_installed`
-  from the `servers` list (lspconfig→mason via `mason-lspconfig.mappings`) **plus**
-  the live none-ls sources (`require("null-ls").get_sources()`), then drives
-  `mason-tool-installer` with `run_on_start = true`. So adding a server to
-  `servers` (in `init.lua`) or a source to `null-ls.lua` is all it takes — the
-  install follows on the next Neovim start. Interactive: `:Mason`,
-  `:MasonToolsUpdate` (`<space>ul`), `:NullLsInfo` (`<space>sn`).
+  from the `servers` list (lspconfig→mason via `mason-lspconfig.mappings`)
+  **plus** the tools configured in `conform.lua` (`formatters_by_ft`) and
+  `nvim-lint.lua` (`linters_by_ft`), then drives `mason-tool-installer` with
+  `run_on_start = true`. So adding a server to `servers` (in `init.lua`) or a
+  formatter/linter to those two files is all it takes — the install follows on
+  the next Neovim start. Interactive: `:Mason`, `:MasonToolsUpdate`
+  (`<space>ul`), `:ConformInfo` (`<space>sn`).
 - **Name mismatches:** a mason package name can differ from the lspconfig /
-  none-ls source name → mapped in `null_ls_to_mason` in `install.lua`
-  (e.g. `phpcsfixer` → `php-cs-fixer`).
+  conform / nvim-lint tool name → mapped in `tool_to_mason` in `install.lua`
+  (e.g. `php_cs_fixer` → `php-cs-fixer`).
 - **The one system exception:** `zsh` (mapped `false`; `zsh -n` uses the login
   shell, no mason package).
 - **Running a Mason tool from a shell** (verify / CI / manual `stylua`,
@@ -79,7 +84,32 @@ hasn't installed yet, **not** a reason to `brew`/`apt`/`npm -g` it.
    `config.lua` needed. Otherwise the shared default covers it with no file.
 3. `install.lua` installs it automatically via mason-tool-installer. Only touch
    it if the mason package name differs from the lspconfig name — then extend
-   `null_ls_to_mason` (for null-ls sources) or adjust the mapping logic.
-4. Confirm the server's settings against `/neovim/nvim-lspconfig`; run the
-   `nvim-plugin-docs` skill for the full 3-tier lookup (Context7 → local clone
-   → GitHub repo) if coverage is thin.
+   `tool_to_mason` (shared with conform/nvim-lint tools) or adjust the mapping
+   logic.
+4. **Discover the valid server name** (the `lsp/<name>.lua` basename) from the
+   full catalog — in-editor `:help lspconfig-all`, or
+   [`doc/configs.md`](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md).
+   Then confirm that server's settings against `/neovim/nvim-lspconfig`; run the
+   `nvim-plugin-docs` skill if coverage is thin.
+
+## Recipe — add a formatter or linter
+
+1. **Formatter:** add the conform builtin to the right filetype in
+   `conform.lua`'s `formatters_by_ft` (custom args go in the `formatters`
+   override table, like `shfmt`).
+2. **Linter:** add the nvim-lint builtin to the right filetype in
+   `nvim-lint.lua`'s `linters_by_ft`.
+3. `install.lua` installs the tool automatically. Only edit it if the mason
+   package name differs from the conform/nvim-lint tool name — extend
+   `tool_to_mason` (map to `false` to skip a tool with no mason package, like
+   `zsh`). The statusline picks the active formatters/linters up automatically
+   via `LspBlock` (`require("conform").list_formatters_to_run` /
+   `require("lint").linters_by_ft`).
+4. **Discover the builtin name** from the full lists — formatters: in-editor
+   `:help conform-formatters` or conform's README "Formatters"
+   ([`doc/`](https://github.com/stevearc/conform.nvim/tree/master/doc), the
+   `lua/conform/formatters/<name>.lua` basename); linters: nvim-lint's
+   [README "Available Linters"](https://github.com/mfussenegger/nvim-lint/blob/master/README.md)
+   table (the `lua/lint/linters/<name>.lua` basename). Then confirm the options
+   against `/stevearc/conform.nvim` or `/mfussenegger/nvim-lint`; run the
+   `nvim-plugin-docs` skill if coverage is thin.
