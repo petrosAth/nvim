@@ -139,10 +139,11 @@ function M.setup(icons, border, root_files, servers)
     end
 
     require("plugins.lsp.mason").setup(icons, border)
-    require("plugins.lsp.mason-lspconfig").setup()
+    require("plugins.lsp.mason-lspconfig").setup(servers)
     config_diagnostics(icons, border)
     setup_language_servers(lspconfig, servers, handler_opts(border), root_files)
-    require("plugins.lsp.null-ls").setup(border, root_files)
+    require("plugins.lsp.conform").setup()
+    require("plugins.lsp.nvim-lint").setup()
 end
 
 return M
