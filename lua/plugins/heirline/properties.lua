@@ -132,12 +132,13 @@ M.ModeHighlightGroups = {
     ["t"] = "ModeTerminal",
 }
 
--- Re-evaluate on ModeChanged and TermLeave (catches fzf-lua float close)
--- Also allows the statusline to be re-evaluated when entering operator-pending mode
+-- "WinEnter" fires after focus fully lands on the destination window (catches fzf-lua float close
+-- on all paths). pattern "*" matches all buffers, unlike "*:*" which skips regular file names.
 M.ModeUpdate = {
     "ModeChanged",
+    "TabNew",
     "TermLeave",
-    pattern = "*:*",
+    pattern = "*",
     callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
 }
 
