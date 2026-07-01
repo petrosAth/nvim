@@ -4,7 +4,7 @@ local M = {}
 -- via none-ls. All names are nvim-lint builtins (the `zsh` linter runs
 -- `zsh -n` via the system shell — no mason package, see install.lua).
 local linters_by_ft = {
-    php = { "phpcs", "phpstan" },
+    php = { "phpcs" },
     lua = { "selene" },
     zsh = { "zsh" },
 }
