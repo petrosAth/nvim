@@ -5,7 +5,9 @@ description:
   Context7 first, then the local clone in ~/.local/share/nvim/lazy/<repo>, then
   the plugin's GitHub repo. Use whenever you need a plugin's setup options,
   require-module name, API, keymaps, or lazy-load triggers before installing or
-  configuring it.
+  configuring it. Also covers Mason-provisioned LSP servers, conform
+  formatters, and nvim-lint linters (e.g. intelephense, phpstan) — these
+  don't have a local lazy clone, so the chain adapts (see Tier 2).
 allowed-tools:
   mcp__plugin_context7_context7__resolve-library-id
   mcp__plugin_context7_context7__query-docs
@@ -72,6 +74,18 @@ Use `Glob` to find files, `Read` to read them, `Grep` to search within them.
 out at the pinned commit, so if the dir exists it is authoritative — answer from
 it and stop; never fall through to Tier 3 for a locally-installed plugin (going
 online would only re-fetch the same docs).
+
+**Mason-provisioned tools have no local clone.** LSP servers, conform
+formatters, and nvim-lint linters (`intelephense`, `phpstan`, `phpcs`, …) are
+installed by Mason, not `lua/plugins/` — there is no
+`~/.local/share/nvim/lazy/<name>/` for them. Skip straight to Tier 3, and note
+the target repo is usually *not* the same as a Tier 1 wrapper ID: Context7's
+`/neovim/nvim-lspconfig` (or `/stevearc/conform.nvim` / `/mfussenegger/nvim-lint`)
+only documents that wrapper's own defaults (`cmd`, `root_markers`, a minimal
+settings snippet) — the tool's *own* full settings schema and behavior lives
+in the tool's own docs/website/repo (e.g. intelephense's settings are at
+`bmewburn/intelephense-docs` and `intelephense.com/docs`, not
+`neovim/nvim-lspconfig`).
 
 ## Tier 3 — online repo (only when not installed locally)
 
