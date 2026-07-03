@@ -4,7 +4,8 @@ description:
   Adds or edits keybindings in this Neovim config. Use when the user wants to
   bind a key, add a mapping, change a shortcut, or add a which-key group.
   Auto-applies when editing plugin/mappings.lua.
-paths: plugin/mappings.lua
+paths:
+  - plugin/mappings.lua
 ---
 
 # Add / edit a keymap
