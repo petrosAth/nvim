@@ -11,29 +11,49 @@ local function get_lsp_servers(servers)
     return mapped_servers
 end
 
--- Maps a null-ls source name to its mason.nvim package name, for the sources
--- whose null-ls name differs from the mason package name. Map a source to
+-- Maps a conform/nvim-lint tool name to its mason.nvim package name, for the
+-- tools whose plugin name differs from the mason package name. Map a tool to
 -- `false` to skip it entirely when no installable mason package exists.
-local null_ls_to_mason = {
-    phpcsfixer = "php-cs-fixer", -- null-ls calls it "phpcsfixer"; mason "php-cs-fixer"
+local tool_to_mason = {
+    php_cs_fixer = "php-cs-fixer", -- conform calls it "php_cs_fixer"; mason "php-cs-fixer"
     zsh = false, -- `zsh -n` uses the system shell; no mason package exists
 }
 
-local function get_null_ls_sources()
-    local sources_table = require("null-ls").get_sources()
-    local sources = {}
+-- Collect the mason package for every formatter (conform) and linter
+-- (nvim-lint) configured for any filetype, de-duplicated. Both plugins are set
+-- up in config.lua before this runs, so their tables are already populated.
+local function get_formatter_linter_tools()
+    local seen = {}
+    local tools = {}
 
-    for _, source in ipairs(sources_table) do
-        local mapped = null_ls_to_mason[source["name"]]
-        if mapped ~= false then table.insert(sources, mapped or source["name"]) end
+    local function add(name)
+        local mapped = tool_to_mason[name]
+        if mapped == false then return end
+        local package = mapped or name
+        if not seen[package] then
+            seen[package] = true
+            table.insert(tools, package)
+        end
     end
 
-    return sources
+    for _, formatters in pairs(require("conform").formatters_by_ft) do
+        for _, name in ipairs(formatters) do
+            add(name)
+        end
+    end
+
+    for _, linters in pairs(require("lint").linters_by_ft) do
+        for _, name in ipairs(linters) do
+            add(name)
+        end
+    end
+
+    return tools
 end
 
 local ensure_installed = function(servers)
     local tools = get_lsp_servers(servers)
-    vim.list_extend(tools, get_null_ls_sources())
+    vim.list_extend(tools, get_formatter_linter_tools())
 
     return tools
 end

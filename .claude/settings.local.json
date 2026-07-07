@@ -1,12 +1,15 @@
 {
+    "permissions": {
+        "allow": ["Bash(pbcopy)"]
+    },
     "hooks": {
         "PreToolUse": [
             {
                 "matcher": "Edit|Write|MultiEdit|Bash|PowerShell",
                 "hooks": [
                     {
-                        "command": "/Users/pathanasoulis/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh claudecode pre",
-                        "type": "command"
+                        "type": "command",
+                        "command": "/Users/pathanasoulis/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh claudecode pre"
                     }
                 ]
             }
@@ -16,14 +19,14 @@
                 "matcher": "Edit|Write|MultiEdit|Bash|PowerShell",
                 "hooks": [
                     {
-                        "command": "/Users/pathanasoulis/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh claudecode post",
-                        "type": "command"
+                        "type": "command",
+                        "command": "/Users/pathanasoulis/.local/share/nvim/lazy/code-preview.nvim/bin/hook-entry.sh claudecode post"
                     }
                 ]
             }
         ]
     },
-    "permissions": {
-        "allow": ["Bash(pbcopy)"]
+    "enabledPlugins": {
+        "lua-lsp@claude-plugins-official": true
     }
 }

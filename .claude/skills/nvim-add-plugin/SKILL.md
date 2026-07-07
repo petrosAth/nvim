@@ -50,10 +50,10 @@ with `-- ` (see `lua/plugins/comment.lua` for a wrapped two-line comment).
 
 ## 4. Fetch recommended config from the plugin's docs
 
-Run the `nvim-plugin-docs` skill with `<author>/<repo>` to get the module
-name, setup defaults, and lazy-load trigger. The skill runs the full 3-tier
-lookup — Context7 first, then the local lazy clone, then the GitHub repo —
-so no manual fallback is needed here.
+Run the `nvim-plugin-docs` skill with `<author>/<repo>` to get the module name,
+setup defaults, and lazy-load trigger. The skill runs the full 3-tier lookup —
+Context7 first, then the local lazy clone, then the GitHub repo — so no manual
+fallback is needed here.
 
 ## 5. Generate `lua/plugins/<name>.lua`
 
@@ -104,65 +104,38 @@ Run the `nvim-verify` skill.
 
 ## Replace a plugin
 
-A plugin's config is **scattered** beyond its spec file — see **"Where a
-plugin's config is scattered"** in `lua/plugins/AGENTS.md` for the full
-touchpoint map. Replacing means **re-pointing every touchpoint** to the new
-plugin, not just editing the spec.
-
-First, sweep for the old plugin's touchpoints. Derive its handles — `<repo>`,
-`require` **module**, **command** names, **highlight-group prefix**,
-**filetype** — then:
+A plugin's config is **scattered** beyond its spec file; replacing means
+**re-pointing every touchpoint** to the new plugin. The full map is **"Where a
+plugin's config is scattered"** in `lua/plugins/AGENTS.md` — work it top to
+bottom. Derive the old plugin's handles (`<repo>`, `require` module, command
+names, highlight-group prefix, filetype) and sweep:
 
 ```sh
 grep -rn '<module>\|<Command>\|<HlPrefix>\|<filetype>' lua plugin after colors
 ```
 
-Then re-point each hit to the new plugin:
-
-1. **Spec file** — swap the spec string, replace the comment with the new repo's
-   About tagline (step 3), update the `require` module + `setup` defaults from
-   the new docs (step 4), and update the `USER.loading_error_msg("<repo>")`
-   name. **Recreate any inline keymaps/toggles** the old spec defined (snacks
-   `:map`, treesitter/hydra/cmp) if the replacement still needs them.
-2. **`plugin/mappings.lua`** — update the command strings /
-   `require("<module>")` calls to the new plugin (which-key follows
-   automatically).
-3. **`after/ftplugin/<ft>.lua`** — rename to the new plugin's filetype if it has
-   one.
-4. **`lua/styling.lua`** (icons/separators), **`highlightGroups.lua`** (the
-   plugin's highlight block), **`lua/ui/utilities.lua`** (buffer label) —
-   re-point to the new plugin's names/filetype.
-5. **Sessions** — update possession filetype exclusions / `sessions.lua` /
-   `.nvim.lua` if the old plugin was referenced.
-6. **Dependencies** — if the new plugin needs different `dependencies`, update
-   them; check the old plugin wasn't a dependency of another spec.
-
-Bundle the `lazy-lock.json` change; run the `nvim-verify` skill.
+Re-point each hit. Beyond the mapped touchpoints, the **spec file** itself
+needs: swap the spec string, replace the comment with the new About tagline
+(step 3), update the `require` module + `setup` defaults from the new docs (step
+4), update `USER.loading_error_msg("<repo>")`, and recreate any inline
+keymaps/toggles the old spec defined if still needed. Then bundle the
+`lazy-lock.json` change and run the `nvim-verify` skill.
 
 ## Remove a plugin
 
-Same scattered touchpoints (see the map in `lua/plugins/AGENTS.md`) — but you
-**delete** each instead of re-pointing. Ordered:
+Same touchpoint map — but **delete** each hit instead of re-pointing. Two steps
+specific to removal:
 
 1. **Reverse-dependency check first:**
    `grep -rn '"<author>/<repo>"' lua/plugins`. If another spec lists it under
-   `dependencies`, **do not remove** it (or update that dependent too). Note any
-   private deps it pulled in that are now orphaned.
-2. **Spec file** — delete `lua/plugins/<name>.lua` (or its entry if it shares a
-   file). Inline keymaps/toggles defined in it go away with it.
-3. **`plugin/mappings.lua`** — remove its `USER.mappings` entries (which-key
-   follows automatically).
-4. **`after/ftplugin/<ft>.lua`** — delete if plugin-specific.
-5. **`lua/styling.lua`** (icons/separators), **`highlightGroups.lua`** (its
-   highlight block), **`lua/ui/utilities.lua`** (its label) — remove its
-   entries.
-6. **Sessions** — clear possession filetype exclusions / `sessions.lua` /
-   `.nvim.lua` references.
-7. **Cross-file `require("<module>")` integrations** (heirline/tabby/neo-tree/
-   snacks/comment/dressing/fzf-lua/lsp) — fix any so none dangle; the grep
-   sweep above confirms nothing is left.
-8. Bundle the `lazy-lock.json` removal; run the `nvim-verify` skill — a dangling
-   `require` surfaces as a load error.
+   `dependencies`, **don't remove** it (or update that dependent too). Note any
+   private deps now orphaned.
+2. **Leave no dangling `require("<module>")`** in cross-file integrations
+   (heirline/tabby/neo-tree/snacks/comment/dressing/fzf-lua/lsp) — the grep
+   sweep above confirms nothing is left; a dangling `require` surfaces as a load
+   error.
+
+Bundle the `lazy-lock.json` removal; run the `nvim-verify` skill.
 
 LSP-ecosystem plugins (`lua/plugins/lsp/**`) are orchestrated specially — use
 the `nvim-lsp` skill / `lua/plugins/lsp/AGENTS.md` instead.

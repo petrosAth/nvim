@@ -439,7 +439,9 @@ local LspBlock = {
     init = function(self)
         -- LspClients
         self.Clients = vim.lsp.get_clients({ bufnr = 0 })
-        self.Sources = require("null-ls.sources").get_available(vim.bo.filetype)
+        -- Formatters (conform) / Linters (nvim-lint) active for this buffer
+        self.Formatters = require("conform").list_formatters_to_run(0)
+        self.Linters = require("lint").linters_by_ft[vim.bo.filetype] or {}
         -- LspDiagnostics
         self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
         self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -473,32 +475,55 @@ local LspClients = {
     },
 }
 
-local LspNullLsGap = {
-    condition = function(self) return (next(self.Clients) ~= nil) and (next(self.Sources) ~= nil) end,
-    update = { "LspAttach", "LspDetach", "BufEnter" },
+local LspToolsGap = {
+    condition = function(self)
+        return (next(self.Clients) ~= nil) and (next(self.Formatters) ~= nil or next(self.Linters) ~= nil)
+    end,
+    update = { "LspAttach", "LspDetach", "BufEnter", "BufWritePost" },
     provider = Sep.gap,
 }
 
-local NullLsSources = {
-    condition = function(self) return next(self.Sources) ~= nil end,
-    update = { "LspAttach", "LspDetach", "BufEnter" },
+local Formatters = {
+    condition = function(self) return next(self.Formatters) ~= nil end,
+    update = { "BufEnter", "BufWritePost", "FileType" },
     {
-        flexible = props.Hide.nullLsIcon,
+        flexible = props.Hide.formatterIcon,
         {
-            provider = ("%s "):format(icons.lsp.null_ls[1]),
+            provider = ("%s "):format(icons.lsp.formatter[1]),
         },
         Null,
     },
     {
         provider = function(self)
-            local null_ls_sources = {}
+            local formatters = {}
 
-            for _, source in ipairs(self.Sources) do
-                table.insert(null_ls_sources, source.name)
+            for _, formatter in ipairs(self.Formatters) do
+                table.insert(formatters, formatter.name)
             end
 
-            return ("[%s] "):format(table.concat(null_ls_sources, " "))
+            return ("[%s]"):format(table.concat(formatters, " "))
         end,
+    },
+}
+
+local FormatterLinterGap = {
+    condition = function(self) return (next(self.Formatters) ~= nil) and (next(self.Linters) ~= nil) end,
+    update = { "BufEnter", "BufWritePost", "FileType" },
+    provider = Sep.gap,
+}
+
+local Linters = {
+    condition = function(self) return next(self.Linters) ~= nil end,
+    update = { "BufEnter", "BufWritePost", "FileType" },
+    {
+        flexible = props.Hide.linterIcon,
+        {
+            provider = ("%s "):format(icons.lsp.linter[1]),
+        },
+        Null,
+    },
+    {
+        provider = function(self) return ("[%s] "):format(table.concat(self.Linters, " ")) end,
     },
 }
 
@@ -567,8 +592,11 @@ M.LspBlock = utils.insert(
     { flexible = props.Hide.lspClients, { provider = Sep.gap }, Null },
     { flexible = props.Hide.lspClients, LspClients, Null },
     { flexible = props.Hide.lspClients, { provider = Sep.gap }, Null },
-    { flexible = math.min(props.Hide.lspClients, props.Hide.nullLsSources), LspNullLsGap, Null },
-    { flexible = props.Hide.nullLsSources, NullLsSources, Null },
+    { flexible = math.min(props.Hide.lspClients, props.Hide.formatters), LspToolsGap, Null },
+    { flexible = props.Hide.formatters, Formatters, Null },
+    { flexible = props.Hide.formatters, { provider = Sep.gap }, Null },
+    { flexible = math.min(props.Hide.formatters, props.Hide.linters), FormatterLinterGap, Null },
+    { flexible = props.Hide.linters, Linters, Null },
     LspDiagnostics
 )
 

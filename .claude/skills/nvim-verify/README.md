@@ -25,17 +25,18 @@ smoke-load) with file:line details on failure.
 
 **After a plugin swap that broke startup:**
 
-The smoke-load scans headless output for Lua errors (`E5113`,
-`stack traceback`, `Error executing`, `E\d\d+`) and quotes the offending line.
-Fix the error, then re-run `/nvim-verify` to confirm.
+The smoke-load scans headless output for Lua errors (`E5113`, `stack traceback`,
+`Error executing`, `E\d\d+`) and quotes the offending line. Fix the error, then
+re-run `/nvim-verify` to confirm.
 
 ## What it checks
 
-| Check | Scope | Tool |
-|---|---|---|
-| Formatting | Changed `.lua` files only | `stylua --check` |
-| Linting | Changed `.lua` files only | `selene` |
-| Smoke-load | Entire config | `nvim --headless "+qa!"` |
+| Check      | Scope                     | Tool                     |
+| ---------- | ------------------------- | ------------------------ |
+| Formatting | Changed `.lua` files only | `stylua --check`         |
+| Linting    | Changed `.lua` files only | `selene`                 |
+| Smoke-load | Entire config             | `nvim --headless "+qa!"` |
 
 Changed files are collected via `git diff --name-only HEAD` plus untracked
-files. The repo is not fully stylua-formatted, so only touched files are checked.
+files. The repo is not fully stylua-formatted, so only touched files are
+checked.

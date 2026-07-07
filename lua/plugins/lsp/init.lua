@@ -62,9 +62,10 @@ return {
             -- mason-lspconfig bridges mason.nvim with the lspconfig plugin - making it easier to use both plugins
             -- together. :help mason-lspconfig.nvim
             "williamboman/mason-lspconfig.nvim",
-            -- null-ls.nvim reloaded / Use Neovim as a language server to inject LSP diagnostics, code actions, and more
-            -- via Lua.
-            "nvimtools/none-ls.nvim",
+            -- Lightweight yet powerful formatter plugin for Neovim.
+            "stevearc/conform.nvim",
+            -- An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
+            "mfussenegger/nvim-lint",
             -- A small Neovim plugin that provides a command for LSP renaming with immediate visual feedback thanks to
             -- Neovim's command preview feature.
             "smjonas/inc-rename.nvim",
@@ -79,7 +80,7 @@ return {
             "rachartier/tiny-code-action.nvim",
         },
         config = function()
-            -- Setup language servers and null-ls
+            -- Setup language servers, formatters (conform) and linters (nvim-lint)
             require("plugins.lsp.config").setup(icons, border, root_files, servers)
             require("plugins.lsp.install").setup(servers)
 

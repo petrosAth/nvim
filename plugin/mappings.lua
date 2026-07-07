@@ -274,8 +274,8 @@ USER.mappings = {
                 group = "LSP",
                 ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
                 ["d"] = { "<Cmd>Glance definitions<CR>", desc = "Definitions" }, -- nvim-lspconfig -- glance.nvim
-                ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
-                ["F"] = { "<Cmd>LspToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- nvim-lspconfig
+                ["f"] = { "<Cmd>Format<CR>", desc = "Format document" }, -- conform.nvim
+                ["F"] = { "<Cmd>ToggleAutoFormat<CR>", desc = "Toggle auto formatting" }, -- conform.nvim
                 ["i"] = { "<Cmd>Glance implementations<CR>", desc = "Implementations" }, -- nvim-lspconfig -- glance.nvim
                 ["q"] = { "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Document diagnostics" }, -- nvim-lspconfig -- trouble.nvim
                 ["Q"] = { "<Cmd>Trouble diagnostics toggle<CR>", desc = "Workspace diagnostics" }, -- nvim-lspconfig -- trouble.nvim
@@ -412,7 +412,7 @@ USER.mappings = {
                     group = "Status",
                     ["l"] = { "<Cmd>checkhealth vim.lsp<CR>", desc = "LSP info" }, -- lsp-config
                     ["m"] = { "<Cmd>Mason<CR>", desc = "Mason status" }, -- mason.nvim
-                    ["n"] = { "<Cmd>NullLsInfo<CR>", desc = "Null-ls info" }, -- null-ls.nvim
+                    ["n"] = { "<Cmd>ConformInfo<CR>", desc = "Conform info" }, -- conform.nvim
                     ["p"] = { "<Cmd>Lazy<CR>", desc = "Plugins status" }, -- lazy.nvim
                 },
                 ["u"] = {
@@ -453,7 +453,7 @@ USER.mappings = {
             ["l"] = {
                 group = "LSP",
                 ["a"] = { function() require("tiny-code-action").code_action() end, desc = "Code actions" }, -- nvim-lspconfig -- tiny-code-action.nvim
-                ["f"] = { function() vim.lsp.buf.format({ async = true }) end, desc = "Format document" }, -- nvim-lspconfig
+                ["f"] = { ":Format<CR>", desc = "Format selection" }, -- conform.nvim
             },
             ["gh"] = {
                 group = "Git & gitsigns",

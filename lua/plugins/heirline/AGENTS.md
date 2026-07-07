@@ -67,11 +67,12 @@ M.FileTypeBlock = utils.insert(
 ### Component registry
 
 `ViMode`, `SearchResults`, `Paste`, `Wrap`, `GitStatus`, `GitBlame`, `LspBlock`
-(LSP clients + null-ls sources + diagnostics), `PluginUpdates`, `Spell`,
-`Treesitter`, `FileEncoding`, `FileFormatBlock`, `FileTypeBlock`, `FileSize`,
-`FileNameBlock`, `FileReadOnly`, `FileModified`, `CustomTitle`, `LspSymbol`
-(navic breadcrumb), `CursorPosition`, `CursorLine`, `LinesTotal`,
-`WindowNumber`, `CloseButton` (clickable, winbar-only), `TerminalName`.
+(LSP clients + conform formatters + nvim-lint linters + diagnostics),
+`PluginUpdates`, `Spell`, `Treesitter`, `FileEncoding`, `FileFormatBlock`,
+`FileTypeBlock`, `FileSize`, `FileNameBlock`, `FileReadOnly`, `FileModified`,
+`CustomTitle`, `LspSymbol` (navic breadcrumb), `CursorPosition`, `CursorLine`,
+`LinesTotal`, `WindowNumber`, `CloseButton` (clickable, winbar-only),
+`TerminalName`.
 
 ## Layout & the border "zone grammar"
 
@@ -146,24 +147,23 @@ map).
 
 ## Dependencies
 
-| Source                                   | Used for                                                                  |
-| ---------------------------------------- | ------------------------------------------------------------------------- |
-| `USER.styling.icons`                     | every glyph (`icons.line`, `icons.git.*`, `icons.lsp.*`, `icons.OS.*`, …) |
-| `USER.styling.separators.bars`           | the border/separator glyphs                                               |
-| `lua/themes/highlightGroups.lua`         | all `g.bars` + base statusline/winbar groups                              |
-| `ui.utilities.get_buf_label`             | special-buffer detection + `CustomTitle` text                             |
-| `nvim-web-devicons`                      | file icon + color in `FileTypeBlock` / `FileNameBlock`                    |
-| `gitsigns.nvim`                          | `vim.b.gitsigns_status_dict` / `gitsigns_blame_line`                      |
-| `nvim-navic`                             | `LspSymbol` breadcrumb                                                    |
-| `null-ls` / `vim.lsp` / `vim.diagnostic` | `LspBlock` clients, sources, diagnostic counts                            |
-| `lazy.manage.checker`                    | `PluginUpdates` count                                                     |
+| Source                                                 | Used for                                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------------------------- |
+| `USER.styling.icons`                                   | every glyph (`icons.line`, `icons.git.*`, `icons.lsp.*`, `icons.OS.*`, …) |
+| `USER.styling.separators.bars`                         | the border/separator glyphs                                               |
+| `lua/themes/highlightGroups.lua`                       | all `g.bars` + base statusline/winbar groups                              |
+| `ui.utilities.get_buf_label`                           | special-buffer detection + `CustomTitle` text                             |
+| `nvim-web-devicons`                                    | file icon + color in `FileTypeBlock` / `FileNameBlock`                    |
+| `gitsigns.nvim`                                        | `vim.b.gitsigns_status_dict` / `gitsigns_blame_line`                      |
+| `nvim-navic`                                           | `LspSymbol` breadcrumb                                                    |
+| `conform` / `nvim-lint` / `vim.lsp` / `vim.diagnostic` | `LspBlock` clients, formatters, linters, diagnostic counts                |
+| `lazy.manage.checker`                                  | `PluginUpdates` count                                                     |
 
 ## Recipes
 
 **Companion skill:** `/nvim-statusline` applies these and runs `/nvim-verify`.
 For component/condition/util API, run the `nvim-plugin-docs` skill with
-`/rebelot/heirline.nvim` (known-good Context7 ID; skill falls back to the local
-clone or GitHub repo if coverage is thin).
+`/rebelot/heirline.nvim` (known-good Context7 ID).
 
 1. **Add a component** — define it in `components.lua` as `M.X` using the
    `init`/`provider`/`flexible` idiom; add any width threshold to

@@ -51,20 +51,18 @@ end, { nargs = 0, desc = "Open the URL under the cursor with the system default 
 local function enable_auto_format()
     local group = vim.api.nvim_create_augroup("AutoFormat", { clear = false })
     vim.api.nvim_create_autocmd("BufWritePre", {
-        callback = function()
-            vim.lsp.buf.format({
-                filter = function(client) return client.name == "null-ls" end,
-            })
+        callback = function(args)
+            require("conform").format({ bufnr = args.buf, lsp_format = "fallback", timeout_ms = 500 })
         end,
         group = group,
     })
-    vim.notify("Enabled format on save", vim.log.levels.INFO, { title = "LSP" })
+    vim.notify("Enabled format on save", vim.log.levels.INFO, { title = "Format" })
 end
 
 ---Delete augroup and disable auto format on save.
 local function disable_format_on_save()
     vim.api.nvim_del_augroup_by_name("AutoFormat")
-    vim.notify("Disabled format on save", vim.log.levels.INFO, { title = "LSP" })
+    vim.notify("Disabled format on save", vim.log.levels.INFO, { title = "Format" })
 end
 
 ---Toggle auto format on save.
@@ -77,8 +75,21 @@ local function toggle_format_on_save()
 end
 
 vim.api.nvim_create_user_command(
-    "LspToggleAutoFormat",
+    "ToggleAutoFormat",
     function() toggle_format_on_save() end,
     { desc = "Toggle auto format on save" }
 )
+
+---Format the whole buffer, or a range when invoked with one (e.g. `:5,10Format`
+---or from Visual mode via `'<,'>`). Deriving the range from the command's
+---`line1`/`line2` with the full line length avoids conform's visual-detection
+---off-by-one, which makes range-aware formatters like stylua skip the last line.
+vim.api.nvim_create_user_command("Format", function(args)
+    local range = nil
+    if args.count ~= -1 then
+        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+        range = { start = { args.line1, 0 }, ["end"] = { args.line2, end_line:len() } }
+    end
+    require("conform").format({ async = true, lsp_format = "fallback", range = range })
+end, { range = true, desc = "Format buffer or range with conform" })
 ------------------------------------------------------------------------------------------------------------------------
