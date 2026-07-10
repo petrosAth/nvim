@@ -9,7 +9,7 @@ local function setup(fzf)
     fzf.setup({
         winopts = function()
             return {
-                width = USER.editor_scale("cols", 0.85, 50, 400),
+                width = USER.editor_scale("cols", 0.85, 50, 300),
                 height = USER.editor_scale("lines", 0.85, 30, 100),
                 row = 0.5,
                 col = 0.5,
