@@ -2,8 +2,8 @@ local function setup(fzf)
     local i = USER.styling.icons
     local b = USER.styling.borders.default
     local actions = fzf.actions
+    local trouble = require("trouble.sources.fzf")
 
-    -- nvim_open_win border passthrough: { tl, t, tr, r, br, b, bl, l }
     local border = { b.tl, b.t, b.tr, b.r, b.br, b.b, b.bl, b.l }
 
     fzf.setup({
@@ -49,11 +49,18 @@ local function setup(fzf)
         },
         actions = {
             files = {
-                true, -- inherit defaults (ctrl-s/ctrl-v/ctrl-t splits, alt-q to quickfix, …)
-                ["enter"] = actions.file_edit_or_qf,
-                ["alt-o"] = actions.file_split,
-                ["alt-v"] = actions.file_vsplit,
-                ["alt-t"] = actions.file_tabedit,
+                true, -- inherit defaults (ctrl-s/ctrl-v splits, alt-i/alt-h/alt-f toggles)
+                -- Edit a single selection; send a multi-selection to Trouble (not the quickfix list).
+                ["enter"] = function(selected, opts)
+                    if #selected > 1 then
+                        trouble.open(selected, opts)
+                    else
+                        actions.file_edit(selected, opts)
+                    end
+                end,
+                ["ctrl-o"] = actions.file_split,
+                ["alt-q"] = trouble.actions.open, -- open a fresh Trouble list
+                ["alt-Q"] = trouble.actions.add, -- append to the Trouble list
             },
         },
         files = {
