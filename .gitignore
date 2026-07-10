@@ -5,3 +5,4 @@ plugin/packer_compiled.lua
 !.nvim/styles/Vocab/
 .vscode
 Thumbs.db
+.DS_Store
