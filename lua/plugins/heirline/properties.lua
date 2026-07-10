@@ -132,4 +132,13 @@ M.ModeHighlightGroups = {
     ["t"] = "ModeTerminal",
 }
 
+-- Re-evaluate on ModeChanged and TermLeave (catches fzf-lua float close)
+-- Also allows the statusline to be re-evaluated when entering operator-pending mode
+M.ModeUpdate = {
+    "ModeChanged",
+    "TermLeave",
+    pattern = "*:*",
+    callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
+}
+
 return M

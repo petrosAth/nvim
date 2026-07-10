@@ -10,11 +10,7 @@ local hl = "StatusLine1"
 
 local border_edge_2 = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     {
         provider = Sep.edgeLeft,
         hl = function(self)
@@ -28,11 +24,7 @@ local border_edge_2 = {
 
 local border_2_edge = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     {
         provider = Sep.edgeRight,
         hl = function(self)
@@ -46,11 +38,7 @@ local border_2_edge = {
 
 local border_2_1 = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     {
         provider = Sep.right,
         hl = function(self)
@@ -64,11 +52,7 @@ local border_2_1 = {
 
 local border_1_2 = {
     init = function(self) self.mode = vim.api.nvim_get_mode()["mode"] end,
-    update = {
-        "ModeChanged",
-        pattern = "*:*",
-        callback = vim.schedule_wrap(function() vim.cmd("redrawstatus") end),
-    },
+    update = props.ModeUpdate,
     {
         provider = Sep.left,
         hl = function(self)
