@@ -6,6 +6,13 @@
             "options": {
                 "proseWrap": "always"
             }
+        },
+        {
+            "files": "*.mdc",
+            "options": {
+                "proseWrap": "always",
+                "parser": "markdown"
+            }
         }
     ]
 }

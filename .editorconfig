@@ -1,12 +1,10 @@
 [*]
-indent_style = space
 indent_size = 4
+indent_style = space
 max_line_length = 120
 tab_width = 4
 
-[*.md]
+[{*.md,*.mdc}]
 indent_size = 2
+max_line_length = 999999
 tab_width = 2
-
-[{AGENTS.md,CLAUDE.md,SKILL.md,nvim-plugin-doc-investigator.md}]
-max_line_length = 99999
