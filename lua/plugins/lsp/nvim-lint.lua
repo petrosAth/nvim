@@ -11,7 +11,9 @@ local linters_by_ft = {
 
 -- Linters slow enough (full static analysis, not a quick syntax pass) that
 -- running them on every InsertLeave/BufReadPost would be disruptive; these
--- only run on save.
+-- only run on save. They also get a progress toast (see start_progress /
+-- wrap_linter_progress below), since a run can take several seconds and
+-- otherwise gives no feedback that it's happening.
 local save_only_linters = {
     phpstan = true,
 }
@@ -45,6 +47,70 @@ local function linters_for(ft, save)
     return vim.tbl_filter(function(name) return not save_only_linters[name] end, names)
 end
 
+-- Save-only linters (see save_only_linters above) give no interim progress
+-- like LSP's $/progress, so the only "it's still going" signal is a
+-- repeating timer that keeps re-notifying the same toast id until the
+-- linter's parser fires. Keyed by linter name so multiple save-only linters
+-- get independent toasts.
+local progress_timers = {}
+
+local function notify_progress(name, done)
+    local icons = USER.styling.icons
+    local spinner = icons.loading.sphere
+    vim.notify(done and "Done" or "Linting…", vim.log.levels.INFO, {
+        id = "lint_progress_" .. name,
+        title = name,
+        opts = function(notif)
+            notif.icon = done and icons.lsp.loaded[1]
+                ---@diagnostic disable-next-line: undefined-field
+                or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
+        end,
+    })
+end
+
+-- Stops any timer already running for `name` before starting a fresh one --
+-- covers the double-save case, where nvim-lint cancels the previous process
+-- for the same linter name but its parser never fires (a cancelled process's
+-- stdout closes with no buffered output), which would otherwise leak the old
+-- timer.
+local function start_progress(name)
+    local existing = progress_timers[name]
+    if existing then
+        existing:stop()
+        existing:close()
+    end
+
+    local timer = vim.uv.new_timer()
+    progress_timers[name] = timer
+    timer:start(0, 80, vim.schedule_wrap(function() notify_progress(name, false) end))
+end
+
+local function finish_progress(name)
+    local timer = progress_timers[name]
+    if not timer then return end
+    timer:stop()
+    timer:close()
+    progress_timers[name] = nil
+    notify_progress(name, true)
+end
+
+-- Generic try_lint wrap_linter: for any save-only linter with a
+-- plain-function parser, finalizes its toast right when nvim-lint calls the
+-- parser -- which only happens once, when the process's stdout closes (i.e.
+-- once it has finished). No-op for every other linter.
+local function wrap_linter_progress(linter)
+    if not save_only_linters[linter.name] or type(linter.parser) ~= "function" then return linter end
+
+    local parse = linter.parser
+    linter.parser = function(output, bufnr)
+        local ok, result = pcall(parse, output, bufnr)
+        finish_progress(linter.name)
+        if not ok then error(result, 0) end
+        return result
+    end
+    return linter
+end
+
 function M.setup()
     local loaded, lint = pcall(require, "lint")
     if not loaded then
@@ -65,7 +131,13 @@ function M.setup()
     })
     vim.api.nvim_create_autocmd("BufWritePost", {
         group = group,
-        callback = function() lint.try_lint(linters_for(vim.bo.filetype, true)) end,
+        callback = function()
+            local names = linters_for(vim.bo.filetype, true)
+            for _, name in ipairs(names) do
+                if save_only_linters[name] then start_progress(name) end
+            end
+            lint.try_lint(names, { wrap_linter = wrap_linter_progress })
+        end,
     })
 end
 
