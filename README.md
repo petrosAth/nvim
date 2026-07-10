@@ -97,7 +97,6 @@ and `selene` on the files you changed, plus a headless load
   - [x] Add a previewer to the fzf-lua snippet picker
 - [x] Fix LaunchURL to work with the default system browser while being system
       agnostic
-- [ ] Investigate the migration to vim.pack for plugin management
 - [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
@@ -105,6 +104,12 @@ and `selene` on the files you changed, plus a headless load
 - [ ] Add debugger: [nvim-dap](https://github.com/mfussenegger/nvim-dap),
       [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui),
       [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
+- [ ] Revisit migration to [vim.pack](https://neovim.io/doc/user/pack/) for
+      plugin management (investigated 2026-06; defer until dependencies land)
+  - Staying on lazy.nvim: this config relies on `dependencies`, declarative
+    lazy-load triggers, and lazy-specific integrations vim.pack doesn't match yet
+  - Revisit when vim.pack adds lockfile-based dependency resolution and
+    graduates from experimental
 
 ## Plugins watch list
 
