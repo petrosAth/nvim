@@ -8,9 +8,8 @@ Adds or edits a colorscheme using the palette-based theme engine.
 /nvim-theme
 ```
 
-Also auto-triggers when you ask Claude to edit files under `lua/themes/` or
-`colors/`. The skill reads `lua/themes/AGENTS.md` for the theme pipeline, makes
-the necessary edits, and runs `/nvim-verify`.
+Also auto-triggers when you ask Claude to edit files under `lua/themes/` or `colors/`. The skill reads
+`lua/themes/AGENTS.md` for the theme pipeline, makes the necessary edits, and runs `/nvim-verify`.
 
 ## Examples
 
@@ -34,8 +33,7 @@ Run `:colorscheme <name>` in Neovim, or start with `SYSTEM_THEME=<name> nvim`.
 
 ## What it touches
 
-- `lua/themes/palettes/<name>.lua` — the palette definition (`.base` +
-  `.terminal`)
+- `lua/themes/palettes/<name>.lua` — the palette definition (`.base` + `.terminal`)
 - `colors/<name>.lua` — the one-line colorscheme entry point
 - `lua/themes/init.lua` — registers the theme in the themes list
 - Runs `/nvim-verify` after changes

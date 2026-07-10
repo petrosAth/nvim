@@ -1,20 +1,12 @@
 # lua/plugins/ — AGENTS.md
 
-Local guidance for plugin specs. See the root `AGENTS.md` for global conventions
-and the startup/load order.
+Local guidance for plugin specs. See the root `AGENTS.md` for global conventions and the startup/load order.
 
 ## What lives here
 
-One **lazy.nvim spec per file**, auto-discovered via `{ import = "plugins" }` in
-`lua/plugin-manager.lua` (recursive). File names are kebab-case after the plugin
-(`nvim-surround.lua`, `todo-comments.lua`).
+One **lazy.nvim spec per file**, auto-discovered via `{ import = "plugins" }` in `lua/plugin-manager.lua` (recursive). File names are kebab-case after the plugin (`nvim-surround.lua`, `todo-comments.lua`).
 
-**Complex plugins get a subdirectory** whose `init.lua` is the spec and whose
-siblings are helper modules: `lsp/`, `heirline/`, `fzf-lua/`, `tabby/`,
-`which-key/`, `mini/`. The spec's `config` function `require()`s those modules
-(e.g. `require("plugins.heirline.status-line")`) to keep each concern small.
-Some carry their own nested `AGENTS.md` — see `lsp/AGENTS.md` (LSP ecosystem)
-and `heirline/AGENTS.md` (statusline + winbar).
+**Complex plugins get a subdirectory** whose `init.lua` is the spec and whose siblings are helper modules: `lsp/`, `heirline/`, `fzf-lua/`, `tabby/`, `which-key/`, `mini/`. The spec's `config` function `require()`s those modules (e.g. `require("plugins.heirline.status-line")`) to keep each concern small. Some carry their own nested `AGENTS.md` — see `lsp/AGENTS.md` (LSP ecosystem) and `heirline/AGENTS.md` (statusline + winbar).
 
 ## Spec idiom
 
@@ -44,42 +36,22 @@ return {
 
 ## Naming & comment conventions
 
-- **Descriptive comment:** the first line inside the spec is a comment with the
-  plugin's GitHub "About" tagline (e.g. `flash.lua`'s
-  `-- Navigate your code with search labels...`). Wrap at ~120 columns, with
-  continuation lines starting `-- ` (see `comment.lua`).
-- **File name:** take the repo (the part after `/`), drop a trailing `.nvim`,
-  replace any remaining `.` with `-`, lowercase, add `.lua` — e.g.
-  `folke/flash.nvim` → `flash.lua`, `lambdalisue/suda.vim` → `suda-vim.lua`,
-  `numToStr/Comment.nvim` → `comment.lua`.
-- **`require` module name and the `USER.loading_error_msg("<repo>")` name come
-  from the plugin's docs/repo, not the file name** — e.g. `Comment.nvim` loads
-  as `require("Comment")` (capital C) with
-  `USER.loading_error_msg("Comment.nvim")`.
+- **Descriptive comment:** the first line inside the spec is a comment with the plugin's GitHub "About" tagline (e.g. `flash.lua`'s `-- Navigate your code with search labels...`). Wrap at ~120 columns, with continuation lines starting `-- ` (see `comment.lua`).
+- **File name:** take the repo (the part after `/`), drop a trailing `.nvim`, replace any remaining `.` with `-`, lowercase, add `.lua` — e.g. `folke/flash.nvim` → `flash.lua`, `lambdalisue/suda.vim` → `suda-vim.lua`, `numToStr/Comment.nvim` → `comment.lua`.
+- **`require` module name and the `USER.loading_error_msg("<repo>")` name come from the plugin's docs/repo, not the file name** — e.g. `Comment.nvim` loads as `require("Comment")` (capital C) with `USER.loading_error_msg("Comment.nvim")`.
 
 ## Recipe — add a plugin
 
-**Companion skill:** `/nvim-add-plugin` applies this recipe and runs
-`/nvim-verify`.
+**Companion skill:** `/nvim-add-plugin` applies this recipe and runs `/nvim-verify`.
 
-1. Create `lua/plugins/<name>.lua` returning a table of specs as above.
-   lazy.nvim discovers it automatically; no registration needed.
-2. If it's elaborate (multiple modules, statusline-style components), make a
-   `lua/plugins/<name>/` dir with `init.lua` (the spec) + helper modules.
-3. Launch Neovim; lazy installs it and updates `lazy-lock.json`. **Bundle that
-   lockfile change into the same commit** as the new spec file (see the root
-   `AGENTS.md` lockfile policy).
-4. Investigate the plugin's docs via the `nvim-plugin-docs` skill before wiring
-   options.
+1. Create `lua/plugins/<name>.lua` returning a table of specs as above. lazy.nvim discovers it automatically; no registration needed.
+2. If it's elaborate (multiple modules, statusline-style components), make a `lua/plugins/<name>/` dir with `init.lua` (the spec) + helper modules.
+3. Launch Neovim; lazy installs it and updates `lazy-lock.json`. **Bundle that lockfile change into the same commit** as the new spec file (see the root `AGENTS.md` lockfile policy).
+4. Investigate the plugin's docs via the `nvim-plugin-docs` skill before wiring options.
 
 ## Where a plugin's config is scattered
 
-A plugin is **more than its spec file** — its settings are spread across the
-config. When **replacing or removing** a plugin (see the `/nvim-add-plugin`
-skill), check every touchpoint below. Derive the plugin's handles first — its
-`<repo>` name, `require` **module**, its **command** names (`FzfLua`, `Neotree`,
-`UndotreeToggle`, …), its **highlight-group prefix** (`GitSigns`, `FzfLua`, …),
-and its **filetype** — then sweep:
+A plugin is **more than its spec file** — its settings are spread across the config. When **replacing or removing** a plugin (see the `/nvim-add-plugin` skill), check every touchpoint below. Derive the plugin's handles first — its `<repo>` name, `require` **module**, its **command** names (`FzfLua`, `Neotree`, `UndotreeToggle`, …), its **highlight-group prefix** (`GitSigns`, `FzfLua`, …), and its **filetype** — then sweep:
 
 ```sh
 grep -rn '<module>\|<Command>\|<HlPrefix>\|<filetype>' lua plugin after colors

@@ -8,9 +8,8 @@ Adds or edits keybindings in `plugin/mappings.lua` (`USER.mappings` table).
 /nvim-keymaps
 ```
 
-Also auto-triggers when you ask Claude to edit `plugin/mappings.lua` directly.
-The skill reads `plugin/AGENTS.md` for the mapping structure, applies changes,
-and runs `/nvim-verify`.
+Also auto-triggers when you ask Claude to edit `plugin/mappings.lua` directly. The skill reads `plugin/AGENTS.md` for
+the mapping structure, applies changes, and runs `/nvim-verify`.
 
 ## Examples
 

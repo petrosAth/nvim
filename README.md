@@ -4,8 +4,7 @@ My ["personal"](#sources) Neovim configuration. Always a work in progress.
 
 ## Requirements
 
-**Neovim 0.12+** is required (the config uses the treesitter main-branch
-rewrite).
+**Neovim 0.12+** is required (the config uses the treesitter main-branch rewrite).
 
 The following tools must be available on your `PATH`:
 
@@ -17,8 +16,7 @@ The following tools must be available on your `PATH`:
 | `fd`                                      | File finding inside fzf-lua       |
 | A [Nerd Font](https://www.nerdfonts.com/) | Icons and UI symbols throughout   |
 
-**Optional** — only needed for specific language support. Mason handles LSP
-server installation automatically.
+**Optional** — only needed for specific language support. Mason handles LSP server installation automatically.
 
 | Dependency | Used for                        |
 | ---------- | ------------------------------- |
@@ -32,32 +30,27 @@ server installation automatically.
    ```sh
    git clone https://github.com/<your-username>/nvim ~/.config/nvim
    ```
-2. Launch Neovim. _lazy.nvim_ will bootstrap itself and install all plugins
-   automatically.
-3. Restart Neovim. _mason.nvim_ will install LSP servers and tools
-   automatically.
-4. Install a [Nerd Font](https://www.nerdfonts.com/) and configure your terminal
-   to use it (required for icons to render correctly).
+2. Launch Neovim. _lazy.nvim_ will bootstrap itself and install all plugins automatically.
+3. Restart Neovim. _mason.nvim_ will install LSP servers and tools automatically.
+4. Install a [Nerd Font](https://www.nerdfonts.com/) and configure your terminal to use it (required for icons to render
+   correctly).
 
 ## Working on this config
 
-This repo carries machine-readable guidance so AI agents (and humans) can find
-their way around quickly.
+This repo carries machine-readable guidance so AI agents (and humans) can find their way around quickly.
 
 ### Documentation map
 
-[`AGENTS.md`](AGENTS.md) is the canonical architecture map: startup/load order,
-the global `USER` table, conventions, task recipes, and the commit +
-`lazy-lock.json` policy. Subdirectories carry their own `AGENTS.md` with local
-detail — `lua/plugins/`, `lua/plugins/lsp/`, `lua/themes/`, and `plugin/`. Each
-of those sits next to a tiny `CLAUDE.md` that imports it (`@AGENTS.md`), and the
-root `CLAUDE.md` does the same, so Claude Code loads the nearest guidance on
-demand while `AGENTS.md` stays the single source of truth.
+[`AGENTS.md`](AGENTS.md) is the canonical architecture map: startup/load order, the global `USER` table, conventions,
+task recipes, and the commit + `lazy-lock.json` policy. Subdirectories carry their own `AGENTS.md` with local detail —
+`lua/plugins/`, `lua/plugins/lsp/`, `lua/themes/`, and `plugin/`. Each of those sits next to a tiny `CLAUDE.md` that
+imports it (`@AGENTS.md`), and the root `CLAUDE.md` does the same, so Claude Code loads the nearest guidance on demand
+while `AGENTS.md` stays the single source of truth.
 
 ### Claude Code skills
 
-On-demand workflows live in `.claude/skills/`. The recipe skills auto-activate
-when you edit files in their area; all can be invoked manually with `/<name>`.
+On-demand workflows live in `.claude/skills/`. The recipe skills auto-activate when you edit files in their area; all
+can be invoked manually with `/<name>`.
 
 | Skill                            | What it does                                                                                                                                       |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -69,77 +62,60 @@ when you edit files in their area; all can be invoked manually with `/<name>`.
 
 ### Verifying changes
 
-There is no test suite. Run `/nvim-verify`, or do it by hand: `stylua --check`
-and `selene` on the files you changed, plus a headless load
-(`nvim --headless "+qa!"`) to confirm nothing errors on startup. `stylua` and
-`selene` are installed via Mason (`~/.local/share/nvim/mason/bin`).
+There is no test suite. Run `/nvim-verify`, or do it by hand: `stylua --check` and `selene` on the files you changed,
+plus a headless load (`nvim --headless "+qa!"`) to confirm nothing errors on startup. `stylua` and `selene` are
+installed via Mason (`~/.local/share/nvim/mason/bin`).
 
 ## To-do
 
-- [x] Audit and rework key mappings to better align with Vim's mapping
-      philosophy
-- [x] Add [code-preview.nvim](https://github.com/Cannon07/code-preview.nvim) to
-      preview AI coding agent edits as a native diff before they're applied
-- [x] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds
-      using LSP
+- [x] Audit and rework key mappings to better align with Vim's mapping philosophy
+- [x] Add [code-preview.nvim](https://github.com/Cannon07/code-preview.nvim) to preview AI coding agent edits as a
+      native diff before they're applied
+- [x] Migrate to [nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) for folds using LSP
   - Use LSP as the primary fold provider with treesitter as a fallback
-  - Recover the previous ufo implementation from git history (predates the
-    satellite.nvim switch) and reuse its styling
+  - Recover the previous ufo implementation from git history (predates the satellite.nvim switch) and reuse its styling
 - [x] Break LSP server configs into separate files
       ([on_attach ref — GitHub](https://github.com/pynappo/dotfiles/blob/f0398c969c996a0be2d37f6dcb0ffd3300c8e46d/.config/nvim/lua/pynappo/plugins/lsp.lua#L55-L62),
       [on_attach ref — Reddit](https://www.reddit.com/r/neovim/comments/10ar5ut/trying_to_extend_each_servers_on_attach_with_a/))
-- [x] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope
-      replacement
-  - Audit plugins that delegate to Telescope as a picker and wire up fzf-lua
-    equivalents
-  - Match existing Telescope functionality where possible; skip if the fzf-lua
-    equivalent requires excessive boilerplate
+- [x] Migrate to [fzf-lua](https://github.com/ibhagwan/fzf-lua) as a telescope replacement
+  - Audit plugins that delegate to Telescope as a picker and wire up fzf-lua equivalents
+  - Match existing Telescope functionality where possible; skip if the fzf-lua equivalent requires excessive boilerplate
   - [x] Add a previewer to the fzf-lua snippet picker
-- [x] Fix LaunchURL to work with the default system browser while being system
-      agnostic
-- [x] Create a skill that reads plugin documentation and add instructions to
-      invoke it before any installation or config modification. Sources to
-      cover:
+- [x] Fix LaunchURL to work with the default system browser while being system agnostic
+- [x] Create a skill that reads plugin documentation and add instructions to invoke it before any installation or config
+      modification. Sources to cover:
   - Context7
   - Online on the git repo
   - Local in the codebase in `.local/share/nvim/lazy`
-- [x] Fix the send to quickfix actions in fzf-lua like `file_tabedit` and
-      `file_edit_or_qf` to forward the files to trouble.nvim instead of the
-      quickfix list. Consult the following plugins' documentation:
+- [x] Fix the send to quickfix actions in fzf-lua like `file_tabedit` and `file_edit_or_qf` to forward the files to
+      trouble.nvim instead of the quickfix list. Consult the following plugins' documentation:
   - [fzf-lua](https://github.com/ibhagwan/fzf-lua)
   - [snacks.nvim](https://github.com/folke/snacks.nvim/)
   - [trouble.nvim](https://github.com/folke/trouble.nvim/)
 - [x] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
-      [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
-      [none-ls](https://github.com/nvimtools/none-ls.nvim)
+      [nvim-lint](https://github.com/mfussenegger/nvim-lint) from [none-ls](https://github.com/nvimtools/none-ls.nvim)
   - Surface active formatters/linters in the heirline statusline if feasible
 - [ ] Add debugger: [nvim-dap](https://github.com/mfussenegger/nvim-dap),
       [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui),
       [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text)
-- [ ] Revisit migration to [vim.pack](https://neovim.io/doc/user/pack/) for
-      plugin management (investigated 2026-06; defer until dependencies land)
-  - Staying on lazy.nvim: this config relies on `dependencies`, declarative
-    lazy-load triggers, and lazy-specific integrations vim.pack doesn't yet
-    support
-  - Revisit when vim.pack adds lockfile-based dependency resolution and
-    graduates from experimental
+- [ ] Revisit migration to [vim.pack](https://neovim.io/doc/user/pack/) for plugin management (investigated 2026-06;
+      defer until dependencies land)
+  - Staying on lazy.nvim: this config relies on `dependencies`, declarative lazy-load triggers, and lazy-specific
+    integrations vim.pack doesn't yet support
+  - Revisit when vim.pack adds lockfile-based dependency resolution and graduates from experimental
 
 ## Plugins watch list
 
-- [persistence.nvim](https://github.com/folke/persistence.nvim) — Simple session
-  management
-- [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) — ✨ AI Coding, Vim
-  Style
-- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) —
-  AI-powered coding
-- [avante.nvim](https://github.com/yetone/avante.nvim) — Use your Neovim like
-  using Cursor AI IDE!
-- [mcphub.nvim](https://github.com/ravitemer/mcphub.nvim) — An MCP client for
-  Neovim that seamlessly integrates MCP servers into your editing workflow with
-  an intuitive interface for managing, testing, and using MCP servers with your
+- [persistence.nvim](https://github.com/folke/persistence.nvim) — Simple session management
+- [obsidian.nvim](https://github.com/epwalsh/obsidian.nvim) — ✨ AI Coding, Vim Style
+- [agentic.nvim](https://github.com/carlos-algms/agentic.nvim) — Agentic Chat Interface directly in Neovim with ACP
+  providers from Claude-Code, Gemini, Codex, OpenCode, and Cursor-agent
+- [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) — AI-powered coding
+- [avante.nvim](https://github.com/yetone/avante.nvim) — Use your Neovim like using Cursor AI IDE!
+- [mcphub.nvim](https://github.com/ravitemer/mcphub.nvim) — An MCP client for Neovim that seamlessly integrates MCP
+  servers into your editing workflow with an intuitive interface for managing, testing, and using MCP servers with your
   favorite chat plugins.
-- [overseer.nvim](https://github.com/stevearc/overseer.nvim) — Task runner and
-  job management
+- [overseer.nvim](https://github.com/stevearc/overseer.nvim) — Task runner and job management
 
 ## Plugins collections
 
@@ -148,15 +124,13 @@ and `selene` on the files you changed, plus a headless load
 
 ## <a name="sources"></a>Sources
 
-- Heavily inspired by [Neelfrost](https://github.com/Neelfrost/dotfiles) — often
-  mercilessly copy-pasting, especially at the beginning.
+- Heavily inspired by [Neelfrost](https://github.com/Neelfrost/dotfiles) — often mercilessly copy-pasting, especially at
+  the beginning.
 - [Neil Sabde](https://github.com/VapourNvim/VapourNvim) and his
-  [Neovim Lua From Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V)
-  series were invaluable when I first dove into Vim/Neovim customization.
+  [Neovim Lua From Scratch](https://www.youtube.com/playlist?list=PLPDVgSbOnt7LXQ8DTzu37UwCpA0elyD0V) series were
+  invaluable when I first dove into Vim/Neovim customization.
 - [Getting started using Lua in Neovim](https://github.com/nanotee/nvim-lua-guide)
 - [tjdevries](https://github.com/tjdevries/config_manager/tree/master/xdg_config/nvim),
-  [NvChad](https://github.com/NvChad/NvChad),
-  [williamboman](https://github.com/williamboman/nvim-config),
-  [folke](https://github.com/folke/dot/tree/master/config/nvim),
-  [LunarVim](https://github.com/LunarVim/LunarVim),
+  [NvChad](https://github.com/NvChad/NvChad), [williamboman](https://github.com/williamboman/nvim-config),
+  [folke](https://github.com/folke/dot/tree/master/config/nvim), [LunarVim](https://github.com/LunarVim/LunarVim),
   [doom-nvim](https://github.com/NTBBloodbath/doom-nvim)

@@ -8,9 +8,8 @@ Adds, replaces, or removes a lazy.nvim plugin spec in this Neovim config.
 /nvim-add-plugin <author/repo>
 ```
 
-The `author/repo` argument is required. The skill fetches the plugin's GitHub
-description and Context7 docs, generates a spec file at
-`lua/plugins/<name>.lua`, updates `lazy-lock.json`, and runs `/nvim-verify`.
+The `author/repo` argument is required. The skill fetches the plugin's GitHub description and Context7 docs, generates a
+spec file at `lua/plugins/<name>.lua`, updates `lazy-lock.json`, and runs `/nvim-verify`.
 
 ## Examples
 

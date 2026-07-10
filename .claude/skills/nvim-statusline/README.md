@@ -1,7 +1,6 @@
 # nvim-statusline
 
-Adds or edits the statusline / winbar in the `heirline.nvim` setup (the tabline
-is tabby's, not here).
+Adds or edits the statusline / winbar in the `heirline.nvim` setup (the tabline is tabby's, not here).
 
 ## Invocation
 
@@ -9,9 +8,8 @@ is tabby's, not here).
 /nvim-statusline
 ```
 
-Also auto-triggers when you ask Claude to edit files under
-`lua/plugins/heirline/`. The skill reads `lua/plugins/heirline/AGENTS.md` for
-the component idiom and layout "zone grammar", applies changes, and runs
+Also auto-triggers when you ask Claude to edit files under `lua/plugins/heirline/`. The skill reads
+`lua/plugins/heirline/AGENTS.md` for the component idiom and layout "zone grammar", applies changes, and runs
 `/nvim-verify`.
 
 ## Examples
@@ -41,7 +39,6 @@ Move the git branch block to the left of the LSP block in the statusline.
 
 - `lua/plugins/heirline/components.lua` — the reusable component definitions
 - `lua/plugins/heirline/status-line.lua` / `winbar.lua` — the layout variants
-- `lua/plugins/heirline/properties.lua` — width thresholds + buf/filetype
-  exclusions
+- `lua/plugins/heirline/properties.lua` — width thresholds + buf/filetype exclusions
 - `lua/themes/highlightGroups.lua` (`g.bars`) for colors — via `/nvim-theme`
 - Runs `/nvim-verify` after changes
