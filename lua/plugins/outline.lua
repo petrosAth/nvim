@@ -9,12 +9,11 @@ local function setup(outline)
             -- Where to open the split window: right/left
             position = "right",
 
-            -- Percentage or integer of columns
-            width = USER.editor_scale("cols", 0.20, 10, 25),
-            -- Whether width is relative to the total width of nvim
-            -- When relative_width = true, this means take 25% of the total
-            -- screen width for outline window.
-            relative_width = true,
+            -- Absolute number of columns. outline.nvim resolves this once in setup() (no function form), so it
+            -- reflects the editor size at plugin load, not at each open.
+            width = USER.editor_scale("cols", 0.20, 20, 100),
+            -- editor_scale already returns columns, so width must not be treated as a percentage
+            relative_width = false,
 
             -- Auto close the outline window if goto_location is triggered and not for
             -- peek_location

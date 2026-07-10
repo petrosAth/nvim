@@ -119,7 +119,9 @@ local function setup(neo_tree)
             },
         },
         window = {
-            width = USER.editor_scale("cols", 0.20, 20, 60),
+            -- A function is resolved on every window open, so the width tracks the current editor size instead of
+            -- the size at startup.
+            width = function() return USER.editor_scale("cols", 0.20, 20, 100) end,
             popup = {
                 size = {
                     width = 49,
