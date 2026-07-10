@@ -14,21 +14,14 @@ paths:
 Thin orchestrator — read the canonical steps, don't duplicate them. (heirline
 owns the statusline + winbar only; the tabline is tabby's.)
 
-1. **Read `lua/plugins/heirline/AGENTS.md`** for the file map, the component
-   idiom (`init`/`provider`/`flexible` + `utils.insert`, thresholds in
-   `properties.Hide`), the layout "zone grammar" (`fallthrough = false` variant
-   order + paired mode-colored borders), and the recipes.
-2. **Apply** the change:
-   - New component → define `M.X` in `components.lua`, register its width
-     threshold in `properties.Hide`, then slot `c.X` into the right layout in
-     `status-line.lua`/`winbar.lua` **between the correct borders**.
-   - Show/hide → edit `properties.Disable.*` or the variant ordering.
-   - Keep borders paired and the `bg` handoffs continuous so colors don't smear.
-   - Use `USER.styling` icons/separators — never inline a glyph.
-   - **Never hardcode colors:** read groups via `utils.get_highlight`, and to
-     recolor edit `g.bars` in `lua/themes/highlightGroups.lua` (→ `nvim-theme`).
-3. **Consult Context7 `/rebelot/heirline.nvim`** for component/condition/util
-   API before relying on heirline behavior.
+1. **Read `lua/plugins/heirline/AGENTS.md`** — the file map, component idiom,
+   layout "zone grammar", hiding/disabling rules, color ownership boundary, and
+   the recipes.
+2. **Apply** the change per those recipes, honoring the hard rules stated there:
+   keep borders paired, and never hardcode a color or inline a glyph.
+3. **Consult heirline's API docs** via the `nvim-plugin-docs` skill (heirline is
+   in its known-good Context7 IDs table) before relying on
+   component/condition/util behavior.
 4. **Verify:** run the `nvim-verify` skill, then eyeball the bars live — active
    vs. inactive window, a narrow window (flexible collapse), a terminal, and a
    special buffer (trouble/Outline).

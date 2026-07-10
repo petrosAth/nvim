@@ -27,18 +27,13 @@ file-name rule). It is the source of truth; the steps below are the procedure.
 
 ## 2. Derive the four identifiers
 
-These differ — derive each from `author/repo` (here `<author>/<repo>`):
-
-| Identifier     | Rule                                                                    | Example (`folke/flash.nvim`) |
-| -------------- | ----------------------------------------------------------------------- | ---------------------------- |
-| spec string    | the arg verbatim                                                        | `"folke/flash.nvim"`         |
-| file name      | `<repo>` → drop trailing `.nvim` → replace `.`→`-` → lowercase → `.lua` | `lua/plugins/flash.lua`      |
-| error name     | `<repo>` verbatim (for `USER.loading_error_msg`)                        | `"flash.nvim"`               |
-| require module | **from the docs — NOT the repo name**                                   | `require("flash")`           |
-
-Edge cases: `lambdalisue/suda.vim` → file `suda-vim.lua`, error `"suda.vim"`;
-`numToStr/Comment.nvim` → file `comment.lua`, error `"Comment.nvim"`, but
-`require("Comment")` (capital C). Always take the module name from the docs.
+Four distinct identifiers derive from `<author>/<repo>`: the **spec string**
+(the arg verbatim), the **file name**, the **error name** (for
+`USER.loading_error_msg`), and the **require module** (from the docs — NOT the
+repo name). The derivation rules and edge-case examples are canonical in
+`lua/plugins/AGENTS.md` → "Naming & comment conventions" (read in step 1); this
+naming differs from the local-clone dir rule in `nvim-plugin-docs` (repo
+verbatim, no strip/fold).
 
 ## 3. Fetch the description comment (GitHub About tagline)
 
