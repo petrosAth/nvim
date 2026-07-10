@@ -1,5 +1,5 @@
 vim.filetype.add({
-  filename = {
-    ['.gitignore.django'] = 'gitignore'
-  }
+    filename = {
+        [".gitignore.django"] = "gitignore",
+    },
 })
