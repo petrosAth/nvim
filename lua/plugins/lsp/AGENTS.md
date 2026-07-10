@@ -26,7 +26,12 @@ or `init` function. See the root `AGENTS.md` for global conventions.
   use `shared.capabilities()` (it's the function, called per server), wrap
   `shared.on_attach` to extend it (see `ruff`/`ts_ls`), and build `root_dir`
   from `shared.lspconfig.util.root_pattern(shared.root_files)` (see
-  `eslint`/`lua_ls`).
+  `eslint`/`lua_ls`). For settings that must be resolved dynamically per
+  project root (e.g. querying a host tool's version) rather than hardcoded,
+  use `before_init(params, config)` — fires once per client start, after
+  `root_dir` resolves but before `initialize`; mutating `config.settings`
+  there is read by Neovim's default `workspace/configuration` handler (see
+  `intelephense`, which shells out with `cwd = config.root_dir`).
 - **`install.lua`** — auto-derives the mason install list from `servers` plus
   the configured conform formatters and nvim-lint linters, then drives
   `mason-tool-installer`. The `tool_to_mason` table maps tool names whose mason
