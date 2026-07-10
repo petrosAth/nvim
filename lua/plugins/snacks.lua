@@ -29,7 +29,7 @@ local function lsp_notification_config()
             progress[client.id] = vim.tbl_filter(function(v) return table.insert(msg, v.msg) or not v.done end, p)
 
             local spinner = icons.loading.sphere
-            vim.notify(table.concat(msg, "\n"), "info", {
+            vim.notify(table.concat(msg, "\n"), vim.log.levels.INFO, {
                 id = "lsp_progress",
                 title = client.name,
                 opts = function(notif)
