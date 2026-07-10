@@ -435,7 +435,11 @@ M.TerminalName = {
 }
 
 local LspBlock = {
-    condition = conditions.lsp_attached,
+    condition = function()
+        return conditions.lsp_attached()
+            or next((require("conform").list_formatters_to_run(0))) ~= nil
+            or next(require("lint").linters_by_ft[vim.bo.filetype] or {}) ~= nil
+    end,
     init = function(self)
         -- LspClients
         self.Clients = vim.lsp.get_clients({ bufnr = 0 })
