@@ -3,9 +3,7 @@ local M = {}
 ---Resolve the project root for local config. The project's `.nvim.lua` sets
 ---`USER.local_config.root`; fall back to the current working directory.
 ---@return string root Project root directory.
-local function get_root()
-    return USER.local_config.root or vim.uv.cwd()
-end
+local function get_root() return USER.local_config.root or vim.uv.cwd() end
 
 ---Open a new buffer in the current window with the given name, pointing at the
 ---given path. If content is given, populate it with it. Also create the needed
@@ -80,7 +78,7 @@ function USER.load_local_config(config)
     if config.use_palettes then USER.local_config.palettes = get_palettes() end
     if config.use_prettier then vim.cmd.ProjectCreatePrettierConfig() end
     if config.use_editorconfig then vim.cmd.ProjectCreateEditorConfig() end
-    if config.use_format_on_save then vim.cmd.LspToggleAutoFormat() end
+    if config.use_format_on_save then vim.cmd.ToggleAutoFormat() end
 end
 
 ---Source a project's `.nvim.lua` from a parent directory when Neovim was opened
