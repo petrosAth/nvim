@@ -62,7 +62,7 @@ when you edit files in their area; all can be invoked manually with `/<name>`.
 | Skill                            | What it does                                                                                                                                       |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/nvim-add-plugin <author/repo>` | Add (or replace/remove) a plugin — fetches the GitHub "About" tagline and docs, generates the spec, handles the lockfile and scattered touchpoints |
-| `/nvim-lsp`                      | Add or configure an LSP server / null-ls source (auto-applies under `lua/plugins/lsp/`)                                                            |
+| `/nvim-lsp`                      | Add or configure an LSP server / conform formatter / nvim-lint linter (auto-applies under `lua/plugins/lsp/`)                                      |
 | `/nvim-theme`                    | Add or edit a colorscheme / palette (auto-applies under `lua/themes/`, `colors/`)                                                                  |
 | `/nvim-keymaps`                  | Add or edit keybindings in `USER.mappings` (auto-applies on `plugin/mappings.lua`)                                                                 |
 | `/nvim-verify`                   | Format-check (`stylua`), lint (`selene`), and a headless smoke-load                                                                                |
@@ -109,7 +109,7 @@ and `selene` on the files you changed, plus a headless load
   - [fzf-lua](https://github.com/ibhagwan/fzf-lua)
   - [snacks.nvim](https://github.com/folke/snacks.nvim/)
   - [trouble.nvim](https://github.com/folke/trouble.nvim/)
-- [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
+- [x] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
   - Surface active formatters/linters in the heirline statusline if feasible

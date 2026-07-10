@@ -61,7 +61,7 @@ Where things live and where to add them:
 | `init.lua`               | `USER` table, theme selection, top-level load order.                                                                                     |
 | `lua/plugins/`           | One lazy.nvim spec per file; auto-discovered. See `lua/plugins/AGENTS.md`.                                                               |
 | `lua/plugins/<dir>/`     | Complex plugins: `init.lua` is the spec, siblings are helper modules (`lsp/`, `heirline/`, `fzf-lua/`, `tabby/`, `which-key/`, `mini/`). |
-| `lua/plugins/lsp/`       | LSP ecosystem (servers, mason, null-ls, UI helpers). See `lua/plugins/lsp/AGENTS.md`.                                                    |
+| `lua/plugins/lsp/`       | LSP ecosystem (servers, mason, conform, nvim-lint, UI helpers). See `lua/plugins/lsp/AGENTS.md`.                                         |
 | `lua/plugins/heirline/`  | Statusline + winbar (tabline is tabby's). See `lua/plugins/heirline/AGENTS.md`.                                                          |
 | `lua/themes/`            | Palette-based theme engine. See `lua/themes/AGENTS.md`.                                                                                  |
 | `lua/ui/`                | UI helpers: side-panel options, buffer labels.                                                                                           |
@@ -94,40 +94,13 @@ Defined in `init.lua`; the single global namespace (no other globals). Fields:
 Helper methods (attached by their modules): `USER.loading_error_msg(name)`,
 `USER.is_git_repo()`, `USER.load_local_config(opts)`.
 
-### Plugin spec idiom
+### Plugin & submodule idioms
 
-A plugin file returns a **table of specs**. The `config` function loads the
-plugin defensively and delegates to a local `setup`:
-
-```lua
-local function setup(plugin)
-    plugin.setup({ ... })
-end
-
-return {
-    {
-        "owner/repo",
-        config = function()
-            local loaded, plugin = pcall(require, "plugin-module")
-            if not loaded then
-                USER.loading_error_msg("plugin-module")
-                return
-            end
-            setup(plugin)
-        end,
-    },
-}
-```
-
-### Submodule idiom
-
-Helper modules (non-spec files in plugin subdirs) return a module table:
-
-```lua
-local M = {}
-function M.setup(...) ... end
-return M
-```
+A plugin file returns a **table of specs** whose `config` loads the plugin
+defensively (`pcall(require, …)` + `USER.loading_error_msg` guard) and delegates
+to a local `setup`. Helper modules (non-spec files in plugin subdirs) return a
+module table (`local M = {}; … return M`). Full code shapes:
+`lua/plugins/AGENTS.md → Spec idiom`.
 
 ### Other conventions
 
@@ -174,16 +147,19 @@ file was being written.
 For any third-party plugin's docs (setup options, require-module name, API,
 keymaps, lazy-load triggers), use the **`/nvim-plugin-docs` skill** — or the
 **`nvim-plugin-doc-investigator`** subagent for broad investigations. It owns
-the priority chain (Context7 → local lazy clone → GitHub repo) and the
-short-circuit rules; this file does not restate them.
+the priority chain and the short-circuit rules; this file does not restate them.
 
 Known-good Context7 IDs (skip `resolve-library-id` for these):
 
 - `/neovim/neovim` — Neovim runtime docs (`starting.txt`, `lua.txt`,
   `options.txt`, `syntax.txt`, `editing.txt`, …).
-- `/folke/lazy.nvim` — lazy.nvim (spec format, startup sequence,
-  lazy-loading).
-- `/neovim/nvim-lspconfig` — per-server LSP config defaults.
+- `/folke/lazy.nvim` — lazy.nvim (spec format, startup sequence, lazy-loading).
+- `/neovim/nvim-lspconfig` — per-server LSP config defaults (full server list:
+  `:help lspconfig-all`).
+- `/stevearc/conform.nvim` — conform formatters (full builtin list:
+  `:help conform-formatters`).
+- `/mfussenegger/nvim-lint` — nvim-lint linters (full builtin list: the README's
+  "Available Linters" table).
 - `/rebelot/heirline.nvim` — heirline component/condition/util API.
 - For any other plugin under `lua/plugins/`, let the skill resolve it.
 
@@ -263,23 +239,7 @@ A committed `lazy-lock.json` is a git-tracked restore point for plugin
 - **Never hand-edit `lazy-lock.json`.** Always regenerate it via lazy.nvim
   commands (`:Lazy update`, `:Lazy sync`, `:Lazy restore`).
 
-## Lockfiles in general (reference)
-
-The same policy applies to lockfiles in any ecosystem you might encounter:
-
-1. **Commit the lockfile** (for applications / end products — reproducible
-   installs).
-2. **Bundle it with the manifest change that produced it** (never let the
-   manifest and lockfile drift apart across separate commits).
-3. **Pure dependency bumps get standalone commits** (conventionally
-   `chore(deps): ...`).
-4. **Never hand-edit** — regenerate via the tool.
-
-Common lockfiles: `package-lock.json` / `yarn.lock` / `pnpm-lock.yaml` /
-`bun.lock` (JS), `Cargo.lock` (Rust), `poetry.lock` / `uv.lock` / `Pipfile.lock`
-(Python), `composer.lock` (PHP), `Gemfile.lock` (Ruby), `go.sum` (Go),
-`flake.lock` (Nix), `.terraform.lock.hcl` (Terraform).
-
-**Compiled/generated artifacts are NOT lockfiles** and should be git-ignored,
-not committed — e.g. `plugin/packer_compiled.lua` is correctly listed in
-`.gitignore`.
+The same bundle-with-its-manifest-change / standalone-pure-bump /
+never-hand-edit policy applies to any lockfile in any ecosystem.
+**Compiled/generated artifacts are NOT lockfiles** — they stay git-ignored (e.g.
+`plugin/packer_compiled.lua` in `.gitignore`), not committed.
