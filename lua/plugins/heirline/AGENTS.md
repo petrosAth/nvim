@@ -161,7 +161,9 @@ map).
 ## Recipes
 
 **Companion skill:** `/nvim-statusline` applies these and runs `/nvim-verify`.
-Consult Context7 `/rebelot/heirline.nvim` for component/condition/util API.
+For component/condition/util API, run the `nvim-plugin-docs` skill with
+`/rebelot/heirline.nvim` (known-good Context7 ID; skill falls back to the local
+clone or GitHub repo if coverage is thin).
 
 1. **Add a component** — define it in `components.lua` as `M.X` using the
    `init`/`provider`/`flexible` idiom; add any width threshold to

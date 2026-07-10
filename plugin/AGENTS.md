@@ -51,4 +51,5 @@ native loader) during `require("plugin-manager").init()` — see the root
    registration. Restart Neovim (or re-source) and verify with `:WhichKey`.
 4. Keep mappings aligned with the **Mapping model** above (leader split, `x`/`s`
    over `v`, `<Cmd>` over `:`, the `<F4>` toggle hub); check `:help map` /
-   Context7 (`/neovim/neovim`) when unsure about a built-in.
+   Context7 (`/neovim/neovim`) when unsure about a built-in — or run the
+   `nvim-plugin-docs` skill for the full 3-tier doc lookup.
