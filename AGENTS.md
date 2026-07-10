@@ -146,12 +146,12 @@ Config-only, no build:
 - `.prettierrc` — JS/YAML/markdown formatting (single quotes, prose wrap).
 - `.luarc.json`, `.editorconfig` — language-server and editor settings.
 
-These files only **configure** the tools; the binaries themselves —
-`stylua`, `selene`, `prettierd`, and every LSP server / formatter / linter — are
+These files only **configure** the tools; the binaries themselves — `stylua`,
+`selene`, `prettierd`, and every LSP server / formatter / linter — are
 **provisioned by Mason, not installed on the system `PATH`**. To run one from a
 shell, prepend `$HOME/.local/share/nvim/mason/bin` to `PATH`. See
-`lua/plugins/lsp/AGENTS.md` → "Tool provisioning — Mason, not the system" for the
-full story.
+`lua/plugins/lsp/AGENTS.md` → "Tool provisioning — Mason, not the system" for
+the full story.
 
 **Claude Code skills** (`.claude/skills/`) wrap the recipes below as on-demand
 workflows: `/nvim-add-plugin`, `/nvim-lsp`, `/nvim-theme`, `/nvim-keymaps`,

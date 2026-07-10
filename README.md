@@ -9,13 +9,13 @@ rewrite).
 
 The following tools must be available on your `PATH`:
 
-| Dependency                                | Purpose                             |
-| ----------------------------------------- | ----------------------------------- |
-| `git`                                     | Plugin installation via lazy.nvim   |
-| `fzf`                                     | Fuzzy finder backend for fzf-lua    |
-| `ripgrep` (`rg`)                          | Live grep inside fzf-lua            |
-| `fd`                                      | File finding inside fzf-lua         |
-| A [Nerd Font](https://www.nerdfonts.com/) | Icons and UI symbols throughout     |
+| Dependency                                | Purpose                           |
+| ----------------------------------------- | --------------------------------- |
+| `git`                                     | Plugin installation via lazy.nvim |
+| `fzf`                                     | Fuzzy finder backend for fzf-lua  |
+| `ripgrep` (`rg`)                          | Live grep inside fzf-lua          |
+| `fd`                                      | File finding inside fzf-lua       |
+| A [Nerd Font](https://www.nerdfonts.com/) | Icons and UI symbols throughout   |
 
 **Optional** — only needed for specific language support. Mason handles LSP
 server installation automatically.
@@ -95,9 +95,9 @@ and `selene` on the files you changed, plus a headless load
   - Match existing Telescope functionality where possible; skip if the fzf-lua
     equivalent requires excessive boilerplate
   - [x] Add a previewer to the fzf-lua snippet picker
+- [x] Fix LaunchURL to work with the default system browser while being system
+      agnostic
 - [ ] Investigate the migration to vim.pack for plugin management
-- [ ] Fix LaunchURL to work with the default system browser under while being
-      system agnostic
 - [ ] Migrate to [conform.nvim](https://github.com/stevearc/conform.nvim) /
       [nvim-lint](https://github.com/mfussenegger/nvim-lint) from
       [none-ls](https://github.com/nvimtools/none-ls.nvim)
