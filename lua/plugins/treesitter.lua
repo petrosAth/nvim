@@ -29,6 +29,12 @@ local ensure_installed = {
     "regex",           -- embedded inside JS/TS/Lua and others
 }
 
+-- Filetypes that keep Vim's legacy regex `:syntax` highlighting instead of
+-- treesitter, even when a parser is installed/available.
+local excluded_filetypes = {
+    "tmux", -- syntax/tmux.vim is purpose-built for tmux's directive syntax
+}
+
 -- Enable treesitter features for a buffer: highlighting (Neovim), folds
 -- (Neovim) and indentation (nvim-treesitter).
 local function enable_features(bufnr)
@@ -52,6 +58,11 @@ local function setup_features(nvim_treesitter)
         callback = function(args)
             local bufnr = args.buf
             local ft = vim.bo[bufnr].filetype
+            if vim.list_contains(excluded_filetypes, ft) then
+                vim.bo[bufnr].syntax = ft
+                return
+            end
+
             local lang = vim.treesitter.language.get_lang(ft)
             if not lang then return end
 
