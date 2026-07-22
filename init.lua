@@ -20,7 +20,7 @@ local themes = {
 -- Create custom table to store my functions, tables, variables etc
 USER = {
     styling = require("styling"), -- Table with variables and icons used for neovim styling
-    theme = themes[0] or vim.env.SYSTEM_THEME or "nord", -- Get theme name from SYSTEM_THEME environment variable
+    theme = themes[0] or vim.env.SYSTEM_THEME or "gruvbox", -- Get theme name from SYSTEM_THEME environment variable
     transparent_bg = true,
     mappings = {}, -- Table for all the key bindings
     local_config = { -- Project's local configuration

@@ -448,7 +448,7 @@ function M.get_highlight_groups(palette)
         HydraRed                      = { fg = p.red_2 },
 
         -- incline.nvim
-        InclineNormal                 = { fg = p.nord5, bg = p.base_4 },
+        InclineNormal                 = { fg = p.base_01, bg = p.base_4 },
         InclineNormalNC               = { link = "InclineNormal" },
 
         -- indent-blankline.nvim

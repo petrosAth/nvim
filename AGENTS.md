@@ -57,7 +57,7 @@ Where things live and where to add them:
 Defined in `init.lua`; the single global namespace (no other globals). Fields:
 
 - `USER.styling` — `require("styling")`: icons, borders, separators, variables.
-- `USER.theme` — active theme name (env `SYSTEM_THEME`, else `"nord"`).
+- `USER.theme` — active theme name (env `SYSTEM_THEME`, else `"gruvbox"`).
 - `USER.transparent_bg` — transparency toggle.
 - `USER.mappings` — the keybinding table (populated in `plugin/mappings.lua`).
 - `USER.local_config` — project-local config paths/state.
