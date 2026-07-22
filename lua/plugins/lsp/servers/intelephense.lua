@@ -1,7 +1,7 @@
 return function(shared)
     return {
         init_options = {
-            licenceKey = vim.fn.expand("$HOME/intelephense/licence.txt"),
+            licenceKey = vim.env.INTELEPHENSE_LICENCE,
         },
         settings = {
             intelephense = {
